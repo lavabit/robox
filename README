@@ -1,0 +1,31 @@
+
+
+# Setup the environment variables.
+export ATLAS_TOKEN="REDACTED"
+
+# Build the vagrant base images.
+packer build magma.json
+
+# To make use of these images.
+mkdir magma-build-box
+cd magma-build-box
+vagrant init
+vagrant box add --provider [virtualbox|vmware-desktop] lavabit/magma
+sed -i "s/base/lavabit\/magma/g" Vagrantfile
+vagrant up
+vagrant ssh
+
+# When we're done making use of the sandbox.
+vagrant destroy
+
+# And if we don't want to conitnue storing the image locally.
+vagrant box remove --all "lavabit/magma"
+
+# If its necessary to every manually update the local image.
+# vagrant box outdated
+
+# If we use the atlas build service
+# "push": {
+#       "name": "{{user `org_name`}}/{{user `box_name`}}",
+#       "vcs": true
+# },
