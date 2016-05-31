@@ -1,17 +1,17 @@
 {
     "variables": {
-    "org_name": "lavabit",
-    "box_name": "magma",
-	"box_base": "centos",
-	"box_version": "0.0.7"
+        "org_name": "lavabit",
+        "box_name": "magma",
+        "box_base": "centos",
+        "box_version": "0.0.8"
     },
     "provisioners": [
         {
             "type": "shell",
             "scripts": [
                 "scripts/base.sh",
-		        "scripts/reboot.sh",
-		        "scripts/kernel.sh",
+                "scripts/reboot.sh",
+                "scripts/kernel.sh",
                 "scripts/virtualbox.sh",
                 "scripts/vmware.sh",
                 "scripts/vagrant.sh",
@@ -27,7 +27,7 @@
                 "vmware-iso": {
                     "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
                 },
-				"libvert": {
+                "qemu": {
                     "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
                 }
             },
@@ -36,129 +36,159 @@
     ],
     "builders": [
         {
-                "type": "qemu",
-                "accelerator": "kvm",
-		"boot_wait": "20s",
-		"boot_command": [
-			"<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.kickstart.cfg<enter><wait>"
-		],
-                "format": "qcow2",
-                "disk_size": 20480,
-                "disk_interface": "virtio",
-		"disk_compression": true,
-                "net_device": "virtio-net",
-                "qemuargs": [
-                    [ "-m", "2048M" ],
-                    [ "-smp", "cpus=2" ]
-                  ],
-                "http_directory": "http",      
-                "headless": true,    
-                "iso_url": "https://mirrors.kernel.org/centos/6/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
-		"iso_checksum": "9d3fec5897be6b3fed4d3dda80b8fa7bb62c616bbfd4bdcd27295ca9b764f498",
-		"iso_checksum_type": "sha256",
-		"ssh_username": "root",
-		"ssh_password": "vagrant",
-		"ssh_port": 22,
-		"ssh_wait_timeout": "10000s",
-        "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
-    },
-	{
-		"type": "virtualbox-iso",
-		"boot_wait": "20s",
-		"boot_command": [
-			"<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.kickstart.cfg<enter><wait>"
-		],
-		"disk_size": 20480,
-		"vboxmanage": [
-		    ["modifyvm", "{{.Name}}", "--memory", "2048"],
-		    ["modifyvm", "{{.Name}}", "--cpus", "2"]
-		  ]
-		,
-		"guest_os_type": "RedHat_64",
-		"http_directory": "http",
-		"headless": true,
-		"iso_url": "https://mirrors.kernel.org/centos/6/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
-		"iso_checksum": "9d3fec5897be6b3fed4d3dda80b8fa7bb62c616bbfd4bdcd27295ca9b764f498",
-		"iso_checksum_type": "sha256",
-		"ssh_username": "root",
-		"ssh_password": "vagrant",
-		"ssh_port": 22,
-		"ssh_wait_timeout": "10000s",
-		"shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-		"guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-		"virtualbox_version_file": ".vbox_version"
-	},
-	{
-		"type": "vmware-iso",
-		"boot_wait": "20s",
-		"boot_command": [
-			"<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.kickstart.cfg<enter><wait>"
-		],
-		"disk_size": 20480,
-		"disk_type_id": "0",
-		"vmx_data": {
-			"memsize": "2048",
-			"numvcpus": "2",
-			"cpuid.coresPerSocket": "1"
-		},
-		"guest_os_type": "Centos-64",
-		"http_directory": "http",
-		"headless": true,
-		"iso_url": "https://mirrors.kernel.org/centos/6/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
-		"iso_checksum": "9d3fec5897be6b3fed4d3dda80b8fa7bb62c616bbfd4bdcd27295ca9b764f498",
-		"iso_checksum_type": "sha256",
-		"skip_compaction": false,
-		"ssh_username": "root",
-		"ssh_password": "vagrant",
-		"ssh_port": 22,
-		"ssh_wait_timeout": "10000s",
-		"shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-		"tools_upload_flavor": "linux"
-	}],
-    	"post-processors": [
-        [{
-			"type": "vagrant",
-			"compression_level": 9,
-			"keep_input_artifact": false,
-			"vagrantfile_template": "tpl/vagrantfile.tpl",			
-			"override": {
-				"libvirt": { "output": "{{user `box_name`}}-{{user `box_base`}}-libvert-{{user `box_version`}}.box" },
-				"virtualbox": { "output": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-{{user `box_version`}}.box" },
-				"vmware": { "output": "{{user `box_name`}}-{{user `box_base`}}-vmware-{{user `box_version`}}.box"}
-			}
+            "type": "qemu",
+            "accelerator": "kvm",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.kickstart.cfg<enter><wait>"
+            ],
+            "format": "qcow2",
+            "disk_size": 20480,
+            "disk_interface": "virtio",
+            "disk_compression": true,
+            "net_device": "virtio-net",
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=2"
+                ]
+            ],
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
+            "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         },
         {
-            "type": "atlas",
-            "only": ["qemu"],
-            "artifact": "{{user `org_name`}}/{{user `box_name`}}",
-            "artifact_type": "vagrant.box",
-            "metadata": {
-                "provider": "libvirt",
-                "version": "{{user `box_version`}}",
-                "created_at": "{{timestamp}}"
-            }
+            "type": "virtualbox-iso",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.kickstart.cfg<enter><wait>"
+            ],
+            "disk_size": 20480,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "RedHat_64",
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
+            "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+            "virtualbox_version_file": ".vbox_version"
         },
         {
-            "type": "atlas",
-            "only": ["vmware-iso"],
-            "artifact": "{{user `org_name`}}/{{user `box_name`}}",
-            "artifact_type": "vagrant.box",
-            "metadata": {
-                "provider": "vmware_desktop",
-                "version": "{{user `box_version`}}",
-                "created_at": "{{timestamp}}"
+            "type": "vmware-iso",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.kickstart.cfg<enter><wait>"
+            ],
+            "disk_size": 20480,
+            "disk_type_id": "0",
+            "vmx_data": {
+                "memsize": "2048",
+                "numvcpus": "2",
+                "cpuid.coresPerSocket": "1"
+            },
+            "guest_os_type": "Centos-64",
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
+            "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
+            "iso_checksum_type": "sha256",
+            "skip_compaction": false,
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "tools_upload_flavor": "linux"
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/vagrantfile.tpl",
+                "override": {
+                    "libvirt": {
+                        "output": "{{user `box_name`}}-{{user `box_base`}}-libvirt-{{user `box_version`}}.box"
+                    },
+                    "virtualbox": {
+                        "output": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-{{user `box_version`}}.box"
+                    },
+                    "vmware": {
+                        "output": "{{user `box_name`}}-{{user `box_base`}}-vmware-{{user `box_version`}}.box"
+                    }
+                }
+            },
+            {
+                "type": "atlas",
+                "only": [
+                    "qemu"
+                ],
+                "artifact": "{{user `org_name`}}/{{user `box_name`}}",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}"
+                }
+            },
+            {
+                "type": "atlas",
+                "only": [
+                    "vmware-iso"
+                ],
+                "artifact": "{{user `org_name`}}/{{user `box_name`}}",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "vmware_desktop",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}"
+                }
+            },
+            {
+                "type": "atlas",
+                "only": [
+                    "virtualbox-iso"
+                ],
+                "artifact": "{{user `org_name`}}/{{user `box_name`}}",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "virtualbox",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}"
+                }
             }
-        },
-        {
-            "type": "atlas",
-            "only": ["virtualbox-iso"],
-            "artifact": "{{user `org_name`}}/{{user `box_name`}}",
-            "artifact_type": "vagrant.box",
-            "metadata": {
-                "provider": "virtualbox",
-                "version": "{{user `box_version`}}",
-                "created_at": "{{timestamp}}"
-            }
-        }]
+        ]
     ]
 }

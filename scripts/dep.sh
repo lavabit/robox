@@ -4,14 +4,17 @@
 
 # Grab a snapshot of the development branch.
 cat <<EOF >/home/vagrant/magma-build.sh
-
 #!/bin/bash
 
-# Grab the latest copy of the development branch.
+# Temporary [hopefully] workaround to avoid [yet another] bug in NSS.
+export NSS_DISABLE_HW_AES=1
+
+# Clone the magma repository off Github.
+git clone https://github.com/lavabit/magma.git magma-develop
+
+# Alternatively, grab the latest copy of the development branch using wget.
 # wget --quiet https://github.com/lavabit/magma/archive/develop.tar.gz
 # tar xzvf develop.tar.gz
-
-git clone https://github.com/lavabit/magma.git magma-develop
 
 # Linkup the scripts and clean up the permissions.
 magma-develop/dev/scripts/linkup.sh
