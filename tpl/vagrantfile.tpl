@@ -12,10 +12,78 @@ Vagrant.configure(2) do |config|
 
   # The box ships with a short script that will clone the git repo and
   # compile the code. This line will trigger that process automatically
-  # when the box is provisioned.
+  # when the box is provisioned. 
   config.vm.provision "shell", run: "always", inline: <<-SHELL
     su -l vagrant /home/vagrant/magma-build.sh   
+    su -l vagrant /home/vagrant/magma.run
   SHELL
+  
+  # These are the ports currently configured by the sandbox config file and the protocol
+  # associated with each. The port numbers and protocols in the sandbox configuration
+  # will change over time, and may be different then what is listed below. A particular
+  # port may also be different if the corresponding port isn't available on the host system. 
+  # For a list of the currently configured ports, consult the following file for updates:
+  # /home/vagrant/magma-develop/sandbox/etc/magma.sandbox.config
+  
+  # Molten
+  config.vm.network "forwarded_port", guest: 6000, host: 6000, auto_correct: true
+  
+  # Molten IPv6
+  config.vm.network "forwarded_port", guest: 6050, host: 6050, auto_correct: true
+  
+  # SMTP
+  config.vm.network "forwarded_port", guest: 7000, host: 7000, auto_correct: true
+  
+  # SMTP IPv6
+  config.vm.network "forwarded_port", guest: 7050, host: 7050, auto_correct: true
+  
+  # SMTPS
+  config.vm.network "forwarded_port", guest: 7500, host: 7500, auto_correct: true
+  
+  # DMTP
+  config.vm.network "forwarded_port", guest: 7501, host: 7501, auto_correct: true
+  
+  # SMTPS IPv6
+  config.vm.network "forwarded_port", guest: 7550, host: 7550, auto_correct: true
+  
+  # DMTP IPv6
+  config.vm.network "forwarded_port", guest: 7551, host: 7551, auto_correct: true
+  
+  # POP
+  config.vm.network "forwarded_port", guest: 8000, host: 8000, auto_correct: true
+  
+  # POP IPv6
+  config.vm.network "forwarded_port", guest: 8050, host: 8050, auto_correct: true
+  
+  # POP
+  config.vm.network "forwarded_port", guest: 8500, host: 8500, auto_correct: true
+  
+  # POPS IPv6
+  config.vm.network "forwarded_port", guest: 8550, host: 8550, auto_correct: true
+  
+  # IMAP
+  config.vm.network "forwarded_port", guest: 9000, host: 9000, auto_correct: true
+  
+  # IMAP IPv6
+  config.vm.network "forwarded_port", guest: 9050, host: 9050, auto_correct: true
+  
+  # IMAPS
+  config.vm.network "forwarded_port", guest: 9500, host: 9500, auto_correct: true
+  
+  # IMAPS IPv6
+  config.vm.network "forwarded_port", guest: 9550, host: 9550, auto_correct: true
+  
+  # HTTP
+  config.vm.network "forwarded_port", guest: 10000, host: 10000, auto_correct: true
+  
+  # HTTP IPv6
+  config.vm.network "forwarded_port", guest: 10050, host: 10050, auto_correct: true
+  
+  # HTTPS
+  config.vm.network "forwarded_port", guest: 10500, host: 10500, auto_correct: true
+  
+  # HTTPS IPv6
+  config.vm.network "forwarded_port", guest: 10550, host: 10550, auto_correct: true  
   
   # Magma will build and run comfortably with 1 CPU and 512MB of RAM
   # but adding a second CPU and increasing the RAM to 2048MB will speed
