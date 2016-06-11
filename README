@@ -4,7 +4,7 @@
 export ATLAS_TOKEN="REDACTED"
 
 # Build the vagrant base images.
-packer build magma.json
+packer build -parallel=false template.json
 
 # To make use of these images.
 mkdir magma-build-box
