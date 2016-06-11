@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
   
   config.vm.box = "lavabit/magma"
-  config.vm.hostname = "magma.builder"
+  config.vm.hostname = "magma.build.box"
 
   config.vm.box_check_update = true
   config.vm.box_download_checksum = true
