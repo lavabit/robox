@@ -32,6 +32,14 @@ schema.reset
 # Run the unit tests.
 check.run
 
+# Launch the daemon.
+(magma.run) &
+
+# Give the daemon time to start before exiting.
+sleep 15
+
+# Exit wit a zero so Vagrant doesn't think a failed unit test is a provision failure.
+exit 0
 EOF
 
 # Make the script executable.

@@ -15,7 +15,6 @@ Vagrant.configure(2) do |config|
   # when the box is provisioned. 
   config.vm.provision "shell", run: "always", inline: <<-SHELL
     su -l vagrant /home/vagrant/magma-build.sh   
-    su -l vagrant /home/vagrant/magma.run
   SHELL
   
   # These are the ports currently configured by the sandbox config file and the protocol
