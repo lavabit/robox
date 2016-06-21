@@ -20,6 +20,9 @@ yum --assumeyes clean all
 # Remove the installation logs.
 rm --force /root/anaconda-ks.cfg /root/install.log /root/install.log.syslog
 
+# Clear the command history.
+export HISTSIZE=0
+
 # Truncate the log files.
 printf "Truncate the log files.\n"
 find /var/log -type f -exec truncate --size=0 {} \;

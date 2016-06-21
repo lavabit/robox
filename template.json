@@ -14,8 +14,9 @@
                 "scripts/kernel.sh",
                 "scripts/virtualbox.sh",
                 "scripts/vmware.sh",
+                "scripts/qemu.sh",
                 "scripts/vagrant.sh",
-                "scripts/dep.sh",
+                "scripts/magma.sh",
                 "scripts/cleanup.sh",
                 "scripts/zerodisk.sh",
                 "scripts/lockout.sh"
