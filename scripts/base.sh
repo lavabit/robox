@@ -11,6 +11,9 @@ error() {
 # Disable the broken repositories.
 truncate --size=0 /etc/yum.repos.d/CentOS-Media.repo /etc/yum.repos.d/CentOS-Vault.repo
 
+# Tell yum to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
+printf "\nretries=128\n" >> /etc/yum.conf
+
 # Ensure a nameserver is being used that won't return an IP for non-existent domain names.
 printf "\nnameserver 4.2.2.1\n" > /etc/resolv.conf
 
