@@ -24,13 +24,13 @@ printf "\n127.0.0.1	magma.builder\n\n" >> /etc/hosts
 yum --assumeyes update; error
 
 # Packages needed beyond a minimal install to build and run magma.
-yum --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers libgomp mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes; error
+yum --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers libgomp mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes cmake libarchive; error
 
 # Install the libbsd packages from the EPEL repository, which DSPAM relies upon for the strl functions.
 # The entropy daemon is optional, but improves the availability of entropy, which makes magma launch 
 # and complete her unit tests faster.
 yum --assumeyes --enablerepo=extras install epel-release; error
-yum --assumeyes install libbsd libbsd-devel haveged; error
+yum --assumeyes install libbsd libbsd-devel inotify-tools haveged; error
 
 # The daemon services magma relies upon. 
 yum --assumeyes install libevent memcached mysql mysql-server perl-DBI perl-DBD-MySQL; error 
