@@ -59,6 +59,7 @@
                 ]
             ],
             "http_directory": "http",
+            "output_directory": "{{user `box_name`}}-{{user `box_base`}}-libvirt-output",
             "headless": true,
             "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
             "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
@@ -92,6 +93,7 @@
             ],
             "guest_os_type": "RedHat_64",
             "http_directory": "http",
+            "output_directory": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-output",
             "headless": true,
             "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
             "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
@@ -119,6 +121,7 @@
             },
             "guest_os_type": "Centos-64",
             "http_directory": "http",
+            "output_directory": "{{user `box_name`}}-{{user `box_base`}}-vmware-output",
             "headless": true,
             "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
             "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
@@ -161,7 +164,8 @@
                 "metadata": {
                     "provider": "libvirt",
                     "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}"
+                    "created_at": "{{timestamp}}",
+                    "description": "The magma encrypted mail daemon build environment."
                 }
             },
             {
@@ -174,7 +178,8 @@
                 "metadata": {
                     "provider": "vmware_desktop",
                     "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}"
+                    "created_at": "{{timestamp}}",
+                    "description": "The magma encrypted mail daemon build environment."
                 }
             },
             {
@@ -187,7 +192,8 @@
                 "metadata": {
                     "provider": "virtualbox",
                     "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}"
+                    "created_at": "{{timestamp}}",
+                    "description": "The magma encrypted mail daemon build environment."
                 }
             }
         ]
