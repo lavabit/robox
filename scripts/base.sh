@@ -38,7 +38,7 @@ yum --assumeyes install libevent memcached mysql mysql-server perl-DBI perl-DBD-
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
 yum --assumeyes install wget git rsync perl-Git perl-Error; error
 
-# Packages used during the provisioning process, and could be removed later.
+# Packages used during the provisioning process and then removed during the cleanup stage.
 yum --assumeyes install sudo dmidecode yum-utils; error
 
 # Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays 
@@ -83,4 +83,9 @@ printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
 
 # Tweak sshd to prevent reverse DNS lookups which speeds up the login process.
 echo 'UseDNS no' >> /etc/ssh/sshd_config
+
+# Output the system vendor string detected.
+export SYSPRODNAME=`dmidecode -s system-product-name`
+export SYSMANUNAME=`dmidecode -s system-manufacturer`
+printf "\n\nSystem Product String:  $SYSPRODNAME\nSystem Manufacturer String: $SYSMANUNAME\n\n"
 

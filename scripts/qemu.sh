@@ -8,8 +8,8 @@ error() {
 }
 
 
-# Bail if we are not running inside VMWare.
-if [[ `dmidecode -s system-product-name` != "KVM" ]]; then
+# Bail if we are not running atop QEMU.
+if [[ `dmidecode -s system-product-name` != "KVM" && `dmidecode -s system-manufacturer` != "QEMU" ]]; then
     exit 0
 fi
 
