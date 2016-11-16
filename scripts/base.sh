@@ -73,10 +73,16 @@ printf "\n\n[mysql]\nuser=root\npassword=$PRAND\n\n" >> /root/.my.cnf
 # Create the mytool user and grant the required permissions.
 mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
 mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
+# Find out how much RAM is installed, and what 50% would be in KB.
+TOTALMEM=`free -k | grep -E "^Mem:" | awk -F' ' '{print $2}'`
+HALFMEM=`echo $(($TOTALMEM/2))`
 
 # Setup the memory locking limits.
-printf "\n*    soft    memlock    1000000" >> /etc/security/limits.conf
-printf "\n*    hard    memlock    1000000" >> /etc/security/limits.conf
+printf "*    soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-magmad.conf
+printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.conf
+
+# Fix the SELinux context.
+chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
 
 # Set the timezone to Pacific time.
 printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
