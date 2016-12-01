@@ -20,8 +20,8 @@ sudo /etc/init.d/vmware-USBArbitrator
 sudo /etc/init.d/vmware-workstation-server start
 
 # Build the boxes.
-packer build -parallel=false magma.json
-packer build -parallel=false magma-centos6.json
+packer build -parallel=false magma.json && \
+packer build -parallel=false magma-centos6.json && \
 packer build -parallel=false magma-centos7.json
 
 # Cleanup the artifacts.
