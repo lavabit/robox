@@ -28,8 +28,3 @@ rm -rf /root/linux.iso; error
 /tmp/vmware-tools-distrib/vmware-install.pl -d; error
 rm -rf /tmp/vmware-tools-distrib; error
 
-echo 'add_drivers+=" mptspi "' > /etc/dracut.conf.d/vmware-drivers.conf
-restorecon -f /etc/dracut.conf.d/vmware-drivers.conf
-# Rerun dracut for the installed kernel (not the running kernel):
-KERNEL_VERSION=$(rpm -q kernel --qf '%{version}-%{release}.%{arch}\n')
-dracut -f /boot/initramfs-${KERNEL_VERSION}.img ${KERNEL_VERSION}
