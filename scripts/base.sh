@@ -87,9 +87,6 @@ chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
 # Set the timezone to Pacific time.
 printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
 
-# Tweak sshd to prevent reverse DNS lookups which speeds up the login process.
-echo 'UseDNS no' >> /etc/ssh/sshd_config
-
 # Output the system vendor string detected.
 export SYSPRODNAME=`dmidecode -s system-product-name`
 export SYSMANUNAME=`dmidecode -s system-manufacturer`

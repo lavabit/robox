@@ -2,7 +2,7 @@
     "variables": {
         "org_name": "lavabit",
         "box_name": "magma",
-        "box_base": "centos",
+        "box_base": "centos6",
         "box_version": "0.1.3"
     },
     "provisioners": [
@@ -17,6 +17,7 @@
                 "scripts/qemu.sh",
                 "scripts/vagrant.sh",
                 "scripts/magma.sh",
+                "scripts/sshd.sh",
                 "scripts/cleanup.sh",
                 "scripts/zerodisk.sh",
                 "scripts/lockout.sh"
@@ -159,7 +160,7 @@
                 "only": [
                     "qemu"
                 ],
-                "artifact": "{{user `org_name`}}/{{user `box_name`}}",
+                "artifact": "{{user `org_name`}}/{{user `box_name`}}-{{user `box_base`}}",
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "libvirt",
@@ -173,7 +174,7 @@
                 "only": [
                     "vmware-iso"
                 ],
-                "artifact": "{{user `org_name`}}/{{user `box_name`}}",
+                "artifact": "{{user `org_name`}}/{{user `box_name`}}-{{user `box_base`}}",
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "vmware_desktop",
@@ -187,7 +188,7 @@
                 "only": [
                     "virtualbox-iso"
                 ],
-                "artifact": "{{user `org_name`}}/{{user `box_name`}}",
+                "artifact": "{{user `org_name`}}/{{user `box_name`}}-{{user `box_base`}}",
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "virtualbox",
