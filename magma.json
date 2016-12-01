@@ -17,6 +17,7 @@
                 "scripts/qemu.sh",
                 "scripts/vagrant.sh",
                 "scripts/magma.sh",
+                "scripts/tuning.sh",
                 "scripts/sshd.sh",
                 "scripts/cleanup.sh",
                 "scripts/zerodisk.sh",

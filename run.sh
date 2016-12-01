@@ -5,7 +5,7 @@ BASE=`dirname $LINK`
 
 cd $BASE
 export VBOX_USER_HOME="$BASE"
-#export ATLAS_TOKEN="qyToIsMKMP9P0w.atlasv1.MiyPtcThL0y4Fwk53lFri83nOEt1rUDSQNW2CxFbxJtFd7llvllpqSL176pTkeFVfiE"
+export ATLAS_TOKEN="qyToIsMKMP9P0w.atlasv1.MiyPtcThL0y4Fwk53lFri83nOEt1rUDSQNW2CxFbxJtFd7llvllpqSL176pTkeFVfiE"
 
 #sudo /etc/init.d/vmware start
 sudo systemctl start vmtoolsd.service

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Configure tuned
+yum --assumeyes install tuned
 tuned-adm profile virtual-guest
 
 # Configure grub to wait just 1 second before booting
