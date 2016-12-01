@@ -14,8 +14,8 @@ mkdir /etc/udev/rules.d/70-persistent-net.rules
 
 # Clean up the yum data.
 printf "Remove packages only required for provisioning purposes and then dump the repository cache.\n"
-yum --assumeyes remove dmidecode yum-utils
-yum --assumeyes clean all
+yum --quiet --assumeyes remove dmidecode yum-utils
+yum --quiet --assumeyes clean all
 
 # Remove the installation logs.
 rm --force /root/anaconda-ks.cfg /root/install.log /root/install.log.syslog
