@@ -9,7 +9,7 @@ reboot
 
 # If the network interface doesn't properly shutdown, the provisioner may hang, 
 # so we stop the interface manually.  
-# systemctl stop network 
+/etc/init.d/network stop 
 
 # To prevent the next provisioning script from launching during the reboot
 # process a sleep directive is issued blocking the return of this script.

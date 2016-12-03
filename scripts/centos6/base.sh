@@ -90,5 +90,5 @@ printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
 # Output the system vendor string detected.
 export SYSPRODNAME=`dmidecode -s system-product-name`
 export SYSMANUNAME=`dmidecode -s system-manufacturer`
-printf "\n\nSystem Product String:  $SYSPRODNAME\nSystem Manufacturer String: $SYSMANUNAME\n\n"
+printf "System Product String:  $SYSPRODNAME\nSystem Manufacturer String: $SYSMANUNAME\n"
 
