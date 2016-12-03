@@ -1,7 +1,7 @@
 #!/bin/bash
 
 printf "Updates have been applied.\n"
-printf "Rebooting onto the newly installed kernel of popcorn. Yummy.\n\n"
+printf "Rebooting onto the newly installed kernel of popcorn. Yummy.\n"
 
 # Schedule a reboot, but give the computer time to cleanly shutdown the 
 # network interface first.

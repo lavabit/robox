@@ -1,6 +1,6 @@
 #!/bin/bash
 
-printf "\n\nCleanup stage.\n\n"
+printf "Cleanup stage.\n"
 
 # Make sure the ethnernet configuration script doesn't retain identifiers.
 printf "Remove the ethernet identity values.\n"
@@ -30,7 +30,4 @@ find /var/log -type f -exec truncate --size=0 {} \;
 # Wipe the temp directory.
 printf "Purge the setup files and temporary data.\n"
 rm --recursive --force /var/tmp/* /tmp/* /var/cache/yum/* /tmp/ks-script*
-
-
-
 

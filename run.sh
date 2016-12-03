@@ -14,14 +14,17 @@ sudo sysctl net.ipv6.conf.all.disable_ipv6=1
 sudo systemctl start vmtoolsd.service
 sudo systemctl start libvirtd.service
 sudo systemctl start vboxdrv.service
+sudo systemctl start docker.service
 
 sudo /etc/init.d/vmware start
 sudo /etc/init.d/vmware-USBArbitrator
 sudo /etc/init.d/vmware-workstation-server start
 
 # Build the boxes.
-packer build -parallel=false magma.json && \
-packer build -parallel=false magma-centos6.json && \
+packer build -parallel=false magma.json
+if [[ $? != 0 ]]; then exit 0 else sleep 10 fi
+packer build -parallel=false magma-centos6.json
+if [[ $? != 0 ]]; then exit 0 else sleep 10 fi
 packer build -parallel=false magma-centos7.json
 
 # Cleanup the artifacts.

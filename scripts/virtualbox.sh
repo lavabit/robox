@@ -14,7 +14,7 @@ if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
 fi
 
 # Install the Virtual Box Tools from the Linux Guest Additions ISO.
-printf "\n\nInstalling the Virtual Box Tools.\n"
+printf "Installing the Virtual Box Tools.\n"
 
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuest*.iso /mnt/virtualbox; error

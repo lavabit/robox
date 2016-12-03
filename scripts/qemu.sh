@@ -14,6 +14,6 @@ if [[ `dmidecode -s system-product-name` != "KVM" && `dmidecode -s system-manufa
 fi
 
 # Install the QEMU using Yum.
-printf "\n\nInstalling the QEMU Tools.\n"
+printf "Installing the QEMU Tools.\n"
 
 yum --quiet --assumeyes install qemu-guest-agent; error

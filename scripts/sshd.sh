@@ -1,6 +1,6 @@
 #!/bin/bash
 
-printf "\n\nHarden the SSHD Configuration.\n"
+printf "Harden the SSHD Configuration.\n"
 
 # Tweak sshd to prevent reverse DNS lookups which speeds up the login process.
 sed -i -e "s/^#\(UseDNS\) yes$/\1 no/g" /etc/ssh/sshd_config
