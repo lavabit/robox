@@ -43,7 +43,7 @@
             "accelerator": "kvm",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.kickstart.cfg<enter><wait>"
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.kickstart.cfg<enter><wait>"
             ],
             "format": "qcow2",
             "disk_size": 20480,
@@ -60,7 +60,7 @@
                     "cpus=2"
                 ]
             ],
-            "http_directory": "http",
+            "http_directory": "kickstart",
             "output_directory": "{{user `box_name`}}-{{user `box_base`}}-libvirt-output",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/centos/7.2.1511/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso",
@@ -76,7 +76,7 @@
             "type": "virtualbox-iso",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.kickstart.cfg<enter><wait>"
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.kickstart.cfg<enter><wait>"
             ],
             "disk_size": 20480,
             "vboxmanage": [
@@ -94,7 +94,7 @@
                 ]
             ],
             "guest_os_type": "RedHat_64",
-            "http_directory": "http",
+            "http_directory": "kickstart",
             "output_directory": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-output",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/centos/7.2.1511/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso",
@@ -112,7 +112,7 @@
             "type": "vmware-iso",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.kickstart.cfg<enter><wait>"
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.kickstart.cfg<enter><wait>"
             ],
             "disk_size": 20480,
             "disk_type_id": "0",
@@ -122,7 +122,7 @@
                 "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "Centos-64",
-            "http_directory": "http",
+            "http_directory": "kickstart",
             "output_directory": "{{user `box_name`}}-{{user `box_base`}}-vmware-output",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/centos/7.2.1511/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso",
