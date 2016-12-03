@@ -9,19 +9,19 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/base.sh",
-                "scripts/reboot.sh",
-                "scripts/kernel.sh",
-                "scripts/virtualbox.sh",
-                "scripts/vmware.sh",
-                "scripts/qemu.sh",
-                "scripts/vagrant.sh",
-                "scripts/magma.sh",
-                "scripts/tuning.sh",
-                "scripts/sshd.sh",
-                "scripts/cleanup.sh",
-                "scripts/zerodisk.sh",
-                "scripts/lockout.sh"
+                "scripts/centos6/base.sh",
+                "scripts/centos6/reboot.sh",
+                "scripts/centos6/kernel.sh",
+                "scripts/centos6/virtualbox.sh",
+                "scripts/centos6/vmware.sh",
+                "scripts/centos6/qemu.sh",
+                "scripts/centos6/vagrant.sh",
+                "scripts/centos6/magma.sh",
+                "scripts/centos6/tuning.sh",
+                "scripts/centos6/sshd.sh",
+                "scripts/centos6/cleanup.sh",
+                "scripts/centos6/zerodisk.sh",
+                "scripts/centos6/lockout.sh"
             ],
             "override": {
                 "virtualbox-iso": {
