@@ -22,9 +22,17 @@ sudo /etc/init.d/vmware-workstation-server start
 
 # Build the boxes.
 packer build -parallel=false magma.json
-if [[ $? != 0 ]]; then exit 0 else sleep 10 fi
+if [[ $? != 0 ]]; then
+  exit 0
+else 
+  sleep 10
+fi
 packer build -parallel=false magma-centos6.json
-if [[ $? != 0 ]]; then exit 0 else sleep 10 fi
+if [[ $? != 0 ]]; then
+  exit 0
+else
+  sleep 10
+fi
 packer build -parallel=false magma-centos7.json
 
 # Cleanup the artifacts.
