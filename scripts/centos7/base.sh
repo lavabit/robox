@@ -59,6 +59,9 @@ printf "\n\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
 # Close a potential security hole.
 systemctl disable remote-fs.target
 
+# Disable kernel dumping.
+systemctl disable kdump.service
+
 # Create the clamav user to avoid spurious errors.
 useradd clamav
 
