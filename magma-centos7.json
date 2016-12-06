@@ -2,7 +2,7 @@
     "variables": {
         "org_name": "lavabit",
         "box_name": "magma",
-        "box_base": "centos7",
+        "box_base": "centos7"
     },
     "provisioners": [
         {
