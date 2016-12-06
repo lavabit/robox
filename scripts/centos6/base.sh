@@ -58,7 +58,7 @@ chkconfig ip6tables off
 printf "\n\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
 
 # Close a potential security hole.
-chkconfig netfs off
+#chkconfig netfs off
 
 # Create the clamav user to avoid spurious errors.
 useradd clamav

@@ -5,6 +5,7 @@ Vagrant.configure(2) do |config|
   
   config.vm.box = "lavabit/magma"
   config.vm.hostname = "magma.build.box"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.box_check_update = true
   config.vm.box_download_checksum = true
@@ -89,7 +90,9 @@ Vagrant.configure(2) do |config|
   # things up considerably during the build process.  
   config.vm.provider :libvirt do |v, override|
     v.driver = "kvm"
+    v.video_vram = 256
     v.memory = 2048
+    v.video_vram = 256
     v.cpus = 2
   end
 

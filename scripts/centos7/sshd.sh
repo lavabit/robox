@@ -13,7 +13,7 @@ printf "\nOPTIONS=\"-u0\"\n\n" >> /etc/sysconfig/sshd
 # use a stronger entropy source. It requires an entropy daemon like haveged or connections 
 # will experience massive delays while they wait for the kernel to collect enough entropy. 
 # It will also ensure we only generate ssh protocol version 2 RSA host keys.
-sed --in-place "s/SSH_USE_STRONG_RNG=0/SSH_USE_STRONG_RNG=1024/g" /etc/sysconfig/sshd
+#sed --in-place "s/SSH_USE_STRONG_RNG=0/SSH_USE_STRONG_RNG=1024/g" /etc/sysconfig/sshd
 sed --in-place "s/# AUTOCREATE_SERVER_KEYS=\"\"/AUTOCREATE_SERVER_KEYS=\"RSA\"/g" /etc/sysconfig/sshd
 
 # This will update the init script so when it goes to autogenerate the host keys, they are 
@@ -35,11 +35,11 @@ sed --in-place -e "/ConditionFileNotEmpty=|\!\/etc\/ssh\/ssh_host_ecdsa_key/d" /
 sed --in-place -e "/ConditionFileNotEmpty=|\!\/etc\/ssh\/ssh_host_ed25519_key/d" /usr/lib/systemd/system/sshd-keygen.service
 
 # Generate a new stronger host key.
-/usr/bin/ssh-keygen -q -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -C '' -N ''
-chgrp ssh_keys /etc/ssh/ssh_host_rsa_key
-chmod 640 /etc/ssh/ssh_host_rsa_key
-chmod 644 /etc/ssh/ssh_host_rsa_key.pub
-chcon system_u:object_r:sshd_key_t:s0 /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_rsa_key.pub
+#/usr/bin/ssh-keygen -q -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -C '' -N ''
+#chgrp ssh_keys /etc/ssh/ssh_host_rsa_key
+#chmod 640 /etc/ssh/ssh_host_rsa_key
+#chmod 644 /etc/ssh/ssh_host_rsa_key.pub
+#chcon system_u:object_r:sshd_key_t:s0 /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_rsa_key.pub
 
 
 
