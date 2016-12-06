@@ -3,7 +3,6 @@
         "org_name": "lavabit",
         "box_name": "magma",
         "box_base": "centos7",
-        "box_version": "0.2.5"
     },
     "provisioners": [
         {

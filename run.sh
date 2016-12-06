@@ -1,5 +1,7 @@
 #!/bin/bash
 
+VERSION="0.2.6"
+
 LINK=`readlink -f $0`
 BASE=`dirname $LINK`
 
@@ -21,19 +23,19 @@ sudo /etc/init.d/vmware-USBArbitrator
 sudo /etc/init.d/vmware-workstation-server start
 
 # Build the boxes.
-packer build -parallel=false magma-centos7.json
+packer build -var 'box_version=$VERSION' -parallel=false magma-centos7.json
 if [[ $? != 0 ]]; then
   exit 0
 else 
-  sleep 10
+  sleep 60
 fi
-packer build -parallel=false magma-centos6.json
+packer build -var 'box_version=$VERSION' -parallel=false magma-centos6.json
 if [[ $? != 0 ]]; then
   exit 0
 else
-  sleep 10
+  sleep 60
 fi
-packer build -parallel=false magma.json
+packer build -var 'box_version=$VERSION' -parallel=false magma.json
 
 # Cleanup the artifacts.
 rm -rf xpti.dat compreg.dat VBoxSVC.log VirtualBox.xml VirtualBox.xml-prev packer_cache/ 
