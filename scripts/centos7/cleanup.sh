@@ -9,7 +9,7 @@ sed -i /HWADDR/d /etc/sysconfig/network-scripts/ifcfg-eth0
 
 # Clean up the yum data.
 printf "Remove packages only required for provisioning purposes and then dump the repository cache.\n"
-yum --assumeyes clean all
+yum --quiet --assumeyes clean all
 
 # Remove the installation logs.
 rm --force /root/anaconda-ks.cfg /root/install.log /root/install.log.syslog

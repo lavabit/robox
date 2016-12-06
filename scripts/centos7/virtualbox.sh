@@ -16,7 +16,7 @@ fi
 # Install the Virtual Box Tools from the Linux Guest Additions ISO.
 printf "Installing the Virtual Box Tools.\n"
 
-yum --assumeyes install bzip2
+yum --quiet --assumeyes install bzip2
 
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuest*.iso /mnt/virtualbox; error

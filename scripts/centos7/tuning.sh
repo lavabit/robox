@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configure tuned
-yum --assumeyes install tuned
+yum --quiet --assumeyes install tuned
 tuned-adm profile virtual-guest
 systemctl enable tuned
 
