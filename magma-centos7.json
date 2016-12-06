@@ -3,7 +3,7 @@
         "org_name": "lavabit",
         "box_name": "magma",
         "box_base": "centos7",
-        "box_version": "0.2.4"
+        "box_version": "0.2.5"
     },
     "provisioners": [
         {
@@ -46,7 +46,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.kickstart.cfg<enter><wait>"
             ],
             "format": "qcow2",
-            "disk_size": 20480,
+            "disk_size": 32768,
             "disk_interface": "virtio",
             "disk_compression": true,
             "net_device": "virtio-net",
@@ -78,7 +78,7 @@
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.kickstart.cfg<enter><wait>"
             ],
-            "disk_size": 20480,
+            "disk_size": 32768,
             "vboxmanage": [
                 [
                     "modifyvm",
@@ -114,7 +114,7 @@
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.kickstart.cfg<enter><wait>"
             ],
-            "disk_size": 20480,
+            "disk_size": 32768,
             "disk_type_id": "0",
             "vmx_data": {
                 "memsize": "2048",
