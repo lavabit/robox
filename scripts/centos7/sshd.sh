@@ -34,3 +34,12 @@ rm --force /etc/ssh/ssh_host_ed25519_key /etc/ssh/ssh_host_ed25519_key.pub
 sed --in-place -e "/ConditionFileNotEmpty=|\!\/etc\/ssh\/ssh_host_ecdsa_key/d" /usr/lib/systemd/system/sshd-keygen.service
 sed --in-place -e "/ConditionFileNotEmpty=|\!\/etc\/ssh\/ssh_host_ed25519_key/d" /usr/lib/systemd/system/sshd-keygen.service
 
+# Generate a new stronger host key.
+/usr/bin/ssh-keygen -q -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -C '' -N ''
+chgrp ssh_keys /etc/ssh/ssh_host_rsa_key
+chmod 640 /etc/ssh/ssh_host_rsa_key
+chmod 644 /etc/ssh/ssh_host_rsa_key.pub
+chcon system_u:object_r:sshd_key_t:s0 /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_rsa_key.pub
+
+
+

@@ -30,4 +30,12 @@ rm --force /etc/ssh/ssh_host_key /etc/ssh/ssh_host_key.pub
 rm --force /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_rsa_key.pub
 rm --force /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_dsa_key.pub
 
+# Generate a new stronger host key.
+/usr/bin/ssh-keygen -q -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -C '' -N ''
+chgrp ssh_keys /etc/ssh/ssh_host_rsa_key
+chmod 640 /etc/ssh/ssh_host_rsa_key
+chmod 644 /etc/ssh/ssh_host_rsa_key.pub
+chcon system_u:object_r:sshd_key_t:s0 /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_rsa_key.pub
+
+
 
