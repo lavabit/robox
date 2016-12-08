@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="0.2.9"
+VERSION="0.3.0"
 
 LINK=`readlink -f $0`
 BASE=`dirname $LINK`
