@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="0.3.0"
+VERSION="0.3.2"
 
 LINK=`readlink -f $0`
 BASE=`dirname $LINK`
@@ -25,23 +25,27 @@ sudo /etc/init.d/vmware-workstation-server start
 # Build the boxes.
 packer build -var "box_version=$VERSION" -parallel=false magma-centos7.json
 if [[ $? != 0 ]]; then
+  rm -rf packer_cache/                                                      
   exit 1
 else 
   sleep 60
 fi
 packer build -var "box_version=$VERSION" -parallel=false magma-centos6.json
 if [[ $? != 0 ]]; then
+  rm -rf packer_cache/                                                      
   exit 1
 else
   sleep 60
 fi
 packer build -var "box_version=$VERSION" -parallel=false magma.json
 if [[ $? != 0 ]]; then
+  rm -rf packer_cache/                                                      
   exit 1
 fi
 
 # Cleanup the artifacts.
-rm -rf xpti.dat compreg.dat VBoxSVC.log VirtualBox.xml VirtualBox.xml-prev packer_cache/ 
+# rm -rf xpti.dat compreg.dat VBoxSVC.log VirtualBox.xml VirtualBox.xml-prev packer_cache/ 
+rm -rf packer_cache/ 
 
 # Upload to the website.
 #pscp -i ~/Data/Putty/root-virtual.lavabit.com.priv.ppk magma-centos-*-0.*.box root@osheana.virtual.lavabit.com:/var/www/html/downloads/

@@ -14,11 +14,17 @@ truncate --size=0 /etc/yum.repos.d/CentOS-Media.repo /etc/yum.repos.d/CentOS-Vau
 # Tell yum to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
 printf "\nretries=128\n" >> /etc/yum.conf
 
+# Disable IPv6 or yum will resolve mirror names to IPv6 address and then fail to connect with them.
+sysctl net.ipv6.conf.all.disable_ipv6=1
+
 # Ensure a nameserver is being used that won't return an IP for non-existent domain names.
 printf "\nnameserver 4.2.2.1\n" > /etc/resolv.conf
 
 # Set the local hostname to resolve properly.
 printf "\n127.0.0.1	magma.builder\n\n" >> /etc/hosts
+
+# Import the update key.
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
 # Update the base install first.
 yum --quiet --assumeyes update; error
@@ -30,6 +36,11 @@ yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automak
 # The entropy daemon is optional, but improves the availability of entropy, which makes magma launch 
 # and complete her unit tests faster.
 yum --quiet --assumeyes --enablerepo=extras install epel-release; error
+
+# Import the EPEL key.
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+# Grab the required packages from the EPEL repo.
 yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools haveged; error
 
 # The daemon services magma relies upon. 
