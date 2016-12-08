@@ -11,7 +11,21 @@
                 "scripts/centos7/base.sh",
                 "scripts/centos7/reboot.sh"
             ],
-            "pause_before": "60s",
+            "override": {
+                "virtualbox-iso": {
+                    "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
+                },
+                "vmware-iso": {
+                    "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
+                },
+                "qemu": {
+                    "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
+                }
+            },
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true"
+        }, {
+            "type": "shell",
             "scripts": [
                 "scripts/centos7/kernel.sh",
                 "scripts/centos7/virtualbox.sh",
@@ -36,6 +50,7 @@
                     "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
                 }
             },
+            "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true"
         }
