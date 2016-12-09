@@ -12,7 +12,7 @@ error() {
 truncate --size=0 /etc/yum.repos.d/CentOS-Media.repo /etc/yum.repos.d/CentOS-Vault.repo
 
 # Tell yum to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
-printf "\nretries=128\n" >> /etc/yum.conf
+printf "\nretries=128\ndeltarpm=0\nmetadata_expire=0\nmirrorlist_expire=0\n" >> /etc/yum.conf
 
 # Disable IPv6 or yum will resolve mirror names to IPv6 address and then fail to connect with them.
 sysctl net.ipv6.conf.all.disable_ipv6=1

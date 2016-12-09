@@ -78,6 +78,7 @@
                     "cpus=2"
                 ]
             ],
+            "vm_name": "{{user `box_name`}}-{{user `box_base`}}-libvirt",
             "http_directory": "kickstart",
             "output_directory": "{{user `box_name`}}-{{user `box_base`}}-libvirt-output",
             "headless": true,
@@ -111,6 +112,7 @@
                     "2"
                 ]
             ],
+            "vm_name": "{{user `box_name`}}-{{user `box_base`}}-virtualbox",
             "guest_os_type": "RedHat_64",
             "http_directory": "kickstart",
             "output_directory": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-output",
@@ -139,6 +141,8 @@
                 "numvcpus": "2",
                 "cpuid.coresPerSocket": "1"
             },
+            "vm_name": "{{user `box_name`}}-{{user `box_base`}}-vmware",
+            "vmdk_name": "{{user `box_name`}}-{{user `box_base`}}-vmware",
             "guest_os_type": "Centos-64",
             "http_directory": "kickstart",
             "output_directory": "{{user `box_name`}}-{{user `box_base`}}-vmware-output",
