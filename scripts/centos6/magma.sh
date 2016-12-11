@@ -2,9 +2,19 @@
 #
 # Setup the the box. This runs as root
 
+if [ -d /home/vagrant/ ]; then
+  OUTPUT="/home/vagrant/magma-build.sh"
+else
+  OUTPUT="/root/magma-build.sh"
+fi
+
 # Grab a snapshot of the development branch.
-cat <<EOF >/home/vagrant/magma-build.sh
+cat <<EOF > $OUTPUT
 #!/bin/bash
+
+service mysqld start
+service postfix start
+service memcached start
 
 # Temporary [hopefully] workaround to avoid [yet another] bug in NSS.
 export NSS_DISABLE_HW_AES=1
@@ -22,28 +32,28 @@ chmod g=,o= magma-develop/sandbox/etc/localhost.localdomain.pem
 chmod g=,o= magma-develop/sandbox/etc/dkim.localhost.localdomain.pem
 
 # Compile the dependencies into a shared library.
-build.lib all
+magma-develop/dev/scripts/builders/build.lib.sh all
 
 # Compile the daemon and then compile the unit tests.
-build.magma
-build.check
+magma-develop/dev/scripts/builders/build.magma.sh
+magma-develop/dev/scripts/builders/build.check.sh
 
 # Reset the sandbox database and storage files.
-schema.reset
+magma-develop/dev/scripts/database/schema.reset.sh
 
 # Enable the anti-virus engine and update the signatures.
-freshen.clamav 2>&1 | grep -v WARNING | grep -v PANIC
+magma-develop/dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC
 sed -i -e "s/virus.available = false/virus.available = true/" magma-develop/sandbox/etc/magma.sandbox.config
 
 # Run the unit tests.
-check.run
+magma-develop/dev/scripts/launch/check.run.sh
 
 # Alternatively, run the unit tests atop Valgrind. 
 # Note this takes awhile when the anti-virus engine is enabled.
 # check.vg
 
 # Launch the daemon.
-(magma.run) &
+(magma-develop/dev/scripts/launch/magma.run.sh) &
 
 # Give the daemon time to start before exiting.
 sleep 15
@@ -53,6 +63,11 @@ exit 0
 EOF
 
 # Make the script executable.
-chown vagrant:vagrant /home/vagrant/magma-build.sh
-chmod +x /home/vagrant/magma-build.sh 
+if [ -d /home/vagrant/ ]; then
+  chown vagrant:vagrant /home/vagrant/magma-build.sh
+  chmod +x /home/vagrant/magma-build.sh
+else
+  chmod +x /root/magma-build.sh
+fi
+
 

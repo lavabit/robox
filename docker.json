@@ -1,0 +1,64 @@
+{
+    "variables": {
+        "org_name": "lavabit",
+        "box_name": "magma",
+        "box_base": "centos"
+    },
+    "provisioners": [
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/centos6/base.sh",
+                "scripts/centos6/magma.sh",
+                "scripts/centos6/cleanup.sh",
+                "scripts/centos6/zerodisk.sh",
+                "scripts/centos6/dockerize.sh"
+            ],
+            "override": {
+                "qemu": {
+                    "execute_command": "echo 'locked'|sudo -S bash '{{.Path}}'"
+                }
+            },
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true"
+        }
+    ],
+    "builders": [
+        {
+            "type": "qemu",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos6.ks<enter><wait>"
+            ],
+            "format": "raw",
+            "disk_size": 32770,
+            "disk_interface": "virtio",
+            "disk_compression": true,
+            "net_device": "virtio-net",
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=2"
+                ]
+            ],
+            "vm_name": "{{user `box_name`}}-docker",
+            "http_directory": "kickstart",
+            "output_directory": "{{user `box_name`}}-docker-output",
+            "headless": true,
+            "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
+            "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+        }
+    ]
+}
