@@ -8,6 +8,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos7/yum.sh",
                 "scripts/centos7/base.sh",
                 "scripts/centos7/reboot.sh"
             ],
@@ -36,6 +37,7 @@
                 "scripts/centos7/tuning.sh",
                 "scripts/centos7/sshd.sh",
                 "scripts/centos7/cleanup.sh",
+                "scripts/centos7/unyum.sh",
                 "scripts/centos7/zerodisk.sh",
                 "scripts/centos7/lockout.sh"
             ],

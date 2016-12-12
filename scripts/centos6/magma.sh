@@ -12,9 +12,10 @@ fi
 cat <<EOF > $OUTPUT
 #!/bin/bash
 
-service mysqld start
-service postfix start
-service memcached start
+#service mysqld start
+#service havegd start
+#service postfix start
+#service memcached start
 
 # Temporary [hopefully] workaround to avoid [yet another] bug in NSS.
 export NSS_DISABLE_HW_AES=1

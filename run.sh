@@ -1,8 +1,6 @@
 #!/bin/bash
 
-
-yum clean all
-VERSION="0.3.5"
+VERSION="0.3.6"
 
 LINK=`readlink -f $0`
 BASE=`dirname $LINK`
