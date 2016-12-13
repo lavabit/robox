@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-VERSION="0.3.6"
-#ATLAS_TOKEN="qyToIsMKMP9P0w.atlasv1.MiyPtcThL0y4Fwk53lFri83nOEt1rUDSQNW2CxFbxJtFd7llvllpqSL176pTkeFVfiE"
+VERSION="0.3.7"
+export ATLAS_TOKEN="qyToIsMKMP9P0w.atlasv1.MiyPtcThL0y4Fwk53lFri83nOEt1rUDSQNW2CxFbxJtFd7llvllpqSL176pTkeFVfiE"
 
 LINK=`readlink -f $0`
 BASE=`dirname $LINK`
@@ -11,7 +11,7 @@ BUILDDATE=$(date +%Y%m%d)
 cd $BASE
 
 # Build the boxes.
-time packer build -var "box_version=$VERSION" -parallel=false docker.json
+time packer build -var "box_version=$VERSION" magma-docker.json
 if [[ $? != 0 ]]; then
   rm -rf packer_cache/                                                      
   exit 1

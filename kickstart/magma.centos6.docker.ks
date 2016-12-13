@@ -6,7 +6,7 @@ keyboard us
 lang en_US.UTF-8
 rootpw locked
 authconfig --enableshadow --passalgo=sha512
-timezone --isUtc Etc/UTC
+timezone US/Pacific
 selinux --enforcing
 firewall --disabled
 network --bootproto=dhcp --device=eth0 --activate --onboot=on --noipv6 --hostname=magma.builder
@@ -44,8 +44,8 @@ authconfig
 sudo
 %end
 
-%post --log=/tmp/anaconda-post.log
+%post
 
-echo "locked" | passwd --stdin 
+#echo "locked" | passwd --stdin 
 
 %end

@@ -12,17 +12,7 @@
                 "scripts/centos7/base.sh",
                 "scripts/centos7/reboot.sh"
             ],
-            "override": {
-                "virtualbox-iso": {
-                    "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
-                },
-                "vmware-iso": {
-                    "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
-                },
-                "qemu": {
-                    "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
-                }
-            },
+            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true"
         }, {
@@ -41,17 +31,7 @@
                 "scripts/centos7/zerodisk.sh",
                 "scripts/centos7/lockout.sh"
             ],
-            "override": {
-                "virtualbox-iso": {
-                    "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
-                },
-                "vmware-iso": {
-                    "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
-                },
-                "qemu": {
-                    "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
-                }
-            },
+            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true"
@@ -61,9 +41,10 @@
         {
             "type": "qemu",
             "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.kickstart.cfg<enter><wait>"
+                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
             "format": "qcow2",
             "disk_size": 32768,
@@ -97,7 +78,7 @@
             "type": "virtualbox-iso",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.kickstart.cfg<enter><wait>"
+                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "vboxmanage": [
@@ -134,7 +115,7 @@
             "type": "vmware-iso",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.kickstart.cfg<enter><wait>"
+                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "disk_type_id": "0",

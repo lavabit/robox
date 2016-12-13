@@ -1,22 +1,28 @@
 #!/bin/bash
-
 # Post configure tasks for Docker
 
 # remove stuff we don't need that anaconda insists on
 # kernel needs to be removed by rpm, because of grubby
 rpm -e kernel
-rpm -e --nodeps dhclient dhcp-libs dracut dracut-kernel grubby kmod grub2 centos-logos hwdata os-prober gettext bind-license freetype kmod-libs dracut firewalld dbus-glib dbus-python ebtables gobject-introspection pygobject3-base python-decorator python-slip python-slip-dbus kpartx kernel-firmware device-mapper device-mapper-event device-mapper-event-libs device-mapper-libs device-mapper-persistent-data e2fsprogs-libs kbd-misc iptables iptables-ipv6 
+
+rpm -e --nodeps bind-libs bind-libs-lite dhclient dhcp-common dhcp-libs \
+  dracut-network e2fsprogs e2fsprogs-libs ebtables ethtool file \
+  firewalld freetype gettext gettext-libs groff-base grub2 grub2-tools \
+  grubby initscripts iproute iptables kexec-tools libcroco libgomp \
+  libmnl libnetfilter_conntrack libnfnetlink libselinux-python lzo \
+  libunistring os-prober python-decorator python-slip python-slip-dbus \
+  snappy sysvinit-tools which linux-firmware
 
 rpm -Va --nofiles --nodigest
 yum clean all
-
 
 #clean up unused directories
 rm -rf /boot
 rm -rf /etc/firewalld
 
-#LANG="en_US"
-#echo "%_install_lang $LANG" > /etc/rpm/macros.image-language-conf
+# Lock roots account, keep roots account password-less.
+passwd -l root
+
 
 awk '(NF==0&&!done){print "override_install_langs='$LANG'\ntsflags=nodocs";done=1}{print}' \
     < /etc/yum.conf > /etc/yum.conf.new
@@ -30,13 +36,19 @@ localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
 
 rm -rf /var/cache/yum/*
 rm -f /tmp/ks-script*
+rm -rf /var/log/*
+rm -rf /tmp/*
 rm -rf /etc/sysconfig/network-scripts/ifcfg-*
+
+# Fix /run/lock breakage since it's not tmpfs in docker
+umount /run
+systemd-tmpfiles --create --boot
+
+# Make sure login works
+rm /var/run/nologin
 
 # Mark the docker box build time.
 date --utc > /etc/docker_box_build_time
 
-# Randomize the root password and then lock the root account.
-dd if=/dev/urandom count=50 | md5sum | passwd --stdin root
-passwd -l root
-
+:> /etc/machine-id
 
