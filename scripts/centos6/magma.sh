@@ -44,7 +44,7 @@ dev/scripts/database/schema.reset.sh; error
 
 # Enable the anti-virus engine and update the signatures.
 dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
-sed -i -e "s/virus.available = false/virus.available = true/" sandbox/etc/magma.sandbox.config
+sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 
 # Clean up the permissions.
 chmod g=,o= sandbox/etc/localhost.localdomain.pem
@@ -60,8 +60,12 @@ dev/scripts/launch/check.run.sh; error
 # Note this takes awhile when the anti-virus engine is enabled.
 # dev/scripts/launch/check.vg
 
+# Daemonize instead of running on the console.
+sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
+sed -i -e "s/magma.system.daemonize = false/magma.system.daemonize = true/g" sandbox/etc/magma.sandbox.config
+
 # Launch the daemon.
-./magmad --config magma.system.daemonize=true --config virus.available=true sandbox/etc/magma.sandbox.config
+./magmad --config magma.system.daemonize=true sandbox/etc/magma.sandbox.config
 
 # Save the result.
 RETVAL=$?
