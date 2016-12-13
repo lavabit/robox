@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="0.3.8"
+VERSION="0.4.1"
 
 LINK=`readlink -f $0`
 BASE=`dirname $LINK`
@@ -27,19 +27,21 @@ if [[ $? != 0 ]]; then
   rm -rf packer_cache/                                                      
   exit 1
 else 
-  sleep 60
+  sleep 120
 fi
 packer build -var "box_version=$VERSION" -parallel=false magma-centos6.json
 if [[ $? != 0 ]]; then
   rm -rf packer_cache/                                                      
   exit 1
 else
-  sleep 60
+  sleep 120
 fi
 packer build -var "box_version=$VERSION" -parallel=false magma.json
 if [[ $? != 0 ]]; then
   rm -rf packer_cache/                                                      
   exit 1
+else
+  sleep 120
 fi
 
 # Cleanup the artifacts.

@@ -9,23 +9,23 @@ else
 fi
 
 # Grab a snapshot of the development branch.
-cat <<EOF > $OUTPUT
+cat << EOF > $OUTPUT
 #!/bin/bash
 
 error() {
-  if [ $? -ne 0 ]; then
+  if [ \$? -ne 0 ]; then
     printf "\n\nmagma daemon compilation failed...\n\n";
     exit 1
   fi
 }
 
 if [ -x /usr/bin/id ]; then
-  ID=`/usr/bin/id -u`
-  if [ -n "$ID" -a "$ID" -eq 0 ]; then
-    service mysqld start
-    service havegd start
-    service postfix start
-    service memcached start
+  ID=\`/usr/bin/id -u\`
+  if [ -n "\$ID" -a "\$ID" -eq 0 ]; then
+    systemctl start mariadb.service
+    systemctl start havegd.service
+    systemctl start postfix.service
+    systemctl start memcached.service
   fi
 fi
 
@@ -68,13 +68,13 @@ sed -i -e "s/magma.system.daemonize = false/magma.system.daemonize = true/g" san
 ./magmad --config magma.system.daemonize=true sandbox/etc/magma.sandbox.config
 
 # Save the result.
-RETVAL=$?
+RETVAL=\$?
 
 # Give the daemon time to start before exiting.
 sleep 15
 
 # Exit wit a zero so Vagrant doesn't think a failed unit test is a provision failure.
-exit $RETVAL
+exit \$RETVAL
 EOF
 
 # Make the script executable.
