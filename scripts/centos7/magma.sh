@@ -50,11 +50,25 @@ sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma
 chmod g=,o= sandbox/etc/localhost.localdomain.pem
 chmod g=,o= sandbox/etc/dkim.localhost.localdomain.pem
 
+# Bug fix... create the scan directory so ClamAV unit tests work.
+if [ ! -d 'sandbox/spool/scan/' ]; then
+  mkdir -p sandbox/spool/scan/
+fi
+
 # Compile the daemon and then compile the unit tests.
 make all; error
 
 # Run the unit tests.
-dev/scripts/launch/check.run.sh; error
+dev/scripts/launch/check.run.sh
+
+# If the unit tests fail, print an error, but contine running.
+if [ \$? -ne 0 ]; then
+  tput setaf 1; tput bold; printf "\n\nsome of the magma daemon unit tests failed...\n\n"; tput sgr0;
+  for i in (1 2 3); do
+    printf "\a"; sleep 1
+  done
+  sleep 12
+fi
 
 # Alternatively, run the unit tests atop Valgrind. 
 # Note this takes awhile when the anti-virus engine is enabled.
