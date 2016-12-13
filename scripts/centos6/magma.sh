@@ -36,15 +36,8 @@ export NSS_DISABLE_HW_AES=1
 git clone https://github.com/lavabit/magma.git magma-develop; error
 cd magma-develop; error
 
-# Clean up the permissions.
-chmod g=,o= magma-develop/sandbox/etc/localhost.localdomain.pem
-chmod g=,o= magma-develop/sandbox/etc/dkim.localhost.localdomain.pem
-
 # Compile the dependencies into a shared library.
 dev/scripts/builders/build.lib.sh all; error
-
-# Compile the daemon and then compile the unit tests.
-make all; error
 
 # Reset the sandbox database and storage files.
 dev/scripts/database/schema.reset.sh; error
@@ -53,21 +46,31 @@ dev/scripts/database/schema.reset.sh; error
 dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
 sed -i -e "s/virus.available = false/virus.available = true/" sandbox/etc/magma.sandbox.config
 
+# Clean up the permissions.
+chmod g=,o= sandbox/etc/localhost.localdomain.pem
+chmod g=,o= sandbox/etc/dkim.localhost.localdomain.pem
+
+# Compile the daemon and then compile the unit tests.
+make all; error
+
 # Run the unit tests.
-check.run.sh; error
+dev/scripts/launch/check.run.sh; error
 
 # Alternatively, run the unit tests atop Valgrind. 
 # Note this takes awhile when the anti-virus engine is enabled.
-# check.vg
+# dev/scripts/launch/check.vg
 
 # Launch the daemon.
-(magma-develop/dev/scripts/launch/magma.run.sh) &
+./magmad --config magma.system.daemonize=true --config virus.available=true sandbox/etc/magma.sandbox.config
+
+# Save the result.
+RETVAL=$?
 
 # Give the daemon time to start before exiting.
-sleep 60
+sleep 15
 
 # Exit wit a zero so Vagrant doesn't think a failed unit test is a provision failure.
-exit 0
+exit $RETVAL
 EOF
 
 # Make the script executable.
