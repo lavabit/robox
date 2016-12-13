@@ -91,9 +91,14 @@ mysqladmin --user=root password "$PRAND"
 # Allow the root user to login to mysql as root by saving the randomly generated password.
 printf "\n\n[mysql]\nuser=root\npassword=$PRAND\n\n" >> /root/.my.cnf 
 
+# Change the default temporary table directory or else the schema reset will fail when it creates a temp table.
+printf "\n\n[server]\ntmpdir=/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
+chcon system_u:object_r:mysqld_etc_t:s0 /etc/my.cnf.d/server-tmpdir.cnf
+
 # Create the mytool user and grant the required permissions.
 mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
 mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
+
 # Find out how much RAM is installed, and what 50% would be in KB.
 TOTALMEM=`free -k | grep -E "^Mem:" | awk -F' ' '{print $2}'`
 HALFMEM=`echo $(($TOTALMEM/2))`
