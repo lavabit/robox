@@ -92,22 +92,21 @@ Vagrant.configure(2) do |config|
     v.driver = "kvm"
     v.video_vram = 256
     v.memory = 2048
-    v.video_vram = 256
     v.cpus = 2
   end
 
   config.vm.provider :virtualbox do |v, override|
-    v.gui = false
     v.customize ["modifyvm", :id, "--memory", 2048]
     v.customize ["modifyvm", :id, "--cpus", 2]
+    v.gui = false
   end
 
-  ["vmware_fusion", "vmware_workstation"].each do |provider|
+  ["vmware_fusion", "vmware_workstation", "vmware_desktop"].each do |provider|
     config.vm.provider provider do |v, override|
-      v.gui = false
+      v.vmx["cpuid.coresPerSocket"] = "1"
       v.vmx["memsize"] = "2048"
       v.vmx["numvcpus"] = "2"
-      v.vmx["cpuid.coresPerSocket"] = "1"
+      v.gui = false
     end
   end
   
