@@ -13,9 +13,9 @@
                 "scripts/centos6/cleanup.sh",
                 "scripts/centos6/dockerize.sh"
             ],
-            "execute_command": "echo 'locked' | sudo -S bash '{{.Path}}'"
+            "execute_command": "echo 'locked' | sudo -S bash '{{.Path}}'",
             "start_retry_timeout": "15m",
-            "expect_disconnect": "true"
+            "expect_disconnect": "true",
             "only": ["magma-docker", "magma-centos6-docker"]
         },
         {
@@ -26,16 +26,16 @@
                 "scripts/centos7/cleanup.sh",
                 "scripts/centos7/dockerize.sh"
             ],
-            "execute_command": "echo 'locked' | sudo -S bash '{{.Path}}'"
+            "execute_command": "echo 'locked' | sudo -S bash '{{.Path}}'",
             "start_retry_timeout": "15m",
-            "expect_disconnect": "true"
+            "expect_disconnect": "true",
             "only": ["magma-centos7-docker"]
         }
     ],
     "builders": [
         {
             "type": "qemu",
-            "name": "{{user `box_name`}}-docker",
+            "name": "magma-docker",
             "vm_name": "{{user `box_name`}}-docker",
             "output_directory": "{{user `box_name`}}-docker-output",
             "accelerator": "kvm",
@@ -61,7 +61,7 @@
             ],
             "http_directory": "kickstart",
             "headless": true,
-            "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
+            "iso_url": "https://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
             "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
@@ -72,7 +72,7 @@
         },
         {
             "type": "qemu",
-            "name": "{{user `box_name`}}-centos6-docker",
+            "name": "magma-centos6-docker",
             "vm_name": "{{user `box_name`}}-centos6-docker",
             "output_directory": "{{user `box_name`}}-centos6-docker-output",
             "accelerator": "kvm",
@@ -98,7 +98,7 @@
             ],
             "http_directory": "kickstart",
             "headless": true,
-            "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
+            "iso_url": "https://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
             "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
@@ -109,7 +109,7 @@
         },
         {
             "type": "qemu",
-            "name": "{{user `box_name`}}-centos7-docker",
+            "name": "magma-centos7-docker",
             "vm_name": "{{user `box_name`}}-centos7-docker",
             "output_directory": "{{user `box_name`}}-centos7-docker-output",
             "accelerator": "kvm",

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="0.4.4"
+VERSION="0.4.6"
 
 LINK=`readlink -f $0`
 BASE=`dirname $LINK`
@@ -12,14 +12,11 @@ export ATLAS_TOKEN="qyToIsMKMP9P0w.atlasv1.MiyPtcThL0y4Fwk53lFri83nOEt1rUDSQNW2C
 sudo sysctl net.ipv6.conf.all.disable_ipv6=1
 
 # Start the required services.
-sudo systemctl start vmtoolsd.service
-sudo systemctl start libvirtd.service
-sudo systemctl start vboxdrv.service
-sudo systemctl start docker.service
-
-sudo /etc/init.d/vmware start
-sudo /etc/init.d/vmware-USBArbitrator
-sudo /etc/init.d/vmware-workstation-server start
+sudo systemctl restart docker.service
+sudo systemctl restart vmtoolsd.service
+sudo systemctl restart vboxdrv.service
+sudo systemctl restart libvirtd.service
+sudo systemctl restart vmware.service vmware-USBArbitrator.service vmware-workstation-server.service
 
 # Build the boxes.
 packer build -var "box_version=$VERSION" -parallel=false magma-centos7.json
