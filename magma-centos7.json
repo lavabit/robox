@@ -151,13 +151,13 @@
                 "vagrantfile_template": "tpl/vagrantfile.tpl",
                 "override": {
                     "libvirt": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-libvirt-{{user `box_version`}}.box"
+                        "output": "{{user `box_name`}}-{{user `box_base`}}-libvirt-{{env `VERSION`}}.box"
                     },
                     "virtualbox": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-{{user `box_version`}}.box"
+                        "output": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-{{env `VERSION`}}.box"
                     },
                     "vmware": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-vmware-{{user `box_version`}}.box"
+                        "output": "{{user `box_name`}}-{{user `box_base`}}-vmware-{{env `VERSION`}}.box"
                     }
                 }
             },
@@ -170,7 +170,7 @@
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "libvirt",
-                    "version": "{{user `box_version`}}",
+                    "version": "{{env `VERSION`}}",
                     "created_at": "{{timestamp}}",
                     "description": "The magma encrypted mail daemon build environment."
                 }
@@ -184,7 +184,7 @@
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
+                    "version": "{{env `VERSION`}}",
                     "created_at": "{{timestamp}}",
                     "description": "The magma encrypted mail daemon build environment."
                 }
@@ -198,7 +198,7 @@
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "virtualbox",
-                    "version": "{{user `box_version`}}",
+                    "version": "{{env `VERSION`}}",
                     "created_at": "{{timestamp}}",
                     "description": "The magma encrypted mail daemon build environment."
                 }
