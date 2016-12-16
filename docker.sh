@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-export VERSION="0.3.9"
+export VERSION="0.4.0"
 export ATLAS_TOKEN="qyToIsMKMP9P0w.atlasv1.MiyPtcThL0y4Fwk53lFri83nOEt1rUDSQNW2CxFbxJtFd7llvllpqSL176pTkeFVfiE"
 
 LINK=`readlink -f $0`
@@ -24,7 +24,7 @@ if [[ $? != 0 ]]; then
   rm -rf packer_cache/
   exit 1
 fi
-
+exit 0
 #
 # magma-docker
 #

@@ -3,7 +3,7 @@
 
 # remove stuff we don't need that anaconda insists on
 # kernel needs to be removed by rpm, because of grubby
-rpm -e kernel
+rpm -e kernel kernel-devel kernel-tools kernel-headers
 
 rpm -e --nodeps bind-libs bind-libs-lite dhclient dhcp-common dhcp-libs \
   dracut-network e2fsprogs e2fsprogs-libs ebtables ethtool file \

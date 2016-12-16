@@ -1,6 +1,5 @@
 # This is a minimal CentOS kickstart designed to create a dockerized build environment capable of compiling the magma mail daemon.
 # Basic Kickstart Config.
-url --url="https://mirrors.kernel.org/centos/6/os/x86_64/"
 install
 keyboard us
 lang en_US.UTF-8
@@ -13,32 +12,29 @@ network --bootproto=dhcp --device=eth0 --activate --onboot=on --noipv6 --hostnam
 reboot
 bootloader --location=partition
 
-# Repositories to use
-repo --name="CentOS" --baseurl=https://mirrors.kernel.org/centos/6/os/x86_64/ --cost=100
-repo --name="Updates" --baseurl=https://mirrors.kernel.org/centos/6/updates/x86_64/ --cost=100
-
 # Disk setup
 zerombr
 clearpart --all --initlabel
 part / --size 32768 --fstype ext4
 
-%packages
+%packages --nobase
 @core
 vim-minimal
 yum
 bash
-bind-utils
 centos-release
 shadow-utils
 findutils
 iputils
 iproute
 grub
--*-firmware
+# Microcode updates don't work in a VM
+-microcode_ctl
+# Firmware packages aren't needed in a VM
+-*firmware
 passwd
 rootfiles
 util-linux-ng
-yum-plugin-ovl
 coreutils
 authconfig
 sudo
@@ -46,6 +42,6 @@ sudo
 
 %post
 
-#echo "locked" | passwd --stdin 
+#echo "locked" | passwd --stdin
 
 %end

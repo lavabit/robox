@@ -17,34 +17,36 @@
             "execute_command": "echo 'locked' | sudo -S bash '{{.Path}}'",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
-            "only": ["magma-docker", "magma-centos6-docker"]
+            "only": ["magma", "magma-centos6"]
         },
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos7/yum.sh",
                 "scripts/centos7/base.sh",
                 "scripts/centos7/magma.sh",
                 "scripts/centos7/cleanup.sh",
+                "scripts/centos7/unyum.sh",
                 "scripts/centos7/dockerize.sh"
             ],
             "execute_command": "echo 'locked' | sudo -S bash '{{.Path}}'",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
-            "only": ["magma-centos7-docker"]
+            "only": ["magma-centos7"]
       },
       {
             "type": "file",
             "direction": "download",
             "source": "/tmp/magma-docker.tar",
-            "destination": "{{build_name}}-{{user `box_version`}}.tar"
+            "destination": "{{build_name}}-docker-{{user `box_version`}}.tar"
       }
     ],
     "builders": [
         {
             "type": "qemu",
-            "name": "magma-docker",
-            "vm_name": "{{user `box_name`}}-docker",
-            "output_directory": "{{user `box_name`}}-docker-output",
+            "name": "magma",
+            "vm_name": "{{build_name}}-docker",
+            "output_directory": "{{build_name}}-docker-output",
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
@@ -79,9 +81,9 @@
         },
         {
             "type": "qemu",
-            "name": "magma-centos6-docker",
-            "vm_name": "{{user `box_name`}}-centos6-docker",
-            "output_directory": "{{user `box_name`}}-centos6-docker-output",
+            "name": "magma-centos6",
+            "vm_name": "{{build_name}}-docker",
+            "output_directory": "{{build_name}}-docker-output",
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
@@ -116,9 +118,9 @@
         },
         {
             "type": "qemu",
-            "name": "magma-centos7-docker",
-            "vm_name": "{{user `box_name`}}-centos7-docker",
-            "output_directory": "{{user `box_name`}}-centos7-docker-output",
+            "name": "magma-centos7",
+            "vm_name": "{{build_name}}-docker",
+            "output_directory": "{{build_name}}-docker-output",
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
@@ -157,13 +159,41 @@
             {
                 "type": "artifice",
                 "keep_input_artifact": true,
-                "files": ["{{build_name}}-{{user `box_version`}}.tar"]
+                "files": ["{{build_name}}-docker-{{user `box_version`}}.tar"]
             },
             {
                 "type": "compress",
                 "compression_level": 9,
                 "keep_input_artifact": true,
-                "output": "{{build_name}}-{{user `box_version`}}.tar.gz"
+                "output": "{{build_name}}-docker-{{user `box_version`}}.tar.gz"
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": ["{{build_name}}-docker-{{user `box_version`}}.tar.gz"]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "lavabit/{{build_name}}"
+            },
+            {
+                "type": "checksum",
+                "keep_input_artifact": true,
+                "checksum_types": ["sha256"],
+                "output": "{{build_name}}-docker-{{user `box_version`}}.tar.gz.sha256"
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": ["{{build_name}}-docker-{{user `box_version`}}.tar.gz"]
+            },
+            {
+                "type": "checksum",
+                "keep_input_artifact": true,
+                "checksum_types": ["sha512"],
+                "output": "{{build_name}}-docker-{{user `box_version`}}.tar.gz.sha512"
             }
         ]
     ]
