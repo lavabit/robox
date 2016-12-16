@@ -140,7 +140,6 @@
                     "cpus=2"
                 ]
             ],
-            "vm_name": "{{user `box_name`}}-docker",
             "http_directory": "kickstart",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/centos/7.3.1611/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
