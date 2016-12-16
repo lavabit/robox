@@ -2,7 +2,7 @@
     "variables": {
         "org_name": "lavabit",
         "box_name": "magma",
-        "box_base": "centos"
+        "box_version": "{{env `VERSION`}}"
     },
     "provisioners": [
         {
@@ -153,13 +153,13 @@
                 "vagrantfile_template": "tpl/vagrantfile.tpl",
                 "override": {
                     "libvirt": {
-                        "output": "{{user `box_name`}}-libvirt-{{env `VERSION`}}.box"
+                        "output": "{{user `box_name`}}-libvirt-{{user `box_version`}}.box"
                     },
                     "virtualbox": {
-                        "output": "{{user `box_name`}}-virtualbox-{{env `VERSION`}}.box"
+                        "output": "{{user `box_name`}}-virtualbox-{{user `box_version`}}.box"
                     },
                     "vmware": {
-                        "output": "{{user `box_name`}}-vmware-{{env `VERSION`}}.box"
+                        "output": "{{user `box_name`}}-vmware-{{user `box_version`}}.box"
                     }
                 }
             },
@@ -172,7 +172,7 @@
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "libvirt",
-                    "version": "{{env `VERSION`}}",
+                    "version": "{{user `box_version`}}",
                     "created_at": "{{timestamp}}",
                     "description": "The magma encrypted mail daemon build environment."
                 }
@@ -186,7 +186,7 @@
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "virtualbox",
-                    "version": "{{env `VERSION`}}",
+                    "version": "{{user `box_version`}}",
                     "created_at": "{{timestamp}}",
                     "description": "The magma encrypted mail daemon build environment."
                 }
@@ -200,7 +200,7 @@
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "vmware_desktop",
-                    "version": "{{env `VERSION`}}",
+                    "version": "{{user `box_version`}}",
                     "created_at": "{{timestamp}}",
                     "description": "The magma encrypted mail daemon build environment."
                 }
@@ -209,42 +209,42 @@
                 "type": "checksum",
                 "checksum_types": ["sha256"],
                 "only": ["magma-libvirt"],
-                "output": "{{user `box_name`}}-libvirt-{{env `VERSION`}}.box.sha256",
+                "output": "{{user `box_name`}}-libvirt-{{user `box_version`}}.box.sha256",
                 "keep_input_artifact": true
             },
             {
                 "type": "checksum",
                 "checksum_types": ["sha512"],
                 "only": ["magma-libvirt"],
-                "output": "{{user `box_name`}}-libvirt-{{env `VERSION`}}.box.sha512",
+                "output": "{{user `box_name`}}-libvirt-{{user `box_version`}}.box.sha512",
                 "keep_input_artifact": true
             },
             {
                 "type": "checksum",
                 "checksum_types": ["sha256"],
                 "only": ["magma-virtualbox"],
-                "output": "{{user `box_name`}}-virtualbox-{{env `VERSION`}}.box.sha256",
+                "output": "{{user `box_name`}}-virtualbox-{{user `box_version`}}.box.sha256",
                 "keep_input_artifact": true
             },
             {
                 "type": "checksum",
                 "checksum_types": ["sha512"],
                 "only": ["magma-virtualbox"],
-                "output": "{{user `box_name`}}-virtualbox-{{env `VERSION`}}.box.sha512",
+                "output": "{{user `box_name`}}-virtualbox-{{user `box_version`}}.box.sha512",
                 "keep_input_artifact": true
             },
             {
                 "type": "checksum",
                 "checksum_types": ["sha256"],
                 "only": ["magma-vmware"],
-                "output": "{{user `box_name`}}-vmware-{{env `VERSION`}}.box.sha256",
+                "output": "{{user `box_name`}}-vmware-{{user `box_version`}}.box.sha256",
                 "keep_input_artifact": true
             },
             {
                 "type": "checksum",
                 "checksum_types": ["sha512"],
                 "only": ["magma-vmware"],
-                "output": "{{user `box_name`}}-vmware-{{env `VERSION`}}.box.sha512",
+                "output": "{{user `box_name`}}-vmware-{{user `box_version`}}.box.sha512",
                 "keep_input_artifact": true
             }
         ]

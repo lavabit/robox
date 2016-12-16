@@ -2,7 +2,8 @@
     "variables": {
         "org_name": "lavabit",
         "box_name": "magma",
-        "box_base": "centos7"
+        "box_base": "centos7",
+        "box_version": "{{env `VERSION`}}"
     },
     "provisioners": [
         {
@@ -40,6 +41,9 @@
     "builders": [
         {
             "type": "qemu",
+            "name": "magma-centos7-libvirt",
+            "vm_name": "magma-centos7-libvirt",
+            "output_directory": "magma-centos7-libvirt-output",
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
@@ -61,9 +65,7 @@
                     "cpus=2"
                 ]
             ],
-            "vm_name": "{{user `box_name`}}-{{user `box_base`}}-libvirt",
             "http_directory": "kickstart",
-            "output_directory": "{{user `box_name`}}-{{user `box_base`}}-libvirt-output",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/centos/7.3.1611/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
             "iso_checksum": "27bd866242ee058b7a5754e83d8ee8403e216b93d130d800852a96f41c34d86a",
@@ -76,6 +78,9 @@
         },
         {
             "type": "virtualbox-iso",
+            "name": "magma-centos7-virtualbox",
+            "vm_name": "magma-centos7-virtualbox",
+            "output_directory": "magma-centos7-virtualbox-output",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
@@ -95,10 +100,8 @@
                     "2"
                 ]
             ],
-            "vm_name": "{{user `box_name`}}-{{user `box_base`}}-virtualbox",
             "guest_os_type": "RedHat_64",
             "http_directory": "kickstart",
-            "output_directory": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-output",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/centos/7.3.1611/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
             "iso_checksum": "27bd866242ee058b7a5754e83d8ee8403e216b93d130d800852a96f41c34d86a",
@@ -113,6 +116,10 @@
         },
         {
             "type": "vmware-iso",
+            "name": "magma-centos7-vmware",
+            "vm_name": "magma-centos7-vmware",
+            "vmdk_name": "magma-centos7-vmware",
+            "output_directory": "magma-centos7-vmware-output",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
@@ -124,11 +131,8 @@
                 "numvcpus": "2",
                 "cpuid.coresPerSocket": "1"
             },
-            "vm_name": "{{user `box_name`}}-{{user `box_base`}}-vmware",
-            "vmdk_name": "{{user `box_name`}}-{{user `box_base`}}-vmware",
             "guest_os_type": "Centos-64",
             "http_directory": "kickstart",
-            "output_directory": "{{user `box_name`}}-{{user `box_base`}}-vmware-output",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/centos/7.3.1611/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
             "iso_checksum": "27bd866242ee058b7a5754e83d8ee8403e216b93d130d800852a96f41c34d86a",
@@ -151,57 +155,93 @@
                 "vagrantfile_template": "tpl/vagrantfile.tpl",
                 "override": {
                     "libvirt": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-libvirt-{{env `VERSION`}}.box"
+                        "output": "{{user `box_name`}}-{{user `box_base`}}-libvirt-{{user `box_version`}}.box"
                     },
                     "virtualbox": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-{{env `VERSION`}}.box"
+                        "output": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-{{user `box_version`}}.box"
                     },
                     "vmware": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-vmware-{{env `VERSION`}}.box"
+                        "output": "{{user `box_name`}}-{{user `box_base`}}-vmware-{{user `box_version`}}.box"
                     }
                 }
             },
             {
                 "type": "atlas",
-                "only": [
-                    "qemu"
-                ],
+                "only": ["magma-centos7-libvirt"],
                 "artifact": "{{user `org_name`}}/{{user `box_name`}}-{{user `box_base`}}",
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "libvirt",
-                    "version": "{{env `VERSION`}}",
+                    "version": "{{user `box_version`}}",
                     "created_at": "{{timestamp}}",
                     "description": "The magma encrypted mail daemon build environment."
                 }
             },
             {
                 "type": "atlas",
-                "only": [
-                    "vmware-iso"
-                ],
-                "artifact": "{{user `org_name`}}/{{user `box_name`}}-{{user `box_base`}}",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{env `VERSION`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
-            },
-            {
-                "type": "atlas",
-                "only": [
-                    "virtualbox-iso"
-                ],
+                "only": ["magma-centos7-virtualbox"],
                 "artifact": "{{user `org_name`}}/{{user `box_name`}}-{{user `box_base`}}",
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "virtualbox",
-                    "version": "{{env `VERSION`}}",
+                    "version": "{{user `box_version`}}",
                     "created_at": "{{timestamp}}",
                     "description": "The magma encrypted mail daemon build environment."
                 }
+            },
+            {
+                "type": "atlas",
+                "only": ["magma-centos7-vmware"],
+                "artifact": "{{user `org_name`}}/{{user `box_name`}}-{{user `box_base`}}",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "vmware_desktop",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "The magma encrypted mail daemon build environment."
+                }
+            },
+            {
+                "type": "checksum",
+                "checksum_types": ["sha256"],
+                "only": ["magma-centos7-libvirt"],
+                "output": "{{user `box_name`}}-centos7-libvirt-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
+            },
+            {
+                "type": "checksum",
+                "checksum_types": ["sha512"],
+                "only": ["magma-centos7-libvirt"],
+                "output": "{{user `box_name`}}-centos7-libvirt-{{user `box_version`}}.box.sha512",
+                "keep_input_artifact": true
+            },
+            {
+                "type": "checksum",
+                "checksum_types": ["sha256"],
+                "only": ["magma-centos7-virtualbox"],
+                "output": "{{user `box_name`}}-centos7-virtualbox-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
+            },
+            {
+                "type": "checksum",
+                "checksum_types": ["sha512"],
+                "only": ["magma-centos7-virtualbox"],
+                "output": "{{user `box_name`}}-centos7-virtualbox-{{user `box_version`}}.box.sha512",
+                "keep_input_artifact": true
+            },
+            {
+                "type": "checksum",
+                "checksum_types": ["sha256"],
+                "only": ["magma-centos7-vmware"],
+                "output": "{{user `box_name`}}-centos7-vmware-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
+            },
+            {
+                "type": "checksum",
+                "checksum_types": ["sha512"],
+                "only": ["magma-centos7-vmware"],
+                "output": "{{user `box_name`}}-centos7-vmware-{{user `box_version`}}.box.sha512",
+                "keep_input_artifact": true
             }
         ]
     ]
