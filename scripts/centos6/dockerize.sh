@@ -5,13 +5,12 @@
 # remove stuff we don't need that anaconda insists on
 # kernel needs to be removed by rpm, because of grubby
 rpm -e kernel
-rpm -e --nodeps dhclient dhcp-libs dracut dracut-kernel grubby kmod grub2 centos-logos hwdata os-prober gettext bind-license freetype kmod-libs dracut firewalld dbus-glib dbus-python ebtables gobject-introspection pygobject3-base python-decorator python-slip python-slip-dbus kpartx kernel-firmware device-mapper device-mapper-event device-mapper-event-libs device-mapper-libs device-mapper-persistent-data e2fsprogs-libs kbd-misc iptables iptables-ipv6 
+rpm -e --nodeps dhclient dhcp-libs dracut dracut-kernel grubby kmod grub2 centos-logos hwdata os-prober gettext bind-license freetype kmod-libs dracut firewalld dbus-glib dbus-python ebtables gobject-introspection pygobject3-base python-decorator python-slip python-slip-dbus kpartx kernel-firmware device-mapper device-mapper-event device-mapper-event-libs device-mapper-libs device-mapper-persistent-data e2fsprogs-libs kbd-misc iptables iptables-ipv6
 
 rpm -Va --nofiles --nodigest
 yum clean all
 
-
-#clean up unused directories
+# Clean up unused directories
 rm -rf /boot
 rm -rf /etc/firewalld
 
@@ -25,11 +24,13 @@ echo 'container' > /etc/yum/vars/infra
 
 rm -f /usr/lib/locale/locale-archive
 
-#Setup locale properly
+# Setup the locale properly - arrogantly assume everyone lives in the US.
 localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
 
 rm -rf /var/cache/yum/*
 rm -f /tmp/ks-script*
+rm -rf /var/log/*
+rm -rf /tmp/*
 rm -rf /etc/sysconfig/network-scripts/ifcfg-*
 
 # Mark the docker box build time.
@@ -39,4 +40,4 @@ date --utc > /etc/docker_box_build_time
 dd if=/dev/urandom count=50 | md5sum | passwd --stdin root
 passwd -l root
 
-
+tar --create --numeric-owner --one-file-system --directory=/ --exclude=/tmp/magma-docker.tar --file=/tmp/magma-docker.tar .

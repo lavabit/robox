@@ -16,13 +16,9 @@ rpm -e --nodeps bind-libs bind-libs-lite dhclient dhcp-common dhcp-libs \
 rpm -Va --nofiles --nodigest
 yum clean all
 
-#clean up unused directories
+# Clean up unused directories.
 rm -rf /boot
 rm -rf /etc/firewalld
-
-# Lock roots account, keep roots account password-less.
-passwd -l root
-
 
 awk '(NF==0&&!done){print "override_install_langs='$LANG'\ntsflags=nodocs";done=1}{print}' \
     < /etc/yum.conf > /etc/yum.conf.new
@@ -31,7 +27,7 @@ echo 'container' > /etc/yum/vars/infra
 
 rm -f /usr/lib/locale/locale-archive
 
-#Setup locale properly
+# Setup the locale properly - arrogantly assume everyone lives in the US.
 localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
 
 rm -rf /var/cache/yum/*
@@ -52,3 +48,4 @@ date --utc > /etc/docker_box_build_time
 
 :> /etc/machine-id
 
+tar --create --numeric-owner --one-file-system --directory=/ --exclude=/tmp/magma-docker.tar --file=/tmp/magma-docker.tar .
