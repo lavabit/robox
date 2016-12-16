@@ -30,6 +30,12 @@ echo 'container' > /etc/yum/vars/infra
 
 rm -f /usr/lib/locale/locale-archive
 
+# Setup the login message instructions.
+printf "Magma Daemon Development Environment\nTo download and compile magma, just execute the magma-build.sh script.\n\n" > /etc/motd
+
+# Add a profile directive to send docker logins to the home directory.
+printf "if [ \"\$PS1\" ]; then\n  cd \$HOME\nfi\n" > /etc/profile.d/home.sh
+
 # Setup the locale properly - arrogantly assume everyone lives in the US.
 localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
 

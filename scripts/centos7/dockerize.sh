@@ -19,7 +19,7 @@ yum clean all
 # Stop services to avoid tarring sockets.
 systemctl stop abrt
 systemctl stop dbus
-systemctl stop mysqld
+systemctl stop mariadb
 systemctl stop postfix
 
 # Clean up unused directories.
@@ -32,6 +32,12 @@ mv /etc/yum.conf.new /etc/yum.conf
 echo 'container' > /etc/yum/vars/infra
 
 rm -f /usr/lib/locale/locale-archive
+
+# Setup the login message instructions.
+printf "Magma Daemon Development Environment\nTo download and compile magma, just execute the magma-build.sh script.\n\n" > /etc/motd
+
+# Add a profile directive to send docker logins to the home directory.
+printf "if [ \"\$PS1\" ]; then\n  cd \$HOME\nfi\n" > /etc/profile.d/home.sh
 
 # Setup the locale properly - arrogantly assume everyone lives in the US.
 localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
@@ -54,4 +60,5 @@ date --utc > /etc/docker_box_build_time
 
 :> /etc/machine-id
 
-tar --create --numeric-owner --one-file-system --directory=/ --exclude=/tmp/magma-docker.tar --file=/tmp/magma-docker.tar .
+tar --create --numeric-owner --one-file-system --directory=/ --file=/tmp/magma-docker.tar \
+--exclude=/tmp/magma-docker.tar --exclude=/boot --exclude=/run/* --exclude=/var/spool/postfix/private/* .

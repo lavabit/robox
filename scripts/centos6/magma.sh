@@ -23,7 +23,7 @@ if [ -x /usr/bin/id ]; then
   ID=\`/usr/bin/id -u\`
   if [ -n "\$ID" -a "\$ID" -eq 0 ]; then
     service mysqld start
-    service havegd start
+    service haveged start
     service postfix start
     service memcached start
   fi
