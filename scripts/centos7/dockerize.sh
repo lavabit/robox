@@ -16,6 +16,12 @@ rpm -e --nodeps bind-libs bind-libs-lite dhclient dhcp-common dhcp-libs \
 rpm -Va --nofiles --nodigest
 yum clean all
 
+# Stop services to avoid tarring sockets.
+systemctl stop abrt
+systemctl stop dbus
+systemctl stop mysqld
+systemctl stop postfix
+
 # Clean up unused directories.
 rm -rf /boot
 rm -rf /etc/firewalld

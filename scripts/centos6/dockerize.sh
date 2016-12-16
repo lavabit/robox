@@ -14,6 +14,12 @@ yum clean all
 rm -rf /boot
 rm -rf /etc/firewalld
 
+# Stop services to avoid tarring sockets.
+service abrt stop
+service dbus stop
+service mysqld stop
+service postfix stop
+
 #LANG="en_US"
 #echo "%_install_lang $LANG" > /etc/rpm/macros.image-language-conf
 
