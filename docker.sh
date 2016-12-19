@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-export VERSION="0.4.0"
+export VERSION="0.4.2"
 export ATLAS_TOKEN="qyToIsMKMP9P0w.atlasv1.MiyPtcThL0y4Fwk53lFri83nOEt1rUDSQNW2CxFbxJtFd7llvllpqSL176pTkeFVfiE"
 
 LINK=`readlink -f $0`

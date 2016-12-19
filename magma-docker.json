@@ -163,7 +163,7 @@
     [
       {
         "type": "artifice",
-        "keep_input_artifact": true,
+        "keep_input_artifact": false,
         "files": [
           "{{build_name}}-docker-{{user `box_version`}}.tar"
         ]
@@ -197,7 +197,7 @@
       {
         "type": "compress",
         "compression_level": 9,
-        "keep_input_artifact": true,
+        "keep_input_artifact": false,
         "output": "{{build_name}}-docker-{{user `box_version`}}.tar.gz"
       },
       {

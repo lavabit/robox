@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.5.0"
+export VERSION="0.5.1"
 export ATLAS_TOKEN="qyToIsMKMP9P0w.atlasv1.MiyPtcThL0y4Fwk53lFri83nOEt1rUDSQNW2CxFbxJtFd7llvllpqSL176pTkeFVfiE"
 
 LINK=`readlink -f $0`
@@ -12,10 +12,10 @@ cd $BASE
 sudo sysctl net.ipv6.conf.all.disable_ipv6=1
 
 # Start the required services.
-sudo systemctl restart docker.service
 sudo systemctl restart vmtoolsd.service
 sudo systemctl restart vboxdrv.service
 sudo systemctl restart libvirtd.service
+sudo systemctl restart docker-latest.service
 sudo systemctl restart vmware.service vmware-USBArbitrator.service vmware-workstation-server.service
 
 # Validate the templates before building.
