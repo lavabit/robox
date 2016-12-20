@@ -5,13 +5,7 @@
 # kernel needs to be removed by rpm, because of grubby
 rpm -e kernel kernel-devel kernel-tools kernel-headers
 
-rpm -e --nodeps bind-libs bind-libs-lite dhclient dhcp-common dhcp-libs \
-  dracut-network e2fsprogs e2fsprogs-libs ebtables ethtool file \
-  firewalld freetype gettext gettext-libs groff-base grub2 grub2-tools \
-  grubby initscripts iproute iptables kexec-tools libcroco libgomp \
-  libmnl libnetfilter_conntrack libnfnetlink libselinux-python lzo \
-  libunistring os-prober python-decorator python-slip python-slip-dbus \
-  snappy sysvinit-tools which linux-firmware
+rpm -e --nodeps bind-libs bind-libs-lite dhclient dhcp-common dhcp-libs dracut-network e2fsprogs e2fsprogs-libs ebtables ethtool file firewalld freetype gettext gettext-libs groff-base grub2 grub2-tools grubby initscripts iproute iptables kexec-tools libcroco libgomp libmnl libnetfilter_conntrack libnfnetlink libselinux-python lzo libunistring os-prober python-decorator python-slip python-slip-dbus snappy sysvinit-tools which linux-firmware haveged
 
 rpm -Va --nofiles --nodigest
 yum clean all

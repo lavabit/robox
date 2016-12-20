@@ -31,7 +31,8 @@ exit 0
 cat << EOF > magma-docker-output/Dockerfile
 FROM scratch
 MAINTAINER Ladar Levison <ladar@lavabit.com>
-LABEL name="Magma Build Image" vendor="Lavabit" license="AGPLv3" build-date="$BUILDDATE"
+LABEL name="Magma Build Image" vendor="Lavabit" license="AGPLv3" build-date="$BUILDDATE" \
+  description="The magma encrypted mail daemon build environment." version="$VERSION"
 ADD magma-docker-$VERSION.tar.gz /
 ENTRYPOINT ["/root/magma-build.sh"]
 EOF
@@ -54,7 +55,8 @@ docker build --force-rm --tag="magma:$VERSION" magma-docker-output
 cat << EOF > magma-centos6-docker-output/Dockerfile
 FROM scratch
 MAINTAINER Ladar Levison <ladar@lavabit.com>
-LABEL name="Magma Build Image" vendor="Lavabit" license="AGPLv3" build-date="$BUILDDATE"
+LABEL name="Magma Build Image" vendor="Lavabit" license="AGPLv3" build-date="$BUILDDATE" \
+  description="The magma encrypted mail daemon build environment." version="$VERSION"
 ADD magma-centos6-docker-$VERSION.tar.gz /
 ENTRYPOINT ["/root/magma-build.sh"]
 EOF
@@ -77,7 +79,8 @@ docker build --force-rm --tag="magma-centos6:$VERSION" magma-docker-output
 cat << EOF > magma-centos7-docker-output/Dockerfile
 FROM scratch
 MAINTAINER Ladar Levison <ladar@lavabit.com>
-LABEL name="Magma Build Image" vendor="Lavabit" license="AGPLv3" build-date="$BUILDDATE"
+LABEL name="Magma Build Image" vendor="Lavabit" license="AGPLv3" build-date="$BUILDDATE" \
+  description="The magma encrypted mail daemon build environment." version="$VERSION"
 ADD magma-centos7-docker-$VERSION.tar.gz /
 ENTRYPOINT ["/root/magma-build.sh"]
 EOF
