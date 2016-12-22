@@ -129,7 +129,7 @@
                 "numvcpus": "2",
                 "cpuid.coresPerSocket": "1"
             },
-            "guest_os_type": "Centos-64",
+            "guest_os_type": "centos-64",
             "http_directory": "http",
             "headless": true,
             "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
