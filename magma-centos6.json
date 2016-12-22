@@ -41,7 +41,7 @@
             "type": "qemu",
             "name": "magma-centos6-libvirt",
             "vm_name": "magma-centos6-libvirt",
-            "output_directory": "magma-centos6-libvirt-output",
+            "output_directory": "output/magma-centos6-libvirt",
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
@@ -65,7 +65,6 @@
             ],
             "vm_name": "{{user `box_name`}}-{{user `box_base`}}-libvirt",
             "http_directory": "kickstart",
-            "output_directory": "{{user `box_name`}}-{{user `box_base`}}-libvirt-output",
             "headless": true,
             "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
             "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
@@ -80,7 +79,7 @@
             "type": "virtualbox-iso",
             "name": "magma-centos6-virtualbox",
             "vm_name": "magma-centos6-virtualbox",
-            "output_directory": "magma-centos6-virtualbox-output",
+            "output_directory": "output/magma-centos6-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
@@ -119,7 +118,7 @@
             "name": "magma-centos6-vmware",
             "vm_name": "magma-centos6-vmware",
             "vmdk_name": "magma-centos6-vmware",
-            "output_directory": "magma-centos6-vmware-output",
+            "output_directory": "output/magma-centos6-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
@@ -153,17 +152,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/vagrantfile.tpl",
-                "override": {
-                    "libvirt": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-libvirt-{{user `box_version`}}.box"
-                    },
-                    "virtualbox": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-{{user `box_version`}}.box"
-                    },
-                    "vmware": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-vmware-{{user `box_version`}}.box"
-                    }
-                }
+                "output": "output/{{build_name}}-{{user `box_version`}}.box"
             },
             {
                 "type": "atlas",
@@ -204,43 +193,7 @@
             {
                 "type": "checksum",
                 "checksum_types": ["sha256"],
-                "only": ["magma-centos6-libvirt"],
-                "output": "{{user `box_name`}}-centos6-libvirt-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha512"],
-                "only": ["magma-centos6-libvirt"],
-                "output": "{{user `box_name`}}-centos6-libvirt-{{user `box_version`}}.box.sha512",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha256"],
-                "only": ["magma-centos6-virtualbox"],
-                "output": "{{user `box_name`}}-centos6-virtualbox-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha512"],
-                "only": ["magma-centos6-virtualbox"],
-                "output": "{{user `box_name`}}-centos6-virtualbox-{{user `box_version`}}.box.sha512",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha256"],
-                "only": ["magma-centos6-vmware"],
-                "output": "{{user `box_name`}}-centos6-vmware-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha512"],
-                "only": ["magma-centos6-vmware"],
-                "output": "{{user `box_name`}}-centos6-vmware-{{user `box_version`}}.box.sha512",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
                 "keep_input_artifact": true
             }
         ]

@@ -43,7 +43,7 @@
             "type": "qemu",
             "name": "magma-centos7-libvirt",
             "vm_name": "magma-centos7-libvirt",
-            "output_directory": "magma-centos7-libvirt-output",
+            "output_directory": "output/magma-centos7-libvirt",
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
@@ -80,7 +80,7 @@
             "type": "virtualbox-iso",
             "name": "magma-centos7-virtualbox",
             "vm_name": "magma-centos7-virtualbox",
-            "output_directory": "magma-centos7-virtualbox-output",
+            "output_directory": "output/magma-centos7-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
@@ -119,7 +119,7 @@
             "name": "magma-centos7-vmware",
             "vm_name": "magma-centos7-vmware",
             "vmdk_name": "magma-centos7-vmware",
-            "output_directory": "magma-centos7-vmware-output",
+            "output_directory": "output/magma-centos7-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
@@ -153,17 +153,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/vagrantfile.tpl",
-                "override": {
-                    "libvirt": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-libvirt-{{user `box_version`}}.box"
-                    },
-                    "virtualbox": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-virtualbox-{{user `box_version`}}.box"
-                    },
-                    "vmware": {
-                        "output": "{{user `box_name`}}-{{user `box_base`}}-vmware-{{user `box_version`}}.box"
-                    }
-                }
+                "output": "output/{{build_name}}-{{user `box_version`}}.box"
             },
             {
                 "type": "atlas",
@@ -204,43 +194,7 @@
             {
                 "type": "checksum",
                 "checksum_types": ["sha256"],
-                "only": ["magma-centos7-libvirt"],
-                "output": "{{user `box_name`}}-centos7-libvirt-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha512"],
-                "only": ["magma-centos7-libvirt"],
-                "output": "{{user `box_name`}}-centos7-libvirt-{{user `box_version`}}.box.sha512",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha256"],
-                "only": ["magma-centos7-virtualbox"],
-                "output": "{{user `box_name`}}-centos7-virtualbox-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha512"],
-                "only": ["magma-centos7-virtualbox"],
-                "output": "{{user `box_name`}}-centos7-virtualbox-{{user `box_version`}}.box.sha512",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha256"],
-                "only": ["magma-centos7-vmware"],
-                "output": "{{user `box_name`}}-centos7-vmware-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha512"],
-                "only": ["magma-centos7-vmware"],
-                "output": "{{user `box_name`}}-centos7-vmware-{{user `box_version`}}.box.sha512",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
                 "keep_input_artifact": true
             }
         ]

@@ -41,7 +41,7 @@
             "type": "qemu",
             "name": "magma-libvirt",
             "vm_name": "magma-libvirt",
-            "output_directory": "magma-libvirt-output",
+            "output_directory": "output/magma-libvirt",
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
@@ -78,7 +78,7 @@
             "type": "virtualbox-iso",
             "name": "magma-virtualbox",
             "vm_name": "magma-virtualbox",
-            "output_directory": "magma-virtualbox-output",
+            "output_directory": "output/magma-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
@@ -117,7 +117,7 @@
             "name": "magma-vmware",
             "vm_name": "magma-vmware",
             "vmdk_name": "magma-vmware",
-            "output_directory": "magma-vmware-output",
+            "output_directory": "output/magma-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
@@ -151,7 +151,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/vagrantfile.tpl",
-                "output": "boxes/{{build_name}}-{{user `box_version`}}.box"
+                "output": "output/{{build_name}}-{{user `box_version`}}.box"
             },
             {
                 "type": "atlas",
@@ -192,7 +192,7 @@
             {
                 "type": "checksum",
                 "checksum_types": ["sha256"],
-                "output": "boxes/{{build_name}}-{{user `box_version`}}.box.sha256",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
                 "keep_input_artifact": true
             }
         ]

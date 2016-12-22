@@ -49,9 +49,9 @@
   "builders": [
     {
       "type": "qemu",
-      "name": "magma",
-      "vm_name": "{{build_name}}-docker",
-      "output_directory": "{{build_name}}-docker-output",
+      "name": "magma-docker",
+      "vm_name": "magma-docker",
+      "output_directory": "output/magma-docker",
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
@@ -86,9 +86,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-centos6",
-      "vm_name": "{{build_name}}-docker",
-      "output_directory": "{{build_name}}-docker-output",
+      "name": "magma-centos6-docker",
+      "vm_name": "magma-centos6-docker",
+      "output_directory": "output/magma-centos6-docker",
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
@@ -123,9 +123,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-centos7",
-      "vm_name": "{{build_name}}-docker",
-      "output_directory": "{{build_name}}-docker-output",
+      "name": "magma-centos7-docker",
+      "vm_name": "magma-centos7-docker",
+      "output_directory": "output/magma-centos7-docker",
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
@@ -165,7 +165,7 @@
         "type": "artifice",
         "keep_input_artifact": false,
         "files": [
-          "{{build_name}}-docker-{{user `box_version`}}.tar"
+          "output/{{build_name}}-{{user `box_version`}}.tar"
         ]
       },
       {
@@ -178,7 +178,7 @@
         "type": "artifice",
         "keep_input_artifact": true,
         "files": [
-          "{{build_name}}-docker-{{user `box_version`}}.tar"
+          "output/{{build_name}}-{{user `box_version`}}.tar"
         ]
       },
       {
@@ -191,44 +191,27 @@
         "type": "artifice",
         "keep_input_artifact": true,
         "files": [
-          "{{build_name}}-docker-{{user `box_version`}}.tar"
+          "output/{{build_name}}-{{user `box_version`}}.tar"
         ]
       },
       {
         "type": "compress",
         "compression_level": 9,
         "keep_input_artifact": false,
-        "output": "{{build_name}}-docker-{{user `box_version`}}.tar.gz"
+        "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz"
       },
       {
         "type": "artifice",
         "keep_input_artifact": true,
         "files": [
-          "{{build_name}}-docker-{{user `box_version`}}.tar.gz"
+          "{{build_name}}-{{user `box_version`}}.tar.gz"
         ]
       },
       {
-        "type": "checksum",
-        "keep_input_artifact": true,
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "{{build_name}}-docker-{{user `box_version`}}.tar.gz.sha256"
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "{{build_name}}-docker-{{user `box_version`}}.tar.gz"
-        ]
-      },
-      {
-        "type": "checksum",
-        "keep_input_artifact": true,
-        "checksum_types": [
-          "sha512"
-        ],
-        "output": "{{build_name}}-docker-{{user `box_version`}}.tar.gz.sha512"
+          "type": "checksum",
+          "checksum_types": ["sha256"],
+          "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz.sha256",
+          "keep_input_artifact": true
       }
     ]
   ]
