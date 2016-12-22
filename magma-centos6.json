@@ -64,7 +64,7 @@
                 ]
             ],
             "vm_name": "{{user `box_name`}}-{{user `box_base`}}-libvirt",
-            "http_directory": "kickstart",
+            "http_directory": "http",
             "headless": true,
             "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
             "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
@@ -100,7 +100,7 @@
                 ]
             ],
             "guest_os_type": "RedHat_64",
-            "http_directory": "kickstart",
+            "http_directory": "http",
             "headless": true,
             "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
             "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
@@ -131,7 +131,7 @@
                 "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "Centos-64",
-            "http_directory": "kickstart",
+            "http_directory": "http",
             "headless": true,
             "iso_url": "http://mirrors.kernel.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
             "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
