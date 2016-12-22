@@ -151,23 +151,11 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/vagrantfile.tpl",
-                "override": {
-                    "libvirt": {
-                        "output": "{{user `box_name`}}-libvirt-{{user `box_version`}}.box"
-                    },
-                    "virtualbox": {
-                        "output": "{{user `box_name`}}-virtualbox-{{user `box_version`}}.box"
-                    },
-                    "vmware": {
-                        "output": "{{user `box_name`}}-vmware-{{user `box_version`}}.box"
-                    }
-                }
+                "output": "boxes/{{build_name}}-{{user `box_version`}}.box"
             },
             {
                 "type": "atlas",
-                "only": [
-                    "magma-libvirt"
-                ],
+                "only": ["magma-libvirt"],
                 "artifact": "{{user `org_name`}}/{{user `box_name`}}",
                 "artifact_type": "vagrant.box",
                 "metadata": {
@@ -179,9 +167,7 @@
             },
             {
                 "type": "atlas",
-                "only": [
-                    "magma-virtualbox"
-                ],
+                "only": ["magma-virtualbox"],
                 "artifact": "{{user `org_name`}}/{{user `box_name`}}",
                 "artifact_type": "vagrant.box",
                 "metadata": {
@@ -193,9 +179,7 @@
             },
             {
                 "type": "atlas",
-                "only": [
-                    "magma-vmware"
-                ],
+                "only": ["magma-vmware"],
                 "artifact": "{{user `org_name`}}/{{user `box_name`}}",
                 "artifact_type": "vagrant.box",
                 "metadata": {
@@ -208,43 +192,7 @@
             {
                 "type": "checksum",
                 "checksum_types": ["sha256"],
-                "only": ["magma-libvirt"],
-                "output": "{{user `box_name`}}-libvirt-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha512"],
-                "only": ["magma-libvirt"],
-                "output": "{{user `box_name`}}-libvirt-{{user `box_version`}}.box.sha512",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha256"],
-                "only": ["magma-virtualbox"],
-                "output": "{{user `box_name`}}-virtualbox-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha512"],
-                "only": ["magma-virtualbox"],
-                "output": "{{user `box_name`}}-virtualbox-{{user `box_version`}}.box.sha512",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha256"],
-                "only": ["magma-vmware"],
-                "output": "{{user `box_name`}}-vmware-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
-            },
-            {
-                "type": "checksum",
-                "checksum_types": ["sha512"],
-                "only": ["magma-vmware"],
-                "output": "{{user `box_name`}}-vmware-{{user `box_version`}}.box.sha512",
+                "output": "boxes/{{build_name}}-{{user `box_version`}}.box.sha256",
                 "keep_input_artifact": true
             }
         ]
