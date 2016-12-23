@@ -110,6 +110,8 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.0.30/VBoxGuestAdditions_5.0.30.iso",
+            "guest_additions_sha256": "096cf810de3d951c60c857e0b8cf534dd1237d0a09759ab696e8a2c579df75fd",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
@@ -189,6 +191,11 @@
                     "created_at": "{{timestamp}}",
                     "description": "The magma encrypted mail daemon build environment."
                 }
+            },
+            {
+              "type": "artifice",
+              "keep_input_artifact": true,
+              "files": ["output/{{build_name}}-{{user `box_version`}}.box"]
             },
             {
                 "type": "checksum",
