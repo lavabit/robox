@@ -1,9 +1,9 @@
 {
   "variables": {
-    "org_name": "lavabit",
-    "box_name": "magma",
-    "box_base": "centos",
-    "box_version": "{{env `VERSION`}}"
+    "box_version": "{{env `VERSION`}}",
+    "docker-user": "{{env `DOCKER_USER`}}",
+    "docker-email": "{{env `DOCKER_EMAIL`}}",
+    "docker-password": "{{env `DOCKER_PASSWORD`}}"
   },
   "provisioners": [
     {
@@ -18,8 +18,8 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma",
-        "magma-centos6"
+        "magma-docker",
+        "magma-centos6-docker"
       ]
     },
     {
@@ -36,7 +36,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos7"
+        "magma-centos7-docker"
       ]
     },
     {
@@ -172,7 +172,50 @@
         "type": "docker-import",
         "keep_input_artifact": true,
         "tag": "{{user `box_version`}}",
-        "repository": "lavabit/{{build_name}}"
+        "repository": "lavabit/magma",
+        "only": ["magma-docker"]
+      },
+      {
+        "type": "docker-tag",
+        "tag": "{{user `box_version`}}",
+        "repository": "lavabit/magma",
+        "only": ["magma-docker"],
+        "force": "true"
+      },
+      {
+        "type": "docker-import",
+        "keep_input_artifact": true,
+        "tag": "{{user `box_version`}}",
+        "repository": "lavabit/magma-centos6",
+        "only": ["magma-centos6-docker"]
+      },
+      {
+        "type": "docker-tag",
+        "tag": "{{user `box_version`}}",
+        "repository": "lavabit/magma-centos6-docker",
+        "only": ["magma-centos6-docker"],
+        "force": "true"
+      },
+      {
+        "type": "docker-import",
+        "keep_input_artifact": true,
+        "tag": "{{user `box_version`}}",
+        "repository": "lavabit/centos7-docker",
+        "only": ["magma-centos7-docker"]
+      },
+      {
+        "type": "docker-tag",
+        "tag": "{{user `box_version`}}",
+        "repository": "lavabit/centos7-docker",
+        "only": ["magma-centos7-docker"],
+        "force": "true"
+      },
+      {
+        "type": "docker-push",
+        "login": "true",
+        "login_email": "{{user `docker_email`}}",
+        "login_username": "{{user `docker_username`}}",
+        "login_password": "{{user `docker_password`}}"
       },
       {
         "type": "artifice",
@@ -185,7 +228,50 @@
         "tag": "latest",
         "type": "docker-import",
         "keep_input_artifact": true,
-        "repository": "lavabit/{{build_name}}"
+        "repository": "lavabit/magma",
+        "only": ["magma-docker"]
+      },
+      {
+        "tag": "latest",
+        "type": "docker-tag",
+        "repository": "docker.io/lavabit/magma",
+        "only": ["magma-docker"],
+        "force": "true"
+      },
+      {
+        "tag": "latest",
+        "type": "docker-import",
+        "keep_input_artifact": true,
+        "repository": "lavabit/magma-centos6",
+        "only": ["magma-centos6-docker"]
+      },
+      {
+        "tag": "latest",
+        "type": "docker-tag",
+        "repository": "docker.io/lavabit/magma-centos6-docker",
+        "only": ["magma-centos6-docker"],
+        "force": "true"
+      },
+      {
+        "tag": "latest",
+        "type": "docker-import",
+        "keep_input_artifact": true,
+        "repository": "lavabit/centos7-docker",
+        "only": ["magma-centos7-docker"]
+      },
+      {
+        "tag": "latest",
+        "type": "docker-tag",
+        "repository": "docker.io/lavabit/centos7-docker",
+        "only": ["magma-centos7-docker"],
+        "force": "true"
+      },
+      {
+        "type": "docker-push",
+        "login": "true",
+        "login_email": "{{user `docker_email`}}",
+        "login_username": "{{user `docker_username`}}",
+        "login_password": "{{user `docker_password`}}"
       },
       {
         "type": "artifice",

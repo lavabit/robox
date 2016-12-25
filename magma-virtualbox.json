@@ -5,12 +5,101 @@
   "provisioners": [
     {
       "scripts": [
-        "scripts/gentoo/install-alt.sh"
+        "scripts/gentoo/install.sh"
       ],
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": ["magma-gentoo-virtualbox"]
+    },
+    {
+      "scripts": [
+        "scripts/arch/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-arch-virtualbox"]
+    },
+    {
+      "scripts": [
+        "scripts/debian8/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-debian8-virtualbox"]
+    },
+    {
+      "scripts": [
+        "scripts/fedora25/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-fedora25-virtualbox"]
+    },
+    {
+      "scripts": [
+        "scripts/freebsd11/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-freebsd11-virtualbox"]
+    },
+    {
+      "scripts": [
+        "scripts/gentoo/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-gentoo-virtualbox"]
+    },
+    {
+      "scripts": [
+        "scripts/openbsd6/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-openbsd6-virtualbox"]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1604/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-ubuntu1604-virtualbox"]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1610/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-ubuntu1610-virtualbox"]
+    },
+    {
+      "scripts": [
+        "scripts/common/zerodisk.sh",
+        "scripts/common/lockout.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
     }
   ],
   "builders": [

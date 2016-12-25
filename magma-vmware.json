@@ -5,12 +5,101 @@
   "provisioners": [
     {
       "scripts": [
-        "scripts/gentoo/install-alt.sh"
+        "scripts/gentoo/install.sh"
       ],
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": ["magma-gentoo-vmware"]
+    },
+    {
+      "scripts": [
+        "scripts/arch/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-arch-vmware"]
+    },
+    {
+      "scripts": [
+        "scripts/debian8/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-debian8-vmware"]
+    },
+    {
+      "scripts": [
+        "scripts/fedora25/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-fedora25-vmware"]
+    },
+    {
+      "scripts": [
+        "scripts/freebsd11/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-freebsd11-vmware"]
+    },
+    {
+      "scripts": [
+        "scripts/gentoo/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-gentoo-vmware"]
+    },
+    {
+      "scripts": [
+        "scripts/openbsd6/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-openbsd6-vmware"]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1604/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-ubuntu1604-vmware"]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1610/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-ubuntu1610-vmware"]
+    },
+    {
+      "scripts": [
+        "scripts/common/zerodisk.sh",
+        "scripts/common/lockout.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
     }
   ],
   "builders": [

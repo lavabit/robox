@@ -5,12 +5,101 @@
   "provisioners": [
     {
       "scripts": [
-        "scripts/gentoo/install-alt.sh"
+        "scripts/gentoo/install.sh"
       ],
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": ["magma-gentoo-libvirt"]
+    },
+    {
+      "scripts": [
+        "scripts/arch/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-arch-libvirt"]
+    },
+    {
+      "scripts": [
+        "scripts/debian8/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-debian8-libvirt"]
+    },
+    {
+      "scripts": [
+        "scripts/fedora25/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-fedora25-libvirt"]
+    },
+    {
+      "scripts": [
+        "scripts/freebsd11/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-freebsd11-libvirt"]
+    },
+    {
+      "scripts": [
+        "scripts/gentoo/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-gentoo-libvirt"]
+    },
+    {
+      "scripts": [
+        "scripts/openbsd6/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-openbsd6-libvirt"]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1604/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-ubuntu1604-libvirt"]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1610/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-ubuntu1610-libvirt"]
+    },
+    {
+      "scripts": [
+        "scripts/common/zerodisk.sh",
+        "scripts/common/lockout.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
     }
   ],
   "builders": [

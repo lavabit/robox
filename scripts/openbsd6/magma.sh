@@ -69,7 +69,7 @@ if [ \$? -ne 0 ]; then
   sleep 12
 fi
 
-# Alternatively, run the unit tests atop Valgrind.
+# Alternatively, run the unit tests atop Valgrind. 
 # Note this takes awhile when the anti-virus engine is enabled.
 # dev/scripts/launch/check.vg
 
@@ -97,3 +97,5 @@ if [ -d /home/vagrant/ ]; then
 else
   chmod +x /root/magma-build.sh
 fi
+
+
