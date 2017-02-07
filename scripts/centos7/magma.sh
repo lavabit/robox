@@ -46,7 +46,7 @@ dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; er
 sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 
 # Clean up the permissions.
-chmod g=,o= sandbox/etc/localhost.localdomain.pem
+chmod g=,o= sandbox/etc/tls.localhost.localdomain.pem
 chmod g=,o= sandbox/etc/dkim.localhost.localdomain.pem
 
 # Bug fix... create the scan directory so ClamAV unit tests work.

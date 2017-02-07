@@ -38,7 +38,7 @@ build() {
     printf "\a"; sleep 1; printf "\a"; sleep 1; printf "\a"
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
     rm -rf packer_cache/
-    exit 1
+#    exit 1
   else
     rm -rf packer_cache/
     sleep 120

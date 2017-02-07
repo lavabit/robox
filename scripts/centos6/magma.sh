@@ -46,7 +46,7 @@ dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; er
 sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 
 # Clean up the permissions.
-chmod g=,o= sandbox/etc/localhost.localdomain.pem
+chmod g=,o= sandbox/etc/Btls.localhost.localdomain.pem
 chmod g=,o= sandbox/etc/dkim.localhost.localdomain.pem
 
 # Bug fix... create the scan directory so ClamAV unit tests work.
@@ -69,7 +69,7 @@ if [ \$? -ne 0 ]; then
   sleep 12
 fi
 
-# Alternatively, run the unit tests atop Valgrind. 
+# Alternatively, run the unit tests atop Valgrind.
 # Note this takes awhile when the anti-virus engine is enabled.
 # dev/scripts/launch/check.vg
 
@@ -97,5 +97,3 @@ if [ -d /home/vagrant/ ]; then
 else
   chmod +x /root/magma-build.sh
 fi
-
-
