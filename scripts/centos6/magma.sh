@@ -45,10 +45,6 @@ dev/scripts/database/schema.reset.sh; error
 dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
 sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 
-# Clean up the permissions.
-chmod g=,o= sandbox/etc/Btls.localhost.localdomain.pem
-chmod g=,o= sandbox/etc/dkim.localhost.localdomain.pem
-
 # Bug fix... create the scan directory so ClamAV unit tests work.
 if [ ! -d 'sandbox/spool/scan/' ]; then
   mkdir -p sandbox/spool/scan/
