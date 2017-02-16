@@ -49,12 +49,18 @@ yum --quiet --assumeyes install libevent memcached mysql mysql-server perl-DBI p
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
 yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
 
+# These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
+yum --quiet --assumeyes python-pip libffi-devel python-ply python-pycparser python-cffi python-devel zlib-devel libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel openssl-devel python-crypto2.6
+
 # Packages used during the provisioning process and then removed during the cleanup stage.
 yum --quiet --assumeyes install sudo dmidecode yum-utils; error
 
 # Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays 
 # often interupt the the provisioning process.
 yum --quiet --assumeyes --disablerepo=epel update; error
+
+# Install the Python Cryptography Module
+pip install cryptography; error
 
 # Enable and start the daemons.
 chkconfig mysqld on
@@ -67,6 +73,7 @@ service memcached start
 # Disable IPv6 and the iptables module used to firewall IPv6.
 chkconfig ip6tables off
 printf "\n\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
+
 sed -i -e "s/IPV6INIT=yes/IPV6INIT=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "s/IPV6_AUTOCONF=yes/IPV6_AUTOCONF=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "s/IPV6_DEFROUTE=yes/IPV6_DEFROUTE=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
@@ -89,6 +96,15 @@ printf "\n\n[mysql]\nuser=root\npassword=$PRAND\n\n" >> /root/.my.cnf
 # Create the mytool user and grant the required permissions.
 mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
 mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
+
+# Setup the python path and increase the history size.
+printf "export PYTHONPATH=/usr/lib64/python2.6/site-packages/pycrypto-2.6.1-py2.6-linux-x86_64.egg/\n" > /etc/profile.d/pypath.sh
+printf "export HISTSIZE=\"100000\"\n" > /etc/profile.d/histsize.sh
+chcon "system_u:object_r:bin_t:s0" /etc/profile.d/histsize.sh
+chcon "system_u:object_r:bin_t:s0" /etc/profile.d/pypath.sh
+chmod 644 /etc/profile.d/histsize.sh
+chmod 644 /etc/profile.d/pypath.sh
+
 # Find out how much RAM is installed, and what 50% would be in KB.
 TOTALMEM=`free -k | grep -E "^Mem:" | awk -F' ' '{print $2}'`
 HALFMEM=`echo $(($TOTALMEM/2))`

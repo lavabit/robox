@@ -49,6 +49,9 @@ yum --quiet --assumeyes install libevent memcached mariadb mariadb-libs mariadb-
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
 yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
 
+# These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
+yum --quiet --assumeyesi python-crypto python-cryptography
+
 # Packages used during the provisioning process and then removed during the cleanup stage.
 yum --quiet --assumeyes install sudo dmidecode yum-utils; error
 
@@ -66,6 +69,7 @@ systemctl start memcached
 
 # Disable IPv6 and the iptables module used to firewall IPv6.
 printf "\n\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
+
 sed -i -e "s/IPV6INIT=yes/IPV6INIT=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "s/IPV6_AUTOCONF=yes/IPV6_AUTOCONF=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "s/IPV6_DEFROUTE=yes/IPV6_DEFROUTE=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
@@ -98,6 +102,11 @@ chcon system_u:object_r:mysqld_etc_t:s0 /etc/my.cnf.d/server-tmpdir.cnf
 # Create the mytool user and grant the required permissions.
 mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
 mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
+
+# Setup the python path and increase the history size.
+printf "export HISTSIZE=\"100000\"\n" > /etc/profile.d/histsize.sh
+chcon "system_u:object_r:bin_t:s0" /etc/profile.d/histsize.sh
+chmod 644 /etc/profile.d/histsize.sh
 
 # Find out how much RAM is installed, and what 50% would be in KB.
 TOTALMEM=`free -k | grep -E "^Mem:" | awk -F' ' '{print $2}'`
