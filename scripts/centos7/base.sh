@@ -50,7 +50,7 @@ yum --quiet --assumeyes install libevent memcached mariadb mariadb-libs mariadb-
 yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
 
 # These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
-yum --quiet --assumeyesi python-crypto python-cryptography
+yum --quiet --assumeyes install python-crypto python-cryptography
 
 # Packages used during the provisioning process and then removed during the cleanup stage.
 yum --quiet --assumeyes install sudo dmidecode yum-utils; error

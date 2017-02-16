@@ -50,7 +50,7 @@ yum --quiet --assumeyes install libevent memcached mysql mysql-server perl-DBI p
 yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
 
 # These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
-yum --quiet --assumeyes python-pip libffi-devel python-ply python-pycparser python-cffi python-devel zlib-devel libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel openssl-devel python-crypto2.6
+yum --quiet --assumeyes install python-pip libffi-devel python-ply python-pycparser python-cffi python-devel zlib-devel libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel openssl-devel python-crypto2.6
 
 # Packages used during the provisioning process and then removed during the cleanup stage.
 yum --quiet --assumeyes install sudo dmidecode yum-utils; error
