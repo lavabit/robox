@@ -33,6 +33,7 @@
         "scripts/debian8/database.sh",
         "scripts/debian8/limits.sh",
         "scripts/debian8/memcached.sh",
+        "scripts/debian8/vagrant.sh",
         "scripts/debian8/magma.sh"
       ],
       "type": "shell",
@@ -92,6 +93,7 @@
           "scripts/ubuntu1604/database.sh",
           "scripts/ubuntu1604/limits.sh",
           "scripts/ubuntu1604/memcached.sh",
+          "scripts/ubuntu1604/vagrant.sh",
           "scripts/ubuntu1604/magma.sh"
       ],
       "type": "shell",
@@ -111,6 +113,7 @@
           "scripts/ubuntu1610/database.sh",
           "scripts/ubuntu1610/limits.sh",
           "scripts/ubuntu1610/memcached.sh",
+          "scripts/ubuntu1610/vagrant.sh",
           "scripts/ubuntu1610/magma.sh"
       ],
       "type": "shell",
