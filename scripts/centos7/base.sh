@@ -33,7 +33,7 @@ yum --quiet --assumeyes update; error
 yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive deltarpm; error
 
 # Install the libbsd packages from the EPEL repository, which DSPAM relies upon for the strl functions.
-# The entropy daemon is optional, but improves the availability of entropy, which makes magma launch 
+# The entropy daemon is optional, but improves the availability of entropy, which makes magma launch
 # and complete her unit tests faster.
 yum --quiet --assumeyes --enablerepo=extras install epel-release; error
 
@@ -41,10 +41,13 @@ yum --quiet --assumeyes --enablerepo=extras install epel-release; error
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
 
 # Grab the required packages from the EPEL repo.
-yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools haveged; error
+yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
 
-# The daemon services magma relies upon. 
-yum --quiet --assumeyes install libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL; error 
+# Boosts the available entropy which allows magma to start faster.
+apt-get install haveged; error
+
+# The daemon services magma relies upon.
+yum --quiet --assumeyes install libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL; error
 
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
 yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
@@ -55,7 +58,7 @@ yum --quiet --assumeyes install python-crypto python-cryptography
 # Packages used during the provisioning process and then removed during the cleanup stage.
 yum --quiet --assumeyes install sudo dmidecode yum-utils; error
 
-# Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays 
+# Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays
 # often interupt the the provisioning process.
 yum --quiet --assumeyes --disablerepo=epel update; error
 
@@ -93,7 +96,7 @@ export PRAND=`openssl rand -base64 18`
 mysqladmin --user=root password "$PRAND"
 
 # Allow the root user to login to mysql as root by saving the randomly generated password.
-printf "\n\n[mysql]\nuser=root\npassword=$PRAND\n\n" >> /root/.my.cnf 
+printf "\n\n[mysql]\nuser=root\npassword=$PRAND\n\n" >> /root/.my.cnf
 
 # Change the default temporary table directory or else the schema reset will fail when it creates a temp table.
 printf "\n\n[server]\ntmpdir=/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
@@ -126,4 +129,3 @@ printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
 export SYSPRODNAME=`dmidecode -s system-product-name`
 export SYSMANUNAME=`dmidecode -s system-manufacturer`
 printf "System Product String:  $SYSPRODNAME\nSystem Manufacturer String: $SYSMANUNAME\n"
-
