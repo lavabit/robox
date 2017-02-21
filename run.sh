@@ -33,7 +33,7 @@ validate() {
 
 # Build the boxes and cleanup the packer cache after each run.
 build() {
-  packer build -parallel=false $1.json
+  packer build -on-error=ask -parallel=false $1.json
   if [[ $? != 0 ]]; then
     printf "\a"; sleep 1; printf "\a"; sleep 1; printf "\a"
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
@@ -53,9 +53,9 @@ validate magma-vmware
 validate magma-libvirt
 validate magma-virtualbox
 
-build magma
-build magma-centos6
-build magma-centos7
+#build magma
+#build magma-centos6
+#build magma-centos7
 #build magma-docker
 build magma-vmware
 build magma-libvirt

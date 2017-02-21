@@ -44,7 +44,7 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
 yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
 
 # Boosts the available entropy which allows magma to start faster.
-apt-get install haveged; error
+yum --quiet --assumeyes install haveged; error
 
 # The daemon services magma relies upon.
 yum --quiet --assumeyes install libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL; error
