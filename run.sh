@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.5.6"
+export VERSION="0.5.7"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -57,9 +57,9 @@ build magma
 build magma-centos6
 build magma-centos7
 #build magma-docker
-#build magma-vmware
-#build magma-libvirt
-#build magma-virtualbox
+build magma-vmware
+build magma-libvirt
+build magma-virtualbox
 
 # Upload to the website.
 #pscp -i ~/Data/Putty/root-virtual.lavabit.com.priv.ppk magma-centos-*-0.*.box root@osheana.virtual.lavabit.com:/var/www/html/downloads/
