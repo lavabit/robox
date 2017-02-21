@@ -7,8 +7,8 @@ error() {
         fi
 }
 
-# To allow for autmated installs, we truncate the preconfigure option.
-truncate --size=0 /etc/apt/apt.conf.d/70debconf; error
+# To allow for autmated installs, we disable interactive configuration steps.
+export DEBIAN_FRONTEND=noninteractive
 
 # Ensure the server includes any necessary updates.
 apt-get update; error
