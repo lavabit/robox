@@ -1,4 +1,14 @@
-#!/bin/bash
+#!/bin/bash -eux
+
+# Create the vagrant user account. Disable exit on error.
+set -ux
+/usr/sbin/useradd vagrant
+set -eux
+
+printf "vagrant\nvagrant\n" | passwd vagrant
+
+printf "vagrant        ALL=(ALL)       NOPASSWD: ALL\n" > /etc/sudoers.d/vagrant
+chmod 0440 /etc/sudoers.d/vagrant
 
 # Create the vagrant user ssh directory.
 mkdir -pm 700 /home/vagrant/.ssh

@@ -1,7 +1,10 @@
 #!/bin/bash -eux
 
-# Create the vagrant user account.
+# Create the vagrant user account. Disable exit on error.
+set -ux
 /usr/sbin/useradd vagrant
+set -eux
+
 printf "vagrant\nvagrant\n" | passwd vagrant
 
 printf "vagrant        ALL=(ALL)       NOPASSWD: ALL\n" > /etc/sudoers.d/vagrant
