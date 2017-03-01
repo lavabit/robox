@@ -53,13 +53,16 @@ fi
 # Compile the daemon and then compile the unit tests.
 make all; error
 
+# Change the socket path.
+sed -i -e "s/\/var\/lib\/mysql\/mysql.sock/\/var\/run\/mysqld\/mysqld.sock/g" sandbox/etc/magma.sandbox.config
+
 # Run the unit tests.
 dev/scripts/launch/check.run.sh
 
 # If the unit tests fail, print an error, but contine running.
 if [ \$? -ne 0 ]; then
   tput setaf 1; tput bold; printf "\n\nsome of the magma daemon unit tests failed...\n\n"; tput sgr0;
-  for \$i in "1 2 3"; do
+  for i in "1 2 3"; do
     printf "\a"; sleep 1
   done
   sleep 12
@@ -68,9 +71,6 @@ fi
 # Alternatively, run the unit tests atop Valgrind.
 # Note this takes awhile when the anti-virus engine is enabled.
 # dev/scripts/launch/check.vg
-
-# Change the socket path.
-sed -i -e "s/\/var\/lib\/mysql\/mysql.sock/\/var\/run\/mysqld\/mysqld.sock/g" sandbox/etc/magma.sandbox.config
 
 # Daemonize instead of running on the console.
 sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
