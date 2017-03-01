@@ -1,12 +1,10 @@
 #!/bin/bash -eux
 
 # Create the vagrant user account.
-set -ux
-/usr/sbin/useradd vagrant
-set -eux
+# /usr/sbin/useradd vagrant
 
 printf "vagrant\nvagrant\n" | passwd vagrant
-
+sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 printf "vagrant        ALL=(ALL)       NOPASSWD: ALL\n" > /etc/sudoers.d/vagrant
 chmod 0440 /etc/sudoers.d/vagrant
 

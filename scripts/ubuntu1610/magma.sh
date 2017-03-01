@@ -69,6 +69,9 @@ fi
 # Note this takes awhile when the anti-virus engine is enabled.
 # dev/scripts/launch/check.vg
 
+# Change the socket path.
+sed -i -e "s/\/var\/lib\/mysql\/mysql.sock/\/var\/run\/mysqld\/mysqld.sock/g" sandbox/etc/magma.sandbox.config
+
 # Daemonize instead of running on the console.
 sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
 sed -i -e "s/magma.system.daemonize = false/magma.system.daemonize = true/g" sandbox/etc/magma.sandbox.config
