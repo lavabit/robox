@@ -59,16 +59,6 @@ packer build -on-error=continue -parallel=false magma-centos7.json
 packer build -on-error=continue -parallel=false magma-libvirt.json
 packer build -on-error=continue -parallel=false magma-virtualbox.json
 packer build -on-error=continue -parallel=false magma-vmware.json
-rm -rf packer_cache/
-
-exit
-#build magma
-#build magma-centos6
-#build magma-centos7
-#build magma-docker
-build magma-libvirt
-build magma-virtualbox
-build magma-vmware
 
 # Upload to the website.
 #pscp -i ~/Data/Putty/root-virtual.lavabit.com.priv.ppk magma-centos-*-0.*.box root@osheana.virtual.lavabit.com:/var/www/html/downloads/
