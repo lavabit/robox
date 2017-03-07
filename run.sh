@@ -53,12 +53,15 @@ validate magma-vmware
 validate magma-libvirt
 validate magma-virtualbox
 
-packer build -on-error=continue -parallel=false magma.json
-packer build -on-error=continue -parallel=false magma-centos5.json
-packer build -on-error=continue -parallel=false magma-centos7.json
-packer build -on-error=continue -parallel=false magma-libvirt.json
-packer build -on-error=continue -parallel=false magma-virtualbox.json
-packer build -on-error=continue -parallel=false magma-vmware.json
+export PACKER_LOG="1"
+export PACKER_LOG_PATH="/home/ladar/Desktop/packer.txt"
+
+packer build -on-error=cleanup -parallel=false magma.json
+packer build -on-error=cleanup -parallel=false magma-centos5.json
+packer build -on-error=cleanup -parallel=false magma-centos7.json
+packer build -on-error=cleanup -parallel=false magma-libvirt.json
+packer build -on-error=cleanup -parallel=false magma-virtualbox.json
+packer build -on-error=cleanup -parallel=false magma-vmware.json
 
 # Upload to the website.
 #pscp -i ~/Data/Putty/root-virtual.lavabit.com.priv.ppk magma-centos-*-0.*.box root@osheana.virtual.lavabit.com:/var/www/html/downloads/
