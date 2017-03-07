@@ -171,8 +171,8 @@
         ]
       ],
       "headless": true,
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/20161208/install-amd64-minimal-20161208.iso",
-      "iso_checksum": "27791ea5d3e6ef138f411083545af1d30622551a60dac42a9afaeaaa987c1d77",
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/20170302/install-amd64-minimal-20170302.iso",
+      "iso_checksum": "1faef7ea0c90bf33dc618b2768e82ad00fd4ea9a76575b0ad90d0573e2ba867b",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",

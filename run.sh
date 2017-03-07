@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.6.0"
+export VERSION="0.6.1"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -53,9 +53,12 @@ validate magma-vmware
 validate magma-libvirt
 validate magma-virtualbox
 
-packer build -on-error=ask -parallel=false -only=magma-debian8-libvirt magma-libvirt.json
-packer build -on-error=ask -parallel=false -only=magma-ubuntu1604-libvirt magma-libvirt.json
-packer build -on-error=ask -parallel=false -only=magma-ubuntu1610-libvirt magma-libvirt.json
+packer build -on-error=continue -parallel=false magma.json
+packer build -on-error=continue -parallel=false magma-centos5.json
+packer build -on-error=continue -parallel=false magma-centos7.json
+packer build -on-error=continue -parallel=false magma-libvirt.json
+packer build -on-error=continue -parallel=false magma-virtualbox.json
+packer build -on-error=continue -parallel=false magma-vmware.json
 rm -rf packer_cache/
 
 exit
