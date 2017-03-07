@@ -59,7 +59,7 @@ dev/scripts/launch/check.run.sh
 # If the unit tests fail, print an error, but contine running.
 if [ \$? -ne 0 ]; then
   tput setaf 1; tput bold; printf "\n\nsome of the magma daemon unit tests failed...\n\n"; tput sgr0;
-  for \$i in "1 2 3"; do
+  for i in "1 2 3"; do
     printf "\a"; sleep 1
   done
   sleep 12
