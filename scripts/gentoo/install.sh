@@ -123,5 +123,5 @@ REOF
 EOF
 
 
-nohup /bin/bash -c 'shutdown -r now &'
+nohup /bin/bash -c 'shutdown -r 0 &'
 exit 0

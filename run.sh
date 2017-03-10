@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.6.1"
+export VERSION="0.6.3"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -25,18 +25,22 @@ sudo systemctl restart vmware.service vmware-USBArbitrator.service vmware-workst
 validate() {
   packer validate $1.json
   if [[ $? != 0 ]]; then
-    printf "\a"; sleep 1; printf "\a"; sleep 1; printf "\a"
     tput setaf 1; tput bold; printf "\n\nthe $1 packer template failed to validate...\n\n"; tput sgr0
+    for i in 1 2 3; do printf "\a"; sleep 1; done
     exit 1
   fi
 }
 
 # Build the boxes and cleanup the packer cache after each run.
 build() {
-  packer build -on-error=ask -parallel=false $1.json
+  
+  export PACKER_LOG="1"
+  export PACKER_LOG_PATH="/home/ladar/Desktop/pack-$1.txt"
+  
+  packer build -on-error=cleanup -parallel=false $1.json
   if [[ $? != 0 ]]; then
-    printf "\a"; sleep 1; printf "\a"; sleep 1; printf "\a"
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
+    for i in 1 2 3; do printf "\a"; sleep 1; done
     rm -rf packer_cache/
     exit 1
   else
@@ -53,15 +57,14 @@ validate magma-vmware
 validate magma-libvirt
 validate magma-virtualbox
 
-export PACKER_LOG="1"
-export PACKER_LOG_PATH="/home/ladar/Desktop/packer.txt"
+build magma
+build magma-centos6
+build magma-centos7
+build magma-libvirt
+build magma-virtualbox
+build magma-vmware
 
-packer build -on-error=cleanup -parallel=false magma.json
-packer build -on-error=cleanup -parallel=false magma-centos5.json
-packer build -on-error=cleanup -parallel=false magma-centos7.json
-packer build -on-error=cleanup -parallel=false magma-libvirt.json
-packer build -on-error=cleanup -parallel=false magma-virtualbox.json
-packer build -on-error=cleanup -parallel=false magma-vmware.json
+for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done
 
 # Upload to the website.
 #pscp -i ~/Data/Putty/root-virtual.lavabit.com.priv.ppk magma-centos-*-0.*.box root@osheana.virtual.lavabit.com:/var/www/html/downloads/

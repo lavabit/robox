@@ -14,6 +14,16 @@
     },
     {
       "scripts": [
+        "scripts/gentoo/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-gentoo-virtualbox"]
+    },
+    {
+      "scripts": [
         "scripts/arch/magma.sh"
       ],
       "type": "shell",
@@ -61,17 +71,8 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
+      "execute_command": "chmod +x {{ .Path }}; env {{ .Vars }} {{ .Path }}",
       "only": ["magma-freebsd11-virtualbox"]
-    },
-    {
-      "scripts": [
-        "scripts/gentoo/magma.sh"
-      ],
-      "type": "shell",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": ["magma-gentoo-virtualbox"]
     },
     {
       "scripts": [
@@ -81,6 +82,7 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
+      "execute_command": "chmod +x {{ .Path }}; env {{ .Vars }} {{ .Path }}",
       "only": ["magma-openbsd6-virtualbox"]
     },
     {
@@ -153,150 +155,11 @@
       ],
       "type": "shell",
       "start_retry_timeout": "15m",
-      "expect_disconnect": "true"
+      "expect_disconnect": "true",
+      "except": ["magma-freebsd11-virtualbox", "magma-openbsd6-virtualbox"]
     }
   ],
   "builders": [
-    {
-      "type": "virtualbox-iso",
-      "name": "magma-gentoo-virtualbox",
-      "vm_name": "magma-gentoo-virtualbox",
-      "output_directory": "output/magma-gentoo-virtualbox",
-      "boot_wait": "5s",
-      "boot_command": [
-        "gentoo-nofb<enter>",
-        "<wait10><enter>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10>",
-        "passwd root<enter><wait>",
-        "vagrant<enter><wait>",
-        "vagrant<enter><wait>",
-        "sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config<enter><wait>",
-        "echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config<enter><wait>",
-        "/etc/init.d/sshd start<enter><wait>"
-      ],
-      "disk_size": 32768,
-      "vboxmanage": [
-            [
-                  "modifyvm",
-                  "{{.Name}}",
-                  "--memory",
-                  "2048"
-            ],
-            [
-                  "modifyvm",
-                  "{{.Name}}",
-                  "--cpus",
-                  "2"
-            ]
-      ],
-      "guest_os_type": "Gentoo_64",
-      "headless": true,
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/20170302/install-amd64-minimal-20170302.iso",
-      "iso_checksum": "1faef7ea0c90bf33dc618b2768e82ad00fd4ea9a76575b0ad90d0573e2ba867b",
-      "iso_checksum_type": "sha256",
-      "ssh_username": "root",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_wait_timeout": "10000s",
-      "shutdown_command": "shutdown -hP now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.0.30/VBoxGuestAdditions_5.0.30.iso",
-      "guest_additions_sha256": "096cf810de3d951c60c857e0b8cf534dd1237d0a09759ab696e8a2c579df75fd",
-      "guest_additions_path": "VBoxGuestAdditions.iso",
-      "virtualbox_version_file": "VBoxVersion.txt"
-    },
-    {
-      "type": "virtualbox-iso",
-      "name": "magma-freebsd11-virtualbox",
-      "vm_name": "magma-freebsd11-virtualbox",
-      "output_directory": "output/magma-freebsd11-virtualbox",
-      "boot_wait": "5s",
-      "boot_command": [
-        "<esc><wait>",
-        "boot -s<wait>",
-        "<enter><wait>",
-        "<wait10><wait10>",
-        "/bin/sh<enter><wait5>",
-        "mdmfs -s 100m md1 /tmp<enter><wait5>",
-        "mdmfs -s 100m md2 /mnt<enter><wait5>",
-        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
-        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait10>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
-      ],
-      "disk_size": 32768,
-      "vboxmanage": [
-            [
-                  "modifyvm",
-                  "{{.Name}}",
-                  "--memory",
-                  "2048"
-            ],
-            [
-                  "modifyvm",
-                  "{{.Name}}",
-                  "--cpus",
-                  "2"
-            ]
-      ],
-      "guest_os_type": "FreeBSD_64",
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.0/FreeBSD-11.0-RELEASE-amd64-disc1.iso",
-      "iso_checksum": "08b12f2dc378f7a61b5469219824c74a2f9faef580acc85ffab45365df79872d",
-      "iso_checksum_type": "sha256",
-      "ssh_username": "root",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_wait_timeout": "10000s",
-      "shutdown_command": "shutdown -p now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.0.30/VBoxGuestAdditions_5.0.30.iso",
-      "guest_additions_sha256": "096cf810de3d951c60c857e0b8cf534dd1237d0a09759ab696e8a2c579df75fd",
-      "guest_additions_path": "VBoxGuestAdditions.iso",
-      "virtualbox_version_file": "VBoxVersion.txt"
-    },
-    {
-      "type": "virtualbox-iso",
-      "name": "magma-openbsd6-virtualbox",
-      "vm_name": "magma-openbsd6-virtualbox",
-      "output_directory": "output/magma-openbsd6-virtualbox",
-      "boot_wait": "20s",
-      "boot_command": [
-        "S<enter><wait>",
-        "dhclient em0<enter><wait5>",
-        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait>",
-        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
-        "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
-      ],
-      "disk_size": 32768,
-      "vboxmanage": [
-            [
-                  "modifyvm",
-                  "{{.Name}}",
-                  "--memory",
-                  "2048"
-            ],
-            [
-                  "modifyvm",
-                  "{{.Name}}",
-                  "--cpus",
-                  "2"
-            ]
-      ],
-      "guest_os_type": "OpenBSD_64",
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://mirror.math.princeton.edu/pub/OpenBSD/6.0/amd64/cd60.iso",
-      "iso_checksum": "fe1006fb002cb14e561cddf910ba57e0f785c47ff6b04818b0767373b3145e6e",
-      "iso_checksum_type": "sha256",
-      "ssh_username": "root",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_wait_timeout": "10000s",
-      "shutdown_command": "shutdown -h -p now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.0.30/VBoxGuestAdditions_5.0.30.iso",
-      "guest_additions_sha256": "096cf810de3d951c60c857e0b8cf534dd1237d0a09759ab696e8a2c579df75fd",
-      "guest_additions_path": "VBoxGuestAdditions.iso",
-      "virtualbox_version_file": "VBoxVersion.txt"
-    },
     {
       "type": "virtualbox-iso",
       "name": "magma-arch-virtualbox",
@@ -585,6 +448,148 @@
       "guest_additions_sha256": "096cf810de3d951c60c857e0b8cf534dd1237d0a09759ab696e8a2c579df75fd",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "magma-gentoo-virtualbox",
+      "vm_name": "magma-gentoo-virtualbox",
+      "output_directory": "output/magma-gentoo-virtualbox",
+      "boot_wait": "5s",
+      "boot_command": [
+        "gentoo-nofb<enter>",
+        "<wait10><enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "passwd root<enter><wait>",
+        "vagrant<enter><wait>",
+        "vagrant<enter><wait>",
+        "sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config<enter><wait>",
+        "echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config<enter><wait>",
+        "/etc/init.d/sshd start<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "vboxmanage": [
+            [
+                  "modifyvm",
+                  "{{.Name}}",
+                  "--memory",
+                  "2048"
+            ],
+            [
+                  "modifyvm",
+                  "{{.Name}}",
+                  "--cpus",
+                  "2"
+            ]
+      ],
+      "guest_os_type": "Gentoo_64",
+      "headless": true,
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/20170302/install-amd64-minimal-20170302.iso",
+      "iso_checksum": "1faef7ea0c90bf33dc618b2768e82ad00fd4ea9a76575b0ad90d0573e2ba867b",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "shutdown -hP now",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.0.30/VBoxGuestAdditions_5.0.30.iso",
+      "guest_additions_sha256": "096cf810de3d951c60c857e0b8cf534dd1237d0a09759ab696e8a2c579df75fd",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "magma-freebsd11-virtualbox",
+      "vm_name": "magma-freebsd11-virtualbox",
+      "output_directory": "output/magma-freebsd11-virtualbox",
+      "boot_wait": "5s",
+      "boot_command": [
+        "<esc><wait>",
+        "boot -s<wait>",
+        "<enter><wait>",
+        "<wait10><wait10>",
+        "/bin/sh<enter><wait5>",
+        "mdmfs -s 100m md1 /tmp<enter><wait5>",
+        "mdmfs -s 100m md2 /mnt<enter><wait5>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "vboxmanage": [
+            [
+                  "modifyvm",
+                  "{{.Name}}",
+                  "--memory",
+                  "2048"
+            ],
+            [
+                  "modifyvm",
+                  "{{.Name}}",
+                  "--cpus",
+                  "2"
+            ]
+      ],
+      "guest_os_type": "FreeBSD_64",
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.0/FreeBSD-11.0-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "08b12f2dc378f7a61b5469219824c74a2f9faef580acc85ffab45365df79872d",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "shutdown -p now",
+      "execute_command": "chmod +x {{ .Path }}; env {{ .Vars }} {{ .Path }}",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.0.30/VBoxGuestAdditions_5.0.30.iso",
+      "guest_additions_sha256": "096cf810de3d951c60c857e0b8cf534dd1237d0a09759ab696e8a2c579df75fd",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "magma-openbsd6-virtualbox",
+      "vm_name": "magma-openbsd6-virtualbox",
+      "output_directory": "output/magma-openbsd6-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "S<enter><wait>",
+        "dhclient em0<enter><wait5>",
+        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait>",
+        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
+        "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
+      ],
+      "disk_size": 32768,
+      "vboxmanage": [
+            [
+                  "modifyvm",
+                  "{{.Name}}",
+                  "--memory",
+                  "2048"
+            ],
+            [
+                  "modifyvm",
+                  "{{.Name}}",
+                  "--cpus",
+                  "2"
+            ]
+      ],
+      "guest_os_type": "OpenBSD_64",
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirror.math.princeton.edu/pub/OpenBSD/6.0/amd64/cd60.iso",
+      "iso_checksum": "fe1006fb002cb14e561cddf910ba57e0f785c47ff6b04818b0767373b3145e6e",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "shutdown -h -p now",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.0.30/VBoxGuestAdditions_5.0.30.iso",
+      "guest_additions_sha256": "096cf810de3d951c60c857e0b8cf534dd1237d0a09759ab696e8a2c579df75fd",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt",
+      "execute_command": "chmod +x {{ .Path }}; env {{ .Vars }} {{ .Path }}"
     }
   ],
   "post-processors": [

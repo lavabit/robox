@@ -14,6 +14,16 @@
     },
     {
       "scripts": [
+        "scripts/gentoo/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-gentoo-vmware"]
+    },
+    {
+      "scripts": [
         "scripts/arch/magma.sh"
       ],
       "type": "shell",
@@ -61,17 +71,8 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
+      "execute_command": "chmod +x {{ .Path }}; env {{ .Vars }} {{ .Path }}",
       "only": ["magma-freebsd11-vmware"]
-    },
-    {
-      "scripts": [
-        "scripts/gentoo/magma.sh"
-      ],
-      "type": "shell",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": ["magma-gentoo-vmware"]
     },
     {
       "scripts": [
@@ -81,6 +82,7 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
+      "execute_command": "chmod +x {{ .Path }}; env {{ .Vars }} {{ .Path }}",
       "only": ["magma-openbsd6-vmware"]
     },
     {
@@ -153,126 +155,11 @@
       ],
       "type": "shell",
       "start_retry_timeout": "15m",
-      "expect_disconnect": "true"
+      "expect_disconnect": "true",
+      "except": ["magma-freebsd11-vmware", "magma-openbsd6-vmware"]
     }
   ],
   "builders": [
-    {
-      "type": "vmware-iso",
-      "name": "magma-gentoo-vmware",
-      "vm_name": "magma-gentoo-vmware",
-      "vmdk_name": "magma-gentoo-vmware",
-      "output_directory": "output/magma-gentoo-vmware",
-      "boot_wait": "5s",
-      "boot_command": [
-        "gentoo-nofb<enter>",
-        "<wait10><enter>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10>",
-        "passwd root<enter><wait>",
-        "vagrant<enter><wait>",
-        "vagrant<enter><wait>",
-        "sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config<enter><wait>",
-        "echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config<enter><wait>",
-        "/etc/init.d/sshd start<enter><wait>"
-      ],
-      "disk_size": 32768,
-      "disk_type_id": "0",
-      "vmx_data": {
-            "memsize": "2048",
-            "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
-      },
-      "guest_os_type": "otherlinux-64",
-      "skip_compaction": false,
-      "headless": true,
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/20170302/install-amd64-minimal-20170302.iso",
-      "iso_checksum": "1faef7ea0c90bf33dc618b2768e82ad00fd4ea9a76575b0ad90d0573e2ba867b",
-      "iso_checksum_type": "sha256",
-      "ssh_username": "root",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_wait_timeout": "10000s",
-      "shutdown_command": "shutdown -hP now",
-      "tools_upload_flavor": "linux"
-
-    },
-    {
-      "type": "vmware-iso",
-      "name": "magma-freebsd11-vmware",
-      "vm_name": "magma-freebsd11-vmware",
-      "vmdk_name": "magma-freebsd11-vmware",
-      "output_directory": "output/magma-freebsd11-vmware",
-      "boot_wait": "5s",
-      "boot_command": [
-        "<esc><wait>",
-        "boot -s<wait>",
-        "<enter><wait>",
-        "<wait10><wait10>",
-        "/bin/sh<enter><wait>",
-        "mdmfs -s 100m md1 /tmp<enter><wait>",
-        "mdmfs -s 100m md2 /mnt<enter><wait>",
-        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
-        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait5>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
-      ],
-      "disk_size": 32768,
-      "disk_type_id": "0",
-      "vmx_data": {
-            "memsize": "2048",
-            "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
-      },
-      "guest_os_type": "freeBSD-64",
-      "skip_compaction": false,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.0/FreeBSD-11.0-RELEASE-amd64-disc1.iso",
-      "iso_checksum": "08b12f2dc378f7a61b5469219824c74a2f9faef580acc85ffab45365df79872d",
-      "iso_checksum_type": "sha256",
-      "ssh_username": "root",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_wait_timeout": "10000s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
-
-    },
-    {
-      "type": "vmware-iso",
-      "name": "magma-openbsd6-vmware",
-      "vm_name": "magma-openbsd6-vmware",
-      "vmdk_name": "magma-openbsd6-vmware",
-      "output_directory": "output/magma-openbsd6-vmware",
-      "boot_wait": "20s",
-      "boot_command": [
-        "S<enter><wait>",
-        "dhclient em0<enter><wait5>",
-        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait>",
-        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
-        "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
-      ],
-      "disk_size": 32768,
-      "disk_type_id": "0",
-      "vmx_data": {
-            "memsize": "2048",
-            "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
-      },
-      "guest_os_type": "freeBSD-64",
-      "skip_compaction": false,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://mirror.math.princeton.edu/pub/OpenBSD/6.0/amd64/cd60.iso",
-      "iso_checksum": "fe1006fb002cb14e561cddf910ba57e0f785c47ff6b04818b0767373b3145e6e",
-      "iso_checksum_type": "sha256",
-      "ssh_username": "root",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_wait_timeout": "10000s",
-      "shutdown_command": "shutdown -h -p now",
-      "tools_upload_flavor": "freebsd"
-
-    },
     {
       "type": "vmware-iso",
       "name": "magma-arch-vmware",
@@ -510,6 +397,120 @@
       "ssh_wait_timeout": "10000s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "magma-gentoo-vmware",
+      "vm_name": "magma-gentoo-vmware",
+      "vmdk_name": "magma-gentoo-vmware",
+      "output_directory": "output/magma-gentoo-vmware",
+      "boot_wait": "5s",
+      "boot_command": [
+        "gentoo-nofb<enter>",
+        "<wait10><enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "passwd root<enter><wait>",
+        "vagrant<enter><wait>",
+        "vagrant<enter><wait>",
+        "sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config<enter><wait>",
+        "echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config<enter><wait>",
+        "/etc/init.d/sshd start<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "disk_type_id": "0",
+      "vmx_data": {
+            "memsize": "2048",
+            "numvcpus": "2",
+            "cpuid.coresPerSocket": "1"
+      },
+      "guest_os_type": "otherlinux-64",
+      "skip_compaction": false,
+      "headless": true,
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/20170302/install-amd64-minimal-20170302.iso",
+      "iso_checksum": "1faef7ea0c90bf33dc618b2768e82ad00fd4ea9a76575b0ad90d0573e2ba867b",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "shutdown -hP now",
+      "tools_upload_flavor": "linux"
+
+    },
+    {
+      "type": "vmware-iso",
+      "name": "magma-freebsd11-vmware",
+      "vm_name": "magma-freebsd11-vmware",
+      "vmdk_name": "magma-freebsd11-vmware",
+      "output_directory": "output/magma-freebsd11-vmware",
+      "boot_wait": "5s",
+      "boot_command": [
+        "<esc><wait>",
+        "boot -s<wait>",
+        "<enter><wait>",
+        "<wait10><wait10>",
+        "/bin/sh<enter><wait>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait5>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "disk_type_id": "0",
+      "vmx_data": {
+            "memsize": "2048",
+            "numvcpus": "2",
+            "cpuid.coresPerSocket": "1"
+      },
+      "guest_os_type": "freebsd-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.0/FreeBSD-11.0-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "08b12f2dc378f7a61b5469219824c74a2f9faef580acc85ffab45365df79872d",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "shutdown -p now",
+      "tools_upload_flavor": "freebsd"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "magma-openbsd6-vmware",
+      "vm_name": "magma-openbsd6-vmware",
+      "vmdk_name": "magma-openbsd6-vmware",
+      "output_directory": "output/magma-openbsd6-vmware",
+      "boot_wait": "20s",
+      "boot_command": [
+        "S<enter><wait>",
+        "dhclient em0<enter><wait5>",
+        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait>",
+        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
+        "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
+      ],
+      "disk_size": 32768,
+      "disk_type_id": "0",
+      "vmx_data": {
+            "memsize": "2048",
+            "numvcpus": "2",
+            "cpuid.coresPerSocket": "1"
+      },
+      "guest_os_type": "freeBSD-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirror.math.princeton.edu/pub/OpenBSD/6.0/amd64/cd60.iso",
+      "iso_checksum": "fe1006fb002cb14e561cddf910ba57e0f785c47ff6b04818b0767373b3145e6e",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "shutdown -h -p now",
+      "tools_upload_flavor": "freebsd"
     }
   ],
   "post-processors": [
