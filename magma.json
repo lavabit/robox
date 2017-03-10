@@ -8,6 +8,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos7/fixdns.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/reboot.sh"
             ],
