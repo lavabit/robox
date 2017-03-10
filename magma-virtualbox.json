@@ -79,7 +79,7 @@
             "scripts/fedora25/tuning.sh",
             "scripts/fedora25/sshd.sh",
             "scripts/fedora25/cleanup.sh",
-            "scripts/fedora25/unyum.sh",
+            "scripts/fedora25/unyum.sh"
         ],
         "type": "shell",
         "pause_before": "120s",
