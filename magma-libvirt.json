@@ -519,8 +519,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "shutdown -p now",
-      "execute_command": "chmod +x {{ .Path }}; env {{ .Vars }} {{ .Path }}"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "qemu",
@@ -561,8 +560,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "shutdown -h -p now",
-      "execute_command": "chmod +x {{ .Path }}; env {{ .Vars }} {{ .Path }}"
+      "shutdown_command": "shutdown -h -p now"
     }
   ],
   "post-processors": [
