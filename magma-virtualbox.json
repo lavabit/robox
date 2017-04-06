@@ -508,7 +508,7 @@
       "guest_os_type": "Gentoo_64",
       "headless": true,
       "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20170316.iso",
-      "iso_checksum": "31cece4b8acdf78954f28f3d1351843d79c7da3e19f907a7e86b5d85f04bb50f",
+      "iso_checksum": "1faef7ea0c90bf33dc618b2768e82ad00fd4ea9a76575b0ad90d0573e2ba867b",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -563,7 +563,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "shutdown -p now"
+      "shutdown_command": "shutdown -p now",
       "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.0.30/VBoxGuestAdditions_5.0.30.iso",
       "guest_additions_sha256": "096cf810de3d951c60c857e0b8cf534dd1237d0a09759ab696e8a2c579df75fd",
       "guest_additions_path": "VBoxGuestAdditions.iso",
