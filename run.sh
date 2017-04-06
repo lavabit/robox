@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.6.4"
+export VERSION="0.6.5"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -33,10 +33,10 @@ validate() {
 
 # Build the boxes and cleanup the packer cache after each run.
 build() {
-  
+
   export PACKER_LOG="1"
   export PACKER_LOG_PATH="/home/ladar/Desktop/pack-$1.txt"
-  
+
   packer build -on-error=cleanup -parallel=false $1.json
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
