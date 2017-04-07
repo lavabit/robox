@@ -120,8 +120,18 @@ DHCP=yes
 [DHCPv4]
 UseHostname=false
 REOF
+
+echo 'sshd:ALL' > /etc/hosts.allow
+echo 'ALL:ALL' > /etc/hosts.deny
 EOF
 
+# Configure the system password which will be used after the reboot.
+chroot /mnt/gentoo /bin/bash <<EOF
+passwd<<PEOF
+vagrant
+vagrant
+PEOF
+EOF
 
 nohup /bin/bash -c 'shutdown -r 0 &'
 exit 0

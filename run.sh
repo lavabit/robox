@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.6.5"
+export VERSION="0.6.6"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -57,10 +57,10 @@ validate magma-vmware
 validate magma-libvirt
 validate magma-virtualbox
 
+build magma-libvirt
 build magma
 build magma-centos6
 build magma-centos7
-build magma-libvirt
 build magma-virtualbox
 build magma-vmware
 

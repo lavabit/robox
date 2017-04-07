@@ -95,7 +95,7 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "chmod +x {{ .Path }}; env {{ .Vars }} {{ .Path }}",
+      "execute_command": "chmod +x {{ .Path }}",
       "only": ["magma-freebsd11-virtualbox"]
     },
     {
@@ -106,7 +106,7 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "chmod +x {{ .Path }}; env {{ .Vars }} {{ .Path }}",
+      "execute_command": "chmod +x {{ .Path }}",
       "only": ["magma-openbsd6-virtualbox"]
     },
     {
