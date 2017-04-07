@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.6.6"
+export VERSION="0.6.8"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -38,11 +38,12 @@ build() {
   export PACKER_LOG_PATH="/home/ladar/Desktop/pack-$1.txt"
 
   packer build -on-error=cleanup -parallel=false $1.json
+#  packer build -on-error=cleanup -parallel=false -except=magma-gentoo-vmware,magma-gentoo-libvirt,magma-gentoo-virtualbox  $1.json
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
     for i in 1 2 3; do printf "\a"; sleep 1; done
     rm -rf packer_cache/
-    exit 1
+#    exit 1
   else
     rm -rf packer_cache/
     sleep 120
@@ -57,12 +58,12 @@ validate magma-vmware
 validate magma-libvirt
 validate magma-virtualbox
 
-build magma-libvirt
 build magma
 build magma-centos6
 build magma-centos7
-build magma-virtualbox
 build magma-vmware
+build magma-virtualbox
+build magma-libvirt
 
 for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done
 
