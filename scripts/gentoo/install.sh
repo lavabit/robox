@@ -102,9 +102,9 @@ ln -sf /dev/null /etc/systemd/network/99-default.link
 sed -i 's|.*UseDNS.*|UseDNS no|g' /etc/ssh/sshd_config
 sed -i 's|.*UsePAM,*|UsePAM yes|g' /etc/ssh/sshd_config
 sed -i 's|.*PermitRootLogin.*|PermitRootLogin yes|g' /etc/ssh/sshd_config
-sed -i 's|.*PubkeyAuthentication|PubkeyAuthentication/g' /etc/ssh/sshd_config
-sed -i 's|.*GSSAPIAuthentication.*|GSSAPIAuthentication yes|g'  /etc/ssh/sshd_config
-sed -i 's|.*GSSAPICleanupCredentials.*|GSSAPICleanupCredentials no|g'  /etc/ssh/sshd_config
+sed -i 's|.*PubkeyAuthentication|PubkeyAuthentication|g' /etc/ssh/sshd_config
+sed -i 's|.*GSSAPIAuthentication.*|GSSAPIAuthentication yes|g' /etc/ssh/sshd_config
+sed -i 's|.*GSSAPICleanupCredentials.*|GSSAPICleanupCredentials no|g' /etc/ssh/sshd_config
 sed -i 's|.*PasswordAuthentication.*|PasswordAuthentication yes|g' /etc/ssh/sshd_config
 
 systemd-firstboot --setup-machine-id
