@@ -307,6 +307,11 @@ env-update && \
 grep -v rootfs /proc/mounts > /etc/mtab && \
 mkdir -p /boot/grub2 && \
 ln -sf /boot/grub2 /boot/grub && \
+
+printf '\n\nGRUB_DISTRIBUTION="Gentoo"\n' >> /etc/default/grub
+printf 'GRUB_CMDLINE_LINUX="net.ifnames=0"\n' >> /etc/default/grub
+###printf 'GRUB_CMDLINE_LINUX_DEFAULT="init=/usr/lib/systemd/systemd"\n' >> /dev/null/etc/default/grub
+
 grub-mkconfig -o /boot/grub/grub.cfg && \
 grub-install --no-floppy /dev/sda
 EOF
@@ -340,3 +345,6 @@ chmod 700 ~vagrant/.ssh
 chown vagrant:vagrant ~vagrant/.ssh/authorized_keys
 chown vagrant:vagrant ~vagrant/.ssh
 EOF
+
+/sbin/reboot
+ps aux | grep sshd | grep -v grep | awk '{print $2}' | xargs kill
