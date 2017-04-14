@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.7.6"
+export VERSION="0.7.7"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -31,6 +31,34 @@ validate() {
   fi
 }
 
+# Verify all of the ISO locations are still valid.
+function verify {
+
+  # Grab just the response header and look for the 200 response code to indicate the link is valid.
+  curl --silent --head "$1" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+
+  # The grep return code tells us whether it found a match in the header or not.
+  if [ $? != 0 ]; then
+    printf "Link Failure:  $1\n\n"
+    exit 1
+  fi
+
+  # # Grab the ISO and pipe the data through sha256sum, then compare the checksum value.
+  # curl --silent "$1" | sha256sum | grep --silent "$2"
+  #
+  # # The grep return code tells us whether it found a match in the header or not.
+  # if [ $? != 0 ]; then
+  #   SUM=`curl --silent "$1" | sha256sum | awk -F' ' '{print $1}'`
+  #   printf "Hash Failure:  $1\n"
+  #   printf "Found       -  $SUM\n"
+  #   printf "Expected    -  $SUM\n\n"
+  #   exit 1
+  # fi
+  #
+  # printf "Validated   :  $1\n"
+  # return 0
+}
+
 # Build the boxes and cleanup the packer cache after each run.
 build() {
 
@@ -50,17 +78,22 @@ build() {
   fi
 }
 
-validate magma
-validate magma-centos6
-validate magma-centos7
 validate magma-docker
 validate magma-vmware
 validate magma-libvirt
 validate magma-virtualbox
 
-build magma
-build magma-centos6
-build magma-centos7
+# Collect the list of ISO urls.
+ISOURLS=(`grep iso_url magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep "iso_checksum" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
+
+for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
+    validate "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
+done
+
+# Let the user know all of the links passed.
+printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
+
 build magma-vmware
 build magma-virtualbox
 build magma-libvirt
