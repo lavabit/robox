@@ -18,7 +18,7 @@ Defaults:vagrant !requiretty
 vagrant ALL=(ALL) NOPASSWD: ALL
 EOF
 chmod 440 /etc/sudoers.d/vagrant
-sed -i -e "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
+sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
 mkdir -p /etc/systemd/network
 ln -sf /dev/null /etc/systemd/network/99-default.link

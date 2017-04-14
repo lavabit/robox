@@ -5,7 +5,7 @@ set -x
 
 pkg_add sudo--
 mkdir /etc/sudoers.d
-sed -i -e "s/PermitRootLogin no/PermitRootLogin yes/g" /etc/ssh/sshd_config
+sed -i -e "s/,*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
 cat <<EOF > /etc/sudoers
 #includedir /etc/sudoers.d
