@@ -88,7 +88,7 @@ ISOURLS=(`grep iso_url magma-docker.json magma-libvirt.json magma-vmware.json ma
 ISOSUMS=(`grep "iso_checksum" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
 
 for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
-    validate "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
+    verify "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
 done
 
 # Let the user know all of the links passed.
