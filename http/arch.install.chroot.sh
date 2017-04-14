@@ -1,11 +1,8 @@
-#!/bin/bash
-
-set -e
-set -x
+#!/bin/bash -eux
 
 ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 
-echo 'archlinux' > /etc/hostname
+echo 'magma.builder' > /etc/hostname
 
 sed -i -e 's/^#\(en_US.UTF-8\)/\1/' /etc/locale.gen
 locale-gen
@@ -30,5 +27,5 @@ systemctl enable sshd
 systemctl enable dhcpcd@eth0
 
 grub-install "$device"
-sed -i -e 's/^GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=1/' /etc/default/grub
+sed -i -e 's/^GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=5/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg

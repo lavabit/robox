@@ -1,7 +1,4 @@
-#!/bin/bash
-
-set -e
-set -x
+#!/bin/bash -eux
 
 if [ -e /dev/vda ]; then
   device=/dev/vda
