@@ -16,7 +16,7 @@ fi
 # Install the VMWare Tools from the Linux ISO.
 printf "Installing the VMWare Tools.\n"
 
-yum --quiet --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
+dnf --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
 systemctl enable vmtoolsd
 systemctl start vmtoolsd
 
@@ -31,4 +31,3 @@ rm -rf /root/linux.iso; error
 
 #/tmp/vmware-tools-distrib/vmware-install.pl -d; error
 #rm -rf /tmp/vmware-tools-distrib; error
-

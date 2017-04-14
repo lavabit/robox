@@ -7,9 +7,9 @@ printf "Remove the ethernet identity values.\n"
 sed -i /UUID/d /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i /HWADDR/d /etc/sysconfig/network-scripts/ifcfg-eth0
 
-# Clean up the yum data.
+# Clean up the dnf data.
 printf "Remove packages only required for provisioning purposes and then dump the repository cache.\n"
-yum --quiet --assumeyes clean all
+dnf --assumeyes clean all
 
 # Remove the installation logs.
 rm --force /root/anaconda-ks.cfg /root/install.log /root/install.log.syslog
@@ -23,5 +23,4 @@ find /var/log -type f -exec truncate --size=0 {} \;
 
 # Wipe the temp directory.
 printf "Purge the setup files and temporary data.\n"
-rm --recursive --force /var/tmp/* /tmp/* /var/cache/yum/* /tmp/ks-script*
-
+rm --recursive --force /var/tmp/* /tmp/* /var/cache/dnf/* /tmp/ks-script*

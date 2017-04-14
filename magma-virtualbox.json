@@ -58,7 +58,6 @@
         "scripts": [
             "scripts/fedora25/fixdns.sh",
             "scripts/fedora25/dnf.sh",
-            "scripts/fedora25/yum.sh",
             "scripts/fedora25/base.sh",
             "scripts/fedora25/reboot.sh"
         ],
@@ -76,10 +75,7 @@
             "scripts/fedora25/qemu.sh",
             "scripts/fedora25/vagrant.sh",
             "scripts/fedora25/magma.sh",
-            "scripts/fedora25/tuning.sh",
-            "scripts/fedora25/sshd.sh",
-            "scripts/fedora25/cleanup.sh",
-            "scripts/fedora25/unyum.sh"
+            "scripts/fedora25/tuning.sh"
         ],
         "type": "shell",
         "pause_before": "120s",

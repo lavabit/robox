@@ -30,7 +30,7 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 yum --quiet --assumeyes update; error
 
 # Packages needed beyond a minimal install to build and run magma.
-yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive deltarpm; error
+yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive deltarpm; error
 
 # Install the libbsd packages from the EPEL repository, which DSPAM relies upon for the strl functions.
 # The entropy daemon is optional, but improves the availability of entropy, which makes magma launch

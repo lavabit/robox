@@ -1,66 +1,10 @@
 #!/bin/bash
 
-error() {
-        if [ $? -ne 0 ]; then
-                printf "\n\nyum failed...\n\n";
-                exit 1
-        fi
-}
-
-
-# Disable the broken repositories.
-truncate --size=0 /etc/yum.repos.d/CentOS-Media.repo /etc/yum.repos.d/CentOS-Vault.repo
-
-# Tell yum to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
-printf "\nretries=128\ndeltarpm=0\nmetadata_expire=0\nmirrorlist_expire=0\n" >> /etc/yum.conf
-
-# Disable IPv6 or yum will resolve mirror names to IPv6 address and then fail to connect with them.
-sysctl net.ipv6.conf.all.disable_ipv6=1
-
 # Ensure a nameserver is being used that won't return an IP for non-existent domain names.
 printf "\nnameserver 4.2.2.1\n" > /etc/resolv.conf
 
 # Set the local hostname to resolve properly.
 printf "\n127.0.0.1	magma.builder\n\n" >> /etc/hosts
-
-# Import the update key.
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-
-# Update the base install first.
-yum --quiet --assumeyes update; error
-
-# Packages needed beyond a minimal install to build and run magma.
-yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive deltarpm; error
-
-# Install the libbsd packages from the EPEL repository, which DSPAM relies upon for the strl functions.
-# The entropy daemon is optional, but improves the availability of entropy, which makes magma launch
-# and complete her unit tests faster.
-yum --quiet --assumeyes --enablerepo=extras install epel-release; error
-
-# Import the EPEL key.
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-
-# Grab the required packages from the EPEL repo.
-yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
-
-# Boosts the available entropy which allows magma to start faster.
-yum --quiet --assumeyes install haveged; error
-
-# The daemon services magma relies upon.
-yum --quiet --assumeyes install libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL; error
-
-# Packages used to retrieve the magma code, but aren't required for building/running the daemon.
-yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
-
-# These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
-yum --quiet --assumeyes install python-crypto python-cryptography
-
-# Packages used during the provisioning process and then removed during the cleanup stage.
-yum --quiet --assumeyes install sudo dmidecode yum-utils; error
-
-# Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays
-# often interupt the the provisioning process.
-yum --quiet --assumeyes --disablerepo=epel update; error
 
 # Enable and start the daemons.
 systemctl enable mariadb
