@@ -25,7 +25,7 @@ mkfs.ext4 "${device}2"
 mount "${device}2" /mnt
 
 curl -fsS https://www.archlinux.org/mirrorlist/?country=all > /tmp/mirrolist
-grep '^#Server' /tmp/mirrolist | sort -R | head -n 50 | sed 's/^#//' > /tmp/mirrolist.50
+grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 50 | sed 's/^#//' > /tmp/mirrolist.50
 rankmirrors -v /tmp/mirrolist.50 | tee /etc/pacman.d/mirrorlist
 pacstrap /mnt base grub openssh sudo
 
