@@ -4,6 +4,101 @@
   },
   "provisioners": [
     {
+        "type": "shell",
+        "scripts": [
+            "scripts/centos6/fixdns.sh",
+            "scripts/centos6/base.sh",
+            "scripts/centos6/reboot.sh"
+        ],
+        "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-vmware"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/centos6/kernel.sh",
+            "scripts/centos6/virtualbox.sh",
+            "scripts/centos6/vmware.sh",
+            "scripts/centos6/qemu.sh",
+            "scripts/centos6/vagrant.sh",
+            "scripts/centos6/magma.sh",
+            "scripts/centos6/tuning.sh",
+            "scripts/centos6/sshd.sh",
+            "scripts/centos6/cleanup.sh"
+        ],
+        "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+        "pause_before": "120s",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-vmware"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/centos6/fixdns.sh",
+            "scripts/centos6/base.sh",
+            "scripts/centos6/reboot.sh"
+        ],
+        "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-centos6-vmware"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/centos6/kernel.sh",
+            "scripts/centos6/virtualbox.sh",
+            "scripts/centos6/vmware.sh",
+            "scripts/centos6/qemu.sh",
+            "scripts/centos6/vagrant.sh",
+            "scripts/centos6/magma.sh",
+            "scripts/centos6/tuning.sh",
+            "scripts/centos6/sshd.sh",
+            "scripts/centos6/cleanup.sh"
+        ],
+        "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+        "pause_before": "120s",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-centos6-vmware"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/centos7/fixdns.sh",
+            "scripts/centos7/yum.sh",
+            "scripts/centos7/base.sh",
+            "scripts/centos7/reboot.sh"
+        ],
+        "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-centos7-vmware"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/centos7/kernel.sh",
+            "scripts/centos7/virtualbox.sh",
+            "scripts/centos7/vmware.sh",
+            "scripts/centos7/qemu.sh",
+            "scripts/centos7/vagrant.sh",
+            "scripts/centos7/magma.sh",
+            "scripts/centos7/tuning.sh",
+            "scripts/centos7/sshd.sh",
+            "scripts/centos7/cleanup.sh",
+            "scripts/centos7/unyum.sh"
+        ],
+        "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+        "pause_before": "120s",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-centos7-vmware"]
+    },
+    {
       "scripts": [
         "scripts/gentoo/install.sh"
       ],
@@ -201,6 +296,100 @@
     }
   ],
   "builders": [
+    {
+        "type": "vmware-iso",
+        "name": "magma-vmware",
+        "vm_name": "magma-vmware",
+        "vmdk_name": "magma-vmware",
+        "output_directory": "output/magma-vmware",
+        "boot_wait": "20s",
+        "boot_command": [
+            "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
+        ],
+        "disk_size": 32768,
+        "disk_type_id": "0",
+        "vmx_data": {
+            "memsize": "2048",
+            "numvcpus": "2",
+            "cpuid.coresPerSocket": "1"
+        },
+        "guest_os_type": "centos-64",
+        "http_directory": "http",
+        "headless": true,
+        "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
+        "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
+        "iso_checksum_type": "sha256",
+        "skip_compaction": false,
+        "ssh_username": "root",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_wait_timeout": "10000s",
+        "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+        "tools_upload_flavor": "linux"
+    },
+
+    {
+        "type": "vmware-iso",
+        "name": "magma-centos6-vmware",
+        "vm_name": "magma-centos6-vmware",
+        "vmdk_name": "magma-centos6-vmware",
+        "output_directory": "output/magma-vmware",
+        "boot_wait": "20s",
+        "boot_command": [
+            "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
+        ],
+        "disk_size": 32768,
+        "disk_type_id": "0",
+        "vmx_data": {
+            "memsize": "2048",
+            "numvcpus": "2",
+            "cpuid.coresPerSocket": "1"
+        },
+        "guest_os_type": "centos-64",
+        "http_directory": "http",
+        "headless": true,
+        "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
+        "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
+        "iso_checksum_type": "sha256",
+        "skip_compaction": false,
+        "ssh_username": "root",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_wait_timeout": "10000s",
+        "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+        "tools_upload_flavor": "linux"
+    },
+    {
+        "type": "vmware-iso",
+        "name": "magma-centos7-vmware",
+        "vm_name": "magma-centos7-vmware",
+        "vmdk_name": "magma-centos7-vmware",
+        "output_directory": "output/magma-centos7-vmware",
+        "boot_wait": "20s",
+        "boot_command": [
+            "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
+        ],
+        "disk_size": 32768,
+        "disk_type_id": "0",
+        "vmx_data": {
+            "memsize": "2048",
+            "numvcpus": "2",
+            "cpuid.coresPerSocket": "1"
+        },
+        "guest_os_type": "centos-64",
+        "http_directory": "http",
+        "headless": true,
+        "iso_url": "https://mirrors.kernel.org/centos/7.3.1611/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
+        "iso_checksum": "27bd866242ee058b7a5754e83d8ee8403e216b93d130d800852a96f41c34d86a",
+        "iso_checksum_type": "sha256",
+        "skip_compaction": false,
+        "ssh_username": "root",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_wait_timeout": "10000s",
+        "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+        "tools_upload_flavor": "linux"
+    },
     {
       "type": "vmware-iso",
       "name": "magma-arch-vmware",
@@ -601,6 +790,42 @@
         "keep_input_artifact": false,
         "vagrantfile_template": "tpl/vagrantfile.tpl",
         "output": "output/{{build_name}}-{{user `box_version`}}.box"
+      },
+      {
+          "type": "atlas",
+          "only": ["magma-vmware"],
+          "artifact": "lavabit/magma",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "vmware",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "The magma encrypted mail daemon build environment."
+          }
+      },
+      {
+          "type": "atlas",
+          "only": ["magma-centos6-vmware"],
+          "artifact": "lavabit/magma-centos6",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "vmware",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "The magma encrypted mail daemon build environment."
+          }
+      },
+      {
+          "type": "atlas",
+          "only": ["magma-centos7-vmware"],
+          "artifact": "lavabit/magma-centos7",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "vmware",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "The magma encrypted mail daemon build environment."
+          }
       },
       {
           "type": "atlas",
