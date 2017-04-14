@@ -170,6 +170,27 @@
     },
     {
       "scripts": [
+          "scripts/ubuntu1704/apt.sh",
+          "scripts/ubuntu1704/virtualbox.sh",
+          "scripts/ubuntu1704/vmware.sh",
+          "scripts/ubuntu1704/qemu.sh",
+          "scripts/ubuntu1704/network.sh",
+          "scripts/ubuntu1704/postfix.sh",
+          "scripts/ubuntu1704/database.sh",
+          "scripts/ubuntu1704/limits.sh",
+          "scripts/ubuntu1704/memcached.sh",
+          "scripts/ubuntu1704/vagrant.sh",
+          "scripts/ubuntu1704/fixtty.sh",
+          "scripts/ubuntu1704/magma.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-ubuntu1704-vmware"]
+    },
+    {
+      "scripts": [
         "scripts/common/zerodisk.sh",
         "scripts/common/lockout.sh"
       ],
@@ -420,6 +441,45 @@
     },
     {
       "type": "vmware-iso",
+      "name": "magma-ubuntu1704-vmware",
+      "vm_name": "magma-ubuntu1704-vmware",
+      "vmdk_name": "magma-ubuntu1704-vmware",
+      "output_directory": "output/magma-ubuntu1704-vmware",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1704.vagrant.cfg<wait> ",
+        "<enter>"
+      ],
+      "disk_size": 32768,
+      "disk_type_id": "0",
+      "vmx_data": {
+            "memsize": "2048",
+            "numvcpus": "2",
+            "cpuid.coresPerSocket": "1"
+      },
+      "guest_os_type": "ubuntu-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/17.04/ubuntu-17.04-server-amd64.iso",
+      "iso_checksum": "ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
       "name": "magma-gentoo-vmware",
       "vm_name": "magma-gentoo-vmware",
       "vmdk_name": "magma-gentoo-vmware",
@@ -642,6 +702,18 @@
           "type": "atlas",
           "only": ["magma-ubuntu1610-vmware"],
           "artifact": "lavabit/magma-ubuntu1610",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "vmware_desktop",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "The magma encrypted mail daemon build environment."
+          }
+      },
+      {
+          "type": "atlas",
+          "only": ["magma-ubuntu1704-vmware"],
+          "artifact": "lavabit/magma-ubuntu1704",
           "artifact_type": "vagrant.box",
           "metadata": {
               "provider": "vmware_desktop",
