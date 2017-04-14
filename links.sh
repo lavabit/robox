@@ -31,10 +31,8 @@ function validate {
 FAILURES=0
 
 # Collect the list of ISO urls.
-# ISOURLS=(`grep iso_url magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | awk -F'"' '{print $4}'`)
-# ISOSUMS=(`grep "iso_checksum" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
-ISOURLS=(`grep iso_url magma-docker.json | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep "iso_checksum" magma-docker.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
+ISOURLS=(`grep iso_url magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep "iso_checksum" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
 
 # Greet the user.
 printf "\nFound ${#ISOURLS[@]} links...\n\n"
@@ -48,7 +46,6 @@ done
 
 # If any of the links fail, output an extra line to make things cleaner.
 if [ $FAILURES != 0 ]; then
-  printf "\nA total of $FAILURES links failed...\n\n"
-else
-  printf "\n"
-fi
+  printf "\nA total of $FAILURES links failed...\n"
+fi  
+printf "\n"
