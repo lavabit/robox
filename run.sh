@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.7.7"
+export VERSION="0.7.9"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
