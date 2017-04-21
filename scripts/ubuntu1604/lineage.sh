@@ -16,7 +16,7 @@ apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc
 apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni libpng16-16 libsctp1
 
 # If the Java 8 environment variables wasn't provided, then we need to install Java 7.
-if [[ "$EXPERIMENTAL_USE_JAVA8" != ^true$ ]]; then
+# if [[ $EXPERIMENTAL_USE_JAVA8 != ^true$ ]]; then
 
   # Download the OpenJDK 1.7 packages.
   curl --output openjdk-7-jre_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u121-2.6.8-2_amd64.deb
@@ -36,9 +36,9 @@ if [[ "$EXPERIMENTAL_USE_JAVA8" != ^true$ ]]; then
   # Delete the downloaded Java 7 packages.
   rm --force openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
 
-else
-  printf "export EXPERIMENTAL_USE_JAVA8=true\n" > /etc/profile.d/java8.sh
-fi
+# else
+#   printf "export EXPERIMENTAL_USE_JAVA8=true\n" > /etc/profile.d/java8.sh
+# fi
 
 # Download the Android tools.
 curl --output platform-tools-latest-linux.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip

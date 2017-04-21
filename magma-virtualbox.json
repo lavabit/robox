@@ -207,7 +207,7 @@
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": ["lineage-libvirt"]
+      "only": ["lineage-virtualbox"]
     },
     {
       "scripts": [
