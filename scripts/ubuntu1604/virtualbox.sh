@@ -27,3 +27,9 @@ ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxG
 umount /mnt/virtualbox; error
 rm -rf /root/VBoxVersion.txt; error
 rm -rf /root/VBoxGuestAdditions.iso; error
+
+# Boosts the available entropy which allows magma to start faster.
+apt-get --assume-yes install haveged; error
+
+# Autostart the haveged daemon.
+systemctl enable haveged.service
