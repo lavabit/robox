@@ -70,7 +70,7 @@ chmod a+x /usr/bin/repo
 # # Cleanup the downloaded git code.
 # rm --recursive --force git-2.12.2 git-2.12.2.tar.gz git-manpages-2.12.2.tar.gz
 
-cat << EOF > /home/vagrant/lineage-build.sh
+cat <<-EOF > /home/vagrant/lineage-build.sh
 #!/bin/bash -eux
 
 # The Motorol Photon Q by default - because physical keyboards eat virtual keyboards

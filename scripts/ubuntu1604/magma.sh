@@ -24,7 +24,7 @@ else
 fi
 
 # Grab a snapshot of the development branch.
-cat << EOF > $OUTPUT
+cat <<-EOF > $OUTPUT
 #!/bin/bash
 
 error() {
