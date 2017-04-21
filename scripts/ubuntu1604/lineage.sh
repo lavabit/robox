@@ -76,56 +76,56 @@ cat <<-EOF > /home/vagrant/lineage-build.sh
 # The Motorol Photon Q by default - because physical keyboards eat virtual keyboards
 # for breakfast, brunch and then dinner.
 
-export DEVICE=${DEVICE:="xt897"}
-export BRANCH=${BRANCH:="cm-13.0"}
-export VENDOR=${VENDOR:="motorola"}
+export DEVICE=\${DEVICE:="xt897"}
+export BRANCH=\${BRANCH:="cm-13.0"}
+export VENDOR=\${VENDOR:="motorola"}
 
-export NAME=${NAME:="Ladar Levison"}
-export EMAIL=${EMAIL:="ladar@lavabit.com"}
+export NAME=\${NAME:="Ladar Levison"}
+export EMAIL=\${EMAIL:="ladar@lavabit.com"}
 
 # Setup the branch and enable the distributed cache.
 export USE_CCACHE=1
-export TMPDIR="$HOME/temp"
+export TMPDIR="\$HOME/temp"
 export ANDROID_CCACHE_SIZE="20G"
-export ANDROID_CCACHE_DIR="$HOME/cache"
+export ANDROID_CCACHE_DIR="\$HOME/cache"
 
 # Can we get gnutls to play nicely with the droid source repos...
 #export GIT_CURL_VERBOSE=1
 export GIT_HTTP_MAX_REQUESTS=1
 
 # Make the directories.
-mkdir -p $HOME/temp && mkdir -p $HOME/cache && mkdir -p $HOME/android/lineage
+mkdir -p \$HOME/temp && mkdir -p \$HOME/cache && mkdir -p \$HOME/android/lineage
 
 # Goto the build root.
-cd $HOME/android/lineage
+cd \$HOME/android/lineage
 
 # Configure the default git username and email address.
-git config --global user.name "$NAME"
-git config --global user.email "$EMAIL"
+git config --global user.name "\$NAME"
+git config --global user.email "\$EMAIL"
 git config --global color.ui false
 # git config --global http.sslVersion tlsv1.2
 
 # Initialize the repo and download the source code.
-repo init -u https://github.com/LineageOS/android.git -b $BRANCH
+repo init -u https://github.com/LineageOS/android.git -b \$BRANCH
 repo --color=never sync --quiet --jobs=2
 
 # Setup the environment.
 source build/envsetup.sh
 
 # Reduce the amount of memory required during compilation.
-# sed -i -e "s/-Xmx2048m/-Xmx512m/g" $HOME/android/lineage/build/tools/releasetools/common.py
+# sed -i -e "s/-Xmx2048m/-Xmx512m/g" \$HOME/android/lineage/build/tools/releasetools/common.py
 
 # Download and configure the environment for the device.
-breakfast $DEVICE
+breakfast \$DEVICE
 
 # # Find the latest upstream build.
-# ARCHIVE=`curl --silent https://download.lineageos.org/$DEVICE | grep href | grep https://mirrorbits.lineageos.org/full/$DEVICE/ | head -1 | awk -F'"' '{print $2}'`
+# ARCHIVE=`curl --silent https://download.lineageos.org/\$DEVICE | grep href | grep https://mirrorbits.lineageos.org/full/\$DEVICE/ | head -1 | awk -F'"' '{print \$2}'`
 #
 # # Create a system dump directory.
-# mkdir -p $HOME/android/system_dump/ && cd $HOME/android/system_dump/
+# mkdir -p \$HOME/android/system_dump/ && cd \$HOME/android/system_dump/
 #
 # # Download the archive.
-# curl --location --output lineage-archive.zip "$ARCHIVE"
+# curl --location --output lineage-archive.zip "\$ARCHIVE"
 #
 # # Extract the system blocks.
 # unzip lineage-archive.zip system.transfer.list system.new.dat
@@ -137,54 +137,54 @@ breakfast $DEVICE
 # python sdat2img/sdat2img.py system.transfer.list system.new.dat system.img
 #
 # # Mount the system image.
-# mkdir -p $HOME/android/system/
-# sudo mount system.img $HOME/android/system/
+# mkdir -p \$HOME/android/system/
+# sudo mount system.img \$HOME/android/system/
 
 # Change to the device directory and run the extraction script.
-# cd $HOME/android/lineage/device/$VENDOR/$DEVICE
-# ./extract-files.sh $HOME/android/system_dump/system
+# cd \$HOME/android/lineage/device/\$VENDOR/$DEVICE
+# ./extract-files.sh \$HOME/android/system_dump/system
 #
 # # Unmount the system dump.
-# sudo umount $HOME/android/system_dump/system
-# rm -rf $HOME/android/system_dump/
+# sudo umount \$HOME/android/system_dump/system
+# rm -rf \$HOME/android/system_dump/
 
 # Extract the vendor specific blobs.
-mkdir -p $HOME/android/vendor/system/
-tar -xzv -C $HOME/android/vendor/ -f $HOME/system-blobs.tar.gz
+mkdir -p \$HOME/android/vendor/system/
+tar -xzv -C \$HOME/android/vendor/ -f \$HOME/system-blobs.tar.gz
 
 # Change to the xt897 directory and run the extraction script.
-cd $HOME/android/lineage/device/$VENDOR/$DEVICE
-./extract-files.sh $HOME/android/vendor/system/
+cd \$HOME/android/lineage/device/\$VENDOR/\$DEVICE
+./extract-files.sh \$HOME/android/vendor/system/
 
 # Cleanup the vendor blob files.
-rm -rf $HOME/android/vendor/
+rm -rf \$HOME/android/vendor/
 
 # Setup the environment.
-cd $HOME/android/lineage/ && source build/envsetup.sh
-breakfast $DEVICE
+cd \$HOME/android/lineage/ && source build/envsetup.sh
+breakfast \$DEVICE
 
 # Setup the cache.
-cd $HOME/android/lineage/
+cd \$HOME/android/lineage/
 prebuilts/misc/linux-x86/ccache/ccache -M 20G
 
 # Start the build.
 croot
-brunch $DEVICE
+brunch \$DEVICE
 
 # Calculate the filename.
 BUILDSTAMP=`date +'%Y%m%d'`
-DIRIMAGE="$HOME/android/lineage/out/target/product/$DEVICE/"
-SYSIMAGE="$DIRIMAGE/lineage-$BUILDVERSION-$BUILDSTAMP-UNOFFICIAL-$DEVICE.zip"
-SYSIMAGESUM="$DIRIMAGE/lineage-$BUILDVERSION-$BUILDSTAMP-UNOFFICIAL-$DEVICE.zip.md5sum"
-#RECIMAGE="lineage-$BUILDVERSION-$BUILDSTAMP-UNOFFICIAL-$DEVICE-recovery.img"
+DIRIMAGE="\$HOME/android/lineage/out/target/product/\$DEVICE/"
+SYSIMAGE="\$DIRIMAGE/lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
+SYSIMAGESUM="\$DIRIMAGE/lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip.md5sum"
+#RECIMAGE="lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE-recovery.img"
 
 # Verify the image checksum.
-md5sum -c "$SYSIMAGESUM"
+md5sum -c "\$SYSIMAGESUM"
 
 # See what the output directory holds.
 ls -alh "SYSIMAGE" "SYSIMAGESUM"
 
 # Push the new system image to the device.
-# adb push "$SYSIMAGE" /sdcard/
+# adb push "\$SYSIMAGE" /sdcard/
 
 EOF
