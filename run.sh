@@ -84,8 +84,8 @@ validate magma-libvirt
 validate magma-virtualbox
 
 # Collect the list of ISO urls.
-ISOURLS=(`grep iso_url magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep "iso_checksum" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
 
 for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
     verify "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
