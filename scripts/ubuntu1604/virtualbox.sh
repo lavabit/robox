@@ -18,6 +18,8 @@ printf "Installing the Virtual Box Tools.\n"
 # Read in the version number.
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
+apt-get --assume-yes install gcc make dkms automake build-essential linux-headers-amd64; error
+
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
 

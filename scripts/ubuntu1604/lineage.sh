@@ -119,7 +119,7 @@ source build/envsetup.sh
 breakfast \$DEVICE
 
 # # Find the latest upstream build.
-# ARCHIVE=`curl --silent https://download.lineageos.org/\$DEVICE | grep href | grep https://mirrorbits.lineageos.org/full/\$DEVICE/ | head -1 | awk -F'"' '{print \$2}'`
+# ARCHIVE=\`curl --silent https://download.lineageos.org/\$DEVICE | grep href | grep https://mirrorbits.lineageos.org/full/\$DEVICE/ | head -1 | awk -F'"' '{print \$2}'\`
 #
 # # Create a system dump directory.
 # mkdir -p \$HOME/android/system_dump/ && cd \$HOME/android/system_dump/
@@ -141,7 +141,7 @@ breakfast \$DEVICE
 # sudo mount system.img \$HOME/android/system/
 
 # Change to the device directory and run the extraction script.
-# cd \$HOME/android/lineage/device/\$VENDOR/$DEVICE
+# cd \$HOME/android/lineage/device/\$VENDOR/\$DEVICE
 # ./extract-files.sh \$HOME/android/system_dump/system
 #
 # # Unmount the system dump.
@@ -172,7 +172,7 @@ croot
 brunch \$DEVICE
 
 # Calculate the filename.
-BUILDSTAMP=`date +'%Y%m%d'`
+BUILDSTAMP=\`date +'%Y%m%d'\`
 DIRIMAGE="\$HOME/android/lineage/out/target/product/\$DEVICE/"
 SYSIMAGE="\$DIRIMAGE/lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
 SYSIMAGESUM="\$DIRIMAGE/lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip.md5sum"

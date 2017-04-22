@@ -67,7 +67,7 @@ build() {
 
   # packer build -on-error=cleanup -parallel=false $1.json
   #packer build -on-error=cleanup -parallel=false -except=magma-gentoo-vmware,magma-gentoo-libvirt,magma-gentoo-virtualbox $1.json
-  packer build -on-error=cleanup -parallel=false -only=lineage-vmware,lineage-libvirt,lineage-virtualbox $1.json
+  packer build -on-error=cleanup -parallel=false -only=lineage-virtualbox $1.json
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
