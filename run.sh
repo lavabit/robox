@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.8.2"
+export VERSION="0.8.3"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -95,9 +95,9 @@ done
 # Let the user know all of the links passed.
 printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
 
-build magma-libvirt
 build magma-vmware
 build magma-virtualbox
+build magma-libvirt
 
 for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done
 
