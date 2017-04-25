@@ -1,7 +1,12 @@
 #!/bin/bash -eux
 
+# To allow for autmated installs, we disable interactive configuration steps.
+export DEBIAN_FRONTEND=noninteractive
+
+# The mysql client and related utilities.
+apt-get --assume-yes install mysql-client mysql-server perl libdbi-perl libmysqlclient20 mysql-common libdbd-mysql-perl
+
 # Enable mysql and configure it to automatically start.
-systemctl enable mysql.service
 systemctl enable mysql.service
 
 # Setup the mysql root account with a random password.
