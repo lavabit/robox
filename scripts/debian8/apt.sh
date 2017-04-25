@@ -23,9 +23,6 @@ apt-get --assume-yes install memcached libevent-dev; error
 # The postfix server for message relays.
 apt-get --assume-yes install postfix postfix-cdb libcdb1 ssl-cert; error
 
-# The mysql client and related utilities.
-apt-get --assume-yes install mysql-client mysql-server perl libdbi-perl libmysqlclient18 mysql-common libdbd-mysql-perl; error
-
 # Need to retrieve the source code.
 apt-get --assume-yes install git git-man liberror-perl rsync wget; error
 

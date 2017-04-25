@@ -963,7 +963,7 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://ftp.fau.de/openbsd/6.1/amd64/cd61.iso",
+      "iso_url": "https://ftp.fau.de/pub/OpenBSD/6.1/amd64/cd61.iso",
       "iso_checksum": "37cee759db10ffd5c0d086771b62ed771187a24baa4946e601153e394ce31aa6",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
