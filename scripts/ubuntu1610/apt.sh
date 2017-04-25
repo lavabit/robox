@@ -24,7 +24,7 @@ systemctl stop snapd.service snapd.socket snapd.refresh.timer
 apt-get -y update; error
 apt-get -y dist-upgrade; error
 
-# Need edto retrieve source code, and other misc system tools.
+# Needed to retrieve source code, and other misc system tools.
 apt-get --assume-yes install vim vim-nox git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils; error
 
 # Enable the sysstat collection service.
