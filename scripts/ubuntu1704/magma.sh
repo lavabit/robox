@@ -1,7 +1,22 @@
 #!/bin/bash -eux
 #
-# Setup the the box. This runs as root
 
+# To allow for autmated installs, we disable interactive configuration steps.
+export DEBIAN_FRONTEND=noninteractive
+
+# The packages needed to compile magma.
+apt-get --assume-yes install gcc g++ gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config
+
+# Need to retrieve the source code.
+apt-get --assume-yes install git git-man liberror-perl rsync wget
+
+# Needed to run the watcher and status scripts.
+apt-get --assume-yes install sysstat inotify-tools
+
+# Needed to run the stacie script.
+apt-get --assume-yes install python-crypto python-cryptography
+
+# Setup the the box. This runs as root
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
 else

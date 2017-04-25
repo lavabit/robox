@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.8.0"
+export VERSION="0.8.2"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -66,8 +66,7 @@ build() {
   export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/$1.txt"
 
   # packer build -on-error=cleanup -parallel=false $1.json
-  #packer build -on-error=cleanup -parallel=false -except=magma-gentoo-vmware,magma-gentoo-libvirt,magma-gentoo-virtualbox $1.json
-  packer build -on-error=clean -parallel=false -only=lineage-virtualbox $1.json
+  packer build -on-error=cleanup -parallel=false -except=magma-gentoo-vmware,magma-gentoo-libvirt,magma-gentoo-virtualbox $1.json
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
@@ -96,8 +95,8 @@ done
 # Let the user know all of the links passed.
 printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
 
-#build magma-libvirt
-#build magma-vmware
+build magma-libvirt
+build magma-vmware
 build magma-virtualbox
 
 for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done

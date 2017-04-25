@@ -286,18 +286,26 @@
     },
     {
       "scripts": [
-          "scripts/ubuntu1610/apt.sh",
-          "scripts/ubuntu1610/virtualbox.sh",
-          "scripts/ubuntu1610/vmware.sh",
-          "scripts/ubuntu1610/qemu.sh",
+          "scripts/ubuntu1610/apt.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-ubuntu1610-vmware"]
+    },
+    {
+      "scripts": [
           "scripts/ubuntu1610/network.sh",
+          "scripts/ubuntu1610/limits.sh",
           "scripts/ubuntu1610/postfix.sh",
           "scripts/ubuntu1610/database.sh",
-          "scripts/ubuntu1610/limits.sh",
           "scripts/ubuntu1610/memcached.sh",
+          "scripts/ubuntu1610/magma.sh",
           "scripts/ubuntu1610/vagrant.sh",
           "scripts/ubuntu1610/fixtty.sh",
-          "scripts/ubuntu1610/magma.sh"
+          "scripts/ubuntu1610/virtualbox.sh",
+          "scripts/ubuntu1610/vmware.sh",
+          "scripts/ubuntu1610/qemu.sh"
       ],
       "type": "shell",
       "pause_before": "120s",
@@ -307,18 +315,26 @@
     },
     {
       "scripts": [
-          "scripts/ubuntu1704/apt.sh",
-          "scripts/ubuntu1704/virtualbox.sh",
-          "scripts/ubuntu1704/vmware.sh",
-          "scripts/ubuntu1704/qemu.sh",
+          "scripts/ubuntu1704/apt.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-ubuntu1704-vmware"]
+    },
+    {
+      "scripts": [
           "scripts/ubuntu1704/network.sh",
+          "scripts/ubuntu1704/limits.sh",
           "scripts/ubuntu1704/postfix.sh",
           "scripts/ubuntu1704/database.sh",
-          "scripts/ubuntu1704/limits.sh",
           "scripts/ubuntu1704/memcached.sh",
+          "scripts/ubuntu1704/magma.sh",
           "scripts/ubuntu1704/vagrant.sh",
           "scripts/ubuntu1704/fixtty.sh",
-          "scripts/ubuntu1704/magma.sh"
+          "scripts/ubuntu1704/virtualbox.sh",
+          "scripts/ubuntu1704/vmware.sh",
+          "scripts/ubuntu1704/qemu.sh"
       ],
       "type": "shell",
       "pause_before": "120s",

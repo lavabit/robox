@@ -10,30 +10,30 @@ error() {
 # To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
 
-# Ensure the server includes any necessary updates.
-apt-get --assume-yes update; error
-apt-get --assume-yes dist-upgrade; error
+# Disable upgrades to new releases.
+sed -i -e 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades;
 
-# The packages needed to compile magma.
-apt-get --assume-yes install gcc g++ gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config; error
+# Disable periodic activities of apt
+printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
 
-# The memcached server.
-apt-get --assume-yes install memcached libevent-dev; error
+# Keep the daily apt updater from deadlocking our installs.
+systemctl stop apt-daily.service
+systemctl stop snapd.service snapd.socket snapd.refresh.timer
 
-# The postfix server for message relays.
-apt-get --assume-yes install postfix postfix-cdb libcdb1 ssl-cert; error
+# Update the package list and then upgrade.
+apt-get -y update; error
+apt-get -y dist-upgrade; error
 
-# The mysql client and related utilities.
-apt-get --assume-yes install mysql-client mysql-server perl libdbi-perl libmysqlclient20 mysql-common libdbd-mysql-perl; error
+# Need edto retrieve source code, and other misc system tools.
+apt-get --assume-yes install vim vim-nox git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils; error
 
-# Need to retrieve the source code.
-apt-get --assume-yes install git git-man liberror-perl rsync wget; error
+# Enable the sysstat collection service.
+sed -i -e "s|.*ENABLED=\".*\"|ENABLED=\"true\"|g" /etc/default/sysstat
 
-# Needed to run the watcher and status scripts.
-apt-get --assume-yes install sysstat inotify-tools; error
+# Start the services we just added so the system will track its own performance.
+systemctl start sysstat.service
 
-# Needed to run the stacie script.
-apt-get --assume-yes install python-crypto python-cryptography; error
+# Setup vim as the default editor.
+printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
 
-# Boosts the available entropy which allows magma to start faster.
-apt-get --assume-yes install haveged; error
+reboot

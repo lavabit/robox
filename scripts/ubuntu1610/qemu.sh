@@ -17,3 +17,9 @@ fi
 printf "Installing the QEMU Tools.\n"
 
 apt-get --assume-yes install qemu-guest-agent; error
+
+# Boosts the available entropy which allows magma to start faster.
+apt-get --assume-yes install haveged; error
+
+# Autostart the haveged daemon.
+systemctl enable haveged.service

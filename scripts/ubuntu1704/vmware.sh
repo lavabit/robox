@@ -31,3 +31,9 @@ rm -rf /root/linux.iso; error
 
 #/tmp/vmware-tools-distrib/vmware-install.pl -d; error
 #rm -rf /tmp/vmware-tools-distrib; error
+
+# Boosts the available entropy which allows magma to start faster.
+apt-get --assume-yes install haveged; error
+
+# Autostart the haveged daemon.
+systemctl enable haveged.service
