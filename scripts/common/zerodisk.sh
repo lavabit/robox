@@ -1,4 +1,25 @@
-#!/bin/bash -eux
+#!/bin/bash -ux
+
+# Handle builds using the busybox version of df/dd/rm which use different command line arguments.
+if [[ "$PACKER_BUILD_NAME" =~ ^magma-alpine-vmware$|^magma-alpine-libvirt$|^magma-alpine-virtualbox$ ]]; then
+
+  # We fill until full so don't abort on error.
+  # set -ux
+
+  # Whiteout root
+  dd if=/dev/zero of=/zerofill bs=1M
+  sync -f /zerofill
+  rm -f /zerofill
+
+  # Whiteout /boot
+  dd if=/dev/zero of=/boot/zerofill bs=1M
+  sync -f /boot/zerofill
+  rm -f /boot/zerofill
+
+  echo "All done."
+  exit 0
+
+fi
 
 # Whiteout root
 count=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')

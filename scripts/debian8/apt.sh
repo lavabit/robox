@@ -36,4 +36,4 @@ apt-get --assume-yes install python-crypto python-cryptography; error
 apt-get --assume-yes install haveged; error
 
 # Reboot onto the new kernel (if applicable).
-reboot
+$(shutdown -r +1) &

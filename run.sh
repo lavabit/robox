@@ -15,11 +15,11 @@ cd $BASE
 sudo sysctl net.ipv6.conf.all.disable_ipv6=1
 
 # Start the required services.
-sudo systemctl restart vmtoolsd.service
-sudo systemctl restart vboxdrv.service
-sudo systemctl restart libvirtd.service
-sudo systemctl restart docker-latest.service
-sudo systemctl restart vmware.service vmware-USBArbitrator.service vmware-workstation-server.service
+#sudo systemctl restart vmtoolsd.service
+#sudo systemctl restart vboxdrv.service
+#sudo systemctl restart libvirtd.service
+#sudo systemctl restart docker-latest.service
+#sudo systemctl restart vmware.service vmware-USBArbitrator.service vmware-workstation-server.service
 
 # Validate the templates before building.
 validate() {
@@ -96,8 +96,8 @@ done
 # Let the user know all of the links passed.
 printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
 
-build magma-vmware
 build magma-virtualbox
+build magma-vmware
 build magma-libvirt
 
 for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done

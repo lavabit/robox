@@ -6,6 +6,35 @@
     {
         "type": "shell",
         "scripts": [
+            "scripts/alpine35/apk.sh"
+        ],
+        "execute_command": "/bin/sh '{{.Path}}'",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-alpine-libvirt"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/alpine35/limits.sh",
+            "scripts/alpine35/mariadb.sh",
+            "scripts/alpine35/memcached.sh",
+            "scripts/alpine35/postfix.sh",
+            "scripts/alpine35/vagrant.sh",
+            "scripts/alpine35/magma.sh",
+            "scripts/alpine35/virtualbox.sh",
+            "scripts/alpine35/vmware.sh",
+            "scripts/alpine35/qemu.sh"
+        ],
+        "execute_command": "/bin/bash '{{.Path}}'",
+        "pause_before": "120s",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-alpine-libvirt"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
             "scripts/centos6/fixdns.sh",
             "scripts/centos6/base.sh",
             "scripts/centos6/reboot.sh"
@@ -144,6 +173,7 @@
     },
     {
       "scripts": [
+        "scripts/debian8/network.sh",
         "scripts/debian8/apt.sh"
       ],
       "type": "shell",
@@ -153,17 +183,16 @@
     },
     {
       "scripts": [
-        "scripts/debian8/virtualbox.sh",
-        "scripts/debian8/vmware.sh",
-        "scripts/debian8/qemu.sh",
-        "scripts/debian8/network.sh",
+        "scripts/debian8/limits.sh",
         "scripts/debian8/postfix.sh",
         "scripts/debian8/mysql.sh",
-        "scripts/debian8/limits.sh",
         "scripts/debian8/memcached.sh",
         "scripts/debian8/vagrant.sh",
+        "scripts/debian8/magma.sh",
         "scripts/debian8/fixtty.sh",
-        "scripts/debian8/magma.sh"
+        "scripts/debian8/virtualbox.sh",
+        "scripts/debian8/vmware.sh",
+        "scripts/debian8/qemu.sh"
       ],
       "type": "shell",
       "pause_before": "120s",
@@ -232,6 +261,7 @@
     },
     {
       "scripts": [
+          "scripts/ubuntu1604/network.sh",
           "scripts/ubuntu1604/apt.sh"
       ],
       "type": "shell",
@@ -241,7 +271,6 @@
     },
     {
       "scripts": [
-          "scripts/ubuntu1604/network.sh",
           "scripts/ubuntu1604/limits.sh",
           "scripts/ubuntu1604/postfix.sh",
           "scripts/ubuntu1604/mysql.sh",
@@ -261,6 +290,7 @@
     },
     {
       "scripts": [
+          "scripts/ubuntu1604/network.sh",
           "scripts/ubuntu1604/apt.sh"
       ],
       "type": "shell",
@@ -270,7 +300,6 @@
     },
     {
       "scripts": [
-          "scripts/ubuntu1604/network.sh",
           "scripts/ubuntu1604/limits.sh",
           "scripts/ubuntu1604/postfix.sh",
           "scripts/ubuntu1604/mysql.sh",
@@ -290,6 +319,7 @@
     },
     {
       "scripts": [
+          "scripts/ubuntu1610/network.sh",
           "scripts/ubuntu1610/apt.sh"
       ],
       "type": "shell",
@@ -299,7 +329,6 @@
     },
     {
       "scripts": [
-          "scripts/ubuntu1610/network.sh",
           "scripts/ubuntu1610/limits.sh",
           "scripts/ubuntu1610/postfix.sh",
           "scripts/ubuntu1610/mysql.sh",
@@ -319,6 +348,7 @@
     },
     {
       "scripts": [
+          "scripts/ubuntu1704/network.sh",
           "scripts/ubuntu1704/apt.sh"
       ],
       "type": "shell",
@@ -328,7 +358,6 @@
     },
     {
       "scripts": [
-          "scripts/ubuntu1704/network.sh",
           "scripts/ubuntu1704/limits.sh",
           "scripts/ubuntu1704/postfix.sh",
           "scripts/ubuntu1704/mysql.sh",
@@ -348,6 +377,7 @@
     },
     {
       "scripts": [
+          "scripts/ubuntu1604/network.sh",
           "scripts/ubuntu1604/apt.sh"
       ],
       "type": "shell",
@@ -357,7 +387,6 @@
     },
     {
       "scripts": [
-          "scripts/ubuntu1604/network.sh",
           "scripts/ubuntu1604/limits.sh",
           "scripts/ubuntu1604/vagrant.sh",
           "scripts/ubuntu1604/fixtty.sh",
@@ -399,6 +428,51 @@
     }
   ],
   "builders": [
+    {
+        "type": "qemu",
+        "name": "magma-alpine-libvirt",
+        "vm_name": "magma-alpine-libvirt",
+        "output_directory": "output/magma-alpine-libvirt",
+        "accelerator": "kvm",
+        "qemu_binary": "/usr/libexec/qemu-kvm",
+        "boot_wait": "20s",
+        "boot_command": [
+          "root<enter><wait>",
+          "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+          "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.alpine35.vagrant.cfg<enter><wait>",
+          "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+          "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f magma.alpine35.vagrant.cfg && ",
+          "mount /dev/sda3 /mnt && ",
+          "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+          "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+          "umount /mnt && reboot<enter>"
+        ],
+        "format": "qcow2",
+        "disk_size": 32768,
+        "disk_interface": "virtio",
+        "disk_compression": true,
+        "net_device": "virtio-net",
+        "qemuargs": [
+            [
+                "-m",
+                "2048M"
+            ],
+            [
+                "-smp",
+                "cpus=2"
+            ]
+        ],
+        "http_directory": "http",
+        "headless": true,
+        "iso_urls": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
+        "iso_checksum": "2258ca975d7b829ea6229d314b2782d4070ec9b7f688392817e562f5a14a34b5",
+        "iso_checksum_type": "sha256",
+        "ssh_username": "root",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_wait_timeout": "10000s",
+        "shutdown_command": "/sbin/poweroff"
+    },
     {
         "type": "qemu",
         "name": "magma-libvirt",
@@ -1028,6 +1102,18 @@
         "vagrantfile_template": "tpl/lineage.rb",
         "output": "output/{{build_name}}-{{user `box_version`}}.box",
         "only": ["lineage-libvirt"]
+      },
+      {
+          "type": "atlas",
+          "only": ["magma-alpine-libvirt"],
+          "artifact": "lavabit/magma-alpine",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "virtualbox",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "The magma encrypted mail daemon build environment."
+          }
       },
       {
           "type": "atlas",
