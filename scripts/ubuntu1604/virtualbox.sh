@@ -18,11 +18,11 @@ printf "Installing the Virtual Box Tools.\n"
 export DEBIAN_FRONTEND=noninteractive
 apt-get --assume-yes install virtualbox-guest-additions-iso; error
 
-# # Read in the version number.
-# export VBOXVERSION=`cat /root/VBoxVersion.txt`
+# Read in the version number.
+export VBOXVERSION=`cat /root/VBoxVersion.txt`
 #
 # export DEBIAN_FRONTEND=noninteractive
-# apt-get --assume-yes install build-essential libc6 libcurl3 libdevmapper1.02.1 libgcc1 libpng12-0 libpython2.7 libssl1.0.0 libstdc++6 libvpx3 libxml2 zlib1g psmisc adduser kmod dkms module-init-tools gcc make binutils dpkg-dev linux-image linux-headers linux-headers-generic linux-headers-amd64 linux-headers-`uname -r`; error
+# apt-get --assume-yes install dkms build-essential module-assistant linux-headers-$(uname -r); error
 #
 # mkdir -p /mnt/virtualbox; error
 # mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
