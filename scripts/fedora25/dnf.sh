@@ -41,3 +41,6 @@ dnf --assumeyes install sudo dmidecode; error
 # Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays
 # often interupt the the provisioning process.
 dnf --assumeyes upgrade; error
+
+# Reboot onto the new kernel (if applicable).
+shutdown --reboot --no-wall +1

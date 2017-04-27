@@ -131,13 +131,21 @@
     },
     {
       "scripts": [
-        "scripts/debian8/apt.sh",
+        "scripts/debian8/apt.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["magma-debian8-vmware"]
+    },
+    {
+      "scripts": [
         "scripts/debian8/virtualbox.sh",
         "scripts/debian8/vmware.sh",
         "scripts/debian8/qemu.sh",
         "scripts/debian8/network.sh",
         "scripts/debian8/postfix.sh",
-        "scripts/debian8/database.sh",
+        "scripts/debian8/mysql.sh",
         "scripts/debian8/limits.sh",
         "scripts/debian8/memcached.sh",
         "scripts/debian8/vagrant.sh",
@@ -154,11 +162,20 @@
         "type": "shell",
         "scripts": [
             "scripts/fedora25/fixdns.sh",
-            "scripts/fedora25/dnf.sh",
-            "scripts/fedora25/base.sh",
-            "scripts/fedora25/reboot.sh"
+            "scripts/fedora25/dnf.sh"
         ],
         "type": "shell",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-fedora25-vmware"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/fedora25/base.sh"
+        ],
+        "type": "shell",
+        "pause_before": "120s",
         "start_retry_timeout": "15m",
         "expect_disconnect": "true",
         "only": ["magma-fedora25-vmware"]
@@ -185,7 +202,6 @@
         "scripts/freebsd11/magma.sh"
       ],
       "type": "shell",
-      "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "chmod +x {{ .Path }}",
@@ -196,7 +212,6 @@
         "scripts/openbsd6/magma.sh"
       ],
       "type": "shell",
-      "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "chmod +x {{ .Path }}",
@@ -242,7 +257,7 @@
           "scripts/ubuntu1604/network.sh",
           "scripts/ubuntu1604/limits.sh",
           "scripts/ubuntu1604/postfix.sh",
-          "scripts/ubuntu1604/database.sh",
+          "scripts/ubuntu1604/mysql.sh",
           "scripts/ubuntu1604/memcached.sh",
           "scripts/ubuntu1604/magma.sh",
           "scripts/ubuntu1604/vagrant.sh",
@@ -271,7 +286,7 @@
           "scripts/ubuntu1604/network.sh",
           "scripts/ubuntu1604/limits.sh",
           "scripts/ubuntu1604/postfix.sh",
-          "scripts/ubuntu1604/database.sh",
+          "scripts/ubuntu1604/mysql.sh",
           "scripts/ubuntu1604/memcached.sh",
           "scripts/ubuntu1604/magma.sh",
           "scripts/ubuntu1604/vagrant.sh",
@@ -300,7 +315,7 @@
           "scripts/ubuntu1610/network.sh",
           "scripts/ubuntu1610/limits.sh",
           "scripts/ubuntu1610/postfix.sh",
-          "scripts/ubuntu1610/database.sh",
+          "scripts/ubuntu1610/mysql.sh",
           "scripts/ubuntu1610/memcached.sh",
           "scripts/ubuntu1610/magma.sh",
           "scripts/ubuntu1610/vagrant.sh",
@@ -329,7 +344,7 @@
           "scripts/ubuntu1704/network.sh",
           "scripts/ubuntu1704/limits.sh",
           "scripts/ubuntu1704/postfix.sh",
-          "scripts/ubuntu1704/database.sh",
+          "scripts/ubuntu1704/mysql.sh",
           "scripts/ubuntu1704/memcached.sh",
           "scripts/ubuntu1704/magma.sh",
           "scripts/ubuntu1704/vagrant.sh",

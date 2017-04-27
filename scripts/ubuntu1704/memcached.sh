@@ -7,4 +7,4 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get --assume-yes install memcached libevent-dev
 
 # Setup memcached to start automatically.
-systemctl enable memcached.service
+systemctl start memcached.service && systemctl enable memcached.service

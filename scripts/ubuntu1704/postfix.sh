@@ -23,4 +23,4 @@ printf "tansport_maps = hash:/etc/postfix/transport\n" >> /etc/postfix/main.cf
 # postmap /etc/postfix/transport
 
 # So it gets started automatically.
-systemctl enable postfix.service
+systemctl start postfix.service && systemctl enable postfix.service

@@ -1,5 +1,4 @@
 #!/bin/bash -eux
-#
 
 # To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive

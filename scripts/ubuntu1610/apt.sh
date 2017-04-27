@@ -31,9 +31,10 @@ apt-get --assume-yes install vim vim-nox git git-man liberror-perl wget curl rsy
 sed -i -e "s|.*ENABLED=\".*\"|ENABLED=\"true\"|g" /etc/default/sysstat
 
 # Start the services we just added so the system will track its own performance.
-systemctl start sysstat.service
+systemctl enable sysstat.service && systemctl start sysstat.service
 
 # Setup vim as the default editor.
 printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
 
+# Reboot onto the new kernel (if applicable).
 reboot

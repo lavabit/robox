@@ -34,3 +34,6 @@ apt-get --assume-yes install python-crypto python-cryptography; error
 
 # Boosts the available entropy which allows magma to start faster.
 apt-get --assume-yes install haveged; error
+
+# Reboot onto the new kernel (if applicable).
+reboot
