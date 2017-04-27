@@ -224,43 +224,17 @@
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": ["lineage-vmware"]
-    },
-    {
-      "scripts": [
-          "scripts/ubuntu1604/network.sh",
-          "scripts/ubuntu1604/limits.sh",
-          "scripts/ubuntu1604/lineage.sh",
-          "scripts/ubuntu1604/vagrant.sh",
-          "scripts/ubuntu1604/fixtty.sh",
-          "scripts/ubuntu1604/virtualbox.sh",
-          "scripts/ubuntu1604/vmware.sh",
-          "scripts/ubuntu1604/qemu.sh"
-      ],
-      "type": "shell",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": ["lineage-vmware"]
-    },
-    {
-      "scripts": [
-          "scripts/ubuntu1604/apt.sh"
-      ],
-      "type": "shell",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
       "only": ["magma-ubuntu-vmware"]
     },
     {
       "scripts": [
           "scripts/ubuntu1604/network.sh",
           "scripts/ubuntu1604/limits.sh",
+          "scripts/ubuntu1704/vagrant.sh",
           "scripts/ubuntu1604/postfix.sh",
           "scripts/ubuntu1604/mysql.sh",
           "scripts/ubuntu1604/memcached.sh",
           "scripts/ubuntu1604/magma.sh",
-          "scripts/ubuntu1604/vagrant.sh",
           "scripts/ubuntu1604/fixtty.sh",
           "scripts/ubuntu1604/virtualbox.sh",
           "scripts/ubuntu1604/vmware.sh",
@@ -285,11 +259,11 @@
       "scripts": [
           "scripts/ubuntu1604/network.sh",
           "scripts/ubuntu1604/limits.sh",
+          "scripts/ubuntu1704/vagrant.sh",
           "scripts/ubuntu1604/postfix.sh",
           "scripts/ubuntu1604/mysql.sh",
           "scripts/ubuntu1604/memcached.sh",
           "scripts/ubuntu1604/magma.sh",
-          "scripts/ubuntu1604/vagrant.sh",
           "scripts/ubuntu1604/fixtty.sh",
           "scripts/ubuntu1604/virtualbox.sh",
           "scripts/ubuntu1604/vmware.sh",
@@ -314,11 +288,11 @@
       "scripts": [
           "scripts/ubuntu1610/network.sh",
           "scripts/ubuntu1610/limits.sh",
+          "scripts/ubuntu1610/vagrant.sh",
           "scripts/ubuntu1610/postfix.sh",
           "scripts/ubuntu1610/mysql.sh",
           "scripts/ubuntu1610/memcached.sh",
           "scripts/ubuntu1610/magma.sh",
-          "scripts/ubuntu1610/vagrant.sh",
           "scripts/ubuntu1610/fixtty.sh",
           "scripts/ubuntu1610/virtualbox.sh",
           "scripts/ubuntu1610/vmware.sh",
@@ -343,11 +317,11 @@
       "scripts": [
           "scripts/ubuntu1704/network.sh",
           "scripts/ubuntu1704/limits.sh",
+          "scripts/ubuntu1704/vagrant.sh",
           "scripts/ubuntu1704/postfix.sh",
           "scripts/ubuntu1704/mysql.sh",
           "scripts/ubuntu1704/memcached.sh",
           "scripts/ubuntu1704/magma.sh",
-          "scripts/ubuntu1704/vagrant.sh",
           "scripts/ubuntu1704/fixtty.sh",
           "scripts/ubuntu1704/virtualbox.sh",
           "scripts/ubuntu1704/vmware.sh",
@@ -360,10 +334,45 @@
       "only": ["magma-ubuntu1704-vmware"]
     },
     {
+      "scripts": [
+          "scripts/ubuntu1604/apt.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["lineage-vmware"]
+    },
+    {
+      "scripts": [
+          "scripts/ubuntu1604/network.sh",
+          "scripts/ubuntu1604/limits.sh",
+          "scripts/ubuntu1704/vagrant.sh",
+          "scripts/ubuntu1604/lineage.sh",
+          "scripts/ubuntu1604/fixtty.sh",
+          "scripts/ubuntu1604/virtualbox.sh",
+          "scripts/ubuntu1604/vmware.sh",
+          "scripts/ubuntu1604/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["lineage-vmware"]
+    },
+    {
       "type": "file",
       "direction": "upload",
       "source": "res/blobs/system-blobs.tar.gz",
       "destination": "/home/vagrant/system-blobs.tar.gz",
+      "only": ["lineage-vmware"]
+    },
+    {
+      "scripts": [
+          "scripts/ubuntu1604/lineage.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
       "only": ["lineage-vmware"]
     },
     {
