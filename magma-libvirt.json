@@ -207,32 +207,6 @@
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": ["lineage-libvirt"]
-    },
-    {
-      "scripts": [
-          "scripts/ubuntu1604/network.sh",
-          "scripts/ubuntu1604/limits.sh",
-          "scripts/ubuntu1604/lineage.sh",
-          "scripts/ubuntu1604/vagrant.sh",
-          "scripts/ubuntu1604/fixtty.sh",
-          "scripts/ubuntu1604/virtualbox.sh",
-          "scripts/ubuntu1604/vmware.sh",
-          "scripts/ubuntu1604/qemu.sh"
-      ],
-      "type": "shell",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": ["lineage-libvirt"]
-    },
-    {
-      "scripts": [
-          "scripts/ubuntu1604/apt.sh"
-      ],
-      "type": "shell",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
       "only": ["magma-ubuntu-libvirt"]
     },
     {
@@ -343,10 +317,44 @@
       "only": ["magma-ubuntu1704-libvirt"]
     },
     {
+      "scripts": [
+          "scripts/ubuntu1604/apt.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["lineage-libvirt"]
+    },
+    {
+      "scripts": [
+          "scripts/ubuntu1604/network.sh",
+          "scripts/ubuntu1604/limits.sh",
+          "scripts/ubuntu1604/vagrant.sh",
+          "scripts/ubuntu1604/fixtty.sh",
+          "scripts/ubuntu1604/virtualbox.sh",
+          "scripts/ubuntu1604/vmware.sh",
+          "scripts/ubuntu1604/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": ["lineage-libvirt"]
+    },
+    {
       "type": "file",
       "direction": "upload",
       "source": "res/blobs/system-blobs.tar.gz",
       "destination": "/home/vagrant/system-blobs.tar.gz",
+      "only": ["lineage-libvirt"]
+    },
+    {
+      "scripts": [
+          "scripts/ubuntu1604/lineage.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
       "only": ["lineage-libvirt"]
     },
     {
@@ -1101,18 +1109,6 @@
       },
       {
           "type": "atlas",
-          "only": ["lineage-libvirt"],
-          "artifact": "lavabit/lineage",
-          "artifact_type": "vagrant.box",
-          "metadata": {
-              "provider": "libvirt",
-              "version": "{{user `box_version`}}",
-              "created_at": "{{timestamp}}",
-              "description": "The Lineage mobile operating system build environment."
-          }
-      },
-      {
-          "type": "atlas",
           "only": ["magma-ubuntu-libvirt"],
           "artifact": "lavabit/magma-ubuntu",
           "artifact_type": "vagrant.box",
@@ -1157,6 +1153,18 @@
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
+          }
+      },
+      {
+          "type": "atlas",
+          "only": ["lineage-libvirt"],
+          "artifact": "lineage/lineage",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "libvirt",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "The Lineage mobile operating system build environment."
           }
       },
       {

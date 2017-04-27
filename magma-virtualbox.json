@@ -1143,18 +1143,6 @@
       },
       {
           "type": "atlas",
-          "only": ["lineage-virtualbox"],
-          "artifact": "lavabit/lineage",
-          "artifact_type": "vagrant.box",
-          "metadata": {
-              "provider": "virtualbox",
-              "version": "{{user `box_version`}}",
-              "created_at": "{{timestamp}}",
-              "description": "The Lineage mobile operating system build environment."
-          }
-      },
-      {
-          "type": "atlas",
           "only": ["magma-ubuntu-virtualbox"],
           "artifact": "lavabit/magma-ubuntu",
           "artifact_type": "vagrant.box",
@@ -1199,6 +1187,18 @@
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
+          }
+      },
+      {
+          "type": "atlas",
+          "only": ["lineage-virtualbox"],
+          "artifact": "lineage/lineage",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "virtualbox",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "The Lineage mobile operating system build environment."
           }
       },
       {
