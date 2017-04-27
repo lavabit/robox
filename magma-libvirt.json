@@ -449,7 +449,7 @@
         ],
         "format": "qcow2",
         "disk_size": 32768,
-        "disk_interface": "virtio",
+        "disk_interface": "sata",
         "disk_compression": true,
         "net_device": "virtio-net",
         "qemuargs": [
@@ -1109,7 +1109,7 @@
           "artifact": "lavabit/magma-alpine",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."

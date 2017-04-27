@@ -1024,7 +1024,7 @@
           "artifact": "lavabit/magma-alpine",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "vmware",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
