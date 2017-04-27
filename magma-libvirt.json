@@ -109,6 +109,7 @@
     },
     {
       "scripts": [
+        "scripts/gentoo/vagrant.sh",
         "scripts/gentoo/magma.sh"
       ],
       "type": "shell",
@@ -119,6 +120,7 @@
     },
     {
       "scripts": [
+        "scripts/arch/vagrant.sh",
         "scripts/arch/magma.sh"
       ],
       "type": "shell",

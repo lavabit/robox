@@ -1,7 +1,10 @@
-#!/bin/bash -eux
+#!/bin/bash -ux
 
 # Create the vagrant user account.
-# /usr/sbin/useradd vagrant
+/usr/sbin/useradd vagrant
+
+# Enable exit/failure on error.
+set -eux
 
 printf "vagrant\nvagrant\n" | passwd vagrant
 sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
@@ -18,7 +21,7 @@ EOF
 
 # Ensure the permissions are set correct to avoid OpenSSH complaints.
 chmod 0600 /home/vagrant/.ssh/authorized_keys
-chown -R vagrant /home/vagrant/.ssh
+chown -R vagrant:vagrant /home/vagrant/.ssh
 
 # Mark the vagrant box build time.
 date --utc > /etc/vagrant_box_build_time
