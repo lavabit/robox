@@ -93,3 +93,6 @@ if [ -d /home/vagrant/ ]; then
 else
   chmod +x /root/magma-build.sh
 fi
+
+# Customize the message of the day
+printf "Magma Daemon Development Environment\nTo download and compile magma, just execute the magma-build.sh script.\n\n" > /etc/motd

@@ -22,6 +22,3 @@ chown -R vagrant /home/vagrant/.ssh
 
 # Mark the vagrant box build time.
 date --utc > /etc/vagrant_box_build_time
-
-# Customize the message of the day
-printf "Magma Daemon Development Environment\nTo download and compile magma, just execute the magma-build.sh script.\n\n" > /etc/motd
