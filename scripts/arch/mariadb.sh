@@ -1,6 +1,7 @@
 #!/bin/bash -eux
 
-mariadb mariadb-clients libmariadbclient boost-libs jemalloc
+# Install mariadb and its dependencies.
+pacman --sync --noconfirm mariadb mariadb-clients libmariadbclient boost-libs jemalloc
 
 # Create the mariadb auth database.
 mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
