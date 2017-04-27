@@ -5,5 +5,5 @@ TOTALMEM=`free -k | grep -E "^Mem:" | awk -F' ' '{print $2}'`
 HALFMEM=`echo $(($TOTALMEM/2))`
 
 # Setup the memory locking limits.
-printf "*    soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-magmad.conf
-printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.conf
+printf "*    soft    memlock    $HALFMEM\n" >> /etc/security/limits.conf
+printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.conf
