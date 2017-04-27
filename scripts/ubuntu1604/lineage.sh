@@ -1,4 +1,4 @@
-#!/bin/bash -eux
+#!/bin/bash
 
 # Disable IPv6 or DNS names will resolve to AAAA yet connections will fail.
 sysctl net.ipv6.conf.all.disable_ipv6=1
@@ -40,6 +40,35 @@ apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni l
 #   printf "export EXPERIMENTAL_USE_JAVA8=true\n" > /etc/profile.d/java8.sh
 # fi
 
+# Enable the source code repositories.
+sed -i -e "s|.*deb-src |deb-src |g" /etc/apt/sources.list
+apt-get --assume-yes update
+
+# Ensure the dependencies required to compile git are available.
+apt-get --assume-yes install build-essential fakeroot dpkg-dev
+apt-get --assume-yes build-dep git
+
+# The build-dep command will remove the OpenSSL version of libcurl, so we have to
+# install here instead.
+apt-get --assume-yes install libcurl4-openssl-dev
+
+# Download the git sourcecode.
+mkdir -p $HOME/git-openssl && cd $HOME/git-openssl
+apt-get source git
+dpkg-source -x `find * -type f -name *.dsc`
+cd `find * -maxdepth 0 -type d`
+
+# Recompile git using OpenSSL instead of gnutls.
+sed -i -e "s|libcurl4-gnutls-dev|libcurl4-openssl-dev|g" debian/control
+sed -i -e "/TEST[ ]*=test/d" debian/rules
+dpkg-buildpackage -rfakeroot -b
+
+# Insall the new version.
+dpkg -i `find ../* -type f -name *amd64.deb`
+
+# Cleanup the git build directory.
+cd $HOME && rm --force --recursive $HOME/git-openssl
+
 # Download the Android tools.
 curl --output platform-tools-latest-linux.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 
@@ -56,22 +85,8 @@ printf "PATH=/usr/local/platform-tools/:$PATH\n" > /etc/profile.d/platform-tools
 curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
 chmod a+x /usr/bin/repo
 
-# # Do we need to recompile git? If so, retrieve it here.
-# curl --output git-2.12.2.tar.gz https://www.kernel.org/pub/software/scm/git/git-2.12.2.tar.gz
-# curl --output git-manpages-2.12.2.tar.gz https://www.kernel.org/pub/software/scm/git/git-manpages-2.12.2.tar.gz
-#
-# # Extrract, compile and install the git tarball.
-# tar xzvf git-2.12.2.tar.gz
-# cd git-2.12.2 && ./configure && make && make install && cd ..
-#
-# # Install the man pages.
-# tar -xzv -C /usr/local/share/man/ -f git-manpages-2.12.2.tar.gz
-#
-# # Cleanup the downloaded git code.
-# rm --recursive --force git-2.12.2 git-2.12.2.tar.gz git-manpages-2.12.2.tar.gz
-
 cat <<-EOF > /home/vagrant/lineage-build.sh
-#!/bin/bash -eux
+#!/bin/bash
 
 # The Motorol Photon Q by default - because physical keyboards eat virtual keyboards
 # for breakfast, brunch and then dinner.
@@ -82,6 +97,18 @@ export VENDOR=\${VENDOR:="motorola"}
 
 export NAME=\${NAME:="Ladar Levison"}
 export EMAIL=\${EMAIL:="ladar@lavabit.com"}
+
+echo DEVICE=$DEVICE
+echo BRANCH=$BRANCH
+echo VENDOR=$VENDOR
+echo
+echo NAME=$NAME
+echo EMAIL=$EMAIL
+echo
+echo "Override the above environment variables in your Vagrantfile to alter the build configuration."
+echo
+echo
+sleep 10
 
 # Setup the branch and enable the distributed cache.
 export USE_CCACHE=1
@@ -188,3 +215,10 @@ ls -alh "SYSIMAGE" "SYSIMAGESUM"
 # adb push "\$SYSIMAGE" /sdcard/
 
 EOF
+
+chown vagrant:vagrant /home/vagrant/system-blobs.tar.gz
+chown vagrant:vagrant /home/vagrant/lineage-build.sh
+chmod +x /home/vagrant/lineage-build.sh
+
+# Customize the message of the day
+printf "Lineage Development Environment\nTo download and compile Lineage, just execute the lineage-build.sh script.\n\n" > /etc/motd
