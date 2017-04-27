@@ -1,7 +1,18 @@
 #!/bin/bash -eux
-#
-# Setup the the box. This runs as root
 
+# The packages needed to compile magma.
+emerge m4 gc gcc patch make cmake flex binutils bison valgrind libtool autoconf pkg-config gdb gdb-common ncurses mpfr jsoncpp guile guile2.0 shared-mime-info glibc libatomic_ops libmpc libuv libxml2 libbsd libarchive python python-appdirs python-extras python-fixtures python-mimeparse python-packaging python-pbr python-pyparsing python-pyrsistent python-setuptools python-six python-testtools python-subunit
+
+# Need to retrieve the source code.
+emerge git perl-error
+
+# Needed to run the watcher and status scripts.
+emerge sysstat lm_sensors inotify-tools
+
+# Needed to run the stacie script.
+emerge python-asn1crypto python-cffi python-idna python-ply python-pycparser python-crypto python-cryptography
+
+# Setup the the box. This runs as root
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
 else
