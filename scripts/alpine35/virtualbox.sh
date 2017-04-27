@@ -35,4 +35,4 @@ rm -rf /root/VBoxGuestAdditions.iso; error
 apk add --force haveged; error
 
 # Autostart the haveged daemon.
-rc-update add haveged default && rc-service haveged start
+rc-update add haveged default && rc-service haveged start; error

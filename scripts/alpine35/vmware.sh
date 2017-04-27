@@ -16,10 +16,10 @@ fi
 # Install the VMWare Tools from the Linux ISO.
 printf "Installing the VMWare Tools.\n"
 
-apk add --force open-vm-tools
+apk add --force open-vm-tools; error
 
-# Autostart the haveged daemon.
-rc-update add open-vm default && rc-service open-vm start
+# Autostart the open-vm-tools.
+rc-update add open-vm-tools default && rc-service open-vm-tools start; error
 
 #mkdir -p /mnt/vmware; error
 #mount -o loop /root/linux.iso /mnt/vmware; error
@@ -37,4 +37,4 @@ rm -rf /root/linux.iso; error
 apk add --force haveged; error
 
 # Autostart the haveged daemon.
-rc-update add haveged default && rc-service haveged start
+rc-update add haveged default && rc-service haveged start; error

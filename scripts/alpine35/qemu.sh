@@ -16,10 +16,14 @@ fi
 # Install the QEMU using Yum.
 printf "Installing the QEMU Tools.\n"
 
+# Install the QEMU guest tools.
 apk add --force qemu-guest-agent; error
+
+# Autostart the open-vm-tools.
+rc-update add qemu-guest-agent default && rc-service qemu-guest-agent start; error
 
 # Boosts the available entropy which allows magma to start faster.
 apk add --force haveged; error
 
 # Autostart the haveged daemon.
-rc-update add haveged default && rc-service haveged start
+rc-update add haveged default && rc-service haveged start; error
