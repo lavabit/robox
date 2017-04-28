@@ -23,7 +23,7 @@ dnf --assumeyes install bzip2
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
 
-sh /mnt/virtualbox/VBoxLinuxAdditions.run; error
+sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; error
 ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions; error
 
 umount /mnt/virtualbox; error
