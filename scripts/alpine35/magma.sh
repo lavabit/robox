@@ -1,12 +1,23 @@
 #!/bin/bash -eux
 
 # The packages needed to compile magma.
-apk add --force m4 gcc g++ gdb gdbm perl make glib expat automake autoconf valgrind python2 binutils binutils-libs gmp isl mpc1 pkgconf mpfr3 libtool flex bison cmake ca-certificates patch libbz2 libgomp libatomic libltdl libbsd libattr libacl libarchive libcurl libc-dev musl-dev valgrind-dev libbsd-dev subunit-dev
+apk add --force bash m4 gcc g++ gdb gdbm grep perl make glib expat musl musl-utils \
+automake autoconf valgrind binutils binutils-libs gmp isl mpc1 python2 pkgconf \
+mpfr3 libtool flex bison cmake ca-certificates patch ncurses-doc ncurses-libs \
+ncurses-dev ncurses-static ncurses ncurses-terminfo-base ncurses-terminfo \
+util-linux-dev makedepend linux-vanilla-dev build-base coreutils ctags \
+diffutils doxygen elfutils fortify-headers gawk sed texinfo bsd-compat-headers \
+libc-utils patchutils strace tar \
+libbz2 libgomp libatomic libltdl libbsd libattr libacl libarchive libcurl \
+libpthread-stubs libgcc libgc++ libc6-compat \
+glib-dev libc-dev musl-dev valgrind-dev libbsd-dev subunit-dev  marco-dev \
+acl-dev popt-dev python2-dev pkgconf-dev zlib-dev \
+gcc-doc m4-doc make-doc patch-doc
 
 # libbsd-dev libsubunit-dev libsubunit0 pkg-config
 
 # Need to retrieve the source code.
-apk add --force git git-doc git-perl liberror-perl popt rsync wget
+apk add --force git git-doc git-perl popt rsync wget
 
 # Needed to run the watcher and status scripts.
 apk add --force sysstat inotify-tools lm_sensors sysfsutils
