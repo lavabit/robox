@@ -56,6 +56,12 @@ dev/scripts/database/schema.reset.sh; error
 dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
 sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 
+# Ensure the sandbox config uses port 2525 for relays.
+sed -i -e "/magma.relay\[[0-9]*\].name.*/d" sandbox/etc/magma.sandbox.config
+sed -i -e "/magma.relay\[[0-9]*\].port.*/d" sandbox/etc/magma.sandbox.config
+sed -i -e "/magma.relay\[[0-9]*\].secure.*/d" sandbox/etc/magma.sandbox.config
+printf "\n\nmagma.relay\[1\].name = localhost\nmagma.relay\[1\].port 2525\n\n"
+
 # Bug fix... create the scan directory so ClamAV unit tests work.
 if [ ! -d 'sandbox/spool/scan/' ]; then
   mkdir -p sandbox/spool/scan/

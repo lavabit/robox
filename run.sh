@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.8.8"
+export VERSION="0.8.11"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -15,11 +15,11 @@ cd $BASE
 sudo sysctl net.ipv6.conf.all.disable_ipv6=1
 
 # Start the required services.
-#sudo systemctl restart vmtoolsd.service
-#sudo systemctl restart vboxdrv.service
-#sudo systemctl restart libvirtd.service
-#sudo systemctl restart docker-latest.service
-#sudo systemctl restart vmware.service vmware-USBArbitrator.service vmware-workstation-server.service
+sudo systemctl restart vmtoolsd.service
+sudo systemctl restart vboxdrv.service
+sudo systemctl restart libvirtd.service
+sudo systemctl restart docker-latest.service
+sudo systemctl restart vmware.service vmware-USBArbitrator.service vmware-workstation-server.service
 
 # Validate the templates before building.
 validate() {
@@ -66,8 +66,8 @@ build() {
   export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/$1.txt"
 
   # packer build -on-error=cleanup -parallel=false $1.json
-  # packer build -on-error=cleanup -parallel=false -except=magma-gentoo-vmware,magma-gentoo-libvirt,magma-gentoo-virtualbox,magma-openbsd6-vmware,magma-openbsd6-libvirt,magma-openbsd6-virtualbox $1.json
   packer build -on-error=cleanup -parallel=false -except=magma-gentoo-vmware,magma-gentoo-libvirt,magma-gentoo-virtualbox $1.json
+  #packer build -on-error=cleanup -parallel=false -only=magma-alpine-vmware,magma-alpine-libvirt,magma-alpine-virtualbox $1.json
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
@@ -96,9 +96,9 @@ done
 # Let the user know all of the links passed.
 printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
 
-build magma-virtualbox
 build magma-vmware
 build magma-libvirt
+build magma-virtualbox
 
 for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done
 

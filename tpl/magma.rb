@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
   config.vm.box_download_checksum = true
   config.vm.box_download_checksum_type = "sha256"
 
-  config.vm.useable_port_range = 20000..30000
+  config.vm.auto_port_range = 20000..30000
 
   # The box ships with a short script that will clone the git repo and
   # compile the code. This line will trigger that process automatically
