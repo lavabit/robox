@@ -972,7 +972,7 @@
         "vagrant<enter><wait>",
         "vagrant<enter><wait>",
         "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/gentoo.install{,.chroot}.sh'<enter><wait>",
-        "bash gentoo.install.sh && chroot /mnt/gentoo /bin/bash < gentoo.install.chroot.sh<enter>"
+        "bash gentoo.install.sh && (chroot /mnt/gentoo /bin/bash < gentoo.install.chroot.sh) && reboot<enter>"
       ],
       "format": "qcow2",
       "disk_size": 32768,

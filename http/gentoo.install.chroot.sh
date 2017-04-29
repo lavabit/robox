@@ -38,8 +38,8 @@ echo 'US/Pacific' > /etc/timezone
 
 echo 'Emerging Dependencies'
 cd /usr/portage
-emerge sys-kernel/gentoo-sources
-emerge sys-boot/grub
+emerge sys-kernel/gentoo-sources sys-boot/grub app-editors/vim app-admin/sudo \
+sys-apps/netplug sys-apps/dmidecode
 
 echo 'Compiling Kernel'
 cd /usr/src/linux
@@ -857,6 +857,41 @@ CONFIG_NETWORK_SECMARK=y
 CONFIG_NETFILTER=y
 # CONFIG_NETFILTER_DEBUG is not set
 # CONFIG_NETFILTER_ADVANCED is not set
+CONFIG_NET_VENDOR_AMD=y
+CONFIG_ETHERNET=y
+CONFIG_IWLWIFI=m
+CONFIG_IWLWIFI_LEDS=y
+CONFIG_IWLDVM=m
+CONFIG_IWLMVM=m
+CONFIG_NET_VENDOR_INTEL=y
+CONFIG_WLAN_VENDOR_INTEL=y
+CONFIG_IWLWIFI=m
+CONFIG_IWLWIFI_LEDS=y
+CONFIG_IWLDVM=m
+CONFIG_IWLMVM=m
+CONFIG_FIREWIRE=m
+CONFIG_NETDEVICES=y
+CONFIG_NET_CORE=y
+CONFIG_IPVLAN=m
+CONFIG_VXLAN=m
+CONFIG_NET_POLL_CONTROLLER=y
+CONFIG_NTB_NETDEV=m
+CONFIG_TUN=m
+CONFIG_VETH=m
+CONFIG_VIRTIO_NET=m
+CONFIG_NLMON=m
+CONFIG_VMXNET3=m
+CONFIG_VIRTIO=m
+CONFIG_VIRTIO_NET=m
+CONFIG_VIRTIO_VSOCKETS=m
+CONFIG_VIRTIO_VSOCKETS_COMMON=m
+CONFIG_NET_9P_VIRTIO=m
+CONFIG_8139CP=m
+CONFIG_8139TOO=m
+CONFIG_E100=m
+CONFIG_E1000=m
+CONFIG_E1000E=m
+CONFIG_PCNET32=m
 
 #
 # Core Netfilter Configuration
@@ -1406,7 +1441,6 @@ CONFIG_NET_POLL_CONTROLLER=y
 #
 # CONFIG_NET_DSA_MV88E6XXX is not set
 # CONFIG_NET_DSA_MV88E6XXX_NEED_PPU is not set
-# CONFIG_ETHERNET is not set
 # CONFIG_FDDI is not set
 # CONFIG_HIPPI is not set
 # CONFIG_NET_SB1000 is not set
@@ -2659,8 +2693,8 @@ CONFIG_DMA_ACPI=y
 #
 # Virtio drivers
 #
-# CONFIG_VIRTIO_PCI is not set
-# CONFIG_VIRTIO_MMIO is not set
+CONFIG_VIRTIO_PCI=y
+CONFIG_VIRTIO_MMIO=y
 
 #
 # Microsoft Hyper-V guest support
@@ -3239,20 +3273,20 @@ CONFIG_CRYPTO_AUTHENC=y
 #
 # Authenticated Encryption with Associated Data
 #
-# CONFIG_CRYPTO_CCM is not set
-# CONFIG_CRYPTO_GCM is not set
+CONFIG_CRYPTO_CCM=y
+CONFIG_CRYPTO_GCM=y
 # CONFIG_CRYPTO_SEQIV is not set
 
 #
 # Block modes
 #
 CONFIG_CRYPTO_CBC=y
-# CONFIG_CRYPTO_CTR is not set
-# CONFIG_CRYPTO_CTS is not set
+CONFIG_CRYPTO_CTR=y
+CONFIG_CRYPTO_CTS=y
 # CONFIG_CRYPTO_ECB is not set
 # CONFIG_CRYPTO_LRW is not set
 # CONFIG_CRYPTO_PCBC is not set
-# CONFIG_CRYPTO_XTS is not set
+CONFIG_CRYPTO_XTS=y
 
 #
 # Hash modes
@@ -3283,24 +3317,24 @@ CONFIG_CRYPTO_SHA1=y
 # CONFIG_CRYPTO_SHA256_SSSE3 is not set
 # CONFIG_CRYPTO_SHA512_SSSE3 is not set
 # CONFIG_CRYPTO_SHA1_MB is not set
-# CONFIG_CRYPTO_SHA256 is not set
-# CONFIG_CRYPTO_SHA512 is not set
-# CONFIG_CRYPTO_TGR192 is not set
-# CONFIG_CRYPTO_WP512 is not set
+CONFIG_CRYPTO_SHA256=y
+CONFIG_CRYPTO_SHA512=y
+CONFIG_CRYPTO_TGR192=y
+CONFIG_CRYPTO_WP512=y
 # CONFIG_CRYPTO_GHASH_CLMUL_NI_INTEL is not set
 
 #
 # Ciphers
 #
 CONFIG_CRYPTO_AES=y
-# CONFIG_CRYPTO_AES_X86_64 is not set
-# CONFIG_CRYPTO_AES_NI_INTEL is not set
+CONFIG_CRYPTO_AES_X86_64=y
+CONFIG_CRYPTO_AES_NI_INTEL=n
 # CONFIG_CRYPTO_ANUBIS is not set
 # CONFIG_CRYPTO_ARC4 is not set
 # CONFIG_CRYPTO_BLOWFISH is not set
 # CONFIG_CRYPTO_BLOWFISH_X86_64 is not set
-# CONFIG_CRYPTO_CAMELLIA is not set
-# CONFIG_CRYPTO_CAMELLIA_X86_64 is not set
+CONFIG_CRYPTO_CAMELLIA=y
+CONFIG_CRYPTO_CAMELLIA_X86_64=y
 # CONFIG_CRYPTO_CAMELLIA_AESNI_AVX_X86_64 is not set
 # CONFIG_CRYPTO_CAMELLIA_AESNI_AVX2_X86_64 is not set
 # CONFIG_CRYPTO_CAST5 is not set
@@ -3311,10 +3345,10 @@ CONFIG_CRYPTO_DES=y
 # CONFIG_CRYPTO_DES3_EDE_X86_64 is not set
 # CONFIG_CRYPTO_FCRYPT is not set
 # CONFIG_CRYPTO_KHAZAD is not set
-# CONFIG_CRYPTO_SALSA20 is not set
-# CONFIG_CRYPTO_SALSA20_X86_64 is not set
+CONFIG_CRYPTO_SALSA20=y
+CONFIG_CRYPTO_SALSA20_X86_64=y
 # CONFIG_CRYPTO_SEED is not set
-# CONFIG_CRYPTO_SERPENT is not set
+CONFIG_CRYPTO_SERPENT=y
 # CONFIG_CRYPTO_SERPENT_SSE2_X86_64 is not set
 # CONFIG_CRYPTO_SERPENT_AVX_X86_64 is not set
 # CONFIG_CRYPTO_SERPENT_AVX2_X86_64 is not set
@@ -3327,10 +3361,10 @@ CONFIG_CRYPTO_DES=y
 #
 # Compression
 #
-# CONFIG_CRYPTO_DEFLATE is not set
-# CONFIG_CRYPTO_ZLIB is not set
-# CONFIG_CRYPTO_LZO is not set
-# CONFIG_CRYPTO_LZ4 is not set
+CONFIG_CRYPTO_DEFLATE=y
+CONFIG_CRYPTO_ZLIB=y
+CONFIG_CRYPTO_LZO=y
+CONFIG_CRYPTO_LZ4=y
 # CONFIG_CRYPTO_LZ4HC is not set
 
 #
@@ -3339,7 +3373,7 @@ CONFIG_CRYPTO_DES=y
 # CONFIG_CRYPTO_ANSI_CPRNG is not set
 # CONFIG_CRYPTO_DRBG_MENU is not set
 # CONFIG_CRYPTO_USER_API_HASH is not set
-# CONFIG_CRYPTO_USER_API_SKCIPHER is not set
+CONFIG_CRYPTO_USER_API_SKCIPHER=y
 # CONFIG_CRYPTO_USER_API_RNG is not set
 CONFIG_CRYPTO_HW=y
 # CONFIG_CRYPTO_DEV_PADLOCK is not set
@@ -3388,12 +3422,12 @@ CONFIG_LZO_DECOMPRESS=y
 CONFIG_LZ4_DECOMPRESS=y
 CONFIG_XZ_DEC=y
 CONFIG_XZ_DEC_X86=y
-CONFIG_XZ_DEC_POWERPC=y
-CONFIG_XZ_DEC_IA64=y
-CONFIG_XZ_DEC_ARM=y
-CONFIG_XZ_DEC_ARMTHUMB=y
-CONFIG_XZ_DEC_SPARC=y
-CONFIG_XZ_DEC_BCJ=y
+# CONFIG_XZ_DEC_POWERPC is not set
+# CONFIG_XZ_DEC_IA64 is not set
+# CONFIG_XZ_DEC_ARM is not set
+# CONFIG_XZ_DEC_ARMTHUMB is not set
+# CONFIG_XZ_DEC_SPARC is not set
+# CONFIG_XZ_DEC_BCJ is not set
 # CONFIG_XZ_DEC_TEST is not set
 CONFIG_DECOMPRESS_GZIP=y
 CONFIG_DECOMPRESS_BZIP2=y
@@ -3426,7 +3460,7 @@ CONFIG_ARCH_HAS_SG_CHAIN=y
 EOF
 
 make olddefconfig
-make
+make --jobs=4
 make install
 make modules_install
 
@@ -3435,13 +3469,17 @@ grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 echo 'Configuring Network Services'
-cd /etc/conf.d
+emerge sys-apps/ifplugd net-wireless/wireless-tools net-misc/dhcpcd sys-apps/openrc
 ln -sf /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 ln -sf /dev/null /etc/udev/rules.d/80-net-name-slot.rules
-sed -i "s/eth0/enp0s3/" /etc/udhcpd.conf
-echo 'config_eth0=( "dhcp" )' >> /etc/conf.d/net
-ln -s net.lo /etc/init.d/net.eth0
-rc-update add net.eth0 default
+#sed -i "s/eth0/enp0s3/" /etc/udhcpd.conf
+echo 'config_enp0s3=( "dhcp" )' >> /etc/conf.d/net
+ln -s /etc/init.d/net.lo /etc/init.d/net.enp0s3
+rc-update add net.enp0s3 default
+
+echo 'Configuration SSH'
+sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
+sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 rc-update add sshd default
 
 echo 'Configuring Users'
