@@ -1,20 +1,28 @@
 #!/bin/bash -eux
 
 # The packages needed to compile magma.
-apk add --force bash m4 gcc g++ gdb gdbm grep perl make glib expat musl musl-utils \
+apk add --force bash m4 gcc g++ gcc-gnat gdb gdbm grep perl make glib expat \
 automake autoconf valgrind binutils binutils-libs gmp isl mpc1 python2 pkgconf \
 mpfr3 libtool flex bison cmake ca-certificates patch ncurses-doc ncurses-libs \
 ncurses-dev ncurses-static ncurses ncurses-terminfo-base ncurses-terminfo \
-util-linux-dev makedepend linux-vanilla-dev build-base coreutils ctags \
-diffutils doxygen elfutils fortify-headers gawk sed texinfo bsd-compat-headers \
-libc-utils patchutils strace tar \
+makedepend build-base coreutils ctags readline openssl nasm zlib groff subunit \
+diffutils doxygen elfutilsgawk sed texinfo mpcl xz rhash jsoncpp subunit-libs \
+libc-utils patchutils strace tar kmod bc linux-firmware pcre pcre-tools \
+bsd-compat-headers fortify-headers linux-headers curl check fts expect \
+linux-vanilla clang clang-libs clang-static llvm llvm-static llvm-libs boost \
+boost-system boost-thread boost-signals boost-random boost-iostreams tcl \
+boost-math boost-serialization boost-filesystem boost-date_time boost-regex \
+musl musl-utils \
 libbz2 libgomp libatomic libltdl libbsd libattr libacl libarchive libcurl \
-libpthread-stubs libgcc libgc++ libc6-compat \
-glib-dev libc-dev musl-dev valgrind-dev libbsd-dev subunit-dev  marco-dev \
-acl-dev popt-dev python2-dev pkgconf-dev zlib-dev \
+libpthread-stubs libgcc libgc++ libc6-compat libressl libaio libuv libxml2 \
+libxslt libgc++ libgcj libgnat libstdc++ \
+glib-dev libc-dev musl-dev valgrind-dev libbsd-dev subunit-dev marco-dev \
+acl-dev popt-dev python2-dev pkgconf-dev zlib-dev kmod-dev linux-vanilla-dev \
+elfutils-dev gmp-dev mpfr-dev mpcl-dev libressl-dev readline-dev libaio-dev \
+util-linux-dev curl-dev expat-dev zlib-dev bzip2-dev libarchive-dev tcl-dev \
+libuv-dev xz-dev jsoncpp-dev check-dev pcre-dev fts-dev expect-dev \
+libxml2-dev llvm-dev isl-dev clang-dev llvm-dev boost-dev libxslt-dev \
 gcc-doc m4-doc make-doc patch-doc
-
-# libbsd-dev libsubunit-dev libsubunit0 pkg-config
 
 # Need to retrieve the source code.
 apk add --force git git-doc git-perl popt rsync wget
@@ -46,9 +54,9 @@ error() {
 if [ -x /usr/bin/id ]; then
   ID=\`/usr/bin/id -u\`
   if [ -n "\$ID" -a "\$ID" -eq 0 ]; then
-    systemctl start mariadb.service
-    systemctl start postfix.service
-    systemctl start memcached.service
+    rc-service mariadb start
+    rc-service postfix start
+    rc-service memcached start
   fi
 fi
 
