@@ -1,0 +1,181 @@
+{
+  "variables": {
+    "box_version": "{{env `VERSION`}}"
+  },
+  "provisioners": [
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/alpine35/apk.sh"
+        ],
+        "execute_command": "/bin/sh '{{.Path}}'",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-alpine-hyperv"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/alpine35/limits.sh",
+            "scripts/alpine35/mariadb.sh",
+            "scripts/alpine35/memcached.sh",
+            "scripts/alpine35/postfix.sh",
+            "scripts/alpine35/vagrant.sh",
+            "scripts/alpine35/magma.sh",
+            "scripts/alpine35/virtualbox.sh",
+            "scripts/alpine35/vmware.sh",
+            "scripts/alpine35/qemu.sh"
+        ],
+        "execute_command": "/bin/bash '{{.Path}}'",
+        "pause_before": "120s",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-alpine-hyperv"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/centos6/fixdns.sh",
+            "scripts/centos6/base.sh",
+            "scripts/centos6/reboot.sh"
+        ],
+        "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-hyperv"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/centos6/kernel.sh",
+            "scripts/centos6/virtualbox.sh",
+            "scripts/centos6/vmware.sh",
+            "scripts/centos6/qemu.sh",
+            "scripts/centos6/vagrant.sh",
+            "scripts/centos6/magma.sh",
+            "scripts/centos6/tuning.sh",
+            "scripts/centos6/sshd.sh",
+            "scripts/centos6/cleanup.sh"
+        ],
+        "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+        "pause_before": "120s",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["magma-hyperv"]
+    },
+    {
+      "scripts": [
+        "scripts/common/zerodisk.sh",
+        "scripts/common/lockout.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
+    }
+  ],
+  "builders": [
+    {
+        "type": "hyperv-iso",
+        "name": "magma-alpine-hyperv",
+        "vm_name": "magma-alpine-hyperv",
+        "output_directory": "output/magma-alpine-hyperv",
+        "boot_wait": "20s",
+        "boot_command": [
+          "root<enter><wait>",
+          "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+          "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.alpine35.vagrant.cfg<enter><wait>",
+          "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+          "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f magma.alpine35.vagrant.cfg && ",
+          "mount /dev/sda3 /mnt && ",
+          "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+          "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+          "umount /mnt && reboot<enter>"
+        ],
+        "disk_size": 32768,
+        "ram_size": 2048,
+        "cpu": 2,
+        "http_directory": "http",
+        "iso_urls": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
+        "iso_checksum": "2258ca975d7b829ea6229d314b2782d4070ec9b7f688392817e562f5a14a34b5",
+        "iso_checksum_type": "sha256",
+        "communicator": "ssh",
+        "ssh_username": "root",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_timeout": "10000s",
+        "shutdown_command": "/sbin/poweroff"
+    },
+    {
+        "type": "hyperv-iso",
+        "name": "magma-hyperv",
+        "vm_name": "magma-hyperv",
+        "output_directory": "output/magma-hyperv",
+        "boot_wait": "20s",
+        "boot_command": [
+            "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
+        ],
+        "disk_size": 32768,
+        "ram_size": 2048,
+        "cpu": 2,
+        "http_directory": "http",
+        "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
+        "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
+        "iso_checksum_type": "sha256",
+        "communicator": "ssh",
+        "ssh_username": "root",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_timeout": "10000s",
+        "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/magma.rb",
+        "output": "output/{{build_name}}-{{user `box_version`}}.box"
+      },
+      {
+          "type": "atlas",
+          "only": ["magma-alpine-hyperv"],
+          "artifact": "lavabit/magma-alpine",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "hyperv",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "The magma encrypted mail daemon build environment."
+          }
+      },
+      {
+          "type": "atlas",
+          "only": ["magma-hyperv"],
+          "artifact": "lavabit/magma",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "hyperv",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "The magma encrypted mail daemon build environment."
+          }
+      },
+      {
+        "type": "artifice",
+        "keep_input_artifact": true,
+        "files": ["output/{{build_name}}-{{user `box_version`}}.box"]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": ["sha256"],
+        "keep_input_artifact": true,
+        "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+      }
+    ]
+  ],
+  "push": {
+   "name": "ladar/packer"
+  }
+}
