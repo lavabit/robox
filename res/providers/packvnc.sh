@@ -1,4 +1,4 @@
-#!/bin/bash -ux
+#!/bin/bash
 
 # Sudo is needed to find the vmware-vmx ports.
 PORT=`sudo netstat -pnl 2>&1 | grep tcp | grep -E "vmware-vmx|qemu" | awk -F':' '{print $2}' | awk -F' ' '{print $1}' | grep -E "^59"`
