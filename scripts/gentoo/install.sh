@@ -36,16 +36,15 @@ memory_size_in_kilobytes=$(free | awk '/^Mem:/ { print $2 }')
 swap_size_in_kilobytes=$((memory_size_in_kilobytes * 2))
 sfdisk "$device" <<EOF
 label: dos
-size=262144KiB,                    type=83, bootable
 size=${swap_size_in_kilobytes}KiB, type=82
-                                   type=83
+                                   type=83, bootable
 EOF
-mkfs.ext4 "${device}1"
-mkswap "${device}2"
-mkfs.ext4 "${device}3"
+mkswap "${device}1"
+swapon "${device}1"
+mkfs.ext4 "${device}2"
 
-mount ${device}3 "/mnt/gentoo" && cd "/mnt/gentoo" && mkdir boot && mount ${device}1 boot
-
+mount ${device}2 "/mnt/gentoo" && cd "/mnt/gentoo"
+mkdir "/mnt/gentoo/boot" && mkdir "/mnt/gentoo/boot/grub"
 
 # download the current-stage3-amd64-nomultilib tarball, unpack it, then delete the archive file
 tarball=$(wget -q https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/ -O - | grep -o -e "stage3-amd64-nomultilib-\w*.tar.bz2" | uniq)
@@ -100,32 +99,9 @@ EOF
 # set fstab
 cat <<EOF > "/mnt/gentoo/etc/fstab"
 # <fs>                  <mountpoint>    <type>          <opts>                   <dump/pass>
-/dev/sda1               /boot           ext4            noauto,noatime           1 2
-/dev/sda2               none            swap            sw                       0 0
-/dev/sda3               /               ext4            noatime                  0 1
+/dev/sda1               none            swap            sw                       0 0
+/dev/sda2               /               ext4            noatime                  0 1
 none                    /dev/shm        tmpfs           nodev,nosuid,noexec      0 0
-EOF
-
-# set make options
-cat <<EOF > "/mnt/gentoo/etc/portage/make.conf"
-CHOST="i686-pc-linux-gnu"
-CFLAGS="-mtune=generic -O0 -pipe"
-CXXFLAGS="\${CFLAGS}"
-ACCEPT_KEYWORDS="$accept_keywords"
-MAKEOPTS="-j8"
-EMERGE_DEFAULT_OPTS="-j8 --quiet-build=y"
-FEATURES="\${FEATURES} parallel-fetch"
-USE="nls cjk unicode"
-PYTHON_TARGETS="python2_7 python3_2 python3_3"
-USE_PYTHON="3.2 2.7"
-# english only
-LINGUAS="en"
-# for X support if needed
-INPUT_DEVICES="evdev"
-# Additional portage overlays (space char separated)
-PORTDIR_OVERLAY="${PORTDIR_OVERLAY} /usr/local/portage"
-# Including /usr/local/portage overlay
-source "/usr/local/portage/make.conf"
 EOF
 
 # Create an empty portage overlay
@@ -191,9 +167,36 @@ cat <<EOF >> "/mnt/gentoo/etc/portage/package.accept_keywords/kernel"
 dev-util/kbuild ~x86 ~amd64
 EOF
 
+# use grub2
+cat <<EOF >> "/mnt/gentoo/etc/portage/package.accept_keywords/grub"
+sys-boot/grub:2
+EOF
+
 # get, configure, compile and install the kernel and modules
 chroot "/mnt/gentoo" /bin/bash <<EOF
-emerge sys-kernel/gentoo-sources sys-kernel/genkernel sys-boot/grub sys-fs/fuse sys-apps/dmidecode gentoolkit
+cat <<MAKEEOF >/etc/portage/make.conf
+CHOST="i686-pc-linux-gnu"
+CFLAGS="-mtune=generic -O0 -pipe"
+CXXFLAGS="\${CFLAGS}"
+ACCEPT_KEYWORDS="$accept_keywords"
+MAKEOPTS="-j8"
+EMERGE_DEFAULT_OPTS="-j8 --quiet-build=y"
+FEATURES="\${FEATURES} parallel-fetch"
+USE="nls cjk unicode"
+PYTHON_TARGETS="python2_7 python3_2 python3_3"
+USE_PYTHON="3.2 2.7"
+GRUB_PLATFORMS="emu pc"
+# english only
+LINGUAS="en"
+# for X support if needed
+INPUT_DEVICES="evdev"
+# Additional portage overlays (space char separated)
+PORTDIR_OVERLAY="${PORTDIR_OVERLAY} /usr/local/portage"
+# Including /usr/local/portage overlay
+source "/usr/local/portage/make.conf
+MAKEEOF
+emerge sys-kernel/gentoo-sources sys-kernel/genkernel sys-boot/grub sys-boot/os-prober \
+sys-fs/e2fsprogs sys-fs/fuse sys-apps/dmidecode gentoolkit
 cd /usr/src/linux
 # use a default configuration as a starting point
 make defconfig
@@ -347,25 +350,12 @@ emerge app-admin/rsyslog
 rc-update add rsyslog default
 EOF
 
-# use grub2
-cat <<EOF >> "/mnt/gentoo/etc/portage/package.accept_keywords/grub"
-sys-boot/grub:2
-EOF
-
-# install grub
-chroot "/mnt/gentoo" emerge grub
-
-# tweak timeout
-chroot "/mnt/gentoo" sed -i "s/.*GRUB_TIMEOUT=.*/GRUB_TIMEOUT=1/g" /etc/default/grub
-
 # Setup a bootable grub config.
-chroot "/mnt/gentoo" /bin/bash <<EOF
+chroot "/mnt/gentoo" /bin/bash -ux <<EOF
 source /etc/profile && \
 env-update && \
 grep -v rootfs /proc/mounts > /etc/mtab && \
-mkdir -p /boot/grub2 && \
-ln -sf /boot/grub2 /boot/grub && \
-grub-install --no-floppy /dev/sda && \
+grub-install "$device" && \
 grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 

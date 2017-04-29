@@ -51,6 +51,7 @@
             "scripts/centos6/virtualbox.sh",
             "scripts/centos6/vmware.sh",
             "scripts/centos6/qemu.sh",
+            "scripts/centos6/postfix.sh",
             "scripts/centos6/vagrant.sh",
             "scripts/centos6/magma.sh",
             "scripts/centos6/tuning.sh",
@@ -82,6 +83,7 @@
             "scripts/centos6/virtualbox.sh",
             "scripts/centos6/vmware.sh",
             "scripts/centos6/qemu.sh",
+            "scripts/centos6/postfix.sh",
             "scripts/centos6/vagrant.sh",
             "scripts/centos6/magma.sh",
             "scripts/centos6/tuning.sh",
@@ -114,6 +116,7 @@
             "scripts/centos7/virtualbox.sh",
             "scripts/centos7/vmware.sh",
             "scripts/centos7/qemu.sh",
+            "scripts/centos7/postfix.sh",
             "scripts/centos7/vagrant.sh",
             "scripts/centos7/magma.sh",
             "scripts/centos7/tuning.sh",
@@ -129,7 +132,7 @@
     },
     {
       "scripts": [
-        "scripts/gentoo/install.sh"
+        "scripts/gentoo/emerge.sh"
       ],
       "type": "shell",
       "start_retry_timeout": "15m",
@@ -138,7 +141,6 @@
     },
     {
       "scripts": [
-        "scripts/gentoo/emerge.sh",
         "scripts/gentoo/vagrant.sh",
         "scripts/gentoo/magma.sh"
       ],
@@ -1003,9 +1005,8 @@
         "passwd root<enter><wait>",
         "vagrant<enter><wait>",
         "vagrant<enter><wait>",
-        "sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config<enter><wait>",
-        "echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config<enter><wait>",
-        "/etc/init.d/sshd start<enter><wait>"
+        "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/gentoo.install{,.chroot}.sh'<enter><wait>",
+        "bash gentoo.install.sh && chroot /mnt/gentoo /bin/bash < gentoo.install.chroot.sh && reboot<enter>"
       ],
       "disk_size": 32768,
       "vboxmanage": [
@@ -1023,6 +1024,7 @@
             ]
       ],
       "guest_os_type": "Gentoo_64",
+      "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20170427.iso",
       "iso_checksum": "c06dacd7d8c921ef2fda80d483fcfae5ec5a40dd31fe1b78d0c8d69e084e162e",
