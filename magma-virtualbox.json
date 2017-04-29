@@ -138,6 +138,7 @@
     },
     {
       "scripts": [
+        "scripts/gentoo/emerge.sh",
         "scripts/gentoo/vagrant.sh",
         "scripts/gentoo/magma.sh"
       ],
@@ -998,7 +999,7 @@
       "boot_command": [
         "gentoo-nofb<enter>",
         "<wait10><enter>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10>",
         "passwd root<enter><wait>",
         "vagrant<enter><wait>",
         "vagrant<enter><wait>",

@@ -1,33 +1,53 @@
-#!/bin/bash
+#!/bin/bash -ux
 
 # This script grabs several files off the web, but doesn't verify the signature
 # for any of them. The best I could do, with little effort, was have them use https.
 source /etc/profile
-
-sgdisk -n 1:0:+256M -t 1:8300 -c 1:"linux-boot" \
-       -n 2:0:+32M  -t 2:ef02 -c 2:"bios-boot"  \
-       -n 3:0:+2G   -t 3:8200 -c 3:"swap"       \
-       -n 4:0:0     -t 4:8300 -c 4:"linux-root" \
--p /dev/sda
-
-sleep 1
-
-# format partitions, mount swap
-mkswap /dev/sda3
-swapon /dev/sda3
-mkfs.ext2 /dev/sda1
-mkfs.ext4 /dev/sda4
+#
+# sgdisk -n 1:0:+256M -t 1:8300 -c 1:"linux-boot" \
+#        -n 2:0:+32M  -t 2:ef02 -c 2:"bios-boot"  \
+#        -n 3:0:+2G   -t 3:8200 -c 3:"swap"       \
+#        -n 4:0:0     -t 4:8300 -c 4:"linux-root" \
+# -p /dev/sda
+#
+# sleep 1
+#
+# # format partitions, mount swap
+# mkswap /dev/sda3
+# swapon /dev/sda3
+# mkfs.ext2 /dev/sda1
+# mkfs.ext4 /dev/sda4
 
 # mount other partitions
-mount /dev/sda4 "/mnt/gentoo" && cd "/mnt/gentoo" && mkdir boot && mount /dev/sda1 boot
+# mount /dev/sda4 "/mnt/gentoo" && cd "/mnt/gentoo" && mkdir boot && mount /dev/sda1 boot
 
-# download stage 3, unpack it, delete the stage3 archive file
 
-# current-stage3-amd64-nomultilib
-# tarball=$(wget -q https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/ -O - | grep -o -e "stage3-amd64-nomultilib-\w*.tar.bz2" | uniq)
-# wget -q https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/$tarball || exit 1
+if [ -e /dev/vda ]; then
+  device=/dev/vda
+elif [ -e /dev/sda ]; then
+  device=/dev/sda
+else
+  echo "ERROR: There is no disk available for installation" >&2
+  exit 1
+fi
+export device
 
-# current-stage3-amd64-systemd
+memory_size_in_kilobytes=$(free | awk '/^Mem:/ { print $2 }')
+swap_size_in_kilobytes=$((memory_size_in_kilobytes * 2))
+sfdisk "$device" <<EOF
+label: dos
+size=262144KiB,                    type=83, bootable
+size=${swap_size_in_kilobytes}KiB, type=82
+                                   type=83
+EOF
+mkfs.ext4 "${device}1"
+mkswap "${device}2"
+mkfs.ext4 "${device}3"
+
+mount ${device}3 "/mnt/gentoo" && cd "/mnt/gentoo" && mkdir boot && mount ${device}1 boot
+
+
+# download the current-stage3-amd64-nomultilib tarball, unpack it, then delete the archive file
 tarball=$(wget -q https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/ -O - | grep -o -e "stage3-amd64-nomultilib-\w*.tar.bz2" | uniq)
 wget --tries=5 -q https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/$tarball || exit 1
 
@@ -80,20 +100,20 @@ EOF
 # set fstab
 cat <<EOF > "/mnt/gentoo/etc/fstab"
 # <fs>                  <mountpoint>    <type>          <opts>                   <dump/pass>
-/dev/sda1               /boot           ext2            noauto,noatime           1 2
-/dev/sda3               none            swap            sw                       0 0
-/dev/sda4               /               ext4            noatime                  0 1
+/dev/sda1               /boot           ext4            noauto,noatime           1 2
+/dev/sda2               none            swap            sw                       0 0
+/dev/sda3               /               ext4            noatime                  0 1
 none                    /dev/shm        tmpfs           nodev,nosuid,noexec      0 0
 EOF
 
 # set make options
 cat <<EOF > "/mnt/gentoo/etc/portage/make.conf"
 CHOST="i686-pc-linux-gnu"
-CFLAGS="-mtune=generic -O2 -pipe"
+CFLAGS="-mtune=generic -O0 -pipe"
 CXXFLAGS="\${CFLAGS}"
 ACCEPT_KEYWORDS="$accept_keywords"
-MAKEOPTS="-j2 -l2.5"
-EMERGE_DEFAULT_OPTS="-j$nr_cpus --quiet-build=y"
+MAKEOPTS="-j8"
+EMERGE_DEFAULT_OPTS="-j8 --quiet-build=y"
 FEATURES="\${FEATURES} parallel-fetch"
 USE="nls cjk unicode"
 PYTHON_TARGETS="python2_7 python3_2 python3_3"
@@ -164,7 +184,7 @@ chroot "/mnt/gentoo" emerge-webrsync
 # add required use flags and keywords
 cat <<EOF >> "/mnt/gentoo/etc/portage/package.use/kernel"
 sys-kernel/gentoo-sources symlink
-sys-kernel/genkernel -cryptsetup
+sys-kernel/genkernel
 EOF
 
 cat <<EOF >> "/mnt/gentoo/etc/portage/package.accept_keywords/kernel"
@@ -219,7 +239,7 @@ CONFIG_CIFS_DFS_UPCALL=y
 # for FUSE fs
 CONFIG_FUSE_FS=m
 # reduce size
-CONFIG_NR_CPUS=$nr_cpus
+# CONFIG_NR_CPUS is not set
 CONFIG_COMPAT_VDSO=n
 # propbably nice but not in defaults
 CONFIG_MODVERSIONS=y
@@ -242,9 +262,26 @@ CONFIG_INET6_XFRM_MODE_TRANSPORT=y
 CONFIG_INET6_XFRM_MODE_TUNNEL=y
 CONFIG_INET6_XFRM_MODE_BEET=y
 # crypto support
-CONFIG_CRYPTO_USER=m
+CONFIG_CRYPTO_ALGAPI=y
+CONFIG_CRYPTO_ALGAPI2=y
+CONFIG_CRYPTO_AEAD=y
+CONFIG_CRYPTO_AEAD2=y
+CONFIG_CRYPTO_BLKCIPHER=y
+CONFIG_CRYPTO_BLKCIPHER2=y
+CONFIG_CRYPTO_HASH=y
+CONFIG_CRYPTO_HASH2=y
+CONFIG_CRYPTO_RNG2=y
+CONFIG_CRYPTO_PCOMP2=y
+CONFIG_CRYPTO_MANAGER=y
+CONFIG_CRYPTO_MANAGER2=y
+# CONFIG_CRYPTO_USER is not set
 CONFIG_CRYPTO_CTS=y
 CONFIG_CRYPTO_CTR=y
+CONFIG_CRYPTO_CBC=y
+CONFIG_CRYPTO_XTS=y
+CONFIG_CRYPTO_CCM=y
+CONFIG_CRYPTO_GCM=y
+CONFIG_CRYPTO_HMAC=y
 CONFIG_CRYPTO_RMD128=y
 CONFIG_CRYPTO_RMD160=y
 CONFIG_CRYPTO_RMD256=y
@@ -252,17 +289,37 @@ CONFIG_CRYPTO_RMD320=y
 CONFIG_CRYPTO_SHA1_SSSE3=m
 CONFIG_CRYPTO_SHA256=y
 CONFIG_CRYPTO_SHA512=y
+CONFIG_CRYPTO_AES=y
 CONFIG_CRYPTO_AES_X86_64=y
-CONFIG_CRYPTO_AES_NI_INTEL=m
+CONFIG_CRYPTO_AES_NI_INTEL=n
 CONFIG_CRYPTO_BLOWFISH_X86_64=y
 CONFIG_CRYPTO_SALSA20_X86_64=y
 CONFIG_CRYPTO_TWOFISH_X86_64_3WAY=y
 CONFIG_CRYPTO_DEFLATE=y
+CONFIG_CRYPTO_ZLIB=y
+CONFIG_CRYPTO_LZO=y
 # rtc
 CONFIG_RTC=y
 # devtmpfs, required by udev
 CONFIG_DEVTMPFS=y
 CONFIG_DEVTMPFS_MOUNT=y
+# library routines
+CONFIG_CRC16=y
+CONFIG_CRC32=y
+CONFIG_CRC32_SLICEBY8=y
+CONFIG_ZLIB_INFLATE=y
+CONFIG_LZO_COMPRESS=y
+CONFIG_LZO_DECOMPRESS=y
+CONFIG_LZ4_DECOMPRESS=y
+CONFIG_XZ_DEC=y
+CONFIG_XZ_DEC_X86=y
+CONFIG_XZ_DEC_BCJ=y
+CONFIG_DECOMPRESS_GZIP=y
+CONFIG_DECOMPRESS_BZIP2=y
+CONFIG_DECOMPRESS_LZMA=y
+CONFIG_DECOMPRESS_XZ=y
+CONFIG_DECOMPRESS_LZO=y
+CONFIG_DECOMPRESS_LZ4=y
 KERNEOF
 # build and install kernel, using the config created above
 genkernel --install --symlink --oldconfig --bootloader=grub all
@@ -270,7 +327,7 @@ EOF
 
 # Install git
 cat <<EOF >> "/mnt/gentoo/etc/portage/package.use/git"
-dev-vcs/git -curl -perl -gpg -webdav
+dev-vcs/git -webdav
 EOF
 
 chroot "/mnt/gentoo" emerge dev-vcs/git
@@ -282,6 +339,7 @@ EOF
 
 chroot "/mnt/gentoo" emerge app-editors/vim
 chroot "/mnt/gentoo" emerge app-vim/bash-support
+chroot "/mnt/gentoo" emerge app-admin/sudo
 
 # Install syslog
 chroot "/mnt/gentoo" /bin/bash <<EOF
@@ -307,8 +365,8 @@ env-update && \
 grep -v rootfs /proc/mounts > /etc/mtab && \
 mkdir -p /boot/grub2 && \
 ln -sf /boot/grub2 /boot/grub && \
-grub-mkconfig -o /boot/grub/grub.cfg && \
-grub-install --no-floppy /dev/sda
+grub-install --no-floppy /dev/sda && \
+grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 
 chroot /mnt/gentoo /bin/bash <<EOF
@@ -340,3 +398,6 @@ chmod 700 ~vagrant/.ssh
 chown vagrant:vagrant ~vagrant/.ssh/authorized_keys
 chown vagrant:vagrant ~vagrant/.ssh
 EOF
+
+# Reboot onto the freshly installed system.
+reboot
