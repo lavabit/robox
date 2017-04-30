@@ -1014,13 +1014,13 @@
                   "modifyvm",
                   "{{.Name}}",
                   "--memory",
-                  "4096"
+                  "2048"
             ],
             [
                   "modifyvm",
                   "{{.Name}}",
                   "--cpus",
-                  "4"
+                  "2"
             ]
       ],
       "guest_os_type": "Gentoo_64",

@@ -7,7 +7,7 @@ emerge --sync --noconfirm
 emerge --update --deep --with-bdeps=y @world
 
 # Useful tools.
-emerge vim vim-runtime curl wget mlocate sysstat lm_sensors lsof sudo
+emerge app-editors/vim net-misc/curl  net-misc/wget sys-apps/mlocate  app-admin/sysstat  sys-apps/lm_sensors  sys-process/lsof app-admin/sudo
 
 # Start the services we just added so the system will track its own performance.
 rc-update add sysstat default && rc-service sysstat default

@@ -1,7 +1,7 @@
 #!/bin/bash -ux
 
 # Create the vagrant user account.
-adduser -D vagrant
+adduser -D -s /bin/bash vagrant
 
 # Enable exit/failure on error.
 # set -eux

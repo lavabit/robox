@@ -3474,8 +3474,9 @@ ln -sf /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 ln -sf /dev/null /etc/udev/rules.d/80-net-name-slot.rules
 #sed -i "s/eth0/enp0s3/" /etc/udhcpd.conf
 echo 'config_enp0s3=( "dhcp" )' >> /etc/conf.d/net
-ln -s /etc/init.d/net.lo /etc/init.d/net.enp0s3
-rc-update add net.enp0s3 default
+echo 'config_eth0=( "dhcp" )' >> /etc/conf.d/net
+ln -s /etc/init.d/net.lo /etc/init.d/net.eth0
+rc-update add net.eth0 default
 
 echo 'Configuration SSH'
 sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
