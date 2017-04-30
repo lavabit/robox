@@ -32,7 +32,9 @@ printf "tansport_maps = hash:/etc/postfix/transport\n" >> /etc/postfix/main.cf
 # Configure postfix to listen for relays on port 2525 so it doesn't conflict with magma.
 sed -i -e "s/^smtp\([ ]*inet\)/127.0.0.1:2525\1/" /etc/postfix/master.cf
 
-cat <<-EOF > /tmp/postfix.te
+mkdir -p $HOME/pp && cd $HOME/pp
+
+cat <<-EOF > postfix.te
 module postfix 1.0;
 
 require {
@@ -47,9 +49,12 @@ allow postfix_master_t port_t:tcp_socket name_bind;
 EOF
 
 # Modify the selinux rules so that postfix may bind to port 2525.
-checkmodule -M -m -o /tmp/postfix.mod /tmp/postfix.te
-semodule_package -o /tmp/postfix.pp -m /tmp/postfix.mod
-semodule -i /tmp/postfix.pp
+checkmodule -M -m -o postfix.mod postfix.te
+semodule_package -o postfix.pp -m postfix.mod
+semodule -i postfix.pp
+
+# Cleanup the policy files.
+cd $HOME && rm --recursive --force $HOME/pp
 
 # Setup logrotate so it only stores 7 days worth of logs.
 printf "/var/log/maillog {\n\tdaily\n\trotate 7\n\tmissingok\n}\n" > /etc/logrotate.d/postfix
