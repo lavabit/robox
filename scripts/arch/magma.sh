@@ -60,7 +60,7 @@ sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma
 sed -i -e "/magma.relay\[[0-9]*\].name.*/d" sandbox/etc/magma.sandbox.config
 sed -i -e "/magma.relay\[[0-9]*\].port.*/d" sandbox/etc/magma.sandbox.config
 sed -i -e "/magma.relay\[[0-9]*\].secure.*/d" sandbox/etc/magma.sandbox.config
-printf "\n\nmagma.relay\[1\].name = localhost\nmagma.relay\[1\].port 2525\n\n"
+printf "\n\nmagma.relay[1].name = localhost\nmagma.relay[1].port 2525\n\n" >> sandbox/etc/magma.sandbox.config
 
 # Bug fix... create the scan directory so ClamAV unit tests work.
 if [ ! -d 'sandbox/spool/scan/' ]; then
