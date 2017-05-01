@@ -34,8 +34,8 @@ sed -i -e "s/^smtp\([ ]*inet\)/127.0.0.1:2525\1/" /etc/postfix/master.cf
 
 mkdir -p $HOME/pp && cd $HOME/pp
 
-cat <<-EOF > postfix.te
-module postfix 1.0;
+cat <<-EOF > postfix_relay_host.te
+module postfix_relay_host 1.0;
 
 require {
     type postfix_master_t;
@@ -49,9 +49,9 @@ allow postfix_master_t port_t:tcp_socket name_bind;
 EOF
 
 # Modify the selinux rules so that postfix may bind to port 2525.
-checkmodule -M -m -o postfix.mod postfix.te
-semodule_package -o postfix.pp -m postfix.mod
-semodule -i postfix.pp
+checkmodule -M -m -o postfix_relay_host.mod postfix_relay_host.te
+semodule_package -o postfix_relay_host.pp -m postfix_relay_host.mod
+semodule -i postfix_relay_host.pp
 
 # Cleanup the policy files.
 cd $HOME && rm --recursive --force $HOME/pp

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.8.12"
+export VERSION="0.8.14"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -66,7 +66,7 @@ build() {
   export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/$1.txt"
 
   # packer build -on-error=cleanup -parallel=false $1.json
-  packer build -on-error=cleanup -parallel=false -except=magma-gentoo-vmware,magma-gentoo-libvirt,magma-gentoo-virtualbox $1.json
+  packer build -on-error=cleanup -parallel=false $1.json
   #packer build -on-error=cleanup -parallel=false -only=magma-alpine-vmware,magma-alpine-libvirt,magma-alpine-virtualbox $1.json
 
   if [[ $? != 0 ]]; then
