@@ -457,7 +457,7 @@
             "numvcpus": "2",
             "cpuid.coresPerSocket": "1"
         },
-        "guest_os_type": "centos-64",
+        "guest_os_type": "otherlinux-64",
         "http_directory": "http",
         "headless": true,
         "iso_urls": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
