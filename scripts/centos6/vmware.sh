@@ -13,7 +13,7 @@ if [[ `dmidecode -s system-product-name` != "VMware Virtual Platform" ]]; then
     exit 0
 fi
 
-# Install the VMWare Tools from the Linux ISO.
+# Install the VMWare Tools.
 printf "Installing the VMWare Tools.\n"
 
 yum --quiet --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
@@ -31,4 +31,3 @@ rm -rf /root/linux.iso; error
 
 #/tmp/vmware-tools-distrib/vmware-install.pl -d; error
 #rm -rf /tmp/vmware-tools-distrib; error
-

@@ -41,8 +41,8 @@ printf "/var/log/maillog {\n\tdaily\n\trotate 7\n\tmissingok\n}\n" > /etc/logrot
 # Fix the SELinux context for the postfix logrotate config.
 chcon system_u:object_r:etc_t:s0 /etc/logrotate.d/postfix
 
-printf "\nmagma.builder         smtp:[127.0.0.1]:2525\n" >> /etc/postfix/transport
-printf "magmadaemon.com         smtp:[127.0.0.1]:2525\n" >> /etc/postfix/transport
+#printf "\nmagma.builder         smtp:[127.0.0.1]:2525\n" >> /etc/postfix/transport
+#printf "magmadaemon.com         smtp:[127.0.0.1]:2525\n" >> /etc/postfix/transport
 postmap /etc/postfix/transport
 
 # So it gets started automatically.
