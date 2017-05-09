@@ -44,13 +44,22 @@ emerge sys-boot/grub
 echo 'Compiling Kernel'
 cd /usr/src/linux
 cat <<-EOF > .config
+
 #
-# Linux/x86_64 Kernel Configuration Optimized for Virtualization
+# Gentoo Linux
 #
 CONFIG_GENTOO_LINUX=y
 CONFIG_GENTOO_LINUX_UDEV=y
+
+#
+# Support for init systems, system and service managers
+#
 CONFIG_GENTOO_LINUX_INIT_SCRIPT=y
 # CONFIG_GENTOO_LINUX_INIT_SYSTEMD is not set
+
+#
+# Linux/x86_64 Kernel Configuration Optimized for Virtualization
+#
 CONFIG_64BIT=y
 CONFIG_X86_64=y
 CONFIG_X86=y
