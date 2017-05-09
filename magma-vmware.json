@@ -910,7 +910,7 @@
       "boot_command": [
         "gentoo-nofb<enter>",
         "<wait10><enter>",
-        "<wait10><wait10>",
+        "<wait10><wait10><wait10><wait10>",
         "passwd root<enter><wait>",
         "vagrant<enter><wait>",
         "vagrant<enter><wait>",
@@ -922,7 +922,8 @@
       "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "1",
+            "vmci0.present": "TRUE"
       },
       "guest_os_type": "otherlinux-64",
       "skip_compaction": true,
