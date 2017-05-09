@@ -18,6 +18,8 @@ MAKEOPTS="-j8"
 EMERGE_DEFAULT_OPTS="-j8 --quiet-build=y"
 FEATURES="\${FEATURES} parallel-fetch"
 USE="alsa usb unicode"
+USE_PYTHON="3.2 2.7"
+PYTHON_TARGETS="python2_7 python3_2 python3_3"
 GRUB_PLATFORMS="emu pc"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
@@ -35,6 +37,14 @@ EOF
 echo 'Configuring Timezone'
 ln -snf /usr/share/zoneinfo/US/Pacific /etc/localtime
 echo 'US/Pacific' > /etc/timezone
+
+# This distribution does not like flags described in single files
+# all 'package.*', except 'package.keywords', should be directories.
+mkdir -p "/etc/portage/package.license"
+mkdir -p "/etc/portage/package.use"
+mkdir -p "/etc/portage/package.accept_keywords"
+mkdir -p "/etc/portage/package.mask"
+mkdir -p "/etc/portage/package.unmask"
 
 echo 'Emerging Dependencies'
 cd /usr/portage
