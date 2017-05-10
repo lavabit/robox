@@ -223,6 +223,7 @@
     },
     {
       "scripts": [
+        "scripts/openbsd6/pkg.sh",
         "scripts/openbsd6/magma.sh"
       ],
       "type": "shell",
