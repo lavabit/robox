@@ -825,7 +825,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
@@ -837,7 +837,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
@@ -849,7 +849,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
@@ -861,7 +861,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
@@ -873,7 +873,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
@@ -885,7 +885,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
@@ -897,7 +897,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
@@ -909,7 +909,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
@@ -921,7 +921,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
@@ -933,7 +933,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
@@ -945,7 +945,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
@@ -957,7 +957,7 @@
               "provider": "libvirt",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
-              "description": "The magma encrypted mail daemon build environment."
+              "description": "A build environment for use in cross platform development."
           }
       },
       {
