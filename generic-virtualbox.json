@@ -180,7 +180,7 @@
             "scripts/fedora25/virtualbox.sh",
             "scripts/fedora25/vmware.sh",
             "scripts/fedora25/qemu.sh",
-            "scripts/fedora25/vagrant.sh"
+            "scripts/fedora25/vagrant.sh",
             "scripts/fedora25/tuning.sh"
         ],
         "type": "shell",
