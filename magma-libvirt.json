@@ -42,7 +42,7 @@
         "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
         "start_retry_timeout": "15m",
         "expect_disconnect": "true",
-        "only": ["magma-libvirt"]
+        "only": ["magma-libvirt", "magma-centos-libvirt", "magma-centos6-libvirt"]
     },
     {
         "type": "shell",
@@ -62,39 +62,7 @@
         "pause_before": "120s",
         "start_retry_timeout": "15m",
         "expect_disconnect": "true",
-        "only": ["magma-libvirt"]
-    },
-    {
-        "type": "shell",
-        "scripts": [
-            "scripts/centos6/fixdns.sh",
-            "scripts/centos6/base.sh",
-            "scripts/centos6/reboot.sh"
-        ],
-        "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
-        "start_retry_timeout": "15m",
-        "expect_disconnect": "true",
-        "only": ["magma-centos6-libvirt"]
-    },
-    {
-        "type": "shell",
-        "scripts": [
-            "scripts/centos6/kernel.sh",
-            "scripts/centos6/virtualbox.sh",
-            "scripts/centos6/vmware.sh",
-            "scripts/centos6/qemu.sh",
-            "scripts/centos6/postfix.sh",
-            "scripts/centos6/vagrant.sh",
-            "scripts/centos6/magma.sh",
-            "scripts/centos6/tuning.sh",
-            "scripts/centos6/sshd.sh",
-            "scripts/centos6/cleanup.sh"
-        ],
-        "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
-        "pause_before": "120s",
-        "start_retry_timeout": "15m",
-        "expect_disconnect": "true",
-        "only": ["magma-centos6-libvirt"]
+        "only": ["magma-libvirt", "magma-centos-libvirt", "magma-centos6-libvirt"]
     },
     {
         "type": "shell",
@@ -270,7 +238,7 @@
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": ["magma-ubuntu-libvirt"]
+      "only": ["magma-ubuntu-libvirt", "magma-ubuntu1604-libvirt"]
     },
     {
       "scripts": [
@@ -289,36 +257,7 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": ["magma-ubuntu-libvirt"]
-    },
-    {
-      "scripts": [
-          "scripts/ubuntu1604/network.sh",
-          "scripts/ubuntu1604/apt.sh"
-      ],
-      "type": "shell",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": ["magma-ubuntu1604-libvirt"]
-    },
-    {
-      "scripts": [
-          "scripts/ubuntu1604/limits.sh",
-          "scripts/ubuntu1604/postfix.sh",
-          "scripts/ubuntu1604/mysql.sh",
-          "scripts/ubuntu1604/memcached.sh",
-          "scripts/ubuntu1604/vagrant.sh",
-          "scripts/ubuntu1604/magma.sh",
-          "scripts/ubuntu1604/fixtty.sh",
-          "scripts/ubuntu1604/virtualbox.sh",
-          "scripts/ubuntu1604/vmware.sh",
-          "scripts/ubuntu1604/qemu.sh"
-      ],
-      "type": "shell",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": ["magma-ubuntu1604-libvirt"]
+      "only": ["magma-ubuntu-libvirt", "magma-ubuntu1604-libvirt"]
     },
     {
       "scripts": [
@@ -481,6 +420,43 @@
         "name": "magma-libvirt",
         "vm_name": "magma-libvirt",
         "output_directory": "output/magma-libvirt",
+        "accelerator": "kvm",
+        "qemu_binary": "/usr/libexec/qemu-kvm",
+        "boot_wait": "20s",
+        "boot_command": [
+            "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
+        ],
+        "format": "qcow2",
+        "disk_size": 32768,
+        "disk_interface": "virtio",
+        "disk_compression": true,
+        "net_device": "virtio-net",
+        "qemuargs": [
+            [
+                "-m",
+                "2048M"
+            ],
+            [
+                "-smp",
+                "cpus=2"
+            ]
+        ],
+        "http_directory": "http",
+        "headless": true,
+        "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
+        "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
+        "iso_checksum_type": "sha256",
+        "ssh_username": "root",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_wait_timeout": "10000s",
+        "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+        "type": "qemu",
+        "name": "magma-centos-libvirt",
+        "vm_name": "magma-centos-libvirt",
+        "output_directory": "output/magma-centos-libvirt",
         "accelerator": "kvm",
         "qemu_binary": "/usr/libexec/qemu-kvm",
         "boot_wait": "20s",
@@ -1122,6 +1098,18 @@
           "type": "atlas",
           "only": ["magma-libvirt"],
           "artifact": "lavabit/magma",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "libvirt",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "The magma encrypted mail daemon build environment."
+          }
+      },
+      {
+          "type": "atlas",
+          "only": ["magma-centos-libvirt"],
+          "artifact": "lavabit/magma-centos",
           "artifact_type": "vagrant.box",
           "metadata": {
               "provider": "libvirt",
