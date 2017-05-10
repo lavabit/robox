@@ -1,6 +1,6 @@
 #!/bin/bash -ux
 
-emerge sys-devel/autoconf sys-devel/gcc sys-devel/flex sys-devel/binutils-config sys-devel/autogen  sys-devel/binutils sys-devel/m4 sys-devel/make sys-devel/libtool sys-devel/automake sys-devel/gettext  sys-devel/bison dev-util/valgrind dev-util/pkgconf sys-libs/readline sys-libs/musl sys-libs/glibc sys-libs/binutils-libs dev-libs/openssl dev-libs/libevent dev-libs/expat dev-libs/crypto++ dev-libs/check dev-libs/libbsd dev-libs/nspr dev-libs/mpfr dev-libs/mpc dev-libs/libxml2 dev-libs/libxslt dev-libs/shhopt sys-devel/gdb
+emerge sys-devel/autoconf sys-devel/gcc sys-devel/flex sys-devel/binutils-config sys-devel/autogen  sys-devel/binutils sys-devel/m4 sys-devel/make sys-devel/libtool sys-devel/automake sys-devel/gettext  sys-devel/bison dev-util/valgrind dev-util/pkgconf sys-libs/readline sys-libs/glibc sys-libs/binutils-libs dev-libs/openssl dev-libs/libevent dev-libs/expat dev-libs/crypto++ dev-libs/check dev-libs/libbsd dev-libs/nspr dev-libs/mpfr dev-libs/mpc dev-libs/libxml2 dev-libs/libxslt dev-libs/shhopt sys-devel/gdb
 
 emerge dev-vcs/git dev-vcs/git-tools
 
