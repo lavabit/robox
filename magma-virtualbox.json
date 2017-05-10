@@ -586,8 +586,8 @@
       "boot_wait": "20s",
       "boot_command": [
         "<enter><wait10><wait10><wait10>",
-        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/arch.install{,.chroot}.sh'<enter><wait>",
-        "bash arch.install.sh < arch.install.chroot.sh && systemctl reboot<enter>"
+        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.arch.vagrant{,.chroot}.sh'<enter><wait>",
+        "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
       ],
       "disk_size": 32768,
       "vboxmanage": [
@@ -984,8 +984,8 @@
         "passwd root<enter><wait>",
         "vagrant<enter><wait>",
         "vagrant<enter><wait>",
-        "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/gentoo.install{,.chroot}.sh'<enter><wait>",
-        "bash gentoo.install.sh && (chroot /mnt/gentoo /bin/bash < gentoo.install.chroot.sh) && reboot<enter>"
+        "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
+        "bash magma.gentoo.vagrant.sh && (chroot /mnt/gentoo /bin/bash < magma.gentoo.vagrant.chroot.sh) && reboot<enter>"
       ],
       "disk_size": 32768,
       "vboxmanage": [
