@@ -81,13 +81,18 @@ build() {
 }
 
 validate magma-docker
+
 validate magma-vmware
 validate magma-libvirt
 validate magma-virtualbox
 
+validate generic-vmware
+validate generic-libvirt
+validate generic-virtualbox
+
 # Collect the list of ISO urls.
-ISOURLS=(`grep -E "iso_url|guest_additions_url" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json generic-libvirt.json generic-vmware.json generic-virtualbox.json | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json generic-libvirt.json generic-vmware.json generic-virtualbox.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
 
 for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
     verify "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
@@ -99,6 +104,10 @@ printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n
 build magma-vmware
 build magma-libvirt
 build magma-virtualbox
+
+build generic-vmware
+build generic-libvirt
+build generic-virtualbox
 
 for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done
 
