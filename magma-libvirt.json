@@ -11,7 +11,7 @@
         "execute_command": "/bin/sh '{{.Path}}'",
         "start_retry_timeout": "15m",
         "expect_disconnect": "true",
-        "only": ["magma-alpine-libvirt"]
+        "only": ["magma-alpine35-libvirt"]
     },
     {
         "type": "shell",
@@ -30,7 +30,7 @@
         "pause_before": "120s",
         "start_retry_timeout": "15m",
         "expect_disconnect": "true",
-        "only": ["magma-alpine-libvirt"]
+        "only": ["magma-alpine35-libvirt"]
     },
     {
         "type": "shell",
@@ -372,9 +372,9 @@
   "builders": [
     {
         "type": "qemu",
-        "name": "magma-alpine-libvirt",
-        "vm_name": "magma-alpine-libvirt",
-        "output_directory": "output/magma-alpine-libvirt",
+        "name": "magma-alpine35-libvirt",
+        "vm_name": "magma-alpine35-libvirt",
+        "output_directory": "output/magma-alpine35-libvirt",
         "accelerator": "kvm",
         "qemu_binary": "/usr/libexec/qemu-kvm",
         "boot_wait": "20s",
@@ -1084,7 +1084,7 @@
       },
       {
           "type": "atlas",
-          "only": ["magma-alpine-libvirt"],
+          "only": ["magma-alpine35-libvirt"],
           "artifact": "lavabit/magma-alpine",
           "artifact_type": "vagrant.box",
           "metadata": {

@@ -11,7 +11,7 @@
         "execute_command": "/bin/sh '{{.Path}}'",
         "start_retry_timeout": "15m",
         "expect_disconnect": "true",
-        "only": ["magma-alpine-virtualbox"]
+        "only": ["magma-alpine35-virtualbox"]
     },
     {
         "type": "shell",
@@ -30,7 +30,7 @@
         "pause_before": "120s",
         "start_retry_timeout": "15m",
         "expect_disconnect": "true",
-        "only": ["magma-alpine-virtualbox"]
+        "only": ["magma-alpine35-virtualbox"]
     },
     {
         "type": "shell",
@@ -372,9 +372,9 @@
   "builders": [
     {
         "type": "virtualbox-iso",
-        "name": "magma-alpine-virtualbox",
-        "vm_name": "magma-alpine-virtualbox",
-        "output_directory": "output/magma-alpine-virtualbox",
+        "name": "magma-alpine35-virtualbox",
+        "vm_name": "magma-alpine35-virtualbox",
+        "output_directory": "output/magma-alpine35-virtualbox",
         "boot_wait": "20s",
         "boot_command": [
           "root<enter><wait>",
@@ -1132,7 +1132,7 @@
       },
       {
           "type": "atlas",
-          "only": ["magma-alpine-virtualbox"],
+          "only": ["magma-alpine35-virtualbox"],
           "artifact": "lavabit/magma-alpine",
           "artifact_type": "vagrant.box",
           "metadata": {
