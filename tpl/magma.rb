@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "lavabit/magma"
+  # config.vm.box = "lavabit/magma"
   # config.vm.hostname = "magma.build.box"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
