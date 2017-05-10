@@ -12,12 +12,12 @@ EOF
 echo 'Creating Portage Makefile'
 cat <<-EOF > /etc/portage/make.conf
 CHOST="x86_64-pc-linux-gnu"
-CFLAGS="-mtune=generic -O0 -pipe"
+CFLAGS="-mtune=generic -O1 -pipe"
 CXXFLAGS="\${CFLAGS}"
 MAKEOPTS="-j8"
-EMERGE_DEFAULT_OPTS="-j8 --quiet-build=y"
+EMERGE_DEFAULT_OPTS="-j8 --with-bdeps=y --quiet-build=y --complete-graph"
 FEATURES="\${FEATURES} parallel-fetch"
-USE="alsa usb unicode"
+USE="nls alsa usb unicode"
 USE_PYTHON="3.2 2.7"
 PYTHON_TARGETS="python2_7 python3_2 python3_3"
 GRUB_PLATFORMS="emu pc"
