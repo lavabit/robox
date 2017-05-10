@@ -212,6 +212,7 @@
     },
     {
       "scripts": [
+        "scripts/freebsd11/pkg.sh",
         "scripts/freebsd11/magma.sh"
       ],
       "type": "shell",
@@ -443,7 +444,6 @@
         "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
         "tools_upload_flavor": "linux"
     },
-
     {
         "type": "vmware-iso",
         "name": "magma-centos-vmware",

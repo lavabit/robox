@@ -212,6 +212,7 @@
     },
     {
       "scripts": [
+        "scripts/freebsd11/pkg.sh",
         "scripts/freebsd11/magma.sh"
       ],
       "type": "shell",
