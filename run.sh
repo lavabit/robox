@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.8.20"
+export VERSION="0.8.21"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -72,11 +72,9 @@ build() {
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
     for i in 1 2 3; do printf "\a"; sleep 1; done
-    rm -rf packer_cache/
-  #  exit 1
-  else
-    rm -rf packer_cache/
-    sleep 120
+    # Uncomment to abort the build if a machine fails.
+    # rm -rf packer_cache/
+    # exit 1
   fi
 }
 
@@ -101,6 +99,8 @@ done
 # Let the user know all of the links passed.
 printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
 
+# build magma-docker
+
 build magma-vmware
 build magma-libvirt
 build magma-virtualbox
@@ -108,6 +108,8 @@ build magma-virtualbox
 build generic-vmware
 build generic-libvirt
 build generic-virtualbox
+
+rm -rf packer_cache/
 
 for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done
 
