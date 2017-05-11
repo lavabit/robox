@@ -303,9 +303,9 @@
         "boot_command": [
           "root<enter><wait>",
           "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
-          "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.alpine35.vagrant.cfg<enter><wait>",
+          "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine35.vagrant.cfg<enter><wait>",
           "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-          "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f magma.alpine35.vagrant.cfg && ",
+          "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f generic.alpine35.vagrant.cfg && ",
           "mount /dev/sda3 /mnt && ",
           "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
           "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
@@ -316,7 +316,7 @@
         "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "2"
         },
         "guest_os_type": "otherlinux-64",
         "http_directory": "http",
@@ -341,14 +341,14 @@
         "output_directory": "output/generic-centos6-vmware",
         "boot_wait": "20s",
         "boot_command": [
-            "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
+            "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
         ],
         "disk_size": 32768,
         "disk_type_id": "0",
         "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "2"
         },
         "guest_os_type": "centos-64",
         "http_directory": "http",
@@ -373,14 +373,14 @@
         "output_directory": "output/generic-centos7-vmware",
         "boot_wait": "20s",
         "boot_command": [
-            "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
+            "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
         ],
         "disk_size": 32768,
         "disk_type_id": "0",
         "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "2"
         },
         "guest_os_type": "centos-64",
         "http_directory": "http",
@@ -406,15 +406,15 @@
       "boot_wait": "20s",
       "boot_command": [
         "<enter><wait10><wait10><wait10>",
-        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.arch.vagrant{,.chroot}.sh'<enter><wait>",
-        "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
+        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.vagrant{,.chroot}.sh'<enter><wait>",
+        "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
       "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "2"
       },
       "guest_os_type": "otherlinux-64",
       "skip_compaction": true,
@@ -441,7 +441,7 @@
       "boot_wait": "20s",
       "boot_command": [
         "<tab> ",
-        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora25.vagrant.ks ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora25.vagrant.ks ",
         "biosdevname=0 ",
         "net.ifnames=0 ",
         "<enter>"
@@ -451,7 +451,7 @@
       "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "2"
       },
       "guest_os_type": "fedora-64",
       "skip_compaction": true,
@@ -479,7 +479,7 @@
       "boot_command": [
         "<esc><wait>",
         "auto ",
-        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian8.vagrant.cfg ",
+        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian8.vagrant.cfg ",
         "<enter>"
       ],
       "disk_size": 32768,
@@ -487,7 +487,7 @@
       "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "2"
       },
       "guest_os_type": "debian8-64",
       "skip_compaction": true,
@@ -528,7 +528,7 @@
         "initrd=/install/initrd.gz ",
         "auto-install/enable=true ",
         "debconf/priority=critical ",
-        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg<wait> ",
+        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1604.vagrant.cfg<wait> ",
         "<enter>"
       ],
       "disk_size": 32768,
@@ -536,7 +536,7 @@
       "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "2"
       },
       "guest_os_type": "ubuntu-64",
       "skip_compaction": true,
@@ -568,7 +568,7 @@
         "initrd=/install/initrd.gz ",
         "auto-install/enable=true ",
         "debconf/priority=critical ",
-        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1610.vagrant.cfg<wait> ",
+        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1610.vagrant.cfg<wait> ",
         "<enter>"
       ],
       "disk_size": 32768,
@@ -576,7 +576,7 @@
       "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "2"
       },
       "guest_os_type": "ubuntu-64",
       "skip_compaction": true,
@@ -608,7 +608,7 @@
         "initrd=/install/initrd.gz ",
         "auto-install/enable=true ",
         "debconf/priority=critical ",
-        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1704.vagrant.cfg<wait> ",
+        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1704.vagrant.cfg<wait> ",
         "<enter>"
       ],
       "disk_size": 32768,
@@ -616,7 +616,7 @@
       "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "2"
       },
       "guest_os_type": "ubuntu-64",
       "skip_compaction": true,
@@ -647,15 +647,15 @@
         "passwd root<enter><wait>",
         "vagrant<enter><wait>",
         "vagrant<enter><wait>",
-        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
-        "bash magma.gentoo.vagrant.sh && (chroot /mnt/gentoo /bin/bash < magma.gentoo.vagrant.chroot.sh) && reboot<enter>"
+        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
+        "bash generic.gentoo.vagrant.sh && (chroot /mnt/gentoo /bin/bash < generic.gentoo.vagrant.chroot.sh) && reboot<enter>"
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
       "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1",
+            "cpuid.coresPerSocket": "2",
             "vmci0.present": "TRUE"
       },
       "guest_os_type": "otherlinux-64",
@@ -690,7 +690,7 @@
         "mdmfs -s 100m md1 /tmp<enter><wait>",
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
-        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd11.vagrant.cfg<enter><wait5>",
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 32768,
@@ -698,7 +698,7 @@
       "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "2"
       },
       "guest_os_type": "freebsd-64",
       "skip_compaction": true,
@@ -725,8 +725,8 @@
       "boot_command": [
         "S<enter><wait>",
         "dhclient em0<enter><wait5>",
-        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait>",
-        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
+        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.cfg<enter><wait>",
+        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.chroot.sh<enter><wait>",
         "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
       ],
       "disk_size": 32768,
@@ -734,7 +734,7 @@
       "vmx_data": {
             "memsize": "2048",
             "numvcpus": "2",
-            "cpuid.coresPerSocket": "1"
+            "cpuid.coresPerSocket": "2"
       },
       "guest_os_type": "freeBSD-64",
       "skip_compaction": true,
