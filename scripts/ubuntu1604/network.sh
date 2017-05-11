@@ -13,6 +13,9 @@ printf "\nnameserver 4.2.2.1\nnameserver 4.2.2.2\n" > /etc/resolv.conf
 if [[ "$PACKER_BUILD_NAME" =~ ^lineage-vmware$|^lineage-libvirt$|^lineage-virtualbox$ ]]; then
   printf "lineage.builder\n" > /etc/hostname
   printf "\n127.0.0.1 lineage.builder\n\n" >> /etc/hosts
+elif [[ "$PACKER_BUILD_NAME" =~ ^generic-ubuntu1604-vmware$|^generic-ubuntu1604-libvirt$|^generic-ubuntu1604-virtualbox$ ]]; then
+  printf "ubuntu1604.localdomain\n" > /etc/hostname
+  printf "\n127.0.0.1 ubuntu1604.localdomain\n\n" >> /etc/hosts
 else
   printf "magma.builder\n" > /etc/hostname
   printf "\n127.0.0.1 magma.builder\n\n" >> /etc/hosts
