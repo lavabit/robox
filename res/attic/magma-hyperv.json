@@ -76,37 +76,6 @@
   "builders": [
     {
         "type": "hyperv-iso",
-        "name": "magma-alpine-hyperv",
-        "vm_name": "magma-alpine-hyperv",
-        "output_directory": "output/magma-alpine-hyperv",
-        "boot_wait": "20s",
-        "boot_command": [
-          "root<enter><wait>",
-          "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
-          "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.alpine35.vagrant.cfg<enter><wait>",
-          "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-          "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f magma.alpine35.vagrant.cfg && ",
-          "mount /dev/sda3 /mnt && ",
-          "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
-          "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-          "umount /mnt && reboot<enter>"
-        ],
-        "disk_size": 32768,
-        "ram_size": 2048,
-        "cpu": 2,
-        "http_directory": "http",
-        "iso_urls": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
-        "iso_checksum": "2258ca975d7b829ea6229d314b2782d4070ec9b7f688392817e562f5a14a34b5",
-        "iso_checksum_type": "sha256",
-        "communicator": "ssh",
-        "ssh_username": "root",
-        "ssh_password": "vagrant",
-        "ssh_port": 22,
-        "ssh_timeout": "10000s",
-        "shutdown_command": "/sbin/poweroff"
-    },
-    {
-        "type": "hyperv-iso",
         "name": "magma-hyperv",
         "vm_name": "magma-hyperv",
         "output_directory": "output/magma-hyperv",
@@ -126,7 +95,52 @@
         "ssh_password": "vagrant",
         "ssh_port": 22,
         "ssh_timeout": "10000s",
-        "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+        "generation": 1,
+        "communicator":"ssh",
+        "skip_compaction": false,
+        "enable_mac_spoofing": true,
+        "enable_dynamic_memory": true,
+        "guest_additions_mode": "disable",
+        "enable_virtualization_extensions": false
+    },
+    {
+        "type": "hyperv-iso",
+        "name": "magma-alpine-hyperv",
+        "vm_name": "magma-alpine-hyperv",
+        "output_directory": "output/magma-alpine-hyperv",
+        "boot_wait": "20s",
+        "boot_command": [
+          "root<enter><wait>",
+          "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+          "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.alpine35.vagrant.cfg<enter><wait>",
+          "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+          "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f magma.alpine35.vagrant.cfg && ",
+          "mount /dev/sda3 /mnt && ",
+          "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+          "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+          "umount /mnt && reboot<enter>"
+        ],
+        "disk_size": 32768,
+        "ram_size": 2048,
+        "cpu": 2,
+        "http_directory": "http",
+        "iso_urls": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-vanilla-3.5.2-x86_64.iso",
+        "iso_checksum": "f311a5de9528dd28c021fe2df0b8dd7df2f9de0b3e167d8d2a4f760b99234692",
+        "iso_checksum_type": "sha256",
+        "communicator": "ssh",
+        "ssh_username": "root",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_timeout": "10000s",
+        "shutdown_command": "/sbin/poweroff",
+        "generation": 1,
+        "communicator":"ssh",
+        "skip_compaction": false,
+        "enable_mac_spoofing": true,
+        "enable_dynamic_memory": true,
+        "guest_additions_mode": "disable",
+        "enable_virtualization_extensions": false
     }
   ],
   "post-processors": [
@@ -140,8 +154,8 @@
       },
       {
           "type": "atlas",
-          "only": ["magma-alpine-hyperv"],
-          "artifact": "lavabit/magma-alpine",
+          "only": ["magma-hyperv"],
+          "artifact": "lavabit/magma",
           "artifact_type": "vagrant.box",
           "metadata": {
               "provider": "hyperv",
@@ -152,8 +166,8 @@
       },
       {
           "type": "atlas",
-          "only": ["magma-hyperv"],
-          "artifact": "lavabit/magma",
+          "only": ["magma-alpine-hyperv"],
+          "artifact": "lavabit/magma-alpine",
           "artifact_type": "vagrant.box",
           "metadata": {
               "provider": "hyperv",
