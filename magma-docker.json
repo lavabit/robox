@@ -255,8 +255,7 @@
                 "repository": "lavabit/magma",
                 "only": [
                     "magma-docker"
-                ],
-                "force": "true"
+                ]
             },
             {
                 "type": "docker-import",
@@ -270,11 +269,10 @@
             {
                 "type": "docker-tag",
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma-centos-docker",
+                "repository": "lavabit/magma-centos",
                 "only": [
                     "magma-centos-docker"
-                ],
-                "force": "true"
+                ]
             },
             {
                 "type": "docker-import",
@@ -288,17 +286,16 @@
             {
                 "type": "docker-tag",
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma-centos6-docker",
+                "repository": "lavabit/magma-centos6",
                 "only": [
                     "magma-centos6-docker"
-                ],
-                "force": "true"
+                ]
             },
             {
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/centos7-docker",
+                "repository": "lavabit/magma-centos7",
                 "only": [
                     "magma-centos7-docker"
                 ]
@@ -306,15 +303,14 @@
             {
                 "type": "docker-tag",
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/centos7-docker",
+                "repository": "lavabit/magma-centos7",
                 "only": [
                     "magma-centos7-docker"
-                ],
-                "force": "true"
+                ]
             },
             {
                 "type": "docker-push",
-                "login": "true",
+                "login": "false",
                 "login_email": "{{user `docker_email`}}",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
@@ -338,11 +334,10 @@
             {
                 "tag": "latest",
                 "type": "docker-tag",
-                "repository": "docker.io/lavabit/magma",
+                "repository": "lavabit/magma",
                 "only": [
                     "magma-docker"
-                ],
-                "force": "true"
+                ]
             },
             {
                 "tag": "latest",
@@ -356,11 +351,10 @@
             {
                 "tag": "latest",
                 "type": "docker-tag",
-                "repository": "docker.io/lavabit/magma-centos-docker",
+                "repository": "lavabit/magma-centos",
                 "only": [
                     "magma-centos-docker"
-                ],
-                "force": "true"
+                ]
             },
             {
                 "tag": "latest",
@@ -374,17 +368,16 @@
             {
                 "tag": "latest",
                 "type": "docker-tag",
-                "repository": "docker.io/lavabit/magma-centos6-docker",
+                "repository": "lavabit/magma-centos6",
                 "only": [
                     "magma-centos6-docker"
-                ],
-                "force": "true"
+                ]
             },
             {
                 "tag": "latest",
                 "type": "docker-import",
                 "keep_input_artifact": true,
-                "repository": "lavabit/centos7-docker",
+                "repository": "lavabit/magma-centos7",
                 "only": [
                     "magma-centos7-docker"
                 ]
@@ -392,15 +385,14 @@
             {
                 "tag": "latest",
                 "type": "docker-tag",
-                "repository": "docker.io/lavabit/centos7-docker",
+                "repository": "lavabit/magma-centos7",
                 "only": [
                     "magma-centos7-docker"
-                ],
-                "force": "true"
+                ]
             },
             {
                 "type": "docker-push",
-                "login": "true",
+                "login": "false",
                 "login_email": "{{user `docker_email`}}",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
