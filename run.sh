@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.8.22"
+export VERSION="0.8.25"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -99,7 +99,9 @@ done
 # Let the user know all of the links passed.
 printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
 
-# build magma-docker
+docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+
+build magma-docker
 
 build magma-vmware
 build magma-libvirt
