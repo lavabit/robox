@@ -117,7 +117,7 @@
             "ssh_password": "locked",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
-            "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+            "shutdown_command": "shutdown -h now"
         },
         {
             "type": "qemu",
@@ -154,7 +154,7 @@
             "ssh_password": "locked",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
-            "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+            "shutdown_command": "shutdown -h now"
         },
         {
             "type": "qemu",
@@ -191,7 +191,7 @@
             "ssh_password": "locked",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
-            "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+            "shutdown_command": "shutdown -h now"
         },
         {
             "type": "qemu",
@@ -228,29 +228,21 @@
             "ssh_password": "locked",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
-            "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+            "shutdown_command": "shutdown -h now"
         }
     ],
     "post-processors": [
         [
             {
                 "type": "artifice",
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.tar"
+                        "output/{{build_name}}-{{user `box_version`}}.tar"
                 ]
             },
             {
                 "type": "docker-import",
                 "keep_input_artifact": true,
-                "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma",
-                "only": [
-                    "magma-docker"
-                ]
-            },
-            {
-                "type": "docker-tag",
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma",
                 "only": [
@@ -267,14 +259,6 @@
                 ]
             },
             {
-                "type": "docker-tag",
-                "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma-centos",
-                "only": [
-                    "magma-centos-docker"
-                ]
-            },
-            {
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
@@ -284,24 +268,8 @@
                 ]
             },
             {
-                "type": "docker-tag",
-                "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma-centos6",
-                "only": [
-                    "magma-centos6-docker"
-                ]
-            },
-            {
                 "type": "docker-import",
                 "keep_input_artifact": true,
-                "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma-centos7",
-                "only": [
-                    "magma-centos7-docker"
-                ]
-            },
-            {
-                "type": "docker-tag",
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma-centos7",
                 "only": [
@@ -314,7 +282,9 @@
                 "login_email": "{{user `docker_email`}}",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
-            },
+            }
+        ],
+        [
             {
                 "type": "artifice",
                 "keep_input_artifact": true,
@@ -323,68 +293,36 @@
                 ]
             },
             {
-                "tag": "latest",
                 "type": "docker-import",
                 "keep_input_artifact": true,
+                "tag": "latest",
                 "repository": "lavabit/magma",
                 "only": [
                     "magma-docker"
                 ]
             },
             {
-                "tag": "latest",
-                "type": "docker-tag",
-                "repository": "lavabit/magma",
-                "only": [
-                    "magma-docker"
-                ]
-            },
-            {
-                "tag": "latest",
                 "type": "docker-import",
                 "keep_input_artifact": true,
+                "tag": "latest",
                 "repository": "lavabit/magma-centos",
                 "only": [
                     "magma-centos-docker"
                 ]
             },
             {
-                "tag": "latest",
-                "type": "docker-tag",
-                "repository": "lavabit/magma-centos",
-                "only": [
-                    "magma-centos-docker"
-                ]
-            },
-            {
-                "tag": "latest",
                 "type": "docker-import",
                 "keep_input_artifact": true,
+                "tag": "latest",
                 "repository": "lavabit/magma-centos6",
                 "only": [
                     "magma-centos6-docker"
                 ]
             },
             {
-                "tag": "latest",
-                "type": "docker-tag",
-                "repository": "lavabit/magma-centos6",
-                "only": [
-                    "magma-centos6-docker"
-                ]
-            },
-            {
-                "tag": "latest",
                 "type": "docker-import",
                 "keep_input_artifact": true,
-                "repository": "lavabit/magma-centos7",
-                "only": [
-                    "magma-centos7-docker"
-                ]
-            },
-            {
                 "tag": "latest",
-                "type": "docker-tag",
                 "repository": "lavabit/magma-centos7",
                 "only": [
                     "magma-centos7-docker"
@@ -414,7 +352,7 @@
                 "type": "artifice",
                 "keep_input_artifact": true,
                 "files": [
-                    "{{build_name}}-{{user `box_version`}}.tar.gz"
+                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
                 ]
             },
             {
