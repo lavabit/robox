@@ -188,8 +188,5 @@
         "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
       }
     ]
-  ],
-  "push": {
-   "name": "ladar/packer"
-  }
+  ]
 }
