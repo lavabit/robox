@@ -72,6 +72,9 @@ EOF
 # Fix the SELinux context for the postfix logrotate config.
 chcon system_u:object_r:etc_t:s0 /etc/logrotate.d/postfix
 
+# Remove the existing logrotation directive.
+sed -i -e "/maillog/d" /etc/logrotate.d/syslog
+
 #printf "\nmagma.builder         smtp:[127.0.0.1]:2525\n" >> /etc/postfix/transport
 #printf "magmadaemon.com         smtp:[127.0.0.1]:2525\n" >> /etc/postfix/transport
 postmap /etc/postfix/transport
