@@ -6,17 +6,17 @@ automake autoconf valgrind binutils binutils-libs gmp isl mpc1 python2 pkgconf \
 mpfr3 libtool flex bison cmake ca-certificates patch ncurses-doc ncurses-libs \
 ncurses-dev ncurses-static ncurses ncurses-terminfo-base ncurses-terminfo \
 makedepend build-base coreutils ctags readline openssl nasm zlib groff subunit \
-diffutils doxygen elfutils gawk sed texinfo xz jsoncpp subunit-libs \
+diffutils doxygen gawk sed texinfo xz jsoncpp subunit-libs \
 libc-utils patchutils strace tar kmod bc linux-firmware pcre pcre-tools \
 bsd-compat-headers fortify-headers linux-headers curl check fts expect \
 linux-vanilla clang clang-libs llvm llvm-static llvm-libs boost \
 boost-system boost-thread boost-signals boost-random boost-iostreams tcl \
 boost-math boost-serialization boost-filesystem boost-date_time boost-regex \
-musl musl-utils util-macro npth gpgme \
+musl musl-utils npth gpgme \
 libbz2 libgomp libatomic libltdl libbsd libattr libacl libarchive libcurl \
 libpthread-stubs libgcc libgc++ libc6-compat libressl libaio libuv libxml2 \
 libxslt libgc++ libgcj libgnat libstdc++ \
-glib-dev libc-dev musl-dev valgrind-dev libbsd-dev subunit-dev marco-dev \
+glib-dev libc-dev musl-dev valgrind-dev libbsd-dev subunit-dev \
 acl-dev popt-dev python2-dev zlib-dev kmod-dev linux-vanilla-dev \
 gmp-dev mpfr-dev libressl-dev readline-dev libaio-dev npth-dev \
 util-linux-dev curl-dev expat-dev zlib-dev bzip2-dev libarchive-dev tcl-dev \
