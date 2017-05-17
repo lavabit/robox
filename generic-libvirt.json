@@ -19,7 +19,8 @@
             "scripts/alpine35/vagrant.sh",
             "scripts/alpine35/virtualbox.sh",
             "scripts/alpine35/vmware.sh",
-            "scripts/alpine35/qemu.sh"
+            "scripts/alpine35/qemu.sh",
+            "scripts/alpine35/cache.sh"
         ],
         "execute_command": "/bin/bash '{{.Path}}'",
         "pause_before": "120s",

@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # The packages needed to compile magma.
-apk add --force bash m4 gcc g++ gcc-gnat gdb gdbm grep perl make glib expat \
+apk add bash m4 gcc g++ gcc-gnat gdb gdbm grep perl make glib expat \
 automake autoconf valgrind binutils binutils-libs gmp isl mpc1 python2 pkgconf \
 mpfr3 libtool flex bison cmake ca-certificates patch ncurses-doc ncurses-libs \
 ncurses-dev ncurses-static ncurses ncurses-terminfo-base ncurses-terminfo \
@@ -25,13 +25,13 @@ libxml2-dev llvm-dev isl-dev clang-dev llvm-dev boost-dev libxslt-dev \
 gcc-doc m4-doc make-doc patch-doc
 
 # Need to retrieve the source code.
-apk add --force git git-doc git-perl popt rsync wget
+apk add git git-doc git-perl popt rsync wget
 
 # Needed to run the watcher and status scripts.
-apk add --force sysstat inotify-tools lm_sensors sysfsutils
+apk add sysstat inotify-tools lm_sensors sysfsutils
 
 # Needed to run the stacie script.
-apk add --force py2-crypto py2-cryptography py2-cparser py2-cffi py2-idna py2-asn1 py2-six py2-ipaddress
+apk add py2-crypto py2-cryptography py2-cparser py2-cffi py2-idna py2-asn1 py2-six py2-ipaddress
 
 # Setup the the box. This runs as root
 if [ -d /home/vagrant/ ]; then
