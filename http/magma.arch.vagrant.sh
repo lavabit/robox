@@ -21,6 +21,10 @@ mkswap "${device}1"
 mkfs.ext4 "${device}2"
 mount "${device}2" /mnt
 
+# Ensure the kernel.org mirror is always listed, so things work, even when the archlinux
+# website goes offline.
+printf "Server = http://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /tmp/mirrolist.50
+
 curl -fsS https://www.archlinux.org/mirrorlist/?country=all > /tmp/mirrolist
 grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 50 | sed 's/^#//' > /tmp/mirrolist.50
 rankmirrors -v /tmp/mirrolist.50 | tee /etc/pacman.d/mirrorlist
