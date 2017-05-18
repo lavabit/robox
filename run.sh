@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.8.25"
+export VERSION="0.8.27"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -65,8 +65,8 @@ build() {
   export PACKER_LOG="1"
   export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/$1.txt"
 
-  # packer build -on-error=cleanup -parallel=false $1.json
-  packer build -on-error=cleanup -except=lineage-libvirt -parallel=false $1.json
+  packer build -on-error=cleanup -parallel=false $1.json
+  # packer build -on-error=cleanup -except=lineage-libvirt -parallel=false $1.json
   #packer build -on-error=cleanup -parallel=false -only=magma-alpine-vmware,magma-alpine-libvirt,magma-alpine-virtualbox $1.json
 
   if [[ $? != 0 ]]; then
@@ -104,8 +104,8 @@ printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n
 #build magma-docker
 
 #build magma-vmware
-build magma-libvirt
-build magma-virtualbox
+#build magma-libvirt
+#build magma-virtualbox
 
 build generic-vmware
 build generic-libvirt

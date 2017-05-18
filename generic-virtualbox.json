@@ -6,6 +6,17 @@
     {
         "type": "shell",
         "scripts": [
+            "scripts/opensuse42/sudo.sh",
+            "scripts/opensuse42/zypper.sh"
+        ],
+        "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh '{{.Path}}'",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["generic-opensuse42-virtualbox"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
             "scripts/alpine35/apk.sh"
         ],
         "execute_command": "/bin/sh '{{.Path}}'",
@@ -294,6 +305,49 @@
     }
   ],
   "builders": [
+    {
+        "type": "virtualbox-iso",
+        "name": "generic-opensuse42-virtualbox",
+        "vm_name": "generic-opensuse42-virtualbox",
+        "output_directory": "output/generic-opensuse42-virtualbox",
+        "boot_wait": "20s",
+        "boot_command": [
+          "<esc><enter><wait>",
+          "linux netsetup=dhcp install=cd:/ lang=en_US  textmode=1 <wait>",
+          "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
+          "<enter><wait>"
+        ],
+        "disk_size": 32768,
+        "vboxmanage": [
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--memory",
+                "2048"
+            ],
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--cpus",
+                "2"
+            ]
+        ],
+        "guest_os_type": "OpenSUSE_64",
+        "http_directory": "http",
+        "headless": true,
+        "iso_urls": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Current.iso",
+        "iso_checksum": "73f8fc223e13c51b3ac83150d0d5d53da44a1624d89808d603a8f386700f49a0",
+        "iso_checksum_type": "sha256",
+        "ssh_username": "root",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_wait_timeout": "10000s",
+        "shutdown_command": "/sbin/poweroff",
+        "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+        "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+        "guest_additions_path": "VBoxGuestAdditions.iso",
+        "virtualbox_version_file": "VBoxVersion.txt"
+    },
     {
         "type": "virtualbox-iso",
         "name": "generic-alpine35-virtualbox",
@@ -852,6 +906,18 @@
         "keep_input_artifact": false,
         "vagrantfile_template": "tpl/generic.rb",
         "output": "output/{{build_name}}-{{user `box_version`}}.box"
+      },
+      {
+          "type": "atlas",
+          "only": ["generic-opensuse42-virtualbox"],
+          "artifact": "generic/opensuse42",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "virtualbox",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "A build environment for use in cross platform development."
+          }
       },
       {
           "type": "atlas",
