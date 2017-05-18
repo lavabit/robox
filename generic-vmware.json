@@ -6,6 +6,17 @@
     {
         "type": "shell",
         "scripts": [
+            "scripts/opensuse42/sudo.sh",
+            "scripts/opensuse42/zypper.sh"
+        ],
+        "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh '{{.Path}}'",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["generic-opensuse42-vmware"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
             "scripts/alpine35/apk.sh"
         ],
         "execute_command": "/bin/sh '{{.Path}}'",
@@ -294,6 +305,41 @@
     }
   ],
   "builders": [
+    {
+        "type": "vmware-iso",
+        "name": "generic-opensuse42-vmware",
+        "vm_name": "generic-opensuse42-vmware",
+        "vmdk_name": "generic-opensuse42-vmware",
+        "output_directory": "output/generic-opensuse42-vmware",
+        "boot_wait": "20s",
+        "boot_command": [
+          "<esc><enter><wait>",
+          "linux netsetup=dhcp install=cd:/ lang=en_US  textmode=1 <wait>",
+          "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
+          "<enter><wait>"
+        ],
+        "disk_size": 32768,
+        "disk_type_id": "0",
+        "vmx_data": {
+            "memsize": "2048",
+            "numvcpus": "2",
+            "cpuid.coresPerSocket": "2"
+        },
+        "guest_os_type": "opensuse-64",
+        "http_directory": "http",
+        "headless": true,
+        "vnc_disable_password": true,
+        "iso_urls": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Current.iso",
+        "iso_checksum": "73f8fc223e13c51b3ac83150d0d5d53da44a1624d89808d603a8f386700f49a0",
+        "iso_checksum_type": "sha256",
+        "skip_compaction": true,
+        "ssh_username": "root",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_wait_timeout": "10000s",
+        "shutdown_command": " /sbin/shutdown -h 1",
+        "tools_upload_flavor": "linux"
+    },
     {
         "type": "vmware-iso",
         "name": "generic-alpine35-vmware",
@@ -761,6 +807,18 @@
         "keep_input_artifact": false,
         "vagrantfile_template": "tpl/generic.rb",
         "output": "output/{{build_name}}-{{user `box_version`}}.box"
+      },
+      {
+          "type": "atlas",
+          "only": ["generic-opensuse42-vmware"],
+          "artifact": "generic/opensuse42",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "vmware",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "A build environment for use in cross platform development."
+          }
       },
       {
           "type": "atlas",
