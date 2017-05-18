@@ -66,7 +66,7 @@ build() {
   export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/$1.txt"
 
   # packer build -on-error=cleanup -parallel=false $1.json
-  packer build -on-error=cleanup -parallel=false $1.json
+  packer build -on-error=cleanup -except=lineage-libvirt -parallel=false $1.json
   #packer build -on-error=cleanup -parallel=false -only=magma-alpine-vmware,magma-alpine-libvirt,magma-alpine-virtualbox $1.json
 
   if [[ $? != 0 ]]; then
@@ -99,11 +99,11 @@ done
 # Let the user know all of the links passed.
 printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
 
-docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+#docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
 
-build magma-docker
+#build magma-docker
 
-build magma-vmware
+#build magma-vmware
 build magma-libvirt
 build magma-virtualbox
 
