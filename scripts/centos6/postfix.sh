@@ -57,10 +57,23 @@ semodule -i postfix_relay_host.pp
 cd $HOME && rm --recursive --force $HOME/pp
 
 # Setup logrotate so it only stores 7 days worth of logs.
-printf "/var/log/maillog {\n\tdaily\n\trotate 7\n\tmissingok\n}\n" > /etc/logrotate.d/postfix
+cat <<-EOF > /etc/logrotate.d/postfix
+/var/log/maillog {
+	daily
+	rotate 7
+	missingok
+	create 0600 root root
+	postrotate
+        	/sbin/service rsyslog reload  2> /dev/null > /dev/null || true
+        endscript
+}
+EOF
 
 # Fix the SELinux context for the postfix logrotate config.
 chcon system_u:object_r:etc_t:s0 /etc/logrotate.d/postfix
+
+# Remove the existing logrotation directive.
+sed -i -e "/maillog/d" /etc/logrotate.d/syslog
 
 #printf "\nmagma.builder         smtp:[127.0.0.1]:2525\n" >> /etc/postfix/transport
 #printf "magmadaemon.com         smtp:[127.0.0.1]:2525\n" >> /etc/postfix/transport
