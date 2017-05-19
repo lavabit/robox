@@ -7,9 +7,10 @@
         "type": "shell",
         "scripts": [
             "scripts/opensuse42/sudo.sh",
-            "scripts/opensuse42/zypper.sh"
+            "scripts/opensuse42/zypper.sh",
+            "scripts/opensuse42/vagrant.sh"
         ],
-        "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh '{{.Path}}'",
+        "execute_command": "/bin/bash '{{.Path}}'",
         "start_retry_timeout": "15m",
         "expect_disconnect": "true",
         "only": ["generic-opensuse42-vmware"]
@@ -314,7 +315,7 @@
         "boot_wait": "20s",
         "boot_command": [
           "<esc><enter><wait>",
-          "linux netsetup=dhcp install=cd:/ lang=en_US  textmode=1 <wait>",
+          "linux netsetup=dhcp install=https://download.opensuse.org/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
           "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
           "<enter><wait>"
         ],
@@ -329,15 +330,15 @@
         "http_directory": "http",
         "headless": true,
         "vnc_disable_password": true,
-        "iso_urls": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Current.iso",
-        "iso_checksum": "73f8fc223e13c51b3ac83150d0d5d53da44a1624d89808d603a8f386700f49a0",
+        "iso_urls": "https://download.opensuse.org/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Current.iso",
+        "iso_checksum": "3c1550c25cdf0c8c5b5c1ae5cc00f0a202441c58aa5fab459a70a35109a872a3",
         "iso_checksum_type": "sha256",
         "skip_compaction": true,
         "ssh_username": "root",
         "ssh_password": "vagrant",
         "ssh_port": 22,
         "ssh_wait_timeout": "10000s",
-        "shutdown_command": " /sbin/shutdown -h 1",
+        "shutdown_command":  "echo 'vagrant' | sudo -S /sbin/halt -h -p",
         "tools_upload_flavor": "linux"
     },
     {
