@@ -28,7 +28,7 @@ apk add glibc-2.25-r1.apk glibc-bin-2.25-r1.apk glibc-dev-2.25-r1.apk glibc-i18n
 cat <<-EOF > /etc/profile.d/glibc.sh
 ID=\`/usr/bin/id -u\`
 if [ \$ID != 0 ]; then
-  export PATH=/usr/glibc-compat/bin:/usr/glibc-compat/sbin:$PATH
+  export PATH=/usr/glibc-compat/bin:/usr/glibc-compat/sbin:/usr/bin/:$PATH
   export LIBRARY_PATH="/usr/glibc-compat/lib/"
   export CPATH="/usr/glibc-compat/include/"
   export C_INCLUDE_PATH="/usr/glibc-compat/include/"
