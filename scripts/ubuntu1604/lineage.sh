@@ -10,7 +10,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pciutils usbutils
 
 # Install the build dependencies.
-apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev openjdk-8-jdk
+apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev openjdk-8-jdk ninja-build
 
 # Java dependencies
 apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni libpng16-16 libsctp1
