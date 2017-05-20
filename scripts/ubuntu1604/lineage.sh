@@ -98,12 +98,12 @@ export VENDOR=\${VENDOR:="motorola"}
 export NAME=\${NAME:="Ladar Levison"}
 export EMAIL=\${EMAIL:="ladar@lavabit.com"}
 
-echo DEVICE=$DEVICE
-echo BRANCH=$BRANCH
-echo VENDOR=$VENDOR
+echo DEVICE=\$DEVICE
+echo BRANCH=\$BRANCH
+echo VENDOR=\$VENDOR
 echo
-echo NAME=$NAME
-echo EMAIL=$EMAIL
+echo NAME=\$NAME
+echo EMAIL=\$EMAIL
 echo
 echo "Override the above environment variables in your Vagrantfile to alter the build configuration."
 echo
@@ -209,7 +209,7 @@ SYSIMAGESUM="\$DIRIMAGE/lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.
 md5sum -c "\$SYSIMAGESUM"
 
 # See what the output directory holds.
-ls -alh "SYSIMAGE" "SYSIMAGESUM"
+ls -alh "\$SYSIMAGE" "\$SYSIMAGESUM"
 
 # Push the new system image to the device.
 # adb push "\$SYSIMAGE" /sdcard/
