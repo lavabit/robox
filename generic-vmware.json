@@ -330,7 +330,7 @@
         "http_directory": "http",
         "headless": true,
         "vnc_disable_password": true,
-        "iso_urls": "https://download.opensuse.org/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Current.iso",
+        "iso_urls": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Current.iso",
         "iso_checksum": "3c1550c25cdf0c8c5b5c1ae5cc00f0a202441c58aa5fab459a70a35109a872a3",
         "iso_checksum_type": "sha256",
         "skip_compaction": true,

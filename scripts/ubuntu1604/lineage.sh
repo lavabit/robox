@@ -10,7 +10,10 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pciutils usbutils
 
 # Install the build dependencies.
-apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev openjdk-8-jdk ninja-build
+apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev ninja-build
+
+# Java 8 Support
+apt-get --assume-yes openjdk-8-jdk openjdk-8-jre openjdk-8-jre-headless
 
 # Java dependencies
 apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni libpng16-16 libsctp1
@@ -30,7 +33,7 @@ apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni l
   # Assuming the OpenJDK has dependencies... install them here.
   apt --assume-yes install -f
 
-  # Setup OpenJDK 1.7 if building the 13.0 branch.
+  # Setup OpenJDK 1.7 as the default, which is required for the 13.0 branch.
   update-java-alternatives -s java-1.7.0-openjdk-amd64
 
   # Delete the downloaded Java 7 packages.
@@ -116,9 +119,15 @@ export TMPDIR="\$HOME/temp"
 export ANDROID_CCACHE_SIZE="20G"
 export ANDROID_CCACHE_DIR="\$HOME/cache"
 
-# Can we get gnutls to play nicely with the droid source repos...
-#export GIT_CURL_VERBOSE=1
-export GIT_HTTP_MAX_REQUESTS=1
+# If the environment indicates we should use Java 7, then we enable it.
+if [ -n "\$EXPERIMENTAL_USE_JAVA8" ]; then
+  sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
+fi
+
+# Or if we're trying to compile the cm-14.1 branch.
+if [ "\$BRANCH" = "cm-14.1" ]; then
+  sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
+fi
 
 # Make the directories.
 mkdir -p \$HOME/temp && mkdir -p \$HOME/cache && mkdir -p \$HOME/android/lineage
@@ -130,7 +139,6 @@ cd \$HOME/android/lineage
 git config --global user.name "\$NAME"
 git config --global user.email "\$EMAIL"
 git config --global color.ui false
-# git config --global http.sslVersion tlsv1.2
 
 # Initialize the repo and download the source code.
 repo init -u https://github.com/LineageOS/android.git -b \$BRANCH
@@ -140,7 +148,7 @@ repo --color=never sync --quiet --jobs=2
 source build/envsetup.sh
 
 # Reduce the amount of memory required during compilation.
-# sed -i -e "s/-Xmx2048m/-Xmx512m/g" \$HOME/android/lineage/build/tools/releasetools/common.py
+sed -i -e "s/-Xmx2048m/-Xmx512m/g" \$HOME/android/lineage/build/tools/releasetools/common.py
 
 # Download and configure the environment for the device.
 breakfast \$DEVICE
