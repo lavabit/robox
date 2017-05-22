@@ -18,30 +18,23 @@ apt-get --assume-yes openjdk-8-jdk openjdk-8-jre openjdk-8-jre-headless
 # Java dependencies
 apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni libpng16-16 libsctp1
 
-# If the Java 8 environment variables wasn't provided, then we need to install Java 7.
-# if [[ $EXPERIMENTAL_USE_JAVA8 != ^true$ ]]; then
+# Download the OpenJDK 1.7 packages.
+curl --output openjdk-7-jre_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u121-2.6.8-2_amd64.deb
+curl --output openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb
+curl --output openjdk-7-jdk_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u121-2.6.8-2_amd64.deb
+curl --output libjpeg62-turbo_1.5.1-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
 
-  # Download the OpenJDK 1.7 packages.
-  curl --output openjdk-7-jre_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u121-2.6.8-2_amd64.deb
-  curl --output openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb
-  curl --output openjdk-7-jdk_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u121-2.6.8-2_amd64.deb
-  curl --output libjpeg62-turbo_1.5.1-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
+# Install via dpkg.
+dpkg -i openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
 
-  # Install via dpkg.
-  dpkg -i openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
+# Assuming the OpenJDK has dependencies... install them here.
+apt --assume-yes install -f
 
-  # Assuming the OpenJDK has dependencies... install them here.
-  apt --assume-yes install -f
+# Setup OpenJDK 1.7 as the default, which is required for the 13.0 branch.
+update-java-alternatives -s java-1.7.0-openjdk-amd64
 
-  # Setup OpenJDK 1.7 as the default, which is required for the 13.0 branch.
-  update-java-alternatives -s java-1.7.0-openjdk-amd64
-
-  # Delete the downloaded Java 7 packages.
-  rm --force openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
-
-# else
-#   printf "export EXPERIMENTAL_USE_JAVA8=true\n" > /etc/profile.d/java8.sh
-# fi
+# Delete the downloaded Java 7 packages.
+rm --force openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
 
 # Enable the source code repositories.
 sed -i -e "s|.*deb-src |deb-src |g" /etc/apt/sources.list
@@ -119,14 +112,18 @@ export TMPDIR="\$HOME/temp"
 export ANDROID_CCACHE_SIZE="20G"
 export ANDROID_CCACHE_DIR="\$HOME/cache"
 
+# Jack is the Java compiler used by LineageOS 14.1+. Run this command to avoid running out of memory.
+export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx1G"
+
 # If the environment indicates we should use Java 7, then we enable it.
 if [ -n "\$EXPERIMENTAL_USE_JAVA8" ]; then
   sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 fi
 
-# Or if we're trying to compile the cm-14.1 branch.
+# Or if we're trying to compile the cm-14.1 branch, then we also enable Java 8.
 if [ "\$BRANCH" = "cm-14.1" ]; then
   sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
+  export EXPERIMENTAL_USE_JAVA8="true"
 fi
 
 # Make the directories.
