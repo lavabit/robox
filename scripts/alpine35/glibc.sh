@@ -32,12 +32,13 @@ cat <<-EOF > /etc/profile.d/glibc.sh
 ID=\`/usr/bin/id -u\`
 if [ \$ID != 0 ]; then
   export PATH=/usr/glibc-compat/bin:/usr/glibc-compat/sbin:/usr/bin/:$PATH
-  export LIBRARY_PATH="/usr/glibc-compat/lib/"
-  export CPATH="/usr/glibc-compat/include/"
-  export C_INCLUDE_PATH="/usr/glibc-compat/include/"
-  export CPLUS_INCLUDE_PATH="/usr/glibc-compat/include/"
-  export OBJC_INCLUDE_PATH="/usr/glibc-compat/include/"
-  export GCC_EXEC_PREFIX="/usr/glibc-compat/"
+  export LD_LIBRARY_PATH="/usr/glibc-compat/lib/"
+  # export LIBRARY_PATH="/usr/glibc-compat/lib/"
+  # export CPATH="/usr/glibc-compat/include/"
+  # export C_INCLUDE_PATH="/usr/glibc-compat/include/"
+  # export CPLUS_INCLUDE_PATH="/usr/glibc-compat/include/"
+  # export OBJC_INCLUDE_PATH="/usr/glibc-compat/include/"
+  # export GCC_EXEC_PREFIX="/usr/glibc-compat/"
 fi
 EOF
 
