@@ -115,15 +115,12 @@ export ANDROID_CCACHE_DIR="\$HOME/cache"
 # Jack is the Java compiler used by LineageOS 14.1+. Run this command to avoid running out of memory.
 export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx1G"
 
-# If the environment indicates we should use Java 7, then we enable it.
-if [ -n "\$EXPERIMENTAL_USE_JAVA8" ]; then
-  sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
-fi
+# If the environment indicates we should use Java 8 then run update alternatives to enable it.
+export EXPERIMENTAL_USE_JAVA8=\${EXPERIMENTAL_USE_JAVA8:="false"}
 
-# Or if we're trying to compile the cm-14.1 branch, then we also enable Java 8.
-if [ "\$BRANCH" = "cm-14.1" ]; then
+# If the environment indicates we should use Java 7, then we enable it.
+if [ "\$EXPERIMENTAL_USE_JAVA8" = "true" ]; then
   sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
-  export EXPERIMENTAL_USE_JAVA8="true"
 fi
 
 # Make the directories.
