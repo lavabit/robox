@@ -88,7 +88,7 @@ cat <<-EOF > /home/vagrant/lineage-build.sh
 # for breakfast, brunch and then dinner.
 
 export DEVICE=\${DEVICE:="xt897"}
-export BRANCH=\${BRANCH:="cm-13.0"}
+export BRANCH=\${BRANCH:="cm-14.1"}
 export VENDOR=\${VENDOR:="motorola"}
 
 export NAME=\${NAME:="Ladar Levison"}
@@ -113,10 +113,10 @@ export ANDROID_CCACHE_SIZE="20G"
 export ANDROID_CCACHE_DIR="\$HOME/cache"
 
 # Jack is the Java compiler used by LineageOS 14.1+. Run this command to avoid running out of memory.
-export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx1G"
+export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx2G"
 
 # If the environment indicates we should use Java 8 then run update alternatives to enable it.
-export EXPERIMENTAL_USE_JAVA8=\${EXPERIMENTAL_USE_JAVA8:="false"}
+export EXPERIMENTAL_USE_JAVA8=\${EXPERIMENTAL_USE_JAVA8:="true"}
 
 # If the environment indicates we should use Java 7, then we enable it.
 if [ "\$EXPERIMENTAL_USE_JAVA8" = "true" ]; then
@@ -142,7 +142,7 @@ repo --color=never sync --quiet --jobs=2
 source build/envsetup.sh
 
 # Reduce the amount of memory required during compilation.
-sed -i -e "s/-Xmx2048m/-Xmx512m/g" \$HOME/android/lineage/build/tools/releasetools/common.py
+# sed -i -e "s/-Xmx2048m/-Xmx512m/g" \$HOME/android/lineage/build/tools/releasetools/common.py
 
 # Download and configure the environment for the device.
 breakfast \$DEVICE
