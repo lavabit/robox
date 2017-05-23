@@ -1,14 +1,14 @@
-#!/bin/bash
+#!/bin/bash -eux
 
 # Download the glibc Alpine packages.
-apk --no-cache add ca-certificates
+apk --no-cache add wget ca-certificates
 wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub
 
 # Unstable.
-wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-2.25-r1.apk
-wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-bin-2.25-r1.apk
-wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-dev-2.25-r1.apk
-wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-i18n-2.25-r1.apk
+wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-2.25-r1.apk
+wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-bin-2.25-r1.apk
+wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-dev-2.25-r1.apk
+wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-i18n-2.25-r1.apk
 
 # Stable but doesn't include the include files.
 # wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-bin-2.25-r0.apk
@@ -21,22 +21,37 @@ apk del libc6-compat
 # Install glibc.
 apk add glibc-2.25-r1.apk glibc-bin-2.25-r1.apk glibc-dev-2.25-r1.apk glibc-i18n-2.25-r1.apk
 
+# Cleanup the apk files.
+rm -f glibc-2.25-r1.apk glibc-bin-2.25-r1.apk glibc-dev-2.25-r1.apk glibc-i18n-2.25-r1.apk
+
 #  Generate the English/USA locale.
 /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8
 
 # Ensure the glibc utilities take precedence for the vagrant user.
+# cat <<-EOF > /etc/profile.d/glibc.sh
+# ID=\`/usr/bin/id -u\`
+# if [ \$ID != 0 ]; then
+#   export PATH=/usr/glibc-compat/bin:/usr/glibc-compat/sbin:/usr/bin/:$PATH
+#   export LIBRARY_PATH="/usr/glibc-compat/lib/"
+#   export CPATH="/usr/glibc-compat/include/"
+#   export C_INCLUDE_PATH="/usr/glibc-compat/include/"
+#   export CPLUS_INCLUDE_PATH="/usr/glibc-compat/include/"
+#   export OBJC_INCLUDE_PATH="/usr/glibc-compat/include/"
+#   export GCC_EXEC_PREFIX="/usr/glibc-compat/"
+# fi
+# EOF
+
+# Ensure the glibc utilities take precedence for the vagrant user.
 cat <<-EOF > /etc/profile.d/glibc.sh
-ID=\`/usr/bin/id -u\`
-if [ \$ID != 0 ]; then
-  export PATH=/usr/glibc-compat/bin:/usr/glibc-compat/sbin:/usr/bin/:$PATH
-  export LIBRARY_PATH="/usr/glibc-compat/lib/"
-  export CPATH="/usr/glibc-compat/include/"
-  export C_INCLUDE_PATH="/usr/glibc-compat/include/"
-  export CPLUS_INCLUDE_PATH="/usr/glibc-compat/include/"
-  export OBJC_INCLUDE_PATH="/usr/glibc-compat/include/"
-  export GCC_EXEC_PREFIX="/usr/glibc-compat/"
-fi
+export PATH=/usr/glibc-compat/bin:/usr/glibc-compat/sbin:/usr/bin/:$PATH
+export LIBRARY_PATH="/usr/glibc-compat/lib/"
+export CPATH="/usr/glibc-compat/include/"
+export C_INCLUDE_PATH="/usr/glibc-compat/include/"
+export CPLUS_INCLUDE_PATH="/usr/glibc-compat/include/"
+export OBJC_INCLUDE_PATH="/usr/glibc-compat/include/"
+export GCC_EXEC_PREFIX="/usr/glibc-compat/"
 EOF
+
 
 # VERSION="2.24"
 # PREFIX="/usr/glibc/"

@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # The postfix server for message relays.
-apk add --force postfix db libsasl
+apk add postfix db libsasl
 
 # Configure postfix to listen for relays on port 2525 so it doesn't conflict with magma.
 sed -i -e "s/^smtp\([ ]*inet\)/127.0.0.1:2525\1/" /etc/postfix/master.cf
