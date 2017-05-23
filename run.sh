@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION="0.8.30"
+export VERSION="0.8.36"
 export DOCKER_USER="ladar"
 export DOCKER_EMAIL="ladar@lavabitllc.com"
 export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
@@ -111,7 +111,7 @@ build generic-vmware
 build generic-libvirt
 build generic-virtualbox
 
-rm -rf packer_cache/
+# rm -rf packer_cache/
 
 for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done
 
