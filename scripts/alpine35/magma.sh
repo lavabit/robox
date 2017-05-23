@@ -44,6 +44,8 @@ fi
 cat <<-EOF > $OUTPUT
 #!/bin/bash
 
+export PATH=/usr/glibc-compat/bin:/usr/glibc-compat/sbin:/usr/bin/:$PATH
+
 error() {
   if [ \$? -ne 0 ]; then
     printf "\n\nmagma daemon compilation failed...\n\n";
