@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -eux
 
 # Configure the main repository mirrors.
 printf "https://dl-3.alpinelinux.org/alpine/v3.5/main\nhttps://mirror.leaseweb.com/alpine/v3.5/main\n" > /etc/apk/repositories
@@ -12,6 +12,9 @@ apk add vim man man-pages bash gawk wget curl sudo lsof file grep readline mdocm
 
 # Setup vim as the default editor.
 printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
+
+# Make the shell bash, instead of ash.
+sed -i -e "s/\/bin\/ash/\/bin\/bash/g" /etc/passwd
 
 # Run the updatedb script so the locate command works.
 updatedb

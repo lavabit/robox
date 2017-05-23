@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # The mysql client and related utilities.
-apk add --force mariadb mariadb-client mariadb-common libaio libgcc libstdc++
+apk add mariadb mariadb-client mariadb-common libaio libgcc libstdc++
 
 # Create the initial database.
 /etc/init.d/mariadb setup

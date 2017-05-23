@@ -48,7 +48,7 @@ rm -rf /root/VBoxVersion.txt
 rm -rf /root/VBoxGuestAdditions.iso
 
 # Boosts the available entropy which allows magma to start faster.
-apk add --force haveged
+apk add haveged
 
 # Autostart the haveged daemon.
 rc-update add haveged default && rc-service haveged start

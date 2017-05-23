@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -eux
 
 # Setup the apk cache.
 setup-apkcache /var/cache/apk
