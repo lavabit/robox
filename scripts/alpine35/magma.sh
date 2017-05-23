@@ -14,7 +14,7 @@ boost-system boost-thread boost-signals boost-random boost-iostreams tcl \
 boost-math boost-serialization boost-filesystem boost-date_time boost-regex \
 musl musl-utils npth gpgme \
 libbz2 libgomp libatomic libltdl libbsd libattr libacl libarchive libcurl \
-libpthread-stubs libgcc libgc++ libc6-compat libressl libaio libuv libxml2 \
+libpthread-stubs libgcc libgc++ libressl libaio libuv libxml2 \
 libxslt libgc++ libgcj libgnat libstdc++ \
 glib-dev libc-dev musl-dev valgrind-dev libbsd-dev subunit-dev \
 acl-dev popt-dev python2-dev zlib-dev kmod-dev linux-vanilla-dev \
