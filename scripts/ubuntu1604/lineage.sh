@@ -13,7 +13,7 @@ apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pc
 apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev ninja-build
 
 # Java 8 Support
-apt-get --assume-yes openjdk-8-jdk openjdk-8-jdk-headless openjdk-8-jre openjdk-8-jre-headless
+apt-get --assume-yes install openjdk-8-jdk openjdk-8-jdk-headless openjdk-8-jre openjdk-8-jre-headless
 
 # Java dependencies
 apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni libpng16-16 libsctp1
@@ -202,9 +202,9 @@ brunch \$DEVICE
 
 # Calculate the filename.
 BUILDSTAMP=\`date +'%Y%m%d'\`
-DIRIMAGE="\$HOME/android/lineage/out/target/product/\$DEVICE/"
-SYSIMAGE="\$DIRIMAGE/lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
-SYSIMAGESUM="\$DIRIMAGE/lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip.md5sum"
+DIRIMAGE="\$HOME/android/lineage/out/target/product/\$DEVICE"
+SYSIMAGE="\$DIRIMAGE/lineage-14.1-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
+SYSIMAGESUM="\$DIRIMAGE/lineage-14.1-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip.md5sum"
 #RECIMAGE="lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE-recovery.img"
 
 # Verify the image checksum.
@@ -215,7 +215,7 @@ ls -alh "\$SYSIMAGE" "\$SYSIMAGESUM"
 
 # Push the new system image to the device.
 # adb push "\$SYSIMAGE" /sdcard/
-
+env > ~/env.txt 
 EOF
 
 chown vagrant:vagrant /home/vagrant/system-blobs.tar.gz
