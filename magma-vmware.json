@@ -405,7 +405,7 @@
         "http_directory": "http",
         "headless": true,
         "vnc_disable_password": true,
-        "iso_urls": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
+        "iso_url": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
         "iso_checksum": "2258ca975d7b829ea6229d314b2782d4070ec9b7f688392817e562f5a14a34b5",
         "iso_checksum_type": "sha256",
         "skip_compaction": true,
