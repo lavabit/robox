@@ -3516,6 +3516,10 @@ make install
 make modules_install
 
 echo 'Configuring Grub'
+
+DEVID=`blkid -s UUID -o value /dev/sda4`
+printf "\nGRUB_DEVICE_UUID=\"$DEVID\"\n" >> /dev/default/grub
+
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
