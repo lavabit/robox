@@ -12,7 +12,7 @@
           "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
-          "only": ["generic-oracle7-vmware"]
+          "only": ["generic-oracle7-libvirt"]
       },
       {
           "type": "shell",
@@ -28,7 +28,7 @@
           "pause_before": "120s",
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
-          "only": ["generic-oracle7-vmware"]
+          "only": ["generic-oracle7-libvirt"]
       },
     {
         "type": "shell",
