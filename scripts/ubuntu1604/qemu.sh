@@ -18,6 +18,9 @@ printf "Installing the QEMU Tools.\n"
 
 apt-get --assume-yes install qemu-guest-agent; error
 
+# For some reason the VMWare tools are installed on QEMU guest images.
+systemctl disable open-vm-tools.service
+
 # Boosts the available entropy which allows magma to start faster.
 apt-get --assume-yes install haveged; error
 
