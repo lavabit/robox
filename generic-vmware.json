@@ -3,6 +3,33 @@
     "box_version": "{{env `VERSION`}}"
   },
   "provisioners": [
+      {
+          "type": "shell",
+          "scripts": [
+              "scripts/oracle7/fixdns.sh",
+              "scripts/oracle7/yum.sh"
+          ],
+          "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": ["generic-oracle7-virtualbox"]
+      },
+      {
+          "type": "shell",
+          "scripts": [
+              "scripts/oracle7/kernel.sh",
+              "scripts/oracle7/virtualbox.sh",
+              "scripts/oracle7/vmware.sh",
+              "scripts/oracle7/qemu.sh",
+              "scripts/oracle7/vagrant.sh",
+              "scripts/oracle7/network.sh"
+          ],
+          "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+          "pause_before": "120s",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": ["generic-oracle7-virtualbox"]
+      },
     {
         "type": "shell",
         "scripts": [
@@ -306,6 +333,38 @@
     }
   ],
   "builders": [
+      {
+          "type": "vmware-iso",
+          "name": "generic-oracle7-vmware",
+          "vm_name": "generic-oracle7-vmware",
+          "vmdk_name": "generic-oracle7-vmware",
+          "output_directory": "output/generic-oracle7-vmware",
+          "boot_wait": "20s",
+          "boot_command": [
+              "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
+          ],
+          "disk_size": 32768,
+          "disk_type_id": "0",
+          "vmx_data": {
+              "memsize": "2048",
+              "numvcpus": "2",
+              "cpuid.coresPerSocket": "2"
+          },
+          "guest_os_type": "oraclelinux-64",
+          "http_directory": "http",
+          "headless": true,
+          "vnc_disable_password": true,
+          "iso_url": "https://mirrors.kernel.org/oracle/OL7/u3/x86_64/OracleLinux-R7-U3-Server-x86_64-dvd.iso",
+          "iso_checksum": "2ad5327428c44d505a7d882a273cb3f5fbac4e56e739cf18f895565dde987101",
+          "iso_checksum_type": "sha256",
+          "skip_compaction": true,
+          "ssh_username": "root",
+          "ssh_password": "vagrant",
+          "ssh_port": 22,
+          "ssh_wait_timeout": "10000s",
+          "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+          "tools_upload_flavor": "linux"
+      },
     {
         "type": "vmware-iso",
         "name": "generic-opensuse42-vmware",
@@ -808,6 +867,18 @@
         "keep_input_artifact": false,
         "vagrantfile_template": "tpl/generic.rb",
         "output": "output/{{build_name}}-{{user `box_version`}}.box"
+      },
+      {
+          "type": "atlas",
+          "only": ["generic-oracle7-vmware"],
+          "artifact": "generic/oracle7",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "vmware",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "A build environment for use in cross platform development."
+          }
       },
       {
           "type": "atlas",
