@@ -44,7 +44,20 @@ function validator() {
 }
 
 # Verify all of the ISO locations are still valid.
-function verify {
+function verify_url {
+
+  # Grab just the response header and look for the 200 response code to indicate the link is valid.
+  curl --silent --head "$1" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+
+  # The grep return code tells us whether it found a match in the header or not.
+  if [ $? != 0 ]; then
+    printf "Link Failure:  $1\n\n"
+    exit 1
+  fi
+}
+
+# Verify all of the ISO locations are valid and then download the ISO and verify the hash.
+function verify_sum {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
   curl --silent --head "$1" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
@@ -55,20 +68,20 @@ function verify {
     exit 1
   fi
 
-  # # Grab the ISO and pipe the data through sha256sum, then compare the checksum value.
-  # curl --silent "$1" | sha256sum | grep --silent "$2"
-  #
-  # # The grep return code tells us whether it found a match in the header or not.
-  # if [ $? != 0 ]; then
-  #   SUM=`curl --silent "$1" | sha256sum | awk -F' ' '{print $1}'`
-  #   printf "Hash Failure:  $1\n"
-  #   printf "Found       -  $SUM\n"
-  #   printf "Expected    -  $SUM\n\n"
-  #   exit 1
-  # fi
-  #
-  # printf "Validated   :  $1\n"
-  # return 0
+  # Grab the ISO and pipe the data through sha256sum, then compare the checksum value.
+  curl --silent "$1" | sha256sum | grep --silent "$2"
+
+  # The grep return code tells us whether it found a match in the header or not.
+  if [ $? != 0 ]; then
+    SUM=`curl --silent "$1" | sha256sum | awk -F' ' '{print $1}'`
+    printf "Hash Failure:  $1\n"
+    printf "Found       -  $SUM\n"
+    printf "Expected    -  $SUM\n\n"
+    exit 1
+  fi
+
+  printf "Validated   :  $1\n"
+  return 0
 }
 
 # Build the boxes and cleanup the packer cache after each run.
@@ -78,22 +91,47 @@ function build() {
   export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/$1.txt"
 
   packer build -on-error=cleanup -parallel=false $1.json
-  # packer build -on-error=cleanup -except=lineage-libvirt -parallel=false $1.json
-  #packer build -on-error=cleanup -parallel=false -only=magma-alpine-vmware,magma-alpine-libvirt,magma-alpine-virtualbox $1.json
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
     for i in 1 2 3; do printf "\a"; sleep 1; done
-    # Uncomment to abort the build if a machine fails.
-    # rm -rf packer_cache/
-    # exit 1
+  fi
+}
+
+# Build an individual box.
+function box() {
+
+  export PACKER_LOG="1"
+  export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/$1.txt"
+
+  packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json
+  packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
+  packer build -on-error=cleanup -parallel=false -only=$1 magma-libvirt.json
+  packer build -on-error=cleanup -parallel=false -only=$1 magma-vicrtualbox.json
+  packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
+  packer build -on-error=cleanup -parallel=false -only=$1 generic-libvirt.json
+  packer build -on-error=cleanup -parallel=false -only=$1 generic-vicrtualbox.json
+
+  if [[ $? != 0 ]]; then
+    tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
+    for i in 1 2 3; do printf "\a"; sleep 1; done
   fi
 }
 
 function links() {
 
 for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
-    verify "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
+    verify_url "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
+done
+
+# Let the user know all of the links passed.
+  printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
+}
+
+function sums() {
+
+for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
+    verify_sum "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
 done
 
 # Let the user know all of the links passed.
@@ -114,14 +152,16 @@ function cleanup() {
   rm -rf packer_cache/ output/
 }
 
-function magma() {
+function login() {
   docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\nThe docker login credentials failed.\n\n"; tput sgr0
     exit 1
   fi
+}
 
-  build magma-docker
+function magma() {
+  login ; build magma-docker
   build magma-vmware
   build magma-libvirt
   build magma-virtualbox
@@ -148,12 +188,25 @@ function all() {
 # The generic functions.
 if [[ $1 == "start" ]]; then start
 elif [[ $1 == "links" ]]; then links
+elif [[ $1 == "sums" ]]; then sums
 elif [[ $1 == "validate" ]]; then validate
 elif [[ $1 == "cleanup" ]]; then cleanup
 
 # The group builders.
 elif [[ $1 == "magma" ]]; then magma
 elif [[ $1 == "generic" ]]; then generic
+
+# The file builders.
+elif [[ $1 == "magma-docker" ]]; then login ; build magma-docker
+elif [[ $1 == "magma-vmware" ]]; then build magma-vmware
+elif [[ $1 == "magma-libvirt" ]]; then build magma-libvirt
+elif [[ $1 == "magma-virtualbox" ]]; then build magma-virtualbox
+elif [[ $1 == "generic-vmware" ]]; then build generic-vmware
+elif [[ $1 == "generic-libvirt" ]]; then build generic-libvirt
+elif [[ $1 == "generic-virtualbox" ]]; then build generic-virtualbox
+
+# Build a specific box.
+elif [[ $1 == "box" ]]; then box $2
 
 # The full monty.
 elif [[ $1 == "all" ]]; then all
