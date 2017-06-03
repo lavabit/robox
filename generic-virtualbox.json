@@ -494,7 +494,7 @@
         "name": "generic-alpine36-virtualbox",
         "vm_name": "generic-alpine36-virtualbox",
         "output_directory": "output/generic-alpine36-virtualbox",
-        "boot_wait": "20s",
+        "boot_wait": "30s",
         "boot_command": [
           "root<enter><wait>",
           "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
