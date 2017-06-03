@@ -264,9 +264,9 @@
         ],
         [
             {
-            "type": "artifice",
-            "keep_input_artifact": true,
-            "files": [
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
                     "output/{{build_name}}-{{user `box_version`}}.tar.gz"
                 ]
             },
