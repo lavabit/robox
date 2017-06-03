@@ -107,10 +107,10 @@ function box() {
   packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json
   packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
   packer build -on-error=cleanup -parallel=false -only=$1 magma-libvirt.json
-  packer build -on-error=cleanup -parallel=false -only=$1 magma-vicrtualbox.json
+  packer build -on-error=cleanup -parallel=false -only=$1 magma-virtualbox.json
   packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
   packer build -on-error=cleanup -parallel=false -only=$1 generic-libvirt.json
-  packer build -on-error=cleanup -parallel=false -only=$1 generic-vicrtualbox.json
+  packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
