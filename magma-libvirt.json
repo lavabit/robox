@@ -382,7 +382,7 @@
         "output_directory": "output/magma-alpine36-libvirt",
         "accelerator": "kvm",
         "qemu_binary": "/usr/libexec/qemu-kvm",
-        "boot_wait": "20s",
+        "boot_wait": "30s",
         "boot_command": [
           "root<enter><wait>",
           "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
