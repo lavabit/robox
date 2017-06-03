@@ -70,6 +70,31 @@
     {
         "type": "shell",
         "scripts": [
+            "scripts/alpine36/apk.sh"
+        ],
+        "execute_command": "/bin/sh '{{.Path}}'",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["generic-alpine36-vmware"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
+            "scripts/alpine36/vagrant.sh",
+            "scripts/alpine36/virtualbox.sh",
+            "scripts/alpine36/vmware.sh",
+            "scripts/alpine36/qemu.sh",
+            "scripts/alpine36/cache.sh"
+        ],
+        "execute_command": "/bin/bash '{{.Path}}'",
+        "pause_before": "120s",
+        "start_retry_timeout": "15m",
+        "expect_disconnect": "true",
+        "only": ["generic-alpine36-vmware"]
+    },
+    {
+        "type": "shell",
+        "scripts": [
             "scripts/centos6/fixdns.sh",
             "scripts/centos6/base.sh",
             "scripts/centos6/reboot.sh"
@@ -431,6 +456,46 @@
         "vnc_disable_password": true,
         "iso_url": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
         "iso_checksum": "2258ca975d7b829ea6229d314b2782d4070ec9b7f688392817e562f5a14a34b5",
+        "iso_checksum_type": "sha256",
+        "skip_compaction": true,
+        "ssh_username": "root",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_wait_timeout": "10000s",
+        "shutdown_command": "/sbin/poweroff",
+        "tools_upload_flavor": "linux"
+    },
+    {
+        "type": "vmware-iso",
+        "name": "generic-alpine36-vmware",
+        "vm_name": "generic-alpine36-vmware",
+        "vmdk_name": "generic-alpine36-vmware",
+        "output_directory": "output/generic-alpine36-vmware",
+        "boot_wait": "20s",
+        "boot_command": [
+          "root<enter><wait>",
+          "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+          "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine36.vagrant.cfg<enter><wait>",
+          "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+          "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f generic.alpine36.vagrant.cfg && ",
+          "mount /dev/sda3 /mnt && ",
+          "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+          "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+          "umount /mnt && reboot<enter>"
+        ],
+        "disk_size": 32768,
+        "disk_type_id": "0",
+        "vmx_data": {
+            "memsize": "2048",
+            "numvcpus": "2",
+            "cpuid.coresPerSocket": "2"
+        },
+        "guest_os_type": "otherlinux-64",
+        "http_directory": "http",
+        "headless": true,
+        "vnc_disable_password": true,
+        "iso_url": "https://mirror.leaseweb.com/alpine/v3.6/releases/x86_64/alpine-virt-3.6.1-x86_64.iso",
+        "iso_checksum": "f4421357ed2c969046b95cef6fc4844aeebfe8a2323049915dbe953d5f1d3c36",
         "iso_checksum_type": "sha256",
         "skip_compaction": true,
         "ssh_username": "root",
@@ -896,6 +961,18 @@
           "type": "atlas",
           "only": ["generic-alpine35-vmware"],
           "artifact": "generic/alpine35",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+              "provider": "vmware",
+              "version": "{{user `box_version`}}",
+              "created_at": "{{timestamp}}",
+              "description": "A build environment for use in cross platform development."
+          }
+      },
+      {
+          "type": "atlas",
+          "only": ["generic-alpine36-vmware"],
+          "artifact": "generic/alpine36",
           "artifact_type": "vagrant.box",
           "metadata": {
               "provider": "vmware",

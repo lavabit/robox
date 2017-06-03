@@ -1,7 +1,7 @@
 #!/bin/bash -ux
 
 # Handle builds using the busybox version of df/dd/rm which use different command line arguments.
-if [[ "$PACKER_BUILD_NAME" =~ ^magma-alpine35-vmware$|^magma-alpine35-libvirt$|^magma-alpine35-virtualbox$|^generic-alpine35-vmware$|^generic-alpine35-libvirt$|^generic-alpine35-virtualbox$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^magma-alpine3[5-6]-vmware$|^magma-alpine3[5-6]-libvirt$|^magma-alpine3[5-6]-virtualbox$|^generic-alpine3[5-6]-vmware$|^generic-alpine3[5-6]-libvirt$|^generic-alpine3[5-6]-virtualbox$ ]]; then
 
   # We fill until full so don't abort on error.
   # set -ux

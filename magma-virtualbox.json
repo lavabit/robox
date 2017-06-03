@@ -6,34 +6,34 @@
     {
         "type": "shell",
         "scripts": [
-            "scripts/alpine35/apk.sh"
+            "scripts/alpine36/apk.sh"
         ],
         "execute_command": "/bin/sh '{{.Path}}'",
         "start_retry_timeout": "15m",
         "expect_disconnect": "true",
-        "only": ["magma-alpine35-virtualbox"]
+        "only": ["magma-alpine36-virtualbox"]
     },
     {
         "type": "shell",
         "scripts": [
-            "scripts/alpine35/limits.sh",
-            "scripts/alpine35/mariadb.sh",
-            "scripts/alpine35/memcached.sh",
-            "scripts/alpine35/postfix.sh",
-            "scripts/alpine35/vagrant.sh",
-            "scripts/alpine35/glibc.sh",
-            "scripts/alpine35/gcc.sh",
-            "scripts/alpine35/magma.sh",
-            "scripts/alpine35/virtualbox.sh",
-            "scripts/alpine35/vmware.sh",
-            "scripts/alpine35/qemu.sh",
-            "scripts/alpine35/cache.sh"
+            "scripts/alpine36/limits.sh",
+            "scripts/alpine36/mariadb.sh",
+            "scripts/alpine36/memcached.sh",
+            "scripts/alpine36/postfix.sh",
+            "scripts/alpine36/vagrant.sh",
+            "scripts/alpine36/glibc.sh",
+            "scripts/alpine36/gcc.sh",
+            "scripts/alpine36/magma.sh",
+            "scripts/alpine36/virtualbox.sh",
+            "scripts/alpine36/vmware.sh",
+            "scripts/alpine36/qemu.sh",
+            "scripts/alpine36/cache.sh"
         ],
         "execute_command": "/bin/bash '{{.Path}}'",
         "pause_before": "120s",
         "start_retry_timeout": "15m",
         "expect_disconnect": "true",
-        "only": ["magma-alpine35-virtualbox"]
+        "only": ["magma-alpine36-virtualbox"]
     },
     {
         "type": "shell",
@@ -377,16 +377,16 @@
   "builders": [
     {
         "type": "virtualbox-iso",
-        "name": "magma-alpine35-virtualbox",
-        "vm_name": "magma-alpine35-virtualbox",
-        "output_directory": "output/magma-alpine35-virtualbox",
+        "name": "magma-alpine36-virtualbox",
+        "vm_name": "magma-alpine36-virtualbox",
+        "output_directory": "output/magma-alpine36-virtualbox",
         "boot_wait": "20s",
         "boot_command": [
           "root<enter><wait>",
           "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
-          "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.alpine35.vagrant.cfg<enter><wait>",
+          "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.alpine36.vagrant.cfg<enter><wait>",
           "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-          "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f magma.alpine35.vagrant.cfg && ",
+          "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f magma.alpine36.vagrant.cfg && ",
           "mount /dev/sda3 /mnt && ",
           "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
           "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
@@ -410,8 +410,8 @@
         "guest_os_type": "Linux_64",
         "http_directory": "http",
         "headless": true,
-        "iso_url": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
-        "iso_checksum": "2258ca975d7b829ea6229d314b2782d4070ec9b7f688392817e562f5a14a34b5",
+        "iso_url": "https://mirror.leaseweb.com/alpine/v3.6/releases/x86_64/alpine-virt-3.6.1-x86_64.iso",
+        "iso_checksum": "f4421357ed2c969046b95cef6fc4844aeebfe8a2323049915dbe953d5f1d3c36",
         "iso_checksum_type": "sha256",
         "ssh_username": "root",
         "ssh_password": "vagrant",
@@ -1137,7 +1137,7 @@
       },
       {
           "type": "atlas",
-          "only": ["magma-alpine35-virtualbox"],
+          "only": ["magma-alpine36-virtualbox"],
           "artifact": "lavabit/magma-alpine",
           "artifact_type": "vagrant.box",
           "metadata": {
