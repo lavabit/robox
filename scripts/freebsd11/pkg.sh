@@ -15,11 +15,12 @@ EOF
 # Configure fetch so it retries  temprorary failures.
 export FETCH_RETRY=5
 export FETCH_TIMEOUT=30
+export ASSUME_ALWAYS_YES=yes
 
-pkg bootstrap --yes
-pkg-static update --yes
-pkg-static upgrade -n --yes
-pkg-static audit -F --yes
+pkg bootstrap
+pkg-static update
+pkg-static upgrade -n
+pkg-static audit -F
 
 # Generic system utils.
 pkg install --yes vim curl wget sudo
