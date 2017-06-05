@@ -7,10 +7,7 @@
 
 # Credentials and tokens.
 export VERSION="0.9.0"
-export DOCKER_USER="ladar"
-export DOCKER_EMAIL="ladar@lavabitllc.com"
-export DOCKER_PASSWORD="Fs2q5aGWNp6h^^N7qfhH"
-export ATLAS_TOKEN="qyToIsMKMP9P0w.atlasv1.MiyPtcThL0y4Fwk53lFri83nOEt1rUDSQNW2CxFbxJtFd7llvllpqSL176pTkeFVfiE"
+source .credentialsrc
 
 # Collect the list of ISO urls.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json generic-libvirt.json generic-vmware.json generic-virtualbox.json | awk -F'"' '{print $4}'`)
@@ -31,16 +28,6 @@ function start() {
   sudo systemctl restart libvirtd.service
   sudo systemctl restart docker-latest.service
   sudo systemctl restart vmware.service vmware-USBArbitrator.service vmware-workstation-server.service
-}
-
-# Validate the templates before building.
-function validator() {
-  packer validate $1.json
-  if [[ $? != 0 ]]; then
-    tput setaf 1; tput bold; printf "\n\nthe $1 packer template failed to validate...\n\n"; tput sgr0
-    for i in 1 2 3; do printf "\a"; sleep 1; done
-    exit 1
-  fi
 }
 
 # Verify all of the ISO locations are still valid.
@@ -82,6 +69,16 @@ function verify_sum {
 
   printf "Validated   :  $1\n"
   return 0
+}
+
+# Validate the templates before building.
+function verify_json() {
+  packer validate $1.json
+  if [[ $? != 0 ]]; then
+    tput setaf 1; tput bold; printf "\n\nthe $1 packer template failed to validate...\n\n"; tput sgr0
+    for i in 1 2 3; do printf "\a"; sleep 1; done
+    exit 1
+  fi
 }
 
 # Build the boxes and cleanup the packer cache after each run.
@@ -139,13 +136,13 @@ done
 }
 
 function validate() {
-  validate magma-docker
-  validate magma-vmware
-  validate magma-libvirt
-  validate magma-virtualbox
-  validate generic-vmware
-  validate generic-libvirt
-  validate generic-virtualbox
+  verify_json magma-docker
+  verify_json magma-vmware
+  verify_json magma-libvirt
+  verify_json magma-virtualbox
+  verify_json generic-vmware
+  verify_json generic-libvirt
+  verify_json generic-virtualbox
 }
 
 function cleanup() {

@@ -1,6 +1,7 @@
 {
     "variables": {
-        "box_version": "{{env `VERSION`}}"
+        "box_version": "{{env `VERSION`}}",
+        "box_token": "{{env `ATLAS_TOKEN`}}"
     },
     "provisioners": [
         {
@@ -1074,228 +1075,164 @@
                 ]
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-alpine36-vmware"
                 ],
-                "artifact": "lavabit/magma-alpine",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-alpine",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-vmware"
                 ],
-                "artifact": "lavabit/magma",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-centos-vmware"
                 ],
-                "artifact": "lavabit/magma-centos",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-centos",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-centos6-vmware"
                 ],
-                "artifact": "lavabit/magma-centos6",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-centos6",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-centos7-vmware"
                 ],
-                "artifact": "lavabit/magma-centos7",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-centos7",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-arch-vmware"
                 ],
-                "artifact": "lavabit/magma-arch",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-arch",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-gentoo-vmware"
                 ],
-                "artifact": "lavabit/magma-gentoo",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-gentoo",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-debian8-vmware"
                 ],
-                "artifact": "lavabit/magma-debian",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-debian",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-fedora25-vmware"
                 ],
-                "artifact": "lavabit/magma-fedora",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-fedora",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-freebsd11-vmware"
                 ],
-                "artifact": "lavabit/magma-freebsd",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-freebsd",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-openbsd6-vmware"
                 ],
-                "artifact": "lavabit/magma-openbsd",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-openbsd",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-ubuntu-vmware"
                 ],
-                "artifact": "lavabit/magma-ubuntu",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-ubuntu1604-vmware"
                 ],
-                "artifact": "lavabit/magma-ubuntu1604",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu1604",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-ubuntu1610-vmware"
                 ],
-                "artifact": "lavabit/magma-ubuntu1610",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu1610",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "magma-ubuntu1704-vmware"
                 ],
-                "artifact": "lavabit/magma-ubuntu1704",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu1704",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
                     "lineage-vmware"
                 ],
-                "artifact": "lineage/lineage",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The Lineage mobile operating system build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lineage/lineage",
+                "version": "{{user `box_version`}}",
+                "version_description": "The Lineage mobile operating system build environment."
             },
             {
                 "type": "artifice",
