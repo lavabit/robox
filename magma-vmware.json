@@ -248,12 +248,16 @@
         {
             "scripts": [
                 "scripts/freebsd11/pkg.sh",
-                "scripts/freebsd11/magma.sh"
+                "scripts/freebsd11/vagrant.sh",
+                "scripts/freebsd11/magma.sh",
+                "scripts/freebsd11/virtualbox.sh",
+                "scripts/freebsd11/vmware.sh",
+                "scripts/freebsd11/qemu.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
-            "execute_command": "chmod +x {{ .Path }}",
+            "execute_command": "/usr/local/bin/bash {{ .Path }}",
             "only": [
                 "magma-freebsd11-vmware"
             ]
@@ -266,7 +270,7 @@
             "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
-            "execute_command": "chmod +x {{ .Path }}",
+            "execute_command": "/bin/sh {{ .Path }}",
             "only": [
                 "magma-openbsd6-vmware"
             ]

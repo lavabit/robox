@@ -6,7 +6,7 @@
 # Description: Used to build various virtual machines using packer.
 
 # Credentials and tokens.
-export VERSION="0.9.0"
+export VERSION="0.9.1"
 source .credentialsrc
 
 # Collect the list of ISO urls.
