@@ -465,7 +465,7 @@
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><enter><wait>",
-                "linux netsetup=dhcp install=https://download.opensuse.org/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
+                "linux netsetup=dhcp install=https://mirrors.kernel.org/opensuse/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
                 "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
                 "<enter><wait>"
             ],
@@ -486,8 +486,8 @@
             ],
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Build0257-Media.iso",
-            "iso_checksum": "25ab49e702195233834bd5f8e11695366188861e66a4a8f552024584759acbd1",
+            "iso_url": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Current.iso",
+            "iso_checksum": "d9d6caed73144fea0736ab911888e3646df738f61f9a27f82a669567751f92d6",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
