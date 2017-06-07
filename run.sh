@@ -5,8 +5,11 @@
 #
 # Description: Used to build various virtual machines using packer.
 
+# Limit the number of cpus packer will use.
+# export GOMAXPROCS="2"
+
 # Credentials and tokens.
-export VERSION="0.9.1"
+export VERSION="0.9.5"
 source .credentialsrc
 
 # Collect the list of ISO urls.
