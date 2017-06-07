@@ -1,7 +1,6 @@
 {
     "variables": {
-        "box_version": "{{env `VERSION`}}",
-        "box_token": "{{env `ATLAS_TOKEN`}}"
+        "box_version": "{{env `VERSION`}}"
     },
     "provisioners": [
         {
@@ -1065,154 +1064,214 @@
                 "output": "output/{{build_name}}-{{user `box_version`}}.box"
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-oracle7-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/oracle7",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/oracle7",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-opensuse42-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/opensuse42",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/opensuse42",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-alpine35-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/alpine35",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/alpine35",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-alpine36-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/alpine36",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/alpine36",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-centos6-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/centos6",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/centos6",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-centos7-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/centos7",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/centos7",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-arch-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/arch",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/arch",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-gentoo-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/gentoo",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/gentoo",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-debian8-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/debian8",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/debian8",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-fedora25-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/fedora25",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/fedora25",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-freebsd11-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/freebsd11",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/freebsd11",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-openbsd6-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/openbsd6",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/openbsd6",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-ubuntu1604-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/ubuntu1604",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/ubuntu1604",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-ubuntu1610-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/ubuntu1610",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/ubuntu1610",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
-                "type": "vagrant-cloud",
+                "type": "atlas",
                 "only": [
                     "generic-ubuntu1704-libvirt"
                 ],
-                "access_token": "{{user `box_token`}}",
-                "box_tag": "generic/ubuntu1704",
-                "version": "{{user `box_version`}}",
-                "version_description": "A build environment for use in cross platform development."
+                "artifact": "generic/ubuntu1704",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
             },
             {
                 "type": "artifice",

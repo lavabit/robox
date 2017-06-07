@@ -1,6 +1,7 @@
 {
     "variables": {
-        "box_version": "{{env `VERSION`}}"
+        "box_version": "{{env `VERSION`}}",
+        "box_token": "{{env `ATLAS_TOKEN`}}"
     },
     "provisioners": [
         {
@@ -12,7 +13,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-alpine36-vmware"
+                "magma-alpine36-virtualbox"
             ]
         },
         {
@@ -36,7 +37,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-alpine36-vmware"
+                "magma-alpine36-virtualbox"
             ]
         },
         {
@@ -50,9 +51,9 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-vmware",
-                "magma-centos-vmware",
-                "magma-centos6-vmware"
+                "magma-virtualbox",
+                "magma-centos-virtualbox",
+                "magma-centos6-virtualbox"
             ]
         },
         {
@@ -74,9 +75,9 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-vmware",
-                "magma-centos-vmware",
-                "magma-centos6-vmware"
+                "magma-virtualbox",
+                "magma-centos-virtualbox",
+                "magma-centos6-virtualbox"
             ]
         },
         {
@@ -91,7 +92,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-centos7-vmware"
+                "magma-centos7-virtualbox"
             ]
         },
         {
@@ -114,7 +115,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-centos7-vmware"
+                "magma-centos7-virtualbox"
             ]
         },
         {
@@ -125,7 +126,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-gentoo-vmware"
+                "magma-gentoo-virtualbox"
             ]
         },
         {
@@ -138,7 +139,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-gentoo-vmware"
+                "magma-gentoo-virtualbox"
             ]
         },
         {
@@ -149,7 +150,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-arch-vmware"
+                "magma-arch-virtualbox"
             ]
         },
         {
@@ -166,7 +167,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-arch-vmware"
+                "magma-arch-virtualbox"
             ]
         },
         {
@@ -178,7 +179,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-debian8-vmware"
+                "magma-debian8-virtualbox"
             ]
         },
         {
@@ -199,7 +200,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-debian8-vmware"
+                "magma-debian8-virtualbox"
             ]
         },
         {
@@ -211,7 +212,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-fedora25-vmware"
+                "magma-fedora25-virtualbox"
             ]
         },
         {
@@ -223,7 +224,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-fedora25-vmware"
+                "magma-fedora25-virtualbox"
             ]
         },
         {
@@ -241,7 +242,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-fedora25-vmware"
+                "magma-fedora25-virtualbox"
             ]
         },
         {
@@ -258,7 +259,7 @@
             "expect_disconnect": "true",
             "execute_command": "/usr/local/bin/bash {{ .Path }}",
             "only": [
-                "magma-freebsd11-vmware"
+                "magma-freebsd11-virtualbox"
             ]
         },
         {
@@ -271,7 +272,7 @@
             "expect_disconnect": "true",
             "execute_command": "/bin/sh {{ .Path }}",
             "only": [
-                "magma-openbsd6-vmware"
+                "magma-openbsd6-virtualbox"
             ]
         },
         {
@@ -283,17 +284,17 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu-vmware",
-                "magma-ubuntu1604-vmware"
+                "magma-ubuntu-virtualbox",
+                "magma-ubuntu1604-virtualbox"
             ]
         },
         {
             "scripts": [
                 "scripts/ubuntu1604/limits.sh",
-                "scripts/ubuntu1604/vagrant.sh",
                 "scripts/ubuntu1604/postfix.sh",
                 "scripts/ubuntu1604/mysql.sh",
                 "scripts/ubuntu1604/memcached.sh",
+                "scripts/ubuntu1604/vagrant.sh",
                 "scripts/ubuntu1604/magma.sh",
                 "scripts/ubuntu1604/fixtty.sh",
                 "scripts/ubuntu1604/virtualbox.sh",
@@ -305,8 +306,8 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu-vmware",
-                "magma-ubuntu1604-vmware"
+                "magma-ubuntu-virtualbox",
+                "magma-ubuntu1604-virtualbox"
             ]
         },
         {
@@ -318,16 +319,16 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu1610-vmware"
+                "magma-ubuntu1610-virtualbox"
             ]
         },
         {
             "scripts": [
                 "scripts/ubuntu1610/limits.sh",
-                "scripts/ubuntu1610/vagrant.sh",
                 "scripts/ubuntu1610/postfix.sh",
                 "scripts/ubuntu1610/mysql.sh",
                 "scripts/ubuntu1610/memcached.sh",
+                "scripts/ubuntu1610/vagrant.sh",
                 "scripts/ubuntu1610/magma.sh",
                 "scripts/ubuntu1610/fixtty.sh",
                 "scripts/ubuntu1610/virtualbox.sh",
@@ -339,7 +340,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu1610-vmware"
+                "magma-ubuntu1610-virtualbox"
             ]
         },
         {
@@ -351,16 +352,16 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu1704-vmware"
+                "magma-ubuntu1704-virtualbox"
             ]
         },
         {
             "scripts": [
                 "scripts/ubuntu1704/limits.sh",
-                "scripts/ubuntu1704/vagrant.sh",
                 "scripts/ubuntu1704/postfix.sh",
                 "scripts/ubuntu1704/mysql.sh",
                 "scripts/ubuntu1704/memcached.sh",
+                "scripts/ubuntu1704/vagrant.sh",
                 "scripts/ubuntu1704/magma.sh",
                 "scripts/ubuntu1704/fixtty.sh",
                 "scripts/ubuntu1704/virtualbox.sh",
@@ -372,7 +373,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu1704-vmware"
+                "magma-ubuntu1704-virtualbox"
             ]
         },
         {
@@ -384,14 +385,13 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-vmware"
+                "lineage-virtualbox"
             ]
         },
         {
             "scripts": [
                 "scripts/ubuntu1604/limits.sh",
-                "scripts/ubuntu1704/vagrant.sh",
-                "scripts/ubuntu1604/lineage.sh",
+                "scripts/ubuntu1604/vagrant.sh",
                 "scripts/ubuntu1604/fixtty.sh",
                 "scripts/ubuntu1604/virtualbox.sh",
                 "scripts/ubuntu1604/vmware.sh",
@@ -402,7 +402,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-vmware"
+                "lineage-virtualbox"
             ]
         },
         {
@@ -411,7 +411,7 @@
             "source": "res/blobs/system-blobs.tar.gz",
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
-                "lineage-vmware"
+                "lineage-virtualbox"
             ]
         },
         {
@@ -422,7 +422,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-vmware"
+                "lineage-virtualbox"
             ]
         },
         {
@@ -434,18 +434,17 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "except": [
-                "magma-freebsd11-vmware",
-                "magma-openbsd6-vmware"
+                "magma-freebsd11-virtualbox",
+                "magma-openbsd6-virtualbox"
             ]
         }
     ],
     "builders": [
         {
-            "type": "vmware-iso",
-            "name": "magma-alpine36-vmware",
-            "vm_name": "magma-alpine36-vmware",
-            "vmdk_name": "magma-alpine36-vmware",
-            "output_directory": "output/magma-alpine36-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-alpine36-virtualbox",
+            "vm_name": "magma-alpine36-virtualbox",
+            "output_directory": "output/magma-alpine36-virtualbox",
             "boot_wait": "30s",
             "boot_command": [
                 "root<enter><wait>",
@@ -459,161 +458,201 @@
                 "umount /mnt && reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "otherlinux-64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Linux_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.6/releases/x86_64/alpine-virt-3.6.1-x86_64.iso",
             "iso_checksum": "f4421357ed2c969046b95cef6fc4844aeebfe8a2323049915dbe953d5f1d3c36",
             "iso_checksum_type": "sha256",
-            "skip_compaction": true,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "/sbin/poweroff",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-vmware",
-            "vm_name": "magma-vmware",
-            "vmdk_name": "magma-vmware",
-            "output_directory": "output/magma-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-virtualbox",
+            "vm_name": "magma-virtualbox",
+            "output_directory": "output/magma-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "centos-64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "RedHat_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
             "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
             "iso_checksum_type": "sha256",
-            "skip_compaction": true,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-centos-vmware",
-            "vm_name": "magma-centos-vmware",
-            "vmdk_name": "magma-centos-vmware",
-            "output_directory": "output/magma-centos-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-centos-virtualbox",
+            "vm_name": "magma-centos-virtualbox",
+            "output_directory": "output/magma-centos-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "centos-64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "RedHat_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
             "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
             "iso_checksum_type": "sha256",
-            "skip_compaction": true,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-centos6-vmware",
-            "vm_name": "magma-centos6-vmware",
-            "vmdk_name": "magma-centos6-vmware",
-            "output_directory": "output/magma-centos6-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-centos6-virtualbox",
+            "vm_name": "magma-centos6-virtualbox",
+            "output_directory": "output/magma-centos6-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "centos-64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "RedHat_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
             "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
             "iso_checksum_type": "sha256",
-            "skip_compaction": true,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-centos7-vmware",
-            "vm_name": "magma-centos7-vmware",
-            "vmdk_name": "magma-centos7-vmware",
-            "output_directory": "output/magma-centos7-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-centos7-virtualbox",
+            "vm_name": "magma-centos7-virtualbox",
+            "output_directory": "output/magma-centos7-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "centos-64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "RedHat_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/centos/7.3.1611/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
             "iso_checksum": "27bd866242ee058b7a5754e83d8ee8403e216b93d130d800852a96f41c34d86a",
             "iso_checksum_type": "sha256",
-            "skip_compaction": true,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-arch-vmware",
-            "vm_name": "magma-arch-vmware",
-            "vmdk_name": "magma-arch-vmware",
-            "output_directory": "output/magma-arch-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-arch-virtualbox",
+            "vm_name": "magma-arch-virtualbox",
+            "output_directory": "output/magma-arch-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait10><wait10><wait10>",
@@ -621,17 +660,23 @@
                 "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "otherlinux-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "ArchLinux_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/archlinux/iso/2017.06.01/archlinux-2017.06.01-x86_64.iso",
             "iso_checksum": "ee4023c063d0dd29924693ee5b5e7425af92edc2797f300d824070b63d3db1f3",
             "iso_checksum_type": "sha256",
@@ -640,14 +685,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-fedora25-vmware",
-            "vm_name": "magma-fedora25-vmware",
-            "vmdk_name": "magma-fedora25-vmware",
-            "output_directory": "output/magma-fedora25-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-fedora25-virtualbox",
+            "vm_name": "magma-fedora25-virtualbox",
+            "output_directory": "output/magma-fedora25-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> ",
@@ -657,17 +704,23 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "fedora-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Fedora_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/fedora/releases/25/Server/x86_64/iso/Fedora-Server-netinst-x86_64-25-1.3.iso",
             "iso_checksum": "86bc3694f4938382753d1e9536f2140a6c9c1978207766340c679a89509073c7",
             "iso_checksum_type": "sha256",
@@ -676,14 +729,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-debian8-vmware",
-            "vm_name": "magma-debian8-vmware",
-            "vmdk_name": "magma-debian8-vmware",
-            "output_directory": "output/magma-debian8-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-debian8-virtualbox",
+            "vm_name": "magma-debian8-virtualbox",
+            "output_directory": "output/magma-debian8-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -692,17 +747,23 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "debian8-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Debian_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/debian-cd/8.8.0/amd64/iso-cd/debian-8.8.0-amd64-netinst.iso",
             "iso_checksum": "2c07ff8cc766767610566297b8729740f923735e790c8e78b718fb93923b448e",
             "iso_checksum_type": "sha256",
@@ -711,14 +772,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "lineage-vmware",
-            "vm_name": "lineage-vmware",
-            "vmdk_name": "lineage-vmware",
-            "output_directory": "output/lineage-vmware",
+            "type": "virtualbox-iso",
+            "name": "lineage-virtualbox",
+            "vm_name": "lineage-virtualbox",
+            "output_directory": "output/lineage-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -740,17 +803,23 @@
                 "<enter>"
             ],
             "disk_size": 196608,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Ubuntu_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.2/ubuntu-16.04.2-server-amd64.iso",
             "iso_checksum": "737ae7041212c628de5751d15c3016058b0e833fdc32e7420209b76ca3d0a535",
             "iso_checksum_type": "sha256",
@@ -759,14 +828,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-ubuntu-vmware",
-            "vm_name": "magma-ubuntu-vmware",
-            "vmdk_name": "magma-ubuntu-vmware",
-            "output_directory": "output/magma-ubuntu-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-ubuntu-virtualbox",
+            "vm_name": "magma-ubuntu-virtualbox",
+            "output_directory": "output/magma-ubuntu-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -788,17 +859,23 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Ubuntu_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.2/ubuntu-16.04.2-server-amd64.iso",
             "iso_checksum": "737ae7041212c628de5751d15c3016058b0e833fdc32e7420209b76ca3d0a535",
             "iso_checksum_type": "sha256",
@@ -807,14 +884,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-ubuntu1604-vmware",
-            "vm_name": "magma-ubuntu1604-vmware",
-            "vmdk_name": "magma-ubuntu1604-vmware",
-            "output_directory": "output/magma-ubuntu1604-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-ubuntu1604-virtualbox",
+            "vm_name": "magma-ubuntu1604-virtualbox",
+            "output_directory": "output/magma-ubuntu1604-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -836,17 +915,23 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Ubuntu_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.2/ubuntu-16.04.2-server-amd64.iso",
             "iso_checksum": "737ae7041212c628de5751d15c3016058b0e833fdc32e7420209b76ca3d0a535",
             "iso_checksum_type": "sha256",
@@ -855,14 +940,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-ubuntu1610-vmware",
-            "vm_name": "magma-ubuntu1610-vmware",
-            "vmdk_name": "magma-ubuntu1610-vmware",
-            "output_directory": "output/magma-ubuntu1610-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-ubuntu1610-virtualbox",
+            "vm_name": "magma-ubuntu1610-virtualbox",
+            "output_directory": "output/magma-ubuntu1610-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -876,17 +963,23 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Ubuntu_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.10/ubuntu-16.10-server-amd64.iso",
             "iso_checksum": "72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
             "iso_checksum_type": "sha256",
@@ -895,14 +988,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-ubuntu1704-vmware",
-            "vm_name": "magma-ubuntu1704-vmware",
-            "vmdk_name": "magma-ubuntu1704-vmware",
-            "output_directory": "output/magma-ubuntu1704-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-ubuntu1704-virtualbox",
+            "vm_name": "magma-ubuntu1704-virtualbox",
+            "output_directory": "output/magma-ubuntu1704-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -916,17 +1011,23 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Ubuntu_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/17.04/ubuntu-17.04-server-amd64.iso",
             "iso_checksum": "ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
             "iso_checksum_type": "sha256",
@@ -935,14 +1036,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-gentoo-vmware",
-            "vm_name": "magma-gentoo-vmware",
-            "vmdk_name": "magma-gentoo-vmware",
-            "output_directory": "output/magma-gentoo-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-gentoo-virtualbox",
+            "vm_name": "magma-gentoo-virtualbox",
+            "output_directory": "output/magma-gentoo-virtualbox",
             "boot_wait": "5s",
             "boot_command": [
                 "gentoo-nofb<enter>",
@@ -951,22 +1054,27 @@
                 "passwd root<enter><wait>",
                 "vagrant<enter><wait>",
                 "vagrant<enter><wait>",
-                "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
+                "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
                 "bash magma.gentoo.vagrant.sh && (chroot /mnt/gentoo /bin/bash < magma.gentoo.vagrant.chroot.sh) && reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "vmci0.present": "TRUE"
-            },
-            "guest_os_type": "otherlinux-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Gentoo_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20170525.iso",
             "iso_checksum": "a9d254e4ccd8015123b0ddafcd49365e2b3766d74a62f2ac2d9b685822a72c6f",
             "iso_checksum_type": "sha256",
@@ -975,39 +1083,47 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "shutdown -hP now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-freebsd11-vmware",
-            "vm_name": "magma-freebsd11-vmware",
-            "vmdk_name": "magma-freebsd11-vmware",
-            "output_directory": "output/magma-freebsd11-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-freebsd11-virtualbox",
+            "vm_name": "magma-freebsd11-virtualbox",
+            "output_directory": "output/magma-freebsd11-virtualbox",
             "boot_wait": "5s",
             "boot_command": [
                 "<esc><wait>",
                 "boot -s<wait>",
                 "<enter><wait>",
                 "<wait10><wait10>",
-                "/bin/sh<enter><wait>",
-                "mdmfs -s 100m md1 /tmp<enter><wait>",
-                "mdmfs -s 100m md2 /mnt<enter><wait>",
+                "/bin/sh<enter><wait5>",
+                "mdmfs -s 100m md1 /tmp<enter><wait5>",
+                "mdmfs -s 100m md2 /mnt<enter><wait5>",
                 "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
-                "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait5>",
+                "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait10>",
                 "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "freebsd-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "FreeBSD_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.0/FreeBSD-11.0-RELEASE-amd64-disc1.iso",
             "iso_checksum": "08b12f2dc378f7a61b5469219824c74a2f9faef580acc85ffab45365df79872d",
             "iso_checksum_type": "sha256",
@@ -1016,14 +1132,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "shutdown -p now",
-            "tools_upload_flavor": "freebsd"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "magma-openbsd6-vmware",
-            "vm_name": "magma-openbsd6-vmware",
-            "vmdk_name": "magma-openbsd6-vmware",
-            "output_directory": "output/magma-openbsd6-vmware",
+            "type": "virtualbox-iso",
+            "name": "magma-openbsd6-virtualbox",
+            "vm_name": "magma-openbsd6-virtualbox",
+            "output_directory": "output/magma-openbsd6-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "S<enter><wait>",
@@ -1033,17 +1151,23 @@
                 "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "freeBSD-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "OpenBSD_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://ftp.usa.openbsd.org/pub/OpenBSD/6.1/amd64/cd61.iso",
             "iso_checksum": "37cee759db10ffd5c0d086771b62ed771187a24baa4946e601153e394ce31aa6",
             "iso_checksum_type": "sha256",
@@ -1052,7 +1176,10 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "shutdown -h -p now",
-            "tools_upload_flavor": "freebsd"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         }
     ],
     "post-processors": [
@@ -1064,7 +1191,7 @@
                 "vagrantfile_template": "tpl/magma.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "except": [
-                    "lineage-vmware"
+                    "lineage-virtualbox"
                 ]
             },
             {
@@ -1074,232 +1201,168 @@
                 "vagrantfile_template": "tpl/lineage.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "only": [
-                    "lineage-vmware"
+                    "lineage-virtualbox"
                 ]
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-alpine36-vmware"
+                    "magma-alpine36-virtualbox"
                 ],
-                "artifact": "lavabit/magma-alpine",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-alpine",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-vmware"
+                    "magma-virtualbox"
                 ],
-                "artifact": "lavabit/magma",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-centos-vmware"
+                    "magma-centos-virtualbox"
                 ],
-                "artifact": "lavabit/magma-centos",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-centos",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-centos6-vmware"
+                    "magma-centos6-virtualbox"
                 ],
-                "artifact": "lavabit/magma-centos6",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-centos6",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-centos7-vmware"
+                    "magma-centos7-virtualbox"
                 ],
-                "artifact": "lavabit/magma-centos7",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-centos7",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-arch-vmware"
+                    "magma-arch-virtualbox"
                 ],
-                "artifact": "lavabit/magma-arch",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-arch",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-gentoo-vmware"
+                    "magma-gentoo-virtualbox"
                 ],
-                "artifact": "lavabit/magma-gentoo",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-gentoo",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-debian8-vmware"
+                    "magma-debian8-virtualbox"
                 ],
-                "artifact": "lavabit/magma-debian",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-debian",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-fedora25-vmware"
+                    "magma-fedora25-virtualbox"
                 ],
-                "artifact": "lavabit/magma-fedora",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-fedora",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-freebsd11-vmware"
+                    "magma-freebsd11-virtualbox"
                 ],
-                "artifact": "lavabit/magma-freebsd",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-freebsd",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-openbsd6-vmware"
+                    "magma-openbsd6-virtualbox"
                 ],
-                "artifact": "lavabit/magma-openbsd",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-openbsd",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-ubuntu-vmware"
+                    "magma-ubuntu-virtualbox"
                 ],
-                "artifact": "lavabit/magma-ubuntu",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-ubuntu1604-vmware"
+                    "magma-ubuntu1604-virtualbox"
                 ],
-                "artifact": "lavabit/magma-ubuntu1604",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu1604",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-ubuntu1610-vmware"
+                    "magma-ubuntu1610-virtualbox"
                 ],
-                "artifact": "lavabit/magma-ubuntu1610",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu1610",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "magma-ubuntu1704-vmware"
+                    "magma-ubuntu1704-virtualbox"
                 ],
-                "artifact": "lavabit/magma-ubuntu1704",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The magma encrypted mail daemon build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu1704",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "lineage-vmware"
+                    "lineage-virtualbox"
                 ],
-                "artifact": "lineage/lineage",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "The Lineage mobile operating system build environment."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lineage/lineage",
+                "version": "{{user `box_version`}}",
+                "version_description": "The Lineage mobile operating system build environment."
             },
             {
                 "type": "artifice",

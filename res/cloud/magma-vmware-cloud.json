@@ -1,82 +1,9 @@
 {
     "variables": {
-        "box_version": "{{env `VERSION`}}"
+        "box_version": "{{env `VERSION`}}",
+        "box_token": "{{env `ATLAS_TOKEN`}}"
     },
     "provisioners": [
-        {
-            "type": "shell",
-            "scripts": [
-                "scripts/oracle7/fixdns.sh",
-                "scripts/oracle7/yum.sh"
-            ],
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "generic-oracle7-vmware"
-            ]
-        },
-        {
-            "type": "shell",
-            "scripts": [
-                "scripts/oracle7/kernel.sh",
-                "scripts/oracle7/virtualbox.sh",
-                "scripts/oracle7/vmware.sh",
-                "scripts/oracle7/qemu.sh",
-                "scripts/oracle7/vagrant.sh",
-                "scripts/oracle7/network.sh"
-            ],
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
-            "pause_before": "120s",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "generic-oracle7-vmware"
-            ]
-        },
-        {
-            "type": "shell",
-            "scripts": [
-                "scripts/opensuse42/sudo.sh",
-                "scripts/opensuse42/zypper.sh",
-                "scripts/opensuse42/vagrant.sh"
-            ],
-            "execute_command": "/bin/bash '{{.Path}}'",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "generic-opensuse42-vmware"
-            ]
-        },
-        {
-            "type": "shell",
-            "scripts": [
-                "scripts/alpine35/apk.sh"
-            ],
-            "execute_command": "/bin/sh '{{.Path}}'",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "generic-alpine35-vmware"
-            ]
-        },
-        {
-            "type": "shell",
-            "scripts": [
-                "scripts/alpine35/vagrant.sh",
-                "scripts/alpine35/virtualbox.sh",
-                "scripts/alpine35/vmware.sh",
-                "scripts/alpine35/qemu.sh",
-                "scripts/alpine35/cache.sh"
-            ],
-            "execute_command": "/bin/bash '{{.Path}}'",
-            "pause_before": "120s",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "generic-alpine35-vmware"
-            ]
-        },
         {
             "type": "shell",
             "scripts": [
@@ -86,13 +13,20 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine36-vmware"
+                "magma-alpine36-vmware"
             ]
         },
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine36/limits.sh",
+                "scripts/alpine36/mariadb.sh",
+                "scripts/alpine36/memcached.sh",
+                "scripts/alpine36/postfix.sh",
                 "scripts/alpine36/vagrant.sh",
+                "scripts/alpine36/glibc.sh",
+                "scripts/alpine36/gcc.sh",
+                "scripts/alpine36/magma.sh",
                 "scripts/alpine36/virtualbox.sh",
                 "scripts/alpine36/vmware.sh",
                 "scripts/alpine36/qemu.sh",
@@ -103,7 +37,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine36-vmware"
+                "magma-alpine36-vmware"
             ]
         },
         {
@@ -117,7 +51,9 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos6-vmware"
+                "magma-vmware",
+                "magma-centos-vmware",
+                "magma-centos6-vmware"
             ]
         },
         {
@@ -127,7 +63,9 @@
                 "scripts/centos6/virtualbox.sh",
                 "scripts/centos6/vmware.sh",
                 "scripts/centos6/qemu.sh",
+                "scripts/centos6/postfix.sh",
                 "scripts/centos6/vagrant.sh",
+                "scripts/centos6/magma.sh",
                 "scripts/centos6/tuning.sh",
                 "scripts/centos6/sshd.sh",
                 "scripts/centos6/cleanup.sh"
@@ -137,7 +75,9 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos6-vmware"
+                "magma-vmware",
+                "magma-centos-vmware",
+                "magma-centos6-vmware"
             ]
         },
         {
@@ -152,7 +92,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos7-vmware"
+                "magma-centos7-vmware"
             ]
         },
         {
@@ -162,7 +102,9 @@
                 "scripts/centos7/virtualbox.sh",
                 "scripts/centos7/vmware.sh",
                 "scripts/centos7/qemu.sh",
+                "scripts/centos7/postfix.sh",
                 "scripts/centos7/vagrant.sh",
+                "scripts/centos7/magma.sh",
                 "scripts/centos7/tuning.sh",
                 "scripts/centos7/sshd.sh",
                 "scripts/centos7/cleanup.sh",
@@ -173,7 +115,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos7-vmware"
+                "magma-centos7-vmware"
             ]
         },
         {
@@ -184,19 +126,20 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-gentoo-vmware"
+                "magma-gentoo-vmware"
             ]
         },
         {
             "scripts": [
-                "scripts/gentoo/vagrant.sh"
+                "scripts/gentoo/vagrant.sh",
+                "scripts/gentoo/magma.sh"
             ],
             "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-gentoo-vmware"
+                "magma-gentoo-vmware"
             ]
         },
         {
@@ -207,19 +150,24 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-arch-vmware"
+                "magma-arch-vmware"
             ]
         },
         {
             "scripts": [
-                "scripts/arch/vagrant.sh"
+                "scripts/arch/limits.sh",
+                "scripts/arch/mariadb.sh",
+                "scripts/arch/memcached.sh",
+                "scripts/arch/postfix.sh",
+                "scripts/arch/vagrant.sh",
+                "scripts/arch/magma.sh"
             ],
             "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-arch-vmware"
+                "magma-arch-vmware"
             ]
         },
         {
@@ -231,12 +179,17 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian8-vmware"
+                "magma-debian8-vmware"
             ]
         },
         {
             "scripts": [
+                "scripts/debian8/limits.sh",
+                "scripts/debian8/postfix.sh",
+                "scripts/debian8/mysql.sh",
+                "scripts/debian8/memcached.sh",
                 "scripts/debian8/vagrant.sh",
+                "scripts/debian8/magma.sh",
                 "scripts/debian8/fixtty.sh",
                 "scripts/debian8/virtualbox.sh",
                 "scripts/debian8/vmware.sh",
@@ -247,7 +200,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian8-vmware"
+                "magma-debian8-vmware"
             ]
         },
         {
@@ -259,7 +212,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora25-vmware"
+                "magma-fedora25-vmware"
             ]
         },
         {
@@ -271,7 +224,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora25-vmware"
+                "magma-fedora25-vmware"
             ]
         },
         {
@@ -282,19 +235,21 @@
                 "scripts/fedora25/vmware.sh",
                 "scripts/fedora25/qemu.sh",
                 "scripts/fedora25/vagrant.sh",
+                "scripts/fedora25/magma.sh",
                 "scripts/fedora25/tuning.sh"
             ],
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora25-vmware"
+                "magma-fedora25-vmware"
             ]
         },
         {
             "scripts": [
                 "scripts/freebsd11/pkg.sh",
                 "scripts/freebsd11/vagrant.sh",
+                "scripts/freebsd11/magma.sh",
                 "scripts/freebsd11/virtualbox.sh",
                 "scripts/freebsd11/vmware.sh",
                 "scripts/freebsd11/qemu.sh"
@@ -304,19 +259,20 @@
             "expect_disconnect": "true",
             "execute_command": "/usr/local/bin/bash {{ .Path }}",
             "only": [
-                "generic-freebsd11-vmware"
+                "magma-freebsd11-vmware"
             ]
         },
         {
             "scripts": [
-                "scripts/openbsd6/pkg.sh"
+                "scripts/openbsd6/pkg.sh",
+                "scripts/openbsd6/magma.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "execute_command": "/bin/sh {{ .Path }}",
             "only": [
-                "generic-openbsd6-vmware"
+                "magma-openbsd6-vmware"
             ]
         },
         {
@@ -328,12 +284,18 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1604-vmware"
+                "magma-ubuntu-vmware",
+                "magma-ubuntu1604-vmware"
             ]
         },
         {
             "scripts": [
+                "scripts/ubuntu1604/limits.sh",
                 "scripts/ubuntu1604/vagrant.sh",
+                "scripts/ubuntu1604/postfix.sh",
+                "scripts/ubuntu1604/mysql.sh",
+                "scripts/ubuntu1604/memcached.sh",
+                "scripts/ubuntu1604/magma.sh",
                 "scripts/ubuntu1604/fixtty.sh",
                 "scripts/ubuntu1604/virtualbox.sh",
                 "scripts/ubuntu1604/vmware.sh",
@@ -344,7 +306,8 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1604-vmware"
+                "magma-ubuntu-vmware",
+                "magma-ubuntu1604-vmware"
             ]
         },
         {
@@ -356,12 +319,17 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1610-vmware"
+                "magma-ubuntu1610-vmware"
             ]
         },
         {
             "scripts": [
+                "scripts/ubuntu1610/limits.sh",
                 "scripts/ubuntu1610/vagrant.sh",
+                "scripts/ubuntu1610/postfix.sh",
+                "scripts/ubuntu1610/mysql.sh",
+                "scripts/ubuntu1610/memcached.sh",
+                "scripts/ubuntu1610/magma.sh",
                 "scripts/ubuntu1610/fixtty.sh",
                 "scripts/ubuntu1610/virtualbox.sh",
                 "scripts/ubuntu1610/vmware.sh",
@@ -372,7 +340,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1610-vmware"
+                "magma-ubuntu1610-vmware"
             ]
         },
         {
@@ -384,12 +352,17 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1704-vmware"
+                "magma-ubuntu1704-vmware"
             ]
         },
         {
             "scripts": [
+                "scripts/ubuntu1704/limits.sh",
                 "scripts/ubuntu1704/vagrant.sh",
+                "scripts/ubuntu1704/postfix.sh",
+                "scripts/ubuntu1704/mysql.sh",
+                "scripts/ubuntu1704/memcached.sh",
+                "scripts/ubuntu1704/magma.sh",
                 "scripts/ubuntu1704/fixtty.sh",
                 "scripts/ubuntu1704/virtualbox.sh",
                 "scripts/ubuntu1704/vmware.sh",
@@ -400,7 +373,57 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1704-vmware"
+                "magma-ubuntu1704-vmware"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/ubuntu1604/network.sh",
+                "scripts/ubuntu1604/apt.sh"
+            ],
+            "type": "shell",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "lineage-vmware"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/ubuntu1604/limits.sh",
+                "scripts/ubuntu1704/vagrant.sh",
+                "scripts/ubuntu1604/lineage.sh",
+                "scripts/ubuntu1604/fixtty.sh",
+                "scripts/ubuntu1604/virtualbox.sh",
+                "scripts/ubuntu1604/vmware.sh",
+                "scripts/ubuntu1604/qemu.sh"
+            ],
+            "type": "shell",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "lineage-vmware"
+            ]
+        },
+        {
+            "type": "file",
+            "direction": "upload",
+            "source": "res/blobs/system-blobs.tar.gz",
+            "destination": "/home/vagrant/system-blobs.tar.gz",
+            "only": [
+                "lineage-vmware"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/ubuntu1604/lineage.sh"
+            ],
+            "type": "shell",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "lineage-vmware"
             ]
         },
         {
@@ -412,132 +435,25 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "except": [
-                "generic-freebsd11-vmware",
-                "generic-openbsd6-vmware"
+                "magma-freebsd11-vmware",
+                "magma-openbsd6-vmware"
             ]
         }
     ],
     "builders": [
         {
             "type": "vmware-iso",
-            "name": "generic-oracle7-vmware",
-            "vm_name": "generic-oracle7-vmware",
-            "vmdk_name": "generic-oracle7-vmware",
-            "output_directory": "output/generic-oracle7-vmware",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
-            ],
-            "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "oraclelinux-64",
-            "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "iso_url": "https://mirrors.kernel.org/oracle/OL7/u3/x86_64/OracleLinux-R7-U3-Server-x86_64-dvd.iso",
-            "iso_checksum": "2ad5327428c44d505a7d882a273cb3f5fbac4e56e739cf18f895565dde987101",
-            "iso_checksum_type": "sha256",
-            "skip_compaction": true,
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "10000s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
-        },
-        {
-            "type": "vmware-iso",
-            "name": "generic-opensuse42-vmware",
-            "vm_name": "generic-opensuse42-vmware",
-            "vmdk_name": "generic-opensuse42-vmware",
-            "output_directory": "output/generic-opensuse42-vmware",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<esc><enter><wait>",
-                "linux netsetup=dhcp install=https://download.opensuse.org/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
-                "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
-                "<enter><wait>"
-            ],
-            "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "opensuse-64",
-            "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "iso_url": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Build0257-Media.iso",
-            "iso_checksum": "25ab49e702195233834bd5f8e11695366188861e66a4a8f552024584759acbd1",
-            "iso_checksum_type": "sha256",
-            "skip_compaction": true,
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "10000s",
-            "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
-            "tools_upload_flavor": "linux"
-        },
-        {
-            "type": "vmware-iso",
-            "name": "generic-alpine35-vmware",
-            "vm_name": "generic-alpine35-vmware",
-            "vmdk_name": "generic-alpine35-vmware",
-            "output_directory": "output/generic-alpine35-vmware",
-            "boot_wait": "20s",
-            "boot_command": [
-                "root<enter><wait>",
-                "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
-                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine35.vagrant.cfg<enter><wait>",
-                "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f generic.alpine35.vagrant.cfg && ",
-                "mount /dev/sda3 /mnt && ",
-                "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
-                "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-                "umount /mnt && reboot<enter>"
-            ],
-            "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "otherlinux-64",
-            "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "iso_url": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
-            "iso_checksum": "2258ca975d7b829ea6229d314b2782d4070ec9b7f688392817e562f5a14a34b5",
-            "iso_checksum_type": "sha256",
-            "skip_compaction": true,
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "10000s",
-            "shutdown_command": "/sbin/poweroff",
-            "tools_upload_flavor": "linux"
-        },
-        {
-            "type": "vmware-iso",
-            "name": "generic-alpine36-vmware",
-            "vm_name": "generic-alpine36-vmware",
-            "vmdk_name": "generic-alpine36-vmware",
-            "output_directory": "output/generic-alpine36-vmware",
+            "name": "magma-alpine36-vmware",
+            "vm_name": "magma-alpine36-vmware",
+            "vmdk_name": "magma-alpine36-vmware",
+            "output_directory": "output/magma-alpine36-vmware",
             "boot_wait": "30s",
             "boot_command": [
                 "root<enter><wait>",
                 "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
-                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine36.vagrant.cfg<enter><wait>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.alpine36.vagrant.cfg<enter><wait>",
                 "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f generic.alpine36.vagrant.cfg && ",
+                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f magma.alpine36.vagrant.cfg && ",
                 "mount /dev/sda3 /mnt && ",
                 "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
@@ -567,13 +483,13 @@
         },
         {
             "type": "vmware-iso",
-            "name": "generic-centos6-vmware",
-            "vm_name": "generic-centos6-vmware",
-            "vmdk_name": "generic-centos6-vmware",
-            "output_directory": "output/generic-centos6-vmware",
+            "name": "magma-vmware",
+            "vm_name": "magma-vmware",
+            "vmdk_name": "magma-vmware",
+            "output_directory": "output/magma-vmware",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
@@ -599,13 +515,77 @@
         },
         {
             "type": "vmware-iso",
-            "name": "generic-centos7-vmware",
-            "vm_name": "generic-centos7-vmware",
-            "vmdk_name": "generic-centos7-vmware",
-            "output_directory": "output/generic-centos7-vmware",
+            "name": "magma-centos-vmware",
+            "vm_name": "magma-centos-vmware",
+            "vmdk_name": "magma-centos-vmware",
+            "output_directory": "output/magma-centos-vmware",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
+            ],
+            "disk_size": 32768,
+            "disk_type_id": "0",
+            "vmx_data": {
+                "memsize": "2048",
+                "numvcpus": "2",
+                "cpuid.coresPerSocket": "2"
+            },
+            "guest_os_type": "centos-64",
+            "http_directory": "http",
+            "headless": true,
+            "vnc_disable_password": true,
+            "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
+            "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
+            "iso_checksum_type": "sha256",
+            "skip_compaction": true,
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "tools_upload_flavor": "linux"
+        },
+        {
+            "type": "vmware-iso",
+            "name": "magma-centos6-vmware",
+            "vm_name": "magma-centos6-vmware",
+            "vmdk_name": "magma-centos6-vmware",
+            "output_directory": "output/magma-centos6-vmware",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
+            ],
+            "disk_size": 32768,
+            "disk_type_id": "0",
+            "vmx_data": {
+                "memsize": "2048",
+                "numvcpus": "2",
+                "cpuid.coresPerSocket": "2"
+            },
+            "guest_os_type": "centos-64",
+            "http_directory": "http",
+            "headless": true,
+            "vnc_disable_password": true,
+            "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
+            "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
+            "iso_checksum_type": "sha256",
+            "skip_compaction": true,
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "tools_upload_flavor": "linux"
+        },
+        {
+            "type": "vmware-iso",
+            "name": "magma-centos7-vmware",
+            "vm_name": "magma-centos7-vmware",
+            "vmdk_name": "magma-centos7-vmware",
+            "output_directory": "output/magma-centos7-vmware",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
@@ -631,15 +611,15 @@
         },
         {
             "type": "vmware-iso",
-            "name": "generic-arch-vmware",
-            "vm_name": "generic-arch-vmware",
-            "vmdk_name": "generic-arch-vmware",
-            "output_directory": "output/generic-arch-vmware",
+            "name": "magma-arch-vmware",
+            "vm_name": "magma-arch-vmware",
+            "vmdk_name": "magma-arch-vmware",
+            "output_directory": "output/magma-arch-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait10><wait10><wait10>",
-                "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.vagrant{,.chroot}.sh'<enter><wait>",
-                "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
+                "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.arch.vagrant{,.chroot}.sh'<enter><wait>",
+                "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
@@ -665,14 +645,14 @@
         },
         {
             "type": "vmware-iso",
-            "name": "generic-fedora25-vmware",
-            "vm_name": "generic-fedora25-vmware",
-            "vmdk_name": "generic-fedora25-vmware",
-            "output_directory": "output/generic-fedora25-vmware",
+            "name": "magma-fedora25-vmware",
+            "vm_name": "magma-fedora25-vmware",
+            "vmdk_name": "magma-fedora25-vmware",
+            "output_directory": "output/magma-fedora25-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> ",
-                "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora25.vagrant.ks ",
+                "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora25.vagrant.ks ",
                 "biosdevname=0 ",
                 "net.ifnames=0 ",
                 "<enter>"
@@ -701,15 +681,15 @@
         },
         {
             "type": "vmware-iso",
-            "name": "generic-debian8-vmware",
-            "vm_name": "generic-debian8-vmware",
-            "vmdk_name": "generic-debian8-vmware",
-            "output_directory": "output/generic-debian8-vmware",
+            "name": "magma-debian8-vmware",
+            "vm_name": "magma-debian8-vmware",
+            "vmdk_name": "magma-debian8-vmware",
+            "output_directory": "output/magma-debian8-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
                 "auto ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian8.vagrant.cfg ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian8.vagrant.cfg ",
                 "<enter>"
             ],
             "disk_size": 32768,
@@ -736,10 +716,10 @@
         },
         {
             "type": "vmware-iso",
-            "name": "generic-ubuntu1604-vmware",
-            "vm_name": "generic-ubuntu1604-vmware",
-            "vmdk_name": "generic-ubuntu1604-vmware",
-            "output_directory": "output/generic-ubuntu1604-vmware",
+            "name": "lineage-vmware",
+            "vm_name": "lineage-vmware",
+            "vmdk_name": "lineage-vmware",
+            "output_directory": "output/lineage-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -757,7 +737,55 @@
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",
                 "debconf/priority=critical ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1604.vagrant.cfg<wait> ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
+                "<enter>"
+            ],
+            "disk_size": 196608,
+            "disk_type_id": "0",
+            "vmx_data": {
+                "memsize": "2048",
+                "numvcpus": "2",
+                "cpuid.coresPerSocket": "2"
+            },
+            "guest_os_type": "ubuntu-64",
+            "skip_compaction": true,
+            "http_directory": "http",
+            "headless": true,
+            "vnc_disable_password": true,
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.2/ubuntu-16.04.2-server-amd64.iso",
+            "iso_checksum": "737ae7041212c628de5751d15c3016058b0e833fdc32e7420209b76ca3d0a535",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "tools_upload_flavor": "linux"
+        },
+        {
+            "type": "vmware-iso",
+            "name": "magma-ubuntu-vmware",
+            "vm_name": "magma-ubuntu-vmware",
+            "vmdk_name": "magma-ubuntu-vmware",
+            "output_directory": "output/magma-ubuntu-vmware",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<enter><wait>",
+                "<f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg<wait> ",
                 "<enter>"
             ],
             "disk_size": 32768,
@@ -784,10 +812,58 @@
         },
         {
             "type": "vmware-iso",
-            "name": "generic-ubuntu1610-vmware",
-            "vm_name": "generic-ubuntu1610-vmware",
-            "vmdk_name": "generic-ubuntu1610-vmware",
-            "output_directory": "output/generic-ubuntu1610-vmware",
+            "name": "magma-ubuntu1604-vmware",
+            "vm_name": "magma-ubuntu1604-vmware",
+            "vmdk_name": "magma-ubuntu1604-vmware",
+            "output_directory": "output/magma-ubuntu1604-vmware",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<enter><wait>",
+                "<f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg<wait> ",
+                "<enter>"
+            ],
+            "disk_size": 32768,
+            "disk_type_id": "0",
+            "vmx_data": {
+                "memsize": "2048",
+                "numvcpus": "2",
+                "cpuid.coresPerSocket": "2"
+            },
+            "guest_os_type": "ubuntu-64",
+            "skip_compaction": true,
+            "http_directory": "http",
+            "headless": true,
+            "vnc_disable_password": true,
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.2/ubuntu-16.04.2-server-amd64.iso",
+            "iso_checksum": "737ae7041212c628de5751d15c3016058b0e833fdc32e7420209b76ca3d0a535",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "tools_upload_flavor": "linux"
+        },
+        {
+            "type": "vmware-iso",
+            "name": "magma-ubuntu1610-vmware",
+            "vm_name": "magma-ubuntu1610-vmware",
+            "vmdk_name": "magma-ubuntu1610-vmware",
+            "output_directory": "output/magma-ubuntu1610-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -797,7 +873,7 @@
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",
                 "debconf/priority=critical ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1610.vagrant.cfg<wait> ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1610.vagrant.cfg<wait> ",
                 "<enter>"
             ],
             "disk_size": 32768,
@@ -824,10 +900,10 @@
         },
         {
             "type": "vmware-iso",
-            "name": "generic-ubuntu1704-vmware",
-            "vm_name": "generic-ubuntu1704-vmware",
-            "vmdk_name": "generic-ubuntu1704-vmware",
-            "output_directory": "output/generic-ubuntu1704-vmware",
+            "name": "magma-ubuntu1704-vmware",
+            "vm_name": "magma-ubuntu1704-vmware",
+            "vmdk_name": "magma-ubuntu1704-vmware",
+            "output_directory": "output/magma-ubuntu1704-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -837,7 +913,7 @@
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",
                 "debconf/priority=critical ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1704.vagrant.cfg<wait> ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1704.vagrant.cfg<wait> ",
                 "<enter>"
             ],
             "disk_size": 32768,
@@ -864,10 +940,10 @@
         },
         {
             "type": "vmware-iso",
-            "name": "generic-gentoo-vmware",
-            "vm_name": "generic-gentoo-vmware",
-            "vmdk_name": "generic-gentoo-vmware",
-            "output_directory": "output/generic-gentoo-vmware",
+            "name": "magma-gentoo-vmware",
+            "vm_name": "magma-gentoo-vmware",
+            "vmdk_name": "magma-gentoo-vmware",
+            "output_directory": "output/magma-gentoo-vmware",
             "boot_wait": "5s",
             "boot_command": [
                 "gentoo-nofb<enter>",
@@ -876,8 +952,8 @@
                 "passwd root<enter><wait>",
                 "vagrant<enter><wait>",
                 "vagrant<enter><wait>",
-                "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
-                "bash generic.gentoo.vagrant.sh && (chroot /mnt/gentoo /bin/bash < generic.gentoo.vagrant.chroot.sh) && reboot<enter>"
+                "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
+                "bash magma.gentoo.vagrant.sh && (chroot /mnt/gentoo /bin/bash < magma.gentoo.vagrant.chroot.sh) && reboot<enter>"
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
@@ -904,10 +980,10 @@
         },
         {
             "type": "vmware-iso",
-            "name": "generic-freebsd11-vmware",
-            "vm_name": "generic-freebsd11-vmware",
-            "vmdk_name": "generic-freebsd11-vmware",
-            "output_directory": "output/generic-freebsd11-vmware",
+            "name": "magma-freebsd11-vmware",
+            "vm_name": "magma-freebsd11-vmware",
+            "vmdk_name": "magma-freebsd11-vmware",
+            "output_directory": "output/magma-freebsd11-vmware",
             "boot_wait": "5s",
             "boot_command": [
                 "<esc><wait>",
@@ -918,7 +994,7 @@
                 "mdmfs -s 100m md1 /tmp<enter><wait>",
                 "mdmfs -s 100m md2 /mnt<enter><wait>",
                 "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
-                "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd11.vagrant.cfg<enter><wait5>",
+                "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait5>",
                 "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
             ],
             "disk_size": 32768,
@@ -945,16 +1021,16 @@
         },
         {
             "type": "vmware-iso",
-            "name": "generic-openbsd6-vmware",
-            "vm_name": "generic-openbsd6-vmware",
-            "vmdk_name": "generic-openbsd6-vmware",
-            "output_directory": "output/generic-openbsd6-vmware",
+            "name": "magma-openbsd6-vmware",
+            "vm_name": "magma-openbsd6-vmware",
+            "vmdk_name": "magma-openbsd6-vmware",
+            "output_directory": "output/magma-openbsd6-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "S<enter><wait>",
                 "dhclient em0<enter><wait5>",
-                "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.cfg<enter><wait>",
-                "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.chroot.sh<enter><wait>",
+                "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait>",
+                "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
                 "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 32768,
@@ -986,218 +1062,181 @@
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/generic.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box"
+                "vagrantfile_template": "tpl/magma.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "except": [
+                    "lineage-vmware"
+                ]
             },
             {
-                "type": "atlas",
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/lineage.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "only": [
-                    "generic-oracle7-vmware"
-                ],
-                "artifact": "generic/oracle7",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                    "lineage-vmware"
+                ]
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-opensuse42-vmware"
+                    "magma-alpine36-vmware"
                 ],
-                "artifact": "generic/opensuse42",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-alpine",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-alpine35-vmware"
+                    "magma-vmware"
                 ],
-                "artifact": "generic/alpine35",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-alpine36-vmware"
+                    "magma-centos-vmware"
                 ],
-                "artifact": "generic/alpine36",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-centos",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-centos6-vmware"
+                    "magma-centos6-vmware"
                 ],
-                "artifact": "generic/centos6",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-centos6",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-centos7-vmware"
+                    "magma-centos7-vmware"
                 ],
-                "artifact": "generic/centos7",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-centos7",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-arch-vmware"
+                    "magma-arch-vmware"
                 ],
-                "artifact": "generic/arch",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-arch",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-gentoo-vmware"
+                    "magma-gentoo-vmware"
                 ],
-                "artifact": "generic/gentoo",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-gentoo",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-debian8-vmware"
+                    "magma-debian8-vmware"
                 ],
-                "artifact": "generic/debian8",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-debian",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-fedora25-vmware"
+                    "magma-fedora25-vmware"
                 ],
-                "artifact": "generic/fedora25",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-fedora",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-freebsd11-vmware"
+                    "magma-freebsd11-vmware"
                 ],
-                "artifact": "generic/freebsd11",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-freebsd",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-openbsd6-vmware"
+                    "magma-openbsd6-vmware"
                 ],
-                "artifact": "generic/openbsd6",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-openbsd",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1604-vmware"
+                    "magma-ubuntu-vmware"
                 ],
-                "artifact": "generic/ubuntu1604",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1610-vmware"
+                    "magma-ubuntu1604-vmware"
                 ],
-                "artifact": "generic/ubuntu1610",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu1604",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1704-vmware"
+                    "magma-ubuntu1610-vmware"
                 ],
-                "artifact": "generic/ubuntu1704",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu1610",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "magma-ubuntu1704-vmware"
+                ],
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lavabit/magma-ubuntu1704",
+                "version": "{{user `box_version`}}",
+                "version_description": "The magma encrypted mail daemon build environment."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "lineage-vmware"
+                ],
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "lineage/lineage",
+                "version": "{{user `box_version`}}",
+                "version_description": "The Lineage mobile operating system build environment."
             },
             {
                 "type": "artifice",
