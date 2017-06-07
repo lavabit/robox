@@ -1,6 +1,7 @@
 {
     "variables": {
-        "box_version": "{{env `VERSION`}}"
+        "box_version": "{{env `VERSION`}}",
+        "box_token": "{{env `ATLAS_TOKEN`}}"
     },
     "provisioners": [
         {
@@ -13,7 +14,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-oracle7-vmware"
+                "generic-oracle7-virtualbox"
             ]
         },
         {
@@ -31,7 +32,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-oracle7-vmware"
+                "generic-oracle7-virtualbox"
             ]
         },
         {
@@ -45,7 +46,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-opensuse42-vmware"
+                "generic-opensuse42-virtualbox"
             ]
         },
         {
@@ -57,7 +58,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine35-vmware"
+                "generic-alpine35-virtualbox"
             ]
         },
         {
@@ -74,7 +75,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine35-vmware"
+                "generic-alpine35-virtualbox"
             ]
         },
         {
@@ -86,7 +87,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine36-vmware"
+                "generic-alpine36-virtualbox"
             ]
         },
         {
@@ -103,7 +104,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine36-vmware"
+                "generic-alpine36-virtualbox"
             ]
         },
         {
@@ -117,7 +118,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos6-vmware"
+                "generic-centos6-virtualbox"
             ]
         },
         {
@@ -137,7 +138,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos6-vmware"
+                "generic-centos6-virtualbox"
             ]
         },
         {
@@ -152,7 +153,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos7-vmware"
+                "generic-centos7-virtualbox"
             ]
         },
         {
@@ -173,7 +174,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos7-vmware"
+                "generic-centos7-virtualbox"
             ]
         },
         {
@@ -184,7 +185,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-gentoo-vmware"
+                "generic-gentoo-virtualbox"
             ]
         },
         {
@@ -196,7 +197,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-gentoo-vmware"
+                "generic-gentoo-virtualbox"
             ]
         },
         {
@@ -207,7 +208,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-arch-vmware"
+                "generic-arch-virtualbox"
             ]
         },
         {
@@ -219,7 +220,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-arch-vmware"
+                "generic-arch-virtualbox"
             ]
         },
         {
@@ -231,7 +232,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian8-vmware"
+                "generic-debian8-virtualbox"
             ]
         },
         {
@@ -247,7 +248,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian8-vmware"
+                "generic-debian8-virtualbox"
             ]
         },
         {
@@ -259,7 +260,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora25-vmware"
+                "generic-fedora25-virtualbox"
             ]
         },
         {
@@ -271,7 +272,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora25-vmware"
+                "generic-fedora25-virtualbox"
             ]
         },
         {
@@ -288,7 +289,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora25-vmware"
+                "generic-fedora25-virtualbox"
             ]
         },
         {
@@ -304,7 +305,7 @@
             "expect_disconnect": "true",
             "execute_command": "/usr/local/bin/bash {{ .Path }}",
             "only": [
-                "generic-freebsd11-vmware"
+                "generic-freebsd11-virtualbox"
             ]
         },
         {
@@ -316,7 +317,7 @@
             "expect_disconnect": "true",
             "execute_command": "/bin/sh {{ .Path }}",
             "only": [
-                "generic-openbsd6-vmware"
+                "generic-openbsd6-virtualbox"
             ]
         },
         {
@@ -328,7 +329,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1604-vmware"
+                "generic-ubuntu1604-virtualbox"
             ]
         },
         {
@@ -344,7 +345,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1604-vmware"
+                "generic-ubuntu1604-virtualbox"
             ]
         },
         {
@@ -356,7 +357,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1610-vmware"
+                "generic-ubuntu1610-virtualbox"
             ]
         },
         {
@@ -372,7 +373,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1610-vmware"
+                "generic-ubuntu1610-virtualbox"
             ]
         },
         {
@@ -384,7 +385,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1704-vmware"
+                "generic-ubuntu1704-virtualbox"
             ]
         },
         {
@@ -400,7 +401,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1704-vmware"
+                "generic-ubuntu1704-virtualbox"
             ]
         },
         {
@@ -412,50 +413,57 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "except": [
-                "generic-freebsd11-vmware",
-                "generic-openbsd6-vmware"
+                "generic-freebsd11-virtualbox",
+                "generic-openbsd6-virtualbox"
             ]
         }
     ],
     "builders": [
         {
-            "type": "vmware-iso",
-            "name": "generic-oracle7-vmware",
-            "vm_name": "generic-oracle7-vmware",
-            "vmdk_name": "generic-oracle7-vmware",
-            "output_directory": "output/generic-oracle7-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-oracle7-virtualbox",
+            "vm_name": "generic-oracle7-virtualbox",
+            "output_directory": "output/generic-oracle7-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "oraclelinux-64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Oracle_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/oracle/OL7/u3/x86_64/OracleLinux-R7-U3-Server-x86_64-dvd.iso",
             "iso_checksum": "2ad5327428c44d505a7d882a273cb3f5fbac4e56e739cf18f895565dde987101",
             "iso_checksum_type": "sha256",
-            "skip_compaction": true,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-opensuse42-vmware",
-            "vm_name": "generic-opensuse42-vmware",
-            "vmdk_name": "generic-opensuse42-vmware",
-            "output_directory": "output/generic-opensuse42-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-opensuse42-virtualbox",
+            "vm_name": "generic-opensuse42-virtualbox",
+            "output_directory": "output/generic-opensuse42-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><enter><wait>",
@@ -464,33 +472,41 @@
                 "<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "opensuse-64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "OpenSUSE_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Build0257-Media.iso",
             "iso_checksum": "25ab49e702195233834bd5f8e11695366188861e66a4a8f552024584759acbd1",
             "iso_checksum_type": "sha256",
-            "skip_compaction": true,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-alpine35-vmware",
-            "vm_name": "generic-alpine35-vmware",
-            "vmdk_name": "generic-alpine35-vmware",
-            "output_directory": "output/generic-alpine35-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-alpine35-virtualbox",
+            "vm_name": "generic-alpine35-virtualbox",
+            "output_directory": "output/generic-alpine35-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "root<enter><wait>",
@@ -504,33 +520,41 @@
                 "umount /mnt && reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "otherlinux-64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Linux_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
             "iso_checksum": "2258ca975d7b829ea6229d314b2782d4070ec9b7f688392817e562f5a14a34b5",
             "iso_checksum_type": "sha256",
-            "skip_compaction": true,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "/sbin/poweroff",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-alpine36-vmware",
-            "vm_name": "generic-alpine36-vmware",
-            "vmdk_name": "generic-alpine36-vmware",
-            "output_directory": "output/generic-alpine36-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-alpine36-virtualbox",
+            "vm_name": "generic-alpine36-virtualbox",
+            "output_directory": "output/generic-alpine36-virtualbox",
             "boot_wait": "30s",
             "boot_command": [
                 "root<enter><wait>",
@@ -544,97 +568,121 @@
                 "umount /mnt && reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "otherlinux-64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Linux_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.6/releases/x86_64/alpine-virt-3.6.1-x86_64.iso",
             "iso_checksum": "f4421357ed2c969046b95cef6fc4844aeebfe8a2323049915dbe953d5f1d3c36",
             "iso_checksum_type": "sha256",
-            "skip_compaction": true,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "/sbin/poweroff",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-centos6-vmware",
-            "vm_name": "generic-centos6-vmware",
-            "vmdk_name": "generic-centos6-vmware",
-            "output_directory": "output/generic-centos6-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-centos6-virtualbox",
+            "vm_name": "generic-centos6-virtualbox",
+            "output_directory": "output/generic-centos6-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "centos-64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "RedHat_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
             "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
             "iso_checksum_type": "sha256",
-            "skip_compaction": true,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-centos7-vmware",
-            "vm_name": "generic-centos7-vmware",
-            "vmdk_name": "generic-centos7-vmware",
-            "output_directory": "output/generic-centos7-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-centos7-virtualbox",
+            "vm_name": "generic-centos7-virtualbox",
+            "output_directory": "output/generic-centos7-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "centos-64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "RedHat_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/centos/7.3.1611/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
             "iso_checksum": "27bd866242ee058b7a5754e83d8ee8403e216b93d130d800852a96f41c34d86a",
             "iso_checksum_type": "sha256",
-            "skip_compaction": true,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-arch-vmware",
-            "vm_name": "generic-arch-vmware",
-            "vmdk_name": "generic-arch-vmware",
-            "output_directory": "output/generic-arch-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-arch-virtualbox",
+            "vm_name": "generic-arch-virtualbox",
+            "output_directory": "output/generic-arch-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait10><wait10><wait10>",
@@ -642,17 +690,23 @@
                 "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "otherlinux-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "ArchLinux_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/archlinux/iso/2017.06.01/archlinux-2017.06.01-x86_64.iso",
             "iso_checksum": "ee4023c063d0dd29924693ee5b5e7425af92edc2797f300d824070b63d3db1f3",
             "iso_checksum_type": "sha256",
@@ -661,14 +715,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-fedora25-vmware",
-            "vm_name": "generic-fedora25-vmware",
-            "vmdk_name": "generic-fedora25-vmware",
-            "output_directory": "output/generic-fedora25-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-fedora25-virtualbox",
+            "vm_name": "generic-fedora25-virtualbox",
+            "output_directory": "output/generic-fedora25-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> ",
@@ -678,17 +734,23 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "fedora-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "Fedora_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/fedora/releases/25/Server/x86_64/iso/Fedora-Server-netinst-x86_64-25-1.3.iso",
             "iso_checksum": "86bc3694f4938382753d1e9536f2140a6c9c1978207766340c679a89509073c7",
             "iso_checksum_type": "sha256",
@@ -697,14 +759,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-debian8-vmware",
-            "vm_name": "generic-debian8-vmware",
-            "vmdk_name": "generic-debian8-vmware",
-            "output_directory": "output/generic-debian8-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-debian8-virtualbox",
+            "vm_name": "generic-debian8-virtualbox",
+            "output_directory": "output/generic-debian8-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -713,17 +777,23 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "debian8-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "Debian_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/debian-cd/8.8.0/amd64/iso-cd/debian-8.8.0-amd64-netinst.iso",
             "iso_checksum": "2c07ff8cc766767610566297b8729740f923735e790c8e78b718fb93923b448e",
             "iso_checksum_type": "sha256",
@@ -732,14 +802,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-ubuntu1604-vmware",
-            "vm_name": "generic-ubuntu1604-vmware",
-            "vmdk_name": "generic-ubuntu1604-vmware",
-            "output_directory": "output/generic-ubuntu1604-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-ubuntu1604-virtualbox",
+            "vm_name": "generic-ubuntu1604-virtualbox",
+            "output_directory": "output/generic-ubuntu1604-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -761,17 +833,23 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "Ubuntu_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.2/ubuntu-16.04.2-server-amd64.iso",
             "iso_checksum": "737ae7041212c628de5751d15c3016058b0e833fdc32e7420209b76ca3d0a535",
             "iso_checksum_type": "sha256",
@@ -780,14 +858,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-ubuntu1610-vmware",
-            "vm_name": "generic-ubuntu1610-vmware",
-            "vmdk_name": "generic-ubuntu1610-vmware",
-            "output_directory": "output/generic-ubuntu1610-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-ubuntu1610-virtualbox",
+            "vm_name": "generic-ubuntu1610-virtualbox",
+            "output_directory": "output/generic-ubuntu1610-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -801,17 +881,23 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "Ubuntu_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.10/ubuntu-16.10-server-amd64.iso",
             "iso_checksum": "72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
             "iso_checksum_type": "sha256",
@@ -820,14 +906,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-ubuntu1704-vmware",
-            "vm_name": "generic-ubuntu1704-vmware",
-            "vmdk_name": "generic-ubuntu1704-vmware",
-            "output_directory": "output/generic-ubuntu1704-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-ubuntu1704-virtualbox",
+            "vm_name": "generic-ubuntu1704-virtualbox",
+            "output_directory": "output/generic-ubuntu1704-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -841,17 +929,23 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "Ubuntu_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/17.04/ubuntu-17.04-server-amd64.iso",
             "iso_checksum": "ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
             "iso_checksum_type": "sha256",
@@ -860,14 +954,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-gentoo-vmware",
-            "vm_name": "generic-gentoo-vmware",
-            "vmdk_name": "generic-gentoo-vmware",
-            "output_directory": "output/generic-gentoo-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-gentoo-virtualbox",
+            "vm_name": "generic-gentoo-virtualbox",
+            "output_directory": "output/generic-gentoo-virtualbox",
             "boot_wait": "5s",
             "boot_command": [
                 "gentoo-nofb<enter>",
@@ -876,22 +972,27 @@
                 "passwd root<enter><wait>",
                 "vagrant<enter><wait>",
                 "vagrant<enter><wait>",
-                "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
+                "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
                 "bash generic.gentoo.vagrant.sh && (chroot /mnt/gentoo /bin/bash < generic.gentoo.vagrant.chroot.sh) && reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "vmci0.present": "TRUE"
-            },
-            "guest_os_type": "otherlinux-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "Gentoo_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20170525.iso",
             "iso_checksum": "a9d254e4ccd8015123b0ddafcd49365e2b3766d74a62f2ac2d9b685822a72c6f",
             "iso_checksum_type": "sha256",
@@ -900,39 +1001,47 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "shutdown -hP now",
-            "tools_upload_flavor": "linux"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-freebsd11-vmware",
-            "vm_name": "generic-freebsd11-vmware",
-            "vmdk_name": "generic-freebsd11-vmware",
-            "output_directory": "output/generic-freebsd11-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-freebsd11-virtualbox",
+            "vm_name": "generic-freebsd11-virtualbox",
+            "output_directory": "output/generic-freebsd11-virtualbox",
             "boot_wait": "5s",
             "boot_command": [
                 "<esc><wait>",
                 "boot -s<wait>",
                 "<enter><wait>",
                 "<wait10><wait10>",
-                "/bin/sh<enter><wait>",
-                "mdmfs -s 100m md1 /tmp<enter><wait>",
-                "mdmfs -s 100m md2 /mnt<enter><wait>",
+                "/bin/sh<enter><wait5>",
+                "mdmfs -s 100m md1 /tmp<enter><wait5>",
+                "mdmfs -s 100m md2 /mnt<enter><wait5>",
                 "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
-                "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd11.vagrant.cfg<enter><wait5>",
+                "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd11.vagrant.cfg<enter><wait10>",
                 "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "freebsd-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "FreeBSD_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.0/FreeBSD-11.0-RELEASE-amd64-disc1.iso",
             "iso_checksum": "08b12f2dc378f7a61b5469219824c74a2f9faef580acc85ffab45365df79872d",
             "iso_checksum_type": "sha256",
@@ -941,14 +1050,16 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "shutdown -p now",
-            "tools_upload_flavor": "freebsd"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-openbsd6-vmware",
-            "vm_name": "generic-openbsd6-vmware",
-            "vmdk_name": "generic-openbsd6-vmware",
-            "output_directory": "output/generic-openbsd6-vmware",
+            "type": "virtualbox-iso",
+            "name": "generic-openbsd6-virtualbox",
+            "vm_name": "generic-openbsd6-virtualbox",
+            "output_directory": "output/generic-openbsd6-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "S<enter><wait>",
@@ -958,17 +1069,23 @@
                 "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "freeBSD-64",
-            "skip_compaction": true,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "OpenBSD_64",
             "http_directory": "http",
             "headless": true,
-            "vnc_disable_password": true,
             "iso_url": "https://ftp.usa.openbsd.org/pub/OpenBSD/6.1/amd64/cd61.iso",
             "iso_checksum": "37cee759db10ffd5c0d086771b62ed771187a24baa4946e601153e394ce31aa6",
             "iso_checksum_type": "sha256",
@@ -977,7 +1094,10 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "shutdown -h -p now",
-            "tools_upload_flavor": "freebsd"
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         }
     ],
     "post-processors": [
@@ -990,214 +1110,154 @@
                 "output": "output/{{build_name}}-{{user `box_version`}}.box"
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-oracle7-vmware"
+                    "generic-oracle7-virtualbox"
                 ],
-                "artifact": "generic/oracle7",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/oracle7",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-opensuse42-vmware"
+                    "generic-opensuse42-virtualbox"
                 ],
-                "artifact": "generic/opensuse42",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/opensuse42",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-alpine35-vmware"
+                    "generic-alpine35-virtualbox"
                 ],
-                "artifact": "generic/alpine35",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/alpine35",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-alpine36-vmware"
+                    "generic-alpine36-virtualbox"
                 ],
-                "artifact": "generic/alpine36",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/alpine36",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-centos6-vmware"
+                    "generic-centos6-virtualbox"
                 ],
-                "artifact": "generic/centos6",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/centos6",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-centos7-vmware"
+                    "generic-centos7-virtualbox"
                 ],
-                "artifact": "generic/centos7",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/centos7",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-arch-vmware"
+                    "generic-arch-virtualbox"
                 ],
-                "artifact": "generic/arch",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/arch",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-gentoo-vmware"
+                    "generic-gentoo-virtualbox"
                 ],
-                "artifact": "generic/gentoo",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/gentoo",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-debian8-vmware"
+                    "generic-debian8-virtualbox"
                 ],
-                "artifact": "generic/debian8",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/debian8",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-fedora25-vmware"
+                    "generic-fedora25-virtualbox"
                 ],
-                "artifact": "generic/fedora25",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/fedora25",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-freebsd11-vmware"
+                    "generic-freebsd11-virtualbox"
                 ],
-                "artifact": "generic/freebsd11",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/freebsd11",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-openbsd6-vmware"
+                    "generic-openbsd6-virtualbox"
                 ],
-                "artifact": "generic/openbsd6",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/openbsd6",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1604-vmware"
+                    "generic-ubuntu1604-virtualbox"
                 ],
-                "artifact": "generic/ubuntu1604",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/ubuntu1604",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1610-vmware"
+                    "generic-ubuntu1610-virtualbox"
                 ],
-                "artifact": "generic/ubuntu1610",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/ubuntu1610",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
-                "type": "atlas",
+                "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1704-vmware"
+                    "generic-ubuntu1704-virtualbox"
                 ],
-                "artifact": "generic/ubuntu1704",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "vmware_desktop",
-                    "version": "{{user `box_version`}}",
-                    "created_at": "{{timestamp}}",
-                    "description": "A build environment for use in cross platform development."
-                }
+                "access_token": "{{user `box_token`}}",
+                "box_tag": "generic/ubuntu1704",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
             },
             {
                 "type": "artifice",
