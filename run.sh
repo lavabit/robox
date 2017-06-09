@@ -20,11 +20,16 @@ ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}'`
 ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json generic-libvirt.json generic-vmware.json generic-virtualbox.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
 
 # Collect the list of box names.
-MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort  --field-separator=-  -k 3i -k 2.1,2.0`
-GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort  --field-separator=-  -k 3i -k 2.1,2.0`
-LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage-" | sort  --field-separator=-  -k 3i -k 2.1,2.0`
-
+MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
+GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
+LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 BOXES="$LINEAGE_BOXES $GENERIC_BOXES $MAGMA_BOXES"
+
+# Collect the list of box tags.
+MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
+GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+TAGS="$LINEAGE_TAGS $GENERIC_TAGS $MAGMA_TAGS"
 
 # Ensure a consistent working directory so relative paths work.
 LINK=`readlink -f $0`
@@ -188,9 +193,61 @@ function missing() {
 
     # Let the user know how many boxes were missing.
     if [ $MISSING -eq 0 ]; then
-      printf "\nAll ${#LIST[@]} of the boxes are present and accounted for...$MISSING\n\n"
+      printf "\nAll ${#LIST[@]} of the boxes are present and accounted for...\n\n"
     else
       printf "\nOf the ${#LIST[@]} boxes defined, $MISSING are missing...\n\n"
+    fi
+}
+
+function available() {
+
+    MISSING=0
+    LIST=($TAGS)
+
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+
+      ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
+      BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
+
+      PROVIDER="vmware"
+      curl --silent --head "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      fi
+
+      PROVIDER="libvirt"
+      curl --silent --head "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      fi
+
+      PROVIDER="virtualbox"
+      curl --silent --head "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      fi
+    done
+
+    # Get the totla number of boxes.
+    let TOTAL=${#LIST[@]}*3
+
+    # Let the user know how many boxes were missing.
+    if [ $MISSING -eq 0 ]; then
+      printf "\nAll ${TOTAL} of the boxes are available...\n\n"
+    else
+      printf "\nOf the ${TOTAL} boxes defined, $MISSING are unavailable from the vagrant cloud...\n\n"
     fi
 }
 
@@ -237,6 +294,7 @@ elif [[ $1 == "links" ]]; then links
 elif [[ $1 == "sums" ]]; then sums
 elif [[ $1 == "validate" ]]; then validate
 elif [[ $1 == "missing" ]]; then missing
+elif [[ $1 == "available" ]]; then available
 elif [[ $1 == "cleanup" ]]; then cleanup
 
 # The group builders.
@@ -262,7 +320,7 @@ elif [[ $1 == "all" ]]; then all
 else
 	echo ""
 	echo " Stages"
-	echo $"  `basename $0` {start|links|validate|missing|cleanup} or "
+	echo $"  `basename $0` {start|links|validate|missing|available|cleanup} or "
 	echo ""
 	echo " Groups"
 	echo $"  `basename $0` {magma|generic}"
