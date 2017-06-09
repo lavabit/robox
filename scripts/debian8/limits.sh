@@ -7,3 +7,8 @@ HALFMEM=`echo $(($TOTALMEM/2))`
 # Setup the memory locking limits.
 printf "*    soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-magmad.conf
 printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.conf
+printf "*    soft    stack      unlimited\n" >> /etc/security/limits.d/50-magmad.conf
+printf "*    hard    stack      unlimited\n" >> /etc/security/limits.d/50-magmad.conf
+printf "*    soft    nofile     65536\n" >> /etc/security/limits.d/50-magmad.conf
+printf "*    hard    nofile     65536\n" >> /etc/security/limits.d/50-magmad.conf
+
