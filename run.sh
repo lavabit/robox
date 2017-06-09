@@ -12,9 +12,15 @@
 export VERSION="0.9.6"
 source .credentialsrc
 
+# The list of packer config files.
+FILES="magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json generic-libvirt.json generic-vmware.json generic-virtualbox.json"
+
 # Collect the list of ISO urls.
-ISOURLS=(`grep -E "iso_url|guest_additions_url" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json generic-libvirt.json generic-vmware.json generic-virtualbox.json | awk -F'"' '{print $4}'`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}'`)
 ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json generic-libvirt.json generic-vmware.json generic-virtualbox.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
+
+# Collect the list of box names.
+BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}'`
 
 # Ensure a consistent working directory so relative paths work.
 LINK=`readlink -f $0`
@@ -134,21 +140,21 @@ function box() {
 
 function links() {
 
-for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
-    verify_url "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
-done
+  for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
+      verify_url "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
+  done
 
-# Let the user know all of the links passed.
+  # Let the user know all of the links passed.
   printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
 }
 
 function sums() {
 
-for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
-    verify_sum "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
-done
+  for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
+      verify_sum "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
+  done
 
-# Let the user know all of the links passed.
+  # Let the user know all of the links passed.
   printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
 }
 
@@ -160,6 +166,26 @@ function validate() {
   verify_json generic-vmware
   verify_json generic-libvirt
   verify_json generic-virtualbox
+}
+
+function missing() {
+
+    MISSING=0
+    LIST=($BOXES)
+
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+        if [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.box" ] && [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.tar.gz" ]; then
+          let MISSING+=1
+          printf "Missing     -  ${LIST[$i]}\n"
+        fi
+    done
+
+    # Let the user know how many boxes were missing.
+    if [ $MISSING -eq 0 ]; then
+      printf "\nAll ${#LIST[@]} of the boxes are present and accounted for...$MISSING\n\n"
+    else
+      printf "\nOf the ${#LIST[@]} boxes defined, $MISSING are missing...\n\n"
+    fi
 }
 
 function cleanup() {
@@ -204,6 +230,7 @@ if [[ $1 == "start" ]]; then start
 elif [[ $1 == "links" ]]; then links
 elif [[ $1 == "sums" ]]; then sums
 elif [[ $1 == "validate" ]]; then validate
+elif [[ $1 == "missing" ]]; then missing
 elif [[ $1 == "cleanup" ]]; then cleanup
 
 # The group builders.
@@ -229,7 +256,7 @@ elif [[ $1 == "all" ]]; then all
 else
 	echo ""
 	echo " Stages"
-	echo $"  `basename $0` {start|links|validate|cleanup} or "
+	echo $"  `basename $0` {start|links|validate|missing|cleanup} or "
 	echo ""
 	echo " Groups"
 	echo $"  `basename $0` {magma|generic}"
