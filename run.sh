@@ -20,7 +20,11 @@ ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}'`
 ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" magma-docker.json magma-libvirt.json magma-vmware.json magma-virtualbox.json generic-libvirt.json generic-vmware.json generic-virtualbox.json | grep -v "iso_checksum_type" | awk -F'"' '{print $4}'`)
 
 # Collect the list of box names.
-BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}'`
+MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort  --field-separator=-  -k 3i -k 2.1,2.0`
+GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort  --field-separator=-  -k 3i -k 2.1,2.0`
+LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage-" | sort  --field-separator=-  -k 3i -k 2.1,2.0`
+
+BOXES="$LINEAGE_BOXES $GENERIC_BOXES $MAGMA_BOXES"
 
 # Ensure a consistent working directory so relative paths work.
 LINK=`readlink -f $0`
@@ -176,7 +180,9 @@ function missing() {
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
         if [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.box" ] && [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.tar.gz" ]; then
           let MISSING+=1
-          printf "Missing     -  ${LIST[$i]}\n"
+          printf "Box  -  "; tput setaf 1; printf "${LIST[$i]}\n"; tput sgr0
+        else
+          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]}\n"; tput sgr0
         fi
     done
 
