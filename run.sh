@@ -9,7 +9,7 @@
 # export GOMAXPROCS="2"
 
 # Credentials and tokens.
-export VERSION="0.9.5"
+export VERSION="0.9.6"
 source .credentialsrc
 
 # Collect the list of ISO urls.
@@ -88,7 +88,8 @@ function verify_json() {
 function build() {
 
   export PACKER_LOG="1"
-  export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/$1.txt"
+  export TIMESTAMP=`date +"%s"`
+  export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/$1-${TIMESTAMP}.txt"
 
   packer build -on-error=cleanup -parallel=false $1.json
 
@@ -102,14 +103,27 @@ function build() {
 function box() {
 
   export PACKER_LOG="1"
-  export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/$1.txt"
+  export TIMESTAMP=`date +"%s"`
 
+  export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/magma-docker-${TIMESTAMP}.txt"
   packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json
+
+  export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/magma-vmware-${TIMESTAMP}.txt"
   packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
+
+  export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/magma-libvirt-${TIMESTAMP}.txt"
   packer build -on-error=cleanup -parallel=false -only=$1 magma-libvirt.json
+
+  export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/magma-virtualbox-${TIMESTAMP}.txt"
   packer build -on-error=cleanup -parallel=false -only=$1 magma-virtualbox.json
+
+  export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/generic-vmware-${TIMESTAMP}.txt"
   packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
+
+  export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/generic-libvirt-${TIMESTAMP}.txt"
   packer build -on-error=cleanup -parallel=false -only=$1 generic-libvirt.json
+
+  export PACKER_LOG_PATH="/home/ladar/Desktop/packer-logs/generic-virtualbox-${TIMESTAMP}.txt"
   packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
 
   if [[ $? != 0 ]]; then
@@ -197,13 +211,13 @@ elif [[ $1 == "magma" ]]; then magma
 elif [[ $1 == "generic" ]]; then generic
 
 # The file builders.
-elif [[ $1 == "magma-docker" ]]; then login ; build magma-docker
-elif [[ $1 == "magma-vmware" ]]; then build magma-vmware
-elif [[ $1 == "magma-libvirt" ]]; then build magma-libvirt
-elif [[ $1 == "magma-virtualbox" ]]; then build magma-virtualbox
-elif [[ $1 == "generic-vmware" ]]; then build generic-vmware
-elif [[ $1 == "generic-libvirt" ]]; then build generic-libvirt
-elif [[ $1 == "generic-virtualbox" ]]; then build generic-virtualbox
+elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then login ; build magma-docker
+elif [[ $1 == "magma-vmware" || $1 == "magma-vmware.json" ]]; then build magma-vmware
+elif [[ $1 == "magma-libvirt" || $1 == "magma-libvirt.json" ]]; then build magma-libvirt
+elif [[ $1 == "magma-virtualbox" || $1 == "magma-virtualbox.json" ]]; then build magma-virtualbox
+elif [[ $1 == "generic-vmware" || $1 == "generic-vmware.json" ]]; then build generic-vmware
+elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt.json" ]]; then build generic-libvirt
+elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox.json" ]]; then build generic-virtualbox
 
 # Build a specific box.
 elif [[ $1 == "box" ]]; then box $2
