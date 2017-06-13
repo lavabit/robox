@@ -9,7 +9,7 @@
 # export GOMAXPROCS="2"
 
 # Credentials and tokens.
-export VERSION="0.9.6"
+export VERSION="0.9.8"
 source .credentialsrc
 
 # The list of packer config files.
