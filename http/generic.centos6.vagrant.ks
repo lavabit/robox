@@ -46,4 +46,12 @@ sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/vagrant
 chmod 0440 /etc/sudoers.d/vagrant
 
+VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
+if [[ $VIRT == "Microsoft HyperV" ]]; then
+    yum --assumeyes install eject hyperv-daemons
+    chkconfig hypervvssd on
+    chkconfig hypervkvpd on
+    eject /dev/cdrom
+fi
+
 %end
