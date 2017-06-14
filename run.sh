@@ -267,7 +267,7 @@ function available() {
     done
 
     # Get the totla number of boxes.
-    let TOTAL=${#LIST[@]}*3
+    let TOTAL=${#LIST[@]}*4
 
     # Let the user know how many boxes were missing.
     if [ $MISSING -eq 0 ]; then
