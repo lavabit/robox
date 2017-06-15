@@ -464,7 +464,7 @@
             "ram_size": 1024,
             "cpu": 1,
             "http_directory": "http",
-            "iso_url": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Build0275-Media.iso",
+            "iso_url": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Build0277-Media.iso",
             "iso_checksum": "81ddb57818300d26b0268982c28908e401ee44d9fc5f7db7918d382a3f81c0ca",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
