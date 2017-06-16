@@ -51,7 +51,10 @@ if [[ $VIRT == "Microsoft HyperV" ]]; then
   yum --assumeyes install eject hyperv-daemons
   systemctl enable hypervvssd.service
   systemctl enable hypervkvpd.service
-#  eject /dev/cdrom
+
+  # Change the default boot kernel to the base model, otherwise the Hyper-V daemons will fail to start.
+  KERN=`grep menuentry /boot/grub2/grub.cfg  | awk -F"'" '{print $2}' | grep -v -E "^$|Unbreakable|rescue"`
+  sed -i -e "s/saved_entry=.*/saved_entry=$KERN/g" /boot/grub2/grubenv
 fi
 
 %end
