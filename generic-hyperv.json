@@ -456,7 +456,7 @@
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><enter><wait>",
-                "linux netsetup=dhcp install=https://download.opensuse.org/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
+                "linux netsetup=dhcp install=https://mirrors.kernel.org/opensuse/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
                 "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
                 "<enter><wait>"
             ],
@@ -465,7 +465,7 @@
             "cpu": 1,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64-Build0277-Media.iso",
-            "iso_checksum": "81ddb57818300d26b0268982c28908e401ee44d9fc5f7db7918d382a3f81c0ca",
+            "iso_checksum": "b49a5f076c9510911cbea2a571655ba5bdb446a6005fa98bec36d444e41e017e",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -485,7 +485,7 @@
             "name": "generic-alpine35-hyperv",
             "vm_name": "generic-alpine35-hyperv",
             "output_directory": "output/generic-alpine35-hyperv",
-            "boot_wait": "20s",
+            "boot_wait": "60s",
             "boot_command": [
                 "root<enter><wait>",
                 "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
@@ -501,8 +501,8 @@
             "ram_size": 1024,
             "cpu": 1,
             "http_directory": "http",
-            "iso_url": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
-            "iso_checksum": "2258ca975d7b829ea6229d314b2782d4070ec9b7f688392817e562f5a14a34b5",
+            "iso_url": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-vanilla-3.5.2-x86_64.iso",
+            "iso_checksum": "f311a5de9528dd28c021fe2df0b8dd7df2f9de0b3e167d8d2a4f760b99234692",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -617,7 +617,7 @@
             "name": "generic-arch-hyperv",
             "vm_name": "generic-arch-hyperv",
             "output_directory": "output/generic-arch-hyperv",
-            "boot_wait": "20s",
+            "boot_wait": "30s",
             "boot_command": [
                 "<enter><wait10><wait10><wait10>",
                 "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.vagrant{,.chroot}.sh'<enter><wait>",
@@ -952,7 +952,7 @@
                "artifact": "generic/oracle7",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -966,7 +966,7 @@
                "artifact": "generic/opensuse42",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -980,7 +980,7 @@
                "artifact": "generic/alpine35",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -994,7 +994,7 @@
                "artifact": "generic/alpine36",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -1008,7 +1008,7 @@
                "artifact": "generic/centos6",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -1022,7 +1022,7 @@
                "artifact": "generic/centos7",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -1036,7 +1036,7 @@
                "artifact": "generic/arch",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -1050,7 +1050,7 @@
                "artifact": "generic/gentoo",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -1064,7 +1064,7 @@
                "artifact": "generic/debian8",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -1078,7 +1078,7 @@
                "artifact": "generic/fedora25",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -1092,7 +1092,7 @@
                "artifact": "generic/freebsd11",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -1106,7 +1106,7 @@
                "artifact": "generic/openbsd6",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -1120,7 +1120,7 @@
                "artifact": "generic/ubuntu1604",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -1134,7 +1134,7 @@
                "artifact": "generic/ubuntu1610",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."
@@ -1148,7 +1148,7 @@
                "artifact": "generic/ubuntu1704",
                "artifact_type": "vagrant.box",
                "metadata": {
-                   "provider": "virtualbox",
+                   "provider": "hyperv",
                    "version": "{{user `box_version`}}",
                    "created_at": "{{timestamp}}",
                    "description": "A build environment for use in cross platform development."

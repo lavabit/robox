@@ -1,6 +1,6 @@
 install
 text
-reboot
+reboot --eject
 url --url=https://mirrors.kernel.org/fedora/releases/25/Everything/x86_64/os/
 lang en_US.UTF-8
 keyboard us
@@ -33,9 +33,10 @@ chmod 0440 /etc/sudoers.d/vagrant
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" ]]; then
     dnf --assumeyes install eject hyperv-daemons
-#    systemctl enable hypervvssd.service
-#    systemctl enable hypervkvpd.service
-    eject /dev/cdrom
+    systemctl enable hypervvssd.service
+    systemctl enable hypervkvpd.service
+    eject --auto on /dev/cdrom
+#    eject --cdrom /dev/cdrom
 fi
 
 %end

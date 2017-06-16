@@ -22,7 +22,7 @@ autopart
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
 
-reboot
+reboot --eject
 
 %packages --nobase
 @core
@@ -51,7 +51,7 @@ if [[ $VIRT == "Microsoft HyperV" ]]; then
     yum --assumeyes install eject hyperv-daemons
     chkconfig hypervvssd on
     chkconfig hypervkvpd on
-    eject /dev/cdrom
+#    eject /dev/cdrom
 fi
 
 %end

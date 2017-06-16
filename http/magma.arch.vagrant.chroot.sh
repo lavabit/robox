@@ -29,3 +29,35 @@ systemctl enable dhcpcd@eth0
 grub-install "$device"
 sed -i -e 's/^GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=5/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
+
+VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
+if [[ $VIRT == "Microsoft HyperV" ]]; then
+
+    pacman -S --noconfirm git base-devel
+
+    su -l vagrant -c /bin/bash <<-EOF
+    cd $HOME
+
+    # hypervvsh
+    git clone https://aur.archlinux.org/hypervvssd.git hypervvssd
+    cd hypervvssd
+    makepkg --cleanbuild --noconfirm --syncdeps --install
+    cd $HOME && rm -rf hypervvssd
+
+    # hypervkvpd
+    git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd
+    cd hypervkvpd
+    makepkg --cleanbuild --noconfirm --syncdeps --install
+    cd $HOME && rm -rf hypervkvpd
+
+    # hypervfcopyd
+    git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd
+    cd hypervfcopyd
+    makepkg --cleanbuild --noconfirm --syncdeps --install
+    cd $HOME && rm -rf hypervfcopyd
+EOF
+
+    systemctl enable hypervkvpd.service
+    systemctl enable hypervvssd.service
+    eject --force /dev/cdrom
+fi

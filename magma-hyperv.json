@@ -515,7 +515,7 @@
         "name": "magma-alpine36-hyperv",
         "vm_name": "magma-alpine36-hyperv",
         "output_directory": "output/magma-alpine36-hyperv",
-        "boot_wait": "20s",
+        "boot_wait": "30s",
         "boot_command": [
           "root<enter><wait>",
           "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
@@ -525,7 +525,9 @@
           "mount /dev/sda3 /mnt && ",
           "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
           "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-          "umount /mnt && reboot<enter>"
+          "umount /mnt && . /lib/libalpine.sh && apk add hvtools cifs-utils && ",
+          "rc-update add hv_fcopy_daemon default && rc-update add hv_kvp_daemon default && ",
+          "rc-update add hv_vss_daemon default && reboot<enter>"
         ],
         "disk_size": 32768,
         "ram_size": 1024,
@@ -993,7 +995,7 @@
           "artifact": "lavabit/magma-arch",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "hyperv",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
@@ -1007,7 +1009,7 @@
           "artifact": "lavabit/magma-gentoo",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "hyperv",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
@@ -1021,7 +1023,7 @@
           "artifact": "lavabit/magma-debian",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "hyperv",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
@@ -1035,7 +1037,7 @@
           "artifact": "lavabit/magma-fedora",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "hyperv",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
@@ -1049,7 +1051,7 @@
           "artifact": "lavabit/magma-freebsd",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "hyperv",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
@@ -1063,7 +1065,7 @@
           "artifact": "lavabit/magma-openbsd",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "hyperv",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
@@ -1077,7 +1079,7 @@
           "artifact": "lavabit/magma-ubuntu",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "hyperv",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
@@ -1091,7 +1093,7 @@
           "artifact": "lavabit/magma-ubuntu1604",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "hyperv",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
@@ -1105,7 +1107,7 @@
           "artifact": "lavabit/magma-ubuntu1610",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "hyperv",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."
@@ -1119,7 +1121,7 @@
           "artifact": "lavabit/magma-ubuntu1704",
           "artifact_type": "vagrant.box",
           "metadata": {
-              "provider": "virtualbox",
+              "provider": "hyperv",
               "version": "{{user `box_version`}}",
               "created_at": "{{timestamp}}",
               "description": "The magma encrypted mail daemon build environment."

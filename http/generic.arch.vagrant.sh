@@ -23,7 +23,7 @@ mount "${device}2" /mnt
 
 # Ensure the kernel.org mirror is always listed, so things work, even when the archlinux
 # website goes offline.
-printf "Server = http://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /tmp/mirrolist.50
+printf "Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /tmp/mirrolist.50
 
 curl -fsS https://www.archlinux.org/mirrorlist/?country=all > /tmp/mirrolist
 grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 50 | sed 's/^#//' >> /tmp/mirrolist.50
@@ -32,6 +32,10 @@ pacstrap /mnt base grub openssh sudo
 
 swapon "${device}1"
 genfstab -p /mnt >> /mnt/etc/fstab
+arch-chroot /mnt /bin/bash
 swapoff "${device}1"
 
-arch-chroot /mnt /bin/bash
+VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
+if [[ $VIRT == "Microsoft HyperV" ]]; then
+  eject /dev/cdrom
+fi
