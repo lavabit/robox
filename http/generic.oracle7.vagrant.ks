@@ -22,16 +22,17 @@ autopart
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
 
-reboot
+reboot --eject
 
 %packages --instLangs=en --nobase
 @core
 authconfig
 sudo
 # Microcode updates don't work in a VM
--microcode_ctl
+#-microcode_ctl
 # Firmware packages aren't needed in a VM
--*firmware
+#-*firmware
+kernel-abi-whitelists
 %end
 
 %post
@@ -48,9 +49,9 @@ chmod 0440 /etc/sudoers.d/vagrant
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" ]]; then
   yum --assumeyes install eject hyperv-daemons
-#    systemctl enable hypervvssd.service
-#    systemctl enable hypervkvpd.service
-  eject /dev/cdrom
+  systemctl enable hypervvssd.service
+  systemctl enable hypervkvpd.service
+#  eject /dev/cdrom
 fi
 
 %end
