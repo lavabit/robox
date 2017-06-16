@@ -525,9 +525,9 @@
           "mount /dev/sda3 /mnt && ",
           "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
           "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-          "umount /mnt && . /lib/libalpine.sh && apk add hvtools cifs-utils && ",
-          "rc-update add hv_fcopy_daemon default && rc-update add hv_kvp_daemon default && ",
-          "rc-update add hv_vss_daemon default && reboot<enter>"
+          "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
+          "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && ",
+          "umount /dev/loop0 && umount /dev/sr0 && eject /mnt/cdrom && reboot<enter>"
         ],
         "disk_size": 32768,
         "ram_size": 1024,
