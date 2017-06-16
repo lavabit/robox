@@ -527,7 +527,7 @@
           "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
           "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
           "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && ",
-          "umount /dev/loop0 && umount /dev/sr0 && eject /mnt/cdrom && reboot<enter>"
+          "umount /dev/loop0 && umount /dev/sr0 && eject /dev/cdrom && reboot<enter>"
         ],
         "disk_size": 32768,
         "ram_size": 1024,
