@@ -14,7 +14,7 @@ BASE=`dirname $LINK`
 cd $BASE
 
 # Credentials and tokens.
-export VERSION="0.9.10"
+export VERSION="0.9.12"
 source .credentialsrc
 
 # The list of packer config files.
