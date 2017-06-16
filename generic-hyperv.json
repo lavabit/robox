@@ -485,7 +485,7 @@
             "name": "generic-alpine35-hyperv",
             "vm_name": "generic-alpine35-hyperv",
             "output_directory": "output/generic-alpine35-hyperv",
-            "boot_wait": "60s",
+            "boot_wait": "30s",
             "boot_command": [
                 "root<enter><wait>",
                 "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
@@ -495,7 +495,9 @@
                 "mount /dev/sda3 /mnt && ",
                 "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-                "umount /mnt && reboot<enter>"
+                "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
+                "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && ",
+                "umount /dev/loop0 && umount /dev/sr0 && eject /mnt/cdrom && reboot<enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
@@ -532,7 +534,9 @@
                 "mount /dev/sda3 /mnt && ",
                 "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-                "umount /mnt && reboot<enter>"
+                "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
+                "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && ",
+                "umount /dev/loop0 && umount /dev/sr0 && eject /mnt/cdrom && reboot<enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
