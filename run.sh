@@ -18,7 +18,7 @@ export VERSION="0.9.14"
 source .credentialsrc
 
 # The list of packer config files.
-FILES="magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-virtualbox.json"
+FILES="magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-virtualbox.json lineage-hyperv.json"
 
 # Collect the list of ISO urls.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}'`)
@@ -156,6 +156,9 @@ function box() {
   export PACKER_LOG_PATH="$BASE/output/logs/generic-virtualbox-${TIMESTAMP}.txt"
   packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
 
+  export PACKER_LOG_PATH="$BASE/output/logs/lineage-hyperv-${TIMESTAMP}.txt"
+  packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
+
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
     for i in 1 2 3; do printf "\a"; sleep 1; done
@@ -192,6 +195,7 @@ function validate() {
   verify_json generic-vmware
   verify_json generic-libvirt
   verify_json generic-virtualbox
+  verify_json lineage-hyperv
 }
 
 function missing() {
@@ -310,6 +314,16 @@ function generic() {
   fi
 }
 
+function lineage() {
+  if [[ $OS == "Windows_NT" ]]; then
+    build lineage-hyperv
+  # else
+    # build lineage-vmware
+    # build lineage-libvirt
+    # build lineage-virtualbox
+  fi
+}
+
 function all() {
   links
   validate
@@ -317,6 +331,7 @@ function all() {
   start
   magma
   generic
+  lineage
 
   for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done
 }
@@ -347,6 +362,8 @@ elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt.json" ]]; then build g
 elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv.json" ]]; then build generic-hyperv
 elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox.json" ]]; then build generic-virtualbox
 
+elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv.json" ]]; then build lineage-hyperv
+
 # Build a specific box.
 elif [[ $1 == "box" ]]; then box $2
 
@@ -357,10 +374,13 @@ elif [[ $1 == "all" ]]; then all
 else
 	echo ""
 	echo " Stages"
-	echo $"  `basename $0` {start|links|validate|missing|available|cleanup} or "
+	echo $"  `basename $0` {start|sunms|links|validate|missing|available|cleanup} or "
 	echo ""
 	echo " Groups"
-	echo $"  `basename $0` {magma|generic}"
+	echo $"  `basename $0` {magma|generic|lineage}"
+  echo ""
+  echo " Boxes"
+  echo $"  `basename $0` {box NAME}"
   echo ""
   echo " Global"
 	echo $"  `basename $0` {all}"
