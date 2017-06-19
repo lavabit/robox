@@ -6,7 +6,7 @@
 # Description: Used to build various virtual machines using packer.
 
 # Limit the number of cpus packer will use.
-# export GOMAXPROCS="2"
+export GOMAXPROCS="2"
 
 # Ensure a consistent working directory so relative paths work.
 LINK=`readlink -f $0`
