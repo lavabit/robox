@@ -251,6 +251,34 @@
             ]
         },
         {
+            "scripts": [
+                "scripts/debian9/network.sh",
+                "scripts/debian9/apt.sh"
+            ],
+            "type": "shell",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-debian9-virtualbox"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/debian9/vagrant.sh",
+                "scripts/debian9/fixtty.sh",
+                "scripts/debian9/virtualbox.sh",
+                "scripts/debian9/vmware.sh",
+                "scripts/debian9/qemu.sh"
+            ],
+            "type": "shell",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-debian9-virtualbox"
+            ]
+        },
+        {
             "type": "shell",
             "scripts": [
                 "scripts/fedora25/fixdns.sh",
@@ -700,7 +728,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "ArchLinux_64",
@@ -744,7 +772,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Fedora_64",
@@ -787,14 +815,57 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Debian_64",
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.kernel.org/debian-cd/8.8.0/amd64/iso-cd/debian-8.8.0-amd64-netinst.iso",
+            "iso_url": "https://caesar.ftp.acc.umu.se/cdimage/archive/8.8.0/amd64/iso-cd/debian-8.8.0-amd64-netinst.iso",
             "iso_checksum": "2c07ff8cc766767610566297b8729740f923735e790c8e78b718fb93923b448e",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
+            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
+        },
+        {
+            "type": "virtualbox-iso",
+            "name": "generic-debian9-virtualbox",
+            "vm_name": "generic-debian9-virtualbox",
+            "output_directory": "output/generic-debian9-virtualbox",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<esc><wait>",
+                "auto ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian9.vagrant.cfg ",
+                "<enter>"
+            ],
+            "disk_size": 32768,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Debian_64",
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.kernel.org/debian-cd/9.0.0/amd64/iso-cd/debian-9.0.0-amd64-netinst.iso",
+            "iso_checksum": "9d98f339016dc2a3998881949a8f0678baede26b5106f18ef1168d7e13606773",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -843,7 +914,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -891,7 +962,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -939,7 +1010,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -986,14 +1057,14 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Gentoo_64",
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20170525.iso",
-            "iso_checksum": "a9d254e4ccd8015123b0ddafcd49365e2b3766d74a62f2ac2d9b685822a72c6f",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20170615.iso",
+            "iso_checksum": "a6878812e14dd40746c1f80537ab3d62a7f47308dc35d2d74340364e38626f95",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -1035,7 +1106,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "FreeBSD_64",
@@ -1079,7 +1150,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "OpenBSD_64",
@@ -1226,6 +1297,20 @@
                     "generic-debian8-virtualbox"
                 ],
                 "artifact": "generic/debian8",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "virtualbox",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
+            },
+            {
+                "type": "atlas",
+                "only": [
+                    "generic-debian9-virtualbox"
+                ],
+                "artifact": "generic/debian9",
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "virtualbox",
