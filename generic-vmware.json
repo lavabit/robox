@@ -782,7 +782,7 @@
                 "numvcpus": "2",
                 "cpuid.coresPerSocket": "1"
             },
-            "guest_os_type": "debian9-64",
+            "guest_os_type": "debian8-64",
             "skip_compaction": true,
             "http_directory": "http",
             "headless": true,

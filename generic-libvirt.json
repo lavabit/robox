@@ -712,7 +712,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -753,7 +753,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -793,7 +793,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -833,7 +833,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -886,7 +886,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -931,7 +931,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -976,7 +976,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1020,7 +1020,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1066,7 +1066,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1107,7 +1107,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
