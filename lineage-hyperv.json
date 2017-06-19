@@ -108,7 +108,7 @@
           "enable_dynamic_memory": false,
           "guest_additions_mode": "disable",
           "enable_virtualization_extensions": false
-      },
+      }
     ],
     "post-processors": [
         [
