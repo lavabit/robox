@@ -251,6 +251,34 @@
             ]
         },
         {
+            "scripts": [
+                "scripts/debian9/network.sh",
+                "scripts/debian9/apt.sh"
+            ],
+            "type": "shell",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-debian9-libvirt"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/debian9/vagrant.sh",
+                "scripts/debian9/fixtty.sh",
+                "scripts/debian9/virtualbox.sh",
+                "scripts/debian9/vmware.sh",
+                "scripts/debian9/qemu.sh"
+            ],
+            "type": "shell",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-debian9-libvirt"
+            ]
+        },
+        {
             "type": "shell",
             "scripts": [
                 "scripts/fedora25/fixdns.sh",
@@ -684,7 +712,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -725,7 +753,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -765,13 +793,53 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.kernel.org/debian-cd/8.8.0/amd64/iso-cd/debian-8.8.0-amd64-netinst.iso",
+            "iso_url": "https://caesar.ftp.acc.umu.se/cdimage/archive/8.8.0/amd64/iso-cd/debian-8.8.0-amd64-netinst.iso",
             "iso_checksum": "2c07ff8cc766767610566297b8729740f923735e790c8e78b718fb93923b448e",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-debian9-libvirt",
+            "vm_name": "generic-debian9-libvirt",
+            "output_directory": "output/generic-debian9-libvirt",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<esc><wait>",
+                "auto ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian9.vagrant.cfg ",
+                "<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": 32768,
+            "disk_interface": "virtio",
+            "disk_compression": true,
+            "net_device": "virtio-net",
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=2,sockets=2,cores=2,threads=1"
+                ]
+            ],
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.kernel.org/debian-cd/9.0.0/amd64/iso-cd/debian-9.0.0-amd64-netinst.iso",
+            "iso_checksum": "9d98f339016dc2a3998881949a8f0678baede26b5106f18ef1168d7e13606773",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -818,7 +886,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -863,7 +931,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -908,7 +976,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -952,13 +1020,13 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20170525.iso",
-            "iso_checksum": "a9d254e4ccd8015123b0ddafcd49365e2b3766d74a62f2ac2d9b685822a72c6f",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20170615.iso",
+            "iso_checksum": "a6878812e14dd40746c1f80537ab3d62a7f47308dc35d2d74340364e38626f95",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -998,7 +1066,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1039,7 +1107,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1181,6 +1249,20 @@
                     "generic-debian8-libvirt"
                 ],
                 "artifact": "generic/debian8",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "libvirt",
+                    "version": "{{user `box_version`}}",
+                    "created_at": "{{timestamp}}",
+                    "description": "A build environment for use in cross platform development."
+                }
+            },
+            {
+                "type": "atlas",
+                "only": [
+                    "generic-debian9-libvirt"
+                ],
+                "artifact": "generic/debian9",
                 "artifact_type": "vagrant.box",
                 "metadata": {
                     "provider": "libvirt",
