@@ -1043,7 +1043,7 @@
                 "vagrant<enter><wait>",
                 "vagrant<enter><wait>",
                 "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
-                "bash generic.gentoo.vagrant.sh && (chroot /mnt/gentoo /bin/bash < generic.gentoo.vagrant.chroot.sh) && reboot<enter>"
+                "bash generic.gentoo.vagrant.sh<enter>"
             ],
             "disk_size": 32768,
             "vboxmanage": [
