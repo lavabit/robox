@@ -699,30 +699,36 @@ CONFIG_CPU_IDLE_GOV_MENU=y
 #
 CONFIG_PCI=y
 CONFIG_PCI_DIRECT=y
-CONFIG_PCI_MMCONFIG=y
+# CONFIG_PCI_MMCONFIG is not set
+CONFIG_PCI_XEN=y
 CONFIG_PCI_DOMAINS=y
 CONFIG_PCIEPORTBUS=y
 # CONFIG_HOTPLUG_PCI_PCIE is not set
 CONFIG_PCIEAER=y
-# CONFIG_PCIE_ECRC is not set
-# CONFIG_PCIEAER_INJECT is not set
+CONFIG_PCIE_ECRC=y
+CONFIG_PCIEAER_INJECT=m
 CONFIG_PCIEASPM=y
 # CONFIG_PCIEASPM_DEBUG is not set
 CONFIG_PCIEASPM_DEFAULT=y
 # CONFIG_PCIEASPM_POWERSAVE is not set
 # CONFIG_PCIEASPM_PERFORMANCE is not set
 CONFIG_PCIE_PME=y
+# CONFIG_PCIE_DPC is not set
+# CONFIG_PCIE_PTM is not set
 CONFIG_PCI_BUS_ADDR_T_64BIT=y
 CONFIG_PCI_MSI=y
-# CONFIG_PCI_DEBUG is not set
+CONFIG_PCI_MSI_IRQ_DOMAIN=y
 # CONFIG_PCI_REALLOC_ENABLE_AUTO is not set
-# CONFIG_PCI_STUB is not set
+CONFIG_PCI_STUB=y
+CONFIG_XEN_PCIDEV_FRONTEND=y
 CONFIG_HT_IRQ=y
 CONFIG_PCI_ATS=y
-# CONFIG_PCI_IOV is not set
+CONFIG_PCI_IOV=y
 CONFIG_PCI_PRI=y
 CONFIG_PCI_PASID=y
 CONFIG_PCI_LABEL=y
+CONFIG_PCI_HYPERV=m
+CONFIG_HOTPLUG_PCI=y
 
 #
 # PCI host controller drivers
@@ -733,6 +739,7 @@ CONFIG_PCCARD=y
 CONFIG_PCMCIA=y
 CONFIG_PCMCIA_LOAD_CIS=y
 CONFIG_CARDBUS=y
+CONFIG_X86_SYSFB=y
 
 #
 # PC-card bridges
@@ -1508,6 +1515,10 @@ CONFIG_VETH=m
 # CONFIG_WAN is not set
 CONFIG_VMXNET3=m
 # CONFIG_ISDN is not set
+CONFIG_XEN_NETDEV_FRONTEND=y
+CONFIG_XEN_NETDEV_BACKEND=m
+CONFIG_VMXNET3=m
+CONFIG_HYPERV_NET=m
 
 #
 # Input device support
@@ -1592,6 +1603,7 @@ CONFIG_SERIO_LIBPS2=y
 # CONFIG_SERIO_PS2MULT is not set
 # CONFIG_SERIO_ARC_PS2 is not set
 # CONFIG_GAMEPORT is not set
+CONFIG_HYPERV_KEYBOARD=m
 
 #
 # Character devices
@@ -2201,13 +2213,16 @@ CONFIG_FB_EFI=y
 # CONFIG_FB_SMSCUFX is not set
 # CONFIG_FB_UDL is not set
 CONFIG_FB_VIRTUAL=m
+CONFIG_XEN_FBDEV_FRONTEND=y
+CONFIG_FB_HYPERV=m
 # CONFIG_FB_METRONOME is not set
 # CONFIG_FB_MB862XX is not set
 # CONFIG_FB_BROADSHEET is not set
 # CONFIG_FB_AUO_K190X is not set
-# CONFIG_FB_SIMPLE is not set
+CONFIG_FB_SIMPLE=y
 CONFIG_BACKLIGHT_LCD_SUPPORT=y
-# CONFIG_LCD_CLASS_DEVICE is not set
+CONFIG_LCD_CLASS_DEVICE=m
+CONFIG_LCD_PLATFORM=m
 CONFIG_BACKLIGHT_CLASS_DEVICE=y
 CONFIG_BACKLIGHT_GENERIC=y
 # CONFIG_BACKLIGHT_APPLE is not set
@@ -2217,7 +2232,7 @@ CONFIG_BACKLIGHT_GENERIC=y
 # CONFIG_BACKLIGHT_LM3639 is not set
 # CONFIG_BACKLIGHT_LV5207LP is not set
 # CONFIG_BACKLIGHT_BD6107 is not set
-# CONFIG_VGASTATE is not set
+CONFIG_VGASTATE=m
 CONFIG_HDMI=y
 
 #
@@ -2743,6 +2758,8 @@ CONFIG_VIRT_DRIVERS=y
 # Virtio drivers
 #
 CONFIG_VIRTIO_PCI=y
+CONFIG_VIRTIO_PCI_LEGACY=y
+CONFIG_VIRTIO_INPUT=y
 CONFIG_VIRTIO_MMIO=y
 CONFIG_VIRTIO_BALLOON=y
 CONFIG_VIRTIO_RING=y
@@ -2750,34 +2767,39 @@ CONFIG_VIRTIO_RING=y
 #
 # Microsoft Hyper-V guest support
 #
-# CONFIG_HYPERV is not set
+CONFIG_HYPERV=m
+CONFIG_HYPERV_UTILS=m
+CONFIG_HYPERV_BALLOON=m
+
+#
+# Xen driver support
+#
+CONFIG_XEN_BALLOON=y
+CONFIG_XEN_BALLOON_MEMORY_HOTPLUG=y
+CONFIG_XEN_BALLOON_MEMORY_HOTPLUG_LIMIT=512
+CONFIG_XEN_SCRUB_PAGES=y
+CONFIG_XEN_DEV_EVTCHN=y
+CONFIG_XEN_BACKEND=y
+CONFIG_XENFS=y
+CONFIG_XEN_COMPAT_XENFS=y
+CONFIG_XEN_SYS_HYPERVISOR=y
+CONFIG_XEN_XENBUS_FRONTEND=y
+CONFIG_XEN_GNTDEV=m
+CONFIG_XEN_GRANT_DEV_ALLOC=m
+CONFIG_SWIOTLB_XEN=y
+CONFIG_XEN_PCIDEV_BACKEND=m
+CONFIG_XEN_SCSI_BACKEND=m
+CONFIG_XEN_PRIVCMD=y
+CONFIG_XEN_ACPI_PROCESSOR=m
+CONFIG_XEN_MCE_LOG=y
+CONFIG_XEN_HAVE_PVMMU=y
+CONFIG_XEN_EFI=y
+CONFIG_XEN_AUTO_XLATE=y
+CONFIG_XEN_ACPI=y
+CONFIG_XEN_SYMS=y
+CONFIG_XEN_HAVE_VPMU=y
 # CONFIG_STAGING is not set
-CONFIG_X86_PLATFORM_DEVICES=y
-# CONFIG_ACERHDF is not set
-# CONFIG_ASUS_LAPTOP is not set
-# CONFIG_DELL_SMO8800 is not set
-# CONFIG_FUJITSU_LAPTOP is not set
-# CONFIG_FUJITSU_TABLET is not set
-# CONFIG_HP_ACCEL is not set
-# CONFIG_HP_WIRELESS is not set
-# CONFIG_PANASONIC_LAPTOP is not set
-# CONFIG_THINKPAD_ACPI is not set
-# CONFIG_SENSORS_HDAPS is not set
-# CONFIG_INTEL_MENLOW is not set
-CONFIG_EEEPC_LAPTOP=y
-# CONFIG_ACPI_WMI is not set
-# CONFIG_TOPSTAR_LAPTOP is not set
-# CONFIG_TOSHIBA_BT_RFKILL is not set
-# CONFIG_TOSHIBA_HAPS is not set
-# CONFIG_ACPI_CMPC is not set
-# CONFIG_INTEL_IPS is not set
-# CONFIG_IBM_RTL is not set
-# CONFIG_SAMSUNG_LAPTOP is not set
-# CONFIG_SAMSUNG_Q10 is not set
-# CONFIG_APPLE_GMUX is not set
-# CONFIG_INTEL_RST is not set
-# CONFIG_INTEL_SMARTCONNECT is not set
-# CONFIG_PVPANIC is not set
+# CONFIG_X86_PLATFORM_DEVICES is not set
 # CONFIG_CHROME_PLATFORMS is not set
 
 #
@@ -3516,10 +3538,8 @@ make install
 make modules_install
 
 echo 'Configuring Grub'
-
 DEVID=`blkid -s UUID -o value /dev/sda4`
 printf "\nGRUB_DEVICE_UUID=\"$DEVID\"\n" >> /dev/default/grub
-
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -3527,7 +3547,6 @@ echo 'Configuring Network Services'
 emerge sys-apps/ifplugd net-wireless/wireless-tools net-misc/dhcpcd sys-apps/openrc
 ln -sf /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 ln -sf /dev/null /etc/udev/rules.d/80-net-name-slot.rules
-#sed -i "s/eth0/enp0s3/" /etc/udhcpd.conf
 echo 'config_enp0s3=( "dhcp" )' >> /etc/conf.d/net
 echo 'config_eth0=( "dhcp" )' >> /etc/conf.d/net
 ln -s /etc/init.d/net.lo /etc/init.d/net.eth0
@@ -3542,3 +3561,62 @@ echo 'Configuring Users'
 useradd vagrant
 echo 'root:vagrant' | chpasswd
 echo 'vagrant:vagrant' | chpasswd
+
+# If we're running on Hyper-V, setup the daemons.
+if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
+  echo 'Configuring Hyper-V'
+  cd /usr/src/linux/tools/hv && make
+  cp hv_fcopy_daemon hv_vss_daemon hv_kvp_daemon /usr/sbin
+
+  mkdir -p /usr/lib/systemd/system
+tee /usr/lib/systemd/system/hv_fcopy_daemon.service <<-EOF
+[Unit]
+Description=Hyper-V File Copy Protocol Daemon
+ConditionVirtualization=microsoft
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/hv_fcopy_daemon -n
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+tee /usr/lib/systemd/system/hv_vss_daemon.service <<-EOF
+[Unit]
+Description=Hyper-V VSS Daemon
+ConditionVirtualization=microsoft
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/hv_vss_daemon -n
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+tee /usr/lib/systemd/system/hv_kvp_daemon.service <<-EOF
+[Unit]
+Description=Hyper-V Key Value Pair Daemon
+ConditionVirtualization=microsoft
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/hv_kvp_daemon -n
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+  systemctl enable hv_fcopy_daemon.service
+  systemctl enable hv_vss_daemon.service
+  systemctl enable hv_kvp_daemon.service
+if
