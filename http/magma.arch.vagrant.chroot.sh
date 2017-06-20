@@ -59,5 +59,4 @@ EOF
 
     systemctl enable hypervkvpd.service
     systemctl enable hypervvssd.service
-    eject --force /dev/cdrom
 fi
