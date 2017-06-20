@@ -47,6 +47,7 @@ chroot /mnt/gentoo /bin/bash < /root/magma.gentoo.vagrant.chroot.sh
 
 # And then reboot.
 echo "Chroot finished, ready to restart."
+shutdown --reboot +1
 umount --lazy /mnt/gentoo/{proc,sys,dev,boot,}
 umount --lazy --detach-loop /dev/sr0
 eject /dev/cdrom
