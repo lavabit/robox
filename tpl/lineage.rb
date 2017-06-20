@@ -37,6 +37,11 @@ Vagrant.configure("2") do |config|
     v.cpus = 2
   end
 
+  config.vm.provider :parallels do |v, override|
+    v.memory = 2048
+    v.cpus = 2
+  end
+  
   config.vm.provider :virtualbox do |v, override|
     v.customize ["modifyvm", :id, "--memory", 2048]
     v.customize ["modifyvm", :id, "--cpus", 2]
