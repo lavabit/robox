@@ -43,10 +43,11 @@ mount --rbind /dev dev
 cp /etc/resolv.conf etc
 
 # Execute the chroot script.
-chroot /mnt/gentoo /bin/bash < generic.gentoo.vagrant.chroot.sh
+chroot /mnt/gentoo /bin/bash < /root/generic.gentoo.vagrant.chroot.sh
 
-# and get ready to reboot
-echo "Chroot finished, ready to restart"
-umount -l /mnt/gentoo/{proc,sys,dev,boot,}
+# And then reboot.
+echo "Chroot finished, ready to restart."
+umount --lazy /mnt/gentoo/{proc,sys,dev,boot,}
+umount --lazy --detach-loop /dev/sr0
 eject /dev/cdrom
 reboot
