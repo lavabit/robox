@@ -383,55 +383,6 @@
         },
         {
             "scripts": [
-                "scripts/ubuntu1604/network.sh",
-                "scripts/ubuntu1604/apt.sh"
-            ],
-            "type": "shell",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-libvirt"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/ubuntu1604/limits.sh",
-                "scripts/ubuntu1604/vagrant.sh",
-                "scripts/ubuntu1604/fixtty.sh",
-                "scripts/ubuntu1604/virtualbox.sh",
-                "scripts/ubuntu1604/vmware.sh",
-                "scripts/ubuntu1604/qemu.sh"
-            ],
-            "type": "shell",
-            "pause_before": "120s",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-libvirt"
-            ]
-        },
-        {
-            "type": "file",
-            "direction": "upload",
-            "source": "res/blobs/system-blobs.tar.gz",
-            "destination": "/home/vagrant/system-blobs.tar.gz",
-            "only": [
-                "lineage-libvirt"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/ubuntu1604/lineage.sh"
-            ],
-            "type": "shell",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-libvirt"
-            ]
-        },
-        {
-            "scripts": [
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],
@@ -476,7 +427,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -513,7 +464,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -550,7 +501,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -587,7 +538,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -624,7 +575,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -663,7 +614,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -704,7 +655,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -744,66 +695,13 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://caesar.ftp.acc.umu.se/cdimage/archive/8.8.0/amd64/iso-cd/debian-8.8.0-amd64-netinst.iso",
             "iso_checksum": "2c07ff8cc766767610566297b8729740f923735e790c8e78b718fb93923b448e",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "10000s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
-        },
-        {
-            "type": "qemu",
-            "name": "lineage-libvirt",
-            "vm_name": "lineage-libvirt",
-            "output_directory": "output/lineage-libvirt",
-            "accelerator": "kvm",
-            "qemu_binary": "/usr/libexec/qemu-kvm",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "format": "qcow2",
-            "disk_size": 196608,
-            "disk_interface": "virtio",
-            "disk_compression": true,
-            "net_device": "virtio-net",
-            "qemuargs": [
-                [
-                    "-m",
-                    "2048M"
-                ],
-                [
-                    "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
-                ]
-            ],
-            "http_directory": "http",
-            "headless": true,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.2/ubuntu-16.04.2-server-amd64.iso",
-            "iso_checksum": "737ae7041212c628de5751d15c3016058b0e833fdc32e7420209b76ca3d0a535",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -850,7 +748,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -903,7 +801,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -948,7 +846,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -993,7 +891,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1037,7 +935,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1083,7 +981,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1124,7 +1022,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=2,sockets=2,cores=1,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1146,20 +1044,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box",
-                "except": [
-                    "lineage-libvirt"
-                ]
-            },
-            {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/lineage.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box",
-                "only": [
-                    "lineage-libvirt"
-                ]
+                "output": "output/{{build_name}}-{{user `box_version`}}.box"
             },
             {
                 "type": "vagrant-cloud",
@@ -1295,15 +1180,6 @@
                 "box_tag": "lavabit/magma-ubuntu1704",
                 "version": "{{user `box_version`}}",
                 "version_description": "The magma encrypted mail daemon build environment."
-            },
-            {
-                "type": "vagrant-cloud",
-                "only": [
-                    "lineage-libvirt"
-                ],
-                "box_tag": "lineage/lineage",
-                "version": "{{user `box_version`}}",
-                "version_description": "The Lineage mobile operating system build environment."
             },
             {
                 "type": "artifice",

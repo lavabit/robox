@@ -383,56 +383,6 @@
         },
         {
             "scripts": [
-                "scripts/ubuntu1604/network.sh",
-                "scripts/ubuntu1604/apt.sh"
-            ],
-            "type": "shell",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-vmware"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/ubuntu1604/limits.sh",
-                "scripts/ubuntu1704/vagrant.sh",
-                "scripts/ubuntu1604/lineage.sh",
-                "scripts/ubuntu1604/fixtty.sh",
-                "scripts/ubuntu1604/virtualbox.sh",
-                "scripts/ubuntu1604/vmware.sh",
-                "scripts/ubuntu1604/qemu.sh"
-            ],
-            "type": "shell",
-            "pause_before": "120s",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-vmware"
-            ]
-        },
-        {
-            "type": "file",
-            "direction": "upload",
-            "source": "res/blobs/system-blobs.tar.gz",
-            "destination": "/home/vagrant/system-blobs.tar.gz",
-            "only": [
-                "lineage-vmware"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/ubuntu1604/lineage.sh"
-            ],
-            "type": "shell",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-vmware"
-            ]
-        },
-        {
-            "scripts": [
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],
@@ -469,7 +419,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "otherlinux-64",
             "http_directory": "http",
@@ -501,7 +451,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -533,7 +483,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -565,7 +515,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -597,7 +547,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -631,7 +581,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "otherlinux-64",
             "skip_compaction": true,
@@ -667,7 +617,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "fedora-64",
             "skip_compaction": true,
@@ -702,7 +652,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "debian8-64",
             "skip_compaction": true,
@@ -711,54 +661,6 @@
             "vnc_disable_password": true,
             "iso_url": "https://caesar.ftp.acc.umu.se/cdimage/archive/8.8.0/amd64/iso-cd/debian-8.8.0-amd64-netinst.iso",
             "iso_checksum": "2c07ff8cc766767610566297b8729740f923735e790c8e78b718fb93923b448e",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "10000s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
-        },
-        {
-            "type": "vmware-iso",
-            "name": "lineage-vmware",
-            "vm_name": "lineage-vmware",
-            "vmdk_name": "lineage-vmware",
-            "output_directory": "output/lineage-vmware",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "disk_size": 196608,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": true,
-            "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.2/ubuntu-16.04.2-server-amd64.iso",
-            "iso_checksum": "737ae7041212c628de5751d15c3016058b0e833fdc32e7420209b76ca3d0a535",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -798,7 +700,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": true,
@@ -846,7 +748,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": true,
@@ -886,7 +788,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": true,
@@ -926,7 +828,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": true,
@@ -965,7 +867,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
+                "cpuid.coresPerSocket": "1",
                 "vmci0.present": "TRUE"
             },
             "guest_os_type": "otherlinux-64",
@@ -1007,7 +909,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "freebsd-64",
             "skip_compaction": true,
@@ -1043,7 +945,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
+                "cpuid.coresPerSocket": "1"
             },
             "guest_os_type": "freeBSD-64",
             "skip_compaction": true,
@@ -1068,20 +970,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box",
-                "except": [
-                    "lineage-vmware"
-                ]
-            },
-            {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/lineage.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box",
-                "only": [
-                    "lineage-vmware"
-                ]
+                "output": "output/{{build_name}}-{{user `box_version`}}.box"
             },
             {
                 "type": "vagrant-cloud",
@@ -1217,15 +1106,6 @@
                 "box_tag": "lavabit/magma-ubuntu1704",
                 "version": "{{user `box_version`}}",
                 "version_description": "The magma encrypted mail daemon build environment."
-            },
-            {
-                "type": "vagrant-cloud",
-                "only": [
-                    "lineage-vmware"
-                ],
-                "box_tag": "lineage/lineage",
-                "version": "{{user `box_version`}}",
-                "version_description": "The Lineage mobile operating system build environment."
             },
             {
                 "type": "artifice",
