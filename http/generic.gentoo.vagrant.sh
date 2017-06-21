@@ -6,7 +6,7 @@ echo 'Partitioning Filesystems'
 declare -i current=1
 parted -a opt -s /dev/sda -- "mklabel gpt"
 parted -a opt -s /dev/sda -- "mkpart BIOS ext4       $(( current ))  $(( current += 128   ))m"
-parted -a opt -s /dev/sda -- "mkpart BOOT ext4       $(( current ))  $(( current += 128   ))m"
+parted -a opt -s /dev/sda -- "mkpart BOOT ext4       $(( current ))  $(( current += 256   ))m"
 parted -a opt -s /dev/sda -- "mkpart SWAP linux-swap $(( current ))m $(( current += 4096  ))m"
 parted -a opt -s /dev/sda -- "mkpart ROOT ext4       $(( current ))m -1"
 parted -a opt -s /dev/sda -- "set 1 bios_grub on"
@@ -37,17 +37,20 @@ tar xjpf $tarball && rm -f $tarball
 echo 'Extracting Portage Tarball'
 tar xjpf portage-latest.tar.bz2 -C '/mnt/gentoo/usr' && rm -f portage-latest.tar.bz2
 
-mount -t proc none proc
-mount --rbind /sys sys
-mount --rbind /dev dev
-cp /etc/resolv.conf etc
+# Copy the resolv config and rebind the dynamic system directories.
+mount -t proc /proc /mnt/gentoo/proc
+mount --rbind /sys /mnt/gentoo/sys
+mount --make-rslave /mnt/gentoo/sys
+mount --rbind /dev /mnt/gentoo/dev
+mount --make-rslave /mnt/gentoo/dev
+cp /etc/resolv.conf /mnt/gentoo/etc
 
 # Execute the chroot script.
 chroot /mnt/gentoo /bin/bash < /root/generic.gentoo.vagrant.chroot.sh
 
 # And then reboot.
 echo "Chroot finished, ready to restart."
-shutdown --reboot +1
+shutdown -r -t 15
 umount --lazy /mnt/gentoo/{proc,sys,dev,boot,}
 umount --lazy --detach-loop /dev/sr0
 eject /dev/cdrom
