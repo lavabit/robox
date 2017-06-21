@@ -6,7 +6,7 @@ echo 'Partitioning Filesystems'
 declare -i current=1
 parted -a opt -s /dev/sda -- "mklabel gpt"
 parted -a opt -s /dev/sda -- "mkpart BIOS ext4       $(( current ))  $(( current += 128   ))m"
-parted -a opt -s /dev/sda -- "mkpart BOOT ext4       $(( current ))  $(( current += 128   ))m"
+parted -a opt -s /dev/sda -- "mkpart BOOT ext4       $(( current ))  $(( current += 256   ))m"
 parted -a opt -s /dev/sda -- "mkpart SWAP linux-swap $(( current ))m $(( current += 4096  ))m"
 parted -a opt -s /dev/sda -- "mkpart ROOT ext4       $(( current ))m -1"
 parted -a opt -s /dev/sda -- "set 1 bios_grub on"
