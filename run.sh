@@ -393,10 +393,10 @@ elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv.json" ]]; then build gen
 elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt.json" ]]; then build generic-libvirt
 elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox.json" ]]; then build generic-virtualbox
 
-elif [[ $1 == "lineage-vmware" || $1 == "lineage-vmware.json" ]]; then build generic-vmware
-elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv.json" ]]; then build generic-hyperv
-elif [[ $1 == "lineage-libvirt" || $1 == "lineage-libvirt.json" ]]; then build generic-libvirt
-elif [[ $1 == "lineage-virtualbox" || $1 == "lineage-virtualbox.json" ]]; then build generic-virtualbox
+elif [[ $1 == "lineage-vmware" || $1 == "lineage-vmware.json" ]]; then build lineage-vmware
+elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv.json" ]]; then build lineage-hyperv
+elif [[ $1 == "lineage-libvirt" || $1 == "lineage-libvirt.json" ]]; then build lineage-libvirt
+elif [[ $1 == "lineage-virtualbox" || $1 == "lineage-virtualbox.json" ]]; then build lineage-virtualbox
 
 # Build a specific box.
 elif [[ $1 == "box" ]]; then box $2
