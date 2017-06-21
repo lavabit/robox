@@ -14,8 +14,9 @@ BASE=`dirname $LINK`
 cd $BASE
 
 # Credentials and tokens.
-export VERSION="0.9.14"
 source .credentialsrc
+export VERSION="0.9.14"
+export AGENT="Vagrant/1.9.5 (+https://www.vagrantup.com; ruby2.2.5):"
 
 # The list of packer config files.
 FILES="magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-virtualbox.json lineage-hyperv.json"
@@ -39,6 +40,7 @@ GENERIC_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "gene
 LINEAGE_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
 TAGS="$LINEAGE_TAGS $GENERIC_TAGS $MAGMA_TAGS"
 
+
 function start() {
   # Disable IPv6 or the VMware builder won't be able to load the Kick Start configuration.
   sudo sysctl net.ipv6.conf.all.disable_ipv6=1
@@ -49,7 +51,7 @@ function start() {
   sudo systemctl restart libvirtd.service
   sudo systemctl restart docker-latest.service
   sudo systemctl restart vmware.service vmware-USBArbitrator.service vmware-workstation-server.service
-    
+
   # Confirm the VirtualBox kernel modules loaded.
   if [ -f /usr/lib/virtualbox/vboxdrv.sh ]; then
     /usr/lib/virtualbox/vboxdrv.sh status | grep "VirtualBox kernel modules \(.*\) are loaded."
@@ -241,7 +243,7 @@ function available() {
       BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
 
       PROVIDER="hyperv"
-      curl --silent --head "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -251,7 +253,7 @@ function available() {
       fi
 
       PROVIDER="libvirt"
-      curl --silent --head "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -261,7 +263,7 @@ function available() {
       fi
 
       PROVIDER="virtualbox"
-      curl --silent --head "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -271,7 +273,7 @@ function available() {
       fi
 
       PROVIDER="vmware_desktop"
-      curl --silent --head "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
       if [ $? != 0 ]; then
         let MISSING+=1
