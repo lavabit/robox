@@ -8,6 +8,9 @@
 # Update the package database.
 emerge --sync
 
+# This will update portage - if necessary.
+emerge --oneshot portage
+
 # Update the system packages.
 emerge --update --deep --newuse --with-bdeps=y @world
 
