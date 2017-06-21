@@ -3721,4 +3721,4 @@ EOF
 #   systemctl enable hv_fcopy_daemon.service
 #   systemctl enable hv_vss_daemon.service
 #   systemctl enable hv_kvp_daemon.service
-if
+fi

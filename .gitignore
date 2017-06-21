@@ -2,3 +2,5 @@
 output/
 packer_cache/
 .credentialsrc
+.project
+.settings/

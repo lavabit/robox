@@ -383,22 +383,22 @@ elif [[ $1 == "all" ]]; then all
 
 # Catchall
 else
-	echo ""
-	echo " Stages"
-	echo $"  `basename $0` {start|sunms|links|validate|missing|available|cleanup} or "
-	echo ""
-	echo " Groups"
-	echo $"  `basename $0` {magma|generic|lineage}"
+  echo ""
+  echo " Stages"
+  echo $"  `basename $0` {start|sunms|links|validate|missing|available|cleanup} or "
+  echo ""
+  echo " Groups"
+  echo $"  `basename $0` {magma|generic|lineage}"
   echo ""
   echo " Boxes"
   echo $"  `basename $0` {box NAME}"
   echo ""
   echo " Global"
-	echo $"  `basename $0` {all}"
-	echo ""
-	echo " Please select a target and run this command again."
-	echo ""
-	exit 2
+  echo $"  `basename $0` {all}"
+  echo ""
+  echo " Please select a target and run this command again."
+  echo ""
+  exit 2
 fi
 
 # Upload to the website.
