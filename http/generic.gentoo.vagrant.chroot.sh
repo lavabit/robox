@@ -3616,57 +3616,109 @@ echo 'vagrant:vagrant' | chpasswd
 if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
   echo 'Configuring Hyper-V'
   cd /usr/src/linux/tools/hv && make
-  cp hv_fcopy_daemon hv_vss_daemon hv_kvp_daemon /usr/sbin
+  install -t /usr/sbin/ hv_fcopy_daemon hv_vss_daemon hv_kvp_daemon
 
-  mkdir -p /usr/lib/systemd/system
-tee /usr/lib/systemd/system/hv_fcopy_daemon.service <<-EOF
-[Unit]
-Description=Hyper-V File Copy Protocol Daemon
-ConditionVirtualization=microsoft
+tee /etc/init.d/hv_fcopy_daemon <<-EOF
+#!/sbin/openrc-run
 
-[Service]
-Type=simple
-ExecStart=/usr/sbin/hv_fcopy_daemon -n
-Restart=always
-RestartSec=3
+name="Hyper-V daemon: hv_fcopy_daemon"
+command=/usr/sbin/hv_fcopy_daemon
 
-[Install]
-WantedBy=multi-user.target
+depend() {
+	use clock logger
+	need localmount
+}
 EOF
 
-tee /usr/lib/systemd/system/hv_vss_daemon.service <<-EOF
-[Unit]
-Description=Hyper-V VSS Daemon
-ConditionVirtualization=microsoft
+tee /etc/init.d/hv_kvp_daemon <<-EOF
+#!/sbin/openrc-run
 
-[Service]
-Type=simple
-ExecStart=/usr/sbin/hv_vss_daemon -n
-Restart=always
-RestartSec=3
+name="Hyper-V daemon: hv_kvp_daemon"
+command=/usr/sbin/hv_kvp_daemon
 
-[Install]
-WantedBy=multi-user.target
+depend() {
+	use clock logger
+	need localmount net
+}
+
+start_pre() {
+	# Delete the existing store
+	rm -rf /var/lib/hyperv
+}
 EOF
 
-tee /usr/lib/systemd/system/hv_kvp_daemon.service <<-EOF
-[Unit]
-Description=Hyper-V Key Value Pair Daemon
-ConditionVirtualization=microsoft
-Wants=network-online.target
-After=network.target network-online.target
+tee /etc/init.d/hv_vss_daemon <<-EOF
+#!/sbin/openrc-run
 
-[Service]
-Type=simple
-ExecStart=/usr/sbin/hv_kvp_daemon -n
-Restart=always
-RestartSec=3
+name="Hyper-V daemon: hv_vss_daemon"
+command=/usr/sbin/hv_vss_daemon
 
-[Install]
-WantedBy=multi-user.target
+depend() {
+	use clock logger
+	need dev
+}
 EOF
 
-  systemctl enable hv_fcopy_daemon.service
-  systemctl enable hv_vss_daemon.service
-  systemctl enable hv_kvp_daemon.service
+  # Fix the permissions.
+  chmod 755 /etc/init.d/hv_fcopy_daemon
+  chmod 755 /etc/init.d/hv_kvp_daemon
+  chmod 755 /etc/init.d/hv_vss_daemon
+
+  # Add the Hyper-V daemons to the default runlevel.
+  rc-update add hv_fcopy_daemon default
+  rc-update add hv_kvp_daemon default
+  rc-update add hv_vss_daemon default
+
+# Preserve this configuration in case we ever create a systemd version of Gentoo.
+#   mkdir -p /usr/lib/systemd/system
+# tee /usr/lib/systemd/system/hv_fcopy_daemon.service <<-EOF
+# [Unit]
+# Description=Hyper-V File Copy Protocol Daemon
+# ConditionVirtualization=microsoft
+#
+# [Service]
+# Type=simple
+# ExecStart=/usr/sbin/hv_fcopy_daemon -n
+# Restart=always
+# RestartSec=3
+#
+# [Install]
+# WantedBy=multi-user.target
+# EOF
+#
+# tee /usr/lib/systemd/system/hv_vss_daemon.service <<-EOF
+# [Unit]
+# Description=Hyper-V VSS Daemon
+# ConditionVirtualization=microsoft
+#
+# [Service]
+# Type=simple
+# ExecStart=/usr/sbin/hv_vss_daemon -n
+# Restart=always
+# RestartSec=3
+#
+# [Install]
+# WantedBy=multi-user.target
+# EOF
+#
+# tee /usr/lib/systemd/system/hv_kvp_daemon.service <<-EOF
+# [Unit]
+# Description=Hyper-V Key Value Pair Daemon
+# ConditionVirtualization=microsoft
+# Wants=network-online.target
+# After=network.target network-online.target
+#
+# [Service]
+# Type=simple
+# ExecStart=/usr/sbin/hv_kvp_daemon -n
+# Restart=always
+# RestartSec=3
+#
+# [Install]
+# WantedBy=multi-user.target
+# EOF
+#
+#   systemctl enable hv_fcopy_daemon.service
+#   systemctl enable hv_vss_daemon.service
+#   systemctl enable hv_kvp_daemon.service
 if
