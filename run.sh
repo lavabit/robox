@@ -34,12 +34,12 @@ LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage
 BOXES="$LINEAGE_BOXES $GENERIC_BOXES $MAGMA_BOXES"
 
 # Collect the list of box tags.
-# MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
-# GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
-# LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
-MAGMA_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
-GENERIC_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
-LINEAGE_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
+GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+# MAGMA_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
+# GENERIC_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+# LINEAGE_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
 TAGS="$LINEAGE_TAGS $GENERIC_TAGS $MAGMA_TAGS"
 
 
