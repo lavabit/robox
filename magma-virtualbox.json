@@ -383,55 +383,6 @@
         },
         {
             "scripts": [
-                "scripts/ubuntu1604/network.sh",
-                "scripts/ubuntu1604/apt.sh"
-            ],
-            "type": "shell",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-virtualbox"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/ubuntu1604/limits.sh",
-                "scripts/ubuntu1604/vagrant.sh",
-                "scripts/ubuntu1604/fixtty.sh",
-                "scripts/ubuntu1604/virtualbox.sh",
-                "scripts/ubuntu1604/vmware.sh",
-                "scripts/ubuntu1604/qemu.sh"
-            ],
-            "type": "shell",
-            "pause_before": "120s",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-virtualbox"
-            ]
-        },
-        {
-            "type": "file",
-            "direction": "upload",
-            "source": "res/blobs/system-blobs.tar.gz",
-            "destination": "/home/vagrant/system-blobs.tar.gz",
-            "only": [
-                "lineage-virtualbox"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/ubuntu1604/lineage.sh"
-            ],
-            "type": "shell",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-virtualbox"
-            ]
-        },
-        {
-            "scripts": [
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],
@@ -771,62 +722,6 @@
             "headless": true,
             "iso_url": "https://caesar.ftp.acc.umu.se/cdimage/archive/8.8.0/amd64/iso-cd/debian-8.8.0-amd64-netinst.iso",
             "iso_checksum": "2c07ff8cc766767610566297b8729740f923735e790c8e78b718fb93923b448e",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "10000s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.22/VBoxGuestAdditions_5.1.22.iso",
-            "guest_additions_sha256": "54df14f234b6aa484b94939ab0f435b5dd859417612b65a399ecc34a62060380",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        },
-        {
-            "type": "virtualbox-iso",
-            "name": "lineage-virtualbox",
-            "vm_name": "lineage-virtualbox",
-            "output_directory": "output/lineage-virtualbox",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "disk_size": 196608,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
-                ]
-            ],
-            "guest_os_type": "Ubuntu_64",
-            "http_directory": "http",
-            "headless": true,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.2/ubuntu-16.04.2-server-amd64.iso",
-            "iso_checksum": "737ae7041212c628de5751d15c3016058b0e833fdc32e7420209b76ca3d0a535",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -1194,20 +1089,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box",
-                "except": [
-                    "lineage-virtualbox"
-                ]
-            },
-            {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/lineage.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box",
-                "only": [
-                    "lineage-virtualbox"
-                ]
+                "output": "output/{{build_name}}-{{user `box_version`}}.box"
             },
             {
                 "type": "vagrant-cloud",
@@ -1343,15 +1225,6 @@
                 "box_tag": "lavabit/magma-ubuntu1704",
                 "version": "{{user `box_version`}}",
                 "version_description": "The magma encrypted mail daemon build environment."
-            },
-            {
-                "type": "vagrant-cloud",
-                "only": [
-                    "lineage-virtualbox"
-                ],
-                "box_tag": "lineage/lineage",
-                "version": "{{user `box_version`}}",
-                "version_description": "The Lineage mobile operating system build environment."
             },
             {
                 "type": "artifice",
