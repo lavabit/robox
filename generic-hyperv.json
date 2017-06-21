@@ -940,6 +940,7 @@
             "output_directory": "output/generic-freebsd11-hyperv",
             "boot_wait": "5s",
             "boot_command": [
+                "<enter><wait10><spacebar><wait5>",
                 "<esc><wait>",
                 "boot -s<wait>",
                 "<enter><wait>",
@@ -947,7 +948,7 @@
                 "/bin/sh<enter><wait5>",
                 "mdmfs -s 100m md1 /tmp<enter><wait5>",
                 "mdmfs -s 100m md2 /mnt<enter><wait5>",
-                "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+                "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
                 "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd11.vagrant.cfg<enter><wait10>",
                 "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
             ],
@@ -955,8 +956,8 @@
             "ram_size": 1024,
             "cpu": 1,
             "http_directory": "http",
-            "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.0/FreeBSD-11.0-RELEASE-amd64-disc1.iso",
-            "iso_checksum": "08b12f2dc378f7a61b5469219824c74a2f9faef580acc85ffab45365df79872d",
+            "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.1/FreeBSD-11.1-BETA2-amd64-disc1.iso",
+            "iso_checksum": "8de2464992717e3991150848e9c427d1eab90aaab68d656d5861dc71dbcd657a",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
