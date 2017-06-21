@@ -6,9 +6,10 @@
 # Description: Used to build various virtual machines using packer.
 
 # Status
-# freebsd/centos7/oracle7 on hyperv doesn't eject cd before rebooting.
+# freebsd on hyperv is using 11.1 beta2
+# freebsd/centos7/oracle7 on hyperv doesn't eject cd before rebooting
 # magma/generic debian8 might try to upgrade to debian9
-# debian deosn't seem to install hyperv daemons using post install script.
+# debian deosn't seem to install hyperv daemons using post install script
 
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
@@ -20,7 +21,8 @@ cd $BASE
 
 # Credentials and tokens.
 source .credentialsrc
-export VERSION="1.0.1"
+export VERSION="0.9.14"
+# export VERSION="1.0.1"
 export AGENT="Vagrant/1.9.5 (+https://www.vagrantup.com; ruby2.2.5):"
 
 # The list of packer config files.
