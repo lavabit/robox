@@ -6,7 +6,7 @@
 # EOF
 
 # Update the package database.
-emerge --sync --noconfirm
+emerge --sync
 
 # Update the system packages.
 emerge --update --deep --newuse --with-bdeps=y @world

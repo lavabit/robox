@@ -130,6 +130,9 @@
         },
         {
             "scripts": [
+                "scripts/gentoo/virtualbox.sh",
+                "scripts/gentoo/vmware.sh",
+                "scripts/gentoo/qemu.sh",
                 "scripts/gentoo/vagrant.sh",
                 "scripts/gentoo/magma.sh"
             ],
@@ -158,6 +161,9 @@
                 "scripts/arch/mariadb.sh",
                 "scripts/arch/memcached.sh",
                 "scripts/arch/postfix.sh",
+                "scripts/arch/virtualbox.sh",
+                "scripts/arch/vmware.sh",
+                "scripts/arch/qemu.sh",
                 "scripts/arch/vagrant.sh",
                 "scripts/arch/magma.sh"
             ],

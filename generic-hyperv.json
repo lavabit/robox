@@ -190,6 +190,9 @@
         },
         {
             "scripts": [
+                "scripts/gentoo/virtualbox.sh",
+                "scripts/gentoo/vmware.sh",
+                "scripts/gentoo/qemu.sh",
                 "scripts/gentoo/vagrant.sh"
             ],
             "type": "shell",
@@ -213,6 +216,9 @@
         },
         {
             "scripts": [
+                "scripts/arch/virtualbox.sh",
+                "scripts/arch/vmware.sh",
+                "scripts/arch/qemu.sh",
                 "scripts/arch/vagrant.sh"
             ],
             "type": "shell",
