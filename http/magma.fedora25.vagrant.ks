@@ -32,11 +32,12 @@ chmod 0440 /etc/sudoers.d/vagrant
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" ]]; then
-    dnf --assumeyes install eject hyperv-daemons
+    dnf --assumeyes install hyperv-daemons
     systemctl enable hypervvssd.service
     systemctl enable hypervkvpd.service
-    eject --auto on /dev/cdrom
-#    eject --cdrom /dev/cdrom
+    (shutdown -r +1) &
+    umount --force --lazy --detach-loop /dev/sr0
+    # eject --cdrom /dev/cdrom
 fi
 
 %end
