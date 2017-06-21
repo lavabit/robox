@@ -10,6 +10,7 @@
 # freebsd/centos7/oracle7 on hyperv doesn't eject cd before rebooting
 # magma/generic debian8 might try to upgrade to debian9
 # debian deosn't seem to install hyperv daemons using post install script
+# OpenBSD needs guest agent install scripts.
 
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
