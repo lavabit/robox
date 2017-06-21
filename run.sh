@@ -15,11 +15,13 @@ cd $BASE
 
 # Credentials and tokens.
 source .credentialsrc
-export VERSION="0.9.14"
+export VERSION="1.0.1"
 export AGENT="Vagrant/1.9.5 (+https://www.vagrantup.com; ruby2.2.5):"
 
 # The list of packer config files.
-FILES="magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-virtualbox.json lineage-hyperv.json"
+FILES="magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
+"generic-hyperv.json generic-vmware.json generic-libvirt.json generic-virtualbox.json "\
+"lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json"
 
 # Collect the list of ISO urls.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}'`)
@@ -32,12 +34,12 @@ LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage
 BOXES="$LINEAGE_BOXES $GENERIC_BOXES $MAGMA_BOXES"
 
 # Collect the list of box tags.
-# MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
-# GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
-# LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
-MAGMA_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
-GENERIC_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
-LINEAGE_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
+GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+# MAGMA_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
+# GENERIC_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+# LINEAGE_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
 TAGS="$LINEAGE_TAGS $GENERIC_TAGS $MAGMA_TAGS"
 
 
@@ -148,33 +150,45 @@ function box() {
   export PACKER_LOG="1"
   export TIMESTAMP=`date +"%s"`
 
-  export PACKER_LOG_PATH="$BASE/output/logs/magma-docker-${TIMESTAMP}.txt"
-  packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json
+  if [[ $OS == "Windows_NT" ]]; then
+      export PACKER_LOG_PATH="$BASE/output/logs/magma-hyerpv-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 magma-hyerpv.json
 
-  export PACKER_LOG_PATH="$BASE/output/logs/magma-vmware-${TIMESTAMP}.txt"
-  packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
+      export PACKER_LOG_PATH="$BASE/output/logs/generic-hyerpv-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 generic-hyerpv.json
 
-  export PACKER_LOG_PATH="$BASE/output/logs/magma-libvirt-${TIMESTAMP}.txt"
-  packer build -on-error=cleanup -parallel=false -only=$1 magma-libvirt.json
+      export PACKER_LOG_PATH="$BASE/output/logs/lineage-hyperv-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
+  else
+      export PACKER_LOG_PATH="$BASE/output/logs/magma-docker-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json
 
-  export PACKER_LOG_PATH="$BASE/output/logs/magma-virtualbox-${TIMESTAMP}.txt"
-  packer build -on-error=cleanup -parallel=false -only=$1 magma-virtualbox.json
+      export PACKER_LOG_PATH="$BASE/output/logs/magma-vmware-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
 
-  export PACKER_LOG_PATH="$BASE/output/logs/generic-vmware-${TIMESTAMP}.txt"
-  packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
+      export PACKER_LOG_PATH="$BASE/output/logs/magma-libvirt-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 magma-libvirt.json
 
-  export PACKER_LOG_PATH="$BASE/output/logs/generic-libvirt-${TIMESTAMP}.txt"
-  packer build -on-error=cleanup -parallel=false -only=$1 generic-libvirt.json
+      export PACKER_LOG_PATH="$BASE/output/logs/magma-virtualbox-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 magma-virtualbox.json
 
-  export PACKER_LOG_PATH="$BASE/output/logs/generic-virtualbox-${TIMESTAMP}.txt"
-  packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
+      export PACKER_LOG_PATH="$BASE/output/logs/generic-vmware-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
 
-  export PACKER_LOG_PATH="$BASE/output/logs/lineage-hyperv-${TIMESTAMP}.txt"
-  packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
+      export PACKER_LOG_PATH="$BASE/output/logs/generic-libvirt-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 generic-libvirt.json
 
-  if [[ $? != 0 ]]; then
-    tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
-    for i in 1 2 3; do printf "\a"; sleep 1; done
+      export PACKER_LOG_PATH="$BASE/output/logs/generic-virtualbox-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
+
+      export PACKER_LOG_PATH="$BASE/output/logs/lineage-vmware-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 lineage-vmware.json
+
+      export PACKER_LOG_PATH="$BASE/output/logs/lineage-libvirt-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 lineage-libvirt.json
+
+      export PACKER_LOG_PATH="$BASE/output/logs/lineage-virtualbox-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 lineage-virtualbox.json
   fi
 }
 
@@ -209,6 +223,9 @@ function validate() {
   verify_json generic-libvirt
   verify_json generic-virtualbox
   verify_json lineage-hyperv
+  verify_json lineage-vmware
+  verify_json lineage-libvirt
+  verify_json lineage-virtualbox
 }
 
 function missing() {
@@ -330,10 +347,10 @@ function generic() {
 function lineage() {
   if [[ $OS == "Windows_NT" ]]; then
     build lineage-hyperv
-  # else
-    # build lineage-vmware
-    # build lineage-libvirt
-    # build lineage-virtualbox
+  else
+    build lineage-vmware
+    build lineage-libvirt
+    build lineage-virtualbox
   fi
 }
 
@@ -362,20 +379,24 @@ elif [[ $1 == "cleanup" ]]; then cleanup
 # The group builders.
 elif [[ $1 == "magma" ]]; then magma
 elif [[ $1 == "generic" ]]; then generic
+elif [[ $1 == "lineage" ]]; then lineage
 
 # The file builders.
-elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then login ; build magma-docker
 elif [[ $1 == "magma-vmware" || $1 == "magma-vmware.json" ]]; then build magma-vmware
-elif [[ $1 == "magma-libvirt" || $1 == "magma-libvirt.json" ]]; then build magma-libvirt
 elif [[ $1 == "magma-hyperv" || $1 == "magma-hyperv.json" ]]; then build magma-hyperv
+elif [[ $1 == "magma-libvirt" || $1 == "magma-libvirt.json" ]]; then build magma-libvirt
+elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then login ; build magma-docker
 elif [[ $1 == "magma-virtualbox" || $1 == "magma-virtualbox.json" ]]; then build magma-virtualbox
 
 elif [[ $1 == "generic-vmware" || $1 == "generic-vmware.json" ]]; then build generic-vmware
-elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt.json" ]]; then build generic-libvirt
 elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv.json" ]]; then build generic-hyperv
+elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt.json" ]]; then build generic-libvirt
 elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox.json" ]]; then build generic-virtualbox
 
+elif [[ $1 == "lineage-vmware" || $1 == "lineage-vmware.json" ]]; then build lineage-vmware
 elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv.json" ]]; then build lineage-hyperv
+elif [[ $1 == "lineage-libvirt" || $1 == "lineage-libvirt.json" ]]; then build lineage-libvirt
+elif [[ $1 == "lineage-virtualbox" || $1 == "lineage-virtualbox.json" ]]; then build lineage-virtualbox
 
 # Build a specific box.
 elif [[ $1 == "box" ]]; then box $2
