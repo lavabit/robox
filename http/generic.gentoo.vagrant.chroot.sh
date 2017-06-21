@@ -51,6 +51,13 @@ cd /usr/portage
 emerge sys-kernel/gentoo-sources sys-boot/grub app-editors/vim app-admin/sudo \
 sys-apps/netplug sys-apps/dmidecode
 
+# If necessary, include the Hyper-V modules in the initramfs and then load them at boot.
+if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
+  echo 'MODULES_HYPERV="hv_vmbus hv_storvsc hv_balloon hv_netvsc hv_utils"' >> /usr/share/genkernel/arch/x86_64/modules_load
+  echo 'modules="hv_storvsc hv_netvsc hv_vmbus hv_utils hv_balloon"' >> /etc/conf.d/modules
+  sed -ri "s/(HWOPTS='.*)'/\1 hyperv'/" /usr/share/genkernel/defaults/initrd.defaults
+fi
+
 echo 'Compiling Kernel'
 cd /usr/src/linux
 cat <<-EOF > .config
@@ -1285,6 +1292,7 @@ CONFIG_BLK_DEV_SR=y
 CONFIG_BLK_DEV_SR_VENDOR=y
 CONFIG_CHR_DEV_SG=y
 CONFIG_CHR_DEV_SCH=y
+CONFIG_SCSI_ENCLOSURE=m
 CONFIG_SCSI_CONSTANTS=y
 CONFIG_SCSI_LOGGING=y
 CONFIG_SCSI_SCAN_ASYNC=y
@@ -1327,6 +1335,7 @@ CONFIG_SCSI_MPT2SAS=y
 CONFIG_SCSI_BUSLOGIC=y
 CONFIG_VMWARE_PVSCSI=y
 CONFIG_HYPERV_STORAGE=y
+CONFIG_SCSI_SYM53C8XX_2=m
 CONFIG_SCSI_EATA=m
 CONFIG_SCSI_EATA_TAGGED_QUEUE=y
 CONFIG_SCSI_EATA_LINKED_COMMANDS=y
@@ -1337,7 +1346,11 @@ CONFIG_SCSI_PMCRAID=y
 CONFIG_SCSI_VIRTIO=y
 CONFIG_SCSI_LOWLEVEL_PCMCIA=y
 # CONFIG_SCSI_DH is not set
-# CONFIG_SCSI_OSD_INITIATOR is not set
+CONFIG_SCSI_OSD_INITIATOR=m
+CONFIG_SCSI_OSD_ULD=m
+CONFIG_SCSI_OSD_DPRINT_SENSE=1
+# CONFIG_SCSI_OSD_DEBUG is not set
+CONFIG_TCM_PSCSI=m
 CONFIG_ATA=y
 # CONFIG_ATA_NONSTANDARD is not set
 CONFIG_ATA_VERBOSE_ERROR=y
@@ -1428,7 +1441,7 @@ CONFIG_PATA_SCH=y
 # Generic fallback / legacy drivers
 #
 # CONFIG_PATA_ACPI is not set
-# CONFIG_ATA_GENERIC is not set
+CONFIG_ATA_GENERIC=y
 # CONFIG_PATA_LEGACY is not set
 CONFIG_MD=y
 CONFIG_BLK_DEV_MD=y
@@ -1517,7 +1530,6 @@ CONFIG_VMXNET3=m
 # CONFIG_ISDN is not set
 CONFIG_XEN_NETDEV_FRONTEND=y
 CONFIG_XEN_NETDEV_BACKEND=m
-CONFIG_VMXNET3=m
 CONFIG_HYPERV_NET=m
 
 #
@@ -2751,7 +2763,7 @@ CONFIG_DMADEVICES=y
 CONFIG_DMA_ACPI=y
 # CONFIG_AUXDISPLAY is not set
 # CONFIG_UIO is not set
-# CONFIG_VFIO is not set
+CONFIG_VFIO=y
 CONFIG_VIRT_DRIVERS=y
 
 #
@@ -2767,7 +2779,7 @@ CONFIG_VIRTIO_RING=y
 #
 # Microsoft Hyper-V guest support
 #
-CONFIG_HYPERV=m
+CONFIG_HYPERV=y
 CONFIG_HYPERV_UTILS=m
 CONFIG_HYPERV_BALLOON=m
 
@@ -2897,8 +2909,8 @@ CONFIG_EFI_RUNTIME_WRAPPERS=y
 # File systems
 #
 CONFIG_DCACHE_WORD_ACCESS=y
-# CONFIG_EXT2_FS is not set
-# CONFIG_EXT3_FS is not set
+CONFIG_EXT2_FS=y
+CONFIG_EXT3_FS=y
 CONFIG_EXT4_FS=y
 CONFIG_EXT4_USE_FOR_EXT23=y
 CONFIG_EXT4_FS_POSIX_ACL=y
@@ -2910,7 +2922,7 @@ CONFIG_JBD2=y
 CONFIG_FS_MBCACHE=y
 # CONFIG_REISERFS_FS is not set
 # CONFIG_JFS_FS is not set
-# CONFIG_XFS_FS is not set
+CONFIG_XFS_FS=y
 # CONFIG_GFS2_FS is not set
 # CONFIG_BTRFS_FS is not set
 # CONFIG_NILFS2_FS is not set
@@ -2933,7 +2945,7 @@ CONFIG_QFMT_V2=y
 CONFIG_QUOTACTL=y
 CONFIG_QUOTACTL_COMPAT=y
 CONFIG_AUTOFS4_FS=y
-# CONFIG_FUSE_FS is not set
+CONFIG_FUSE_FS=m
 # CONFIG_OVERLAY_FS is not set
 
 #
@@ -2957,7 +2969,7 @@ CONFIG_MSDOS_FS=y
 CONFIG_VFAT_FS=y
 CONFIG_FAT_DEFAULT_CODEPAGE=437
 CONFIG_FAT_DEFAULT_IOCHARSET="iso8859-1"
-# CONFIG_NTFS_FS is not set
+CONFIG_NTFS_FS is not set=y
 
 #
 # Pseudo filesystems
@@ -2988,7 +3000,7 @@ CONFIG_MISC_FILESYSTEMS=y
 # CONFIG_LOGFS is not set
 # CONFIG_CRAMFS is not set
 # CONFIG_SQUASHFS is not set
-# CONFIG_VXFS_FS is not set
+CONFIG_VXFS_FS=y
 # CONFIG_MINIX_FS is not set
 # CONFIG_OMFS_FS is not set
 # CONFIG_HPFS_FS is not set
