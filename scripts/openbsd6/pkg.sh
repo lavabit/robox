@@ -1,3 +1,3 @@
-#!/bin/bash -eux
+#!/bin/sh
 
-pkg_add -I vim curl wget sudo
+pkg_add -I curl wget bash sudo-- vim--no_x11
