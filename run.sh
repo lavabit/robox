@@ -74,6 +74,30 @@ function start() {
   fi
 }
 
+# Print the current URL and SHA hash for install discs which are updated frequently.
+function isos {
+  tput setaf 2; printf "\nArch\n\n"; tput sgr0;
+  URL="https://mirrors.kernel.org/archlinux/iso/latest/"
+  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
+  URL="${URL}${ISO}"
+  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+  printf "${URL}\n${SHA}\n\n"
+
+  tput setaf 2; printf "\nGentoo\n\n"; tput sgr0;
+  URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
+  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}\.iso" | uniq`
+  URL="${URL}${ISO}"
+  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+  printf "${URL}\n${SHA}\n\n"
+
+  tput setaf 2; printf "\nOpenSUSE\n\n"; tput sgr0;
+  URL="https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/"
+  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "openSUSE\-Leap\-42\.3\-NET\-x86\_64\-Build[0-9]{4}\-Media.iso" | uniq`
+  URL="${URL}${ISO}"
+  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+  printf "${URL}\n${SHA}\n\n"
+}
+
 # Verify all of the ISO locations are still valid.
 function verify_url {
 
@@ -377,6 +401,7 @@ function all() {
 
 # The generic functions.
 if [[ $1 == "start" ]]; then start
+elif [[ $1 == "isos" ]]; then isos
 elif [[ $1 == "links" ]]; then links
 elif [[ $1 == "sums" ]]; then sums
 elif [[ $1 == "validate" ]]; then validate
