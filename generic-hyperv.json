@@ -344,7 +344,11 @@
         },
         {
             "scripts": [
-                "scripts/openbsd6/pkg.sh"
+                "scripts/freebsd11/pkg.sh",
+                "scripts/openbsd6/vagrant.sh",
+                "scripts/openbsd6/virtualbox.sh",
+                "scripts/openbsd6/vmware.sh",
+                "scripts/openbsd6/qemu.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",
