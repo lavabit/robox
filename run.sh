@@ -7,6 +7,7 @@
 
 # Status
 # freebsd on hyperv is using 11.1 beta2
+# magma-arch (and probably generic-arch) on hyperv doesn't reboot properly after installing.
 # freebsd/centos7/oracle7 on hyperv doesn't eject cd before rebooting
 # magma/generic debian8 might try to upgrade to debian9
 # debian deosn't seem to install hyperv daemons using post install script
@@ -23,7 +24,6 @@ cd $BASE
 # Credentials and tokens.
 source .credentialsrc
 export VERSION="1.0.1"
-# export VERSION="1.0.1"
 export AGENT="Vagrant/1.9.5 (+https://www.vagrantup.com; ruby2.2.5):"
 
 # The list of packer config files.
@@ -292,7 +292,7 @@ function available() {
       BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
 
       PROVIDER="hyperv"
-      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -302,7 +302,7 @@ function available() {
       fi
 
       PROVIDER="libvirt"
-      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -312,7 +312,7 @@ function available() {
       fi
 
       PROVIDER="virtualbox"
-      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -322,7 +322,7 @@ function available() {
       fi
 
       PROVIDER="vmware_desktop"
-      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${ATLAS_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -334,12 +334,75 @@ function available() {
 
     # Get the totla number of boxes.
     let TOTAL=${#LIST[@]}*4
+    let FOUND=${TOTAL}-${MISSING}
 
     # Let the user know how many boxes were missing.
     if [ $MISSING -eq 0 ]; then
       printf "\nAll ${TOTAL} of the boxes are available...\n\n"
     else
-      printf "\nOf the ${TOTAL} boxes defined, $MISSING are unavailable from the vagrant cloud...\n\n"
+      printf "\nOf the ${TOTAL} boxes defined, and ${FOUND} are privately available, while ${MISSING} are unavailable...\n\n"
+    fi
+}
+
+function public() {
+
+    MISSING=0
+    LIST=($TAGS)
+
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+      ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
+      BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
+
+      PROVIDER="hyperv"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      fi
+
+      PROVIDER="libvirt"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      fi
+
+      PROVIDER="virtualbox"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      fi
+
+      PROVIDER="vmware_desktop"
+      curl --head --silent --location --user-agent '${AGENT}' "https://vagrantcloud.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}/provider/${PROVIDER}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      fi
+    done
+
+    # Get the totla number of boxes.
+    let TOTAL=${#LIST[@]}*4
+    let FOUND=${TOTAL}-${MISSING}
+
+    # Let the user know how many boxes were missing.
+    if [ $MISSING -eq 0 ]; then
+      printf "\nAll ${TOTAL} of the boxes are available...\n\n"
+    else
+      printf "\nOf the ${TOTAL} boxes defined, and ${FOUND} are publicly available, while ${MISSING} are unavailable...\n\n"
     fi
 }
 
@@ -386,28 +449,35 @@ function lineage() {
   fi
 }
 
+function builder() {
+  magma
+  generic
+  lineage
+}
+
 function all() {
   links
   validate
 
   start
-  magma
-  generic
-  lineage
+  builder
 
   for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done
 }
 
-
-# The generic functions.
+# The stage functions.
 if [[ $1 == "start" ]]; then start
-elif [[ $1 == "isos" ]]; then isos
 elif [[ $1 == "links" ]]; then links
-elif [[ $1 == "sums" ]]; then sums
 elif [[ $1 == "validate" ]]; then validate
-elif [[ $1 == "missing" ]]; then missing
-elif [[ $1 == "available" ]]; then available
+elif [[ $1 == "build" ]]; then builder
 elif [[ $1 == "cleanup" ]]; then cleanup
+
+# The helper functions.
+elif [[ $1 == "isos" ]]; then isos
+elif [[ $1 == "sums" ]]; then sums
+elif [[ $1 == "missing" ]]; then missing
+elif [[ $1 == "public" ]]; then public
+elif [[ $1 == "available" ]]; then available
 
 # The group builders.
 elif [[ $1 == "magma" ]]; then magma
@@ -441,7 +511,10 @@ elif [[ $1 == "all" ]]; then all
 else
   echo ""
   echo " Stages"
-  echo $"  `basename $0` {start|sunms|links|validate|missing|available|cleanup} or "
+  echo $"  `basename $0` {start|links|validate|build|cleanup} or "
+  echo ""
+  echo " Helpers"
+  echo $"  `basename $0` {isos|sunms|missing|public|available} or "
   echo ""
   echo " Groups"
   echo $"  `basename $0` {magma|generic|lineage}"
@@ -456,6 +529,3 @@ else
   echo ""
   exit 2
 fi
-
-# Upload to the website.
-#pscp -i ~/Data/Putty/root-virtual.lavabit.com.priv.ppk magma-centos-*-0.*.box root@osheana.virtual.lavabit.com:/var/www/html/downloads/
