@@ -22,7 +22,7 @@ cd $BASE
 
 # Credentials and tokens.
 source .credentialsrc
-export VERSION="0.9.14"
+export VERSION="1.0.1"
 # export VERSION="1.0.1"
 export AGENT="Vagrant/1.9.5 (+https://www.vagrantup.com; ruby2.2.5):"
 
