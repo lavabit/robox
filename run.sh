@@ -8,7 +8,6 @@
 # Status
 # FreeBND on Hyper-V is using 11.1 beta2.
 # Failed to reboot without cdrom:
-#  archlinux?
 #  fedora
 #  freebsd
 #  oracle7
