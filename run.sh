@@ -64,10 +64,10 @@ function start() {
 
   # Confirm the VirtualBox kernel modules loaded.
   if [ -f /usr/lib/virtualbox/vboxdrv.sh ]; then
-    /usr/lib/virtualbox/vboxdrv.sh status | grep "VirtualBox kernel modules \(.*\) are loaded."
+    /usr/lib/virtualbox/vboxdrv.sh status | grep --color=none "VirtualBox kernel modules \(.*\) are loaded."
     if [ $? != 0 ]; then
       sudo /usr/lib/virtualbox/vboxdrv.sh setup
-      tput setaf 1; tput bold; printf "\n\nthe virtualbox kernel modules failed to load properly...\n\n"; tput sgr0
+      tput setaf 1; tput bold; printf "\n\nThe virtualbox kernel modules failed to load properly...\n\n"; tput sgr0
       for i in 1 2 3; do printf "\a"; sleep 1; done
       exit 1
     fi
