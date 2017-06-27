@@ -37,6 +37,6 @@ swapoff "${device}1"
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" ]]; then
-  umount --force --detach-loop --lazy /dev/sr0
+  umount --lazy /run/archiso/bootmnt
   eject /dev/cdrom
 fi
