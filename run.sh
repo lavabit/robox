@@ -13,6 +13,7 @@
 #  fedora
 #  freebsd
 #  oracle7
+#  gentoo
 # Failed to setup Hyper-V daemons:
 #  debian
 # OpenBSD needs guest agent install scripts.
