@@ -6,11 +6,15 @@
 # Description: Used to build various virtual machines using packer.
 
 # Status
-# freebsd on hyperv is using 11.1 beta2
-# magma-arch (and probably generic-arch) on hyperv doesn't reboot properly after installing.
-# freebsd/centos7/oracle7 on hyperv doesn't eject cd before rebooting
-# magma/generic debian8 might try to upgrade to debian9
-# debian deosn't seem to install hyperv daemons using post install script
+# FreeBND on Hyper-V is using 11.1 beta2.
+# Failed to reboot without cdrom:
+#  archlinux
+#  debian
+#  fedora
+#  freebsd
+#  oracle7
+# Failed to setup Hyper-V daemons:
+#  debian
 # OpenBSD needs guest agent install scripts.
 
 # Limit the number of cpus packer will use.
