@@ -10,6 +10,12 @@ error() {
 # To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
 
+# Disable periodic activities of apt
+printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
+
+# Keep the daily apt updater from deadlocking our installs.
+systemctl stop apt-daily.service
+
 # Remove the CDROM as a media source.
 sed -i -e "/cdrom:/d" /etc/apt/sources.list
 
