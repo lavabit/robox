@@ -600,7 +600,7 @@
             "output_directory": "output/magma-arch-libvirt",
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
-            "boot_wait": "20s",
+            "boot_wait": "30s",
             "boot_command": [
                 "<enter><wait10><wait10><wait10>",
                 "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.arch.vagrant{,.chroot}.sh'<enter><wait>",
