@@ -26,7 +26,7 @@ cd $BASE
 
 # Credentials and tokens.
 source .credentialsrc
-export VERSION="1.0.2"
+export VERSION="1.0.3"
 export AGENT="Vagrant/1.9.5 (+https://www.vagrantup.com; ruby2.2.5):"
 
 # The list of packer config files.

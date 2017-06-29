@@ -378,7 +378,7 @@ groupadd adbusers
 usermod -a -G adbusers root
 usermod -a -G adbusers vagrant
 chmod 644 /etc/udev/rules.d/51-android.rules
-chcon "system_u:object_r:udev_rules_t:s0" /etc/udev/rules.d/51-android.rules
+# chcon "system_u:object_r:udev_rules_t:s0" /etc/udev/rules.d/51-android.rules
 
 cat <<-EOF > /home/vagrant/lineage-build.sh
 #!/bin/bash
