@@ -720,7 +720,7 @@
             "name": "generic-arch-virtualbox",
             "vm_name": "generic-arch-virtualbox",
             "output_directory": "output/generic-arch-virtualbox",
-            "boot_wait": "20s",
+            "boot_wait": "30s",
             "boot_command": [
                 "<enter><wait10><wait10><wait10>",
                 "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.vagrant{,.chroot}.sh'<enter><wait>",
