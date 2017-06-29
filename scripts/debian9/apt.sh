@@ -11,7 +11,7 @@ error() {
 export DEBIAN_FRONTEND=noninteractive
 
 # Remove the CDROM as a media source.
-sed -i -e "/cdrom:/d" /etc/apt/sources.lists
+sed -i -e "/cdrom:/d" /etc/apt/sources.list
 
 # Ensure the server includes any necessary updates.
 apt-get --assume-yes update; error
