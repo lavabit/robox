@@ -35,9 +35,10 @@ if [[ $VIRT == "Microsoft HyperV" ]]; then
     dnf --assumeyes install eject hyperv-daemons
     systemctl enable hypervvssd.service
     systemctl enable hypervkvpd.service
-    (shutdown -r +1) &
-    umount --force --lazy --detach-loop /dev/sr0
-    # eject --cdrom /dev/cdrom
+    sync; eject -m /dev/cdrom
+    # umount --force --lazy --detach-loop /dev/sr0
+    echo 1 > /proc/sys/kernel/sysrq
+    echo b > /proc/sysrq-trigger
 fi
 
 %end
