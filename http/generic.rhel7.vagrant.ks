@@ -22,7 +22,7 @@ autopart
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
 
-reboot --eject
+reboot
 
 %packages --instLangs=en --nobase
 @core
@@ -47,13 +47,10 @@ chmod 0440 /etc/sudoers.d/vagrant
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" ]]; then
-
-    # Check whether the install media is mounted, and if necessary mount it.
     if [ ! -f /media/media.repo ]; then
       mount /dev/cdrom /media
     fi
 
-    # Setup the install DVD as the yum repo location.
     cp /media/media.repo /etc/yum.repos.d/media.repo
     printf "enabled=1\n" >> /etc/yum.repos.d/media.repo
     printf "baseurl=file:///media/\n" >> /etc/yum.repos.d/media.repo
@@ -61,7 +58,8 @@ if [[ $VIRT == "Microsoft HyperV" ]]; then
     yum --assumeyes install eject hyperv-daemons
     systemctl enable hypervkvpd.service
     systemctl enable hypervvssd.service
-#    eject /dev/cdrom
+
+    rm --force /etc/yum.repos.d/media.repo
 fi
 
 %end
