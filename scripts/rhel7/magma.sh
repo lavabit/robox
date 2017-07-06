@@ -2,6 +2,11 @@
 #
 # Setup the the box. This runs as root
 
+# Check whether the install media is mounted, and if necessary mount it.
+if [ ! -f /media/media.repo ]; then
+  mount /dev/cdrom /media
+fi
+
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
 else

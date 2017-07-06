@@ -7,6 +7,13 @@ error() {
         fi
 }
 
+# Check whether the install media is mounted, and if necessary mount it.
+if [ ! -f /media/media.repo ]; then
+  mount /dev/cdrom /media; error
+fi
+
+yum --assumeyes install dmidecode; error
+
 # Bail if we are not running inside VirtualBox.
 if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
     exit 0
