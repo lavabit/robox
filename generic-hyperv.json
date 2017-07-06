@@ -189,7 +189,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rhel7-libvirt"
+                "generic-rhel7-hyperv"
             ]
         },
         {
@@ -210,7 +210,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rhel7-libvirt"
+                "generic-rhel7-hyperv"
             ]
         },
         {
