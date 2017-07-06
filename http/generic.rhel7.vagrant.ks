@@ -22,7 +22,7 @@ autopart
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
 
-reboot
+reboot --eject
 
 %packages --instLangs=en --nobase
 @core
@@ -44,6 +44,11 @@ echo "vagrant" | passwd --stdin vagrant
 sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/vagrant
 chmod 0440 /etc/sudoers.d/vagrant
+
+# Duplicate the install media so the DVD can be ejected.
+mount /dev/cdrom /mnt/
+cp --recursive /mnt/* /media/
+umount /mnt/
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" ]]; then
