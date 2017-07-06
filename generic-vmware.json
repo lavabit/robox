@@ -177,6 +177,42 @@
             ]
         },
         {
+            "type": "shell",
+            "scripts": [
+                "scripts/rhel7/fixdns.sh",
+                "scripts/rhel7/yum.sh",
+                "scripts/rhel7/base.sh",
+                "scripts/rhel7/reboot.sh"
+            ],
+            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rhel7-vmware"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/rhel7/kernel.sh",
+                "scripts/rhel7/virtualbox.sh",
+                "scripts/rhel7/vmware.sh",
+                "scripts/rhel7/qemu.sh",
+                "scripts/rhel7/vagrant.sh",
+                "scripts/rhel7/tuning.sh",
+                "scripts/rhel7/sshd.sh",
+                "scripts/rhel7/cleanup.sh",
+                "scripts/rhel7/unyum.sh"
+            ],
+            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rhel7-vmware"
+            ]
+        },
+        {
             "scripts": [
                 "scripts/gentoo/emerge.sh"
             ],
@@ -669,6 +705,38 @@
         },
         {
             "type": "vmware-iso",
+            "name": "generic-rhel7-vmware",
+            "vm_name": "generic-rhel7-vmware",
+            "vmdk_name": "generic-rhel7-vmware",
+            "output_directory": "output/generic-rhel7-vmware",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
+            ],
+            "disk_size": 32768,
+            "disk_type_id": "0",
+            "vmx_data": {
+                "memsize": "2048",
+                "numvcpus": "2",
+                "cpuid.coresPerSocket": "1"
+            },
+            "guest_os_type": "rhel-64",
+            "http_directory": "http",
+            "headless": true,
+            "vnc_disable_password": true,
+            "iso_url": "res/media/rhel-server-7.3-x86_64-dvd.iso",
+            "iso_checksum": "120acbca7b3d55465eb9f8ef53ad7365f2997d42d4f83d7cc285bf5c71e1131f",
+            "iso_checksum_type": "sha256",
+            "skip_compaction": true,
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "tools_upload_flavor": "linux"
+        },
+        {
+            "type": "vmware-iso",
             "name": "generic-arch-vmware",
             "vm_name": "generic-arch-vmware",
             "vmdk_name": "generic-arch-vmware",
@@ -1113,6 +1181,15 @@
                     "generic-centos7-vmware"
                 ],
                 "box_tag": "generic/centos7",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-rhel7-vmware"
+                ],
+                "box_tag": "generic/rhel7",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
