@@ -1,5 +1,10 @@
 #!/bin/bash -eux
 
+# Check whether the install media is mounted, and if necessary mount it.
+if [ ! -f /media/media.repo ]; then
+  mount /dev/cdrom /media
+fi
+
 # The postfix server for message relays. The checkpolicy, policycoreutils and the-
 # policycoreutils-python packages are needed to compile the selinux module below.
 yum --assumeyes install postfix checkpolicy policycoreutils policycoreutils-python

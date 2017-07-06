@@ -7,17 +7,18 @@ error() {
         fi
 }
 
+# Check whether the install media is mounted, and if necessary mount it.
+if [ ! -f /media/media.repo ]; then
+  mount /dev/cdrom /media; error
+fi
 
-# Now that the system is running on the updated kernel, we can remove the 
+# Now that the system is running on the updated kernel, we can remove the
 # old kernel(s) from the system.
 if [[ `rpm -q kernel | wc -l` != 1 ]]; then
   package-cleanup --quiet --assumeyes --oldkernels --count=1; error
 fi
 
-# Now that the system is running atop the updated kernel, we can install the 
-# development files for the kernel. These files are required to compile the 
+# Now that the system is running atop the updated kernel, we can install the
+# development files for the kernel. These files are required to compile the
 # virtualization kernel modules later in the provisioning process.
 yum --quiet --assumeyes install kernel-tools kernel-devel kernel-headers; error
-
-
-

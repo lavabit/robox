@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check whether the install media is mounted, and if necessary mount it.
+if [ ! -f /media/media.repo ]; then
+  mount /dev/cdrom /media
+fi
+
+yum --assumeyes install dmidecode
+
 # Configure tuned
 yum --quiet --assumeyes install tuned
 systemctl enable tuned
