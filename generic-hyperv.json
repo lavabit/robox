@@ -178,6 +178,42 @@
             ]
         },
         {
+            "type": "shell",
+            "scripts": [
+                "scripts/rhel7/fixdns.sh",
+                "scripts/rhel7/yum.sh",
+                "scripts/rhel7/base.sh",
+                "scripts/rhel7/reboot.sh"
+            ],
+            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rhel7-libvirt"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/rhel7/kernel.sh",
+                "scripts/rhel7/virtualbox.sh",
+                "scripts/rhel7/vmware.sh",
+                "scripts/rhel7/qemu.sh",
+                "scripts/rhel7/vagrant.sh",
+                "scripts/rhel7/tuning.sh",
+                "scripts/rhel7/sshd.sh",
+                "scripts/rhel7/cleanup.sh",
+                "scripts/rhel7/unyum.sh"
+            ],
+            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rhel7-libvirt"
+            ]
+        },
+        {
             "scripts": [
                 "scripts/gentoo/emerge.sh"
             ],
@@ -656,6 +692,35 @@
         },
         {
             "type": "hyperv-iso",
+            "name": "generic-rhel7-hyperv",
+            "vm_name": "generic-rhel7-hyperv",
+            "output_directory": "output/generic-rhel7-hyperv",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
+            ],
+            "disk_size": 32768,
+            "ram_size": 1024,
+            "cpu": 1,
+            "http_directory": "http",
+            "iso_url": "res/media/rhel-server-7.3-x86_64-dvd.iso",
+            "iso_checksum": "120acbca7b3d55465eb9f8ef53ad7365f2997d42d4f83d7cc285bf5c71e1131f",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "generation": 1,
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": true,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        },
+        {
+            "type": "hyperv-iso",
             "name": "generic-arch-hyperv",
             "vm_name": "generic-arch-hyperv",
             "output_directory": "output/generic-arch-hyperv",
@@ -1070,6 +1135,15 @@
                     "generic-centos7-hyperv"
                 ],
                 "box_tag": "generic/centos7",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-rhel7-hyperv"
+                ],
+                "box_tag": "generic/rhel7",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
