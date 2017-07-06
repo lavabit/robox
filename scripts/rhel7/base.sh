@@ -12,12 +12,6 @@ if [ ! -f /media/media.repo ]; then
   mount /dev/cdrom /media; error
 fi
 
-# Disable the broken repositories.
-truncate --size=0 /etc/yum.repos.d/CentOS-Media.repo /etc/yum.repos.d/CentOS-Vault.repo
-
-# Tell yum to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
-printf "\nretries=128\ndeltarpm=0\nmetadata_expire=0\nmirrorlist_expire=0\n" >> /etc/yum.conf
-
 # Disable IPv6 or yum will resolve mirror names to IPv6 address and then fail to connect with them.
 sysctl net.ipv6.conf.all.disable_ipv6=1
 
@@ -27,22 +21,8 @@ printf "\nnameserver 4.2.2.1\n" > /etc/resolv.conf
 # Set the local hostname to resolve properly.
 printf "\n127.0.0.1	magma.builder\n\n" >> /etc/hosts
 
-# Import the update key.
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-
-# Update the base install first.
-yum --quiet --assumeyes update; error
-
 # Packages needed beyond a minimal install to build and run magma.
 yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive deltarpm; error
-
-# Install the libbsd packages from the EPEL repository, which DSPAM relies upon for the strl functions.
-# The entropy daemon is optional, but improves the availability of entropy, which makes magma launch
-# and complete her unit tests faster.
-yum --quiet --assumeyes --enablerepo=extras install epel-release; error
-
-# Import the EPEL key.
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
 
 # Grab the required packages from the EPEL repo.
 yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
