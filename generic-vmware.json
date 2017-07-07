@@ -720,7 +720,7 @@
                 "numvcpus": "2",
                 "cpuid.coresPerSocket": "1"
             },
-            "guest_os_type": "rhel-64",
+            "guest_os_type": "rhel7-64",
             "http_directory": "http",
             "headless": true,
             "vnc_disable_password": true,
