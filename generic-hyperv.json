@@ -826,13 +826,13 @@
         },
         {
             "type": "hyperv-iso",
-            "name": "generic-fedora25-hyperv",
-            "vm_name": "generic-fedora25-hyperv",
-            "output_directory": "output/generic-fedora25-hyperv",
+            "name": "generic-fedora26-hyperv",
+            "vm_name": "generic-fedora26-hyperv",
+            "output_directory": "output/generic-fedora26-hyperv",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> ",
-                "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora25.vagrant.ks ",
+                "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora26.vagrant.ks ",
                 "biosdevname=0 ",
                 "net.ifnames=0 ",
                 "<enter>"
