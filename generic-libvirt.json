@@ -361,6 +361,48 @@
                 "generic-fedora25-libvirt"
             ]
         },
+
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora26/fixdns.sh",
+                "scripts/fedora26/dnf.sh"
+            ],
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora26-libvirt"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora26/base.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora26-libvirt"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora26/kernel.sh",
+                "scripts/fedora26/virtualbox.sh",
+                "scripts/fedora26/vmware.sh",
+                "scripts/fedora26/qemu.sh",
+                "scripts/fedora26/vagrant.sh",
+                "scripts/fedora26/tuning.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora26-libvirt"
+            ]
+        },
         {
             "scripts": [
                 "scripts/freebsd11/pkg.sh",
@@ -852,6 +894,47 @@
         },
         {
             "type": "qemu",
+            "name": "generic-fedora26-libvirt",
+            "vm_name": "generic-fedora26-libvirt",
+            "output_directory": "output/generic-fedora26-libvirt",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> ",
+                "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora26.vagrant.ks ",
+                "biosdevname=0 ",
+                "net.ifnames=0 ",
+                "<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": 32768,
+            "disk_interface": "virtio",
+            "disk_compression": true,
+            "net_device": "virtio-net",
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=2,sockets=2,cores=1,threads=1"
+                ]
+            ],
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.kernel.org/fedora/releases/26/Server/x86_64/iso/Fedora-Server-netinst-x86_64-26-1.5.iso",
+            "iso_checksum": "e260921ef5c7bd5ee2a7b2f2f1156af6483014c73984e4cf37f2b6690e0155e5",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
             "name": "generic-debian8-libvirt",
             "vm_name": "generic-debian8-libvirt",
             "output_directory": "output/generic-debian8-libvirt",
@@ -1319,6 +1402,15 @@
                     "generic-fedora25-libvirt"
                 ],
                 "box_tag": "generic/fedora25",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-fedora26-libvirt"
+                ],
+                "box_tag": "generic/fedora26",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
