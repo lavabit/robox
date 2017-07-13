@@ -27,10 +27,10 @@ sed -i -e "s/IPV6_PEERROUTES=yes/IPV6_PEERROUTES=no/g" /etc/sysconfig/network-sc
 systemctl disable remote-fs.target
 
 # Disable kernel dumping.
-systemctl disable kdump.service
+# systemctl disable kdump.service
 
 # Cleanup the rpmnew file.
-mv --force /etc/nsswitch.conf.rpmnew /etc/nsswitch.conf
+# mv --force /etc/nsswitch.conf.rpmnew /etc/nsswitch.conf
 
 # Create the clamav user to avoid spurious errors.
 useradd clamav
