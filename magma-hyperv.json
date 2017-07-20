@@ -863,7 +863,7 @@
             "output_directory": "output/magma-freebsd11-hyperv",
             "boot_wait": "5s",
             "boot_command": [
-                "<enter><wait10><spacebar><wait5>",
+                "<enter><wait5><spacebar><wait5>",
                 "<esc><wait>",
                 "boot -s<wait>",
                 "<enter><wait>",
@@ -873,7 +873,10 @@
                 "mdmfs -s 100m md2 /mnt<enter><wait5>",
                 "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
                 "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait10>",
-                "bsdinstall script /tmp/installerconfig && (sh 'shutdown -r +1') && cdcontrol -f /dev/cd0 eject && reboot<enter><wait>"
+                "bsdinstall script /tmp/installerconfig<wait><enter>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
+                "cdcontrol -f /dev/cd0<wait><enter>",
+                "reboot<enter><wait>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
