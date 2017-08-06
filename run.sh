@@ -26,8 +26,8 @@ cd $BASE
 
 # Credentials and tokens.
 source .credentialsrc
-export VERSION="1.1.0"
-export AGENT="Vagrant/1.9.5 (+https://www.vagrantup.com; ruby2.2.5):"
+export VERSION="1.2.0"
+export AGENT="Vagrant/1.9.7 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # The list of packer config files.
 FILES="magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
