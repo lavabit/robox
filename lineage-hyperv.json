@@ -92,8 +92,8 @@
                 "<enter>"
             ],
             "disk_size": 98304,
-            "ram_size": 1024,
-            "cpu": 1,
+            "ram_size": 2048,
+            "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.3/ubuntu-16.04.3-server-amd64.iso",
             "iso_checksum": "a06cd926f5855d4f21fb4bc9978a35312f815fbda0d0ef7fdc846861f4fc4600",
