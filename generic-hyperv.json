@@ -544,7 +544,7 @@
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/oracle/OL7/u3/x86_64/OracleLinux-R7-U3-Server-x86_64-dvd.iso",
@@ -576,7 +576,7 @@
                 "<enter><wait>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64.iso",
@@ -615,7 +615,7 @@
                 "umount /dev/loop0 && umount /dev/sr0 && eject /dev/cdrom && reboot<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-vanilla-3.5.2-x86_64.iso",
@@ -654,7 +654,7 @@
                 "umount /dev/loop0 && umount /dev/sr0 && eject /dev/cdrom && reboot<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.6/releases/x86_64/alpine-virt-3.6.2-x86_64.iso",
@@ -683,7 +683,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
@@ -712,7 +712,7 @@
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/centos/7.3.1611/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
@@ -741,7 +741,7 @@
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "res/media/rhel-server-7.3-x86_64-dvd.iso",
@@ -772,7 +772,7 @@
                 "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/archlinux/iso/latest/archlinux-2017.08.01-x86_64.iso",
@@ -805,7 +805,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/fedora/releases/25/Server/x86_64/iso/Fedora-Server-netinst-x86_64-25-1.3.iso",
@@ -838,7 +838,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/fedora/releases/26/Server/x86_64/iso/Fedora-Server-netinst-x86_64-26-1.5.iso",
@@ -870,7 +870,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://caesar.ftp.acc.umu.se/cdimage/archive/8.8.0/amd64/iso-cd/debian-8.8.0-amd64-netinst.iso",
@@ -902,7 +902,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/debian-cd/9.1.0/amd64/iso-cd/debian-9.1.0-amd64-netinst.iso",
@@ -947,7 +947,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.3/ubuntu-16.04.3-server-amd64.iso",
@@ -984,7 +984,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "http://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
@@ -1021,7 +1021,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/17.04/ubuntu-17.04-server-amd64.iso",
@@ -1057,7 +1057,7 @@
                 "bash generic.gentoo.vagrant.sh<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20170803.iso",
@@ -1101,7 +1101,7 @@
                 "reboot<enter><wait>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.1/FreeBSD-11.1-RELEASE-amd64-disc1.iso",
@@ -1134,7 +1134,7 @@
                 "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 32768,
-            "ram_size": 2048,,
+            "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
             "iso_url": "https://ftp.usa.openbsd.org/pub/OpenBSD/6.1/amd64/cd61.iso",
