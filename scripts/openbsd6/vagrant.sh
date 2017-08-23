@@ -5,7 +5,7 @@ pkg_add -I sudo--
 
 # Setup the default user password and ensure the vagrant shell is bash.
 PASSWD=$(echo "vagrant" | encrypt -b 6) 
-adduser vagrant
+adduser -batch vagrant vagrant
 usermod -p $PASSWD vagrant
 chsh -s bash vagrant
 
