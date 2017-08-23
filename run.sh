@@ -26,7 +26,7 @@ cd $BASE
 
 # Credentials and tokens.
 source .credentialsrc
-export VERSION="1.2.0"
+export VERSION="1.2.1"
 export AGENT="Vagrant/1.9.7 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # The list of packer config files.
@@ -59,7 +59,7 @@ function start() {
   sudo sysctl net.ipv6.conf.all.disable_ipv6=1
 
   # Start the required services.
-  sudo systemctl restart vmtoolsd.service
+  # sudo systemctl restart vmtoolsd.service
   sudo systemctl restart vboxdrv.service
   sudo systemctl restart libvirtd.service
   sudo systemctl restart docker-latest.service
