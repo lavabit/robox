@@ -4,14 +4,17 @@
 pkg_add -I sudo--
 
 # Setup the default user password and ensure the vagrant shell is bash.
-echo 'vagrant' | pw useradd vagrant -h 0 -m
+PASSWD=$(echo "vagrant" | encrypt -b 6) 
+adduser vagrant
+usermod -p $PASSWD vagrant
 chsh -s bash vagrant
 
-cat <<EOF > /usr/local/etc/sudoers.d/vagrant
-Defaults:vagrant !requiretty
+#Defaults:vagrant !requiretty
+
+cat <<EOF > /etc/sudoers.d/vagrant
 vagrant ALL=(ALL) NOPASSWD: ALL
 EOF
-chmod 0440 /usr/local/etc/sudoers.d/vagrant
+chmod 0440 /etc/sudoers.d/vagrant
 
 # Create the vagrant user ssh directory.
 mkdir -pm 700 /home/vagrant/.ssh
