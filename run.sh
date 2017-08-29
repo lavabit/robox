@@ -16,6 +16,10 @@
 #  debian
 # OpenBSD needs guest agent install scripts.
 
+# Version Information
+export VERSION="1.2.5"
+export AGENT="Vagrant/1.9.7 (+https://www.vagrantup.com; ruby2.3.4):"
+
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
 
@@ -26,8 +30,6 @@ cd $BASE
 
 # Credentials and tokens.
 source .credentialsrc
-export VERSION="1.2.2"
-export AGENT="Vagrant/1.9.7 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # The list of packer config files.
 FILES="magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
