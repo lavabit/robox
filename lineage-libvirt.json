@@ -100,6 +100,9 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
+                    "--no-kvm"
+                ],
+                [
                     "-m",
                     "2048M"
                 ],
