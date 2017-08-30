@@ -539,7 +539,7 @@
             "name": "generic-oracle7-libvirt",
             "vm_name": "generic-oracle7-libvirt",
             "output_directory": "output/generic-oracle7-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -579,7 +579,7 @@
             "name": "generic-opensuse42-libvirt",
             "vm_name": "generic-opensuse42-libvirt",
             "output_directory": "output/generic-opensuse42-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -622,7 +622,7 @@
             "name": "generic-alpine35-libvirt",
             "vm_name": "generic-alpine35-libvirt",
             "output_directory": "output/generic-alpine35-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -670,7 +670,7 @@
             "name": "generic-alpine36-libvirt",
             "vm_name": "generic-alpine36-libvirt",
             "output_directory": "output/generic-alpine36-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "30s",
             "boot_command": [
@@ -718,7 +718,7 @@
             "name": "generic-centos6-libvirt",
             "vm_name": "generic-centos6-libvirt",
             "output_directory": "output/generic-centos6-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -758,7 +758,7 @@
             "name": "generic-centos7-libvirt",
             "vm_name": "generic-centos7-libvirt",
             "output_directory": "output/generic-centos7-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -798,7 +798,7 @@
             "name": "generic-rhel7-libvirt",
             "vm_name": "generic-rhel7-libvirt",
             "output_directory": "output/generic-rhel7-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -838,7 +838,7 @@
             "name": "generic-arch-libvirt",
             "vm_name": "generic-arch-libvirt",
             "output_directory": "output/generic-arch-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "30s",
             "boot_command": [
@@ -880,7 +880,7 @@
             "name": "generic-fedora25-libvirt",
             "vm_name": "generic-fedora25-libvirt",
             "output_directory": "output/generic-fedora25-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -924,7 +924,7 @@
             "name": "generic-fedora26-libvirt",
             "vm_name": "generic-fedora26-libvirt",
             "output_directory": "output/generic-fedora26-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -968,7 +968,7 @@
             "name": "generic-debian8-libvirt",
             "vm_name": "generic-debian8-libvirt",
             "output_directory": "output/generic-debian8-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -1011,7 +1011,7 @@
             "name": "generic-debian9-libvirt",
             "vm_name": "generic-debian9-libvirt",
             "output_directory": "output/generic-debian9-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -1054,7 +1054,7 @@
             "name": "generic-ubuntu1604-libvirt",
             "vm_name": "generic-ubuntu1604-libvirt",
             "output_directory": "output/generic-ubuntu1604-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -1110,7 +1110,7 @@
             "name": "generic-ubuntu1610-libvirt",
             "vm_name": "generic-ubuntu1610-libvirt",
             "output_directory": "output/generic-ubuntu1610-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -1158,7 +1158,7 @@
             "name": "generic-ubuntu1704-libvirt",
             "vm_name": "generic-ubuntu1704-libvirt",
             "output_directory": "output/generic-ubuntu1704-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -1206,7 +1206,7 @@
             "name": "generic-gentoo-libvirt",
             "vm_name": "generic-gentoo-libvirt",
             "output_directory": "output/generic-gentoo-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "5s",
             "boot_command": [
@@ -1253,7 +1253,7 @@
             "name": "generic-freebsd11-libvirt",
             "vm_name": "generic-freebsd11-libvirt",
             "output_directory": "output/generic-freebsd11-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "5s",
             "boot_command": [
@@ -1302,7 +1302,7 @@
             "name": "generic-openbsd6-libvirt",
             "vm_name": "generic-openbsd6-libvirt",
             "output_directory": "output/generic-openbsd6-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
