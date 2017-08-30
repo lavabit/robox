@@ -17,7 +17,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.2.5"
+export VERSION="1.2.6"
 export AGENT="Vagrant/1.9.7 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
@@ -157,10 +157,10 @@ function verify_json() {
 # Make sure the logging directory is avcailable. If it isn't, then create it.
 function verify_logdir {
 
-  if [ ! -d output ]; then
-    mkdir -p output/logs
-  elif [ ! -d output/logs ]; then
-    mkdir output/logs
+  if [ ! -d logs ]; then
+    mkdir -p logs
+  elif [ ! -d logs ]; then
+    mkdir logs
   fi
 }
 
@@ -168,9 +168,17 @@ function verify_logdir {
 function build() {
 
   verify_logdir
+  export INCREMENT=1
   export PACKER_LOG="1"
-  export TIMESTAMP=`date +"%s"`
-  export PACKER_LOG_PATH="$BASE/output/logs/$1-${TIMESTAMP}.txt"
+
+  while [ $INCREMENT != 0 ]; do
+    export PACKER_LOG_PATH="$BASE/logs/$1-${INCREMENT}.txt"
+    if [ ! -f $PACKER_LOG_PATH ]; then
+      let INCREMENT=0
+    else
+      let INCREMENT=$INCREMENT+1
+    fi
+  done
 
   packer build -on-error=cleanup -parallel=false $1.json
 
@@ -185,7 +193,7 @@ function box() {
 
   verify_logdir
   export PACKER_LOG="1"
-  export TIMESTAMP=`date +"%s"`
+  export TIMESTAMP=`date +"%Y%m%d.%I%M"`
 
   if [[ $OS == "Windows_NT" ]]; then
       export PACKER_LOG_PATH="$BASE/output/logs/magma-hyerpv-${TIMESTAMP}.txt"
@@ -412,7 +420,7 @@ function public() {
 }
 
 function cleanup() {
-  rm -rf packer_cache/ output/
+  rm -rf $BASE/packer_cache/ $BASE/output/ $BASE/logs/
 }
 
 function login() {

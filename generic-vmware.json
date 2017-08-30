@@ -548,7 +548,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "oraclelinux-64",
             "http_directory": "http",
@@ -583,7 +583,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "opensuse-64",
             "http_directory": "http",
@@ -623,7 +623,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "otherlinux-64",
             "http_directory": "http",
@@ -663,7 +663,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "otherlinux-64",
             "http_directory": "http",
@@ -695,7 +695,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -727,7 +727,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -759,7 +759,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "rhel7-64",
             "http_directory": "http",
@@ -793,7 +793,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "otherlinux-64",
             "skip_compaction": true,
@@ -829,7 +829,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "fedora-64",
             "skip_compaction": true,
@@ -865,7 +865,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "fedora-64",
             "skip_compaction": true,
@@ -900,7 +900,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "debian8-64",
             "skip_compaction": true,
@@ -935,7 +935,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "debian8-64",
             "skip_compaction": true,
@@ -983,7 +983,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": true,
@@ -1023,7 +1023,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": true,
@@ -1063,7 +1063,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": true,
@@ -1102,7 +1102,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1",
+                "cpuid.coresPerSocket": "2",
                 "vmci0.present": "TRUE"
             },
             "guest_os_type": "otherlinux-64",
@@ -1116,7 +1116,7 @@
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_wait_timeout": "7200s",
             "shutdown_command": "shutdown -hP now",
             "tools_upload_flavor": "linux"
         },
@@ -1144,7 +1144,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "freebsd-64",
             "skip_compaction": true,
@@ -1180,7 +1180,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "1"
+                "cpuid.coresPerSocket": "2"
             },
             "guest_os_type": "freeBSD-64",
             "skip_compaction": true,

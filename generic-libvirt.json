@@ -557,7 +557,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -597,7 +597,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -642,7 +642,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -687,7 +687,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -724,7 +724,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -761,7 +761,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -798,7 +798,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -837,7 +837,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -878,7 +878,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -919,7 +919,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -959,7 +959,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -999,7 +999,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1052,7 +1052,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1097,7 +1097,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1142,7 +1142,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1186,7 +1186,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1197,7 +1197,7 @@
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_wait_timeout": "7200s",
             "shutdown_command": "shutdown -hP now"
         },
         {
@@ -1232,7 +1232,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",
@@ -1273,7 +1273,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=2,sockets=2,cores=1,threads=1"
+                    "cpus=4,sockets=2,cores=2,threads=1"
                 ]
             ],
             "http_directory": "http",

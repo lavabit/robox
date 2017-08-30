@@ -554,7 +554,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Oracle_64",
@@ -597,7 +597,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "OpenSUSE_64",
@@ -645,7 +645,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Linux_64",
@@ -693,7 +693,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Linux_64",
@@ -733,7 +733,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -773,7 +773,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -813,7 +813,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -855,7 +855,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "ArchLinux_64",
@@ -899,7 +899,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Fedora_64",
@@ -943,7 +943,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Fedora_64",
@@ -986,7 +986,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Debian_64",
@@ -1029,7 +1029,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Debian_64",
@@ -1085,7 +1085,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1133,7 +1133,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1181,7 +1181,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1228,7 +1228,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Gentoo_64",
@@ -1240,7 +1240,7 @@
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_wait_timeout": "7200s",
             "shutdown_command": "shutdown -hP now",
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.26/VBoxGuestAdditions_5.1.26.iso",
             "guest_additions_sha256": "6df8c8ab6e7ac3a70a5e29116f8a5dcdb7dfbd0b226ef849a5cd9502e956b06f",
@@ -1277,7 +1277,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "FreeBSD_64",
@@ -1321,7 +1321,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "OpenBSD_64",
