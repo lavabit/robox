@@ -172,7 +172,7 @@ function build() {
   export TIMESTAMP=`date +"%s"`
   export PACKER_LOG_PATH="$BASE/output/logs/$1-${TIMESTAMP}.txt"
 
-  packer build -on-error=cleanup -parallel=true $1.json
+  packer build -on-error=cleanup -parallel=false $1.json
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
