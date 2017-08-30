@@ -24,22 +24,28 @@ fi
 # Whiteout root
 count=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')
 count=$(($count-1))
-dd if=/dev/zero of=/zerofill bs=1M count=$count || echo "dd exit code $? is suppressed"; sync
-rm --force /zerofill; sync
+dd if=/dev/zero of=/zerofill bs=1M count=$count || echo "dd exit code $? is suppressed"
+rm --force /zerofill
 
 # Whiteout /boot
 count=$(df --sync -kP /boot | tail -n1 | awk -F ' ' '{print $4}')
 count=$(($count-1))
-dd if=/dev/zero of=/boot/zerofill bs=1M count=$count || echo "dd exit code $? is suppressed"; sync
-rm --force /boot/zerofill; sync
+dd if=/dev/zero of=/boot/zerofill bs=1M count=$count || echo "dd exit code $? is suppressed"
+rm --force /boot/zerofill
 
-# Whiteout the swap partition (if it exists)
-swapuuid="`/sbin/blkid -o value -l -s UUID -t TYPE=swap`";
+# If blkid is installed it to locate the swap partition
+if [-f '/sbin/blkid' ]; then
+  swapuuid="`/sbin/blkid -o value -l -s UUID -t TYPE=swap`"
+else
+  swapuuid=""
+fi
+
+# Whiteout the swap partition
 if [ "x${swapuuid}" != "x" ]; then
-    swappart="`readlink -f /dev/disk/by-uuid/$swapuuid`";
-    /sbin/swapoff "$swappart";
-    dd if=/dev/zero of="$swappart" bs=1M || echo "dd exit code $? is suppressed"; sync
-    /sbin/mkswap -U "$swapuuid" "$swappart"; sync
+  swappart="`readlink -f /dev/disk/by-uuid/$swapuuid`"
+  /sbin/swapoff "$swappart"
+  dd if=/dev/zero of="$swappart" bs=1M || echo "dd exit code $? is suppressed"
+  /sbin/mkswap -U "$swapuuid" "$swappart"
 fi
 
 # Sync to ensure that the delete completes before we move to the shutdown phase.
