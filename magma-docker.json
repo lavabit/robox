@@ -87,7 +87,7 @@
             "name": "magma-docker",
             "vm_name": "magma-docker",
             "output_directory": "output/magma-docker",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -99,9 +99,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -127,7 +124,7 @@
             "name": "magma-centos-docker",
             "vm_name": "magma-centos-docker",
             "output_directory": "output/magma-centos-docker",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -139,9 +136,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -167,7 +161,7 @@
             "name": "magma-centos6-docker",
             "vm_name": "magma-centos6-docker",
             "output_directory": "output/magma-centos6-docker",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -179,9 +173,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -207,7 +198,7 @@
             "name": "magma-centos7-docker",
             "vm_name": "magma-centos7-docker",
             "output_directory": "output/magma-centos7-docker",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -219,9 +210,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"

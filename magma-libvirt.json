@@ -405,7 +405,7 @@
             "name": "magma-alpine36-libvirt",
             "vm_name": "magma-alpine36-libvirt",
             "output_directory": "output/magma-alpine36-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "30s",
             "boot_command": [
@@ -425,9 +425,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -453,7 +450,7 @@
             "name": "magma-libvirt",
             "vm_name": "magma-libvirt",
             "output_directory": "output/magma-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -465,9 +462,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -493,7 +487,7 @@
             "name": "magma-centos-libvirt",
             "vm_name": "magma-centos-libvirt",
             "output_directory": "output/magma-centos-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -505,9 +499,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -533,7 +524,7 @@
             "name": "magma-centos6-libvirt",
             "vm_name": "magma-centos6-libvirt",
             "output_directory": "output/magma-centos6-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -545,9 +536,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -573,7 +561,7 @@
             "name": "magma-centos7-libvirt",
             "vm_name": "magma-centos7-libvirt",
             "output_directory": "output/magma-centos7-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -585,9 +573,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -613,7 +598,7 @@
             "name": "magma-arch-libvirt",
             "vm_name": "magma-arch-libvirt",
             "output_directory": "output/magma-arch-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "30s",
             "boot_command": [
@@ -627,9 +612,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -655,7 +637,7 @@
             "name": "magma-fedora25-libvirt",
             "vm_name": "magma-fedora25-libvirt",
             "output_directory": "output/magma-fedora25-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -671,9 +653,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -699,7 +678,7 @@
             "name": "magma-debian8-libvirt",
             "vm_name": "magma-debian8-libvirt",
             "output_directory": "output/magma-debian8-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -714,9 +693,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -742,7 +718,7 @@
             "name": "magma-ubuntu-libvirt",
             "vm_name": "magma-ubuntu-libvirt",
             "output_directory": "output/magma-ubuntu-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -770,9 +746,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -798,7 +771,7 @@
             "name": "magma-ubuntu1604-libvirt",
             "vm_name": "magma-ubuntu1604-libvirt",
             "output_directory": "output/magma-ubuntu1604-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -827,9 +800,6 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
-                    "--no-kvm"
-                ],
-                [
                     "-m",
                     "2048M"
                 ],
@@ -854,7 +824,7 @@
             "name": "magma-ubuntu1610-libvirt",
             "vm_name": "magma-ubuntu1610-libvirt",
             "output_directory": "output/magma-ubuntu1610-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -874,9 +844,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -902,7 +869,7 @@
             "name": "magma-ubuntu1704-libvirt",
             "vm_name": "magma-ubuntu1704-libvirt",
             "output_directory": "output/magma-ubuntu1704-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -922,9 +889,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -950,7 +914,7 @@
             "name": "magma-gentoo-libvirt",
             "vm_name": "magma-gentoo-libvirt",
             "output_directory": "output/magma-gentoo-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "5s",
             "boot_command": [
@@ -969,9 +933,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -997,7 +958,7 @@
             "name": "magma-freebsd11-libvirt",
             "vm_name": "magma-freebsd11-libvirt",
             "output_directory": "output/magma-freebsd11-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "5s",
             "boot_command": [
@@ -1018,9 +979,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
@@ -1046,7 +1004,7 @@
             "name": "magma-openbsd6-libvirt",
             "vm_name": "magma-openbsd6-libvirt",
             "output_directory": "output/magma-openbsd6-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -1062,9 +1020,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"

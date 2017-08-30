@@ -71,7 +71,7 @@
             "name": "lineage-libvirt",
             "vm_name": "lineage-libvirt",
             "output_directory": "output/lineage-libvirt",
-            "machine_type": "pc",
+            "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
@@ -99,9 +99,6 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
-                [
-                    "--no-kvm"
-                ],
                 [
                     "-m",
                     "2048M"
