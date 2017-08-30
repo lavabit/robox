@@ -430,18 +430,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "Linux_64",
@@ -482,18 +470,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -534,18 +510,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -586,18 +550,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -638,18 +590,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -692,18 +632,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "ArchLinux_64",
@@ -748,18 +676,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "Fedora_64",
@@ -803,18 +719,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "Debian_64",
@@ -871,18 +775,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -939,18 +831,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -999,18 +879,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1059,18 +927,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1118,18 +974,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "Gentoo_64",
@@ -1179,18 +1023,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "FreeBSD_64",
@@ -1235,18 +1067,6 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--hwvirtex",
-                    "off"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vtxvpid",
-                    "off"
                 ]
             ],
             "guest_os_type": "OpenBSD_64",

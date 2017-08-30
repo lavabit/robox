@@ -552,6 +552,9 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
+                    "--no-kvm"
+                ],
+                [
                     "-m",
                     "2048M"
                 ],
@@ -591,6 +594,9 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
+                [
+                    "--no-kvm"
+                ],
                 [
                     "-m",
                     "2048M"
@@ -637,6 +643,9 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
+                    "--no-kvm"
+                ],
+                [
                     "-m",
                     "2048M"
                 ],
@@ -682,6 +691,9 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
+                    "--no-kvm"
+                ],
+                [
                     "-m",
                     "2048M"
                 ],
@@ -718,6 +730,9 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
+                [
+                    "--no-kvm"
+                ],
                 [
                     "-m",
                     "2048M"
@@ -756,6 +771,9 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
+                    "--no-kvm"
+                ],
+                [
                     "-m",
                     "2048M"
                 ],
@@ -792,6 +810,9 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
+                [
+                    "--no-kvm"
+                ],
                 [
                     "-m",
                     "2048M"
@@ -831,6 +852,9 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
+                [
+                    "--no-kvm"
+                ],
                 [
                     "-m",
                     "2048M"
@@ -873,6 +897,9 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
+                    "--no-kvm"
+                ],
+                [
                     "-m",
                     "2048M"
                 ],
@@ -914,6 +941,9 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
+                    "--no-kvm"
+                ],
+                [
                     "-m",
                     "2048M"
                 ],
@@ -954,6 +984,9 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
+                    "--no-kvm"
+                ],
+                [
                     "-m",
                     "2048M"
                 ],
@@ -993,6 +1026,9 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
+                [
+                    "--no-kvm"
+                ],
                 [
                     "-m",
                     "2048M"
@@ -1047,6 +1083,9 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
+                    "--no-kvm"
+                ],
+                [
                     "-m",
                     "2048M"
                 ],
@@ -1091,6 +1130,9 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
+                [
+                    "--no-kvm"
+                ],
                 [
                     "-m",
                     "2048M"
@@ -1137,6 +1179,9 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
+                    "--no-kvm"
+                ],
+                [
                     "-m",
                     "2048M"
                 ],
@@ -1180,6 +1225,9 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
+                [
+                    "--no-kvm"
+                ],
                 [
                     "-m",
                     "2048M"
@@ -1227,6 +1275,9 @@
             "net_device": "virtio-net",
             "qemuargs": [
                 [
+                    "--no-kvm"
+                ],
+                [
                     "-m",
                     "2048M"
                 ],
@@ -1267,6 +1318,9 @@
             "disk_compression": true,
             "net_device": "virtio-net",
             "qemuargs": [
+                [
+                    "--no-kvm"
+                ],
                 [
                     "-m",
                     "2048M"
