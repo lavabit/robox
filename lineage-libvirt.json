@@ -71,7 +71,7 @@
             "name": "lineage-libvirt",
             "vm_name": "lineage-libvirt",
             "output_directory": "output/lineage-libvirt",
-            "accelerator": "kvm",
+            "machine_type": "pc",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [

@@ -196,43 +196,43 @@ function box() {
   export TIMESTAMP=`date +"%Y%m%d.%I%M"`
 
   if [[ $OS == "Windows_NT" ]]; then
-      export PACKER_LOG_PATH="$BASE/output/logs/magma-hyerpv-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/magma-hyerpv-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-hyerpv.json
 
-      export PACKER_LOG_PATH="$BASE/output/logs/generic-hyerpv-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/generic-hyerpv-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 generic-hyerpv.json
 
-      export PACKER_LOG_PATH="$BASE/output/logs/lineage-hyperv-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/lineage-hyperv-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
   else
-      export PACKER_LOG_PATH="$BASE/output/logs/magma-docker-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/magma-docker-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json
 
-      export PACKER_LOG_PATH="$BASE/output/logs/magma-vmware-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/magma-vmware-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
 
-      export PACKER_LOG_PATH="$BASE/output/logs/magma-libvirt-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-libvirt.json
 
-      export PACKER_LOG_PATH="$BASE/output/logs/magma-virtualbox-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-virtualbox.json
 
-      export PACKER_LOG_PATH="$BASE/output/logs/generic-vmware-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/generic-vmware-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
 
-      export PACKER_LOG_PATH="$BASE/output/logs/generic-libvirt-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 generic-libvirt.json
 
-      export PACKER_LOG_PATH="$BASE/output/logs/generic-virtualbox-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
 
-      export PACKER_LOG_PATH="$BASE/output/logs/lineage-vmware-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-vmware.json
 
-      export PACKER_LOG_PATH="$BASE/output/logs/lineage-libvirt-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/lineage-libvirt-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-libvirt.json
 
-      export PACKER_LOG_PATH="$BASE/output/logs/lineage-virtualbox-${TIMESTAMP}.txt"
+      export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-virtualbox.json
   fi
 }
