@@ -22,16 +22,19 @@ if [[ "$PACKER_BUILD_NAME" =~ ^magma-alpine3[5-6]-vmware$|^magma-alpine3[5-6]-hy
 fi
 
 # Whiteout root
-count=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')
-count=$(($count-1))
-dd if=/dev/zero of=/zerofill bs=1M count=$count || echo "dd exit code $? is suppressed"
+rootcount=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')
+rootcount=$(($rootcount-1))
+dd if=/dev/zero of=/zerofill bs=1M count=$rootcount || echo "dd exit code $? suppressed"
 rm --force /zerofill
 
-# Whiteout /boot
-count=$(df --sync -kP /boot | tail -n1 | awk -F ' ' '{print $4}')
-count=$(($count-1))
-dd if=/dev/zero of=/boot/zerofill bs=1M count=$count || echo "dd exit code $? is suppressed"
-rm --force /boot/zerofill
+# Whiteout boot if the block count is different then root, otherwise if the
+# block counts are identical, we assume both folders are on the same parition
+bootcount=$(df --sync -kP /boot | tail -n1 | awk -F ' ' '{print $4}')
+bootcount=$(($bootcount-1))
+if [ $rootcount != $bootcount ]; then
+  dd if=/dev/zero of=/boot/zerofill bs=1M count=$bootcount || echo "dd exit code $? suppressed"
+  rm --force /boot/zerofill
+fi
 
 # If blkid is installed it to locate the swap partition
 if [-f '/sbin/blkid' ]; then
@@ -44,7 +47,7 @@ fi
 if [ "x${swapuuid}" != "x" ]; then
   swappart="`readlink -f /dev/disk/by-uuid/$swapuuid`"
   /sbin/swapoff "$swappart"
-  dd if=/dev/zero of="$swappart" bs=1M || echo "dd exit code $? is suppressed"
+  dd if=/dev/zero of="$swappart" bs=1M || echo "dd exit code $? suppressed"
   /sbin/mkswap -U "$swapuuid" "$swappart"
 fi
 
