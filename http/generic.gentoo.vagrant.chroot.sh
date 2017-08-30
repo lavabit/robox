@@ -3583,7 +3583,7 @@ CONFIG_ARCH_HAS_SG_CHAIN=y
 EOF
 
 make olddefconfig
-make --jobs=4
+make --jobs=8
 make install
 make modules_install
 
