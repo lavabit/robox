@@ -37,7 +37,7 @@ if [ $rootcount != $bootcount ]; then
 fi
 
 # If blkid is installed it to locate the swap partition
-if [-f '/sbin/blkid' ]; then
+if [ -f '/sbin/blkid' ]; then
   swapuuid="`/sbin/blkid -o value -l -s UUID -t TYPE=swap`"
 else
   swapuuid=""
