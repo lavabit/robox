@@ -104,6 +104,18 @@
                     "{{.Name}}",
                     "--cpus",
                     "4"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--hwvirtex",
+                    "off"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--vtxvpid",
+                    "off"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
