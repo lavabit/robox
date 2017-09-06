@@ -1,6 +1,7 @@
 logs/
 output/
 packer_cache/
-.credentialsrc
 .project
 .settings/
+.credentialsrc
+.credentials.bat
