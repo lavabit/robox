@@ -17,7 +17,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.2.9"
+export VERSION="1.2.10"
 export AGENT="Vagrant/1.9.7 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
@@ -95,12 +95,12 @@ function isos {
   SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
   printf "${URL}\n${SHA}\n\n"
 
-  tput setaf 2; printf "\nOpenSUSE\n\n"; tput sgr0;
-  URL="https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/"
-  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "openSUSE\-Leap\-42\.3\-NET\-x86\_64\-Build[0-9]{4}\-Media.iso|openSUSE\-Leap\-42\.3\-NET\-x86\_64.iso" | uniq`
-  URL="${URL}${ISO}"
-  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
-  printf "${URL}\n${SHA}\n\n"
+  # tput setaf 2; printf "\nOpenSUSE\n\n"; tput sgr0;
+  # URL="https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/"
+  # ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "openSUSE\-Leap\-42\.3\-NET\-x86\_64\-Build[0-9]{4}\-Media.iso|openSUSE\-Leap\-42\.3\-NET\-x86\_64.iso" | uniq`
+  # URL="${URL}${ISO}"
+  # SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+  # printf "${URL}\n${SHA}\n\n"
 }
 
 # Verify all of the ISO locations are still valid.
