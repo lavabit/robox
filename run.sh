@@ -17,7 +17,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.2.10"
+export VERSION="1.2.11"
 export AGENT="Vagrant/1.9.7 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
@@ -32,7 +32,8 @@ cd $BASE
 source .credentialsrc
 
 # The list of packer config files.
-FILES="magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
+FILES="magma-docker.json developer-virtualbox.json "\
+"magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
 "generic-hyperv.json generic-vmware.json generic-libvirt.json generic-virtualbox.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json"
 
@@ -208,6 +209,9 @@ function box() {
       export PACKER_LOG_PATH="$BASE/logs/magma-docker-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json
 
+      export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 developer-virtualbox.json
+
       export PACKER_LOG_PATH="$BASE/logs/magma-vmware-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
 
@@ -263,6 +267,7 @@ function validate() {
   verify_json magma-vmware
   verify_json magma-libvirt
   verify_json magma-virtualbox
+  verify_json developer-virtualbox
   verify_json generic-hyperv
   verify_json generic-vmware
   verify_json generic-libvirt
@@ -423,10 +428,18 @@ function cleanup() {
   rm -rf $BASE/packer_cache/ $BASE/output/ $BASE/logs/
 }
 
-function login() {
+function docker-login() {
   docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\nThe docker login credentials failed.\n\n"; tput sgr0
+    exit 1
+  fi
+}
+
+function docker-logout() {
+  docker logout
+  if [[ $? != 0 ]]; then
+    tput setaf 1; tput bold; printf "\n\nThe docker logout command failed.\n\n"; tput sgr0
     exit 1
   fi
 }
@@ -435,10 +448,11 @@ function magma() {
   if [[ $OS == "Windows_NT" ]]; then
     build magma-hyperv
   else
-    login ; build magma-docker
     build magma-vmware
     build magma-libvirt
     build magma-virtualbox
+
+    docker-login ; build magma-docker; docker-logout
   fi
 }
 
@@ -462,10 +476,19 @@ function lineage() {
   fi
 }
 
+function developer() {
+  # if [[ $OS == "Windows_NT" ]]; then
+  #   build magma-developer-hyperv
+  # else
+    build developer-virtualbox
+  # fi
+}
+
 function builder() {
   magma
   generic
   lineage
+  developer
 }
 
 function all() {
@@ -496,13 +519,16 @@ elif [[ $1 == "available" ]]; then available
 elif [[ $1 == "magma" ]]; then magma
 elif [[ $1 == "generic" ]]; then generic
 elif [[ $1 == "lineage" ]]; then lineage
+elif [[ $1 == "developer" ]]; then developer
 
 # The file builders.
 elif [[ $1 == "magma-vmware" || $1 == "magma-vmware.json" ]]; then build magma-vmware
 elif [[ $1 == "magma-hyperv" || $1 == "magma-hyperv.json" ]]; then build magma-hyperv
 elif [[ $1 == "magma-libvirt" || $1 == "magma-libvirt.json" ]]; then build magma-libvirt
-elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then login ; build magma-docker
 elif [[ $1 == "magma-virtualbox" || $1 == "magma-virtualbox.json" ]]; then build magma-virtualbox
+
+elif [[ $1 == "developer-virtualbox" || $1 == "developer-virtualbox.json" ]]; then build developer-virtualbox
+elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then docker-login ; build magma-docker; docker-logout
 
 elif [[ $1 == "generic-vmware" || $1 == "generic-vmware.json" ]]; then build generic-vmware
 elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv.json" ]]; then build generic-hyperv
@@ -530,7 +556,7 @@ else
   echo $"  `basename $0` {isos|sunms|missing|public|available} or "
   echo ""
   echo " Groups"
-  echo $"  `basename $0` {magma|generic|lineage}"
+  echo $"  `basename $0` {magma|generic|lineage|developer}"
   echo ""
   echo " Boxes"
   echo $"  `basename $0` {box NAME}"
