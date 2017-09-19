@@ -10,7 +10,7 @@
                 "scripts/centos6/base.sh",
                 "scripts/centos6/reboot.sh"
             ],
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "execute_command": "echo 'magma' | sudo -S bash '{{.Path}}'",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -26,7 +26,7 @@
                 "scripts/centos6/qemu.sh",
                 "scripts/centos6/postfix.sh",
                 "scripts/centos6/vagrant.sh",
-                "scripts/centos6/magma.sh",
+                "scripts/centos6/developer.sh",
                 "scripts/centos6/tuning.sh",
                 "scripts/centos6/sshd.sh",
                 "scripts/centos6/cleanup.sh"
@@ -107,7 +107,7 @@
                 ],
                 "box_tag": "lavabit/magma-developer",
                 "version": "{{user `box_version`}}",
-                "version_description": "The magma encrypted mail daemon development environment."
+                "version_description": "The magma encrypted mail daemon development desktop."
             },
             {
                 "type": "checksum",
