@@ -906,7 +906,7 @@
                 "dhclient hvn0<enter><wait5>",
                 "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait>",
                 "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
-                "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
+                "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && eject /dev/cd0a && reboot<enter>"
             ],
             "disk_size": 32768,
             "ram_size": 2048,
