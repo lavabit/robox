@@ -56,6 +56,8 @@ LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "linea
 # LINEAGE_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
 TAGS="$LINEAGE_TAGS $GENERIC_TAGS $MAGMA_TAGS"
 
+# These boxes aren't publicly available yet, so we filter them out of available test.
+FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-developer lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
 
 function start() {
   # Disable IPv6 or the VMware builder won't be able to load the Kick Start configuration.
@@ -304,6 +306,12 @@ function available() {
 
     MISSING=0
     LIST=($TAGS)
+		FILTER=($FILTERED_TAGS)
+
+		# Loop through and remove the filtered tags from the list.
+		for ((i = 0; i < ${#FILTER[@]}; ++i)); do
+			LIST=(${LIST[@]//${FILTER[$i]}})
+		done
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
