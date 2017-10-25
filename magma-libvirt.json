@@ -432,7 +432,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -470,7 +470,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -508,7 +508,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -546,7 +546,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -584,7 +584,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -624,7 +624,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -666,7 +666,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -707,7 +707,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -761,7 +761,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -815,7 +815,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -861,7 +861,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -907,7 +907,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -952,7 +952,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -999,7 +999,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
@@ -1041,7 +1041,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2,cores=2,threads=1"
+                    "cpus=4,sockets=2"
                 ]
             ],
             "http_directory": "http",
