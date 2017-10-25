@@ -95,9 +95,9 @@
             ],
             "format": "qcow2",
             "disk_size": 196608,
-            "disk_interface": "virtio",
+            "disk_interface": "virtio-scsi",
             "disk_compression": true,
-            "disk_discard": "discard",
+            "disk_discard": "unmap",
             "net_device": "virtio-net",
             "qemuargs": [
                 [

@@ -95,8 +95,9 @@
             ],
             "format": "raw",
             "disk_size": 32770,
-            "disk_interface": "virtio",
+            "disk_interface": "virtio-scsi",
             "disk_compression": true,
+						"disk_discard": "unmap",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -132,8 +133,9 @@
             ],
             "format": "raw",
             "disk_size": 32770,
-            "disk_interface": "virtio",
+            "disk_interface": "virtio-scsi",
             "disk_compression": true,
+						"disk_discard": "unmap",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -169,8 +171,9 @@
             ],
             "format": "raw",
             "disk_size": 32770,
-            "disk_interface": "virtio",
+            "disk_interface": "virtio-scsi",
             "disk_compression": true,
+						"disk_discard": "unmap",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -206,8 +209,9 @@
             ],
             "format": "raw",
             "disk_size": 32770,
-            "disk_interface": "virtio",
+            "disk_interface": "virtio-scsi",
             "disk_compression": true,
+						"disk_discard": "unmap",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
