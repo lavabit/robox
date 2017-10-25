@@ -68,7 +68,9 @@ function start() {
   sudo systemctl restart vboxdrv.service
   sudo systemctl restart libvirtd.service
   sudo systemctl restart docker-latest.service
-  sudo systemctl restart vmware.service vmware-USBArbitrator.service vmware-workstation-server.service
+  sudo systemctl restart vmware.service
+	sudo systemctl restart vmware-USBArbitrator.service
+	sudo systemctl restart vmware-workstation-server.service
 
   # Confirm the VirtualBox kernel modules loaded.
   if [ -f /usr/lib/virtualbox/vboxdrv.sh ]; then
