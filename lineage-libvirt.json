@@ -97,6 +97,7 @@
             "disk_size": 196608,
             "disk_interface": "virtio",
             "disk_compression": true,
+            "disk_discard": "discard",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
