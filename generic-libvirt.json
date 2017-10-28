@@ -519,7 +519,7 @@
                 "generic-ubuntu1704-libvirt"
             ]
         },
-				{
+        {
             "scripts": [
                 "scripts/ubuntu1710/network.sh",
                 "scripts/ubuntu1710/apt.sh"
@@ -1199,7 +1199,7 @@
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         },
-				{
+        {
             "type": "qemu",
             "name": "generic-ubuntu1710-libvirt",
             "vm_name": "generic-ubuntu1710-libvirt",
@@ -1551,7 +1551,7 @@
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
-						{
+            {
                 "type": "vagrant-cloud",
                 "only": [
                     "generic-ubuntu1710-libvirt"

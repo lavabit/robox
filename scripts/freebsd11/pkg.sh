@@ -23,7 +23,7 @@ pkg-static upgrade -n
 pkg-static audit -F
 
 # Generic system utils.
-pkg install --yes vim curl wget sudo
+pkg install --yes vim curl wget sudo bash
 
 # Disable fortunate cookies.
 sed -i -e "/fortune/d" /usr/share/skel/dot.login

@@ -519,7 +519,7 @@
                 "generic-ubuntu1704-hyperv"
             ]
         },
-				{
+        {
             "scripts": [
                 "scripts/ubuntu1710/network.sh",
                 "scripts/ubuntu1710/apt.sh"
@@ -1068,7 +1068,7 @@
             "guest_additions_mode": "disable",
             "enable_virtualization_extensions": false
         },
-				{
+        {
             "type": "hyperv-iso",
             "name": "generic-ubuntu1710-hyperv",
             "vm_name": "generic-ubuntu1710-hyperv",
@@ -1385,7 +1385,7 @@
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
-						{
+            {
                 "type": "vagrant-cloud",
                 "only": [
                     "generic-ubuntu1710-hyperv"

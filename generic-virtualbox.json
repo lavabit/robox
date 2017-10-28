@@ -518,7 +518,7 @@
                 "generic-ubuntu1704-virtualbox"
             ]
         },
-				{
+        {
             "scripts": [
                 "scripts/ubuntu1710/network.sh",
                 "scripts/ubuntu1710/apt.sh"
@@ -1228,7 +1228,7 @@
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
-				{
+        {
             "type": "virtualbox-iso",
             "name": "generic-ubuntu1710-virtualbox",
             "vm_name": "generic-ubuntu1710-virtualbox",
@@ -1588,7 +1588,7 @@
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
-						{
+            {
                 "type": "vagrant-cloud",
                 "only": [
                     "generic-ubuntu1710-virtualbox"

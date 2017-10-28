@@ -518,7 +518,7 @@
                 "generic-ubuntu1704-vmware"
             ]
         },
-				{
+        {
             "scripts": [
                 "scripts/ubuntu1710/network.sh",
                 "scripts/ubuntu1710/apt.sh"
@@ -1108,7 +1108,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "tools_upload_flavor": "linux"
         },
-				{
+        {
             "type": "vmware-iso",
             "name": "generic-ubuntu1710-vmware",
             "vm_name": "generic-ubuntu1710-vmware",
@@ -1437,7 +1437,7 @@
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
-						{
+            {
                 "type": "vagrant-cloud",
                 "only": [
                     "generic-ubuntu1710-vmware"
