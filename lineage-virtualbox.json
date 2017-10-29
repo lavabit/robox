@@ -130,13 +130,23 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/lineage.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box"            },
+                "output": "output/{{build_name}}-{{user `box_version`}}.box"
+            },
             {
                 "type": "vagrant-cloud",
                 "only": [
                     "lineage-virtualbox"
                 ],
                 "box_tag": "lineage/lineage",
+                "version": "{{user `box_version`}}",
+                "version_description": "The Lineage mobile operating system build environment."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "lineage-virtualbox"
+                ],
+                "box_tag": "lineageos/lineage",
                 "version": "{{user `box_version`}}",
                 "version_description": "The Lineage mobile operating system build environment."
             },

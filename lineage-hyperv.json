@@ -131,6 +131,15 @@
                 "version_description": "The Lineage mobile operating system build environment."
             },
             {
+                "type": "vagrant-cloud",
+                "only": [
+                    "lineage-hyperv"
+                ],
+                "box_tag": "lineageos/lineage",
+                "version": "{{user `box_version`}}",
+                "version_description": "The Lineage mobile operating system build environment."
+            },
+            {
                 "type": "artifice",
                 "keep_input_artifact": true,
                 "files": [
