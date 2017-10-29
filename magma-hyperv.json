@@ -270,6 +270,7 @@
         },
         {
             "scripts": [
+                "scripts/openbsd6/hostname.sh",
                 "scripts/openbsd6/pkg.sh",
                 "scripts/openbsd6/vagrant.sh",
                 "scripts/openbsd6/virtualbox.sh",
