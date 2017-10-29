@@ -252,6 +252,7 @@
         },
         {
             "scripts": [
+                "scripts/freebsd11/hostname.sh",
                 "scripts/freebsd11/pkg.sh",
                 "scripts/freebsd11/vagrant.sh",
                 "scripts/freebsd11/magma.sh",
