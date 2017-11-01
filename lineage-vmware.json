@@ -12,7 +12,8 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-vmware"
+                "lineage-vmware",
+								"lineageos-vmware"
             ]
         },
         {
@@ -30,7 +31,8 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-vmware"
+                "lineage-vmware",
+								"lineageos-vmware"
             ]
         },
         {
@@ -39,7 +41,8 @@
             "source": "res/blobs/system-blobs.tar.gz",
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
-                "lineage-vmware"
+                "lineage-vmware",
+								"lineageos-vmware"
             ]
         },
         {
@@ -50,7 +53,8 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-vmware"
+                "lineage-vmware",
+								"lineageos-vmware"
             ]
         },
         {
@@ -73,6 +77,54 @@
             "vm_name": "lineage-vmware",
             "vmdk_name": "lineage-vmware",
             "output_directory": "output/lineage-vmware",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<enter><wait>",
+                "<f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
+                "<enter>"
+            ],
+            "disk_size": 196608,
+            "disk_type_id": "0",
+            "vmx_data": {
+                "memsize": "2048",
+                "numvcpus": "2",
+                "cpuid.coresPerSocket": "2"
+            },
+            "guest_os_type": "ubuntu-64",
+            "skip_compaction": true,
+            "http_directory": "http",
+            "headless": true,
+            "vnc_disable_password": true,
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.3/ubuntu-16.04.3-server-amd64.iso",
+            "iso_checksum": "a06cd926f5855d4f21fb4bc9978a35312f815fbda0d0ef7fdc846861f4fc4600",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "tools_upload_flavor": "linux"
+        },
+				{
+            "type": "vmware-iso",
+            "name": "lineageos-vmware",
+            "vm_name": "lineageos-vmware",
+            "vmdk_name": "lineageos-vmware",
+            "output_directory": "output/lineageos-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -137,7 +189,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "lineage-vmware"
+                    "lineageos-vmware"
                 ],
                 "box_tag": "lineageos/lineage",
                 "version": "{{user `box_version`}}",
