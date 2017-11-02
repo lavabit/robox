@@ -270,8 +270,19 @@
         },
         {
             "scripts": [
+                "scripts/openbsd6/pkg.sh"
+            ],
+            "type": "shell",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "execute_command": "/bin/sh {{ .Path }}",
+            "only": [
+                "magma-openbsd6-hyperv"
+            ]
+        },
+				{
+            "scripts": [
                 "scripts/openbsd6/hostname.sh",
-                "scripts/openbsd6/pkg.sh",
                 "scripts/openbsd6/vagrant.sh",
                 "scripts/openbsd6/virtualbox.sh",
                 "scripts/openbsd6/vmware.sh",
@@ -279,9 +290,10 @@
                 "scripts/openbsd6/magma.sh"
             ],
             "type": "shell",
+						"pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
-            "execute_command": "/bin/sh {{ .Path }}",
+						"execute_command": "/usr/local/bin/bash {{ .Path }}",
             "only": [
                 "magma-openbsd6-hyperv"
             ]

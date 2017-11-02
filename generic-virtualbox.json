@@ -431,7 +431,7 @@
                 "generic-openbsd6-virtualbox"
             ]
         },
-				{
+        {
             "scripts": [
                 "scripts/openbsd6/hostname.sh",
                 "scripts/openbsd6/vagrant.sh",
@@ -440,6 +440,7 @@
                 "scripts/openbsd6/qemu.sh"
             ],
             "type": "shell",
+            "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "execute_command": "/usr/local/bin/bash {{ .Path }}",
