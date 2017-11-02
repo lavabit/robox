@@ -60,7 +60,8 @@ yum --assumeyes install sudo dmidecode yum-utils; error
 yum --assumeyes --disablerepo=epel update; error
 
 # Install the Python Cryptography Module
-pip install --process-dependency-links cryptography; error
+pip install cffi==1.8.3; error
+pip install cryptography==1.5.2; error
 
 # Enable and start the daemons.
 chkconfig mysqld on
