@@ -7,12 +7,12 @@ if [[ "$PACKER_BUILD_NAME" =~ ^magma-alpine3[5-6]-vmware$|^magma-alpine3[5-6]-hy
   # set -ux
 
   # Whiteout root
-  dd if=/dev/zero of=/zerofill bs=1M
+  dd if=/dev/zero of=/zerofill bs=1K
   sync -f /zerofill
   rm -f /zerofill
 
   # Whiteout /boot
-  dd if=/dev/zero of=/boot/zerofill bs=1M
+  dd if=/dev/zero of=/boot/zerofill bs=1K
   sync -f /boot/zerofill
   rm -f /boot/zerofill
 
@@ -24,7 +24,7 @@ fi
 # Whiteout root
 rootcount=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')
 rootcount=$(($rootcount-1))
-dd if=/dev/zero of=/zerofill bs=1M count=$rootcount || echo "dd exit code $? suppressed"
+dd if=/dev/zero of=/zerofill bs=1K count=$rootcount || echo "dd exit code $? suppressed"
 rm --force /zerofill
 
 # Whiteout boot if the block count is different then root, otherwise if the
@@ -32,7 +32,7 @@ rm --force /zerofill
 bootcount=$(df --sync -kP /boot | tail -n1 | awk -F ' ' '{print $4}')
 bootcount=$(($bootcount-1))
 if [ $rootcount != $bootcount ]; then
-  dd if=/dev/zero of=/boot/zerofill bs=1M count=$bootcount || echo "dd exit code $? suppressed"
+  dd if=/dev/zero of=/boot/zerofill bs=1K count=$bootcount || echo "dd exit code $? suppressed"
   rm --force /boot/zerofill
 fi
 
@@ -47,7 +47,7 @@ fi
 if [ "x${swapuuid}" != "x" ]; then
   swappart="`readlink -f /dev/disk/by-uuid/$swapuuid`"
   /sbin/swapoff "$swappart"
-  dd if=/dev/zero of="$swappart" bs=1M || echo "dd exit code $? suppressed"
+  dd if=/dev/zero of="$swappart" bs=1K || echo "dd exit code $? suppressed"
   /sbin/mkswap -U "$swapuuid" "$swappart"
 fi
 

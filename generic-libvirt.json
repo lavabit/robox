@@ -604,7 +604,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -649,7 +653,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -699,7 +707,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -749,7 +761,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -791,7 +807,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -833,7 +853,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -875,7 +899,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -919,7 +947,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -965,7 +997,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -1011,7 +1047,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -1056,7 +1096,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -1101,7 +1145,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -1159,7 +1207,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -1209,7 +1261,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -1259,7 +1315,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -1309,7 +1369,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -1358,7 +1422,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -1409,7 +1477,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -1455,7 +1527,11 @@
                 ],
                 [
                     "-global",
-                    "driver=qcow2,property=detect-zeros,value=unmap"
+                    "driver=qcow2,property=detect-zeroes,value=unmap"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=discard,value=unmap"
                 ]
             ],
             "http_directory": "http",
