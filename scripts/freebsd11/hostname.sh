@@ -1,12 +1,12 @@
 #!/bin/bash -eux
 
 if [[ "$PACKER_BUILD_NAME" =~ ^magma-freebsd ]]; then
+  sed -i -e "s/hostname=\".*\"/hostname=\"magma.localdomain\"/g" /etc/defaults/rc.conf
   hostname magma.localdomain
-	sed -i -e "s/hostname=\".*\"/hostname=\"magma.localdomain\"/g" /etc/defaults/rc.conf
 elif [[ "$PACKER_BUILD_NAME" =~ ^generic-freebsd ]]; then
-	hostname freebsd.localdomain
-	sed -i -e "s/hostname=\".*\"/hostname=\"freebsd.localdomain\"/g" /etc/defaults/rc.conf
+  sed -i -e "s/hostname=\".*\"/hostname=\"freebsd.localdomain\"/g" /etc/defaults/rc.conf
+  hostname freebsd.localdomain
 else
+  sed -i -e "s/hostname=\".*\"/hostname=\"bazinga.localdomain\"/g" /etc/defaults/rc.conf
   hostname bazinga.localdomain
-	sed -i -e "s/hostname=\".*\"/hostname=\"bazinga.localdomain\"/g" /etc/defaults/rc.conf
 fi
