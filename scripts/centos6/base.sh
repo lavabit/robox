@@ -50,7 +50,7 @@ yum --assumeyes install libevent memcached mysql mysql-server perl-DBI perl-DBD-
 yum --assumeyes install wget git rsync perl-Git perl-Error; error
 
 # These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
-yum --assumeyes install python-pip python-cffi python-ply python-pycparser python-crypto2.6 libffi-devel python-devel zlib-devel libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel openssl-devel
+yum --assumeyes install python-pip python-ply python-pycparser python-crypto2.6 libffi-devel python-devel zlib-devel libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel openssl-devel
 
 # Packages used during the provisioning process and then removed during the cleanup stage.
 yum --assumeyes install sudo dmidecode yum-utils; error
@@ -60,9 +60,8 @@ yum --assumeyes install sudo dmidecode yum-utils; error
 yum --assumeyes --disablerepo=epel update; error
 
 # Install the Python Cryptography Module
-pip install --ignore-installed asn1crypto==0.23.0 cryptography==2.1.2 enum34==1.1.6 idna==2.6 iniparse==0.3.1 \
-ipaddress==1.0.18 ordereddict==1.2 ply==3.4 pycparser==2.9.1 pycrypto==2.6.1 pycurl==7.19.0 \
-pygpgme==0.1 six==1.11.0 urlgrabber==3.9.1 yum-metadata-parser==1.1.2; error
+pip install --ignore-installed asn1crypto==0.23.0 cffi==1.8.3 cryptography==1.5.2 enum34==1.1.6 idna==2.6 iniparse==0.3.1 \
+ipaddress==1.0.18 pycparser==2.14 setuptools==28.2.0 six==1.11.0 urlgrabber==3.9.1; error
 
 # Enable and start the daemons.
 chkconfig mysqld on
