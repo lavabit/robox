@@ -99,9 +99,10 @@
             ],
             "format": "qcow2",
             "disk_size": 196608,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -113,12 +114,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/lineage-libvirt/lineage-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -161,9 +158,10 @@
             ],
             "format": "qcow2",
             "disk_size": 196608,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -175,12 +173,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/lineageos-libvirt/lineageos-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
