@@ -3,7 +3,7 @@
 set -e
 set -x
 
-pkg_add sudo--
+pkg_add bash sudo--
 mkdir /etc/sudoers.d
 sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 

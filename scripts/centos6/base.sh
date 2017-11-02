@@ -2,7 +2,7 @@
 
 error() {
         if [ $? -ne 0 ]; then
-                printf "\n\nyum failed...\n\n";
+                printf "\n\nbase configuration script failure...\n\n";
                 exit 1
         fi
 }
@@ -59,8 +59,11 @@ yum --assumeyes install sudo dmidecode yum-utils; error
 # often interupt the the provisioning process.
 yum --assumeyes --disablerepo=epel update; error
 
+# Upgrade pip.
+pip install --upgrade pip; error
+
 # Install the Python Cryptography Module
-pip install cryptography; error
+pip install --process-dependency-links cryptography; error
 
 # Enable and start the daemons.
 chkconfig mysqld on
