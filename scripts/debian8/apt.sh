@@ -14,7 +14,7 @@ export DEBIAN_FRONTEND=noninteractive
 printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
 
 # Keep the daily apt updater from deadlocking our installs.
-systemctl stop apt-daily.service
+systemctl stop apt-daily.service apt-daily.timer
 
 # Remove the CDROM as a media source.
 sed -i -e "/cdrom:/d" /etc/apt/sources.list

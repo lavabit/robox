@@ -17,7 +17,7 @@ sed -i -e 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades;
 printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
 
 # Keep the daily apt updater from deadlocking our installs.
-systemctl stop apt-daily.service
+systemctl stop apt-daily.service apt-daily.timer
 systemctl stop snapd.service snapd.socket snapd.refresh.timer
 
 # Update the package list and then upgrade.
