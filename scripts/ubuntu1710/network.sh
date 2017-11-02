@@ -26,19 +26,18 @@ network:
   ethernets:
     eth0:
       dhcp4: true
+      dhcp6: false
+      nameservers:
+        addresses: [4.2.2.1, 4.2.2.2]
 EOF
 
 # Apply the network plan configuration.
 netplan generate
 
+# Ensure a nameserver is being used that won't return an IP for non-existent domain names.
+sed -i -e "s/#DNS=/DNS=4.2.2.1 4.2.2.2/g" /etc/systemd/resolved.conf
+sed -i -e "s/#FallbackDNS=/FallbackDNS=/g" /etc/systemd/resolved.conf
+sed -i -e "s/#Domains=/Domains=/g" /etc/systemd/resolved.conf
+
 # Ensure the networking interfaces get configured on boot.
 systemctl enable systemd-networkd.service
-
-# Ensure a nameserver is being used that won't return an IP for non-existent domain names.
-printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\n" > /etc/resolvconf/resolv.conf.d/base
-
-# Rebuild the DNS configuration.
-systemctl restart resolvconf
-
-# Remove the DNS server supplied via DHCP.
-resolvconf -d eth0.dhclient
