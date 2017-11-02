@@ -20,17 +20,34 @@ printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
 systemctl stop apt-daily.service apt-daily.timer
 systemctl stop snapd.service snapd.socket snapd.refresh.timer
 
-# Update the package list and then upgrade.
+# Update the package list.
 apt-get --assume-yes update; error
+
+# Install the resolvconf framework.
+# apt-get --assume-yes install resolvconf; error
+
+# Fix DNS problems.
+# printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\n" > /etc/resolvconf/resolv.conf.d/base
+
+# Enable resolvconf.
+# systemctl enable resolvconf.service
+
+# Rebuild the DNS configuration.
+# systemctl restart resolvconf.service
+
+# Remove the DNS server supplied via DHCP.
+# resolvconf -d eth0.dhclient
+
+# Upgrade the installed packages.
 apt-get --assume-yes upgrade; error
 apt-get --assume-yes dist-upgrade; error
 apt-get --assume-yes full-upgrade; error
 
 # Fix DNS resolution errors.
-rm --force /etc/resolv.conf
-ln --symbolic /run/resolvconf/resolv.conf /etc/resolv.conf
-systemctl restart resolvconf
-
+# rm --force /etc/resolv.conf
+# ln --symbolic /run/resolvconf/resolv.conf /etc/resolv.conf
+# systemctl restart resolvconf
+#
 printf "\n\n\n\nbegin resolv.conf\n\n"
 cat /etc/resolv.conf
 printf "\n\n\n\nend resolv.conf\n\n"

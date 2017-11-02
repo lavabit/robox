@@ -435,9 +435,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -449,12 +450,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-alpine36-libvirt/magma-alpine36-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -481,9 +478,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -495,12 +493,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-libvirt/magma-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -527,9 +521,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -541,12 +536,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-centos-libvirt/magma-centos-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -573,9 +564,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -587,12 +579,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-centos6-libvirt/magma-centos6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -619,9 +607,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -633,12 +622,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-centos7-libvirt/magma-centos7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -667,9 +652,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -681,12 +667,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-arch-libvirt/magma-arch-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -717,9 +699,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -731,12 +714,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-fedora25-libvirt/magma-fedora25-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -766,9 +745,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -780,12 +760,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-debian8-libvirt/magma-debian8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -828,9 +804,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -842,12 +819,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-ubuntu-libvirt/magma-ubuntu-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -890,9 +863,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -904,12 +878,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-ubuntu1604-libvirt/magma-ubuntu1604-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -944,9 +914,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -958,12 +929,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-ubuntu1610-libvirt/magma-ubuntu1610-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -998,9 +965,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -1012,12 +980,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-ubuntu1704-libvirt/magma-ubuntu1704-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -1051,9 +1015,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -1065,12 +1030,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-gentoo-libvirt/magma-gentoo-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -1106,9 +1067,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -1120,12 +1082,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-freebsd11-libvirt/magma-freebsd11-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -1156,9 +1114,10 @@
             ],
             "format": "qcow2",
             "disk_size": 32768,
-            "disk_interface": "virtio-scsi",
-            "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "qemuargs": [
                 [
@@ -1170,12 +1129,8 @@
                     "cpus=4,sockets=2"
                 ],
                 [
-                    "-global",
-                    "driver=qcow2,property=detect-zeroes,value=unmap"
-                ],
-                [
-                    "-global",
-                    "driver=qcow2,property=discard,value=unmap"
+                    "-drive",
+                    "if=none,file=output/magma-openbsd6-libvirt/magma-openbsd6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
