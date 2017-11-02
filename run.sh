@@ -6,22 +6,14 @@
 # Description: Used to build various virtual machines using packer.
 
 # Status
-# FreeBND on Hyper-V is using 11.1 beta2.
-# Failed to reboot without cdrom:
-#  fedora
-#  freebsd
-#  oracle7
-#  gentoo
-# Failed to setup Hyper-V daemons:
-#  debian
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.2.23"
-export AGENT="Vagrant/1.9.7 (+https://www.vagrantup.com; ruby2.3.4):"
+export VERSION="1.2.24"
+export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
-export GOMAXPROCS="2"
+export GOMAXPROCS="4"
 
 # Ensure a consistent working directory so relative paths work.
 LINK=`readlink -f $0`

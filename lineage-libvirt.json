@@ -111,6 +111,10 @@
                 [
                     "-smp",
                     "cpus=4,sockets=2"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=detect-zeros,value=unmap"
                 ]
             ],
             "http_directory": "http",
@@ -165,6 +169,10 @@
                 [
                     "-smp",
                     "cpus=4,sockets=2"
+                ],
+                [
+                    "-global",
+                    "driver=qcow2,property=detect-zeros,value=unmap"
                 ]
             ],
             "http_directory": "http",
