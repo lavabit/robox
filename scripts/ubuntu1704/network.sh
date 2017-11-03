@@ -32,14 +32,8 @@ printf "iface eth0 inet dhcp\n" >> /etc/network/interfaces;
 # Adding a delay so dhclient will work properly.
 printf "pre-up sleep 2\n" >> /etc/network/interfaces;
 
+# Ensure a nameserver is being used that won't return an IP for non-existent domain names.
+printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\n" > /etc/resolv.conf
+
 # Ensure the networking interfaces get configured on boot.
 systemctl enable networking.service
-
-# Ensure a nameserver is being used that won't return an IP for non-existent domain names.
-printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\n" > /etc/resolvconf/resolv.conf.d/base
-
-# Rebuild the DNS configuration.
-systemctl restart resolvconf
-
-# Remove the DNS server supplied via DHCP.
-resolvconf -d eth0.dhclient
