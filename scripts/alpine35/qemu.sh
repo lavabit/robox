@@ -14,6 +14,9 @@ printf "Installing the QEMU Tools.\n"
 # Install the QEMU guest tools.
 apk add qemu-guest-agent
 
+# Update the default agent path.
+printf "\nGA_METHOD=\"virtio-serial\"\nGA_PATH=\"/dev/vport0p1\"\n" >> /etc/conf.d/qemu-guest-agent
+
 # Autostart the open-vm-tools.
 rc-update add qemu-guest-agent default && rc-service qemu-guest-agent start
 
