@@ -5,7 +5,7 @@ if [ -e /dev/vda ]; then
 elif [ -e /dev/sda ]; then
   device=/dev/sda
 else
-  echo "ERROR: There is no disk available for installation" >&2
+  echo "ERROR: There is no disk available for installation." >&2
   exit 1
 fi
 export device
@@ -24,10 +24,11 @@ mount "${device}2" /mnt
 # Ensure the kernel.org mirror is always listed, so things work, even when the archlinux
 # website goes offline.
 printf "Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /tmp/mirrolist.50
+printf "Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /etc/pacman.d/mirrorlist
 
 curl -fsS https://www.archlinux.org/mirrorlist/?country=all > /tmp/mirrolist
 grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 50 | sed 's/^#//' >> /tmp/mirrolist.50
-rankmirrors -v /tmp/mirrolist.50 | tee /etc/pacman.d/mirrorlist
+rankmirrors -v /tmp/mirrolist.50 | tee --append /etc/pacman.d/mirrorlist
 pacstrap /mnt base grub openssh sudo
 
 swapon "${device}1"
