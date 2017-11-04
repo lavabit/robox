@@ -23,11 +23,12 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :libvirt do |v, override|
-    config.vm.guest = :alt
-    v.driver = "kvm"
     v.cpus = 2
     v.memory = 2048
+    v.driver = "kvm"
     v.video_vram = 256
+    config.vm.guest = :alt
+    v.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
   end
 
   config.vm.provider :parallels do |v, override|
