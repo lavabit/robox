@@ -112,6 +112,7 @@ Vagrant.configure(2) do |config|
     v.gui = false
     v.functional_vboxsf = false
     v.check_guest_additions = false
+    v.customize ["modifyvm", :id, "--vram", 256]
     v.customize ["modifyvm", :id, "--cpus", 2]
     v.customize ["modifyvm", :id, "--memory", 2048]
   end
