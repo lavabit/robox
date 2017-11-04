@@ -10,7 +10,7 @@ fi
 
 # Grab a snapshot of the development branch.
 cat <<-EOF > $OUTPUT
-#!/bin/bash
+#!/usr/local/bin/bash
 
 error() {
   if [ \$? -ne 0 ]; then

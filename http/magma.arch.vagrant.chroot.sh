@@ -13,7 +13,7 @@ mkinitcpio -p linux
 echo -e 'vagrant\nvagrant' | passwd
 useradd -m -U vagrant
 echo -e 'vagrant\nvagrant' | passwd vagrant
-cat <<EOF > /etc/sudoers.d/vagrant
+cat <<-EOF > /etc/sudoers.d/vagrant
 Defaults:vagrant !requiretty
 vagrant ALL=(ALL) NOPASSWD: ALL
 EOF
@@ -56,7 +56,6 @@ if [[ $VIRT == "Microsoft HyperV" ]]; then
     makepkg --cleanbuild --noconfirm --syncdeps --install
     cd $HOME && rm -rf hypervfcopyd
 EOF
-
     systemctl enable hypervkvpd.service
     systemctl enable hypervvssd.service
 fi

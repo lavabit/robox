@@ -10,12 +10,9 @@ Vagrant.configure(2) do |config|
   config.vm.box_check_update = true
   config.vm.box_download_checksum = true
   config.vm.box_download_checksum_type = "sha256"
-
-  config.vm.usable_port_range = 20000..30000
-
-  config.vm.provision "shell", run: "always", inline: <<-SHELL
-
-  SHELL
+  
+  # config.vm.provision "shell", run: "always", inline: <<-SHELL
+  # SHELL
 
   # Adding a second CPU and increasing the RAM to 2048MB will speed
   # things up considerably should you decide to do anythinc with this box.

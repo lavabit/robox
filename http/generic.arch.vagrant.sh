@@ -29,7 +29,7 @@ printf "Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /etc
 curl -fsS https://www.archlinux.org/mirrorlist/?country=all > /tmp/mirrolist
 grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 50 | sed 's/^#//' >> /tmp/mirrolist.50
 rankmirrors -v /tmp/mirrolist.50 | tee --append /etc/pacman.d/mirrorlist
-pacstrap /mnt base grub openssh sudo
+pacstrap /mnt base grub bash sudo openssh
 
 swapon "${device}1"
 genfstab -p /mnt >> /mnt/etc/fstab

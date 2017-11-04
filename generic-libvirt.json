@@ -1495,8 +1495,36 @@
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/generic.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box"
+                "vagrantfile_template": "tpl/generic-alpine.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "only": [
+                    "generic-alpine35-libvirt",
+                    "generic-alpine36-libvirt"
+                ]
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/generic-bsd.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "only": [
+                    "generic-openbsd6-libvirt",
+                    "generic-freebsd11-libvirt"
+                ]
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/generic-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "except": [
+                    "generic-alpine35-libvirt",
+                    "generic-alpine36-libvirt",
+                    "generic-openbsd6-libvirt",
+                    "generic-freebsd11-libvirt"
+                ]
             },
             {
                 "type": "vagrant-cloud",

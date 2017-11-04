@@ -280,7 +280,7 @@
                 "magma-openbsd6-hyperv"
             ]
         },
-				{
+        {
             "scripts": [
                 "scripts/openbsd6/hostname.sh",
                 "scripts/openbsd6/vagrant.sh",
@@ -290,10 +290,10 @@
                 "scripts/openbsd6/magma.sh"
             ],
             "type": "shell",
-						"pause_before": "120s",
+            "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
-						"execute_command": "/usr/local/bin/bash {{ .Path }}",
+            "execute_command": "/usr/local/bin/bash {{ .Path }}",
             "only": [
                 "magma-openbsd6-hyperv"
             ]
@@ -949,8 +949,34 @@
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/magma.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box"
+                "vagrantfile_template": "tpl/magma-alpine.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "only": [
+                    "magma-alpine36-hyperv"
+                ]
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/magma-bsd.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "only": [
+                    "magma-openbsd6-hyperv",
+                    "magma-freebsd11-hyperv"
+                ]
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/magma-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "except": [
+                    "magma-alpine36-hyperv",
+                    "magma-openbsd6-hyperv",
+                    "magma-freebsd11-hyperv"
+                ]
             },
             {
                 "type": "vagrant-cloud",
