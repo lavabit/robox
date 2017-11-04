@@ -38,8 +38,10 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/opensuse42/sudo.sh",
                 "scripts/opensuse42/zypper.sh",
+                "scripts/opensuse42/virtualbox.sh",
+                "scripts/opensuse42/vmware.sh",
+                "scripts/opensuse42/qemu.sh",
                 "scripts/opensuse42/vagrant.sh"
             ],
             "execute_command": "/bin/bash '{{.Path}}'",
