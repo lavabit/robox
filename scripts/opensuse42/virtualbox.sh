@@ -16,7 +16,7 @@ fi
 
 # Install the Virtual Box Tools from the Linux Guest Additions ISO.
 printf "Installing the Virtual Box Tools.\n"
-zypper --non-interactive install virtualbox-guest-tools; error
+zypper --non-interactive install virtualbox-guest-tools virtualbox-guest-kmp-default; error
 
 rm -rf /root/VBoxVersion.txt; error
 rm -rf /root/VBoxGuestAdditions.iso; error
