@@ -66,6 +66,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine35/lsb.sh",
                 "scripts/alpine35/vagrant.sh",
                 "scripts/alpine35/virtualbox.sh",
                 "scripts/alpine35/vmware.sh",
@@ -95,6 +96,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine36/lsb.sh",
                 "scripts/alpine36/vagrant.sh",
                 "scripts/alpine36/virtualbox.sh",
                 "scripts/alpine36/vmware.sh",
