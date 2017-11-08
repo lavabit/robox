@@ -14,6 +14,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
+							  "magma-developer",
                 "magma-developer-virtualbox"
             ]
         },
@@ -36,6 +37,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
+							  "magma-developer",
                 "magma-developer-virtualbox"
             ]
         },
@@ -50,6 +52,53 @@
         }
     ],
     "builders": [
+			{
+					"type": "virtualbox-iso",
+					"name": "magma-developer",
+					"vm_name": "magma-developer",
+					"output_directory": "output/magma-developer",
+					"boot_wait": "20s",
+					"boot_command": [
+							"<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
+					],
+					"disk_size": 131072,
+					"vboxmanage": [
+							[
+									"modifyvm",
+									"{{.Name}}",
+									"--memory",
+									"4096"
+							],
+							[
+									"modifyvm",
+									"{{.Name}}",
+									"--cpus",
+									"4"
+							]
+					],
+					"guest_os_type": "RedHat_64",
+					"http_directory": "http",
+					"headless": true,
+					"iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
+					"iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
+					"iso_checksum_type": "sha256",
+					"ssh_username": "root",
+					"ssh_password": "magma",
+					"ssh_port": 22,
+					"ssh_wait_timeout": "7200s",
+					"shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+					"guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.30/VBoxGuestAdditions_5.1.30.iso",
+					"guest_additions_sha256": "631ca8e8d513acf43a75de56a71a31aaffb5624864c57d10346ba657d991ec1e",
+					"guest_additions_path": "VBoxGuestAdditions.iso",
+					"virtualbox_version_file": "VBoxVersion.txt",
+					"export_opts": [
+						"--manifest",
+						"--vsys", "0",
+						"--description", "The magma encrypted mail daemon development desktop.",
+						"--version", "{{user `box_version`}}"
+					],
+					"format": "ova"
+			},
         {
             "type": "virtualbox-iso",
             "name": "magma-developer-virtualbox",
@@ -65,7 +114,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--memory",
-                    "2048"
+                    "4096"
                 ],
                 [
                     "modifyvm",
@@ -98,7 +147,10 @@
                 "compression_level": 9,
                 "keep_input_artifact": true,
                 "vagrantfile_template": "tpl/developer.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box"
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+								"only": [
+									"magma-developer-virtualbox"
+								]
             },
             {
                 "type": "vagrant-cloud",

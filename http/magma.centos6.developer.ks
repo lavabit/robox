@@ -12,7 +12,7 @@ text
 firstboot --disabled
 selinux --enforcing
 firewall --enabled --service=ssh --port=6000:tcp,6050:tcp,7000:tcp,7050:tcp,7500:tcp,7501:tcp,7550:tcp,7551:tcp,8000:tcp,8050:tcp,8500:tcp,8550:tcp,9000:tcp,9050:tcp,9500:tcp,9550:tcp,10000:tcp,10050:tcp,10500:tcp,10550:tcp
-network --device eth0 --bootproto dhcp --noipv6 --hostname=magma.developer.local
+network --device eth0 --bootproto dhcp --noipv6 --hostname=magma.local
 zerombr
 clearpart --all --initlabel
 bootloader --location=mbr
@@ -374,7 +374,6 @@ gawk
 gcalctool
 gcc
 gcc-c++
-gcc-debuginfo
 gcc-gfortran
 gcc-gnat
 gcc-java
@@ -421,8 +420,6 @@ glib2
 glib2-devel
 glibc
 glibc-common
-glibc-debuginfo
-glibc-debuginfo-common
 glibc-devel
 glibc-headers
 glibc-utils
@@ -430,7 +427,6 @@ glibmm24
 glib-networking
 glx-utils
 gmp
-gmp-debuginfo
 gmp-devel
 gnome-applets
 gnome-backgrounds
@@ -632,11 +628,6 @@ kasumi
 kbd
 kbd-misc
 kernel
-kernel
-kernel
-kernel-debuginfo-common-x86_64
-kernel-devel
-kernel-devel
 kernel-devel
 kernel-headers
 kexec-tools
@@ -842,7 +833,6 @@ libselinux-utils
 libsemanage
 libsemanage-python
 libsepol
-libsepol-debuginfo
 libsepol-devel
 libsexy
 libshout
@@ -963,15 +953,6 @@ lm_sensors-libs
 lockdev
 log4j
 logrotate
-lohit-assamese-fonts
-lohit-bengali-fonts
-lohit-devanagari-fonts
-lohit-gujarati-fonts
-lohit-kannada-fonts
-lohit-oriya-fonts
-lohit-punjabi-fonts
-lohit-tamil-fonts
-lohit-telugu-fonts
 lpg-java-compat
 lpsolve
 lslk
@@ -1072,7 +1053,6 @@ mysql-libs
 MySQL-python
 mysql-server
 mysql-test
-mythes-en
 nano
 nasm
 nautilus
@@ -1738,7 +1718,6 @@ yum-utils
 zenity
 zip
 zlib
-zlib-debuginfo
 zlib-devel
 -microcode_ctl
 -*firmware
