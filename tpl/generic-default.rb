@@ -10,7 +10,7 @@ Vagrant.configure(2) do |config|
   config.vm.box_check_update = true
   config.vm.box_download_checksum = true
   config.vm.box_download_checksum_type = "sha256"
-  
+
   # config.vm.provision "shell", run: "always", inline: <<-SHELL
   # SHELL
 
@@ -23,6 +23,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :libvirt do |v, override|
+    v.disk_bus = "scsi"
     v.driver = "kvm"
     v.video_vram = 256
     v.memory = 2048
