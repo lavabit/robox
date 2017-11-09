@@ -5,6 +5,8 @@
 # Enable automatic login for the magma user.
 sed -e "s/\[daemon\]/[daemon]\nAutomaticLoginEnable=true\nAutomaticLogin=magma\n/g" /etc/gdm/custom.conf
 
+# Disable the clamav user.
+usermod --lock --shell /sbin/nologin clamav
 
 # Enable sudo for the magma user.
 printf "magma\nmagma\n" | passwd magma
@@ -820,7 +822,7 @@ aQzb8vuzL59v9/7rx3i9v7luxvxMf41/7u/lead9uPfPXHhzH/br98fRRjvaOc52XNdF17vXTW/t
 P40Lfx/4++vhtPv+k/F/rtt/8/56H5+bW3z/08t8N171cGHP/7qOm69/t36xt/v/tf7cfHw+w2ne
 V3Ve/nb95Ot13n8d/38Bq+gRx+PKwDkAAAAASUVORK5CYII=
 EOF
-gn
+
 # Setup the desktop shortcuts and README file.
 mkdir --parents /home/magma/Desktop/
 
