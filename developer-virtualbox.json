@@ -90,9 +90,9 @@
 					"guest_additions_path": "VBoxGuestAdditions.iso",
 					"virtualbox_version_file": "VBoxVersion.txt",
 					"export_opts": [
-						"--ovf20",
+						"--ovf10",
 						"--manifest",
-						"--vsys", "1",
+						"--vsys", "0",
 						"--options", "nomacs",
 						"--description", "The magma encrypted mail daemon development desktop.",
 						"--version", "{{user `box_version`}}",
