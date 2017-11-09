@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
 
   # config.vm.box = "lavabit/magma"
-  config.vm.hostname = "magma.developer.local"
+  config.vm.hostname = "magma.local"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.box_check_update = true
@@ -110,6 +110,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider :virtualbox do |v, override|
     v.customize ["modifyvm", :id, "--memory", 4096]
+		v.customize ["modifyvm", :id, "--vram", 256]
     v.customize ["modifyvm", :id, "--cpus", 4]
     v.gui = true
   end

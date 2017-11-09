@@ -2,11 +2,17 @@
 #
 # Setup the the box. This runs as root
 
-# Enable automatic login for the magma user.
-sed -e "s/\[daemon\]/[daemon]\nAutomaticLoginEnable=true\nAutomaticLogin=magma\n/g" /etc/gdm/custom.conf
-
-# Disable the clamav user.
+# Disable the default users.
 usermod --lock --shell /sbin/nologin clamav
+usermod --lock --shell /sbin/nologin vagrant
+
+# Enable automatic login for the magma user.
+sed -i -e "s/\[daemon\]/[daemon]\nAutomaticLoginEnable=true\nAutomaticLogin=magma\n/g" /etc/gdm/custom.conf
+
+# Hide the clamav and vagrant users when showing the greeter.
+sed -i -e "s/\[greeter\]/[greeter]\nExclude=bin,root,daemon,adm,lp,sync,shutdown,"\
+"halt,mail,news,uucp,operator,nobody,nobody4,noaccess,postgres,pvm,rpm,"\
+"nfsnobody,pcap,clamav,vagrant\n/g" /etc/gdm/custom.conf
 
 # Enable sudo for the magma user.
 printf "magma\nmagma\n" | passwd magma

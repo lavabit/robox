@@ -9,7 +9,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.2.35"
+export VERSION="1.2.36"
 export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
@@ -24,10 +24,11 @@ cd $BASE
 source .credentialsrc
 
 # The list of packer config files.
-FILES="magma-docker.json developer-virtualbox.json "\
+FILES="magma-docker.json "\
 "magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
 "generic-hyperv.json generic-vmware.json generic-libvirt.json generic-virtualbox.json "\
-"lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json"
+"lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
+"developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
 # Collect the list of ISO urls.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/rhel-server-6.9-x86_64-dvd.iso|res/media/rhel-server-7.3-x86_64-dvd.iso|res/media/rhel-server-7.4-x86_64-dvd.iso" | awk -F'"' '{print $4}'`)
@@ -37,16 +38,18 @@ ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_ch
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-|lineageos-" | sort --field-separator=- -k 3i -k 2.1,2.0`
-BOXES="$LINEAGE_BOXES $GENERIC_BOXES $MAGMA_BOXES"
+DEVELOPER_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
+BOXES="$LINEAGE_BOXES $GENERIC_BOXES $MAGMA_BOXES $DEVELOPER_BOXES"
 
 # Collect the list of box tags.
 MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
 GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
 LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+DEVELOPER_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
 # MAGMA_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
 # GENERIC_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
 # LINEAGE_TAGS=`grep -E '"artifact":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
-TAGS="$LINEAGE_TAGS $GENERIC_TAGS $MAGMA_TAGS"
+TAGS="$LINEAGE_TAGS $GENERIC_TAGS $MAGMA_TAGS $DEVELOPER_TAGS"
 
 # These boxes aren't publicly available yet, so we filter them out of available test.
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-developer lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
@@ -61,8 +64,8 @@ function start() {
   sudo systemctl restart libvirtd.service
   sudo systemctl restart docker-latest.service
   sudo systemctl restart vmware.service
-	sudo systemctl restart vmware-USBArbitrator.service
-	sudo systemctl restart vmware-workstation-server.service
+  sudo systemctl restart vmware-USBArbitrator.service
+  sudo systemctl restart vmware-workstation-server.service
 
   # Confirm the VirtualBox kernel modules loaded.
   if [ -f /usr/lib/virtualbox/vboxdrv.sh ]; then
@@ -201,12 +204,12 @@ function box() {
 
       export PACKER_LOG_PATH="$BASE/logs/lineage-hyperv-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
+
+      export PACKER_LOG_PATH="$BASE/logs/developer-hyperv-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 developer-hyperv.json
   else
       export PACKER_LOG_PATH="$BASE/logs/magma-docker-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json
-
-      export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-${TIMESTAMP}.txt"
-      packer build -on-error=cleanup -parallel=false -only=$1 developer-virtualbox.json
 
       export PACKER_LOG_PATH="$BASE/logs/magma-vmware-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
@@ -225,6 +228,15 @@ function box() {
 
       export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
+
+      export PACKER_LOG_PATH="$BASE/logs/developer-vmware-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 developer-vmware.json
+
+      export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 developer-libvirt.json
+
+      export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 developer-virtualbox.json
 
       export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-vmware.json
@@ -263,11 +275,14 @@ function validate() {
   verify_json magma-vmware
   verify_json magma-libvirt
   verify_json magma-virtualbox
-  verify_json developer-virtualbox
   verify_json generic-hyperv
   verify_json generic-vmware
   verify_json generic-libvirt
   verify_json generic-virtualbox
+  verify_json developer-hyperv
+  verify_json developer-vmware
+  verify_json developer-libvirt
+  verify_json developer-virtualbox
   verify_json lineage-hyperv
   verify_json lineage-vmware
   verify_json lineage-libvirt
@@ -300,12 +315,12 @@ function available() {
 
     MISSING=0
     LIST=($TAGS)
-		FILTER=($FILTERED_TAGS)
+    FILTER=($FILTERED_TAGS)
 
-		# Loop through and remove the filtered tags from the list.
-		for ((i = 0; i < ${#FILTER[@]}; ++i)); do
-			LIST=(${LIST[@]//${FILTER[$i]}})
-		done
+    # Loop through and remove the filtered tags from the list.
+    for ((i = 0; i < ${#FILTER[@]}; ++i)); do
+      LIST=(${LIST[@]//${FILTER[$i]}})
+    done
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
@@ -368,6 +383,12 @@ function public() {
 
     MISSING=0
     LIST=($TAGS)
+    FILTER=($FILTERED_TAGS)
+
+    # Loop through and remove the filtered tags from the list.
+    for ((i = 0; i < ${#FILTER[@]}; ++i)); do
+      LIST=(${LIST[@]//${FILTER[$i]}})
+    done
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
@@ -479,11 +500,13 @@ function lineage() {
 }
 
 function developer() {
-  # if [[ $OS == "Windows_NT" ]]; then
-  #   build magma-developer-hyperv
-  # else
+  if [[ $OS == "Windows_NT" ]]; then
+    build magma-developer-hyperv
+  else
+    build developer-vmware
+    build developer-libvirt
     build developer-virtualbox
-  # fi
+  fi
 }
 
 function builder() {
@@ -528,9 +551,12 @@ elif [[ $1 == "magma-vmware" || $1 == "magma-vmware.json" ]]; then build magma-v
 elif [[ $1 == "magma-hyperv" || $1 == "magma-hyperv.json" ]]; then build magma-hyperv
 elif [[ $1 == "magma-libvirt" || $1 == "magma-libvirt.json" ]]; then build magma-libvirt
 elif [[ $1 == "magma-virtualbox" || $1 == "magma-virtualbox.json" ]]; then build magma-virtualbox
-
-elif [[ $1 == "developer-virtualbox" || $1 == "developer-virtualbox.json" ]]; then build developer-virtualbox
 elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then docker-login ; build magma-docker; docker-logout
+
+elif [[ $1 == "developer-vmware" || $1 == "developer-vmware.json" ]]; then build developer-vmware
+elif [[ $1 == "developer-hyperv" || $1 == "developer-hyperv.json" ]]; then build developer-hyperv
+elif [[ $1 == "developer-libvirt" || $1 == "developer-libvirt.json" ]]; then build developer-libvirt
+elif [[ $1 == "developer-virtualbox" || $1 == "developer-virtualbox.json" ]]; then build developer-virtualbox
 
 elif [[ $1 == "generic-vmware" || $1 == "generic-vmware.json" ]]; then build generic-vmware
 elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv.json" ]]; then build generic-hyperv

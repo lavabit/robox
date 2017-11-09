@@ -13,7 +13,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-virtualbox"
+                "magma-developer-libvirt"
             ]
         },
         {
@@ -34,7 +34,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-virtualbox"
+                "magma-developer-libvirt"
             ]
         },
         {
@@ -48,46 +48,49 @@
         }
     ],
     "builders": [
-        {
-            "type": "virtualbox-iso",
-            "name": "magma-developer-virtualbox",
-            "vm_name": "magma-developer-virtualbox",
-            "output_directory": "output/magma-developer-virtualbox",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
-            ],
-            "disk_size": 131072,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "4096"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
-                ]
-            ],
-            "guest_os_type": "RedHat_64",
-            "http_directory": "http",
-            "headless": true,
-            "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
-            "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "magma",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "7200s",
-            "shutdown_command": "sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.30/VBoxGuestAdditions_5.1.30.iso",
-            "guest_additions_sha256": "631ca8e8d513acf43a75de56a71a31aaffb5624864c57d10346ba657d991ec1e",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        }
+      {
+          "type": "qemu",
+          "name": "magma-developer-libvirt",
+          "vm_name": "magma-developer-libvirt",
+          "output_directory": "output/magma-developer-libvirt",
+          "accelerator": "kvm",
+          "qemu_binary": "/usr/libexec/qemu-kvm",
+          "boot_wait": "20s",
+          "boot_command": [
+              "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
+          ],
+          "format": "qcow2",
+          "disk_size": 131072,
+          "disk_discard": "unmap",
+          "disk_cache": "unsafe",
+          "disk_compression": true,
+          "disk_interface": "virtio-scsi",
+          "net_device": "virtio-net",
+          "qemuargs": [
+              [
+                  "-m",
+                  "4096M"
+              ],
+              [
+                  "-smp",
+                  "cpus=4,sockets=2"
+              ],
+              [
+                  "-drive",
+                  "if=none,file=output/magma-developer-libvirt/magma-developer-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+              ]
+          ],
+          "http_directory": "http",
+          "headless": true,
+          "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
+          "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
+          "iso_checksum_type": "sha256",
+          "ssh_username": "root",
+          "ssh_password": "magma",
+          "ssh_port": 22,
+          "ssh_wait_timeout": "3600s",
+          "shutdown_command": "sudo -S shutdown -P now"
+      }
     ],
     "post-processors": [
         [
@@ -98,13 +101,13 @@
                 "vagrantfile_template": "tpl/developer.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "only": [
-                  "magma-developer-virtualbox"
+                  "magma-developer-libvirt"
                 ]
             },
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "magma-developer-virtualbox"
+                    "magma-developer-libvirt"
                 ],
                 "box_tag": "lavabit/magma-developer",
                 "version": "{{user `box_version`}}",
@@ -121,3 +124,4 @@
         ]
     ]
 }
+develo
