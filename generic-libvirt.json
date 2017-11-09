@@ -41,7 +41,8 @@
                 "scripts/opensuse42/virtualbox.sh",
                 "scripts/opensuse42/vmware.sh",
                 "scripts/opensuse42/qemu.sh",
-                "scripts/opensuse42/vagrant.sh"
+                "scripts/opensuse42/vagrant.sh",
+                "scripts/opensuse42/network.sh"
             ],
             "execute_command": "/bin/bash '{{.Path}}'",
             "start_retry_timeout": "15m",
