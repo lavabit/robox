@@ -35,12 +35,6 @@ yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automak
 # Install the libbsd packages from the EPEL repository, which DSPAM relies upon for the strl functions.
 # The entropy daemon is optional, but improves the availability of entropy, which makes magma launch
 # and complete her unit tests faster.
-yum --quiet --assumeyes --enablerepo=extras install epel-release; error
-
-# Import the EPEL key.
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-
-# Grab the required packages from the EPEL repo.
 yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
 
 # Boosts the available entropy which allows magma to start faster.
