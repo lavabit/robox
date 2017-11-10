@@ -20,9 +20,12 @@ sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 printf "magma        ALL=(ALL)       NOPASSWD: ALL\n" > /etc/sudoers.d/magma
 chmod 0440 /etc/sudoers.d/magma
 
-# Ship with the latest version of magma.
-mkdir --parents /home/magma/Lavabit/
-git clone https://github.com/lavabit/magma.git /home/magma/Lavabit/magma/
+# Ship with the latest version of magma. For some reason a fully qualified output
+# path results in the clone operation performing poorly, so we change directories
+# first.
+mkdir --parents /home/magma/Lavabit/ && cd /home/magma/Lavabit/
+git clone https://github.com/lavabit/magma.git magma
+cd $HOME
 
 # Grab a snapshot of the development branch.
 cat <<-EOF > "/home/magma/magma-build.sh"
