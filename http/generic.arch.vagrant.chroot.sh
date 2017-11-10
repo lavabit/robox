@@ -26,8 +26,11 @@ ln -sf /dev/null /etc/systemd/network/99-default.link
 systemctl enable sshd
 systemctl enable dhcpcd@eth0
 
-grub-install "$device"
+# Ensure the network is always eth0.
+sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0"/g' /etc/default/grub
 sed -i -e 's/^GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=5/' /etc/default/grub
+
+grub-install "$device"
 grub-mkconfig -o /boot/grub/grub.cfg
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
