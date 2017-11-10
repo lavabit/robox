@@ -814,7 +814,7 @@
             "output_directory": "output/generic-arch-hyperv",
             "boot_wait": "30s",
             "boot_command": [
-                "<enter><wait10><wait10><wait10>",
+                "<enter><wait10><wait10><wait10><wait10>",
                 "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.vagrant{,.chroot}.sh'<enter><wait>",
                 "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
