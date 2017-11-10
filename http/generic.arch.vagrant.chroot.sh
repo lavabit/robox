@@ -20,14 +20,14 @@ EOF
 chmod 440 /etc/sudoers.d/vagrant
 sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
-# mkdir -p /etc/systemd/network
-# ln -sf /dev/null /etc/systemd/network/99-default.link
+mkdir -p /etc/systemd/network
+ln -sf /dev/null /etc/systemd/network/99-default.link
 
 systemctl enable sshd
 systemctl enable dhcpcd.service
 
 # Ensure the network is always eth0.
-# sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0"/g' /etc/default/grub
+sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0"/g' /etc/default/grub
 sed -i -e 's/^GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=5/' /etc/default/grub
 
 grub-install "$device"
