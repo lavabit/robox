@@ -119,9 +119,9 @@
         [
           {
             "type": "shell-local",
-            "keep_input_artifact": false,
             "inline": [
               "ovftool --diskMode=thin --compress=9 --name=\"magma.local\" --prop:vendor=\"Lavabit\" --prop:vendorUrl=\"https://lavabit.com\" --prop:product=\"magma.local\" --prop:productUrl=\"https://lavabit.com\" --prop:version=\"{{user `box_version`}}\" --prop:fullVersion=\"{{user `box_version`}}\" --annotation=\"The magma encrypted mail daemon desktop development environment.\" \"output/magma-developer/magma-developer.vmx\" \"output/magma-developer.ova\""
+							"rm --recursive --force  \"output/magma-developer/\""
             ],
             "only": [
               "magma-developer"
