@@ -74,7 +74,7 @@
           "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
           "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
           "iso_checksum_type": "sha256",
-          "skip_compaction": true,
+          "skip_compaction": false,
           "ssh_username": "root",
           "ssh_password": "magma",
           "ssh_port": 22,
@@ -106,7 +106,7 @@
           "iso_url": "https://mirrors.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
           "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
           "iso_checksum_type": "sha256",
-          "skip_compaction": true,
+          "skip_compaction": false,
           "ssh_username": "root",
           "ssh_password": "magma",
           "ssh_port": 22,
@@ -124,7 +124,7 @@
               "ovftool --diskMode=thin --compress=9 --name=\"magma.local\" --prop:vendor=\"Lavabit\" --prop:vendorUrl=\"https://lavabit.com\" --prop:product=\"magma.local\" --prop:productUrl=\"https://lavabit.com\" --prop:version=\"{{user `box_version`}}\" --prop:fullVersion=\"{{user `box_version`}}\" --annotation=\"The magma encrypted mail daemon desktop development environment.\" \"output/magma-developer/magma-developer.vmx\" \"output/magma-developer.ova\""
             ],
             "only": [
-              "magma-developer-vmware"
+              "magma-developer"
             ]
           },
           {
