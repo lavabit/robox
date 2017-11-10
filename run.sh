@@ -496,7 +496,7 @@ function lineage() {
 
 function developer() {
   if [[ $OS == "Windows_NT" ]]; then
-    build magma-developer-hyperv
+    build developer-hyperv
   else
     build developer-vmware
     build developer-libvirt
