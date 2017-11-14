@@ -409,6 +409,47 @@
             ]
         },
         {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora27/fixdns.sh",
+                "scripts/fedora27/dnf.sh"
+            ],
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora27-hyperv"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora27/base.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora27-hyperv"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora27/kernel.sh",
+                "scripts/fedora27/virtualbox.sh",
+                "scripts/fedora27/vmware.sh",
+                "scripts/fedora27/qemu.sh",
+                "scripts/fedora27/vagrant.sh",
+                "scripts/fedora27/tuning.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora27-hyperv"
+            ]
+        },
+        {
             "scripts": [
                 "scripts/freebsd11/hostname.sh",
                 "scripts/freebsd11/pkg.sh",
@@ -906,6 +947,39 @@
         },
         {
             "type": "hyperv-iso",
+            "name": "generic-fedora27-hyperv",
+            "vm_name": "generic-fedora27-hyperv",
+            "output_directory": "output/generic-fedora27-hyperv",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> ",
+                "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora27.vagrant.ks ",
+                "biosdevname=0 ",
+                "net.ifnames=0 ",
+                "<enter>"
+            ],
+            "disk_size": 32768,
+            "ram_size": 2048,
+            "cpu": 2,
+            "http_directory": "http",
+            "iso_url": "https://mirrors.kernel.org/fedora/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
+            "iso_checksum": "2b93836c38833b26891345388ff5ddea60529b27a616b4539d432a3520d1c90b",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "generation": 1,
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": true,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        },
+        {
+            "type": "hyperv-iso",
             "name": "generic-debian8-hyperv",
             "vm_name": "generic-debian8-hyperv",
             "output_directory": "output/generic-debian8-hyperv",
@@ -1384,6 +1458,15 @@
                     "generic-fedora26-hyperv"
                 ],
                 "box_tag": "generic/fedora26",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-fedora27-hyperv"
+                ],
+                "box_tag": "generic/fedora27",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
