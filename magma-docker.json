@@ -2,7 +2,6 @@
     "variables": {
         "box_version": "{{env `VERSION`}}",
         "docker-user": "{{env `DOCKER_USER`}}",
-        "docker-email": "{{env `DOCKER_EMAIL`}}",
         "docker-password": "{{env `DOCKER_PASSWORD`}}"
     },
     "provisioners": [
@@ -313,7 +312,6 @@
             {
                 "type": "docker-push",
                 "login": "false",
-                "login_email": "{{user `docker_email`}}",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
             }
@@ -365,7 +363,6 @@
             {
                 "type": "docker-push",
                 "login": "false",
-                "login_email": "{{user `docker_email`}}",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
             }
