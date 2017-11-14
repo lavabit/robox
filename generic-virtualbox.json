@@ -410,7 +410,6 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/fedora27/fixdns.sh",
                 "scripts/fedora27/dnf.sh"
             ],
             "start_retry_timeout": "15m",
@@ -1088,7 +1087,7 @@
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "shutdown_command": "shutdown -P now",
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.30/VBoxGuestAdditions_5.1.30.iso",
             "guest_additions_sha256": "631ca8e8d513acf43a75de56a71a31aaffb5624864c57d10346ba657d991ec1e",
             "guest_additions_path": "VBoxGuestAdditions.iso",

@@ -410,7 +410,6 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/fedora27/fixdns.sh",
                 "scripts/fedora27/dnf.sh"
             ],
             "start_retry_timeout": "15m",
@@ -1125,7 +1124,7 @@
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "shutdown -P now"
         },
         {
             "type": "qemu",
