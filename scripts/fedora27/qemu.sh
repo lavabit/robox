@@ -16,6 +16,4 @@ fi
 # Install the QEMU using Yum.
 printf "Installing the QEMU Tools.\n"
 
-dnf --assumeyes install acpid qemu-guest-agent; error
-systemctl enable acpid.service && systemctl start acpid.service; error
-systemctl enable qemu-guest-agent.service; error
+dnf --assumeyes install qemu-guest-agent; error
