@@ -512,7 +512,8 @@
                 "scripts/ubuntu1604/fixtty.sh",
                 "scripts/ubuntu1604/virtualbox.sh",
                 "scripts/ubuntu1604/vmware.sh",
-                "scripts/ubuntu1604/qemu.sh"
+                "scripts/ubuntu1604/qemu.sh",
+                "scripts/ubuntu1604/cleanup.sh"
             ],
             "type": "shell",
             "pause_before": "120s",
@@ -540,7 +541,8 @@
                 "scripts/ubuntu1610/fixtty.sh",
                 "scripts/ubuntu1610/virtualbox.sh",
                 "scripts/ubuntu1610/vmware.sh",
-                "scripts/ubuntu1610/qemu.sh"
+                "scripts/ubuntu1610/qemu.sh",
+                "scripts/ubuntu1610/cleanup.sh"
             ],
             "type": "shell",
             "pause_before": "120s",
@@ -568,7 +570,8 @@
                 "scripts/ubuntu1704/fixtty.sh",
                 "scripts/ubuntu1704/virtualbox.sh",
                 "scripts/ubuntu1704/vmware.sh",
-                "scripts/ubuntu1704/qemu.sh"
+                "scripts/ubuntu1704/qemu.sh",
+                "scripts/ubuntu1704/cleanup.sh"
             ],
             "type": "shell",
             "pause_before": "120s",
@@ -596,7 +599,8 @@
                 "scripts/ubuntu1710/fixtty.sh",
                 "scripts/ubuntu1710/virtualbox.sh",
                 "scripts/ubuntu1710/vmware.sh",
-                "scripts/ubuntu1710/qemu.sh"
+                "scripts/ubuntu1710/qemu.sh",
+                "scripts/ubuntu1710/cleanup.sh"
             ],
             "type": "shell",
             "pause_before": "120s",

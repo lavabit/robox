@@ -24,7 +24,8 @@
                 "scripts/ubuntu1604/fixtty.sh",
                 "scripts/ubuntu1604/virtualbox.sh",
                 "scripts/ubuntu1604/vmware.sh",
-                "scripts/ubuntu1604/qemu.sh"
+                "scripts/ubuntu1604/qemu.sh",
+                "scripts/ubuntu1604/cleanup.sh"
             ],
             "type": "shell",
             "pause_before": "120s",

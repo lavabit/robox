@@ -24,7 +24,6 @@ systemctl stop snapd.service snapd.socket snapd.refresh.timer
 apt-get --assume-yes update; error
 apt-get --assume-yes upgrade; error
 apt-get --assume-yes dist-upgrade; error
-apt-get --assume-yes full-upgrade; error
 
 # Needed to retrieve source code, and other misc system tools.
 apt-get --assume-yes install vim vim-nox git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils; error
