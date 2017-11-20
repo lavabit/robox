@@ -7,10 +7,13 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 printf "\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
 
 # Set the hostname, and then ensure it will resolve properly.
-if [[ "$PACKER_BUILD_NAME" =~ ^lineage-vmware$|^lineage-libvirt$|^lineage-virtualbox$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^lineage-vmware$|^lineage-libvirt$|^lineage-virtualbox$|^lineage-hyperv$ ]]; then
   printf "lineage.builder\n" > /etc/hostname
   printf "\n127.0.0.1 lineage.builder\n\n" >> /etc/hosts
-elif [[ "$PACKER_BUILD_NAME" =~ ^generic-ubuntu1604-vmware$|^generic-ubuntu1604-libvirt$|^generic-ubuntu1604-virtualbox$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^lineageos-vmware$|^lineageos-libvirt$|^lineageos-virtualbox$|^lineageos-hyperv$ ]]; then
+  printf "lineage.builder\n" > /etc/hostname
+  printf "\n127.0.0.1 lineage.builder\n\n" >> /etc/hosts
+elif [[ "$PACKER_BUILD_NAME" =~ ^generic-ubuntu1604-vmware$|^generic-ubuntu1604-libvirt$|^generic-ubuntu1604-virtualbox$|^generic-ubuntu1604-hyperv$ ]]; then
   printf "ubuntu1604.localdomain\n" > /etc/hostname
   printf "\n127.0.0.1 ubuntu1604.localdomain\n\n" >> /etc/hosts
 else
