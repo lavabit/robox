@@ -505,10 +505,13 @@ function developer() {
 }
 
 function builder() {
-  magma
+  developer
   generic
   lineage
-  developer
+  magma
+
+
+
 }
 
 function all() {
