@@ -1,3 +1,0 @@
-install.sh is based on https://github.com/courtney-miles/gentoo-bento
-install2.sh is the same as install.sh but with a few default GRUB options
-install3.sh is based on https://github.com/symbols-worldwide/gentoo-packer
