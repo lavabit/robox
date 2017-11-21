@@ -1,7 +1,6 @@
 {
     "variables": {
-        "box_version": "{{env `VERSION`}}",
-        "box_token": "{{env `ATLAS_TOKEN`}}"
+        "box_version": "{{env `VERSION`}}"
     },
     "provisioners": [
         {

@@ -98,6 +98,19 @@ function isos {
   # printf "${URL}\n${SHA}\n\n"
 }
 
+function cache {
+
+  unset PACKER_LOG
+  packer build -on-error=cleanup -parallel=false packer-cache.json 2>&1 | grep --color=none -E "Download progress|Downloading or copying"
+
+  if [[ $? != 0 ]]; then
+    tput setaf 1; tput bold; printf "\n\nDistro disc image download aborted...\n\n"; tput sgr0
+  else
+    tput setaf 2; tput bold; printf "\n\nDistro disc images have finished downloading...\n\n"; tput sgr0
+  fi
+
+}
+
 # Verify all of the ISO locations are still valid.
 function verify_url {
 
@@ -527,6 +540,7 @@ function all() {
 # The stage functions.
 if [[ $1 == "start" ]]; then start
 elif [[ $1 == "links" ]]; then links
+elif [[ $1 == "cache" ]]; then cache
 elif [[ $1 == "validate" ]]; then validate
 elif [[ $1 == "build" ]]; then builder
 elif [[ $1 == "cleanup" ]]; then cleanup
@@ -576,7 +590,7 @@ elif [[ $1 == "all" ]]; then all
 else
   echo ""
   echo " Stages"
-  echo $"  `basename $0` {start|links|validate|build|cleanup} or "
+  echo $"  `basename $0` {start|links|cache|validate|build|cleanup} or "
   echo ""
   echo " Helpers"
   echo $"  `basename $0` {isos|sunms|missing|public|available} or "
