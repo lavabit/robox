@@ -9,7 +9,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.3.2"
+export VERSION="1.3.4"
 export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
@@ -278,6 +278,7 @@ function sums() {
 }
 
 function validate() {
+  verify_json packer-cache
   verify_json magma-docker
   verify_json magma-hyperv
   verify_json magma-vmware
