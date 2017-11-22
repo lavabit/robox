@@ -20,8 +20,13 @@ printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
 systemctl stop apt-daily.service apt-daily.timer
 systemctl stop snapd.service snapd.socket snapd.refresh.timer
 
-# Update the package list and then upgrade.
+# Update the package database.
 apt-get --assume-yes update; error
+
+# Ensure the linux-tools and linux-cloud-tools get updated with the kernel.
+apt-get --assume-yes install linux-tools-generic linux-cloud-tools-generic
+
+# Upgrade the installed packages.
 apt-get --assume-yes upgrade; error
 apt-get --assume-yes dist-upgrade; error
 
