@@ -5,24 +5,19 @@ apk --no-cache add wget ca-certificates
 wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub
 
 # Unstable.
-wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-2.25-r1.apk
-wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-bin-2.25-r1.apk
-wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-dev-2.25-r1.apk
-wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-i18n-2.25-r1.apk
-
-# Stable but doesn't include the include files.
-# wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-bin-2.25-r0.apk
-# wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-2.25-r0.apk
-# wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-i18n-2.25-r0.apk
+wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.26-r0/glibc-2.26-r0.apk
+wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.26-r0/glibc-bin-2.26-r0.apk
+wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.26-r0/glibc-dev-2.26-r0.apk
+wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.26-r0/glibc-i18n-2.26-r0.apk
 
 # Ensure the compatability library has been removed, to avoid conflicts.
 apk del libc6-compat
 
 # Install glibc.
-apk add glibc-2.25-r1.apk glibc-bin-2.25-r1.apk glibc-dev-2.25-r1.apk glibc-i18n-2.25-r1.apk
+apk add glibc-2.26-r0.apk glibc-bin-2.26-r0.apk glibc-dev-2.26-r0.apk glibc-i18n-2.26-r0.apk
 
 # Cleanup the apk files.
-rm -f glibc-2.25-r1.apk glibc-bin-2.25-r1.apk glibc-dev-2.25-r1.apk glibc-i18n-2.25-r1.apk
+rm -f glibc-2.26-r0.apk glibc-bin-2.26-r0.apk glibc-dev-2.26-r0.apk glibc-i18n-2.26-r0.apk
 
 #  Generate the English/USA locale.
 /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8
@@ -39,6 +34,9 @@ if [ \$ID != 0 ]; then
   # export CPLUS_INCLUDE_PATH="/usr/glibc-compat/include/"
   # export OBJC_INCLUDE_PATH="/usr/glibc-compat/include/"
   # export GCC_EXEC_PREFIX="/usr/glibc-compat/"
+else
+  export PATH=$PATH:/usr/glibc-compat/bin:/usr/glibc-compat/sbin
+  export LD_LIBRARY_PATH="/usr/glibc-compat/lib/"
 fi
 EOF
 

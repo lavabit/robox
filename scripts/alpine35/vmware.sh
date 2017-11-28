@@ -18,10 +18,10 @@ printf "@community https://dl-3.alpinelinux.org/alpine/v3.5/community\n@communit
 apk update
 
 # Install the Open VMWare Tools.
-apk add open-vm-tools
+# apk add open-vm-tools
 
 # Autostart the open-vm-tools.
-rc-update add open-vm-tools default && rc-service open-vm-tools start
+# rc-update add open-vm-tools default && rc-service open-vm-tools start
 
 # Boosts the available entropy which allows magma to start faster.
 apk add haveged
@@ -29,14 +29,26 @@ apk add haveged
 # Autostart the haveged daemon.
 rc-update add haveged default && rc-service haveged start
 
+# The VMWare tool dependencies.
+apk add perl build-base
+
+mkdir /etc/rc.d/
+ln -s /etc/runlevels/boot/ /etc/rc.d/rc0.d
+ln -s /etc/runlevels/boot/ /etc/rc.d/rc1.d
+ln -s /etc/runlevels/sysinit/ /etc/rc.d/rc2.d
+ln -s /etc/runlevels/nonetwork/ /etc/rc.d/rc3.d
+ln -s /etc/runlevels/default/ /etc/rc.d/rc4.d
+ln -s /etc/runlevels/default/ /etc/rc.d/rc5.d
+ln -s /etc/runlevels/shutdown/ /etc/rc.d/rc6.d
+
 # Uncomment if you'd prefer to build the guest additions from source.
-# mkdir -p /mnt/vmware
-# mount -o loop /root/linux.iso /mnt/vmware
-# cd /tmp
-# tar xzf /mnt/vmware/VMwareTools-*.tar.gz
-# /tmp/vmware-tools-distrib/vmware-install.pl -d
-# rm -rf /tmp/vmware-tools-distrib
-# umount /mnt/vmware
+mkdir -p /mnt/vmware
+mount -o loop /root/linux.iso /mnt/vmware
+cd /tmp
+tar xzf /mnt/vmware/VMwareTools-*.tar.gz
+/tmp/vmware-tools-distrib/vmware-install.pl -d
+rm -rf /tmp/vmware-tools-distrib
+umount /mnt/vmware
 
 # When we're done delete the tools ISO.
 rm -rf /root/linux.iso
