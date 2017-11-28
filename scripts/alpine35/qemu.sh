@@ -24,7 +24,18 @@ rc-update add qemu-guest-agent default && rc-service qemu-guest-agent start
 apk add haveged
 
 # Remove the network need from the haveged.
-sed -i -e 's/need net/# need net/g' /etc/init.d/haveged
+tee /etc/init.d/haveged <<-EOF
+#!/sbin/openrc-run
+
+command="/usr/sbin/haveged"
+command_args="$HAVEGED_OPTS"
+command_background="yes"
+
+pidfile="/run/$RC_SVCNAME.pid"
+
+EOF
+
+chmod 755 /etc/init.d/haveged
 
 # Autostart the haveged daemon.
 rc-update add haveged default && rc-service haveged start
