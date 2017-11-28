@@ -117,6 +117,7 @@ Vagrant.configure(2) do |config|
 
   ["vmware_fusion", "vmware_workstation", "vmware_desktop"].each do |provider|
     config.vm.provider provider do |v, override|
+      v.vmx["ethernet0.pcislotnumber"] = "33"
       v.vmx["cpuid.coresPerSocket"] = "1"
       v.vmx["memsize"] = "4096"
       v.vmx["numvcpus"] = "4"
