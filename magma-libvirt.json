@@ -410,11 +410,7 @@
             ],
             "type": "shell",
             "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "except": [
-                "magma-freebsd11-libvirt",
-                "magma-openbsd6-libvirt"
-            ]
+            "expect_disconnect": "true"
         }
     ],
     "builders": [

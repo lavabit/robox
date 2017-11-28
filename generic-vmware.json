@@ -617,11 +617,7 @@
             ],
             "type": "shell",
             "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "except": [
-                "generic-freebsd11-vmware",
-                "generic-openbsd6-vmware"
-            ]
+            "expect_disconnect": "true"
         }
     ],
     "builders": [
