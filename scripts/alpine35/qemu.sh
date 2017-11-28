@@ -23,5 +23,8 @@ rc-update add qemu-guest-agent default && rc-service qemu-guest-agent start
 # Boosts the available entropy which allows magma to start faster.
 apk add haveged
 
+# Remove the network need from the haveged.
+sed -i -e '/need net/d' /etc/init.d/haveged
+
 # Autostart the haveged daemon.
 rc-update add haveged default && rc-service haveged start

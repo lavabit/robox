@@ -25,3 +25,6 @@ chown -R vagrant:vagrant /home/vagrant/.ssh
 
 # Mark the vagrant box build time.
 date --utc > /etc/vagrant_box_build_time
+
+# Truncate the motd file.
+truncate -s 0 /etc/motd
