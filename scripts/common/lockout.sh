@@ -5,7 +5,6 @@ if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd11|openbsd6)-(vmware|hype
 
   LOCKPWD=`dd if=/dev/urandom count=128 | md5 | awk -F' ' '{print $1}'`
   printf "$LOCKPWD\n$LOCKPWD\n" | passwd root
-  pw lock root
 
 elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(alpine3[5-6])-(vmware|hyperv|libvirt|virtualbox)$ ]]; then
 
