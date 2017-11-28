@@ -68,7 +68,6 @@
             "scripts": [
                 "scripts/alpine35/lsb.sh",
                 "scripts/alpine35/vagrant.sh",
-                "scripts/alpine35/glibc.sh",
                 "scripts/alpine35/virtualbox.sh",
                 "scripts/alpine35/vmware.sh",
                 "scripts/alpine35/qemu.sh",
@@ -99,7 +98,6 @@
             "scripts": [
                 "scripts/alpine36/lsb.sh",
                 "scripts/alpine36/vagrant.sh",
-                "scripts/alpine36/glibc.sh",
                 "scripts/alpine36/virtualbox.sh",
                 "scripts/alpine36/vmware.sh",
                 "scripts/alpine36/qemu.sh",
@@ -721,6 +719,10 @@
                 "numvcpus": "2",
                 "cpuid.coresPerSocket": "2"
             },
+            "vmx_data_post": {
+                "softpoweroff": "FALSE",
+                "powertype.poweroff": "hard"
+            },
             "guest_os_type": "otherlinux-64",
             "http_directory": "http",
             "headless": true,
@@ -761,6 +763,10 @@
                 "memsize": "2048",
                 "numvcpus": "2",
                 "cpuid.coresPerSocket": "2"
+            },
+            "vmx_data_post": {
+                "softpoweroff": "FALSE",
+                "powertype.poweroff": "hard"
             },
             "guest_os_type": "otherlinux-64",
             "http_directory": "http",
