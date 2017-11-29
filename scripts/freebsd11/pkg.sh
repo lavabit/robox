@@ -25,6 +25,9 @@ pkg-static audit -F
 # Generic system utils.
 pkg install --yes vim curl wget sudo bash
 
+# Since most scripts expect bash to be in the bin directory, create a symlink.
+ln -s /usr/local/bin/bash /bin/bash
+
 # Disable fortunate cookies.
 sed -i -e "/fortune/d" /usr/share/skel/dot.login
 sed -i -e "/fortune/d" /usr/share/skel/dot.profile
