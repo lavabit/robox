@@ -10,7 +10,7 @@ go build -o bin/gox .
 go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
 
 # Customize
-sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 256/g" post-processor/vagrant-cloud/step_upload.go
+sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 600, 64/g" post-processor/vagrant-cloud/step_upload.go
 
 # Build for Linux
 #go build -o bin/packer .
