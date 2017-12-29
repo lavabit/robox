@@ -9,7 +9,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.3.26"
+export VERSION="1.3.30"
 export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
@@ -85,7 +85,8 @@ function isos {
 
   tput setaf 2; printf "\nGentoo\n\n"; tput sgr0;
   URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
-  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}\.iso" | uniq`
+  #ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}\.iso" | uniq`
+  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
   URL="${URL}${ISO}"
   SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
   printf "${URL}\n${SHA}\n\n"
