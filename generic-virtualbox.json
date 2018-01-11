@@ -114,6 +114,36 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine37/apk.sh"
+            ],
+            "execute_command": "/bin/sh '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine37-virtualbox"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/alpine37/lsb.sh",
+                "scripts/alpine37/vagrant.sh",
+                "scripts/alpine37/virtualbox.sh",
+                "scripts/alpine37/vmware.sh",
+                "scripts/alpine37/qemu.sh",
+                "scripts/alpine37/cache.sh"
+            ],
+            "execute_command": "/bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine37-virtualbox"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
                 "scripts/centos6/fixdns.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/reboot.sh"
@@ -802,6 +832,54 @@
         },
         {
             "type": "virtualbox-iso",
+            "name": "generic-alpine37-virtualbox",
+            "vm_name": "generic-alpine37-virtualbox",
+            "output_directory": "output/generic-alpine37-virtualbox",
+            "boot_wait": "30s",
+            "boot_command": [
+                "root<enter><wait>",
+                "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine37.vagrant.cfg<enter><wait>",
+                "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f generic.alpine37.vagrant.cfg && ",
+                "mount /dev/sda3 /mnt && ",
+                "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+                "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+                "umount /mnt && reboot<enter>"
+            ],
+            "disk_size": 32768,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "Linux_64",
+            "http_directory": "http",
+            "headless": true,
+            "iso_url":"https://mirror.leaseweb.com/alpine/v3.7/releases/x86_64/alpine-virt-3.7.0-x86_64.iso",
+            "iso_checksum": "5a4b2588afd32e7024dd61d9558b77b03a4f3189cb4c9fc05e9e944fb780acdd",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "/sbin/poweroff",
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.30/VBoxGuestAdditions_5.1.30.iso",
+            "guest_additions_sha256": "631ca8e8d513acf43a75de56a71a31aaffb5624864c57d10346ba657d991ec1e",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
+        },
+        {
+            "type": "virtualbox-iso",
             "name": "generic-centos6-virtualbox",
             "vm_name": "generic-centos6-virtualbox",
             "output_directory": "output/generic-centos6-virtualbox",
@@ -949,8 +1027,8 @@
             "guest_os_type": "ArchLinux_64",
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.kernel.org/archlinux/iso/latest/archlinux-2017.12.01-x86_64.iso",
-            "iso_checksum": "f3a6629c22a6dd3d8a8c9e1adaf9e05a5ba523b63ffc41fa1740f15f09cf081d",
+            "iso_url": "https://mirrors.kernel.org/archlinux/iso/latest/archlinux-2018.01.01-x86_64.iso",
+            "iso_checksum": "bf31a6d74677701a9b846d51941a01fd10964d90bd8f8c1290bc0f1bac311443",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -1414,8 +1492,8 @@
             "guest_os_type": "Gentoo_64",
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20171228T214501Z.iso",
-            "iso_checksum": "b9c3c03d4dd76409acb3cbc2affdfa481442e8753e537aa94dca99e9980be966",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20180109T214501Z.iso",
+            "iso_checksum": "9ad0613fb4899adec691a0c817577810855864250f47b2d1d22e8f1d4dfdabce",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -1554,6 +1632,7 @@
                 "except": [
                     "generic-alpine35-virtualbox",
                     "generic-alpine36-virtualbox",
+                    "generic-alpine37-virtualbox",
                     "generic-openbsd6-virtualbox",
                     "generic-freebsd11-virtualbox"
                 ]
@@ -1591,6 +1670,15 @@
                     "generic-alpine36-virtualbox"
                 ],
                 "box_tag": "generic/alpine36",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-alpine37-virtualbox"
+                ],
+                "box_tag": "generic/alpine37",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
