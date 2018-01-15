@@ -9,7 +9,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.3.30"
+export VERSION="1.3.34"
 export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
@@ -519,14 +519,62 @@ function developer() {
   fi
 }
 
+function vmware() {
+  verify_json generic-vmware
+  verify_json lineage-vmware
+  verify_json magma-vmware
+  verify_json developer-vmware
+  build generic-vmware
+  build lineage-vmware
+  build magma-vmware
+  build developer-vmware
+}
+
+function hyperv() {
+  verify_json generic-hyperv
+  verify_json lineage-hyperv
+  verify_json magma-hyperv
+  verify_json developer-hyperv
+  build generic-hyperv
+  build lineage-hyperv
+  build magma-hyperv
+  build developer-hyperv
+}
+
+function libvirt() {
+  verify_json generic-libvirt
+  verify_json lineage-libvirt
+  verify_json magma-libvirt
+  verify_json developer-libvirt
+  build generic-libvirt
+  build lineage-libvirt
+  build magma-libvirt
+  build developer-libvirt
+}
+
+function virtualbox() {
+  verify_json generic-virtualbox
+  verify_json lineage-virtualbox
+  verify_json magma-virtualbox
+  verify_json developer-virtualbox
+  build generic-virtualbox
+  build lineage-virtualbox
+  build magma-virtualbox
+  build developer-virtualbox
+}
+
+function docker() {
+  verify_json magma-docker
+  docker-login
+  build magma-docker
+  docker-logout
+}
+
 function builder() {
   developer
   generic
   lineage
   magma
-
-
-
 }
 
 function all() {
@@ -546,6 +594,13 @@ elif [[ $1 == "cache" ]]; then cache
 elif [[ $1 == "validate" ]]; then validate
 elif [[ $1 == "build" ]]; then builder
 elif [[ $1 == "cleanup" ]]; then cleanup
+
+# The type functions.
+elif [[ $1 == "vmware" ]]; then vmware
+elif [[ $1 == "hyperv" ]]; then hyperv
+elif [[ $1 == "docker" ]]; then docker
+elif [[ $1 == "libvirt" ]]; then libvirt
+elif [[ $1 == "virtualbox" ]]; then virtualbox
 
 # The helper functions.
 elif [[ $1 == "isos" ]]; then isos
@@ -593,6 +648,9 @@ else
   echo ""
   echo " Stages"
   echo $"  `basename $0` {start|links|cache|validate|build|cleanup} or "
+  echo ""
+  echo " Types"
+  echo $"  `basename $0` {vmware|hyperv|libvirt|docker|virtualbox} or"
   echo ""
   echo " Helpers"
   echo $"  `basename $0` {isos|sunms|missing|public|available} or "
