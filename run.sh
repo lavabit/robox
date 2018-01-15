@@ -520,45 +520,45 @@ function developer() {
 }
 
 function vmware() {
-  verify_json generic-vmware
   verify_json lineage-vmware
+  verify_json generic-vmware
   verify_json magma-vmware
   verify_json developer-vmware
-  build generic-vmware
   build lineage-vmware
+  build generic-vmware
   build magma-vmware
   build developer-vmware
 }
 
 function hyperv() {
-  verify_json generic-hyperv
   verify_json lineage-hyperv
+  verify_json generic-hyperv
   verify_json magma-hyperv
   verify_json developer-hyperv
-  build generic-hyperv
   build lineage-hyperv
+  build generic-hyperv
   build magma-hyperv
   build developer-hyperv
 }
 
 function libvirt() {
-  verify_json generic-libvirt
   verify_json lineage-libvirt
+  verify_json generic-libvirt
   verify_json magma-libvirt
   verify_json developer-libvirt
-  build generic-libvirt
   build lineage-libvirt
+  build generic-libvirt
   build magma-libvirt
   build developer-libvirt
 }
 
 function virtualbox() {
-  verify_json generic-virtualbox
   verify_json lineage-virtualbox
+  verify_json generic-virtualbox
   verify_json magma-virtualbox
   verify_json developer-virtualbox
-  build generic-virtualbox
   build lineage-virtualbox
+  build generic-virtualbox
   build magma-virtualbox
   build developer-virtualbox
 }
