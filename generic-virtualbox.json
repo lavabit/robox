@@ -1609,7 +1609,8 @@
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "only": [
                     "generic-alpine35-virtualbox",
-                    "generic-alpine36-virtualbox"
+                    "generic-alpine36-virtualbox",
+                    "generic-alpine37-virtualbox"
                 ]
             },
             {
