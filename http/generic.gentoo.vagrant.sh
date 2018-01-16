@@ -27,12 +27,12 @@ cd /mnt/gentoo
 
 # Download the current-stage3-amd64-nomultilib and the portage tarballs, unpack them, and then delete the archive files.
 echo 'Downloading Tarballs'
-tarball=$(wget -q https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/ -O - | grep -o -e "stage3-amd64-nomultilib-\w*.tar.bz2" | uniq)
+tarball=$(wget -q https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/ -O - | grep -E -o -e "stage3-amd64-nomultilib-[0-9]{8}T[0-9]{6}Z.tar.xz" | uniq)
 wget --tries=5 -q https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/$tarball || exit 1
 wget --tries=5 -q https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.bz2 || exit 1
 
 echo 'Extracting Gentoo Tarball'
-tar xjpf $tarball && rm -f $tarball
+tar xJpf $tarball && rm -f $tarball
 
 echo 'Extracting Portage Tarball'
 tar xjpf portage-latest.tar.bz2 -C '/mnt/gentoo/usr' && rm -f portage-latest.tar.bz2
