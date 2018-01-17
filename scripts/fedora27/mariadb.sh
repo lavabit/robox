@@ -1,8 +1,7 @@
-#!/bin/bash
-
+#!/bin/bash -eux
 
 # Install MariaDB
-dnf --assumeyes install libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL; error
+dnf --assumeyes install libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL
 
 # Change the default temporary table directory or else the schema reset will fail when it creates a temp table.
 printf "\n\n[server]\ntmpdir=/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
@@ -16,7 +15,6 @@ printf "key_buffer_size = 16M\n" >> /etc/my.cnf.d/server-buffers.cnf
 printf "query_cache_type = 0\n" >> /etc/my.cnf.d/server-buffers.cnf
 printf "join_buffer_size = 32K\n" >> /etc/my.cnf.d/server-buffers.cnf
 printf "sort_buffer_size = 32K\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "skip-grant-tables\n" >> /etc/my.cnf.d/server-buffers.cnf
 printf "innodb_buffer_pool_size=128M\n" >> /etc/my.cnf.d/server-buffers.cnf
 printf "innodb_use_native_aio=1\n" >> /etc/my.cnf.d/server-buffers.cnf
 printf "innodb_data_file_path=ibdata1:50M:autoextend\n" >> /etc/my.cnf.d/server-buffers.cnf
