@@ -563,13 +563,6 @@ function virtualbox() {
   build developer-virtualbox
 }
 
-function docker() {
-  docker-login
-  verify_json magma-docker
-  build magma-docker
-  docker-logout
-}
-
 function builder() {
   developer
   generic
@@ -598,7 +591,7 @@ elif [[ $1 == "cleanup" ]]; then cleanup
 # The type functions.
 elif [[ $1 == "vmware" ]]; then vmware
 elif [[ $1 == "hyperv" ]]; then hyperv
-elif [[ $1 == "docker" ]]; then docker
+elif [[ $1 == "docker" ]]; then verify_json magma-docker ; docker-login ; build magma-docker ; docker-logout
 elif [[ $1 == "libvirt" ]]; then libvirt
 elif [[ $1 == "virtualbox" ]]; then virtualbox
 
@@ -620,7 +613,7 @@ elif [[ $1 == "magma-vmware" || $1 == "magma-vmware.json" ]]; then build magma-v
 elif [[ $1 == "magma-hyperv" || $1 == "magma-hyperv.json" ]]; then build magma-hyperv
 elif [[ $1 == "magma-libvirt" || $1 == "magma-libvirt.json" ]]; then build magma-libvirt
 elif [[ $1 == "magma-virtualbox" || $1 == "magma-virtualbox.json" ]]; then build magma-virtualbox
-elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then docker-login ; build magma-docker; docker-logout
+elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then verify_json magma-docker ; docker-login ; build magma-docker ; docker-logout
 
 elif [[ $1 == "developer-vmware" || $1 == "developer-vmware.json" ]]; then build developer-vmware
 elif [[ $1 == "developer-hyperv" || $1 == "developer-hyperv.json" ]]; then build developer-hyperv
