@@ -994,7 +994,7 @@
             "guest_os_type": "Gentoo_64",
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://gentoo.osuosl.org/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20180116T214503Z.iso",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20180116T214503Z.iso",
             "iso_checksum": "dfa6c0f4853ae0bc8b0f2cb2b0987fce7cbfdb21c7cbf6dd5909a660a345da3f",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
