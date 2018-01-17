@@ -27,7 +27,7 @@ printf "Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /tmp
 printf "Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /etc/pacman.d/mirrorlist
 
 curl -fsS https://www.archlinux.org/mirrorlist/?country=all > /tmp/mirrolist
-grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 50 | sed 's/^#//' >> /tmp/mirrolist.50
+grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 5 | sed 's/^#//' >> /tmp/mirrolist.50
 rankmirrors -v /tmp/mirrolist.50 | tee --append /etc/pacman.d/mirrorlist
 pacstrap /mnt base grub bash sudo openssh
 
