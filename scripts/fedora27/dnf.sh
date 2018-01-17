@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 error() {
         if [ $? -ne 0 ]; then
                 printf "\n\ndnf failed...\n\n";
@@ -20,7 +19,6 @@ dnf --assumeyes upgrade; error
 # Needed to retrieve source code, and other misc system tools.
 dnf --assumeyes install vim git wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils; error
 
-
 # Packages needed beyond a minimal install to build and run magma.
 dnf --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive deltarpm; error
 
@@ -31,7 +29,7 @@ dnf --assumeyes install libbsd libbsd-devel inotify-tools; error
 dnf --assumeyes install haveged; error
 
 # The daemon services magma relies upon.
-dnf --assumeyes install libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL; error
+dnf --assumeyes install libevent memcached; error
 
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
 dnf --assumeyes install wget git rsync perl-Git perl-Error; error

@@ -9,7 +9,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.3.35"
+export VERSION="1.3.36"
 export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
@@ -564,8 +564,8 @@ function virtualbox() {
 }
 
 function docker() {
-  verify_json magma-docker
   docker-login
+  verify_json magma-docker
   build magma-docker
   docker-logout
 }

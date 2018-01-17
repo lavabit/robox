@@ -2,6 +2,20 @@
 #
 # Setup the the box. This runs as root
 
+# Set the local hostname to resolve properly.
+printf "\n127.0.0.1	bazinga.localdomain\n\n" >> /etc/hosts
+
+# Find out how much RAM is installed, and what 50% would be in KB.
+TOTALMEM=`free -k | grep -E "^Mem:" | awk -F' ' '{print $2}'`
+HALFMEM=`echo $(($TOTALMEM/2))`
+
+# Setup the memory locking limits.
+printf "*    soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-magmad.conf
+printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.conf
+
+# Fix the SELinux context.
+chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
+
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
 else

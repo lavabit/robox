@@ -8,7 +8,7 @@ timezone US/Pacific
 rootpw --plaintext vagrant
 user --name=vagrant --password=vagrant --plaintext
 zerombr
-autopart --type=plain
+autopart --type=plain --nohome
 clearpart --all --initlabel
 bootloader --timeout=1
 firewall --enabled --service=ssh

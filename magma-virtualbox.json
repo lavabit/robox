@@ -212,43 +212,44 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/fedora25/fixdns.sh",
-                "scripts/fedora25/dnf.sh"
+                "scripts/fedora27/fixdns.sh",
+                "scripts/fedora27/dnf.sh"
             ],
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-fedora25-virtualbox"
+                "magma-fedora27-virtualbox"
             ]
         },
         {
             "type": "shell",
             "scripts": [
-                "scripts/fedora25/base.sh"
+                "scripts/fedora27/base.sh"
             ],
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-fedora25-virtualbox"
+                "magma-fedora27-virtualbox"
             ]
         },
         {
             "type": "shell",
             "scripts": [
-                "scripts/fedora25/kernel.sh",
-                "scripts/fedora25/virtualbox.sh",
-                "scripts/fedora25/vmware.sh",
-                "scripts/fedora25/qemu.sh",
-                "scripts/fedora25/vagrant.sh",
-                "scripts/fedora25/magma.sh",
-                "scripts/fedora25/tuning.sh"
+                "scripts/fedora27/kernel.sh",
+                "scripts/fedora27/virtualbox.sh",
+                "scripts/fedora27/vmware.sh",
+                "scripts/fedora27/qemu.sh",
+                "scripts/fedora27/vagrant.sh",
+                "scripts/fedora27/mariadb.sh",
+                "scripts/fedora27/magma.sh",
+                "scripts/fedora27/tuning.sh"
             ],
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-fedora25-virtualbox"
+                "magma-fedora27-virtualbox"
             ]
         },
         {
@@ -666,13 +667,13 @@
         },
         {
             "type": "virtualbox-iso",
-            "name": "magma-fedora25-virtualbox",
-            "vm_name": "magma-fedora25-virtualbox",
-            "output_directory": "output/magma-fedora25-virtualbox",
+            "name": "magma-fedora27-virtualbox",
+            "vm_name": "magma-fedora27-virtualbox",
+            "output_directory": "output/magma-fedora27-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> ",
-                "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora25.vagrant.ks ",
+                "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora27.vagrant.ks ",
                 "biosdevname=0 ",
                 "net.ifnames=0 ",
                 "<enter>"
@@ -695,8 +696,8 @@
             "guest_os_type": "Fedora_64",
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.kernel.org/fedora/releases/25/Server/x86_64/iso/Fedora-Server-netinst-x86_64-25-1.3.iso",
-            "iso_checksum": "86bc3694f4938382753d1e9536f2140a6c9c1978207766340c679a89509073c7",
+            "iso_url": "https://mirrors.kernel.org/fedora/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
+            "iso_checksum": "2b93836c38833b26891345388ff5ddea60529b27a616b4539d432a3520d1c90b",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -1210,7 +1211,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "magma-fedora25-virtualbox"
+                    "magma-fedora27-virtualbox"
                 ],
                 "box_tag": "lavabit/magma-fedora",
                 "version": "{{user `box_version`}}",

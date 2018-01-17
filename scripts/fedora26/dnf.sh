@@ -31,7 +31,7 @@ dnf --assumeyes install libbsd libbsd-devel inotify-tools; error
 dnf --assumeyes install haveged; error
 
 # The daemon services magma relies upon.
-dnf --assumeyes install libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL; error
+dnf --assumeyes install libevent memcached; error
 
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
 dnf --assumeyes install wget git rsync perl-Git perl-Error; error
