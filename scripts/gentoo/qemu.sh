@@ -7,7 +7,7 @@ if [[ `dmidecode -s system-product-name` != "KVM" && `dmidecode -s system-manufa
   exit 0
 fi
 
-echo "app-emulation/qemu-guest-agent ~amd64" > /etc/portage/package.accept_keywords/qemu
+# echo "app-emulation/qemu-guest-agent ~amd64" > /etc/portage/package.accept_keywords/qemu
 emerge app-emulation/qemu-guest-agent
 
 rc-update add qemu-guest-agent default

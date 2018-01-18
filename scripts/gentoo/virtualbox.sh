@@ -8,7 +8,7 @@ if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
 fi
 
 # Install VirtualBox from portage
-echo "app-emulation/virtualbox-guest-additions ~amd64" > /etc/portage/package.accept_keywords/virtualbox
+# echo "app-emulation/virtualbox-guest-additions ~amd64" > /etc/portage/package.accept_keywords/virtualbox
 emerge app-emulation/virtualbox-guest-additions
 
 rc-update add virtualbox-guest-additions default

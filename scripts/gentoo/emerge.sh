@@ -14,8 +14,14 @@ emerge --oneshot portage
 # Update the system packages.
 emerge --update --deep --newuse --with-bdeps=y @world
 
+# Remove obsolete dependencies.
+emerge --depclean
+
 # Useful tools.
-emerge app-editors/vim net-misc/curl net-misc/wget sys-apps/mlocate app-admin/sysstat app-admin/rsyslog sys-apps/lm_sensors sys-process/lsof app-admin/sudo net-misc/ssh-askpass-fullscreen
+emerge app-editors/vim net-misc/curl net-misc/wget sys-apps/mlocate app-admin/sysstat app-admin/rsyslog sys-apps/lm_sensors sys-process/lsof app-admin/sudo
+
+# Clear the news feed.
+eselect news read --quiet
 
 # Setup vim as the default editor.
 printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
