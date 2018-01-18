@@ -46,7 +46,7 @@ echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/vagrant
 chmod 0440 /etc/sudoers.d/vagrant
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
-if [[ $VIRT == "Microsoft HyperV" ]]; then
+if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
     yum --assumeyes install eject hyperv-daemons
     systemctl enable hypervkvpd.service
     systemctl enable hypervvssd.service

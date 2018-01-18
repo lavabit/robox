@@ -51,7 +51,7 @@ cp --recursive /mnt/* /media/
 umount /mnt/
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
-if [[ $VIRT == "Microsoft HyperV" ]]; then
+if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
     if [ ! -f /media/media.repo ]; then
       mount /dev/cdrom /media
     fi

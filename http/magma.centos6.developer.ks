@@ -1703,7 +1703,7 @@ echo "magma        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/magma
 chmod 0440 /etc/sudoers.d/magma
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
-if [[ $VIRT == "Microsoft HyperV" ]]; then
+if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
     yum --assumeyes install eject hyperv-daemons
     chkconfig hypervvssd on
     chkconfig hypervkvpd on
