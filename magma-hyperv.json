@@ -584,7 +584,9 @@
             "boot_command": [
                 "<enter><wait10><wait10><wait10><wait10>",
                 "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.arch.vagrant{,.chroot}.sh'<enter><wait>",
-                "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && eject -m /dev/cdrom && reboot<enter>"
+                "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && sync && ",
+                "umount -d -l -f /run/archiso/bootmnt/ && eject /dev/cdrom && ",
+                "echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger<enter>"
             ],
             "disk_size": 32768,
             "ram_size": 2048,
