@@ -34,7 +34,7 @@ grub-install "$device"
 grub-mkconfig -o /boot/grub/grub.cfg
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
-if [[ $VIRT == "Microsoft HyperV" ]]; then
+if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
 
     pacman -S --noconfirm git base-devel
 
