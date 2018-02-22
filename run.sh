@@ -564,10 +564,10 @@ function virtualbox() {
 }
 
 function builder() {
-  developer
-  generic
   lineage
+  generic
   magma
+  developer
 }
 
 function all() {
