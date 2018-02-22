@@ -9,11 +9,11 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.4.4"
+export VERSION="1.4.5"
 export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
-export GOMAXPROCS="4"
+export GOMAXPROCS="2"
 
 # Ensure a consistent working directory so relative paths work.
 LINK=`readlink -f $0`
@@ -37,13 +37,13 @@ ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_ch
 # Collect the list of box names.
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
-LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-|lineageos-" | sort --field-separator=- -k 3i -k 2.1,2.0`
+LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-|lineageos-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
 BOXES="$LINEAGE_BOXES $GENERIC_BOXES $MAGMA_BOXES"
 
 # Collect the list of box tags.
 MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
 GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
-LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
+LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
 TAGS="$LINEAGE_TAGS $GENERIC_TAGS $MAGMA_TAGS"
 
 # These boxes aren't publicly available yet, so we filter them out of available test.
