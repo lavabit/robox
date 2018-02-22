@@ -380,16 +380,30 @@ usermod -a -G adbusers vagrant
 chmod 644 /etc/udev/rules.d/51-android.rules
 # chcon "system_u:object_r:udev_rules_t:s0" /etc/udev/rules.d/51-android.rules
 
+if [[ "$PACKER_BUILD_NAME" =~ ^(lineage|lineageos)-nash-(vmware|hyperv|libvirt|virtualbox)$ ]]; then
 cat <<-EOF > /home/vagrant/lineage-build.sh
 #!/bin/bash
 
-# The Motorol Photon Q by default - because physical keyboards eat virtual keyboards
+# Build Lineage for the Motorola Z2 Force by default.
+
+export DEVICE=\${DEVICE:="nash"}
+export BRANCH=\${BRANCH:="lineage-15.1"}
+export VENDOR=\${VENDOR:="motorola"}
+EOF
+else
+cat <<-EOF > /home/vagrant/lineage-build.sh
+#!/bin/bash
+
+# Build Lineage for Motorol Photon Q by default - because physical keyboards eat virtual keyboards
 # for breakfast, brunch and then dinner.
 
 export DEVICE=\${DEVICE:="xt897"}
 export BRANCH=\${BRANCH:="cm-14.1"}
 export VENDOR=\${VENDOR:="motorola"}
+EOF
+fi
 
+cat <<-EOF > /home/vagrant/lineage-build.sh
 export NAME=\${NAME:="Ladar Levison"}
 export EMAIL=\${EMAIL:="ladar@lavabit.com"}
 
@@ -480,7 +494,7 @@ breakfast \$DEVICE
 mkdir -p \$HOME/android/vendor/system/
 tar -xzv -C \$HOME/android/vendor/ -f \$HOME/system-blobs.tar.gz
 
-# Change to the xt897 directory and run the extraction script.
+# Change to the device directory and run the extraction script.
 cd \$HOME/android/lineage/device/\$VENDOR/\$DEVICE
 ./extract-files.sh \$HOME/android/vendor/system/
 

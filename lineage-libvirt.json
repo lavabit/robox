@@ -13,7 +13,9 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt"
+                "lineageos-libvirt",
+                "lineage-nash-libvirt",
+                "lineageos-nash-libvirt"
             ]
         },
         {
@@ -32,7 +34,9 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt"
+                "lineageos-libvirt",
+                "lineage-nash-libvirt",
+                "lineageos-nash-libvirt"
             ]
         },
         {
@@ -42,7 +46,9 @@
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt"
+                "lineageos-libvirt",
+                "lineage-nash-libvirt",
+                "lineageos-nash-libvirt"
             ]
         },
         {
@@ -54,7 +60,9 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt"
+                "lineageos-libvirt",
+                "lineage-nash-libvirt",
+                "lineageos-nash-libvirt"
             ]
         },
         {
@@ -188,6 +196,124 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+    {
+            "type": "qemu",
+            "name": "lineage-nash-libvirt",
+            "vm_name": "lineage-nash-libvirt",
+            "output_directory": "output/lineage-nash-libvirt",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<enter><wait>",
+                "<f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
+                "<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": 196608,
+            "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
+                [
+                    "-drive",
+                    "if=none,file=output/lineage-libvirt/lineage-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+                ]
+            ],
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.3/ubuntu-16.04.3-server-amd64.iso",
+            "iso_checksum": "a06cd926f5855d4f21fb4bc9978a35312f815fbda0d0ef7fdc846861f4fc4600",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
+            "name": "lineageos-nash-libvirt",
+            "vm_name": "lineageos-nash-libvirt",
+            "output_directory": "output/lineageos-nash-libvirt",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<enter><wait>",
+                "<f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
+                "<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": 196608,
+            "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
+                [
+                    "-drive",
+                    "if=none,file=output/lineageos-libvirt/lineageos-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+                ]
+            ],
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.3/ubuntu-16.04.3-server-amd64.iso",
+            "iso_checksum": "a06cd926f5855d4f21fb4bc9978a35312f815fbda0d0ef7fdc846861f4fc4600",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         }
     ],
     "post-processors": [
@@ -214,6 +340,24 @@
                     "lineageos-libvirt"
                 ],
                 "box_tag": "lineageos/lineage",
+                "version": "{{user `box_version`}}",
+                "version_description": "The Lineage mobile operating system build environment."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "lineage-nash-libvirt"
+                ],
+                "box_tag": "lineage/lineage-nash",
+                "version": "{{user `box_version`}}",
+                "version_description": "The Lineage mobile operating system build environment."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "lineageos-nash-libvirt"
+                ],
+                "box_tag": "lineageos/lineage-nash",
                 "version": "{{user `box_version`}}",
                 "version_description": "The Lineage mobile operating system build environment."
             },

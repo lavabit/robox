@@ -13,7 +13,9 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-virtualbox",
-                "lineageos-virtualbox"
+                "lineageos-virtualbox",
+                "lineage-nash-virtualbox",
+                "lineageos-nash-virtualbox"
             ]
         },
         {
@@ -32,7 +34,9 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-virtualbox",
-                "lineageos-virtualbox"
+                "lineageos-virtualbox",
+                "lineage-nash-virtualbox",
+                "lineageos-nash-virtualbox"
             ]
         },
         {
@@ -42,7 +46,9 @@
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
                 "lineage-virtualbox",
-                "lineageos-virtualbox"
+                "lineageos-virtualbox",
+                "lineage-nash-virtualbox",
+                "lineageos-nash-virtualbox"
             ]
         },
         {
@@ -54,7 +60,9 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-virtualbox",
-                "lineageos-virtualbox"
+                "lineageos-virtualbox",
+                "lineage-nash-virtualbox",
+                "lineageos-nash-virtualbox"
             ]
         },
         {
@@ -182,7 +190,120 @@
             "guest_additions_sha256": "631ca8e8d513acf43a75de56a71a31aaffb5624864c57d10346ba657d991ec1e",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "virtualbox_version_file": "VBoxVersion.txt"
+        },
+        {
+            "type": "virtualbox-iso",
+            "name": "lineage-nash-virtualbox",
+            "vm_name": "lineage-nash-virtualbox",
+            "output_directory": "output/lineage-nash-virtualbox",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<enter><wait>",
+                "<f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
+                "<enter>"
+            ],
+            "disk_size": 196608,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "Ubuntu_64",
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.3/ubuntu-16.04.3-server-amd64.iso",
+            "iso_checksum": "a06cd926f5855d4f21fb4bc9978a35312f815fbda0d0ef7fdc846861f4fc4600",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.30/VBoxGuestAdditions_5.1.30.iso",
+            "guest_additions_sha256": "631ca8e8d513acf43a75de56a71a31aaffb5624864c57d10346ba657d991ec1e",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
+        },
+        {
+            "type": "virtualbox-iso",
+            "name": "lineageos-nash-virtualbox",
+            "vm_name": "lineageos-nash-virtualbox",
+            "output_directory": "output/lineageos-nash-virtualbox",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<enter><wait>",
+                "<f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
+                "<enter>"
+            ],
+            "disk_size": 196608,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "Ubuntu_64",
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.3/ubuntu-16.04.3-server-amd64.iso",
+            "iso_checksum": "a06cd926f5855d4f21fb4bc9978a35312f815fbda0d0ef7fdc846861f4fc4600",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.30/VBoxGuestAdditions_5.1.30.iso",
+            "guest_additions_sha256": "631ca8e8d513acf43a75de56a71a31aaffb5624864c57d10346ba657d991ec1e",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
         }
+    
     ],
     "post-processors": [
         [
@@ -208,6 +329,24 @@
                     "lineageos-virtualbox"
                 ],
                 "box_tag": "lineageos/lineage",
+                "version": "{{user `box_version`}}",
+                "version_description": "The Lineage mobile operating system build environment."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "lineage-nash-virtualbox"
+                ],
+                "box_tag": "lineage/lineage-nash",
+                "version": "{{user `box_version`}}",
+                "version_description": "The Lineage mobile operating system build environment."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "lineageos-nash-virtualbox"
+                ],
+                "box_tag": "lineageos/lineage-nash",
                 "version": "{{user `box_version`}}",
                 "version_description": "The Lineage mobile operating system build environment."
             },
