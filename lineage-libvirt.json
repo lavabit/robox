@@ -242,7 +242,7 @@
                 ],
                 [
                     "-drive",
-                    "if=none,file=output/lineage-libvirt/lineage-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+                    "if=none,file=output/lineage-nash-libvirt/lineage-nash-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -301,7 +301,7 @@
                 ],
                 [
                     "-drive",
-                    "if=none,file=output/lineageos-libvirt/lineageos-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+                    "if=none,file=output/lineageos-nash-libvirt/lineageos-nash-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
