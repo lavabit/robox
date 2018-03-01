@@ -14,11 +14,17 @@ emerge --oneshot portage
 # Update the system packages.
 emerge --update --deep --newuse --with-bdeps=y @world
 
+# Perform any configuration file updates.
+etc-update --automode -3
+
 # Remove obsolete dependencies.
 emerge --depclean
 
 # Useful tools.
 emerge --update --ask=n --autounmask-continu=y app-editors/vim net-misc/curl net-misc/wget sys-apps/mlocate app-admin/sysstat app-admin/rsyslog sys-apps/lm_sensors sys-process/lsof app-admin/sudo
+
+# Perform any configuration file updates.
+etc-update --automode -3
 
 # Clear the news feed.
 eselect news read --quiet

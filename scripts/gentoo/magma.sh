@@ -2,7 +2,13 @@
 
 emerge --update --ask=n --autounmask-continu=y sys-devel/autoconf sys-devel/gcc sys-devel/flex sys-devel/binutils-config sys-devel/autogen  sys-devel/binutils sys-devel/m4 sys-devel/make sys-devel/libtool sys-devel/automake sys-devel/gettext  sys-devel/bison dev-util/valgrind dev-util/pkgconf sys-libs/readline sys-libs/glibc sys-libs/binutils-libs dev-libs/openssl dev-libs/libevent dev-libs/expat dev-libs/crypto++ dev-libs/check dev-libs/libbsd dev-libs/nspr dev-libs/mpfr dev-libs/mpc dev-libs/libxml2 dev-libs/libxslt dev-libs/shhopt sys-devel/gdb
 
+# Perform any configuration file updates.
+etc-update --automode -3
+
 emerge --update --ask=n --autounmask-continu=y dev-vcs/git dev-vcs/git-tools
+
+# Perform any configuration file updates.
+etc-update --automode -3
 
 #
 # export PYTHON_TARGETS="python2_7 python3_3 python3_4 python3_5"

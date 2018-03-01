@@ -11,6 +11,9 @@ fi
 # echo "app-emulation/virtualbox-guest-additions ~amd64" > /etc/portage/package.accept_keywords/virtualbox
 emerge --update --ask=n --autounmask-continu=y app-emulation/virtualbox-guest-additions
 
+# Perform any configuration file updates.
+etc-update --automode -3
+
 rc-update add virtualbox-guest-additions default
 rc-service virtualbox-guest-additions start
 # systemctl enable virtualbox-guest-additions.service

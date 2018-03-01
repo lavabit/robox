@@ -10,6 +10,9 @@ fi
 # echo "app-emulation/qemu-guest-agent ~amd64" > /etc/portage/package.accept_keywords/qemu
 emerg --update --ask=n --autounmask-continu=y app-emulation/qemu-guest-agent
 
+# Perform any configuration file updates.
+etc-update --automode -3
+
 rc-update add qemu-guest-agent default
 rc-service qemu-guest-agent start
 # systemctl enable qemu-ga-systemd.service
