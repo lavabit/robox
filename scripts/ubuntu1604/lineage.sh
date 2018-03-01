@@ -403,7 +403,7 @@ export VENDOR=\${VENDOR:="motorola"}
 EOF
 fi
 
-cat <<-EOF > /home/vagrant/lineage-build.sh
+cat <<-EOF >> /home/vagrant/lineage-build.sh
 export NAME=\${NAME:="Ladar Levison"}
 export EMAIL=\${EMAIL:="ladar@lavabit.com"}
 
