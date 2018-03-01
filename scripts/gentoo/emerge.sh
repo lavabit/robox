@@ -18,7 +18,7 @@ emerge --update --deep --newuse --with-bdeps=y @world
 emerge --depclean
 
 # Useful tools.
-emerge app-editors/vim net-misc/curl net-misc/wget sys-apps/mlocate app-admin/sysstat app-admin/rsyslog sys-apps/lm_sensors sys-process/lsof app-admin/sudo
+emerge --update --ask=n --autounmask-continu=y app-editors/vim net-misc/curl net-misc/wget sys-apps/mlocate app-admin/sysstat app-admin/rsyslog sys-apps/lm_sensors sys-process/lsof app-admin/sudo
 
 # Clear the news feed.
 eselect news read --quiet

@@ -9,7 +9,7 @@ fi
 
 # Install VirtualBox from portage
 # echo "app-emulation/virtualbox-guest-additions ~amd64" > /etc/portage/package.accept_keywords/virtualbox
-emerge app-emulation/virtualbox-guest-additions
+emerge --update --ask=n --autounmask-continu=y app-emulation/virtualbox-guest-additions
 
 rc-update add virtualbox-guest-additions default
 rc-service virtualbox-guest-additions start
