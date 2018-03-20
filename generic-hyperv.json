@@ -999,7 +999,7 @@
             "ram_size": 2048,
             "cpu": 2,
             "http_directory": "http",
-            "iso_url": "https://mirrors.kernel.org/fedora/releases/26/Server/x86_64/iso/Fedora-Server-netinst-x86_64-26-1.5.iso",
+            "iso_url": "https://mirrors.edge.kernel.org/fedora/releases/26/Server/x86_64/iso/Fedora-Server-netinst-x86_64-26-1.5.iso",
             "iso_checksum": "e260921ef5c7bd5ee2a7b2f2f1156af6483014c73984e4cf37f2b6690e0155e5",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
