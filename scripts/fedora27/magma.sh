@@ -16,6 +16,9 @@ printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.
 # Fix the SELinux context.
 chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
 
+# Packages required to compile magma. 
+dnf --assumeyes install zlib-devel
+
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
 else

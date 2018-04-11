@@ -77,7 +77,7 @@ function start() {
 # Print the current URL and SHA hash for install discs which are updated frequently.
 function isos {
   tput setaf 2; printf "\nArch\n\n"; tput sgr0;
-  URL="https://mirrors.kernel.org/archlinux/iso/latest/"
+  URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
   ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
   URL="${URL}${ISO}"
   SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`

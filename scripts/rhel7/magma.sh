@@ -2,6 +2,9 @@
 #
 # Setup the the box. This runs as root
 
+# Packages required to compile magma.
+yum --assumeyes install zlib-devel
+
 # Check whether the install media is mounted, and if necessary mount it.
 if [ ! -f /media/media.repo ]; then
   mount /dev/cdrom /media

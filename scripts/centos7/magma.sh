@@ -2,6 +2,9 @@
 #
 # Setup the the box. This runs as root
 
+# Packages required to compile magma. 
+yum --assumeyes install zlib-devel
+
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
 else
