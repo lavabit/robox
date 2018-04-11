@@ -2,7 +2,7 @@
 #
 # Setup the the box. This runs as root
 
-# Packages required to compile magma. 
+# Packages required to compile magma.
 yum --assumeyes install zlib-devel
 
 if [ -d /home/vagrant/ ]; then
@@ -79,11 +79,10 @@ fi
 # dev/scripts/launch/check.vg
 
 # Daemonize instead of running on the console.
-# sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
-# sed -i -e "s/magma.system.daemonize = false/magma.system.daemonize = true/g" sandbox/etc/magma.sandbox.config
+sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
 
 # Launch the daemon.
-# ./magmad --config magma.system.daemonize=true sandbox/etc/magma.sandbox.config
+./magmad --config magma.system.daemonize=true sandbox/etc/magma.sandbox.config
 
 # Save the result.
 # RETVAL=\$?
