@@ -31,7 +31,7 @@ FILES="magma-docker.json "\
 "developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
 # Collect the list of ISO urls.
-ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/rhel-server-6.9-x86_64-dvd.iso|res/media/rhel-server-7.3-x86_64-dvd.iso|res/media/rhel-server-7.4-x86_64-dvd.iso" | awk -F'"' '{print $4}'`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/rhel-server-6.9-x86_64-dvd.iso|res/media/rhel-server-7.3-x86_64-dvd.iso|res/media/rhel-server-7.5-x86_64-dvd.iso" | awk -F'"' '{print $4}'`)
 ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_checksum_type" | grep -v -E "3f961576e9f81ea118566f73f98d7bdf3287671c35436a13787c1ffd5078cf8e|120acbca7b3d55465eb9f8ef53ad7365f2997d42d4f83d7cc285bf5c71e1131f|431a58c8c0351803a608ffa56948c5a7861876f78ccbe784724dd8c987ff7000" | awk -F'"' '{print $4}'`)
 
 # Collect the list of box names.
