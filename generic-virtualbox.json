@@ -865,7 +865,7 @@
             "guest_os_type": "Linux_64",
             "http_directory": "http",
             "headless": true,
-            "iso_url":"https://mirror.leaseweb.com/alpine/v3.7/releases/x86_64/alpine-virt-3.7.0-x86_64.iso",
+            "iso_url": "https://mirror.leaseweb.com/alpine/v3.7/releases/x86_64/alpine-virt-3.7.0-x86_64.iso",
             "iso_checksum": "5a4b2588afd32e7024dd61d9558b77b03a4f3189cb4c9fc05e9e944fb780acdd",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
