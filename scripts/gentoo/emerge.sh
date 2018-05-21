@@ -21,7 +21,7 @@ etc-update --automode -3
 emerge --depclean
 
 # Useful tools.
-emerge --update --ask=n --autounmask-continu=y app-editors/vim net-misc/curl net-misc/wget sys-apps/mlocate app-admin/sysstat app-admin/rsyslog sys-apps/lm_sensors sys-process/lsof app-admin/sudo
+emerge --update --ask=n --autounmask-continue=y app-editors/vim net-misc/curl net-misc/wget sys-apps/mlocate app-admin/sysstat app-admin/rsyslog sys-apps/lm_sensors sys-process/lsof app-admin/sudo
 
 # Perform any configuration file updates.
 etc-update --automode -3
