@@ -27,8 +27,8 @@ apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
 apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic
 
 # Upgrade the installed packages.
-apt-get --assume-yes -o Dpkg::Options::="--force-confnew"  upgrade; error
-apt-get --assume-yes -o Dpkg::Options::="--force-confnew"  dist-upgrade; error
+apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
+apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
 
 # Needed to retrieve source code, and other misc system tools.
 apt-get --assume-yes install vim vim-nox git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils; error
