@@ -9,7 +9,7 @@ fi
 
 # Install VirtualBox from portage
 # echo "app-emulation/virtualbox-guest-additions ~amd64" > /etc/portage/package.accept_keywords/virtualbox
-emerge --update --ask=n --autounmask-continu=y app-emulation/virtualbox-guest-additions
+USE="-X" emerge --update --ask=n --autounmask-continue=y app-emulation/virtualbox-guest-additions
 
 # Perform any configuration file updates.
 etc-update --automode -3
