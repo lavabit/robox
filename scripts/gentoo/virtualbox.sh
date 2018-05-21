@@ -18,3 +18,7 @@ rc-update add virtualbox-guest-additions default
 rc-service virtualbox-guest-additions start
 # systemctl enable virtualbox-guest-additions.service
 # systemctl start virtualbox-guest-additions.service
+
+# Cleanup the guest additions disc.
+rm --force VBoxVersion.txt
+rm --force VBoxGuestAdditions.iso
