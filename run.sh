@@ -145,7 +145,7 @@ function verify_sum {
     SUM=`curl --silent "$1" | sha256sum | awk -F' ' '{print $1}'`
     printf "Hash Failure:  $1\n"
     printf "Found       -  $SUM\n"
-    printf "Expected    -  $SUM\n\n"
+    printf "Expected    -  $2\n\n"
     exit 1
   fi
 
