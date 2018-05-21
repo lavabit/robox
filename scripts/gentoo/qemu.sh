@@ -11,7 +11,7 @@ fi
 emerg --update --ask=n --autounmask-continue=y app-emulation/qemu-guest-agent
 
 # Perform any configuration file updates.
-etc-update --automode -3
+etc-update --automode -5
 
 rc-update add qemu-guest-agent default
 rc-service qemu-guest-agent start

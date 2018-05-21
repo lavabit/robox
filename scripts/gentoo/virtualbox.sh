@@ -12,7 +12,7 @@ fi
 USE="-X python_targets_python3_6" emerge --update --ask=n --autounmask-continue=y app-emulation/virtualbox-guest-additions
 
 # Perform any configuration file updates.
-etc-update --automode -3
+etc-update --automode -5
 
 rc-update add virtualbox-guest-additions default
 rc-service virtualbox-guest-additions start
