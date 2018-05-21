@@ -455,7 +455,7 @@ repo --color=never sync --quiet --jobs=2
 source build/envsetup.sh
 
 # Reduce the amount of memory required during compilation.
-# sed -i -e "s/-Xmx2048m/-Xmx512m/g" \$HOME/android/lineage/build/tools/releasetools/common.py
+sed -i -e "s/-Xmx2048m/-Xmx512m/g" \$HOME/android/lineage/build/tools/releasetools/common.py
 
 # Download and configure the environment for the device.
 breakfast \$DEVICE
@@ -528,7 +528,7 @@ ls -alh "\$SYSIMAGE" "\$SYSIMAGESUM"
 
 # Push the new system image to the device.
 # adb push "\$SYSIMAGE" /sdcard/
-env > ~/env.txt
+# env > ~/env.txt
 EOF
 
 chown vagrant:vagrant /home/vagrant/system-blobs.tar.gz
