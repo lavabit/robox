@@ -1,10 +1,25 @@
 #!/bin/bash
 
 error() {
-        if [ $? -ne 0 ]; then
-                printf "\n\nvbox install failed...\n\n";
-                exit 1
-        fi
+  if [ $? -ne 0 ]; then
+    printf "\n\nThe VirtualBox install failed...\n\n"
+
+    if [ -f /var/log/VBoxGuestAdditions.log ]; then
+      printf "\n\n/var/log/VBoxGuestAdditions.log\n\n"
+      cat /var/log/VBoxGuestAdditions.log
+    else
+      printf "\n\nThe /var/log/VBoxGuestAdditions.log is missing...\n\n"
+    fi
+
+    if [ -f /var/log/vboxadd-install.log ]; then
+      printf "\n\n/var/log/vboxadd-install.log\n\n"
+      cat /var/log/VBoxGuestAdditions.log
+    else
+      printf "\n\nThe /var/log/vboxadd-install.log is missing...\n\n"
+    fi
+
+    exit 1
+  fi
 }
 
 # Check whether the install media is mounted, and if necessary mount it.

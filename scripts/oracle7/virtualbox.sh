@@ -1,5 +1,27 @@
 #!/bin/bash -eux
 
+error() {
+  if [ $? -ne 0 ]; then
+    printf "\n\nThe VirtualBox install failed...\n\n"
+
+    if [ -f /var/log/VBoxGuestAdditions.log ]; then
+      printf "\n\n/var/log/VBoxGuestAdditions.log\n\n"
+      cat /var/log/VBoxGuestAdditions.log
+    else
+      printf "\n\nThe /var/log/VBoxGuestAdditions.log is missing...\n\n"
+    fi
+
+    if [ -f /var/log/vboxadd-install.log ]; then
+      printf "\n\n/var/log/vboxadd-install.log\n\n"
+      cat /var/log/VBoxGuestAdditions.log
+    else
+      printf "\n\nThe /var/log/vboxadd-install.log is missing...\n\n"
+    fi
+
+    exit 1
+  fi
+}
+
 # Needed to check whether we're running in VirtualBox.
 yum --assumeyes install dmidecode
 
@@ -17,12 +39,12 @@ VBOXVERSION=`cat /root/VBoxVersion.txt`
 # Packages required to build the guest additions.
 yum --assumeyes install gcc make perl dkms bzip2 kernel-devel kernel-headers autoconf automake binutils bison flex gcc-c++ gettext libtool make patch pkgconfig
 
-mkdir -p /mnt/virtualbox
-mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox
+mkdir -p /mnt/virtualbox; error
+mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
 
-sh /mnt/virtualbox/VBoxLinuxAdditions.run
-ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
+sh /mnt/virtualbox/VBoxLinuxAdditions.run; error
+ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions; error
 
-umount /mnt/virtualbox
+umount /mnt/virtualbox; error
 rm -rf /root/VBoxVersion.txt
 rm -rf /root/VBoxGuestAdditions.iso

@@ -1,10 +1,11 @@
 #!/bin/bash
 
+
 error() {
-        if [ $? -ne 0 ]; then
-                printf "\n\nvbox install failed...\n\n";
-                exit 1
-        fi
+  if [ $? -ne 0 ]; then
+    printf "\n\nThe VirtualBox install failed...\n\n"
+    exit 1
+  fi
 }
 
 zypper --non-interactive install dmidecode; error
