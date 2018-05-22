@@ -35,5 +35,8 @@ systemctl enable sysstat.service && systemctl start sysstat.service
 # Setup vim as the default editor.
 printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
 
+# Delete the updates repo.
+sed -i -e "/.*yakkety-updates.*/d" /etc/apt/sources.list
+
 # Reboot onto the new kernel (if applicable).
 reboot

@@ -9,7 +9,7 @@ fi
 printf "Installing the Virtual Box Tools.\n"
 
 export DEBIAN_FRONTEND=noninteractive
-apt-get --assume-yes --ignore-missing install virtualbox-guest-additions
+apt-get --assume-yes --ignore-missing install virtualbox-guest-additions-iso
 
 # Read in the version number.
 export VBOXVERSION=`cat /root/VBoxVersion.txt`
@@ -31,4 +31,4 @@ rm -rf /root/VBoxGuestAdditions.iso
 apt-get --assume-yes --ignore-missing install haveged
 
 # Autostart the haveged daemon.
-systemctl enable haveged.service
+systemctl enable haveged.service || echo Failure.

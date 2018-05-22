@@ -2,7 +2,8 @@
 
 error() {
         if [ $? -ne 0 ]; then
-                printf "\n\nvbox install failed...\n\n";
+                cat /var/log/VBoxGuestAdditions.log
+                printf "\n\nvbox install failed...\n\n"
                 exit 1
         fi
 }
