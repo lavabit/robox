@@ -16,7 +16,7 @@ fi
 # Install the VMWare Tools from the Linux ISO.
 printf "Installing the VMWare Tools.\n"
 
-apt-get --assume-yes install open-vm-tools ethtool libdumbnet1 zerofree
+apt-get --assume-yes --ignore-missing install open-vm-tools ethtool libdumbnet1 zerofree
 systemctl enable open-vm-tools.service
 systemctl start open-vm-tools.service
 
@@ -33,7 +33,7 @@ rm -rf /root/linux.iso; error
 #rm -rf /tmp/vmware-tools-distrib; error
 
 # Boosts the available entropy which allows magma to start faster.
-apt-get --assume-yes install haveged; error
+apt-get --assume-yes --ignore-missing install haveged; error
 
 # Autostart the haveged daemon.
 systemctl enable haveged.service

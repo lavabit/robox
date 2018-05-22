@@ -16,13 +16,13 @@ fi
 printf "Installing the Virtual Box Tools.\n"
 
 export DEBIAN_FRONTEND=noninteractive
-apt-get --assume-yes install virtualbox-guest-additions-iso; error
+apt-get --assume-yes --ignore-missing install virtualbox-guest-additions-iso; error
 
 # Read in the version number.
 export VBOXVERSION=`cat /root/VBoxVersion.txt`
 
 # export DEBIAN_FRONTEND=noninteractive
-# apt-get --assume-yes install dkms build-essential module-assistant linux-headers-$(uname -r); error
+# apt-get --assume-yes --ignore-missing install dkms build-essential module-assistant linux-headers-$(uname -r); error
 #
 # mkdir -p /mnt/virtualbox; error
 # mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
@@ -35,7 +35,7 @@ rm -rf /root/VBoxVersion.txt; error
 rm -rf /root/VBoxGuestAdditions.iso; error
 
 # Boosts the available entropy which allows magma to start faster.
-apt-get --assume-yes install haveged; error
+apt-get --assume-yes --ignore-missing install haveged; error
 
 # Autostart the haveged daemon.
 systemctl enable haveged.service
