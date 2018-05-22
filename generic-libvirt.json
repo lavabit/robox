@@ -642,6 +642,64 @@
         },
         {
             "scripts": [
+                "scripts/ubuntu1804/network.sh",
+                "scripts/ubuntu1804/apt.sh"
+            ],
+            "type": "shell",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-ubuntu1804-libvirt"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/ubuntu1804/vagrant.sh",
+                "scripts/ubuntu1804/fixtty.sh",
+                "scripts/ubuntu1804/virtualbox.sh",
+                "scripts/ubuntu1804/vmware.sh",
+                "scripts/ubuntu1804/qemu.sh",
+                "scripts/ubuntu1804/cleanup.sh"
+            ],
+            "type": "shell",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-ubuntu1804-libvirt"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/ubuntu1810/network.sh",
+                "scripts/ubuntu1810/apt.sh"
+            ],
+            "type": "shell",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-ubuntu1810-libvirt"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/ubuntu1810/vagrant.sh",
+                "scripts/ubuntu1810/fixtty.sh",
+                "scripts/ubuntu1810/virtualbox.sh",
+                "scripts/ubuntu1810/vmware.sh",
+                "scripts/ubuntu1810/qemu.sh",
+                "scripts/ubuntu1810/cleanup.sh"
+            ],
+            "type": "shell",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-ubuntu1810-libvirt"
+            ]
+        },
+        {
+            "scripts": [
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],
@@ -1514,6 +1572,108 @@
         },
         {
             "type": "qemu",
+            "name": "generic-ubuntu1804-libvirt",
+            "vm_name": "generic-ubuntu1804-libvirt",
+            "output_directory": "output/generic-ubuntu1804-libvirt",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<esc><wait>",
+                "<esc><wait>",
+                "<enter><wait>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1804.vagrant.cfg<wait> ",
+                "<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": 32768,
+            "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
+                [
+                    "-drive",
+                    "if=none,file=output/generic-ubuntu1804-libvirt/generic-ubuntu1804-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+                ]
+            ],
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/18.04/ubuntu-18.04-live-server-amd64.iso",
+            "iso_checksum": "7a1c2966f82268c14560386fbc467d58c3fbd2793f3b1f657baee609b80d39a8",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-ubuntu1810-libvirt",
+            "vm_name": "generic-ubuntu1810-libvirt",
+            "output_directory": "output/generic-ubuntu1810-libvirt",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<esc><wait>",
+                "<esc><wait>",
+                "<enter><wait>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1810.vagrant.cfg<wait> ",
+                "<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": 32768,
+            "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
+                [
+                    "-drive",
+                    "if=none,file=output/generic-ubuntu1810-libvirt/generic-ubuntu1810-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+                ]
+            ],
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "res/media/ubuntu-18.10-server-amd64.iso",
+            "iso_checksum": "9cf4aeb9f957e54579d537f0417d1ad59716b0056988faa363053ce9c230df48",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
             "name": "generic-gentoo-libvirt",
             "vm_name": "generic-gentoo-libvirt",
             "output_directory": "output/generic-gentoo-libvirt",
@@ -1887,6 +2047,24 @@
                     "generic-ubuntu1710-libvirt"
                 ],
                 "box_tag": "generic/ubuntu1710",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-ubuntu1804-libvirt"
+                ],
+                "box_tag": "generic/ubuntu1804",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-ubuntu1810-libvirt"
+                ],
+                "box_tag": "generic/ubuntu1810",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },

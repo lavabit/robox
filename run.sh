@@ -31,8 +31,8 @@ FILES="magma-docker.json "\
 "developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
 # Collect the list of ISO urls.
-ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/rhel-server-6.9-x86_64-dvd.iso|res/media/rhel-server-7.5-x86_64-dvd.iso" | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_checksum_type" | grep -v -E "3f961576e9f81ea118566f73f98d7bdf3287671c35436a13787c1ffd5078cf8e|d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5" | awk -F'"' '{print $4}'`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/ubuntu-18.10-server-amd64.iso|res/media/rhel-server-6.9-x86_64-dvd.iso|res/media/rhel-server-7.5-x86_64-dvd.iso" | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_checksum_type" | grep -v -E "9cf4aeb9f957e54579d537f0417d1ad59716b0056988faa363053ce9c230df48|3f961576e9f81ea118566f73f98d7bdf3287671c35436a13787c1ffd5078cf8e|d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5" | awk -F'"' '{print $4}'`)
 
 # Collect the list of box names.
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
@@ -100,7 +100,6 @@ function isos {
 
   tput setaf 2; printf "\nGentoo\n\n"; tput sgr0;
   URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
-  #ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}\.iso" | uniq`
   ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
   URL="${URL}${ISO}"
   SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
@@ -112,6 +111,13 @@ function isos {
   # URL="${URL}${ISO}"
   # SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
   # printf "${URL}\n${SHA}\n\n"
+
+  tput setaf 2; printf "\nUbuntu\n\n"; tput sgr0;
+  URL="http://cdimage.ubuntu.com/ubuntu-server/daily/pending/"
+  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "cosmic-server-amd64.iso" | uniq`
+  URL="${URL}${ISO}"
+  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+  printf "${URL}\n${SHA}\n\n"
 }
 
 function cache {
@@ -166,6 +172,28 @@ function verify_sum {
 
   printf "Validated   :  $1\n"
   return 0
+}
+
+# Verify the local ISO files are valid and if necessary download the file.
+function verify_sum {
+
+  ISOSIZE="745537536"
+  ISOFILE="res/media/ubuntu-18.10-server-amd64.iso"
+  ISOHASH="9cf4aeb9f957e54579d537f0417d1ad59716b0056988faa363053ce9c230df48"
+  ISOAGENT="Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
+  ISOLOCATION="http://cdimage.ubuntu.com/ubuntu-server/daily/20180522/cosmic-server-amd64.iso"
+
+  # Make sure the ISO exists, and is the proper size.
+  if [ ! -f "${ISOFILE}" ] || [ `du --bytes "${ISOFILE}" | awk -F' ' '{print $1}'` != ${ISOSIZE} ]; then
+    curl --location --retry 16 --retry-delay 16 --max-redirs 16 --user-agent "${ISOAGENT}" --output "${ISOFILE}.part" "${ISOLOCATION}"
+    sha256sum "${ISOFILE}.part" | grep --silent "${ISOHASH}"
+    if [ $? != 0 ]; then
+      tput setaf 1; tput bold; printf "\n\nUbuntu 18.10 could not be downloaded...\n\n"; tput sgr0
+      rm --force "${ISOFILE}"
+    else
+      mv --force "${ISOFILE}.part" "${ISOFILE}"
+    fi
+  fi
 }
 
 # Validate the templates before building.

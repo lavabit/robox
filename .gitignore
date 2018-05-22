@@ -1,10 +1,17 @@
 
-
-logs/
-output/
-.settings/
-packer_cache/
-
-.project
+# Credential Files
 .credentialsrc
 .credentials.bat
+
+# Resulting Files
+logs/
+output/
+packer_cache/
+
+# Eclipse Files
+.project
+.settings/
+
+# Media Files
+res/media/ubuntu-18.10-server-amd64.iso
+res/media/ubuntu-18.10-server-amd64.iso.part
