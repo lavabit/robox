@@ -14,8 +14,15 @@ emerge --oneshot portage
 # Update the system packages.
 emerge --update --deep --newuse --with-bdeps=y @world
 
+# Clear the news feed.
+eselect news read --quiet
+
 # Perform any configuration file updates.
 etc-update --automode -5
+
+# If the OpenSSH config gets updated, we need to preserve our settings.
+sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
+sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 
 # Remove obsolete dependencies.
 emerge --depclean
@@ -23,14 +30,21 @@ emerge --depclean
 # Useful tools.
 emerge --update --ask=n --autounmask-continue=y app-editors/vim net-misc/curl net-misc/wget sys-apps/mlocate app-admin/sysstat app-admin/rsyslog sys-apps/lm_sensors sys-process/lsof app-admin/sudo
 
-# Perform any configuration file updates.
-etc-update --automode -5
-
 # Clear the news feed.
 eselect news read --quiet
 
+# Perform any configuration file updates.
+etc-update --automode -5
+
+# If the OpenSSH config gets updated, we need to preserve our settings.
+sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
+sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+
 # Setup vim as the default editor.
 printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
+
+# Configure the lm_sensors.conf file.
+/usr/sbin/sensors-detect
 
 # Start the syslog service.
 rc-update add rsyslog default && rc-service rsyslog start
@@ -40,9 +54,6 @@ rc-update add sysstat default && rc-service sysstat start
 
 # This will ensure sensors get initialized during the boot process.
 rc-update add lm_sensors default && rc-service lm_sensors start
-
-# Configure the lm_sensors.conf file.
-/usr/sbin/sensors-detect
 
 # Create an initial mlocate database.
 updatedb
