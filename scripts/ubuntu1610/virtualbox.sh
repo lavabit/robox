@@ -1,12 +1,5 @@
 #!/bin/bash
 
-error() {
-        if [ $? -ne 0 ]; then
-                printf "\n\nvbox install failed...\n\n";
-                exit 1
-        fi
-}
-
 # Bail if we are not running inside VirtualBox.
 if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
     exit 0
@@ -16,26 +9,26 @@ fi
 printf "Installing the Virtual Box Tools.\n"
 
 export DEBIAN_FRONTEND=noninteractive
-apt-get --assume-yes --ignore-missing install virtualbox-guest-additions-iso; error
+apt-get --assume-yes --ignore-missing install virtualbox-guest-additions
 
 # Read in the version number.
 export VBOXVERSION=`cat /root/VBoxVersion.txt`
 
 # export DEBIAN_FRONTEND=noninteractive
-# apt-get --assume-yes --ignore-missing install dkms build-essential module-assistant linux-headers-$(uname -r); error
+# apt-get --assume-yes --ignore-missing install dkms build-essential module-assistant linux-headers-$(uname -r)
 #
-# mkdir -p /mnt/virtualbox; error
-# mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
+# mkdir -p /mnt/virtualbox
+# mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox
 #
-# /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; error
-# ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions; error
+# /mnt/virtualbox/VBoxLinuxAdditions.run --nox11
+# ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
 #
-# umount /mnt/virtualbox; error
-rm -rf /root/VBoxVersion.txt; error
-rm -rf /root/VBoxGuestAdditions.iso; error
+# umount /mnt/virtualbox
+rm -rf /root/VBoxVersion.txt
+rm -rf /root/VBoxGuestAdditions.iso
 
 # Boosts the available entropy which allows magma to start faster.
-apt-get --assume-yes --ignore-missing install haveged; error
+apt-get --assume-yes --ignore-missing install haveged
 
 # Autostart the haveged daemon.
 systemctl enable haveged.service
