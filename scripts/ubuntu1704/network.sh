@@ -7,7 +7,7 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 printf "\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
 
 # Set the hostname, and then ensure it will resolve properly.
-if [[ "$PACKER_BUILD_NAME" =~ ^generic-ubuntu1704-vmware$|^generic-ubuntu1704-libvirt$|^generic-ubuntu1704-virtualbox$|^generic-ubuntu1704-hyperv$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^generic-ubuntu1704-(vmware|hyperv|libvirt|virtualbox)$ ]]; then
   printf "ubuntu1704.localdomain\n" > /etc/hostname
   printf "\n127.0.0.1 ubuntu1704.localdomain\n\n" >> /etc/hosts
 else

@@ -83,7 +83,7 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/centos7/fixdns.sh",
+                "scripts/centos7/network.sh",
                 "scripts/centos7/yum.sh",
                 "scripts/centos7/base.sh",
                 "scripts/centos7/reboot.sh"

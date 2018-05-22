@@ -178,7 +178,7 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/centos7/fixdns.sh",
+                "scripts/centos7/network.sh",
                 "scripts/centos7/yum.sh",
                 "scripts/centos7/base.sh",
                 "scripts/centos7/reboot.sh"
@@ -214,7 +214,7 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/rhel7/fixdns.sh",
+                "scripts/rhel7/network.sh",
                 "scripts/rhel7/yum.sh",
                 "scripts/rhel7/base.sh",
                 "scripts/rhel7/reboot.sh"
