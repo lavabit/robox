@@ -62,14 +62,29 @@ function start() {
   sudo systemctl restart vmware-USBArbitrator.service
   sudo systemctl restart vmware-workstation-server.service
 
+  # Confirm the VMware modules loaded.
+  if [ -f /usr/bin/vmware-modconfig ]; then
+    MODS=`sudo /etc/init.d/vmware status | grep --color=none --extended-regexp "Module vmmon loaded|Module vmnet loaded" | wc -l`
+    if [ "$MODS" != "2" ]; then
+      sudo vmware-modconfig --console --install-all
+      if [ $? != 0 ]; then
+        tput setaf 1; tput bold; printf "\n\nThe vmware kernel modules failed to load properly...\n\n"; tput sgr0
+        for i in 1 2 3; do printf "\a"; sleep 1; done
+        exit 1
+      fi
+    fi
+  fi
+
   # Confirm the VirtualBox kernel modules loaded.
   if [ -f /usr/lib/virtualbox/vboxdrv.sh ]; then
     /usr/lib/virtualbox/vboxdrv.sh status | grep --color=none "VirtualBox kernel modules \(.*\) are loaded."
     if [ $? != 0 ]; then
       sudo /usr/lib/virtualbox/vboxdrv.sh setup
-      tput setaf 1; tput bold; printf "\n\nThe virtualbox kernel modules failed to load properly...\n\n"; tput sgr0
-      for i in 1 2 3; do printf "\a"; sleep 1; done
-      exit 1
+      if [ $? != 0 ]; then
+        tput setaf 1; tput bold; printf "\n\nThe virtualbox kernel modules failed to load properly...\n\n"; tput sgr0
+        for i in 1 2 3; do printf "\a"; sleep 1; done
+        exit 1
+      fi
     fi
   fi
 }
