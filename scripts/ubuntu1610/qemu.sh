@@ -22,7 +22,7 @@ apt-get --assume-yes install qemu-guest-agent; error
 systemctl disable open-vm-tools.service
 
 # Boosts the available entropy which allows magma to start faster.
-apt-get --assume-yes install haveged; error
+#apt-get --assume-yes install haveged; error
 
 # Autostart the haveged daemon.
-systemctl enable haveged.service
+#systemctl enable haveged.service

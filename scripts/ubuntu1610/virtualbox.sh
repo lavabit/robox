@@ -28,7 +28,7 @@ rm -rf /root/VBoxVersion.txt
 rm -rf /root/VBoxGuestAdditions.iso
 
 # Boosts the available entropy which allows magma to start faster.
-apt-get --assume-yes install haveged
+#apt-get --assume-yes install haveged
 
 # Autostart the haveged daemon.
-systemctl enable haveged.service || echo Failure.
+#systemctl enable haveged.service || echo Failure.
