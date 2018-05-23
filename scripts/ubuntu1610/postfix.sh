@@ -4,7 +4,7 @@
 export DEBIAN_FRONTEND=noninteractive
 
 # The postfix server for message relays.
-apt-get --assume-yes --ignore-missing install postfix postfix-cdb libcdb1 ssl-cert
+apt-get --assume-yes install postfix postfix-cdb libcdb1 ssl-cert
 
 # Configure postfix to listen for relays on port 2525 so it doesn't conflict with magma.
 sed -i -e "s/^smtp\([ ]*inet\)/127.0.0.1:2525\1/" /etc/postfix/master.cf

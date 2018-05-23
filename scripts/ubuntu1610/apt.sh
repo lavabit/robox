@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Use the Lavabit mirror.
+sed -i -e "s/http:\/\/old-releases.ubuntu.com/https:\/\/mirrors.lavabit.com/g" /etc/apt/sources.list
+
 # To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
 
@@ -20,11 +23,11 @@ apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update
 apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic
 
 # Upgrade the installed packages.
-apt-get --assume-yes --ignore-missing -o Dpkg::Options::="--force-confnew" upgrade
-apt-get --assume-yes --ignore-missing -o Dpkg::Options::="--force-confnew" dist-upgrade
+apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade
+apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade
 
 # Needed to retrieve source code, and other misc system tools.
-apt-get --assume-yes --ignore-missing install vim vim-nox git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils
+apt-get --assume-yes install vim vim-nox git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils
 
 # Enable the sysstat collection service.
 sed -i -e "s|.*ENABLED=\".*\"|ENABLED=\"true\"|g" /etc/default/sysstat
@@ -34,9 +37,6 @@ systemctl enable sysstat.service && systemctl start sysstat.service
 
 # Setup vim as the default editor.
 printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
-
-# Delete the updates repo.
-sed -i -e "/.*yakkety-updates.*/d" /etc/apt/sources.list
 
 # Reboot onto the new kernel (if applicable).
 reboot
