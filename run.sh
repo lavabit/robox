@@ -11,6 +11,7 @@
 # Version Information
 export VERSION="1.6.1"
 export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
+export EXCEPTIONS="generic-ubuntu1804-hyperv,generic-ubuntu1810-hyperv,generic-ubuntu1804-libvirt,generic-ubuntu1810-libvirt,generic-ubuntu1804-virtualbox,generic-ubuntu1810-virtualbox,generic-ubuntu1804-vmware,generic-ubuntu1810-vmware"
 
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
@@ -232,7 +233,7 @@ function build() {
     fi
   done
 
-  packer build -on-error=cleanup -parallel=false $1.json
+  packer build -on-error=cleanup -parallel=false -except="${EXCEPTIONS}" $1.json
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0

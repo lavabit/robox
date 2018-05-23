@@ -1333,7 +1333,7 @@
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",

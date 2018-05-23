@@ -96,7 +96,7 @@
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",
@@ -152,7 +152,7 @@
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",
@@ -208,7 +208,7 @@
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",
@@ -264,7 +264,7 @@
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",
@@ -303,7 +303,7 @@
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "virtualbox_version_file": "VBoxVersion.txt"
         }
-    
+
     ],
     "post-processors": [
         [
