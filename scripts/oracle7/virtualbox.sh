@@ -14,6 +14,7 @@ error() {
     if [ -f /var/log/vboxadd-install.log ]; then
       printf "\n\n/var/log/vboxadd-install.log\n\n"
       cat /var/log/vboxadd-install.log
+      sleep 3600
     else
       printf "\n\nThe /var/log/vboxadd-install.log is missing...\n\n"
     fi
@@ -37,7 +38,9 @@ printf "Installing the Virtual Box Tools.\n"
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
 # Packages required to build the guest additions.
-yum --assumeyes install gcc make perl dkms bzip2 kernel-devel kernel-headers autoconf automake binutils bison flex gcc-c++ gettext libtool make patch pkgconfig
+yum --assumeyes install gcc make perl dkms bzip2 kernel-tools kernel-headers kernel-devel kernel-uek-devel autoconf automake binutils bison flex gcc-c++ gettext libtool make patch pkgconfig
+
+# export KERN_DIR="/usr/src/kernels/`uname --kernel-release`/"
 
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
