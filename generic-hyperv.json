@@ -1536,7 +1536,7 @@
             "name": "generic-openbsd6-hyperv",
             "vm_name": "generic-openbsd6-hyperv",
             "output_directory": "output/generic-openbsd6-hyperv",
-            "boot_wait": "20s",
+            "boot_wait": "40s",
             "boot_command": [
                 "S<enter><wait>",
                 "dhclient hvn0<enter><wait5>",
@@ -1792,6 +1792,24 @@
                     "generic-ubuntu1710-hyperv"
                 ],
                 "box_tag": "generic/ubuntu1710",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-ubuntu1804-hyperv"
+                ],
+                "box_tag": "generic/ubuntu1804",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-ubuntu1810-hyperv"
+                ],
+                "box_tag": "generic/ubuntu1810",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
