@@ -13,7 +13,7 @@ error() {
 
     if [ -f /var/log/vboxadd-install.log ]; then
       printf "\n\n/var/log/vboxadd-install.log\n\n"
-      cat /var/log/VBoxGuestAdditions.log
+      cat /var/log/vboxadd-install.log
     else
       printf "\n\nThe /var/log/vboxadd-install.log is missing...\n\n"
     fi
