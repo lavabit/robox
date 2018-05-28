@@ -13,7 +13,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-oracle7-vmware"
+                "generic-oracle7-parallels"
             ]
         },
         {
@@ -31,7 +31,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-oracle7-vmware"
+                "generic-oracle7-parallels"
             ]
         },
         {
@@ -48,7 +48,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-opensuse42-vmware"
+                "generic-opensuse42-parallels"
             ]
         },
         {
@@ -60,7 +60,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine35-vmware"
+                "generic-alpine35-parallels"
             ]
         },
         {
@@ -78,7 +78,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine35-vmware"
+                "generic-alpine35-parallels"
             ]
         },
         {
@@ -90,7 +90,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine36-vmware"
+                "generic-alpine36-parallels"
             ]
         },
         {
@@ -108,7 +108,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine36-vmware"
+                "generic-alpine36-parallels"
             ]
         },
         {
@@ -120,7 +120,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine37-vmware"
+                "generic-alpine37-parallels"
             ]
         },
         {
@@ -138,7 +138,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine37-vmware"
+                "generic-alpine37-parallels"
             ]
         },
         {
@@ -152,7 +152,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos6-vmware"
+                "generic-centos6-parallels"
             ]
         },
         {
@@ -172,7 +172,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos6-vmware"
+                "generic-centos6-parallels"
             ]
         },
         {
@@ -187,7 +187,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos7-vmware"
+                "generic-centos7-parallels"
             ]
         },
         {
@@ -208,7 +208,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos7-vmware"
+                "generic-centos7-parallels"
             ]
         },
         {
@@ -223,7 +223,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rhel7-vmware"
+                "generic-rhel7-parallels"
             ]
         },
         {
@@ -244,7 +244,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rhel7-vmware"
+                "generic-rhel7-parallels"
             ]
         },
         {
@@ -255,7 +255,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-gentoo-vmware"
+                "generic-gentoo-parallels"
             ]
         },
         {
@@ -270,7 +270,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-gentoo-vmware"
+                "generic-gentoo-parallels"
             ]
         },
         {
@@ -281,7 +281,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-arch-vmware"
+                "generic-arch-parallels"
             ]
         },
         {
@@ -296,7 +296,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-arch-vmware"
+                "generic-arch-parallels"
             ]
         },
         {
@@ -308,7 +308,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian8-vmware"
+                "generic-debian8-parallels"
             ]
         },
         {
@@ -324,7 +324,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian8-vmware"
+                "generic-debian8-parallels"
             ]
         },
         {
@@ -336,7 +336,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian9-vmware"
+                "generic-debian9-parallels"
             ]
         },
         {
@@ -352,7 +352,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian9-vmware"
+                "generic-debian9-parallels"
             ]
         },
         {
@@ -364,7 +364,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora25-vmware"
+                "generic-fedora25-parallels"
             ]
         },
         {
@@ -376,7 +376,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora25-vmware"
+                "generic-fedora25-parallels"
             ]
         },
         {
@@ -393,7 +393,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora25-vmware"
+                "generic-fedora25-parallels"
             ]
         },
         {
@@ -405,7 +405,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora26-vmware"
+                "generic-fedora26-parallels"
             ]
         },
         {
@@ -417,7 +417,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora26-vmware"
+                "generic-fedora26-parallels"
             ]
         },
         {
@@ -434,7 +434,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora26-vmware"
+                "generic-fedora26-parallels"
             ]
         },
         {
@@ -446,7 +446,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora27-vmware"
+                "generic-fedora27-parallels"
             ]
         },
         {
@@ -458,7 +458,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora27-vmware"
+                "generic-fedora27-parallels"
             ]
         },
         {
@@ -475,7 +475,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora27-vmware"
+                "generic-fedora27-parallels"
             ]
         },
         {
@@ -492,7 +492,7 @@
             "expect_disconnect": "true",
             "execute_command": "/usr/local/bin/bash {{ .Path }}",
             "only": [
-                "generic-freebsd11-vmware"
+                "generic-freebsd11-parallels"
             ]
         },
         {
@@ -504,7 +504,7 @@
             "expect_disconnect": "true",
             "execute_command": "/bin/sh {{ .Path }}",
             "only": [
-                "generic-openbsd6-vmware"
+                "generic-openbsd6-parallels"
             ]
         },
         {
@@ -521,7 +521,7 @@
             "expect_disconnect": "true",
             "execute_command": "/usr/local/bin/bash {{ .Path }}",
             "only": [
-                "generic-openbsd6-vmware"
+                "generic-openbsd6-parallels"
             ]
         },
         {
@@ -533,7 +533,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1604-vmware"
+                "generic-ubuntu1604-parallels"
             ]
         },
         {
@@ -550,7 +550,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1604-vmware"
+                "generic-ubuntu1604-parallels"
             ]
         },
         {
@@ -562,7 +562,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1610-vmware"
+                "generic-ubuntu1610-parallels"
             ]
         },
         {
@@ -579,7 +579,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1610-vmware"
+                "generic-ubuntu1610-parallels"
             ]
         },
         {
@@ -591,7 +591,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1704-vmware"
+                "generic-ubuntu1704-parallels"
             ]
         },
         {
@@ -608,7 +608,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1704-vmware"
+                "generic-ubuntu1704-parallels"
             ]
         },
         {
@@ -620,7 +620,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1710-vmware"
+                "generic-ubuntu1710-parallels"
             ]
         },
         {
@@ -637,7 +637,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1710-vmware"
+                "generic-ubuntu1710-parallels"
             ]
         },
         {
@@ -649,7 +649,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1804-vmware"
+                "generic-ubuntu1804-parallels"
             ]
         },
         {
@@ -666,7 +666,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1804-vmware"
+                "generic-ubuntu1804-parallels"
             ]
         },
         {
@@ -678,7 +678,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1810-vmware"
+                "generic-ubuntu1810-parallels"
             ]
         },
         {
@@ -695,7 +695,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu1810-vmware"
+                "generic-ubuntu1810-parallels"
             ]
         },
         {
@@ -710,27 +710,17 @@
     ],
     "builders": [
         {
-            "type": "vmware-iso",
-            "name": "generic-oracle7-vmware",
-            "vm_name": "generic-oracle7-vmware",
-            "vmdk_name": "generic-oracle7-vmware",
-            "output_directory": "output/generic-oracle7-vmware",
+            "type": "parallels-iso",
+            "name": "generic-oracle7-parallels",
+            "vm_name": "generic-oracle7-parallels",
+            "output_directory": "output/generic-oracle7-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "oraclelinux-64",
+            "guest_os_type": "linux",
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.kernel.org/oracle/OL7/u5/x86_64/OracleLinux-R7-U5-Server-x86_64-dvd.iso",
             "iso_checksum": "d0cc4493db10c2a49084f872083ed9ed6a09cc065064c009734712b9ef357886",
             "iso_checksum_type": "sha256",
@@ -740,14 +730,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-opensuse42-vmware",
-            "vm_name": "generic-opensuse42-vmware",
-            "vmdk_name": "generic-opensuse42-vmware",
-            "output_directory": "output/generic-opensuse42-vmware",
+            "type": "parallels-iso",
+            "name": "generic-opensuse42-parallels",
+            "vm_name": "generic-opensuse42-parallels",
+            "output_directory": "output/generic-opensuse42-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><enter><wait>",
@@ -756,17 +747,8 @@
                 "<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "opensuse-64",
+            "guest_os_type": "opensuse",
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64.iso",
             "iso_checksum": "d1a17116cf33a5582b83ef479d7b151b33938e60f07eebc544abf162e2aa5c12",
             "iso_checksum_type": "sha256",
@@ -776,14 +758,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-alpine35-vmware",
-            "vm_name": "generic-alpine35-vmware",
-            "vmdk_name": "generic-alpine35-vmware",
-            "output_directory": "output/generic-alpine35-vmware",
+            "type": "parallels-iso",
+            "name": "generic-alpine35-parallels",
+            "vm_name": "generic-alpine35-parallels",
+            "output_directory": "output/generic-alpine35-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "root<enter><wait>",
@@ -797,21 +780,8 @@
                 "umount /mnt && reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "vmx_data_post": {
-                "softpoweroff": "FALSE",
-                "powertype.poweroff": "hard"
-            },
-            "guest_os_type": "otherlinux-64",
+            "guest_os_type": "linux",
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
             "iso_checksum": "2258ca975d7b829ea6229d314b2782d4070ec9b7f688392817e562f5a14a34b5",
             "iso_checksum_type": "sha256",
@@ -821,14 +791,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "/sbin/poweroff",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-alpine36-vmware",
-            "vm_name": "generic-alpine36-vmware",
-            "vmdk_name": "generic-alpine36-vmware",
-            "output_directory": "output/generic-alpine36-vmware",
+            "type": "parallels-iso",
+            "name": "generic-alpine36-parallels",
+            "vm_name": "generic-alpine36-parallels",
+            "output_directory": "output/generic-alpine36-parallels",
             "boot_wait": "30s",
             "boot_command": [
                 "root<enter><wait>",
@@ -842,21 +813,8 @@
                 "umount /mnt && reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "vmx_data_post": {
-                "softpoweroff": "FALSE",
-                "powertype.poweroff": "hard"
-            },
-            "guest_os_type": "otherlinux-64",
+            "guest_os_type": "linux",
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.6/releases/x86_64/alpine-virt-3.6.2-x86_64.iso",
             "iso_checksum": "92c80e151143da155fb99611ed8f0f3672fba4de228a85eb5f53bcb261bf4b0a",
             "iso_checksum_type": "sha256",
@@ -866,14 +824,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "/sbin/poweroff",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-alpine37-vmware",
-            "vm_name": "generic-alpine37-vmware",
-            "vmdk_name": "generic-alpine37-vmware",
-            "output_directory": "output/generic-alpine37-vmware",
+            "type": "parallels-iso",
+            "name": "generic-alpine37-parallels",
+            "vm_name": "generic-alpine37-parallels",
+            "output_directory": "output/generic-alpine37-parallels",
             "boot_wait": "30s",
             "boot_command": [
                 "root<enter><wait>",
@@ -887,21 +846,8 @@
                 "umount /mnt && reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "vmx_data_post": {
-                "softpoweroff": "FALSE",
-                "powertype.poweroff": "hard"
-            },
-            "guest_os_type": "otherlinux-64",
+            "guest_os_type": "linux",
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.7/releases/x86_64/alpine-virt-3.7.0-x86_64.iso",
             "iso_checksum": "5a4b2588afd32e7024dd61d9558b77b03a4f3189cb4c9fc05e9e944fb780acdd",
             "iso_checksum_type": "sha256",
@@ -911,30 +857,22 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "/sbin/poweroff",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-centos6-vmware",
-            "vm_name": "generic-centos6-vmware",
-            "vmdk_name": "generic-centos6-vmware",
-            "output_directory": "output/generic-centos6-vmware",
+            "type": "parallels-iso",
+            "name": "generic-centos6-parallels",
+            "vm_name": "generic-centos6-parallels",
+            "output_directory": "output/generic-centos6-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "centos-64",
+            "guest_os_type": "centos",
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
             "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
             "iso_checksum_type": "sha256",
@@ -944,30 +882,22 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-centos7-vmware",
-            "vm_name": "generic-centos7-vmware",
-            "vmdk_name": "generic-centos7-vmware",
-            "output_directory": "output/generic-centos7-vmware",
+            "type": "parallels-iso",
+            "name": "generic-centos7-parallels",
+            "vm_name": "generic-centos7-parallels",
+            "output_directory": "output/generic-centos7-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "centos-64",
+            "guest_os_type": "centos7",
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso",
             "iso_checksum": "714acc0aefb32b7d51b515e25546835e55a90da9fb00417fbee2d03a62801efd",
             "iso_checksum_type": "sha256",
@@ -977,30 +907,22 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-rhel7-vmware",
-            "vm_name": "generic-rhel7-vmware",
-            "vmdk_name": "generic-rhel7-vmware",
-            "output_directory": "output/generic-rhel7-vmware",
+            "type": "parallels-iso",
+            "name": "generic-rhel7-parallels",
+            "vm_name": "generic-rhel7-parallels",
+            "output_directory": "output/generic-rhel7-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "rhel7-64",
+            "guest_os_type": "rhel7",
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "res/media/rhel-server-7.5-x86_64-dvd.iso",
             "iso_checksum": "d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5",
             "iso_checksum_type": "sha256",
@@ -1010,14 +932,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-arch-vmware",
-            "vm_name": "generic-arch-vmware",
-            "vmdk_name": "generic-arch-vmware",
-            "output_directory": "output/generic-arch-vmware",
+            "type": "parallels-iso",
+            "name": "generic-arch-parallels",
+            "vm_name": "generic-arch-parallels",
+            "output_directory": "output/generic-arch-parallels",
             "boot_wait": "30s",
             "boot_command": [
                 "<enter><wait10><wait10><wait10><wait10>",
@@ -1025,18 +948,9 @@
                 "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "otherlinux-64",
+            "guest_os_type": "linux",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2018.05.01-x86_64.iso",
             "iso_checksum": "4cef5d5c26f71b7fbfad4a8282102893f9a8b97d37b9665f07a23a73618220cb",
             "iso_checksum_type": "sha256",
@@ -1045,14 +959,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "7200s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-fedora25-vmware",
-            "vm_name": "generic-fedora25-vmware",
-            "vmdk_name": "generic-fedora25-vmware",
-            "output_directory": "output/generic-fedora25-vmware",
+            "type": "parallels-iso",
+            "name": "generic-fedora25-parallels",
+            "vm_name": "generic-fedora25-parallels",
+            "output_directory": "output/generic-fedora25-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> ",
@@ -1062,18 +977,9 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "fedora-64",
+            "guest_os_type": "linux",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.kernel.org/fedora/releases/25/Server/x86_64/iso/Fedora-Server-netinst-x86_64-25-1.3.iso",
             "iso_checksum": "86bc3694f4938382753d1e9536f2140a6c9c1978207766340c679a89509073c7",
             "iso_checksum_type": "sha256",
@@ -1082,14 +988,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-fedora26-vmware",
-            "vm_name": "generic-fedora26-vmware",
-            "vmdk_name": "generic-fedora26-vmware",
-            "output_directory": "output/generic-fedora26-vmware",
+            "type": "parallels-iso",
+            "name": "generic-fedora26-parallels",
+            "vm_name": "generic-fedora26-parallels",
+            "output_directory": "output/generic-fedora26-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> ",
@@ -1099,18 +1006,9 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "fedora-64",
+            "guest_os_type": "linux",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.kernel.org/fedora/releases/26/Server/x86_64/iso/Fedora-Server-netinst-x86_64-26-1.5.iso",
             "iso_checksum": "e260921ef5c7bd5ee2a7b2f2f1156af6483014c73984e4cf37f2b6690e0155e5",
             "iso_checksum_type": "sha256",
@@ -1119,14 +1017,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-fedora27-vmware",
-            "vm_name": "generic-fedora27-vmware",
-            "vmdk_name": "generic-fedora27-vmware",
-            "output_directory": "output/generic-fedora27-vmware",
+            "type": "parallels-iso",
+            "name": "generic-fedora27-parallels",
+            "vm_name": "generic-fedora27-parallels",
+            "output_directory": "output/generic-fedora27-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<tab> ",
@@ -1136,18 +1035,9 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "fedora-64",
+            "guest_os_type": "linux",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.kernel.org/fedora/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
             "iso_checksum": "2b93836c38833b26891345388ff5ddea60529b27a616b4539d432a3520d1c90b",
             "iso_checksum_type": "sha256",
@@ -1156,14 +1046,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-debian8-vmware",
-            "vm_name": "generic-debian8-vmware",
-            "vmdk_name": "generic-debian8-vmware",
-            "output_directory": "output/generic-debian8-vmware",
+            "type": "parallels-iso",
+            "name": "generic-debian8-parallels",
+            "vm_name": "generic-debian8-parallels",
+            "output_directory": "output/generic-debian8-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -1172,18 +1063,9 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "debian8-64",
+            "guest_os_type": "debian",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://saimei.ftp.acc.umu.se/mirror/cdimage/archive/8.10.0/amd64/iso-cd/debian-8.10.0-amd64-netinst.iso",
             "iso_checksum": "896cc42998edf65f1db4eba83581941fb2a584f2214976432b841af96b17ccda",
             "iso_checksum_type": "sha256",
@@ -1192,14 +1074,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-debian9-vmware",
-            "vm_name": "generic-debian9-vmware",
-            "vmdk_name": "generic-debian9-vmware",
-            "output_directory": "output/generic-debian9-vmware",
+            "type": "parallels-iso",
+            "name": "generic-debian9-parallels",
+            "vm_name": "generic-debian9-parallels",
+            "output_directory": "output/generic-debian9-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -1208,18 +1091,9 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "debian9-64",
+            "guest_os_type": "debian",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.kernel.org/debian-cd/9.4.0/amd64/iso-cd/debian-9.4.0-amd64-netinst.iso",
             "iso_checksum": "124d270006703f2111224dec3bf7a9d01450168be41d4834f88fdd035552b044",
             "iso_checksum_type": "sha256",
@@ -1228,14 +1102,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-ubuntu1604-vmware",
-            "vm_name": "generic-ubuntu1604-vmware",
-            "vmdk_name": "generic-ubuntu1604-vmware",
-            "output_directory": "output/generic-ubuntu1604-vmware",
+            "type": "parallels-iso",
+            "name": "generic-ubuntu1604-parallels",
+            "vm_name": "generic-ubuntu1604-parallels",
+            "output_directory": "output/generic-ubuntu1604-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -1257,18 +1132,9 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
+            "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.4/ubuntu-16.04.4-server-amd64.iso",
             "iso_checksum": "0a03608988cfd2e50567990dc8be96fb3c501e198e2e6efcb846d89efc7b89f2",
             "iso_checksum_type": "sha256",
@@ -1277,14 +1143,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-ubuntu1610-vmware",
-            "vm_name": "generic-ubuntu1610-vmware",
-            "vmdk_name": "generic-ubuntu1610-vmware",
-            "output_directory": "output/generic-ubuntu1610-vmware",
+            "type": "parallels-iso",
+            "name": "generic-ubuntu1610-parallels",
+            "vm_name": "generic-ubuntu1610-parallels",
+            "output_directory": "output/generic-ubuntu1610-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -1298,18 +1165,9 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
+            "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "http://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
             "iso_checksum": "72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
             "iso_checksum_type": "sha256",
@@ -1318,14 +1176,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-ubuntu1704-vmware",
-            "vm_name": "generic-ubuntu1704-vmware",
-            "vmdk_name": "generic-ubuntu1704-vmware",
-            "output_directory": "output/generic-ubuntu1704-vmware",
+            "type": "parallels-iso",
+            "name": "generic-ubuntu1704-parallels",
+            "vm_name": "generic-ubuntu1704-parallels",
+            "output_directory": "output/generic-ubuntu1704-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -1339,18 +1198,9 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
+            "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "http://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
             "iso_checksum": "ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
             "iso_checksum_type": "sha256",
@@ -1359,14 +1209,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-ubuntu1710-vmware",
-            "vm_name": "generic-ubuntu1710-vmware",
-            "vmdk_name": "generic-ubuntu1710-vmware",
-            "output_directory": "output/generic-ubuntu1710-vmware",
+            "type": "parallels-iso",
+            "name": "generic-ubuntu1710-parallels",
+            "vm_name": "generic-ubuntu1710-parallels",
+            "output_directory": "output/generic-ubuntu1710-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "<esc><wait>",
@@ -1380,18 +1231,9 @@
                 "<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
+            "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/17.10.1/ubuntu-17.10.1-server-amd64.iso",
             "iso_checksum": "8ff73f1b622276758475c3bd5190b382774626de5a82c50930519381f6c3a3f8",
             "iso_checksum_type": "sha256",
@@ -1400,14 +1242,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-ubuntu1804-vmware",
-            "vm_name": "generic-ubuntu1804-vmware",
-            "vmdk_name": "generic-ubuntu1804-vmware",
-            "output_directory": "output/generic-ubuntu1804-vmware",
+            "type": "parallels-iso",
+            "name": "generic-ubuntu1804-parallels",
+            "vm_name": "generic-ubuntu1804-parallels",
+            "output_directory": "output/generic-ubuntu1804-parallels",
             "boot_wait": "1s",
             "boot_command": [
                 "<tab><tab><tab><tab><tab><tab><tab><tab>",
@@ -1431,18 +1274,9 @@
                 " --- <enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
+            "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04-server-amd64.iso",
             "iso_checksum": "a7f5c7b0cdd0e9560d78f1e47660e066353bb8a79eb78d1fc3f4ea62a07e6cbc",
             "iso_checksum_type": "sha256",
@@ -1451,14 +1285,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-ubuntu1810-vmware",
-            "vm_name": "generic-ubuntu1810-vmware",
-            "vmdk_name": "generic-ubuntu1810-vmware",
-            "output_directory": "output/generic-ubuntu1810-vmware",
+            "type": "parallels-iso",
+            "name": "generic-ubuntu1810-parallels",
+            "vm_name": "generic-ubuntu1810-parallels",
+            "output_directory": "output/generic-ubuntu1810-parallels",
             "boot_wait": "1s",
             "boot_command": [
               "<tab><tab><tab><tab><tab><tab><tab><tab>",
@@ -1482,18 +1317,9 @@
               " --- <enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "ubuntu-64",
+            "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "res/media/ubuntu-18.10-server-amd64.iso",
             "iso_checksum": "9cf4aeb9f957e54579d537f0417d1ad59716b0056988faa363053ce9c230df48",
             "iso_checksum_type": "sha256",
@@ -1502,14 +1328,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-gentoo-vmware",
-            "vm_name": "generic-gentoo-vmware",
-            "vmdk_name": "generic-gentoo-vmware",
-            "output_directory": "output/generic-gentoo-vmware",
+            "type": "parallels-iso",
+            "name": "generic-gentoo-parallels",
+            "vm_name": "generic-gentoo-parallels",
+            "output_directory": "output/generic-gentoo-parallels",
             "boot_wait": "5s",
             "boot_command": [
                 "gentoo-nofb<enter>",
@@ -1522,19 +1349,9 @@
                 "bash generic.gentoo.vagrant.sh<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "vmci0.present": "TRUE"
-            },
-            "guest_os_type": "otherlinux-64",
+            "guest_os_type": "linux",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20180415T214502Z.iso",
             "iso_checksum": "cfe64d7483e08062260c8242ff345c59085512ccea146791bf5b21ad5bc625cd",
             "iso_checksum_type": "sha256",
@@ -1543,14 +1360,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "7200s",
             "shutdown_command": "shutdown -hP now",
-            "tools_upload_flavor": "linux"
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-freebsd11-vmware",
-            "vm_name": "generic-freebsd11-vmware",
-            "vmdk_name": "generic-freebsd11-vmware",
-            "output_directory": "output/generic-freebsd11-vmware",
+            "type": "parallels-iso",
+            "name": "generic-freebsd11-parallels",
+            "vm_name": "generic-freebsd11-parallels",
+            "output_directory": "output/generic-freebsd11-parallels",
             "boot_wait": "5s",
             "boot_command": [
                 "<esc><wait>",
@@ -1565,18 +1383,9 @@
                 "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "freebsd-64",
+            "guest_os_type": "freebsd",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.1/FreeBSD-11.1-RELEASE-amd64-disc1.iso",
             "iso_checksum": "ff4c749ea0aaaceedb2432ba3e0fd0c1b64f5a72141b1ec06b9ced52b5de0dbf",
             "iso_checksum_type": "sha256",
@@ -1585,14 +1394,15 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "shutdown -p now",
-            "tools_upload_flavor": "freebsd"
+            "parallels_tools_flavor": "other",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         },
         {
-            "type": "vmware-iso",
-            "name": "generic-openbsd6-vmware",
-            "vm_name": "generic-openbsd6-vmware",
-            "vmdk_name": "generic-openbsd6-vmware",
-            "output_directory": "output/generic-openbsd6-vmware",
+            "type": "parallels-iso",
+            "name": "generic-openbsd6-parallels",
+            "vm_name": "generic-openbsd6-parallels",
+            "output_directory": "output/generic-openbsd6-parallels",
             "boot_wait": "20s",
             "boot_command": [
                 "S<enter><wait>",
@@ -1602,18 +1412,9 @@
                 "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.coresPerSocket": "2"
-            },
-            "guest_os_type": "freeBSD-64",
+            "guest_os_type": "other",
             "skip_compaction": false,
             "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://ftp.usa.openbsd.org/pub/OpenBSD/6.2/amd64/cd62.iso",
             "iso_checksum": "e66b406cf5775c934b04eb2c3af1f8f6f4704f67445b2dd22916a7b962a74667",
             "iso_checksum_type": "sha256",
@@ -1622,7 +1423,9 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "shutdown -h -p now",
-            "tools_upload_flavor": "freebsd"
+            "parallels_tools_flavor": "other",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/"
         }
     ],
     "post-processors": [
@@ -1634,9 +1437,9 @@
                 "vagrantfile_template": "tpl/generic-alpine.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "only": [
-                    "generic-alpine35-vmware",
-                    "generic-alpine36-vmware",
-                    "generic-alpine37-vmware"
+                    "generic-alpine35-parallels",
+                    "generic-alpine36-parallels",
+                    "generic-alpine37-parallels"
                 ]
             },
             {
@@ -1646,8 +1449,8 @@
                 "vagrantfile_template": "tpl/generic-bsd.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "only": [
-                    "generic-openbsd6-vmware",
-                    "generic-freebsd11-vmware"
+                    "generic-openbsd6-parallels",
+                    "generic-freebsd11-parallels"
                 ]
             },
             {
@@ -1657,17 +1460,17 @@
                 "vagrantfile_template": "tpl/generic-default.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "except": [
-                    "generic-alpine35-vmware",
-                    "generic-alpine36-vmware",
-                    "generic-alpine37-vmware",
-                    "generic-openbsd6-vmware",
-                    "generic-freebsd11-vmware"
+                    "generic-alpine35-parallels",
+                    "generic-alpine36-parallels",
+                    "generic-alpine37-parallels",
+                    "generic-openbsd6-parallels",
+                    "generic-freebsd11-parallels"
                 ]
             },
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-oracle7-vmware"
+                    "generic-oracle7-parallels"
                 ],
                 "box_tag": "generic/oracle7",
                 "version": "{{user `box_version`}}",
@@ -1676,7 +1479,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-opensuse42-vmware"
+                    "generic-opensuse42-parallels"
                 ],
                 "box_tag": "generic/opensuse42",
                 "version": "{{user `box_version`}}",
@@ -1685,7 +1488,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-alpine35-vmware"
+                    "generic-alpine35-parallels"
                 ],
                 "box_tag": "generic/alpine35",
                 "version": "{{user `box_version`}}",
@@ -1694,7 +1497,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-alpine36-vmware"
+                    "generic-alpine36-parallels"
                 ],
                 "box_tag": "generic/alpine36",
                 "version": "{{user `box_version`}}",
@@ -1703,7 +1506,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-alpine37-vmware"
+                    "generic-alpine37-parallels"
                 ],
                 "box_tag": "generic/alpine37",
                 "version": "{{user `box_version`}}",
@@ -1712,7 +1515,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-centos6-vmware"
+                    "generic-centos6-parallels"
                 ],
                 "box_tag": "generic/centos6",
                 "version": "{{user `box_version`}}",
@@ -1721,7 +1524,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-centos7-vmware"
+                    "generic-centos7-parallels"
                 ],
                 "box_tag": "generic/centos7",
                 "version": "{{user `box_version`}}",
@@ -1730,7 +1533,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-rhel7-vmware"
+                    "generic-rhel7-parallels"
                 ],
                 "box_tag": "generic/rhel7",
                 "version": "{{user `box_version`}}",
@@ -1739,7 +1542,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-arch-vmware"
+                    "generic-arch-parallels"
                 ],
                 "box_tag": "generic/arch",
                 "version": "{{user `box_version`}}",
@@ -1748,7 +1551,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-gentoo-vmware"
+                    "generic-gentoo-parallels"
                 ],
                 "box_tag": "generic/gentoo",
                 "version": "{{user `box_version`}}",
@@ -1757,7 +1560,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-debian8-vmware"
+                    "generic-debian8-parallels"
                 ],
                 "box_tag": "generic/debian8",
                 "version": "{{user `box_version`}}",
@@ -1766,7 +1569,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-debian9-vmware"
+                    "generic-debian9-parallels"
                 ],
                 "box_tag": "generic/debian9",
                 "version": "{{user `box_version`}}",
@@ -1775,7 +1578,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-fedora25-vmware"
+                    "generic-fedora25-parallels"
                 ],
                 "box_tag": "generic/fedora25",
                 "version": "{{user `box_version`}}",
@@ -1784,7 +1587,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-fedora26-vmware"
+                    "generic-fedora26-parallels"
                 ],
                 "box_tag": "generic/fedora26",
                 "version": "{{user `box_version`}}",
@@ -1793,7 +1596,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-fedora27-vmware"
+                    "generic-fedora27-parallels"
                 ],
                 "box_tag": "generic/fedora27",
                 "version": "{{user `box_version`}}",
@@ -1802,7 +1605,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-freebsd11-vmware"
+                    "generic-freebsd11-parallels"
                 ],
                 "box_tag": "generic/freebsd11",
                 "version": "{{user `box_version`}}",
@@ -1811,7 +1614,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-openbsd6-vmware"
+                    "generic-openbsd6-parallels"
                 ],
                 "box_tag": "generic/openbsd6",
                 "version": "{{user `box_version`}}",
@@ -1820,7 +1623,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1604-vmware"
+                    "generic-ubuntu1604-parallels"
                 ],
                 "box_tag": "generic/ubuntu1604",
                 "version": "{{user `box_version`}}",
@@ -1829,7 +1632,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1610-vmware"
+                    "generic-ubuntu1610-parallels"
                 ],
                 "box_tag": "generic/ubuntu1610",
                 "version": "{{user `box_version`}}",
@@ -1838,7 +1641,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1704-vmware"
+                    "generic-ubuntu1704-parallels"
                 ],
                 "box_tag": "generic/ubuntu1704",
                 "version": "{{user `box_version`}}",
@@ -1847,7 +1650,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1710-vmware"
+                    "generic-ubuntu1710-parallels"
                 ],
                 "box_tag": "generic/ubuntu1710",
                 "version": "{{user `box_version`}}",
@@ -1856,7 +1659,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1804-vmware"
+                    "generic-ubuntu1804-parallels"
                 ],
                 "box_tag": "generic/ubuntu1804",
                 "version": "{{user `box_version`}}",
@@ -1865,7 +1668,7 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
-                    "generic-ubuntu1810-vmware"
+                    "generic-ubuntu1810-parallels"
                 ],
                 "box_tag": "generic/ubuntu1810",
                 "version": "{{user `box_version`}}",
