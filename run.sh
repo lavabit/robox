@@ -558,7 +558,7 @@ function magma() {
 function generic() {
   if [[ $OS == "Windows_NT" ]]; then
     build generic-hyperv
-  if [[ `uname` == "Darwin" ]]; then
+  elif [[ `uname` == "Darwin" ]]; then
     build generic-parallels
   else
     build generic-vmware
