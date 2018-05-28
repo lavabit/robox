@@ -28,7 +28,7 @@ source .credentialsrc
 # The list of packer config files.
 FILES="magma-docker.json "\
 "magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
-"generic-hyperv.json generic-vmware.json generic-libvirt.json generic-virtualbox.json "\
+"generic-hyperv.json generic-vmware.json generic-libvirt.json generic-parallels.json generic-virtualbox.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
 "developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
@@ -333,6 +333,7 @@ function validate() {
   verify_json generic-hyperv
   verify_json generic-vmware
   verify_json generic-libvirt
+  verify_json generic-parallels
   verify_json generic-virtualbox
   verify_json developer-hyperv
   verify_json developer-vmware
@@ -392,6 +393,16 @@ function available() {
       fi
 
       PROVIDER="libvirt"
+      curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      fi
+
+      PROVIDER="parallels"
       curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
       if [ $? != 0 ]; then
@@ -469,6 +480,16 @@ function public() {
         printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
 
+      PROVIDER="parallels"
+      curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      fi
+
       PROVIDER="virtualbox"
       curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
@@ -537,6 +558,8 @@ function magma() {
 function generic() {
   if [[ $OS == "Windows_NT" ]]; then
     build generic-hyperv
+  if [[ `uname` == "Darwin" ]]; then
+    build generic-parallels
   else
     build generic-vmware
     build generic-libvirt
@@ -597,6 +620,17 @@ function libvirt() {
   build developer-libvirt
 }
 
+function parallels() {
+  # verify_json lineage-libvirt
+  verify_json generic-parallels
+  # verify_json magma-libvirt
+  # verify_json developer-libvirt
+  # build lineage-libvirt
+  build generic-parallels
+  # build magma-libvirt
+  # build developer-libvirt
+}
+
 function virtualbox() {
   verify_json lineage-virtualbox
   verify_json generic-virtualbox
@@ -638,6 +672,7 @@ elif [[ $1 == "vmware" ]]; then vmware
 elif [[ $1 == "hyperv" ]]; then hyperv
 elif [[ $1 == "docker" ]]; then verify_json magma-docker ; docker-login ; build magma-docker ; docker-logout
 elif [[ $1 == "libvirt" ]]; then libvirt
+elif [[ $1 == "parallels" ]]; then parallels
 elif [[ $1 == "virtualbox" ]]; then virtualbox
 
 # The helper functions.
@@ -668,6 +703,7 @@ elif [[ $1 == "developer-virtualbox" || $1 == "developer-virtualbox.json" ]]; th
 elif [[ $1 == "generic-vmware" || $1 == "generic-vmware.json" ]]; then build generic-vmware
 elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv.json" ]]; then build generic-hyperv
 elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt.json" ]]; then build generic-libvirt
+elif [[ $1 == "generic-parallels" || $1 == "generic-parallels.json" ]]; then build generic-parallels
 elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox.json" ]]; then build generic-virtualbox
 
 elif [[ $1 == "lineage-vmware" || $1 == "lineage-vmware.json" ]]; then build lineage-vmware
