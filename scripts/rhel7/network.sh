@@ -4,7 +4,7 @@
 printf "\nnameserver 4.2.2.1\n" > /etc/resolv.conf
 
 # Set the hostname, and then ensure it will resolve properly.
-if [[ "$PACKER_BUILD_NAME" =~ ^generic-rhel7-(vmware|hyperv|libvirt|virtualbox)$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^generic-rhel7-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
   printf "rhel7.localdomain\n" > /etc/hostname
   printf "\n127.0.0.1 rhel7.localdomain\n\n" >> /etc/hosts
 else

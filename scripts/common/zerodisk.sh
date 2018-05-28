@@ -1,27 +1,6 @@
 #!/bin/bash -ux
 
-# Handle builds using the busybox version of df/dd/rm which use different command line arguments.
-# if [[ "$PACKER_BUILD_NAME" =~ ^magma-alpine3[5-6]-vmware$|^magma-alpine3[5-6]-hyperv$|^magma-alpine3[5-6]-libvirt$|^magma-alpine3[5-6]-virtualbox$|^generic-alpine3[5-6]-vmware$|^generic-alpine3[5-6]-hyperv$|^generic-alpine3[5-6]-libvirt$|^generic-alpine3[5-6]-virtualbox$ ]]; then
-#
-#   # We fill until full so don't abort on error.
-#   # set -ux
-#
-#   # Whiteout root
-#   dd if=/dev/zero of=/zerofill bs=1K
-#   sync -f /zerofill
-#   rm -f /zerofill
-#
-#   # Whiteout /boot
-#   dd if=/dev/zero of=/boot/zerofill bs=1K
-#   sync -f /boot/zerofill
-#   rm -f /boot/zerofill
-#
-#   echo "All done."
-#   exit 0
-#
-# fi
-
-if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd11|openbsd6|alpine3[5-7])-(vmware|hyperv|libvirt|virtualbox)$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd11|openbsd6|alpine3[5-7])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 
   # We fill until full so don't abort on error.
   # set -ux

@@ -380,7 +380,7 @@ usermod -a -G adbusers vagrant
 chmod 644 /etc/udev/rules.d/51-android.rules
 # chcon "system_u:object_r:udev_rules_t:s0" /etc/udev/rules.d/51-android.rules
 
-if [[ "$PACKER_BUILD_NAME" =~ ^(lineage|lineageos)-nash-(vmware|hyperv|libvirt|virtualbox)$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^(lineage|lineageos)-nash-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 cat <<-EOF > /home/vagrant/lineage-build.sh
 #!/bin/bash
 
