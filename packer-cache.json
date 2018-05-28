@@ -194,6 +194,22 @@
         },
         {
             "type": "vmware-iso",
+            "name": "fedora28",
+            "output_directory": "output/fedora28",
+            "headless": true,
+            "disk_size": 1,
+            "boot_wait": "5s",
+            "iso_url": "https://mirrors.kernel.org/fedora/releases/28/Server/x86_64/iso/Fedora-Server-netinst-x86_64-28-1.1.iso",
+            "iso_checksum": "ea1efdc692356b3346326f82e2f468903e8da59324fdee8b10eac4fea83f23fe",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10s",
+            "shutdown_command": "poweroff"
+        },
+        {
+            "type": "vmware-iso",
             "name": "debian8",
             "output_directory": "output/debian8",
             "headless": true,
