@@ -719,6 +719,7 @@
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "linux",
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/oracle/OL7/u5/x86_64/OracleLinux-R7-U5-Server-x86_64-dvd.iso",
@@ -747,6 +748,7 @@
                 "<enter><wait>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "opensuse",
             "http_directory": "http",
             "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64.iso",
@@ -780,6 +782,7 @@
                 "umount /mnt && reboot<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "linux",
             "http_directory": "http",
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.5/releases/x86_64/alpine-virt-3.5.2-x86_64.iso",
@@ -813,6 +816,7 @@
                 "umount /mnt && reboot<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "linux",
             "http_directory": "http",
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.6/releases/x86_64/alpine-virt-3.6.2-x86_64.iso",
@@ -846,6 +850,7 @@
                 "umount /mnt && reboot<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "linux",
             "http_directory": "http",
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.7/releases/x86_64/alpine-virt-3.7.0-x86_64.iso",
@@ -871,6 +876,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "centos",
             "http_directory": "http",
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
@@ -896,6 +902,7 @@
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "centos7",
             "http_directory": "http",
             "iso_url": "https://mirrors.edge.kernel.org/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso",
@@ -921,6 +928,7 @@
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "rhel7",
             "http_directory": "http",
             "iso_url": "res/media/rhel-server-7.5-x86_64-dvd.iso",
@@ -948,6 +956,7 @@
                 "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "linux",
             "skip_compaction": false,
             "http_directory": "http",
@@ -977,6 +986,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "linux",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1006,6 +1016,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "linux",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1035,6 +1046,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "linux",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1063,6 +1075,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "debian",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1091,6 +1104,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "debian",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1132,6 +1146,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1165,6 +1180,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1198,6 +1214,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1231,6 +1248,7 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1274,6 +1292,7 @@
                 " --- <enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1317,6 +1336,7 @@
               " --- <enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "ubuntu",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1349,6 +1369,7 @@
                 "bash generic.gentoo.vagrant.sh<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "linux",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1383,6 +1404,7 @@
                 "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "freebsd",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1412,6 +1434,7 @@
                 "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 32768,
+            "hard_drive_interface": "ide",
             "guest_os_type": "other",
             "skip_compaction": false,
             "http_directory": "http",
