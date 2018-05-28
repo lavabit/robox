@@ -774,7 +774,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -803,7 +803,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -837,7 +837,7 @@
             "shutdown_command": "/sbin/poweroff",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -871,7 +871,7 @@
             "shutdown_command": "/sbin/poweroff",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -905,7 +905,7 @@
             "shutdown_command": "/sbin/poweroff",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -931,7 +931,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -957,7 +957,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -983,7 +983,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1011,7 +1011,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1041,7 +1041,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1071,7 +1071,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1101,7 +1101,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1131,7 +1131,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1160,7 +1160,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1189,7 +1189,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1231,7 +1231,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1265,7 +1265,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1299,7 +1299,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1333,7 +1333,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1377,7 +1377,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1421,7 +1421,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1454,7 +1454,7 @@
             "shutdown_command": "shutdown -hP now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-linux.iso"
         },
         {
             "type": "parallels-iso",
@@ -1489,7 +1489,7 @@
             "shutdown_command": "shutdown -p now",
             "parallels_tools_flavor": "other",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-other.iso"
         },
         {
             "type": "parallels-iso",
@@ -1519,7 +1519,7 @@
             "shutdown_command": "shutdown -h -p now",
             "parallels_tools_flavor": "other",
             "parallels_tools_mode": "upload",
-            "parallels_tools_guest_path": "/root/"
+            "parallels_tools_guest_path": "/root/parallel-tools-other.iso"
         }
     ],
     "post-processors": [
