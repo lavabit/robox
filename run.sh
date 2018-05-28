@@ -17,8 +17,9 @@ export EXCEPTIONS="generic-ubuntu1804-hyperv,generic-ubuntu1810-hyperv,generic-u
 export GOMAXPROCS="2"
 
 # Ensure a consistent working directory so relative paths work.
-LINK=`readlink -f $0`
-BASE=`dirname $LINK`
+pushd `dirname $0` > /dev/null
+BASE=`pwd -P`
+popd > /dev/null
 cd $BASE
 
 # Credentials and tokens.
