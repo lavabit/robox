@@ -9,9 +9,8 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.6.1"
+export VERSION="1.6.2"
 export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
-export EXCEPTIONS="generic-ubuntu1804-hyperv,generic-ubuntu1810-hyperv,generic-ubuntu1804-libvirt,generic-ubuntu1810-libvirt,generic-ubuntu1804-virtualbox,generic-ubuntu1810-virtualbox,generic-ubuntu1804-vmware,generic-ubuntu1810-vmware"
 
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
@@ -24,6 +23,9 @@ cd $BASE
 
 # Credentials and tokens.
 source .credentialsrc
+
+# A list of configs to skip during complete build operations.
+export EXCEPTIONS=""
 
 # The list of packer config files.
 FILES="magma-docker.json "\

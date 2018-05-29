@@ -67,7 +67,8 @@
           "vmx_data": {
               "memsize": "4096",
               "numvcpus": "4",
-              "cpuid.coresPerSocket": "2"
+              "cpuid.coresPerSocket": "2",
+                "ethernet0.pciSlotNumber": "32"
           },
           "guest_os_type": "centos-64",
           "http_directory": "http",
@@ -100,7 +101,8 @@
           "vmx_data": {
               "memsize": "4096",
               "numvcpus": "4",
-              "cpuid.coresPerSocket": "2"
+              "cpuid.coresPerSocket": "2",
+                "ethernet0.pciSlotNumber": "32"
           },
           "guest_os_type": "centos-64",
           "http_directory": "http",
