@@ -12,5 +12,5 @@ fi
 PARALLELSVERSION=`cat /root/parallels-tools-version.txt`
 
 # Cleanup the guest additions.
-rm --force /root/parallels-tools-linux.iso
-rm --force /root/parallels-tools-version.txt
+rm -f /root/parallels-tools-linux.iso
+rm -f /root/parallels-tools-version.txt
