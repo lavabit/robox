@@ -1526,7 +1526,8 @@
             "disk_size": 32768,
             "prlctl": [
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--cpus", "2"]
+              ["set", "{{.Name}}", "--faster-vm", "on"],
+              ["set", "{{.Name}}", "--cpus", "4"]
             ],
             "hard_drive_interface": "ide",
             "guest_os_type": "linux",
@@ -1538,7 +1539,7 @@
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "9600s",
+            "ssh_wait_timeout": "21600s",
             "shutdown_command": "shutdown -hP now",
             "parallels_tools_flavor": "lin",
             "parallels_tools_mode": "upload",
