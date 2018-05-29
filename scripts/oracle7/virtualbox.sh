@@ -22,10 +22,10 @@ error() {
   fi
 }
 
-# Needed to check whether we're running in VirtualBox.
+# Needed to check whether we're running atop VirtualBox.
 yum --assumeyes install dmidecode
 
-# Bail if we are not running inside VirtualBox.
+# Bail if we are not running atop VirtualBox.
 if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
     exit 0
 fi

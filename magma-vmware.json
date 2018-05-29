@@ -28,6 +28,7 @@
                 "scripts/alpine36/gcc.sh",
                 "scripts/alpine36/magma.sh",
                 "scripts/alpine36/virtualbox.sh",
+                "scripts/alpine36/parallels.sh",
                 "scripts/alpine36/vmware.sh",
                 "scripts/alpine36/qemu.sh",
                 "scripts/alpine36/cache.sh"
@@ -61,6 +62,7 @@
             "scripts": [
                 "scripts/centos6/kernel.sh",
                 "scripts/centos6/virtualbox.sh",
+                "scripts/centos6/parallels.sh",
                 "scripts/centos6/vmware.sh",
                 "scripts/centos6/qemu.sh",
                 "scripts/centos6/postfix.sh",
@@ -100,6 +102,7 @@
             "scripts": [
                 "scripts/centos7/kernel.sh",
                 "scripts/centos7/virtualbox.sh",
+                "scripts/centos7/parallels.sh",
                 "scripts/centos7/vmware.sh",
                 "scripts/centos7/qemu.sh",
                 "scripts/centos7/postfix.sh",
@@ -132,6 +135,7 @@
         {
             "scripts": [
                 "scripts/gentoo/virtualbox.sh",
+                "scripts/gentoo/parallels.sh",
                 "scripts/gentoo/vmware.sh",
                 "scripts/gentoo/qemu.sh",
                 "scripts/gentoo/vagrant.sh",
@@ -163,6 +167,7 @@
                 "scripts/arch/memcached.sh",
                 "scripts/arch/postfix.sh",
                 "scripts/arch/virtualbox.sh",
+                "scripts/arch/parallels.sh",
                 "scripts/arch/vmware.sh",
                 "scripts/arch/qemu.sh",
                 "scripts/arch/vagrant.sh",
@@ -198,6 +203,7 @@
                 "scripts/debian8/magma.sh",
                 "scripts/debian8/fixtty.sh",
                 "scripts/debian8/virtualbox.sh",
+                "scripts/debian8/parallels.sh",
                 "scripts/debian8/vmware.sh",
                 "scripts/debian8/qemu.sh"
             ],
@@ -238,6 +244,7 @@
             "scripts": [
                 "scripts/fedora27/kernel.sh",
                 "scripts/fedora27/virtualbox.sh",
+                "scripts/fedora27/parallels.sh",
                 "scripts/fedora27/vmware.sh",
                 "scripts/fedora27/qemu.sh",
                 "scripts/fedora27/vagrant.sh",
@@ -259,6 +266,7 @@
                 "scripts/freebsd11/vagrant.sh",
                 "scripts/freebsd11/magma.sh",
                 "scripts/freebsd11/virtualbox.sh",
+                "scripts/freebsd11/parallels.sh",
                 "scripts/freebsd11/vmware.sh",
                 "scripts/freebsd11/qemu.sh"
             ],
@@ -287,6 +295,7 @@
                 "scripts/openbsd6/hostname.sh",
                 "scripts/openbsd6/vagrant.sh",
                 "scripts/openbsd6/virtualbox.sh",
+                "scripts/openbsd6/parallels.sh",
                 "scripts/openbsd6/vmware.sh",
                 "scripts/openbsd6/qemu.sh",
                 "scripts/openbsd6/magma.sh"
@@ -323,6 +332,7 @@
                 "scripts/ubuntu1604/magma.sh",
                 "scripts/ubuntu1604/fixtty.sh",
                 "scripts/ubuntu1604/virtualbox.sh",
+                "scripts/ubuntu1604/parallels.sh",
                 "scripts/ubuntu1604/vmware.sh",
                 "scripts/ubuntu1604/qemu.sh",
                 "scripts/ubuntu1604/cleanup.sh"
@@ -358,6 +368,7 @@
                 "scripts/ubuntu1610/magma.sh",
                 "scripts/ubuntu1610/fixtty.sh",
                 "scripts/ubuntu1610/virtualbox.sh",
+                "scripts/ubuntu1610/parallels.sh",
                 "scripts/ubuntu1610/vmware.sh",
                 "scripts/ubuntu1610/qemu.sh",
                 "scripts/ubuntu1610/cleanup.sh"
@@ -392,6 +403,7 @@
                 "scripts/ubuntu1704/magma.sh",
                 "scripts/ubuntu1704/fixtty.sh",
                 "scripts/ubuntu1704/virtualbox.sh",
+                "scripts/ubuntu1704/parallels.sh",
                 "scripts/ubuntu1704/vmware.sh",
                 "scripts/ubuntu1704/qemu.sh",
                 "scripts/ubuntu1704/cleanup.sh"
@@ -406,6 +418,7 @@
         },
         {
             "scripts": [
+                "scripts/common/motd.sh",
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],

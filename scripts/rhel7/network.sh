@@ -27,7 +27,7 @@ sed -i -e "s/IPV6_PEERROUTES=yes/IPV6_PEERROUTES=no/g" /etc/sysconfig/network-sc
 # Works around a bug which slows down DNS queries on Virtualbox.
 # https://access.redhat.com/site/solutions/58625
 
-# Bail if we are not running inside VirtualBox.
+# Bail if we are not running atop VirtualBox.
 if [[ "$PACKER_BUILDER_TYPE" != virtualbox-iso ]]; then
     exit 0
 fi

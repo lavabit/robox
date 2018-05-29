@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Bail if we are not running inside VirtualBox.
+# Bail if we are not running atop VirtualBox.
 if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
     exit 0
 fi

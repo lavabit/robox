@@ -21,6 +21,7 @@
             "scripts": [
                 "scripts/centos6/kernel.sh",
                 "scripts/centos6/virtualbox.sh",
+                "scripts/centos6/parallels.sh",
                 "scripts/centos6/vmware.sh",
                 "scripts/centos6/qemu.sh",
                 "scripts/centos6/postfix.sh",
@@ -39,6 +40,7 @@
         },
         {
             "scripts": [
+                "scripts/common/motd.sh",
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],

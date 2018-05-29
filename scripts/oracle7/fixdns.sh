@@ -4,7 +4,7 @@
 # this issue also affects Oracle derivitatives.
 # https://access.redhat.com/site/solutions/58625
 
-# Bail if we are not running inside VirtualBox.
+# Bail if we are not running atop VirtualBox.
 if [[ "$PACKER_BUILDER_TYPE" != virtualbox-iso ]]; then
     exit 0
 fi
