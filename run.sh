@@ -24,9 +24,6 @@ cd $BASE
 # Credentials and tokens.
 source .credentialsrc
 
-# A list of configs to skip during complete build operations.
-export EXCEPTIONS=""
-
 # The list of packer config files.
 FILES="magma-docker.json "\
 "magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
@@ -52,6 +49,9 @@ TAGS="$LINEAGE_TAGS $GENERIC_TAGS $MAGMA_TAGS"
 
 # These boxes aren't publicly available yet, so we filter them out of available test.
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
+
+# A list of configs to skip during complete build operations.
+export EXCEPTIONS=""
 
 function start() {
   # Disable IPv6 or the VMware builder won't be able to load the Kick Start configuration.
@@ -371,6 +371,7 @@ function missing() {
 
 function available() {
 
+    FOUND=0
     MISSING=0
     LIST=($TAGS)
     FILTER=($FILTERED_TAGS)
@@ -391,6 +392,7 @@ function available() {
         let MISSING+=1
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
+        let FOUND+=1
         printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
 
@@ -401,6 +403,7 @@ function available() {
         let MISSING+=1
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
+        let FOUND+=1
         printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
 
@@ -412,6 +415,7 @@ function available() {
           let MISSING+=1
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
         else
+          let FOUND+=1
           printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
         fi
       fi
@@ -423,6 +427,7 @@ function available() {
         let MISSING+=1
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
+        let FOUND+=1
         printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
 
@@ -433,12 +438,13 @@ function available() {
         let MISSING+=1
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
+        let FOUND+=1
         printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
     done
 
     # Get the totla number of boxes.
-    let TOTAL=${#LIST[@]}*4
+    let TOTAL=${FOUND}+${MISSING}
     let FOUND=${TOTAL}-${MISSING}
 
     # Let the user know how many boxes were missing.
@@ -451,6 +457,7 @@ function available() {
 
 function public() {
 
+    FOUND=0
     MISSING=0
     LIST=($TAGS)
     FILTER=($FILTERED_TAGS)
@@ -471,6 +478,7 @@ function public() {
         let MISSING+=1
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
+        let FOUND+=1
         printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
 
@@ -481,6 +489,7 @@ function public() {
         let MISSING+=1
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
+        let FOUND+=1
         printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
 
@@ -492,6 +501,7 @@ function public() {
           let MISSING+=1
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
         else
+          let FOUND+=1
           printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
         fi
       fi
@@ -503,6 +513,7 @@ function public() {
         let MISSING+=1
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
+        let FOUND+=1
         printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
 
@@ -513,19 +524,20 @@ function public() {
         let MISSING+=1
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
+        let FOUND+=1
         printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
     done
 
     # Get the totla number of boxes.
-    let TOTAL=${#LIST[@]}*4
+    let TOTAL=${FOUND}+${MISSING}
     let FOUND=${TOTAL}-${MISSING}
 
     # Let the user know how many boxes were missing.
     if [ $MISSING -eq 0 ]; then
       printf "\nAll ${TOTAL} of the boxes are available...\n\n"
     else
-      printf "\nOf the ${TOTAL} boxes defined, and ${FOUND} are publicly available, while ${MISSING} are unavailable...\n\n"
+      printf "\nOf the ${TOTAL} boxes defined, ${FOUND} are publicly available, while ${MISSING} are unavailable...\n\n"
     fi
 }
 
