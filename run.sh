@@ -45,7 +45,7 @@ BOXES="$LINEAGE_BOXES $GENERIC_BOXES $MAGMA_BOXES"
 MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
 GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
 LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
-TAGS="$LINEAGE_TAGS $GENERIC_TAGS $MAGMA_TAGS"
+TAGS="$GENERIC_TAGS $MAGMA_TAGS $LINEAGE_TAGS"
 
 # These boxes aren't publicly available yet, so we filter them out of available test.
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
@@ -250,57 +250,28 @@ function box() {
   verify_logdir
   export PACKER_LOG="1"
   export TIMESTAMP=`date +"%Y%m%d.%I%M"`
+  export PACKER_LOG_PATH="$BASE/logs/log-${TIMESTAMP}.txt"
 
   if [[ $OS == "Windows_NT" ]]; then
-      export PACKER_LOG_PATH="$BASE/logs/magma-hyerpv-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-hyerpv.json
-
-      export PACKER_LOG_PATH="$BASE/logs/generic-hyerpv-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 generic-hyerpv.json
-
-      export PACKER_LOG_PATH="$BASE/logs/lineage-hyperv-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
-
-      export PACKER_LOG_PATH="$BASE/logs/developer-hyperv-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 developer-hyperv.json
+  elif [[ `uname` == "Darwin" ]]; then
+      packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
   else
-      export PACKER_LOG_PATH="$BASE/logs/magma-docker-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json
-
-      export PACKER_LOG_PATH="$BASE/logs/magma-vmware-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
-
-      export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-libvirt.json
-
-      export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-virtualbox.json
-
-      export PACKER_LOG_PATH="$BASE/logs/generic-vmware-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
-
-      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 generic-libvirt.json
-
-      export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
-
-      export PACKER_LOG_PATH="$BASE/logs/developer-vmware-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 developer-vmware.json
-
-      export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 developer-libvirt.json
-
-      export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 developer-virtualbox.json
-
-      export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-vmware.json
-
-      export PACKER_LOG_PATH="$BASE/logs/lineage-libvirt-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-libvirt.json
-
-      export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-virtualbox.json
   fi
 }
@@ -606,65 +577,67 @@ function developer() {
 }
 
 function vmware() {
-  verify_json lineage-vmware
   verify_json generic-vmware
   verify_json magma-vmware
   verify_json developer-vmware
-  build lineage-vmware
+  verify_json lineage-vmware
+
   build generic-vmware
   build magma-vmware
   build developer-vmware
+  build lineage-vmware
 }
 
 function hyperv() {
-  verify_json lineage-hyperv
-  verify_json generic-hyperv
-  verify_json magma-hyperv
-  verify_json developer-hyperv
-  build lineage-hyperv
-  build generic-hyperv
-  build magma-hyperv
-  build developer-hyperv
+  if [[ $OS == "Windows_NT" ]]; then
+    verify_json generic-hyperv
+    verify_json magma-hyperv
+    verify_json developer-hyperv
+    verify_json lineage-hyperv
+
+    build generic-hyperv
+    build magma-hyperv
+    build developer-hyperv
+    build lineage-hyperv
+  fi
 }
 
 function libvirt() {
-  verify_json lineage-libvirt
   verify_json generic-libvirt
   verify_json magma-libvirt
   verify_json developer-libvirt
-  build lineage-libvirt
+  verify_json lineage-libvirt
+
   build generic-libvirt
   build magma-libvirt
   build developer-libvirt
+  build lineage-libvirt
 }
 
 function parallels() {
-  # verify_json lineage-libvirt
-  verify_json generic-parallels
-  # verify_json magma-libvirt
-  # verify_json developer-libvirt
-  # build lineage-libvirt
-  build generic-parallels
-  # build magma-libvirt
-  # build developer-libvirt
+  if [[ `uname` == "Darwin" ]]; then
+    verify_json generic-parallels
+    build generic-parallels
+  fi
 }
 
 function virtualbox() {
-  verify_json lineage-virtualbox
   verify_json generic-virtualbox
   verify_json magma-virtualbox
   verify_json developer-virtualbox
-  build lineage-virtualbox
+  verify_json lineage-virtualbox
+
   build generic-virtualbox
   build magma-virtualbox
   build developer-virtualbox
+  build lineage-virtualbox
 }
 
 function builder() {
-  lineage
   generic
   magma
   developer
+  lineage
 }
 
 function all() {
