@@ -17,7 +17,7 @@ sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 300, 32/g" post-processor/v
 
 # Build for Windows and Linux
 PATH=$GOPATH/bin:$PATH
-XC_ARCH=amd64 XC_OS="windows linux mac" scripts/build.sh 
+XC_ARCH=amd64 XC_OS="windows darwin linux" scripts/build.sh 
 
 # Install
 sudo mv pkg/linux_amd64/packer /usr/local/bin/
