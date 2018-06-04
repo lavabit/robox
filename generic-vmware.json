@@ -790,8 +790,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "oraclelinux-64",
             "http_directory": "http",
@@ -827,8 +829,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "opensuse-64",
             "http_directory": "http",
@@ -869,8 +873,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "vmx_data_post": {
                 "softpoweroff": "FALSE",
@@ -915,8 +921,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "vmx_data_post": {
                 "softpoweroff": "FALSE",
@@ -961,8 +969,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "vmx_data_post": {
                 "softpoweroff": "FALSE",
@@ -999,8 +1009,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -1033,8 +1045,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -1067,8 +1081,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "rhel7-64",
             "http_directory": "http",
@@ -1103,8 +1119,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "otherlinux-64",
             "skip_compaction": false,
@@ -1141,8 +1159,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "fedora-64",
             "skip_compaction": false,
@@ -1179,8 +1199,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "fedora-64",
             "skip_compaction": false,
@@ -1217,8 +1239,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "fedora-64",
             "skip_compaction": false,
@@ -1255,8 +1279,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "fedora-64",
             "skip_compaction": false,
@@ -1292,8 +1318,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "debian8-64",
             "skip_compaction": false,
@@ -1329,8 +1357,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "debian8-64",
             "skip_compaction": false,
@@ -1379,8 +1409,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
@@ -1421,8 +1453,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
@@ -1463,8 +1497,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
@@ -1505,8 +1541,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
@@ -1557,8 +1595,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
@@ -1609,8 +1649,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
@@ -1650,8 +1692,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32",
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32",
                 "vmci0.present": "TRUE"
             },
             "guest_os_type": "otherlinux-64",
@@ -1694,8 +1738,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "freebsd-64",
             "skip_compaction": false,
@@ -1732,8 +1778,10 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.coresPerSocket": "2",
-                "ethernet0.pciSlotNumber": "32"
+                "cpuid.corespersocket": "2",
+                "ethernet0.bsdname": "eth0",
+                "ethernet0.virtualdev": "e1000",
+                "ethernet0.pcislotnumber": "32"
             },
             "guest_os_type": "freeBSD-64",
             "skip_compaction": false,
