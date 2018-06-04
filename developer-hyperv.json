@@ -100,7 +100,7 @@
                 ],
                 "box_tag": "lavabit/magma-developer",
                 "version": "{{user `box_version`}}",
-                "version_description": "The magma encrypted mail daemon development desktop."
+                "version_description": "A graphical development environment for the magma encrypted mail daemon."
             },
             {
                 "type": "checksum",
