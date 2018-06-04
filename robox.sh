@@ -192,23 +192,23 @@ function verify_sum {
 }
 
 # Verify the local ISO files are valid and if necessary download the file.
-function verify_sum {
+function verify_local {
 
-  ISOSIZE="745537536"
-  ISOFILE="res/media/ubuntu-18.10-server-amd64.iso"
-  ISOHASH="9cf4aeb9f957e54579d537f0417d1ad59716b0056988faa363053ce9c230df48"
+  # ISOSIZE="745537536"
+  # ISOFILE="res/media/ubuntu-18.10-server-amd64.iso"
+  # ISOHASH="9cf4aeb9f957e54579d537f0417d1ad59716b0056988faa363053ce9c230df48"
   ISOAGENT="Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
-  ISOLOCATION="http://cdimage.ubuntu.com/ubuntu-server/daily/20180522/cosmic-server-amd64.iso"
+  # ISOLOCATION="http://cdimage.ubuntu.com/ubuntu-server/daily/20180522/cosmic-server-amd64.iso"
 
   # Make sure the ISO exists, and is the proper size.
-  if [ ! -f "${ISOFILE}" ] || [ `du --bytes "${ISOFILE}" | awk -F' ' '{print $1}'` != ${ISOSIZE} ]; then
-    curl --location --retry 16 --retry-delay 16 --max-redirs 16 --user-agent "${ISOAGENT}" --output "${ISOFILE}.part" "${ISOLOCATION}"
-    sha256sum "${ISOFILE}.part" | grep --silent "${ISOHASH}"
+  if [ ! -f "${3}" ] || [ `du --bytes "${3}" | awk -F' ' '{print $1}'` != ${1} ]; then
+    curl --location --retry 16 --retry-delay 16 --max-redirs 16 --user-agent "${ISOAGENT}" --output "${3}.part" "${4}"
+    sha256sum "${3}.part" | grep --silent "${2}"
     if [ $? != 0 ]; then
       tput setaf 1; tput bold; printf "\n\nUbuntu 18.10 could not be downloaded...\n\n"; tput sgr0
-      rm --force "${ISOFILE}"
+      rm --force "${3}"
     else
-      mv --force "${ISOFILE}.part" "${ISOFILE}"
+      mv --force "${3}.part" "${3}"
     fi
   fi
 }
@@ -525,6 +525,10 @@ function public() {
     fi
 }
 
+function localized() {
+  verify_local 745537536 9cf4aeb9f957e54579d537f0417d1ad59716b0056988faa363053ce9c230df48 res/media/ubuntu-18.10-server-amd64.iso http://cdimage.ubuntu.com/ubuntu-server/daily/20180522/cosmic-server-amd64.iso
+}
+
 function cleanup() {
   rm -rf $BASE/packer_cache/ $BASE/output/ $BASE/logs/
 }
@@ -682,6 +686,7 @@ elif [[ $1 == "virtualbox" ]]; then virtualbox
 # The helper functions.
 elif [[ $1 == "isos" ]]; then isos
 elif [[ $1 == "sums" ]]; then sums
+elif [[ $1 == "local" ]]; then localized
 elif [[ $1 == "missing" ]]; then missing
 elif [[ $1 == "public" ]]; then public
 elif [[ $1 == "available" ]]; then available
