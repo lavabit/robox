@@ -1541,7 +1541,7 @@
             "skip_compaction": false,
             "http_directory": "http",
             "iso_url": "res/media/ubuntu-18.10-server-amd64.iso",
-            "iso_checksum": "9cf4aeb9f957e54579d537f0417d1ad59716b0056988faa363053ce9c230df48",
+            "iso_checksum": "5082d79904bf66047ea29c3b44a25d3559bd7a4c2ac0d012f7600c719c59f1ff",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
