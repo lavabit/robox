@@ -22,7 +22,20 @@ popd > /dev/null
 cd $BASE
 
 # Credentials and tokens.
-source .credentialsrc
+if [ -f $BASE/.credentialsrc ]; then source $BASE/.credentialsrc
+else cat << EOF > $BASE/.credentialsrc
+#!/bin/bash
+export GOMAXPROCS="4"
+export DOCKER_USER="LOGIN"
+export DOCKER_EMAIL="EMAIL"
+export DOCKER_PASSWORD="PASSWORD"
+export VMWARE_WORKSTATION="SERIAL"
+export VAGRANT_CLOUD_TOKEN="TOKEN"
+
+# Overrides the Repo Box Version
+VERSION="1.0.0"
+EOF
+fi
 
 # The list of packer config files.
 FILES="magma-docker.json "\
