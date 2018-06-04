@@ -13,12 +13,7 @@ packer_cache/
 .settings/
 
 # Media Files
-res/media/ubuntu-18.10-server-amd64.iso
-res/media/ubuntu-18.10-server-amd64.iso.part
-res/media/rhel-server-6.9-x86_64-dvd.iso
-res/media/rhel-server-7.5-x86_64-dvd.iso
-res/media/rhel-server-6.9-x86_64-dvd.iso.part
-res/media/rhel-server-7.5-x86_64-dvd.iso.part
+res/media/
 res/scripts/download.sh
 res/providers/vagrant_2.1.1_x86_64.rpm
 res/providers/packer_1.2.4_linux_amd64.zip

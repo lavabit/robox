@@ -194,11 +194,7 @@ function verify_sum {
 # Verify the local ISO files are valid and if necessary download the file.
 function verify_local {
 
-  # ISOSIZE="745537536"
-  # ISOFILE="res/media/ubuntu-18.10-server-amd64.iso"
-  # ISOHASH="9cf4aeb9f957e54579d537f0417d1ad59716b0056988faa363053ce9c230df48"
   ISOAGENT="Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
-  # ISOLOCATION="http://cdimage.ubuntu.com/ubuntu-server/daily/20180522/cosmic-server-amd64.iso"
 
   # Make sure the ISO exists, and is the proper size.
   if [ ! -f "${3}" ] || [ `du --bytes "${3}" | awk -F' ' '{print $1}'` != ${1} ]; then
@@ -526,7 +522,9 @@ function public() {
 }
 
 function localized() {
-  verify_local 745537536 9cf4aeb9f957e54579d537f0417d1ad59716b0056988faa363053ce9c230df48 res/media/ubuntu-18.10-server-amd64.iso http://cdimage.ubuntu.com/ubuntu-server/daily/20180522/cosmic-server-amd64.iso
+  verify_local 746586112 5082d79904bf66047ea29c3b44a25d3559bd7a4c2ac0d012f7600c719c59f1ff res/media/ubuntu-18.10-server-amd64.iso http://cdimage.ubuntu.com/ubuntu-server/daily/20180604/cosmic-server-amd64.iso
+  verify_local 3887071232 3f961576e9f81ea118566f73f98d7bdf3287671c35436a13787c1ffd5078cf8e res/media/rhel-server-6.9-x86_64-dvd.iso https://archive.org/download/rhel-server-6.9-x86_64-dvd/rhel-server-6.9-x86_64-dvd.iso
+  verify_local 4617928704 d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5 res/media/rhel-server-7.5-x86_64-dvd.iso https://archive.org/download/rhel-server-7.5-x86_64-dvd/rhel-server-7.5-x86_64-dvd.iso
 }
 
 function cleanup() {
@@ -660,6 +658,7 @@ function builder() {
 function all() {
   links
   validate
+  localized
 
   start
   builder
@@ -730,19 +729,22 @@ elif [[ $1 == "all" ]]; then all
 else
   echo ""
   echo " Stages"
-  echo $"  `basename $0` {start|links|cache|validate|build|cleanup} or "
+  echo $"  `basename $0` {start|validate|build|cleanup} or"
   echo ""
   echo " Types"
-  echo $"  `basename $0` {vmware|hyperv|libvirt|docker|virtualbox} or"
-  echo ""
-  echo " Helpers"
-  echo $"  `basename $0` {isos|sunms|missing|public|available} or "
+  echo $"  `basename $0` {vmware|hyperv|libvirt|docker|parallels|virtualbox} or"
   echo ""
   echo " Groups"
-  echo $"  `basename $0` {magma|generic|lineage|developer}"
+  echo $"  `basename $0` {magma|generic|lineage|developer} or"
+  echo ""
+  echo " Media"
+  echo $"  `basename $0` {isos|sums|links|local|cache} or"
+  echo ""
+  echo " Helpers"
+  echo $"  `basename $0` {missing|public|available} or"
   echo ""
   echo " Boxes"
-  echo $"  `basename $0` {box NAME}"
+  echo $"  `basename $0` {box NAME} or"
   echo ""
   echo " Global"
   echo $"  `basename $0` {all}"
