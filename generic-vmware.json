@@ -1332,7 +1332,7 @@
                 "cpuid.coresPerSocket": "2",
                 "ethernet0.pciSlotNumber": "32"
             },
-            "guest_os_type": "debian9-64",
+            "guest_os_type": "debian8-64",
             "skip_compaction": false,
             "http_directory": "http",
             "headless": true,
