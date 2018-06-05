@@ -987,7 +987,7 @@
             "output_directory": "output/generic-centos6-vmware",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
+                "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
