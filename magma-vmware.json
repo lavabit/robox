@@ -451,10 +451,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "otherlinux-64",
             "http_directory": "http",
