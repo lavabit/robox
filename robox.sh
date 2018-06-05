@@ -22,8 +22,8 @@ popd > /dev/null
 cd $BASE
 
 # Credentials and tokens.
-if [ -f $BASE/.credentialsrc ]; then source $BASE/.credentialsrc
-else cat << EOF > $BASE/.credentialsrc
+if [ ! -f $BASE/.credentialsrc ]; then
+cat << EOF > $BASE/.credentialsrc
 #!/bin/bash
 export GOMAXPROCS="4"
 export DOCKER_USER="LOGIN"
@@ -36,6 +36,9 @@ export VAGRANT_CLOUD_TOKEN="TOKEN"
 VERSION="1.0.0"
 EOF
 fi
+
+# Import the credentials.
+source $BASE/.credentialsrc
 
 # The list of packer config files.
 FILES="magma-docker.json "\
