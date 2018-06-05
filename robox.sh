@@ -617,6 +617,8 @@ function hyperv() {
     build magma-hyperv
     build developer-hyperv
     build lineage-hyperv
+  else
+    tput setaf 1; tput bold; printf "\n\nThe HyperV roboxes require a Windows host...\n\n"; tput sgr0
   fi
 }
 
@@ -635,7 +637,21 @@ function libvirt() {
 function parallels() {
   if [[ `uname` == "Darwin" ]]; then
     verify_json generic-parallels
-    build generic-parallels
+    # Ideally, we run this. However our Mac is resource starved
+    # so we need to build each box individually.
+    # build generic-parallels
+
+    LIST=($BOXES)
+
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+        if [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
+          packer build -only="${LIST[$i]}" generic-parallels.json
+          rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
+        fi
+    done
+
+  else
+    tput setaf 1; tput bold; printf "\n\nThe Parallels roboxes require a MacOS X host...\n\n"; tput sgr0
   fi
 }
 

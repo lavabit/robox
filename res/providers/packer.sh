@@ -8,6 +8,7 @@ go build -o bin/gox .
 
 # Fetch packer
 go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
+git checkout v1.2.4
 
 # Customize
 sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 300, 32/g" post-processor/vagrant-cloud/step_upload.go
