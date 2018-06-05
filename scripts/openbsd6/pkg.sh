@@ -4,7 +4,7 @@
 echo "https://ftp.usa.openbsd.org/pub/OpenBSD/" > /etc/installurl
 
 # Update the system.
-pkg_add -u u
+pkg_add -u
 
 # Install a few basic tools.
 pkg_add -I curl wget bash sudo-- vim--no_x11
@@ -16,4 +16,4 @@ ln -s /usr/local/bin/bash /bin/bash
 echo "kern.allowkmem=1" > /etc/sysctl.conf
 
 # Reboot gracefully.
-shutdown -r +1
+shutdown -r +1 &

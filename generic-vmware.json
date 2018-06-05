@@ -1628,8 +1628,8 @@
             "disk_type_id": "0",
             "vmx_data": {
                 "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2",
+                "numvcpus": "4",
+                "cpuid.corespersocket": "1",
                 "vmci0.present": "TRUE"
             },
             "guest_os_type": "otherlinux-64",

@@ -55,7 +55,7 @@ ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_ch
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-|lineageos-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
-BOXES="$LINEAGE_BOXES $GENERIC_BOXES $MAGMA_BOXES"
+BOXES="$GENERIC_BOXES $MAGMA_BOXES $LINEAGE_BOXES"
 
 # Collect the list of box tags.
 MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
@@ -645,7 +645,7 @@ function parallels() {
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
         if [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
-          packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json 
+          packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
           rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
         fi
     done
