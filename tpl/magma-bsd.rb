@@ -109,7 +109,7 @@ Vagrant.configure(2) do |config|
     v.cpus = 2
   end
 
-	config.vm.provider :virtualbox do |v, override|
+  config.vm.provider :virtualbox do |v, override|
     v.gui = false
     v.functional_vboxsf = false
     v.check_guest_additions = false
