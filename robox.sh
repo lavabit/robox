@@ -645,7 +645,7 @@ function parallels() {
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
         if [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
-          packer build -only="${LIST[$i]}" generic-parallels.json
+          packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json 
           rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
         fi
     done
