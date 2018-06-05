@@ -19,10 +19,29 @@ apk update
 
 # Install the Open VMWare Tools.
 apk add perl build-base mkinitfs util-linux linux-pam linux-headers
-apk add open-vm-tools
+apk add open-vm-tools open-vm-tools-dev
 
 # Autostart the open-vm-tools.
 rc-update add open-vm-tools default && rc-service open-vm-tools start
+vmware-toolbox-cmd timesync enable
+
+tee /etc/udev/rules.d/60-open-vm-tools.rules <<-EOF
+# VMware SCSI devices Timeout adjustment
+#
+# Modify the timeout value for VMware SCSI devices so that
+# in the event of a failover, we don't time out.
+# See Bug 271286 for more information.
+
+ACTION=="add|change", SUBSYSTEMS=="scsi", ATTRS{vendor}=="VMware  " , ATTRS{model}=="Virtual disk    ",   RUN+="/bin/sh -c 'echo 180 >/sys$DEVPATH/device/timeout'"
+
+
+# VMWare Virtual Sockets permissions
+#
+# after loading the vsock module, a block device /dev/vsock will be created with permission 0600
+# This rule changes permission to 0666 to allow users access to the virtual sockets
+
+KERNEL=="vsock", MODE="0666"
+EOF
 
 # Boosts the available entropy which allows magma to start faster.
 apk add haveged
