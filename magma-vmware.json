@@ -477,17 +477,14 @@
             "output_directory": "output/magma-vmware",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
+                "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -513,17 +510,14 @@
             "output_directory": "output/magma-centos-vmware",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
+                "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -549,17 +543,14 @@
             "output_directory": "output/magma-centos6-vmware",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
+                "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -585,17 +576,14 @@
             "output_directory": "output/magma-centos7-vmware",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
+                "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -630,10 +618,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "otherlinux-64",
             "skip_compaction": false,
@@ -670,10 +655,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "fedora-64",
             "skip_compaction": false,
@@ -709,10 +691,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "debian8-64",
             "skip_compaction": false,
@@ -761,10 +740,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
@@ -813,10 +789,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
@@ -857,10 +830,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
@@ -901,10 +871,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
@@ -945,9 +912,6 @@
                 "memsize": "2048",
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32",
                 "vmci0.present": "TRUE"
             },
             "guest_os_type": "otherlinux-64",
@@ -990,10 +954,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "freebsd-64",
             "skip_compaction": false,
@@ -1030,10 +991,7 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+                "cpuid.corespersocket": "2"
             },
             "guest_os_type": "freeBSD-64",
             "skip_compaction": false,

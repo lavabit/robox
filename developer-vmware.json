@@ -67,10 +67,7 @@
           "vmx_data": {
               "memsize": "4096",
               "numvcpus": "4",
-              "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+              "cpuid.corespersocket": "2"
           },
           "guest_os_type": "centos-64",
           "http_directory": "http",
@@ -96,17 +93,14 @@
           "output_directory": "output/magma-developer-vmware",
           "boot_wait": "20s",
           "boot_command": [
-              "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
+              "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
           ],
           "disk_size": 131072,
           "disk_type_id": "0",
           "vmx_data": {
               "memsize": "4096",
               "numvcpus": "4",
-              "cpuid.corespersocket": "2",
-                "ethernet0.bsdname": "eth0",
-                "ethernet0.virtualdev": "e1000",
-                "ethernet0.pcislotnumber": "32"
+              "cpuid.corespersocket": "2"
           },
           "guest_os_type": "centos-64",
           "http_directory": "http",
