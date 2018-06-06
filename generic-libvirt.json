@@ -1693,7 +1693,9 @@
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "1s",
             "boot_command": [
-              "<tab><tab><tab><tab><tab><tab><tab><tab>",
+              "<tab><wait><tab><wait><tab><wait><tab><wait>",
+              "<tab><wait><tab><wait><tab><wait><tab><wait>",
+              "<tab><wait><tab><wait><tab><wait><tab><wait>",
               "<esc><f6><esc>",
               "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
               "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
@@ -1754,7 +1756,9 @@
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "1s",
             "boot_command": [
-              "<tab><tab><tab><tab><tab><tab><tab><tab>",
+              "<tab><wait><tab><wait><tab><wait><tab><wait>",
+              "<tab><wait><tab><wait><tab><wait><tab><wait>",
+              "<tab><wait><tab><wait><tab><wait><tab><wait>",
               "<esc><f6><esc>",
               "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
               "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",

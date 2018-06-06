@@ -60,8 +60,8 @@
               "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
           ],
           "disk_size": 131072,
-          "ram_size": 4096,
-          "cpu": 4,
+          "ram_size": 2048,
+          "cpu": 2,
           "http_directory": "http",
           "iso_url": "https://mirrors.edge.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
           "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
@@ -77,7 +77,7 @@
           "skip_compaction": false,
           "enable_secure_boot": false,
           "enable_mac_spoofing": true,
-          "enable_dynamic_memory": true,
+          "enable_dynamic_memory": false,
           "guest_additions_mode": "disable",
           "enable_virtualization_extensions": false
       }

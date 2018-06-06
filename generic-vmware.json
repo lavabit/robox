@@ -1514,7 +1514,9 @@
             "output_directory": "output/generic-ubuntu1804-vmware",
             "boot_wait": "1s",
             "boot_command": [
-                "<tab><tab><tab><tab><tab><tab><tab><tab>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
                 "<esc><f6><esc>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
@@ -1565,7 +1567,9 @@
             "output_directory": "output/generic-ubuntu1810-vmware",
             "boot_wait": "1s",
             "boot_command": [
-              "<tab><tab><tab><tab><tab><tab><tab><tab>",
+              "<tab><wait><tab><wait><tab><wait><tab><wait>",
+              "<tab><wait><tab><wait><tab><wait><tab><wait>",
+              "<tab><wait><tab><wait><tab><wait><tab><wait>",
               "<esc><f6><esc>",
               "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
               "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",

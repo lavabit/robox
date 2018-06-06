@@ -1693,6 +1693,7 @@
             "boot_command": [
               "<tab><wait><tab><wait><tab><wait><tab><wait>",
               "<tab><wait><tab><wait><tab><wait><tab><wait>",
+              "<tab><wait><tab><wait><tab><wait><tab><wait>",
               "<esc><f6><esc>",
               "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
               "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
@@ -1753,6 +1754,7 @@
             "output_directory": "output/generic-ubuntu1810-virtualbox",
             "boot_wait": "1s",
             "boot_command": [
+              "<tab><wait><tab><wait><tab><wait><tab><wait>",
               "<tab><wait><tab><wait><tab><wait><tab><wait>",
               "<tab><wait><tab><wait><tab><wait><tab><wait>",
               "<esc><f6><esc>",

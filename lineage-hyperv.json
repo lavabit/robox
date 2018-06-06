@@ -122,7 +122,7 @@
             "skip_compaction": false,
             "enable_secure_boot": false,
             "enable_mac_spoofing": true,
-            "enable_dynamic_memory": true,
+            "enable_dynamic_memory": false,
             "guest_additions_mode": "disable",
             "enable_virtualization_extensions": false
         },
@@ -167,7 +167,7 @@
             "skip_compaction": false,
             "enable_secure_boot": false,
             "enable_mac_spoofing": true,
-            "enable_dynamic_memory": true,
+            "enable_dynamic_memory": false,
             "guest_additions_mode": "disable",
             "enable_virtualization_extensions": false
         },
@@ -212,7 +212,7 @@
             "skip_compaction": false,
             "enable_secure_boot": false,
             "enable_mac_spoofing": true,
-            "enable_dynamic_memory": true,
+            "enable_dynamic_memory": false,
             "guest_additions_mode": "disable",
             "enable_virtualization_extensions": false
         },
@@ -257,7 +257,7 @@
             "skip_compaction": false,
             "enable_secure_boot": false,
             "enable_mac_spoofing": true,
-            "enable_dynamic_memory": true,
+            "enable_dynamic_memory": false,
             "guest_additions_mode": "disable",
             "enable_virtualization_extensions": false
         }
