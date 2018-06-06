@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ensure a nameserver is being used that won't return an IP for non-existent domain names.
-printf "\nnameserver 4.2.2.1\n" > /etc/resolv.conf
+printf "\nnameserver 4.2.2.1\nnameserver 4.2.2.2\n" > /etc/resolv.conf
 
 # Set the hostname, and then ensure it will resolve properly.
 if [[ "$PACKER_BUILD_NAME" =~ ^generic-rhel7-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then

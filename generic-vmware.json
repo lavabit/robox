@@ -257,6 +257,7 @@
         },
         {
             "scripts": [
+                "scripts/gentoo/network.sh",
                 "scripts/gentoo/emerge.sh"
             ],
             "type": "shell",
