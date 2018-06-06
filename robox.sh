@@ -607,16 +607,57 @@ function vmware() {
 }
 
 function hyperv() {
+
   if [[ $OS == "Windows_NT" ]]; then
+
+    LIST=($BOXES)
+
     verify_json generic-hyperv
     verify_json magma-hyperv
     verify_json developer-hyperv
     verify_json lineage-hyperv
 
-    build generic-hyperv
-    build magma-hyperv
-    build developer-hyperv
-    build lineage-hyperv
+    # Build the generic boxes first.
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+      if [[ "${LIST[$i]}" =~ ^generic-[a-z]*[0-9]*-hyperv$ ]]; then
+        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv.json
+        # rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
+      fi
+    done
+
+    # Build the magma boxes second.
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+      if [[ "${LIST[$i]}" =~ ^magma-[a-z]*[0-9]*-hyperv$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv$ ]]; then
+        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
+        # rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
+      fi
+    done
+
+    # Build the magma developer desktops third.
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+      if [[ "${LIST[$i]}" == ^magma-developer-hyperv$ ]]; then
+        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv.json
+        # rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
+      fi
+    done
+
+    # Build the Lineage boxes fourth.
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+      if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-hyperv$ ]]; then
+        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
+        # rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
+      fi
+    done
+
+
+    # Build the Lineage boxes for nash fifth..
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+      if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z]*[0-9]*-hyperv$ ]]; then
+        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
+        # rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
+      fi
+    done
+
   else
     tput setaf 1; tput bold; printf "\n\nThe HyperV roboxes require a Windows host...\n\n"; tput sgr0
   fi
@@ -636,18 +677,20 @@ function libvirt() {
 
 function parallels() {
   if [[ `uname` == "Darwin" ]]; then
-    verify_json generic-parallels
+
     # Ideally, we run this. However our Mac is resource starved
     # so we need to build each box individually.
     # build generic-parallels
 
     LIST=($BOXES)
 
+    verify_json generic-parallels
+
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-        if [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
-          packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
-          rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
-        fi
+      if [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
+        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
+        rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
+      fi
     done
 
   else
