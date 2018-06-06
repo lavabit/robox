@@ -9,7 +9,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.6.12"
+export VERSION="1.6.16"
 export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
@@ -25,7 +25,7 @@ cd $BASE
 if [ ! -f $BASE/.credentialsrc ]; then
 cat << EOF > $BASE/.credentialsrc
 #!/bin/bash
-export GOMAXPROCS="4"
+export GOMAXPROCS="2"
 export DOCKER_USER="LOGIN"
 export DOCKER_EMAIL="EMAIL"
 export DOCKER_PASSWORD="PASSWORD"
