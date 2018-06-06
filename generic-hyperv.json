@@ -256,11 +256,11 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/gentoo/network.sh",
                 "scripts/gentoo/emerge.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -268,6 +268,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/gentoo/virtualbox.sh",
                 "scripts/gentoo/parallels.sh",
@@ -275,7 +276,6 @@
                 "scripts/gentoo/qemu.sh",
                 "scripts/gentoo/vagrant.sh"
             ],
-            "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -284,10 +284,10 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/arch/pacman.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -295,6 +295,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/arch/virtualbox.sh",
                 "scripts/arch/parallels.sh",
@@ -302,7 +303,6 @@
                 "scripts/arch/qemu.sh",
                 "scripts/arch/vagrant.sh"
             ],
-            "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -311,11 +311,11 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/debian8/network.sh",
                 "scripts/debian8/apt.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -323,6 +323,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/debian8/vagrant.sh",
                 "scripts/debian8/fixtty.sh",
@@ -331,7 +332,6 @@
                 "scripts/debian8/vmware.sh",
                 "scripts/debian8/qemu.sh"
             ],
-            "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -340,11 +340,11 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/debian9/network.sh",
                 "scripts/debian9/apt.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -352,6 +352,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/debian9/vagrant.sh",
                 "scripts/debian9/fixtty.sh",
@@ -360,7 +361,6 @@
                 "scripts/debian9/vmware.sh",
                 "scripts/debian9/qemu.sh"
             ],
-            "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -538,6 +538,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/freebsd11/hostname.sh",
                 "scripts/freebsd11/pkg.sh",
@@ -547,7 +548,6 @@
                 "scripts/freebsd11/vmware.sh",
                 "scripts/freebsd11/qemu.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "execute_command": "/usr/local/bin/bash {{ .Path }}",
@@ -556,10 +556,10 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/openbsd6/pkg.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "execute_command": "/bin/sh {{ .Path }}",
@@ -568,6 +568,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/openbsd6/hostname.sh",
                 "scripts/openbsd6/vagrant.sh",
@@ -576,7 +577,6 @@
                 "scripts/openbsd6/vmware.sh",
                 "scripts/openbsd6/qemu.sh"
             ],
-            "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -585,12 +585,11 @@
                 "generic-openbsd6-hyperv"
             ]
         },
-        {
+        {   "type": "shell",
             "scripts": [
                 "scripts/ubuntu1604/network.sh",
                 "scripts/ubuntu1604/apt.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -598,6 +597,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1604/vagrant.sh",
                 "scripts/ubuntu1604/fixtty.sh",
@@ -607,7 +607,6 @@
                 "scripts/ubuntu1604/qemu.sh",
                 "scripts/ubuntu1604/cleanup.sh"
             ],
-            "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -616,11 +615,11 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1610/network.sh",
                 "scripts/ubuntu1610/apt.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -628,6 +627,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1610/vagrant.sh",
                 "scripts/ubuntu1610/fixtty.sh",
@@ -637,7 +637,6 @@
                 "scripts/ubuntu1610/qemu.sh",
                 "scripts/ubuntu1610/cleanup.sh"
             ],
-            "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -646,11 +645,11 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1704/network.sh",
                 "scripts/ubuntu1704/apt.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -658,6 +657,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1704/vagrant.sh",
                 "scripts/ubuntu1704/fixtty.sh",
@@ -667,7 +667,6 @@
                 "scripts/ubuntu1704/qemu.sh",
                 "scripts/ubuntu1704/cleanup.sh"
             ],
-            "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -676,11 +675,11 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1710/network.sh",
                 "scripts/ubuntu1710/apt.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -688,6 +687,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1710/vagrant.sh",
                 "scripts/ubuntu1710/fixtty.sh",
@@ -697,7 +697,6 @@
                 "scripts/ubuntu1710/qemu.sh",
                 "scripts/ubuntu1710/cleanup.sh"
             ],
-            "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -706,11 +705,11 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1804/network.sh",
                 "scripts/ubuntu1804/apt.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -718,6 +717,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1804/vagrant.sh",
                 "scripts/ubuntu1804/fixtty.sh",
@@ -727,7 +727,6 @@
                 "scripts/ubuntu1804/qemu.sh",
                 "scripts/ubuntu1804/cleanup.sh"
             ],
-            "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -736,11 +735,11 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1810/network.sh",
                 "scripts/ubuntu1810/apt.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -748,6 +747,7 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1810/vagrant.sh",
                 "scripts/ubuntu1810/fixtty.sh",
@@ -757,7 +757,6 @@
                 "scripts/ubuntu1810/qemu.sh",
                 "scripts/ubuntu1810/cleanup.sh"
             ],
-            "type": "shell",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -766,12 +765,12 @@
             ]
         },
         {
+            "type": "shell",
             "scripts": [
                 "scripts/common/motd.sh",
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],
-            "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true"
         }
