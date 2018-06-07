@@ -58,16 +58,16 @@ LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "line
 BOXES="$GENERIC_BOXES $MAGMA_BOXES $LINEAGE_BOXES"
 
 # Collect the list of box tags.
-MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=- -k 3i -k 2.1,2.0`
-GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=- -k 2i -k 1.1,1.0`
-LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
+MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=-`
+GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=-`
+LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=-`
 TAGS="$GENERIC_TAGS $MAGMA_TAGS $LINEAGE_TAGS"
 
 # These boxes aren't publicly available yet, so we filter them out of available test.
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
 
 # A list of configs to skip during complete build operations.
-export EXCEPTIONS="generic-alpine35-vmware,generic-alpine36-vmware,generic-alpine37-vmware,generic-arch-vmware"
+export EXCEPTIONS=""
 
 function start() {
   # Disable IPv6 or the VMware builder won't be able to load the Kick Start configuration.
@@ -627,13 +627,17 @@ function hyperv() {
 
     # Build the magma boxes second.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
+      if [[ "${LIST[$i]}" =~ ^magma-hyperv$ ]]; then
+        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
+        # rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
+      fi
+    done
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-[a-z]*[0-9]*-hyperv$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
         # rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
-
-    # Build the magma developer desktops third.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" == ^magma-developer-hyperv$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv.json
@@ -648,9 +652,6 @@ function hyperv() {
         # rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
-
-
-    # Build the Lineage boxes for nash fifth..
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z]*[0-9]*-hyperv$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
