@@ -67,7 +67,7 @@ TAGS="$GENERIC_TAGS $MAGMA_TAGS $LINEAGE_TAGS"
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
 
 # A list of configs to skip during complete build operations.
-export EXCEPTIONS=""
+export EXCEPTIONS="generic-alpine35-vmware,generic-alpine36-vmware,generic-alpine37-vmware,generic-arch-vmware"
 
 function start() {
   # Disable IPv6 or the VMware builder won't be able to load the Kick Start configuration.
@@ -270,7 +270,7 @@ function box() {
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
       packer build -on-error=cleanup -parallel=false -only=$1 developer-hyperv.json
   elif [[ `uname` == "Darwin" ]]; then
-      packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
+      packer build -on-error=cleanup -parallel=false -only=$1 generic-parallels.json
   else
       packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json
       packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
