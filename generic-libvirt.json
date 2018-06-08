@@ -540,11 +540,14 @@
             "scripts": [
                 "scripts/freebsd11/hostname.sh",
                 "scripts/freebsd11/pkg.sh",
+                "scripts/freebsd11/kernel.sh",
+                "scripts/freebsd11/firstboot.sh",
                 "scripts/freebsd11/vagrant.sh",
                 "scripts/freebsd11/virtualbox.sh",
                 "scripts/freebsd11/parallels.sh",
                 "scripts/freebsd11/vmware.sh",
-                "scripts/freebsd11/qemu.sh"
+                "scripts/freebsd11/qemu.sh",
+                "scripts/freebsd11/cleanup.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",
@@ -1965,7 +1968,7 @@
             {
                 "type": "vagrant",
                 "compression_level": 9,
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "vagrantfile_template": "tpl/generic-alpine.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "only": [
@@ -1977,7 +1980,7 @@
             {
                 "type": "vagrant",
                 "compression_level": 9,
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "vagrantfile_template": "tpl/generic-bsd.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "only": [
@@ -1988,7 +1991,7 @@
             {
                 "type": "vagrant",
                 "compression_level": 9,
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "vagrantfile_template": "tpl/generic-default.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "except": [

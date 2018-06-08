@@ -1,5 +1,10 @@
 #!/bin/bash -ux
 
+# Configure fetch so it retries  temprorary failures.
+export FETCH_RETRY=5
+export FETCH_TIMEOUT=30
+export ASSUME_ALWAYS_YES=yes
+
 # Needed to check whether we're running atop Parallels.
 pkg-static install --yes dmidecode
 
@@ -7,6 +12,9 @@ pkg-static install --yes dmidecode
 if [[ `dmidecode -s system-product-name` != "Parallels Virtual Platform" ]]; then
     exit 0
 fi
+
+# Install the FreeBSD package with the Parallels guest tools.
+pkg-static install --yes parallels-tools
 
 # Read in the version number.
 PARALLELSVERSION=`cat /root/parallels-tools-version.txt`

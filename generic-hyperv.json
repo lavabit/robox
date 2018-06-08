@@ -542,11 +542,14 @@
             "scripts": [
                 "scripts/freebsd11/hostname.sh",
                 "scripts/freebsd11/pkg.sh",
+                "scripts/freebsd11/kernel.sh",
+                "scripts/freebsd11/firstboot.sh",
                 "scripts/freebsd11/vagrant.sh",
                 "scripts/freebsd11/virtualbox.sh",
                 "scripts/freebsd11/parallels.sh",
                 "scripts/freebsd11/vmware.sh",
-                "scripts/freebsd11/qemu.sh"
+                "scripts/freebsd11/qemu.sh",
+                "scripts/freebsd11/cleanup.sh"
             ],
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",

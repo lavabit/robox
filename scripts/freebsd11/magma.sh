@@ -2,6 +2,11 @@
 #
 # Setup the the box. This runs as root
 
+# Configure fetch so it retries  temprorary failures.
+export FETCH_RETRY=5
+export FETCH_TIMEOUT=30
+export ASSUME_ALWAYS_YES=yes
+
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
 else

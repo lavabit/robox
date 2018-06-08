@@ -1,5 +1,10 @@
 #!/bin/bash -eux
 
+# Configure fetch so it retries  temprorary failures.
+export FETCH_RETRY=5
+export FETCH_TIMEOUT=30
+export ASSUME_ALWAYS_YES=yes
+
 # Ensure dmideocode is available.
 pkg-static install --yes dmidecode
 
@@ -8,7 +13,7 @@ if [[ `dmidecode -s system-product-name` != "VMware Virtual Platform" ]]; then
     exit 0
 fi
 
-pkg-static install -y open-vm-tools-nox11
+pkg-static install --yes open-vm-tools-nox11
 
 # Disable vmxnet in favor of whatever the OpenVM Tools are suggesting.
 sed -i -e 's#^ifconfig_vmx0#ifconfig_em0#g' /etc/rc.conf
