@@ -1681,7 +1681,7 @@
           {
               "type": "vagrant",
               "compression_level": 9,
-              "keep_input_artifact": false,
+              "keep_input_artifact": true,
               "vagrantfile_template": "tpl/generic-alpine.rb",
               "output": "output/{{build_name}}-{{user `box_version`}}.box",
               "only": [
@@ -1693,7 +1693,7 @@
           {
               "type": "vagrant",
               "compression_level": 9,
-              "keep_input_artifact": false,
+              "keep_input_artifact": true,
               "vagrantfile_template": "tpl/generic-bsd.rb",
               "output": "output/{{build_name}}-{{user `box_version`}}.box",
               "only": [
@@ -1704,7 +1704,7 @@
           {
                 "type": "vagrant",
                 "compression_level": 9,
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "vagrantfile_template": "tpl/generic-default.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "except": [
@@ -1945,6 +1945,276 @@
                 ],
                 "keep_input_artifact": true,
                 "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+          {
+              "type": "vagrant",
+              "compression_level": 9,
+              "keep_input_artifact": false,
+              "vagrantfile_template": "tpl/roboxes-alpine.rb",
+              "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+              "only": [
+                  "generic-alpine35-hyperv",
+                  "generic-alpine36-hyperv",
+                  "generic-alpine37-hyperv"
+              ]
+          },
+          {
+              "type": "vagrant",
+              "compression_level": 9,
+              "keep_input_artifact": false,
+              "vagrantfile_template": "tpl/roboxes-bsd.rb",
+              "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+              "only": [
+                  "generic-openbsd6-hyperv",
+                  "generic-freebsd11-hyperv"
+              ]
+          },
+          {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/roboxes-default.rb",
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "except": [
+                    "generic-alpine35-hyperv",
+                    "generic-alpine36-hyperv",
+                    "generic-alpine37-hyperv",
+                    "generic-openbsd6-hyperv",
+                    "generic-freebsd11-hyperv"
+                ]
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-oracle7-hyperv"
+                ],
+                "box_tag": "roboxes/oracle7",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-opensuse42-hyperv"
+                ],
+                "box_tag": "roboxes/opensuse42",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-alpine35-hyperv"
+                ],
+                "box_tag": "roboxes/alpine35",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-alpine36-hyperv"
+                ],
+                "box_tag": "roboxes/alpine36",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-alpine37-hyperv"
+                ],
+                "box_tag": "roboxes/alpine37",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-centos6-hyperv"
+                ],
+                "box_tag": "roboxes/centos6",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-centos7-hyperv"
+                ],
+                "box_tag": "roboxes/centos7",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-rhel7-hyperv"
+                ],
+                "box_tag": "roboxes/rhel7",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-arch-hyperv"
+                ],
+                "box_tag": "roboxes/arch",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-gentoo-hyperv"
+                ],
+                "box_tag": "roboxes/gentoo",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-debian8-hyperv"
+                ],
+                "box_tag": "roboxes/debian8",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-debian9-hyperv"
+                ],
+                "box_tag": "roboxes/debian9",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-fedora25-hyperv"
+                ],
+                "box_tag": "roboxes/fedora25",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-fedora26-hyperv"
+                ],
+                "box_tag": "roboxes/fedora26",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-fedora27-hyperv"
+                ],
+                "box_tag": "roboxes/fedora27",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-fedora28-hyperv"
+                ],
+                "box_tag": "roboxes/fedora28",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-freebsd11-hyperv"
+                ],
+                "box_tag": "roboxes/freebsd11",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-openbsd6-hyperv"
+                ],
+                "box_tag": "roboxes/openbsd6",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-ubuntu1604-hyperv"
+                ],
+                "box_tag": "roboxes/ubuntu1604",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-ubuntu1610-hyperv"
+                ],
+                "box_tag": "roboxes/ubuntu1610",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-ubuntu1704-hyperv"
+                ],
+                "box_tag": "roboxes/ubuntu1704",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-ubuntu1710-hyperv"
+                ],
+                "box_tag": "roboxes/ubuntu1710",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-ubuntu1804-hyperv"
+                ],
+                "box_tag": "roboxes/ubuntu1804",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-ubuntu1810-hyperv"
+                ],
+                "box_tag": "roboxes/ubuntu1810",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": true,
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256"
             }
         ]
     ]
