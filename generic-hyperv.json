@@ -847,8 +847,9 @@
             "name": "generic-alpine35-hyperv",
             "vm_name": "generic-alpine35-hyperv",
             "output_directory": "output/generic-alpine35-hyperv",
-            "boot_wait": "30s",
+            "boot_wait": "60s",
             "boot_command": [
+                "<enter><wait10>",
                 "root<enter><wait>",
                 "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
                 "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine35.vagrant.cfg<enter><wait>",
@@ -887,8 +888,9 @@
             "name": "generic-alpine36-hyperv",
             "vm_name": "generic-alpine36-hyperv",
             "output_directory": "output/generic-alpine36-hyperv",
-            "boot_wait": "30s",
+            "boot_wait": "60s",
             "boot_command": [
+                "<enter><wait10>",
                 "root<enter><wait>",
                 "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
                 "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine36.vagrant.cfg<enter><wait>",
@@ -927,8 +929,9 @@
             "name": "generic-alpine37-hyperv",
             "vm_name": "generic-alpine37-hyperv",
             "output_directory": "output/generic-alpine37-hyperv",
-            "boot_wait": "30s",
+            "boot_wait": "60s",
             "boot_command": [
+                "<enter><wait10>",
                 "root<enter><wait>",
                 "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
                 "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine37.vagrant.cfg<enter><wait>",

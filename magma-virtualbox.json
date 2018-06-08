@@ -437,8 +437,9 @@
             "name": "magma-alpine36-virtualbox",
             "vm_name": "magma-alpine36-virtualbox",
             "output_directory": "output/magma-alpine36-virtualbox",
-            "boot_wait": "30s",
+            "boot_wait": "60s",
             "boot_command": [
+                "<enter><wait10>",
                 "root<enter><wait>",
                 "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
                 "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.alpine36.vagrant.cfg<enter><wait>",
