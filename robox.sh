@@ -9,7 +9,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.6.18"
+export VERSION="1.6.20"
 export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
 
 # Limit the number of cpus packer will use.
@@ -49,7 +49,7 @@ FILES="magma-docker.json "\
 
 # Collect the list of ISO urls.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/ubuntu-18.10-server-amd64.iso|res/media/rhel-server-6.9-x86_64-dvd.iso|res/media/rhel-server-7.5-x86_64-dvd.iso" | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_checksum_type" | grep -v -E "5082d79904bf66047ea29c3b44a25d3559bd7a4c2ac0d012f7600c719c59f1ff|3f961576e9f81ea118566f73f98d7bdf3287671c35436a13787c1ffd5078cf8e|d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5" | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_checksum_type" | grep -v -E "d2371a6359f18c1f1d69aaf6211569b1f0707ded8286ad7b43a8d64544d1d963|3f961576e9f81ea118566f73f98d7bdf3287671c35436a13787c1ffd5078cf8e|d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5" | awk -F'"' '{print $4}'`)
 
 # Collect the list of box names.
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
@@ -525,7 +525,7 @@ function public() {
 }
 
 function localized() {
-  verify_local 746586112 5082d79904bf66047ea29c3b44a25d3559bd7a4c2ac0d012f7600c719c59f1ff res/media/ubuntu-18.10-server-amd64.iso http://cdimage.ubuntu.com/ubuntu-server/daily/20180604/cosmic-server-amd64.iso
+  verify_local 746586112 d2371a6359f18c1f1d69aaf6211569b1f0707ded8286ad7b43a8d64544d1d963 res/media/ubuntu-18.10-server-amd64.iso http://cdimage.ubuntu.com/ubuntu-server/daily/pending/cosmic-server-amd64.iso
   verify_local 3887071232 3f961576e9f81ea118566f73f98d7bdf3287671c35436a13787c1ffd5078cf8e res/media/rhel-server-6.9-x86_64-dvd.iso https://archive.org/download/rhel-server-6.9-x86_64-dvd/rhel-server-6.9-x86_64-dvd.iso
   verify_local 4617928704 d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5 res/media/rhel-server-7.5-x86_64-dvd.iso https://archive.org/download/rhel-server-7.5-x86_64-dvd/rhel-server-7.5-x86_64-dvd.iso
 }

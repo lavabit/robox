@@ -60,7 +60,7 @@
               "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
           ],
           "disk_size": 131072,
-          "ram_size": 2048,
+          "ram_size": 1024,
           "cpu": 2,
           "http_directory": "http",
           "iso_url": "https://mirrors.edge.kernel.org/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
