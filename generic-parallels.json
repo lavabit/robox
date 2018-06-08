@@ -1935,7 +1935,7 @@
             },
             {
                 "type": "artifice",
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "files": [
                     "output/{{build_name}}-{{user `box_version`}}.box"
                 ]
@@ -1945,7 +1945,7 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
             }
         ],
@@ -1953,7 +1953,7 @@
             {
                 "type": "vagrant",
                 "compression_level": 9,
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/roboxes-alpine.rb",
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
                 "only": [
@@ -1965,7 +1965,7 @@
             {
                 "type": "vagrant",
                 "compression_level": 9,
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/roboxes-bsd.rb",
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
                 "only": [
@@ -1976,7 +1976,7 @@
             {
                 "type": "vagrant",
                 "compression_level": 9,
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/roboxes-default.rb",
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
                 "except": [
@@ -2205,7 +2205,7 @@
             },
             {
                 "type": "artifice",
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "files": [
                     "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
                 ]
@@ -2215,7 +2215,7 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256"
             }
         ]
