@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Name: run.sh
+# Name: robox.sh
 # Author: Ladar Levison
 #
 # Description: Used to build various virtual machines using packer.
@@ -9,8 +9,8 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.6.20"
-export AGENT="Vagrant/2.0.0 (+https://www.vagrantup.com; ruby2.3.4):"
+export VERSION="1.6.22"
+export AGENT="Vagrant/2.1.1 (+https://www.vagrantup.com; ruby2.4.4):"
 
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
