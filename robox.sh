@@ -59,9 +59,10 @@ BOXES="$GENERIC_BOXES $MAGMA_BOXES $LINEAGE_BOXES"
 
 # Collect the list of box tags.
 MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=-`
+ROBOXES_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "roboxes" | sort -u --field-separator=-`
 GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=-`
 LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=-`
-TAGS="$GENERIC_TAGS $MAGMA_TAGS $LINEAGE_TAGS"
+TAGS="$GENERIC_TAGS $ROBOXES_TAGS $MAGMA_TAGS $LINEAGE_TAGS"
 
 # These boxes aren't publicly available yet, so we filter them out of available test.
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
@@ -477,7 +478,7 @@ function public() {
       fi
 
       PROVIDER="parallels"
-      if [[ "${ORGANIZATION}" == "generic" ]]; then
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes)$ ]]; then
         curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
         if [ $? != 0 ]; then
