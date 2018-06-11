@@ -1,7 +1,7 @@
 #!/bin/sh -eux
 
 # Configure the main repository mirrors.
-printf "https://dl-3.alpinelinux.org/alpine/v3.6/main\nhttps://mirror.leaseweb.com/alpine/v3.6/main\n" > /etc/apk/repositories
+printf "https://mirror.leaseweb.com/alpine/v3.6/main\n" > /etc/apk/repositories
 
 # Update the package list and then upgrade.
 apk update --no-cache

@@ -12,7 +12,7 @@ fi
 printf "Installing the VMWare Tools.\n"
 
 # Add the community repository.
-printf "@community https://dl-3.alpinelinux.org/alpine/v3.5/community\n@community https://mirror.leaseweb.com/alpine/v3.5/community\n" >> /etc/apk/repositories
+printf "@community https://mirror.leaseweb.com/alpine/v3.5/community\n" >> /etc/apk/repositories
 
 # Update the APK cache.
 apk update
