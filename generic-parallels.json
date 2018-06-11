@@ -790,10 +790,12 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
+              ["set", "{{.Name}}", "--adaptive-hypervisor", "off"],
+              ["set", "{{.Name}}", "--3d-accelerate", "off"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
-              ["set", "{{.Name}}", "--cpus", "2"]
+              ["set", "{{.Name}}", "--faster-vm", "off"],
+              ["set", "{{.Name}}", "--pmu-virt", "off"],
+              ["set", "{{.Name}}", "--cpus", "1"]
             ],
             "hard_drive_interface": "ide",
             "guest_os_type": "linux",
@@ -826,9 +828,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -868,9 +868,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -910,9 +908,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -952,9 +948,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -985,9 +979,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1018,9 +1010,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1051,9 +1041,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1086,9 +1074,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1123,9 +1109,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1160,9 +1144,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1197,9 +1179,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1234,9 +1214,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1270,9 +1248,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1306,9 +1282,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1355,9 +1329,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1396,9 +1368,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1437,9 +1407,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1478,9 +1446,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1531,9 +1497,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1584,9 +1548,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1624,9 +1586,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--faster-vm", "on"],
               ["set", "{{.Name}}", "--cpus", "4"]
             ],
@@ -1667,9 +1627,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
@@ -1704,9 +1662,7 @@
             ],
             "disk_size": 32768,
             "prlctl": [
-              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
               ["set", "{{.Name}}", "--memsize", "1024"],
-              ["set", "{{.Name}}", "--pmu-virt", "on"],
               ["set", "{{.Name}}", "--cpus", "2"]
             ],
             "hard_drive_interface": "ide",
