@@ -26,7 +26,7 @@ apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
 # apt-get --assume-yes -o Dpkg::Options::="--force-confnew" full-upgrade; error
 
 # The packages needed to compile magma.
-apt-get --assume-yes install gcc g++ gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config; error
+apt-get --assume-yes install gcc g++ gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
 
 # The memcached server.
 apt-get --assume-yes install memcached libevent-dev; error
