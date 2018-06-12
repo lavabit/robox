@@ -2119,7 +2119,7 @@
                     "generic-alpine35-parallels",
                     "generic-alpine36-parallels",
                     "generic-alpine37-parallels",
-                    "generic-alpine38-parallels"
+                    "generic-alpine38-parallels",
                     "generic-openbsd6-parallels",
                     "generic-freebsd11-parallels"
                 ]
