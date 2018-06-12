@@ -4,7 +4,7 @@
 yum --assumeyes update
 
 # The basic utilities we'd expect to find.
-yum --assumeyes install man git sudo lsof wget curl telnet mlocate sysstat dmidecode bind-utils yum-utils vim-enhanced net-tools deltarpm
+yum --assumeyes install deltarpm net-tools yum-utils bash-completion man-pages vim-enhanced mlocate sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl
 
 # Remove the stray rpm save file.
 mv --force /etc/nsswitch.conf.rpmnew /etc/nsswitch.conf
