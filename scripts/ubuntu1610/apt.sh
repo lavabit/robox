@@ -5,6 +5,7 @@ sed -i -e "s/http:\/\/old-releases.ubuntu.com/https:\/\/mirrors.lavabit.com/g" /
 
 # To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # Disable upgrades to new releases.
 sed -i -e 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades;

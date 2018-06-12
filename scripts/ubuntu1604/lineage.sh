@@ -5,6 +5,7 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 
 # To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # Install developer tools.
 apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pciutils usbutils

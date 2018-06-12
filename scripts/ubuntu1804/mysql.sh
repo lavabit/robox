@@ -2,6 +2,7 @@
 
 # To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # The mysql client and related utilities.
 apt-get --assume-yes install mysql-client mysql-server perl libdbi-perl libmysqlclient20 mysql-common libdbd-mysql-perl

@@ -9,6 +9,7 @@ error() {
 
 # To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # Reset the apt sources.
 sed -i -e "s/https:\/\/mirrors.lavabit.com/http:\/\/old-releases.ubuntu.com/g" /etc/apt/sources.list

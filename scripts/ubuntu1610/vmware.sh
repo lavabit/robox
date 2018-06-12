@@ -16,6 +16,10 @@ fi
 # Install the VMWare Tools from the Linux ISO.
 printf "Installing the VMWare Tools.\n"
 
+# To allow for autmated installs, we disable interactive configuration steps.
+export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
+
 apt-get --assume-yes install open-vm-tools ethtool libdumbnet1 zerofree
 systemctl enable open-vm-tools.service
 systemctl start open-vm-tools.service

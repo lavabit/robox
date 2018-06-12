@@ -9,6 +9,7 @@ error() {
 
 # To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # Disable periodic activities of apt
 printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic

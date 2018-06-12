@@ -15,13 +15,17 @@ fi
 # Install the Virtual Box Tools from the Linux Guest Additions ISO.
 printf "Installing the Virtual Box Tools.\n"
 
+# To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
+
 apt-get --assume-yes install virtualbox-guest-additions-iso; error
 
 # Read in the version number.
 export VBOXVERSION=`cat /root/VBoxVersion.txt`
 #
 # export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
 # apt-get --assume-yes install dkms build-essential module-assistant linux-headers-$(uname -r); error
 #
 # mkdir -p /mnt/virtualbox; error
