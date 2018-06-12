@@ -38,5 +38,3 @@ yum --assumeyes install deltarpm net-tools yum-utils bash-completion man-pages v
 # Update the locate database.
 /etc/cron.daily/mlocate
 
-# Cleanup the rpmnew file.
-mv --force /etc/nsswitch.conf.rpmnew /etc/nsswitch.conf

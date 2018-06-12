@@ -27,9 +27,6 @@ systemctl disable remote-fs.target
 # Disable kernel dumping.
 # systemctl disable kdump.service
 
-# Cleanup the rpmnew file.
-# mv --force /etc/nsswitch.conf.rpmnew /etc/nsswitch.conf
-
 # Create the clamav user to avoid spurious errors.
 useradd clamav
 
