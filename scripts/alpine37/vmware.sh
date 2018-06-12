@@ -25,6 +25,10 @@ apk add open-vm-tools open-vm-tools-dev
 rc-update add open-vm-tools default && rc-service open-vm-tools start
 vmware-toolbox-cmd timesync enable
 
+# Ensure the OpenVM tools don't start until after the SSH server is online.
+printf 'rc_need="sshd"\n' >> /etc/conf.d/open-vm-tools
+rc-update -u
+
 tee /etc/udev/rules.d/60-open-vm-tools.rules <<-EOF
 # VMware SCSI devices Timeout adjustment
 #

@@ -26,9 +26,14 @@ zypper --non-interactive clean --all
 
 # Refresh the repository metadata.
 zypper --non-interactive refresh
-# echo "Zypper repositories refreshed."
 
 # Update the system packages.
 zypper --non-interactive update --auto-agree-with-licenses
-# echo "System updates have been applied."
-# exit 0
+
+# Install the packages we'd expect to find.
+zypper --non-interactive install man mlocate sysstat
+
+# Update the locate database.
+/etc/cron.daily/mlocate.cron 
+
+

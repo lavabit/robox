@@ -6,6 +6,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine36/network.sh",
                 "scripts/alpine36/apk.sh"
             ],
             "execute_command": "/bin/sh '{{.Path}}'",
@@ -23,6 +24,7 @@
                 "scripts/alpine36/memcached.sh",
                 "scripts/alpine36/postfix.sh",
                 "scripts/alpine36/lsb.sh",
+                "scripts/alpine36/floppy.sh",
                 "scripts/alpine36/vagrant.sh",
                 "scripts/alpine36/glibc.sh",
                 "scripts/alpine36/gcc.sh",

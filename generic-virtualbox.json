@@ -45,7 +45,9 @@
                 "scripts/opensuse42/vmware.sh",
                 "scripts/opensuse42/qemu.sh",
                 "scripts/opensuse42/vagrant.sh",
-                "scripts/opensuse42/network.sh"
+                "scripts/opensuse42/network.sh",
+                "scripts/opensuse42/floppy.sh",
+                "scripts/opensuse42/postfix.sh"
             ],
             "execute_command": "/bin/bash '{{.Path}}'",
             "start_retry_timeout": "15m",
@@ -57,6 +59,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine35/network.sh",
                 "scripts/alpine35/apk.sh"
             ],
             "execute_command": "/bin/sh '{{.Path}}'",
@@ -69,7 +72,10 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/alpine35/lsb.sh",
+                "scripts/alpine36/lsb.sh",
+                "scripts/alpine36/floppy.sh",
+                "scripts/alpine36/floppy.sh",
+                "scripts/alpine35/floppy.sh",
                 "scripts/alpine35/vagrant.sh",
                 "scripts/alpine35/virtualbox.sh",
                 "scripts/alpine35/parallels.sh",
@@ -88,6 +94,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine36/network.sh",
                 "scripts/alpine36/apk.sh"
             ],
             "execute_command": "/bin/sh '{{.Path}}'",
@@ -101,6 +108,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/alpine36/lsb.sh",
+                "scripts/alpine36/floppy.sh",
                 "scripts/alpine36/vagrant.sh",
                 "scripts/alpine36/virtualbox.sh",
                 "scripts/alpine36/parallels.sh",
@@ -119,6 +127,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine37/network.sh",
                 "scripts/alpine37/apk.sh"
             ],
             "execute_command": "/bin/sh '{{.Path}}'",
@@ -132,6 +141,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/alpine37/lsb.sh",
+                "scripts/alpine37/floppy.sh",
                 "scripts/alpine37/vagrant.sh",
                 "scripts/alpine37/virtualbox.sh",
                 "scripts/alpine37/parallels.sh",
@@ -150,6 +160,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine38/network.sh",
                 "scripts/alpine38/apk.sh"
             ],
             "execute_command": "/bin/sh '{{.Path}}'",
@@ -163,6 +174,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/alpine38/lsb.sh",
+                "scripts/alpine38/floppy.sh",
                 "scripts/alpine38/vagrant.sh",
                 "scripts/alpine38/virtualbox.sh",
                 "scripts/alpine38/parallels.sh",
@@ -818,7 +830,7 @@
             "output_directory": "output/generic-oracle7-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
+                "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "vboxmanage": [
@@ -1115,7 +1127,7 @@
             "output_directory": "output/generic-centos6-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
+                "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "vboxmanage": [
@@ -1158,7 +1170,7 @@
             "output_directory": "output/generic-centos7-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
+                "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "vboxmanage": [
@@ -1201,7 +1213,7 @@
             "output_directory": "output/generic-rhel7-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
+                "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
             "vboxmanage": [
