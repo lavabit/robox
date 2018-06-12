@@ -8,7 +8,7 @@ fi
 yum --assumeyes install dmidecode
 
 # Configure tuned
-yum --quiet --assumeyes install tuned
+yum --assumeyes install tuned
 systemctl enable tuned
 systemctl start tuned
 

@@ -25,6 +25,7 @@
                 "scripts/oracle7/vmware.sh",
                 "scripts/oracle7/qemu.sh",
                 "scripts/oracle7/vagrant.sh",
+                "scripts/oracle7/tuning.sh",
                 "scripts/oracle7/network.sh"
             ],
             "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configure tuned
-yum --quiet --assumeyes install tuned
+yum --assumeyes install tuned
 chkconfig tuned on
 service tuned start
 
