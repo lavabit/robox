@@ -18,7 +18,7 @@ printf "\nretries=128\ndeltarpm=0\nmetadata_expire=0\nmirrorlist_expire=0\n" >> 
 sysctl net.ipv6.conf.all.disable_ipv6=1
 
 # Ensure a nameserver is being used that won't return an IP for non-existent domain names.
-printf "\nnameserver 4.2.2.1\nnameserver 4.2.2.2\n" > /etc/resolv.conf
+printf "\nnameserver 8.8.8.8\nnameserver 4.2.2.2\n" > /etc/resolv.conf
 
 # Set the local hostname to resolve properly.
 printf "\n127.0.0.1	magma.builder\n\n" >> /etc/hosts
