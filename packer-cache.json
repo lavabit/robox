@@ -344,7 +344,7 @@
             "disk_size": 1,
             "boot_wait": "5s",
             "iso_url": "res/media/ubuntu-18.10-server-amd64.iso",
-            "iso_checksum": "5082d79904bf66047ea29c3b44a25d3559bd7a4c2ac0d012f7600c719c59f1ff",
+            "iso_checksum": "3c19945918ae98f7aa2275b221223229abcf323220ed64c619ad1fa9499fe43f",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
