@@ -835,7 +835,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -881,7 +881,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -933,7 +933,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -985,7 +985,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1037,7 +1037,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1089,7 +1089,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1132,7 +1132,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1175,7 +1175,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1218,7 +1218,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1263,7 +1263,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1310,7 +1310,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1357,7 +1357,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1404,7 +1404,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1451,7 +1451,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1497,7 +1497,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1543,7 +1543,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1602,7 +1602,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1653,7 +1653,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1704,7 +1704,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1755,7 +1755,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1818,7 +1818,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1881,7 +1881,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1931,7 +1931,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -1983,7 +1983,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
@@ -2030,7 +2030,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=2,sockets=2"
                 ],
                 [
                     "-drive",
