@@ -82,6 +82,22 @@
         },
         {
             "type": "vmware-iso",
+            "name": "alpine38",
+            "output_directory": "output/alpine38",
+            "headless": true,
+            "disk_size": 1,
+            "boot_wait": "5s",
+            "iso_url": "https://mirror.leaseweb.com/alpine/v3.8/releases/x86_64/alpine-virt-3.8.0_rc1-x86_64.iso",
+            "iso_checksum": "2501ef9ed37409c9933036f7fef335dde24225620fa80c48d9a9cfae98ac338e",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10s",
+            "shutdown_command": "poweroff"
+        },
+        {
+            "type": "vmware-iso",
             "name": "centos6",
             "output_directory": "output/centos6",
             "headless": true,

@@ -149,6 +149,37 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine38/apk.sh"
+            ],
+            "execute_command": "/bin/sh '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine38-parallels"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/alpine38/lsb.sh",
+                "scripts/alpine38/vagrant.sh",
+                "scripts/alpine38/virtualbox.sh",
+                "scripts/alpine38/parallels.sh",
+                "scripts/alpine38/vmware.sh",
+                "scripts/alpine38/qemu.sh",
+                "scripts/alpine38/cache.sh"
+            ],
+            "execute_command": "/bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine38-parallels"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
                 "scripts/centos6/fixdns.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/reboot.sh"
@@ -978,6 +1009,48 @@
         },
         {
             "type": "parallels-iso",
+            "name": "generic-alpine38-parallels",
+            "vm_name": "generic-alpine38-parallels",
+            "output_directory": "output/generic-alpine38-parallels",
+            "boot_wait": "60s",
+            "boot_command": [
+                "<enter><wait10>",
+                "root<enter><wait>",
+                "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine38.vagrant.cfg<enter><wait>",
+                "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine38.vagrant.cfg && ",
+                "mount /dev/sda3 /mnt && ",
+                "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+                "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+                "umount /mnt && reboot<enter>"
+            ],
+            "disk_size": 32768,
+            "prlctl": [
+              ["set", "{{.Name}}", "--adaptive-hypervisor", "on"],
+              ["set", "{{.Name}}", "--memsize", "1024"],
+              ["set", "{{.Name}}", "--pmu-virt", "on"],
+              ["set", "{{.Name}}", "--cpus", "2"]
+            ],
+            "hard_drive_interface": "ide",
+            "guest_os_type": "linux",
+            "http_directory": "http",
+            "iso_url": "https://mirror.leaseweb.com/alpine/v3.8/releases/x86_64/alpine-virt-3.8.0_rc1-x86_64.iso",
+            "iso_checksum": "2501ef9ed37409c9933036f7fef335dde24225620fa80c48d9a9cfae98ac338e",
+            "iso_checksum_type": "sha256",
+            "skip_compaction": false,
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "/sbin/poweroff",
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+            "prlctl_version_file": "/root/parallels-tools-version.txt"
+        },
+        {
+            "type": "parallels-iso",
             "name": "generic-centos6-parallels",
             "vm_name": "generic-centos6-parallels",
             "output_directory": "output/generic-centos6-parallels",
@@ -1740,7 +1813,8 @@
                 "only": [
                     "generic-alpine35-parallels",
                     "generic-alpine36-parallels",
-                    "generic-alpine37-parallels"
+                    "generic-alpine37-parallels",
+                    "generic-alpine38-parallels"
                 ]
             },
             {
@@ -1764,6 +1838,7 @@
                     "generic-alpine35-parallels",
                     "generic-alpine36-parallels",
                     "generic-alpine37-parallels",
+                    "generic-alpine38-parallels",
                     "generic-openbsd6-parallels",
                     "generic-freebsd11-parallels"
                 ]
@@ -1810,6 +1885,15 @@
                     "generic-alpine37-parallels"
                 ],
                 "box_tag": "generic/alpine37",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-alpine38-parallels"
+                ],
+                "box_tag": "generic/alpine38",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
@@ -2010,7 +2094,8 @@
                 "only": [
                     "generic-alpine35-parallels",
                     "generic-alpine36-parallels",
-                    "generic-alpine37-parallels"
+                    "generic-alpine37-parallels",
+                    "generic-alpine38-parallels"
                 ]
             },
             {
@@ -2034,6 +2119,7 @@
                     "generic-alpine35-parallels",
                     "generic-alpine36-parallels",
                     "generic-alpine37-parallels",
+                    "generic-alpine38-parallels"
                     "generic-openbsd6-parallels",
                     "generic-freebsd11-parallels"
                 ]
@@ -2080,6 +2166,15 @@
                     "generic-alpine37-parallels"
                 ],
                 "box_tag": "roboxes/alpine37",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-alpine38-parallels"
+                ],
+                "box_tag": "roboxes/alpine38",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },

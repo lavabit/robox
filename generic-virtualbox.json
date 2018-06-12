@@ -149,6 +149,37 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine38/apk.sh"
+            ],
+            "execute_command": "/bin/sh '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine38-virtualbox"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/alpine38/lsb.sh",
+                "scripts/alpine38/vagrant.sh",
+                "scripts/alpine38/virtualbox.sh",
+                "scripts/alpine38/parallels.sh",
+                "scripts/alpine38/vmware.sh",
+                "scripts/alpine38/qemu.sh",
+                "scripts/alpine38/cache.sh"
+            ],
+            "execute_command": "/bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine38-virtualbox"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
                 "scripts/centos6/fixdns.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/reboot.sh"
@@ -800,7 +831,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Oracle_64",
@@ -846,7 +877,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "OpenSUSE_64",
@@ -898,7 +929,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Linux_64",
@@ -950,7 +981,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Linux_64",
@@ -1002,7 +1033,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Linux_64",
@@ -1013,6 +1044,58 @@
             "vrdp_port_max": 12000,
             "iso_url": "https://mirror.leaseweb.com/alpine/v3.7/releases/x86_64/alpine-virt-3.7.0-x86_64.iso",
             "iso_checksum": "5a4b2588afd32e7024dd61d9558b77b03a4f3189cb4c9fc05e9e944fb780acdd",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "/sbin/poweroff",
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
+        },
+        {
+            "type": "virtualbox-iso",
+            "name": "generic-alpine38-virtualbox",
+            "vm_name": "generic-alpine38-virtualbox",
+            "output_directory": "output/generic-alpine38-virtualbox",
+            "boot_wait": "60s",
+            "boot_command": [
+                "<enter><wait10>",
+                "root<enter><wait>",
+                "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine38.vagrant.cfg<enter><wait>",
+                "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine38.vagrant.cfg && ",
+                "mount /dev/sda3 /mnt && ",
+                "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+                "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+                "umount /mnt && reboot<enter>"
+            ],
+            "disk_size": 32768,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Linux_64",
+            "http_directory": "http",
+            "headless": true,
+            "vrdp_bind_address": "127.0.0.1",
+            "vrdp_port_min": 11000,
+            "vrdp_port_max": 12000,
+            "iso_url": "https://mirror.leaseweb.com/alpine/v3.8/releases/x86_64/alpine-virt-3.8.0_rc1-x86_64.iso",
+            "iso_checksum": "2501ef9ed37409c9933036f7fef335dde24225620fa80c48d9a9cfae98ac338e",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -1045,7 +1128,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -1088,7 +1171,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -1131,7 +1214,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -1176,7 +1259,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "ArchLinux_64",
@@ -1223,7 +1306,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Fedora_64",
@@ -1270,7 +1353,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Fedora_64",
@@ -1317,7 +1400,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Fedora_64",
@@ -1364,7 +1447,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Fedora_64",
@@ -1410,7 +1493,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Debian_64",
@@ -1456,7 +1539,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Debian_64",
@@ -1515,7 +1598,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1566,7 +1649,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1617,7 +1700,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1668,7 +1751,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1731,7 +1814,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1794,7 +1877,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1844,7 +1927,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Gentoo_64",
@@ -1896,7 +1979,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "FreeBSD_64",
@@ -1943,7 +2026,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "OpenBSD_64",
@@ -1977,7 +2060,8 @@
                 "only": [
                     "generic-alpine35-virtualbox",
                     "generic-alpine36-virtualbox",
-                    "generic-alpine37-virtualbox"
+                    "generic-alpine37-virtualbox",
+                    "generic-alpine38-virtualbox"
                 ]
             },
             {
@@ -2001,6 +2085,7 @@
                     "generic-alpine35-virtualbox",
                     "generic-alpine36-virtualbox",
                     "generic-alpine37-virtualbox",
+                    "generic-alpine38-virtualbox",
                     "generic-openbsd6-virtualbox",
                     "generic-freebsd11-virtualbox"
                 ]
@@ -2047,6 +2132,15 @@
                     "generic-alpine37-virtualbox"
                 ],
                 "box_tag": "generic/alpine37",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-alpine38-virtualbox"
+                ],
+                "box_tag": "generic/alpine38",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
@@ -2247,7 +2341,8 @@
                 "only": [
                     "generic-alpine35-virtualbox",
                     "generic-alpine36-virtualbox",
-                    "generic-alpine37-virtualbox"
+                    "generic-alpine37-virtualbox",
+                    "generic-alpine38-virtualbox"
                 ]
             },
             {
@@ -2271,6 +2366,7 @@
                     "generic-alpine35-virtualbox",
                     "generic-alpine36-virtualbox",
                     "generic-alpine37-virtualbox",
+                    "generic-alpine38-virtualbox",
                     "generic-openbsd6-virtualbox",
                     "generic-freebsd11-virtualbox"
                 ]
@@ -2317,6 +2413,15 @@
                     "generic-alpine37-virtualbox"
                 ],
                 "box_tag": "roboxes/alpine37",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-alpine38-virtualbox"
+                ],
+                "box_tag": "roboxes/alpine38",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },

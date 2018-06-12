@@ -149,6 +149,37 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/alpine38/apk.sh"
+            ],
+            "execute_command": "/bin/sh '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine38-hyperv"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/alpine38/lsb.sh",
+                "scripts/alpine38/vagrant.sh",
+                "scripts/alpine38/virtualbox.sh",
+                "scripts/alpine38/parallels.sh",
+                "scripts/alpine38/vmware.sh",
+                "scripts/alpine38/qemu.sh",
+                "scripts/alpine38/cache.sh"
+            ],
+            "execute_command": "/bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine38-hyperv"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
                 "scripts/centos6/fixdns.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/reboot.sh"
@@ -967,6 +998,47 @@
         },
         {
             "type": "hyperv-iso",
+            "name": "generic-alpine38-hyperv",
+            "vm_name": "generic-alpine38-hyperv",
+            "output_directory": "output/generic-alpine38-hyperv",
+            "boot_wait": "60s",
+            "boot_command": [
+                "<enter><wait10>",
+                "root<enter><wait>",
+                "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine38.vagrant.cfg<enter><wait>",
+                "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine38.vagrant.cfg && ",
+                "mount /dev/sda3 /mnt && ",
+                "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+                "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+                "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
+                "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && ",
+                "umount /dev/loop0 && umount /dev/sr0 && eject /dev/cdrom && reboot<enter>"
+            ],
+            "disk_size": 32768,
+            "ram_size": 1024,
+            "cpu": 2,
+            "http_directory": "http",
+            "iso_url": "https://mirror.leaseweb.com/alpine/v3.8/releases/x86_64/alpine-virt-3.8.0_rc1-x86_64.iso",
+            "iso_checksum": "2501ef9ed37409c9933036f7fef335dde24225620fa80c48d9a9cfae98ac338e",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "/sbin/poweroff",
+            "generation": 1,
+            "communicator": "ssh",
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": true,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        },
+        {
+            "type": "hyperv-iso",
             "name": "generic-centos6-hyperv",
             "vm_name": "generic-centos6-hyperv",
             "output_directory": "output/generic-centos6-hyperv",
@@ -1666,7 +1738,8 @@
               "only": [
                   "generic-alpine35-hyperv",
                   "generic-alpine36-hyperv",
-                  "generic-alpine37-hyperv"
+                  "generic-alpine37-hyperv",
+                  "generic-alpine38-hyperv"
               ]
           },
           {
@@ -1690,6 +1763,7 @@
                     "generic-alpine35-hyperv",
                     "generic-alpine36-hyperv",
                     "generic-alpine37-hyperv",
+                    "generic-alpine38-hyperv",
                     "generic-openbsd6-hyperv",
                     "generic-freebsd11-hyperv"
                 ]
@@ -1736,6 +1810,15 @@
                     "generic-alpine37-hyperv"
                 ],
                 "box_tag": "generic/alpine37",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-alpine38-hyperv"
+                ],
+                "box_tag": "generic/alpine38",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
@@ -1936,7 +2019,8 @@
               "only": [
                   "generic-alpine35-hyperv",
                   "generic-alpine36-hyperv",
-                  "generic-alpine37-hyperv"
+                  "generic-alpine37-hyperv",
+                  "generic-alpine38-hyperv"
               ]
           },
           {
@@ -1960,6 +2044,7 @@
                     "generic-alpine35-hyperv",
                     "generic-alpine36-hyperv",
                     "generic-alpine37-hyperv",
+                    "generic-alpine38-hyperv",
                     "generic-openbsd6-hyperv",
                     "generic-freebsd11-hyperv"
                 ]
@@ -2006,6 +2091,15 @@
                     "generic-alpine37-hyperv"
                 ],
                 "box_tag": "roboxes/alpine37",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-alpine38-hyperv"
+                ],
+                "box_tag": "roboxes/alpine38",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
