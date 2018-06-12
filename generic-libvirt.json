@@ -820,7 +820,7 @@
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
+                "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
             ],
             "format": "qcow2",
             "disk_size": 32768,
@@ -1117,7 +1117,7 @@
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
+                "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
             ],
             "format": "qcow2",
             "disk_size": 32768,
@@ -1160,7 +1160,7 @@
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
+                "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
             ],
             "format": "qcow2",
             "disk_size": 32768,
@@ -1203,7 +1203,7 @@
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
+                "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
             ],
             "format": "qcow2",
             "disk_size": 32768,
