@@ -904,11 +904,12 @@
             "vmx_data": {
                 "memsize": "2048",
                 "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
-            "vmx_data_post": {
+                "cpuid.corespersocket": "2",
                 "softpoweroff": "FALSE",
-                "powertype.poweroff": "hard"
+                "powertype.poweroff": "hard",
+                "powertype.poweron": "hard",
+                "powertype.reset": "hard",
+                "powertype.suspend": "hard"
             },
             "guest_os_type": "otherlinux-64",
             "http_directory": "http",
