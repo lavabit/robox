@@ -2,7 +2,7 @@
 
 ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 
-echo 'bazinga.localdomain' > /etc/hostname
+echo 'arch.localdomain' > /etc/hostname
 
 sed -i -e 's/^#\(en_US.UTF-8\)/\1/' /etc/locale.gen
 locale-gen

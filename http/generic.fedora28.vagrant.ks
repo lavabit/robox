@@ -12,7 +12,7 @@ autopart --type=plain --nohome
 clearpart --all --initlabel
 bootloader --timeout=1
 firewall --enabled --service=ssh
-#network --device eth0 --bootproto dhcp --noipv6 --hostname=bazinga.localdomain
+#network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora28.localdomain
 authconfig --enableshadow --passalgo=sha512
 
 %packages

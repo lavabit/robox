@@ -12,7 +12,7 @@ firstboot --disabled
 selinux --enforcing
 firewall --enabled --service=ssh
 
-network --device eth0 --bootproto dhcp --noipv6 --hostname=bazinga.localdomain
+network --device eth0 --bootproto dhcp --noipv6 --hostname=oracle7.localdomain
 
 zerombr
 clearpart --all --initlabel
