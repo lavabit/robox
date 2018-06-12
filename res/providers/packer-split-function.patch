@@ -1,0 +1,128 @@
+diff --git a/packer/test-fixtures/build-split-func.json b/packer/test-fixtures/build-split-func.json
+new file mode 100644
+index 0000000..1b18f9f
+--- /dev/null
++++ b/packer/test-fixtures/build-split-func.json
+@@ -0,0 +1,6 @@
++{
++    "builders": [{
++        "type": "test",
++        "value": "{{split \"foo-bar\" \"-\" 0}}"
++    }]
++}
+diff --git a/template/interpolate/funcs.go b/template/interpolate/funcs.go
+index 924c13d..3bb3699 100644
+--- a/template/interpolate/funcs.go
++++ b/template/interpolate/funcs.go
+@@ -30,6 +30,7 @@ var FuncGens = map[string]FuncGenerator{
+ 	"env":            funcGenEnv,
+ 	"isotime":        funcGenIsotime,
+ 	"pwd":            funcGenPwd,
++	"split":          funcGenSplitter,
+ 	"template_dir":   funcGenTemplateDir,
+ 	"timestamp":      funcGenTimestamp,
+ 	"uuid":           funcGenUuid,
+@@ -60,6 +61,17 @@ func Funcs(ctx *Context) template.FuncMap {
+ 	return template.FuncMap(result)
+ }
+ 
++func funcGenSplitter(ctx *Context) interface{} {
++	return func(k string, s string, i int) (string, error) {
++		// return func(s string) (string, error) {
++		split := strings.Split(k, s)
++		if len(split) <= i {
++			return "", fmt.Errorf("the substring %d was unavailable using the separator value, %s, only %d values were found", i, s, len(split))
++		}
++		return split[i], nil
++	}
++}
++
+ func funcGenBuildName(ctx *Context) interface{} {
+ 	return func() (string, error) {
+ 		if ctx == nil || ctx.BuildName == "" {
+diff --git a/template/interpolate/funcs_test.go b/template/interpolate/funcs_test.go
+index eca1210..3cc4711 100644
+--- a/template/interpolate/funcs_test.go
++++ b/template/interpolate/funcs_test.go
+@@ -200,6 +200,31 @@ func TestFuncTemplatePath(t *testing.T) {
+ 	}
+ }
+ 
++func TestFuncSplit(t *testing.T) {
++	cases := []struct {
++		Input  string
++		Output string
++	}{
++		{
++			`{{split build_name "-" 0}}`,
++			"foo",
++		},
++	}
++
++	ctx := &Context{BuildName: "foo-bar"}
++	for _, tc := range cases {
++		i := &I{Value: tc.Input}
++		result, err := i.Render(ctx)
++		if err != nil {
++			t.Fatalf("Input: %s\n\nerr: %s", tc.Input, err)
++		}
++
++		if result != tc.Output {
++			t.Fatalf("Input: %s\n\nGot: %s", tc.Input, result)
++		}
++	}
++}
++
+ func TestFuncTimestamp(t *testing.T) {
+ 	expected := strconv.FormatInt(InitTime.Unix(), 10)
+ 
+diff --git a/website/source/docs/templates/engine.html.md b/website/source/docs/templates/engine.html.md
+index dd5c9e0..38853aa 100644
+--- a/website/source/docs/templates/engine.html.md
++++ b/website/source/docs/templates/engine.html.md
+@@ -38,6 +38,7 @@ Here is a full list of the available functions for reference.
+     examples below in [the `isotime` format reference](/docs/templates/engine.html#isotime-function-format-reference).
+ -   `lower` - Lowercases the string.
+ -   `pwd` - The working directory while executing Packer.
++-   `split` - Split an input string using separator and return the requested substring.
+ -   `template_dir` - The directory to the template for the build.
+ -   `timestamp` - The current Unix timestamp in UTC.
+ -   `uuid` - Returns a random UUID.
+@@ -225,3 +226,37 @@ Please note that double quote characters need escaping inside of templates (in t
+ ```
+ 
+ -&gt; **Note:** See the [Amazon builder](/docs/builders/amazon.html) documentation for more information on how to correctly configure the Amazon builder in this example.
++
++# split Function Format Reference
++
++The function `split` takes an input string, a seperator string, and a numeric component value and returns request substring.
++
++Here are some examples using the above options:
++
++``` liquid
++build_name = foo-bar-provider
++
++{{split build_name "-" 0}} = foo
++{{split "fixed-string" "-" 1}} = string
++```
++
++Please note that double quote characters need escaping inside of templates (in this case, on the `fixed-string` value):
++
++``` json
++{
++  "post-processors": [
++    [
++      {
++        "type": "vagrant",
++        "compression_level": 9,
++        "keep_input_artifact": false,
++        "vagrantfile_template": "tpl/{{split build_name \"-\" 1}.rb",
++        "output": "output/{{build_name}}.box",
++        "only": [
++            "org-name-provider"
++        ]
++      }
++    ]
++  ]
++}
++```
