@@ -11,7 +11,7 @@ for p in $PORT; do
 done
 
 # Sudo is also needed to find the virtualbox ports.
-PORT=`sudo netstat -pnl 2>&1 | grep tcp | grep "VBoxHeadless" | awk -F':' '{print $2}' | awk -F' ' '{print $1}' | grep -E "^59"`
+PORT=`sudo netstat -pnl 2>&1 | grep tcp | grep "VBoxHeadless" | awk -F':' '{print $2}' | awk -F' ' '{print $1}' | grep -E "^11"`
 
 for p in $PORT; do
   rpm -q vinagre &> /dev/null || (printf "\n\nAn RDP port was detected, but Vinagre doesn't appear to be available.\n\n" && exit 1)
