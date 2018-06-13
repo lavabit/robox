@@ -33,7 +33,7 @@ printf "iface eth0 inet dhcp\n" >> /etc/network/interfaces;
 printf "pre-up sleep 2\n" >> /etc/network/interfaces;
 
 # Ensure a nameserver is being used that won't return an IP for non-existent domain names.
-printf "nameserver 8.8.8.8\nnameserver 4.2.2.2\n" > /etc/resolv.conf
+printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\nnameserver 208.67.222.222\n" > /etc/resolv.conf
 
 # Ensure the networking interfaces get configured on boot.
 systemctl enable networking.service
