@@ -108,6 +108,18 @@ function start() {
       fi
     fi
   fi
+
+  # Set the tuning profile to virtual-host.
+  if [ -f /usr/sbin/tuned-adm ]; then
+    sudo /usr/sbin/tuned-adm profile virtual-host
+    sudo /usr/sbin/tuned-adm active
+  fi
+
+  # Set the CPU performance level to maximum.
+  if [ -f /usr/bin/cpupower ]; then
+    sudo /usr/bin/cpupower set -b 0
+    sudo /usr/bin/cpupower info
+  fi
 }
 
 # Print the current URL and SHA hash for install discs which are updated frequently.
