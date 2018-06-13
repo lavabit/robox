@@ -103,6 +103,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/centos7/kernel.sh",
+                "scripts/centos7/floppy.sh",
                 "scripts/centos7/virtualbox.sh",
                 "scripts/centos7/parallels.sh",
                 "scripts/centos7/vmware.sh",
@@ -202,6 +203,7 @@
                 "scripts/debian8/postfix.sh",
                 "scripts/debian8/mysql.sh",
                 "scripts/debian8/memcached.sh",
+                "scripts/debian8/floppy.sh",
                 "scripts/debian8/vagrant.sh",
                 "scripts/debian8/magma.sh",
                 "scripts/debian8/fixtty.sh",
@@ -331,6 +333,7 @@
         {
             "scripts": [
                 "scripts/ubuntu1604/limits.sh",
+                "scripts/ubuntu1604/floppy.sh",
                 "scripts/ubuntu1604/vagrant.sh",
                 "scripts/ubuntu1604/postfix.sh",
                 "scripts/ubuntu1604/mysql.sh",
@@ -367,6 +370,7 @@
         {
             "scripts": [
                 "scripts/ubuntu1610/limits.sh",
+                "scripts/ubuntu1610/floppy.sh",
                 "scripts/ubuntu1610/vagrant.sh",
                 "scripts/ubuntu1610/postfix.sh",
                 "scripts/ubuntu1610/mysql.sh",
@@ -402,6 +406,7 @@
         {
             "scripts": [
                 "scripts/ubuntu1704/limits.sh",
+                "scripts/ubuntu1704/floppy.sh",
                 "scripts/ubuntu1704/vagrant.sh",
                 "scripts/ubuntu1704/postfix.sh",
                 "scripts/ubuntu1704/mysql.sh",

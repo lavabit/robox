@@ -20,6 +20,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/oracle7/kernel.sh",
+                "scripts/oracle7/floppy.sh",
                 "scripts/oracle7/virtualbox.sh",
                 "scripts/oracle7/parallels.sh",
                 "scripts/oracle7/vmware.sh",
@@ -72,9 +73,7 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/alpine36/lsb.sh",
-                "scripts/alpine36/floppy.sh",
-                "scripts/alpine36/floppy.sh",
+                "scripts/alpine35/lsb.sh",
                 "scripts/alpine35/floppy.sh",
                 "scripts/alpine35/vagrant.sh",
                 "scripts/alpine35/virtualbox.sh",
@@ -244,6 +243,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/centos7/kernel.sh",
+                "scripts/centos7/floppy.sh",
                 "scripts/centos7/virtualbox.sh",
                 "scripts/centos7/parallels.sh",
                 "scripts/centos7/vmware.sh",
@@ -281,6 +281,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/rhel7/kernel.sh",
+                "scripts/rhel7/floppy.sh",
                 "scripts/rhel7/virtualbox.sh",
                 "scripts/rhel7/parallels.sh",
                 "scripts/rhel7/vmware.sh",
@@ -369,6 +370,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/debian8/floppy.sh",
                 "scripts/debian8/vagrant.sh",
                 "scripts/debian8/fixtty.sh",
                 "scripts/debian8/virtualbox.sh",
@@ -398,6 +400,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/debian9/floppy.sh",
                 "scripts/debian9/vagrant.sh",
                 "scripts/debian9/fixtty.sh",
                 "scripts/debian9/virtualbox.sh",
@@ -646,6 +649,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/ubuntu1604/floppy.sh",
                 "scripts/ubuntu1604/vagrant.sh",
                 "scripts/ubuntu1604/fixtty.sh",
                 "scripts/ubuntu1604/virtualbox.sh",
@@ -676,6 +680,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/ubuntu1610/floppy.sh",
                 "scripts/ubuntu1610/vagrant.sh",
                 "scripts/ubuntu1610/fixtty.sh",
                 "scripts/ubuntu1610/virtualbox.sh",
@@ -706,6 +711,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/ubuntu1704/floppy.sh",
                 "scripts/ubuntu1704/vagrant.sh",
                 "scripts/ubuntu1704/fixtty.sh",
                 "scripts/ubuntu1704/virtualbox.sh",
@@ -736,6 +742,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/ubuntu1710/floppy.sh",
                 "scripts/ubuntu1710/vagrant.sh",
                 "scripts/ubuntu1710/fixtty.sh",
                 "scripts/ubuntu1710/virtualbox.sh",
@@ -766,6 +773,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/ubuntu1804/floppy.sh",
                 "scripts/ubuntu1804/vagrant.sh",
                 "scripts/ubuntu1804/fixtty.sh",
                 "scripts/ubuntu1804/virtualbox.sh",
@@ -796,6 +804,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/ubuntu1810/floppy.sh",
                 "scripts/ubuntu1810/vagrant.sh",
                 "scripts/ubuntu1810/fixtty.sh",
                 "scripts/ubuntu1810/virtualbox.sh",
