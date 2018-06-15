@@ -587,8 +587,8 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/freebsd11/hostname.sh",
                 "scripts/freebsd11/pkg.sh",
+                "scripts/freebsd11/hostname.sh",
                 "scripts/freebsd11/kernel.sh",
                 "scripts/freebsd11/firstboot.sh",
                 "scripts/freebsd11/motd.sh",
