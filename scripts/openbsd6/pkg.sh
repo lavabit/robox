@@ -15,5 +15,9 @@ ln -s /usr/local/bin/bash /bin/bash
 # Some hypervisors require this to run OpenBSD properly.
 echo "kern.allowkmem=1" > /etc/sysctl.conf
 
+# Initialize the locate database.
+ln -s /usr/libexec/locate.updatedb /usr/bin/updatedb
+/usr/libexec/locate.updatedb
+
 # Reboot gracefully.
 shutdown -r +1 &

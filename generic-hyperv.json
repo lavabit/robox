@@ -622,6 +622,7 @@
             "scripts": [
                 "scripts/openbsd6/hostname.sh",
                 "scripts/openbsd6/vagrant.sh",
+                "scripts/openbsd6/profile.sh",
                 "scripts/openbsd6/virtualbox.sh",
                 "scripts/openbsd6/parallels.sh",
                 "scripts/openbsd6/vmware.sh",
