@@ -14,9 +14,6 @@ export DEBCONF_NONINTERACTIVE_SEEN=true
 # Disable periodic activities of apt
 printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
 
-# Keep the daily apt updater from deadlocking our installs.
-systemctl stop apt-daily.service apt-daily.timer
-
 # Remove the CDROM as a media source.
 sed -i -e "/cdrom:/d" /etc/apt/sources.list
 
@@ -27,7 +24,7 @@ apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
 # apt-get --assume-yes -o Dpkg::Options::="--force-confnew" full-upgrade; error
 
 # The packages needed to compile magma.
-apt-get --assume-yes install gcc g++ gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
+apt-get --assume-yes install vim gcc g++ gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
 
 # The memcached server.
 apt-get --assume-yes install memcached libevent-dev; error
