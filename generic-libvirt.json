@@ -371,6 +371,7 @@
             "scripts": [
                 "scripts/debian8/floppy.sh",
                 "scripts/debian8/vagrant.sh",
+                "scripts/debian8/motd.sh",
                 "scripts/debian8/fixtty.sh",
                 "scripts/debian8/virtualbox.sh",
                 "scripts/debian8/parallels.sh",
@@ -401,6 +402,7 @@
             "scripts": [
                 "scripts/debian9/floppy.sh",
                 "scripts/debian9/vagrant.sh",
+                "scripts/debian9/motd.sh",                
                 "scripts/debian9/fixtty.sh",
                 "scripts/debian9/virtualbox.sh",
                 "scripts/debian9/parallels.sh",
