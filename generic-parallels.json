@@ -589,6 +589,7 @@
                 "scripts/freebsd11/pkg.sh",
                 "scripts/freebsd11/kernel.sh",
                 "scripts/freebsd11/firstboot.sh",
+                "scripts/freebsd11/motd.sh",
                 "scripts/freebsd11/vagrant.sh",
                 "scripts/freebsd11/virtualbox.sh",
                 "scripts/freebsd11/parallels.sh",
@@ -619,6 +620,7 @@
         {
             "scripts": [
                 "scripts/openbsd6/hostname.sh",
+                "scripts/openbsd6/motd.sh",
                 "scripts/openbsd6/vagrant.sh",
                 "scripts/openbsd6/profile.sh",
                 "scripts/openbsd6/virtualbox.sh",
