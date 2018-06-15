@@ -25,6 +25,35 @@ if [ -z ${VMWARE_WORKSTATION} ]; then
   exit 2
 fi
 
+
+function provide-limits() {
+
+  # Find out how much RAM is installed, and what 50% would be in KB.
+  TOTALMEM=`free -k | grep -E "^Mem:" | awk -F' ' '{print $2}'`
+  HALFMEM=`echo $(($TOTALMEM/2))`
+
+  # Increase the limits for our human user.
+  printf "$HUMAN    soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-$HUMAN.conf
+  printf "$HUMAN    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-$HUMAN.conf
+  printf "$HUMAN    soft    nproc      65536\n" >> /etc/security/limits.d/50-$HUMAN.conf
+  printf "$HUMAN    hard    nproc      65536\n" >> /etc/security/limits.d/50-$HUMAN.conf
+  printf "$HUMAN    soft    nofile     1048576\n" >> /etc/security/limits.d/50-$HUMAN.conf
+  printf "$HUMAN    hard    nofile     1048576\n" >> /etc/security/limits.d/50-$HUMAN.conf
+  printf "$HUMAN    soft    stack      unlimited\n" >> /etc/security/limits.d/50-$HUMAN.conf
+  printf "$HUMAN    hard    stack      unlimited\n" >> /etc/security/limits.d/50-$HUMAN.conf
+
+  # Now do the same for the root user.
+  printf "root      soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-root.conf
+  printf "root      hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-root.conf
+  printf "root      soft    nproc      65536\n" >> /etc/security/limits.d/50-root.conf
+  printf "root      hard    nproc      65536\n" >> /etc/security/limits.d/50-root.conf
+  printf "root      soft    nofile     1048576\n" >> /etc/security/limits.d/50-root.conf
+  printf "root      hard    nofile     1048576\n" >> /etc/security/limits.d/50-root.conf
+  printf "root      soft    stack      unlimited\n" >> /etc/security/limits.d/50-root.conf
+  printf "root      hard    stack      unlimited\n" >> /etc/security/limits.d/50-root.conf
+
+}
+
 function provide-libvirt() {
   # Repo setup.
   yum --assumeyes --enablerepo=extras install epel-release centos-release-qemu-ev
