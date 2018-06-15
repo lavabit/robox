@@ -650,6 +650,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/ubuntu1604/floppy.sh",
+                "scripts/ubuntu1604/motd.sh",
                 "scripts/ubuntu1604/vagrant.sh",
                 "scripts/ubuntu1604/fixtty.sh",
                 "scripts/ubuntu1604/virtualbox.sh",
@@ -681,6 +682,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/ubuntu1610/floppy.sh",
+                "scripts/ubuntu1610/motd.sh",
                 "scripts/ubuntu1610/vagrant.sh",
                 "scripts/ubuntu1610/fixtty.sh",
                 "scripts/ubuntu1610/virtualbox.sh",
@@ -712,6 +714,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/ubuntu1704/floppy.sh",
+                "scripts/ubuntu1704/motd.sh",
                 "scripts/ubuntu1704/vagrant.sh",
                 "scripts/ubuntu1704/fixtty.sh",
                 "scripts/ubuntu1704/virtualbox.sh",
@@ -743,6 +746,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/ubuntu1710/floppy.sh",
+                "scripts/ubuntu1710/motd.sh",
                 "scripts/ubuntu1710/vagrant.sh",
                 "scripts/ubuntu1710/fixtty.sh",
                 "scripts/ubuntu1710/virtualbox.sh",
@@ -774,6 +778,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/ubuntu1804/floppy.sh",
+                "scripts/ubuntu1804/motd.sh",
                 "scripts/ubuntu1804/vagrant.sh",
                 "scripts/ubuntu1804/fixtty.sh",
                 "scripts/ubuntu1804/virtualbox.sh",
@@ -805,6 +810,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/ubuntu1810/floppy.sh",
+                "scripts/ubuntu1810/motd.sh",
                 "scripts/ubuntu1810/vagrant.sh",
                 "scripts/ubuntu1810/fixtty.sh",
                 "scripts/ubuntu1810/virtualbox.sh",
