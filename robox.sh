@@ -9,7 +9,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.6.26"
+export VERSION="1.8.2"
 export AGENT="Vagrant/2.1.1 (+https://www.vagrantup.com; ruby2.4.4):"
 
 # Limit the number of cpus packer will use.
@@ -732,11 +732,12 @@ function builder() {
 }
 
 function all() {
+  start
+
   links
   validate
   localized
 
-  start
   builder
 
   for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done
