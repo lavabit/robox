@@ -1723,7 +1723,7 @@
             "vnc_disable_password": true,
             "vmx_remove_ethernet_interfaces": true,
             "iso_url": "res/media/ubuntu-18.10-server-amd64.iso",
-            "iso_checksum": "3c19945918ae98f7aa2275b221223229abcf323220ed64c619ad1fa9499fe43f",
+            "iso_checksum": "4836e45bda018a3d99aca40599150735e15a070f21ee287dead360acff2841b4",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
