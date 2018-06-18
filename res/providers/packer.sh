@@ -30,7 +30,7 @@ sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 300, 8/g" post-processor/va
 # Build for Linux, Darwin, and Windows
 PATH=$GOPATH/bin:$PATH
 XC_ARCH=amd64 XC_OS="windows darwin linux" scripts/build.sh
-exit
+
 # Install
 sudo install pkg/linux_amd64/packer /usr/local/bin/
 sudo chown root:root /usr/local/bin/packer
