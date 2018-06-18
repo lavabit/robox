@@ -652,7 +652,7 @@ function hyperv() {
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" == ^magma-developer-hyperv$ ]]; then
+      if [[ "${LIST[$i]}" =~ ^magma-developer-hyperv$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv.json
         rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
