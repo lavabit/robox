@@ -895,7 +895,6 @@
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "60s",
             "boot_command": [
-                "<wait10><wait10><wait10><wait10><wait10><wait10>",
                 "<esc><enter><wait>",
                 "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
                 "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
@@ -2044,7 +2043,6 @@
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "30s",
             "boot_command": [
-                "<wait10><wait10>",
                 "S<enter><wait>",
                 "dhclient vio0<enter><wait5>",
                 "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.cfg<enter><wait>",
