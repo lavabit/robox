@@ -997,7 +997,7 @@
             "vm_name": "magma-openbsd6-vmware",
             "vmdk_name": "magma-openbsd6-vmware",
             "output_directory": "output/magma-openbsd6-vmware",
-            "boot_wait": "20s",
+            "boot_wait": "40s",
             "boot_command": [
                 "S<enter><wait>",
                 "dhclient em0<enter><wait5>",

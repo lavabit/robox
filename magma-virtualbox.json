@@ -1135,7 +1135,7 @@
             "name": "magma-openbsd6-virtualbox",
             "vm_name": "magma-openbsd6-virtualbox",
             "output_directory": "output/magma-openbsd6-virtualbox",
-            "boot_wait": "20s",
+            "boot_wait": "40s",
             "boot_command": [
                 "S<enter><wait>",
                 "dhclient em0<enter><wait5>",

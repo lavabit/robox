@@ -1802,7 +1802,7 @@
             "name": "generic-openbsd6-parallels",
             "vm_name": "generic-openbsd6-parallels",
             "output_directory": "output/generic-openbsd6-parallels",
-            "boot_wait": "20s",
+            "boot_wait": "40s",
             "boot_command": [
                 "S<enter><wait>",
                 "dhclient em0<enter><wait5>",
