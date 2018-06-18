@@ -278,8 +278,8 @@ function box() {
   export PACKER_LOG_PATH="$BASE/logs/log-${TIMESTAMP}.txt"
 
   if [[ $OS == "Windows_NT" ]]; then
-      packer build -on-error=cleanup -parallel=false -only=$1 magma-hyerpv.json
-      packer build -on-error=cleanup -parallel=false -only=$1 generic-hyerpv.json
+      packer build -on-error=cleanup -parallel=false -only=$1 magma-hyperv.json
+      packer build -on-error=cleanup -parallel=false -only=$1 generic-hyperv.json
       packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
       packer build -on-error=cleanup -parallel=false -only=$1 developer-hyperv.json
   elif [[ `uname` == "Darwin" ]]; then
