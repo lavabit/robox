@@ -22,7 +22,7 @@ go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
 git checkout v1.2.4
 
 # Apply the split function patch.
-cat $BASE/res/providers/packer-split-function.patch | patch -p1
+cat $BASE/packer-split-function.patch | patch -p1
 
 # Customize
 sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 300, 8/g" post-processor/vagrant-cloud/step_upload.go
