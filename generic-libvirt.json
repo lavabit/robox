@@ -402,7 +402,7 @@
             "scripts": [
                 "scripts/debian9/floppy.sh",
                 "scripts/debian9/vagrant.sh",
-                "scripts/debian9/motd.sh",                
+                "scripts/debian9/motd.sh",
                 "scripts/debian9/fixtty.sh",
                 "scripts/debian9/virtualbox.sh",
                 "scripts/debian9/parallels.sh",
@@ -895,6 +895,7 @@
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "60s",
             "boot_command": [
+                "<wait10><wait10><wait10><wait10><wait10><wait10>",
                 "<esc><enter><wait>",
                 "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
                 "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
@@ -2041,8 +2042,9 @@
             "output_directory": "output/generic-openbsd6-libvirt",
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
-            "boot_wait": "20s",
+            "boot_wait": "30s",
             "boot_command": [
+                "<wait10><wait10>",
                 "S<enter><wait>",
                 "dhclient vio0<enter><wait5>",
                 "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.cfg<enter><wait>",
