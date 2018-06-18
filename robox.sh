@@ -382,7 +382,7 @@ function available() {
       BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
 
       PROVIDER="hyperv"
-      curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -393,7 +393,7 @@ function available() {
       fi
 
       PROVIDER="libvirt"
-      curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -405,7 +405,7 @@ function available() {
 
       PROVIDER="parallels"
       if [[ "${ORGANIZATION}" == "generic" ]]; then
-        curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+        curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
         if [ $? != 0 ]; then
           let MISSING+=1
@@ -417,7 +417,7 @@ function available() {
       fi
 
       PROVIDER="virtualbox"
-      curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -428,7 +428,7 @@ function available() {
       fi
 
       PROVIDER="vmware_desktop"
-      curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -468,7 +468,7 @@ function public() {
       BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
 
       PROVIDER="hyperv"
-      curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -479,7 +479,7 @@ function public() {
       fi
 
       PROVIDER="libvirt"
-      curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -491,7 +491,7 @@ function public() {
 
       PROVIDER="parallels"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes)$ ]]; then
-        curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+        curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
         if [ $? != 0 ]; then
           let MISSING+=1
@@ -503,7 +503,7 @@ function public() {
       fi
 
       PROVIDER="virtualbox"
-      curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -514,7 +514,7 @@ function public() {
       fi
 
       PROVIDER="vmware_desktop"
-      curl --head --silent --location --user-agent '${AGENT}' "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
