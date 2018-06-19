@@ -255,11 +255,13 @@ function provide-setup() {
   fi
 }
 
+# Verify Root Permissions
 if [[ `id --user` != 0 ]]; then
   tput setaf 1; printf "\nError. Not running with root permissions.\n\n"; tput sgr0
   exit 2
 fi
 
+# Ensure a Credentials File is Available
 if [ -f $BASE/../../.credentialsrc ]; then
   source $BASE/../../.credentialsrc
 else
@@ -267,6 +269,7 @@ else
   exit 2
 fi
 
+# Ensure the VMWare Serial is Available
 if [ -z ${VMWARE_WORKSTATION} ]; then
   tput setaf 1; printf "\nError. The VMware serial number is missing. Add it to the credentials file.\n\n"; tput sgr0
   exit 2
