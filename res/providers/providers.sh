@@ -220,6 +220,7 @@ function provide-packer() {
   # Add the Split Function
   cat $BASE/packer-split-function.patch | patch -p1
 
+  # Only Needed for v1.2.4
   # Fix the HyperV Issue with Parsing Addresses
   cat $BASE/hyperv-array-function.patch | patch -p1
 
