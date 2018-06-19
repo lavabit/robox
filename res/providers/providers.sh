@@ -1,6 +1,8 @@
 #!/bin/bash -eux
 
 export HUMAN="ladar"
+export PACKER_VERSION="v1.2.4"
+export VAGRANT_VERSION="2.1.1"
 
 # Cross Platform Script Directory
 pushd `dirname $0` > /dev/null
@@ -41,7 +43,14 @@ function provide-libvirt() {
   yum --assumeyes --enablerepo=extras install epel-release centos-release-qemu-ev
 
   # Libvirt Install
-  yum --assumeyes --enablerepo=epel --enablerepo=centos-qemu-ev install libvirt libvirt-client libvirt-daemon libvirt-daemon-config-network libvirt-daemon-config-nwfilter libvirt-daemon-driver-interface libvirt-daemon-driver-network libvirt-daemon-driver-nodedev libvirt-daemon-driver-nwfilter libvirt-daemon-driver-qemu libvirt-daemon-driver-secret libvirt-daemon-driver-storage libvirt-daemon-kvm qemu qemu-common qemu-img qemu-kvm qemu-kvm-common qemu-kvm-tools qemu-system-x86 qemu-user
+  yum --assumeyes --enablerepo=epel --enablerepo=centos-qemu-ev install \
+    libvirt libvirt-client libvirt-daemon libvirt-daemon-config-network \
+    libvirt-daemon-config-nwfilter libvirt-daemon-driver-interface \
+    libvirt-daemon-driver-network libvirt-daemon-driver-nodedev \
+    libvirt-daemon-driver-nwfilter libvirt-daemon-driver-qemu \
+    libvirt-daemon-driver-secret libvirt-daemon-driver-storage \
+    libvirt-daemon-kvm qemu qemu-common qemu-img qemu-kvm qemu-kvm-common \
+    qemu-kvm-tools qemu-system-x86 qemu-user
 
   # Setup the Libvirt, QEMU and KVM Groups
   usermod -aG kvm root
@@ -58,7 +67,8 @@ function provide-libvirt() {
 
 function provide-lxc() {
   # LXC install (Optional)
-  yum --assumeyes --enablerepo=epel install lxc lua-lxc lxc-libs libvirt-daemon-driver-lxc libvirt-daemon-lxc
+  yum --assumeyes --enablerepo=epel install lxc lua-lxc lxc-libs \
+   libvirt-daemon-driver-lxc libvirt-daemon-lxc
 
   # Disable LXC Automatic Startup
   systemctl disable lxc.service
@@ -66,13 +76,16 @@ function provide-lxc() {
 
 function provide-virtmanager() {
   # Remove Viewer / Virt Manager Client Install (Optional)
-  yum --assumeyes install virt-manager virt-manager-common gvnc libgvnc gtk-vnc2 spice-glib spice-gtk3 libspice-client-glib libvirt-glib libvirt-gconfig libvirt-gobject libvirt-python
+  yum --assumeyes install virt-manager virt-manager-common gvnc \
+    libgvnc gtk-vnc2 spice-glib spice-gtk3 libspice-client-glib \
+    libvirt-glib libvirt-gconfig libvirt-gobject libvirt-python
 }
 
 function provide-vmware() {
   # VMware Workstation Install
   chmod +x VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle
-  bash VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle --console --required --eulas-agreed --set-setting vmware-workstation serialNumber "${VMWARE_WORKSTATION}"
+  bash VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle --console \
+    --required --eulas-agreed --set-setting vmware-workstation serialNumber "${VMWARE_WORKSTATION}"
 
   # Disable VMWare Automatic Startup
   systemctl disable vmware.service
@@ -137,10 +150,14 @@ function provide-vbox() {
 }
 
 function provide-docker() {
+  # Ensure the EPEL Repo is Available
+  yum --assumeyes --enablerepo=extras install epel-release
+
   # Docker Install
-  yum --assumeyes install docker docker-common docker-selinux docker-logrotate
-  yum --assumeyes install docker-latest docker-latest-logrotate docker-latest-v1.10-migrator
-  yum --assumeyes install python-docker-py python-docker-scripts python-dockerfile-parse
+  yum --assumeyes --enablerepo=extras --enablerepo=epel install docker \
+    docker-common docker-selinux docker-logrotate docker-latest \
+    docker-latest-logrotate docker-latest-v1.10-migrator \
+    python-docker-py python-docker-scripts python-dockerfile-parse
 
   # Setup Docker Latest as the Default
   sed -i -e "s/#DOCKERBINARY=\/usr\/bin\/docker-latest/DOCKERBINARY=\/usr\/bin\/docker-latest/g" /etc/sysconfig/docker
@@ -165,25 +182,74 @@ function provide-docker() {
 }
 
 function provide-vagrant() {
-  # Vagrant
-  yum --assumeyes install vagrant_2.1.1_x86_64.rpm
+  # Download Vagrant
+  curl --location --output "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm" "https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
+
+  # Install Vagrant
+  yum --assumeyes install $BASE/vagrant_2.1.1_x86_64.rpm
 
   # Vagrant Libvirt Plugin
   vagrant plugin install vagrant-libvirt
+
+  # Delete the Download
+  rm --force $BASE/vagrant_2.1.1_x86_64.rpm
 }
 
 function provide-packer() {
-  # Packer
-  unzip -o packer_1.2.4_linux_amd64.zip -d /usr/local/bin/
+  # Install Golang Compiler
+  yum --assumeyes install golang
+
+  # Setup the Go Path
+  export GOPATH=$HOME/go/
+
+  # Remove Previous Builds
+  rm --recursive --force $GOPATH
+
+  # Fetch and Compile Gox
+  go get github.com/mitchellh/gox && cd $GOPATH/src/github.com/mitchellh/gox
+  go build -o bin/gox .
+
+  # Fetch Patchker
+  go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
+
+  # Checkout the Proper Version
+  if [ -z $PACKER_VERSION ]; then
+    git checkout "$PACKER_VERSION"
+  fi
+
+  # Add the Split Function
+  cat $BASE/packer-split-function.patch | patch -p1
+
+  # Fix the HyperV Issue with Parsing Addresses
+  cat $BASE/hyperv-array-function.patch | patch -p1
+
+  # Retry Upload Failures Twenty Times
+  sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 30, 20/g" post-processor/vagrant-cloud/step_upload.go
+
+  # Build for Linux, Darwin, and Windows
+  XC_ARCH=amd64 XC_OS="linux darwin windows" scripts/build.sh
+
+  # Install
+  install pkg/linux_amd64/packer /usr/local/bin/
   chown root:root /usr/local/bin/packer
   chcon unconfined_u:object_r:bin_t:s0 /usr/local/bin/packer
 }
 
 function provide-setup() {
+
+  # Update the System
   yum --assumeyes update
-  yum --assumeyes install bind-tools vim wget curl git lsof gawk make autotools automake gcc nload kernel-headers kernel-devel golang yum-metadata-parse yum-plugin-fastestmirror yum-plugin-ps yum-plugin-priorities yum-plugin-list-data yum-plugin-verify
+
+  # Install Basic Packages
+  yum --assumeyes install bind-tools vim wget curl git lsof gawk nload \
+    kernel-headers kernel-devel yum-plugin-fastestmirror yum-plugin-verify
+
+  # Install the Development Tools
+  # Needed to Compile VMWare/Virtualbox Kernel Modules
   yum --assumeyes groupinstall "Development Tools"
-  if [ ! -d /home/ladar/ ]; then
+
+  # Create Human User If Necessary
+  if [ ! -d /home/$HUMAN/ ]; then
     useradd $HUMAN
   fi
 }
@@ -209,6 +275,11 @@ provide-setup
 provide-limits
 
 provide-vbox
-provide-libvirt
-provide-vmware
 provide-docker
+provide-vmware
+provide-packer
+provide-libvirt
+
+if [ -f /usr/bin/X ]; then
+  provide-virtmanager
+fi

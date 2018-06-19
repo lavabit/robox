@@ -1,0 +1,26 @@
+From efa90219744aad48deaeab88a39d46f8386ea707 Mon Sep 17 00:00:00 2001
+From: Jordan Borean <jborean93@gmail.com>
+Date: Mon, 18 Jun 2018 14:45:33 +1000
+Subject: [PATCH] Check if hyper-v addresses is an array before slicing it
+
+---
+ common/powershell/hyperv/hyperv.go | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/common/powershell/hyperv/hyperv.go b/common/powershell/hyperv/hyperv.go
+index 5b0108dbe8..392984e3f5 100644
+--- a/common/powershell/hyperv/hyperv.go
++++ b/common/powershell/hyperv/hyperv.go
+@@ -1009,7 +1009,11 @@ param([string]$mac, [int]$addressIndex)
+ try {
+   $vm = Hyper-V\Get-VM | ?{$_.NetworkAdapters.MacAddress -eq $mac}
+   if ($vm.NetworkAdapters.IpAddresses) {
+-    $ip = $vm.NetworkAdapters.IpAddresses[$addressIndex]
++    $ipAddresses = $vm.NetworkAdapters.IPAddresses
++    if ($ipAddresses -isnot [array]) {
++      $ipAddresses = @($ipAddresses)
++    }
++    $ip = $ipAddresses[$addressIndex]
+   } else {
+     $vm_info = Get-CimInstance -ClassName Msvm_ComputerSystem -Namespace root\virtualization\v2 -Filter "ElementName='$($vm.Name)'"
+     $ip_details = (Get-CimAssociatedInstance -InputObject $vm_info -ResultClassName Msvm_KvpExchangeComponent).GuestIntrinsicExchangeItems | %{ [xml]$_ } | ?{ $_.SelectSingleNode("/INSTANCE/PROPERTY[@NAME='Name']/VALUE[child::text()='NetworkAddressIPv4']") }
