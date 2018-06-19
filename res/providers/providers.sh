@@ -2,29 +2,11 @@
 
 export HUMAN="ladar"
 
-if [[ `id --user` != 0 ]]; then
-  tput setaf 1; printf "\nError. Not running with root permissions.\n\n"; tput sgr0
-  exit 2
-fi
-
 # Cross Platform Script Directory
 pushd `dirname $0` > /dev/null
-SCRIPT_PATH=`pwd -P`
+BASE=`pwd -P`
 popd > /dev/null
-cd $SCRIPT_PATH
-
-if [ -f $SCRIPT_PATH/../../.credentialsrc ]; then
-  source $SCRIPT_PATH/../../.credentialsrc
-else
-  tput setaf 1; printf "\nError. The credentials file is missing.\n\n"; tput sgr0
-  exit 2
-fi
-
-if [ -z ${VMWARE_WORKSTATION} ]; then
-  tput setaf 1; printf "\nError. The VMware serial number is missing. Add it to the credentials file.\n\n"; tput sgr0
-  exit 2
-fi
-
+cd $BASE
 
 function provide-limits() {
 
@@ -98,8 +80,10 @@ function provide-vmware() {
   systemctl disable vmware-workstation-server.service
 
   # Setup the Virtual Interfaces as Trusted
-  firewall-cmd --permanent --zone=trusted --add-interface=vmnet1
-  firewall-cmd --permanent --zone=trusted --add-interface=vmnet8
+  if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --permanent --zone=trusted --add-interface=vmnet1
+    firewall-cmd --permanent --zone=trusted --add-interface=vmnet8
+  fi
 }
 
 function provide-vbox() {
@@ -143,7 +127,9 @@ function provide-vbox() {
   usermod -aG vboxusers $HUMAN
 
   # Setup the Virtual Interfaces as Trusted
-  firewall-cmd --permanent --zone=trusted --add-interface=vibr0
+  if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --permanent --zone=trusted --add-interface=vibr0
+  fi
 }
 
 function provide-docker() {
@@ -169,7 +155,9 @@ function provide-docker() {
   systemctl disable docker-cleanup.timer
 
   # Setup the Virtual Interfaces as Trusted
-  firewall-cmd --permanent --zone=trusted --add-interface=docker0
+  if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --permanent --zone=trusted --add-interface=docker0
+  fi
 }
 
 function provide-vagrant() {
@@ -186,3 +174,35 @@ function provide-packer() {
   chown root:root /usr/local/bin/packer
   chcon unconfined_u:object_r:bin_t:s0 /usr/local/bin/packer
 }
+
+function provide-setup() {
+  yum --assumeyes update
+  yum --assumeyes install bind-tools vim wget curl git lsof kernel-headers kernel-devel golang yum-metadata-parse yum-plugin-fastestmirror yum-plugin-ps yum-plugin-priorities yum-plugin-list-data yum-plugin-verify make autotools automake gcc
+  yum --assumeyes groupinstall "Development Tools"
+  useradd $HUMAN
+}
+
+if [[ `id --user` != 0 ]]; then
+  tput setaf 1; printf "\nError. Not running with root permissions.\n\n"; tput sgr0
+  exit 2
+fi
+
+if [ -f $BASE/../../.credentialsrc ]; then
+  source $BASE/../../.credentialsrc
+else
+  tput setaf 1; printf "\nError. The credentials file is missing.\n\n"; tput sgr0
+  exit 2
+fi
+
+if [ -z ${VMWARE_WORKSTATION} ]; then
+  tput setaf 1; printf "\nError. The VMware serial number is missing. Add it to the credentials file.\n\n"; tput sgr0
+  exit 2
+fi
+
+provide-setup
+provide-limits
+
+provide-vbox
+provide-libvirt
+provide-vmware
+provide-docker

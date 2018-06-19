@@ -1056,7 +1056,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "8"
                 ]
             ],
             "guest_os_type": "Gentoo_64",

@@ -1060,7 +1060,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=4,sockets=2"
+                    "cpus=8,sockets=8"
                 ],
                 [
                     "-drive",
