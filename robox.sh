@@ -5,11 +5,8 @@
 #
 # Description: Used to build various virtual machines using packer.
 
-# Status
-# OpenBSD needs guest agent install scripts.
-
 # Version Information
-export VERSION="1.8.8"
+export VERSION="1.8.12"
 export AGENT="Vagrant/2.1.1 (+https://www.vagrantup.com; ruby2.4.4)"
 
 # Limit the number of cpus packer will use.
@@ -35,6 +32,8 @@ export VAGRANT_CLOUD_TOKEN="TOKEN"
 # Overrides the Repo Box Version
 VERSION="1.0.0"
 EOF
+tput setaf 1; printf "\n\nCredentials file was missing. Stub file created.\n\n\n"; tput sgr0
+sleep 5
 fi
 
 # Import the credentials.

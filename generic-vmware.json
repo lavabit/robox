@@ -1775,7 +1775,7 @@
             "disk_type_id": "0",
             "vmx_data": {
                 "memsize": "2048",
-                "numvcpus": "8",
+                "numvcpus": "4",
                 "cpuid.corespersocket": "2",
                 "vmci0.present": "TRUE"
             },

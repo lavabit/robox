@@ -1964,7 +1964,7 @@
                 ],
                 [
                     "-smp",
-                    "cpus=8,sockets=8"
+                    "cpus=4,sockets=4"
                 ],
                 [
                     "-drive",
