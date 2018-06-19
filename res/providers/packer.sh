@@ -23,15 +23,15 @@ go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
 
 # Apply the split function patch.
 cat $BASE/packer-split-function.patch | patch -p1
-cat $HOME/6397.patch | patch -p1
+#cat $HOME/6397.patch | patch -p1
 
 # Customize
-sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 300, 8/g" post-processor/vagrant-cloud/step_upload.go
+sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 300, 32/g" post-processor/vagrant-cloud/step_upload.go
 
 # Build for Linux, Darwin, and Windows
 PATH=$GOPATH/bin:$PATH
 XC_ARCH=amd64 XC_OS="windows darwin linux" scripts/build.sh
-exit
+
 # Install
 sudo install pkg/linux_amd64/packer /usr/local/bin/
 sudo chown root:root /usr/local/bin/packer
