@@ -9,7 +9,7 @@
 # OpenBSD needs guest agent install scripts.
 
 # Version Information
-export VERSION="1.8.2"
+export VERSION="1.8.8"
 export AGENT="Vagrant/2.1.1 (+https://www.vagrantup.com; ruby2.4.4)"
 
 # Limit the number of cpus packer will use.
@@ -68,7 +68,7 @@ TAGS="$GENERIC_TAGS $ROBOXES_TAGS $MAGMA_TAGS $LINEAGE_TAGS"
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
 
 # A list of configs to skip during complete build operations.
-export EXCEPTIONS=""
+export EXCEPTIONS="generic-alpine35-virtualbox,generic-alpine36-virtualbox,generic-alpine37-virtualbox,generic-alpine38-virtualbox,magma-alpine36-virtualbox,generic-arch-virtualbox,generic-centos6-virtualbox,generic-gentoo-virtualbox"
 
 function start() {
   # Disable IPv6 or the VMware builder won't be able to load the Kick Start configuration.

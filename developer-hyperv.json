@@ -72,6 +72,7 @@
           "ssh_timeout": "3600s",
           "shutdown_command": "sudo -S shutdown -P now",
           "generation": 1,
+            "headless": true,
           "communicator": "ssh",
           "skip_compaction": false,
           "enable_secure_boot": false,
