@@ -99,28 +99,32 @@ function provide-vbox() {
   # Virtual Box Install
   yum --assumeyes --enablerepo=virtualbox install VirtualBox-5.2.x86_64
 
-  # Virtual Box Extensions
-  VBOXVER=`VBoxManage --version | awk -F'r' '{print $1}'`
-  VBOXEXT="Oracle_VM_VirtualBox_Extension_Pack-${VBOXVER}.vbox-extpack"
-  VBOXEXTURL="http://download.virtualbox.org/virtualbox/${VBOXVER}/${VBOXEXT}"
+  # Virtual Box Extensions, if X windows is installed.
+  if [ -f /usr/bin/X ]; then
 
-  # Download the extension pack.
-  curl "${VBOXEXTURL}" > "${VBOXEXT}"
+    # Determine the download URL.
+    VBOXVER=`VBoxManage --version | awk -F'r' '{print $1}'`
+    VBOXEXT="Oracle_VM_VirtualBox_Extension_Pack-${VBOXVER}.vbox-extpack"
+    VBOXEXTURL="http://download.virtualbox.org/virtualbox/${VBOXVER}/${VBOXEXT}"
 
-  # Calculate the license hash.
-  VBOXACCEPT=`tar --extract --to-stdout --file="${VBOXEXT}" ./ExtPack-license.txt | sha256sum | awk -F' ' '{print $1}'`
+    # Download the extension pack.
+    curl "${VBOXEXTURL}" > "${VBOXEXT}"
 
-  # Uncomment this line to install the VirtualBox extensions.
-  VBoxManage extpack install --accept-license="${VBOXACCEPT}" "${VBOXEXT}"
+    # Calculate the license hash.
+    VBOXACCEPT=`tar --extract --to-stdout --file="${VBOXEXT}" ./ExtPack-license.txt | sha256sum | awk -F' ' '{print $1}'`
 
-  # Cleanup the downloaded file.
-  rm --force "${VBOXEXT}"
+    # Uncomment this line to install the VirtualBox extensions.
+    VBoxManage extpack install --accept-license="${VBOXACCEPT}" "${VBOXEXT}"
+
+    # Cleanup the downloaded file.
+    rm --force "${VBOXEXT}"
+  fi
 
   # Disable Virtual Box Automatic Startup
   systemctl disable vboxautostart-service.service
   systemctl disable vboxballoonctrl-service.service
-  systemctl disable vboxdrv.service
   systemctl disable vboxweb-service.service
+  systemctl disable vboxdrv.service
 
   # Add the key users to the vboxusers group.
   usermod -aG vboxusers root
@@ -177,9 +181,11 @@ function provide-packer() {
 
 function provide-setup() {
   yum --assumeyes update
-  yum --assumeyes install bind-tools vim wget curl git lsof kernel-headers kernel-devel golang yum-metadata-parse yum-plugin-fastestmirror yum-plugin-ps yum-plugin-priorities yum-plugin-list-data yum-plugin-verify make autotools automake gcc
+  yum --assumeyes install bind-tools vim wget curl git lsof gawk make autotools automake gcc nload kernel-headers kernel-devel golang yum-metadata-parse yum-plugin-fastestmirror yum-plugin-ps yum-plugin-priorities yum-plugin-list-data yum-plugin-verify
   yum --assumeyes groupinstall "Development Tools"
-  useradd $HUMAN
+  if [ ! -d /home/ladar/ ]; then
+    useradd $HUMAN
+  fi
 }
 
 if [[ `id --user` != 0 ]]; then
