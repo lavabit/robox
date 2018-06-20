@@ -1,0 +1,7 @@
+{
+ "Author": "Ladar Levison",
+ "Website": "https://lavabit.com/",
+ "Repository": "https://github.com/lavabit/magma/",
+ "Configuration": "https://github.com/lavabit/robox/",
+ "Description": "Environment for building, and testing the magma encrypted mail daemon on a variety of platforms."
+}

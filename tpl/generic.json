@@ -1,0 +1,6 @@
+{
+ "Author": "Ladar Levison",
+ "Website": "https://roboxes.org/",
+ "Repository": "https://github.com/lavabit/robox/",
+ "Description": "Basic virtual machine images, for a variety of operating systems/hypervisors, and ready to serve as base bxoes."
+}
