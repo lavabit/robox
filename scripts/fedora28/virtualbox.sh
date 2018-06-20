@@ -32,9 +32,9 @@ printf "Installing the Virtual Box Tools.\n"
 # Read in the version number.
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
-dnf --assumeyes install virtualbox-guest-additions; error
+dnf install --assumeyes virtualbox-guest-additions; error
 
-# dnf --assumeyes install dkms binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel bzip2 kernel-headers kernel-devel kernel-cross-headers
+# dnf install --assumeyes dkms binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel bzip2 kernel-headers kernel-devel kernel-cross-headers
 #
 # mkdir -p /mnt/virtualbox; error
 # mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error

@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # Install MariaDB
-dnf --assumeyes install libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL
+dnf install --assumeyes libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL
 
 # Change the default temporary table directory or else the schema reset will fail when it creates a temp table.
 printf "\n\n[server]\ntmpdir=/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
