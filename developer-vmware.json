@@ -139,18 +139,21 @@
               "keep_input_artifact": false,
               "vagrantfile_template": "tpl/developer.rb",
               "output": "output/{{build_name}}-{{user `box_version`}}.box",
+              "include": [
+                "tpl/lavabit/info.json"
+              ],
               "only": [
                 "magma-developer-vmware"
               ]
           },
           {
               "type": "vagrant-cloud",
-              "only": [
-                  "magma-developer-vmware"
-              ],
               "box_tag": "lavabit/magma-developer",
               "version": "{{user `box_version`}}",
-              "version_description": "A graphical development environment for the magma encrypted mail daemon."
+              "version_description": "A graphical development environment for the magma encrypted mail daemon.",
+              "only": [
+                  "magma-developer-vmware"
+              ]
           },
           {
               "type": "checksum",

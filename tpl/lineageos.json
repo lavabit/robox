@@ -1,7 +1,0 @@
-{
- "Author": "Ladar Levison",
- "Website": "https://lineageos.org/",
- "Repository": "https://github.com/lineageos/",
- "Configuration": "https://github.com/lavabit/robox/",
- "Description": "Virtual machines pre-configured to build Lineage."
-}

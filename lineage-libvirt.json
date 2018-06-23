@@ -326,7 +326,10 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/lineage.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box"
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                  "tpl/lineage/info.json"
+                ]
             },
             {
                 "type": "vagrant-cloud",

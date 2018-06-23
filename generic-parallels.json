@@ -1068,8 +1068,8 @@
             "hard_drive_interface": "ide",
             "guest_os_type": "linux",
             "http_directory": "http",
-            "iso_url": "https://mirror.leaseweb.com/alpine/v3.8/releases/x86_64/alpine-virt-3.8.0_rc1-x86_64.iso",
-            "iso_checksum": "2501ef9ed37409c9933036f7fef335dde24225620fa80c48d9a9cfae98ac338e",
+            "iso_url": "https://mirror.leaseweb.com/alpine/v3.8/releases/x86_64/alpine-virt-3.8.0_rc8-x86_64.iso",
+            "iso_checksum": "fb5fdcd4515ea0fbcd73650bf8973131373d8ec822a1503b9e75bbf656078167",
             "iso_checksum_type": "sha256",
             "skip_compaction": false,
             "ssh_username": "root",
@@ -1843,6 +1843,9 @@
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/generic-alpine.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                  "tpl/generic/info.json"
+                ],
                 "only": [
                     "generic-alpine35-parallels",
                     "generic-alpine36-parallels",
@@ -1856,6 +1859,9 @@
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/generic-bsd.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                  "tpl/generic/info.json"
+                ],
                 "only": [
                     "generic-openbsd6-parallels",
                     "generic-freebsd11-parallels"
@@ -1867,6 +1873,9 @@
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/generic-default.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                  "tpl/generic/info.json"
+                ],
                 "except": [
                     "generic-alpine35-parallels",
                     "generic-alpine36-parallels",
@@ -2124,6 +2133,9 @@
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/roboxes-alpine.rb",
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "include": [
+                  "tpl/roboxes/info.json"
+                ],
                 "only": [
                     "generic-alpine35-parallels",
                     "generic-alpine36-parallels",
@@ -2137,6 +2149,9 @@
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/roboxes-bsd.rb",
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "include": [
+                  "tpl/roboxes/info.json"
+                ],
                 "only": [
                     "generic-openbsd6-parallels",
                     "generic-freebsd11-parallels"
@@ -2148,6 +2163,9 @@
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/roboxes-default.rb",
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "include": [
+                  "tpl/roboxes/info.json"
+                ],
                 "except": [
                     "generic-alpine35-parallels",
                     "generic-alpine36-parallels",

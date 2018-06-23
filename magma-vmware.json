@@ -1052,6 +1052,9 @@
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-alpine.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                  "tpl/lavabit/info.json"
+                ],
                 "only": [
                     "magma-alpine36-vmware"
                 ]
@@ -1062,6 +1065,9 @@
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-bsd.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                  "tpl/lavabit/info.json"
+                ],
                 "only": [
                     "magma-openbsd6-vmware",
                     "magma-freebsd11-vmware"
@@ -1073,6 +1079,9 @@
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-default.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                  "tpl/lavabit/info.json"
+                ],
                 "except": [
                     "magma-alpine36-vmware",
                     "magma-openbsd6-vmware",
