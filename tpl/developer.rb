@@ -9,6 +9,9 @@ Vagrant.configure(2) do |config|
 
   config.vm.box_check_update = true
 
+  config.ssh.username = "magma"
+  config.ssh.password = "magma"
+
   # config.vm.post_up_message = ""
   # config.vm.box_download_checksum = true
   # config.vm.box_download_checksum_type = "sha256"
