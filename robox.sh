@@ -182,7 +182,7 @@ function verify_url {
 function verify_sum {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
-  curl --silent --location --show-error --head "$1" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+  curl --silent --location --head "$1" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
@@ -191,15 +191,22 @@ function verify_sum {
   fi
 
   # Grab the ISO and pipe the data through sha256sum, then compare the checksum value.
-  SUM=`curl --silent --location --show-error "$1" | sha256sum | tr -d '  -'`
+  SUM=`curl --silent --location "$1" | sha256sum | tr -d '  -'`
   echo $SUM | grep --silent "$2"
 
-  # The grep return code tells us whether it found a match in the header or not.
+  # The grep return code tells us whether we found a checksum match.
   if [ $? != 0 ]; then
-    printf "Hash Failure:  $1\n"
-    printf "Found       -  $SUM\n"
-    printf "Expected    -  $2\n\n"
-    exit 1
+
+    # Wait a minute, and then try again. Many of the failures are transient network errors.
+    SUM=`sleep 60; curl --silent --location "$1" | sha256sum | tr -d '  -'`
+    echo $SUM | grep --silent "$2"
+
+    if [ $? != 0 ]; then
+      printf "Hash Failure:  $1\n"
+      printf "Found       -  $SUM\n"
+      printf "Expected    -  $2\n\n"
+      return 1
+    fi
   fi
 
   printf "Validated   :  $1\n"

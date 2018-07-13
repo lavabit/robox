@@ -1070,7 +1070,7 @@
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20180712T214503Z.iso",
-            "iso_checksum": "cbf9d00f49cb9dd0419f0ed364941d717bd936efb97c475d8d08083f60ca9275",
+            "iso_checksum": "7ff0945e9d8d3549f8301b78ebd12891e70a7d9229b5f8735125b3d78b9ba6f8",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
