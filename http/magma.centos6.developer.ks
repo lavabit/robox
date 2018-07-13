@@ -24,6 +24,14 @@ xconfig --startxonboot
 
 %packages --nobase
 @core
+@debugging
+@development
+@console-internet
+@security-tools
+@desktop-debugging
+@general-desktop
+@internet-applications
+@x11
 abrt
 abrt-addon-ccpp
 abrt-addon-kerneloops
@@ -244,6 +252,7 @@ device-mapper-persistent-data
 dhclient
 dhcp-common
 diffstat
+diffuse
 diffutils
 dmidecode
 dmraid
@@ -395,6 +404,7 @@ gdm
 gdm-libs
 gdm-plugin-fingerprint
 gdm-user-switch-applet
+geany
 gedit
 gedit-plugins
 gegl
@@ -449,7 +459,6 @@ gnome-mag
 gnome-media
 gnome-media-libs
 gnome-menus
-gnome-packagekit
 gnome-panel
 gnome-panel-libs
 gnome-power-manager
@@ -983,6 +992,7 @@ meanwhile
 media-player-info
 memtest86+
 mercurial
+meld
 mesa-dri1-drivers
 mesa-dri-drivers
 mesa-dri-filesystem
@@ -1107,13 +1117,6 @@ ORBit2-devel
 orca
 p11-kit
 p11-kit-trust
-PackageKit
-PackageKit-device-rebind
-PackageKit-glib
-PackageKit-gstreamer-plugin
-PackageKit-gtk-module
-PackageKit-yum
-PackageKit-yum-plugin
 pakchois
 paktype-fonts-common
 paktype-naqsh-fonts

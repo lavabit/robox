@@ -16,7 +16,13 @@ fi
 # Install the VMWare Tools.
 printf "Installing the VMWare Tools.\n"
 
-yum --quiet --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
+# The developer desktop builds need the desktop tools/drivers.
+if [[ "$PACKER_BUILD_NAME" =~ ^magma-developer-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+  yum --quiet --assumeyes install open-vm-tools open-vm-tools-desktop fuse-libs libdnet libicu libmspack
+else
+  yum --quiet --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
+fi
+
 chkconfig vmtoolsd on
 service vmtoolsd start
 

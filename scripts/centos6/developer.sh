@@ -6,14 +6,6 @@
 usermod --lock --shell /sbin/nologin clamav
 usermod --lock --shell /sbin/nologin vagrant
 
-# Enable automatic login for the magma user.
-sed -i -e "s/\[daemon\]/[daemon]\nAutomaticLoginEnable=true\nAutomaticLogin=magma\n/g" /etc/gdm/custom.conf
-
-# Hide the clamav and vagrant users when showing the greeter.
-sed -i -e "s/\[greeter\]/[greeter]\nExclude=bin,root,daemon,adm,lp,sync,shutdown,"\
-"halt,mail,news,uucp,operator,nobody,nobody4,noaccess,postgres,pvm,rpm,"\
-"nfsnobody,pcap,clamav,vagrant\n/g" /etc/gdm/custom.conf
-
 # Enable sudo for the magma user.
 printf "magma\nmagma\n" | passwd magma
 sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
@@ -849,8 +841,14 @@ Comment[en_US]=Link to the magma workspace.
 Name=Lavabit
 Comment=Link to the magma workspace.
 Icon=/home/magma/Pictures/Mark.png
+EOF
+
+# The Eclipse desktop file needs execution permission to launch.
+chmod 755 /home/magma/Desktop/Lavabit.desktop
 
 cat <<-EOF > /home/magma/Desktop/Eclipse.desktop
+#!/usr/bin/env xdg-open
+
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -864,6 +862,9 @@ Comment=Eclipse Environment
 Icon=/usr/share/icons/hicolor/48x48/apps/eclipse.png
 EOF
 
+# The Eclipse desktop file needs execution permission to launch.
+chmod 755 /home/magma/Desktop/Eclipse.desktop
+
 cat <<-EOF > /home/magma/Desktop/README
 
 To grab the latest version of magma, and get it configured, run the
@@ -874,705 +875,415 @@ Or for those who prefer a command line, use the scripts in ~/magma/bin.
 
 EOF
 
-cat <<-EOF > /home/magma/panel.conf
-
+cat <<-EOF > /home/magma/gconf.conf
 <gconfentryfile>
-  <entrylist base="/apps/panel/objects">
-    <entry>
-      <key>email_launcher/action_type</key>
-      <schema_key>/schemas/apps/panel/objects/action_type</schema_key>
-      <value>
-        <string>lock</string>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/attached_toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/attached_toplevel_id</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/bonobo_iid</key>
-      <schema_key>/schemas/apps/panel/objects/bonobo_iid</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/custom_icon</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/launcher_location</key>
-      <schema_key>/schemas/apps/panel/objects/launcher_location</schema_key>
-      <value>
-        <string>preferred-mail-reader.desktop</string>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/locked</key>
-      <schema_key>/schemas/apps/panel/objects/locked</schema_key>
-      <value>
-        <bool>true</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/menu_path</schema_key>
-      <value>
-        <string>applications:/</string>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/object_type</key>
-      <schema_key>/schemas/apps/panel/objects/object_type</schema_key>
-      <value>
-        <string>launcher-object</string>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/panel_right_stick</key>
-      <schema_key>/schemas/apps/panel/objects/panel_right_stick</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/position</key>
-      <schema_key>/schemas/apps/panel/objects/position</schema_key>
-      <value>
-        <int>2</int>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/tooltip</key>
-      <schema_key>/schemas/apps/panel/objects/tooltip</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/toplevel_id</schema_key>
-      <value>
-        <string>top_panel</string>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/use_custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/use_custom_icon</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>email_launcher/use_menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/use_menu_path</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/action_type</key>
-      <schema_key>/schemas/apps/panel/objects/action_type</schema_key>
-      <value>
-        <string>lock</string>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/attached_toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/attached_toplevel_id</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/bonobo_iid</key>
-      <schema_key>/schemas/apps/panel/objects/bonobo_iid</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/custom_icon</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/launcher_location</key>
-      <schema_key>/schemas/apps/panel/objects/launcher_location</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/locked</key>
-      <schema_key>/schemas/apps/panel/objects/locked</schema_key>
-      <value>
-        <bool>true</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/menu_path</schema_key>
-      <value>
-        <string>applications:/</string>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/object_type</key>
-      <schema_key>/schemas/apps/panel/objects/object_type</schema_key>
-      <value>
-        <string>menu-bar</string>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/panel_right_stick</key>
-      <schema_key>/schemas/apps/panel/objects/panel_right_stick</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/position</key>
-      <schema_key>/schemas/apps/panel/objects/position</schema_key>
-      <value>
-        <int>0</int>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/tooltip</key>
-      <schema_key>/schemas/apps/panel/objects/tooltip</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/toplevel_id</schema_key>
-      <value>
-        <string>top_panel</string>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/use_custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/use_custom_icon</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>menu_bar/use_menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/use_menu_path</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/action_type</key>
-      <schema_key>/schemas/apps/panel/objects/action_type</schema_key>
-      <value>
-        <string>lock</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/attached_toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/attached_toplevel_id</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/bonobo_iid</key>
-      <schema_key>/schemas/apps/panel/objects/bonobo_iid</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/custom_icon</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/launcher_location</key>
-      <schema_key>/schemas/apps/panel/objects/launcher_location</schema_key>
-      <value>
-        <string>/usr/share/applications/gnome-terminal.desktop</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/locked</key>
-      <schema_key>/schemas/apps/panel/objects/locked</schema_key>
-      <value>
-        <bool>true</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/menu_path</schema_key>
-      <value>
-        <string>applications:/</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/object_type</key>
-      <schema_key>/schemas/apps/panel/objects/object_type</schema_key>
-      <value>
-        <string>launcher-object</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/panel_right_stick</key>
-      <schema_key>/schemas/apps/panel/objects/panel_right_stick</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/position</key>
-      <schema_key>/schemas/apps/panel/objects/position</schema_key>
-      <value>
-        <int>370</int>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/tooltip</key>
-      <schema_key>/schemas/apps/panel/objects/tooltip</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/toplevel_id</schema_key>
-      <value>
-        <string>top_panel</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/use_custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/use_custom_icon</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_0/use_menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/use_menu_path</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/action_type</key>
-      <schema_key>/schemas/apps/panel/objects/action_type</schema_key>
-      <value>
-        <string>lock</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/attached_toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/attached_toplevel_id</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/bonobo_iid</key>
-      <schema_key>/schemas/apps/panel/objects/bonobo_iid</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/custom_icon</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/launcher_location</key>
-      <schema_key>/schemas/apps/panel/objects/launcher_location</schema_key>
-      <value>
-        <string>/home/magma/Desktop/Eclipse.desktop</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/locked</key>
-      <schema_key>/schemas/apps/panel/objects/locked</schema_key>
-      <value>
-        <bool>true</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/menu_path</schema_key>
-      <value>
-        <string>applications:/</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/object_type</key>
-      <schema_key>/schemas/apps/panel/objects/object_type</schema_key>
-      <value>
-        <string>launcher-object</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/panel_right_stick</key>
-      <schema_key>/schemas/apps/panel/objects/panel_right_stick</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/position</key>
-      <schema_key>/schemas/apps/panel/objects/position</schema_key>
-      <value>
-        <int>282</int>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/tooltip</key>
-      <schema_key>/schemas/apps/panel/objects/tooltip</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/toplevel_id</schema_key>
-      <value>
-        <string>top_panel</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/use_custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/use_custom_icon</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_1/use_menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/use_menu_path</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/action_type</key>
-      <schema_key>/schemas/apps/panel/objects/action_type</schema_key>
-      <value>
-        <string>lock</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/attached_toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/attached_toplevel_id</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/bonobo_iid</key>
-      <schema_key>/schemas/apps/panel/objects/bonobo_iid</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/custom_icon</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/launcher_location</key>
-      <schema_key>/schemas/apps/panel/objects/launcher_location</schema_key>
-      <value>
-        <string>/usr/share/applications/geany.desktop</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/locked</key>
-      <schema_key>/schemas/apps/panel/objects/locked</schema_key>
-      <value>
-        <bool>true</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/menu_path</schema_key>
-      <value>
-        <string>applications:/</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/object_type</key>
-      <schema_key>/schemas/apps/panel/objects/object_type</schema_key>
-      <value>
-        <string>launcher-object</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/panel_right_stick</key>
-      <schema_key>/schemas/apps/panel/objects/panel_right_stick</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/position</key>
-      <schema_key>/schemas/apps/panel/objects/position</schema_key>
-      <value>
-        <int>346</int>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/tooltip</key>
-      <schema_key>/schemas/apps/panel/objects/tooltip</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/toplevel_id</schema_key>
-      <value>
-        <string>top_panel</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/use_custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/use_custom_icon</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_3/use_menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/use_menu_path</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/action_type</key>
-      <schema_key>/schemas/apps/panel/objects/action_type</schema_key>
-      <value>
-        <string>lock</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/attached_toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/attached_toplevel_id</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/bonobo_iid</key>
-      <schema_key>/schemas/apps/panel/objects/bonobo_iid</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/custom_icon</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/launcher_location</key>
-      <schema_key>/schemas/apps/panel/objects/launcher_location</schema_key>
-      <value>
-        <string>/usr/share/applications/gedit.desktop</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/locked</key>
-      <schema_key>/schemas/apps/panel/objects/locked</schema_key>
-      <value>
-        <bool>true</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/menu_path</schema_key>
-      <value>
-        <string>applications:/</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/object_type</key>
-      <schema_key>/schemas/apps/panel/objects/object_type</schema_key>
-      <value>
-        <string>launcher-object</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/panel_right_stick</key>
-      <schema_key>/schemas/apps/panel/objects/panel_right_stick</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/position</key>
-      <schema_key>/schemas/apps/panel/objects/position</schema_key>
-      <value>
-        <int>314</int>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/tooltip</key>
-      <schema_key>/schemas/apps/panel/objects/tooltip</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/toplevel_id</schema_key>
-      <value>
-        <string>top_panel</string>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/use_custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/use_custom_icon</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>object_5/use_menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/use_menu_path</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/action_type</key>
-      <schema_key>/schemas/apps/panel/objects/action_type</schema_key>
-      <value>
-        <string>lock</string>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/attached_toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/attached_toplevel_id</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/bonobo_iid</key>
-      <schema_key>/schemas/apps/panel/objects/bonobo_iid</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/custom_icon</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/launcher_location</key>
-      <schema_key>/schemas/apps/panel/objects/launcher_location</schema_key>
-      <value>
-        <string>preferred-web-browser.desktop</string>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/locked</key>
-      <schema_key>/schemas/apps/panel/objects/locked</schema_key>
-      <value>
-        <bool>true</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/menu_path</schema_key>
-      <value>
-        <string>applications:/</string>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/object_type</key>
-      <schema_key>/schemas/apps/panel/objects/object_type</schema_key>
-      <value>
-        <string>launcher-object</string>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/panel_right_stick</key>
-      <schema_key>/schemas/apps/panel/objects/panel_right_stick</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/position</key>
-      <schema_key>/schemas/apps/panel/objects/position</schema_key>
-      <value>
-        <int>1</int>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/tooltip</key>
-      <schema_key>/schemas/apps/panel/objects/tooltip</schema_key>
-      <value>
-        <string></string>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/toplevel_id</key>
-      <schema_key>/schemas/apps/panel/objects/toplevel_id</schema_key>
-      <value>
-        <string>top_panel</string>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/use_custom_icon</key>
-      <schema_key>/schemas/apps/panel/objects/use_custom_icon</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>web_launcher/use_menu_path</key>
-      <schema_key>/schemas/apps/panel/objects/use_menu_path</schema_key>
-      <value>
-        <bool>false</bool>
-      </value>
-    </entry>
-  </entrylist>
+<entrylist base="/">
+<entry>
+  <key>/apps/gnome-power-manager/timeout/sleep_display_ac</key>
+  <schema_key>/schemas/apps/gnome-power-manager/timeout/sleep_display_ac</schema_key>
+  <value>
+    <int>0</int>
+  </value>
+</entry>
+<entry>
+  <key>/apps/gnome-screensaver/idle_activation_enabled</key>
+  <schema_key>/schemas/apps/gnome-screensaver/idle_activation_enabled</schema_key>
+  <value>
+    <bool>false</bool>
+  </value>
+</entry>
+<entry>
+  <key>/desktop/gnome/session/idle_delay</key>
+  <schema_key>/schemas/desktop/gnome/session/idle_delay</schema_key>
+  <value>
+    <int>120</int>
+  </value>
+</entry>
+
+<entry>
+  <key>/desktop/gnome/interface/gtk_color_scheme</key>
+</entry>
+<entry>
+  <key>/desktop/gnome/background/picture_filename</key>
+  <schema_key>/schemas/desktop/gnome/background/picture_filename</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+
+<entry>
+  <key>/desktop/gnome/background/picture_opacity</key>
+  <schema_key>/schemas/desktop/gnome/background/picture_opacity</schema_key>
+  <value>
+    <int>100</int>
+  </value>
+</entry>
+<entry>
+  <key>/desktop/gnome/background/picture_options</key>
+  <schema_key>/schemas/desktop/gnome/background/picture_options</schema_key>
+  <value>
+    <string>none</string>
+  </value>
+</entry>
+<entry>
+  <key>/desktop/gnome/background/primary_color</key>
+  <schema_key>/schemas/desktop/gnome/background/primary_color</schema_key>
+  <value>
+    <string>#000000000000</string>
+  </value>
+</entry>
+<entry>
+  <key>/desktop/gnome/background/secondary_color</key>
+  <schema_key>/schemas/desktop/gnome/background/secondary_color</schema_key>
+  <value>
+    <string>#380138013801</string>
+  </value>
+</entry>
+
+
+<entry>
+  <key>/apps/panel/objects/object_1/action_type</key>
+  <schema_key>/schemas/apps/panel/objects/action_type</schema_key>
+  <value>
+    <string>lock</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/attached_toplevel_id</key>
+  <schema_key>/schemas/apps/panel/objects/attached_toplevel_id</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/bonobo_iid</key>
+  <schema_key>/schemas/apps/panel/objects/bonobo_iid</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/custom_icon</key>
+  <schema_key>/schemas/apps/panel/objects/custom_icon</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/launcher_location</key>
+  <schema_key>/schemas/apps/panel/objects/launcher_location</schema_key>
+  <value>
+    <string>/home/magma/Desktop/Eclipse.desktop</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/locked</key>
+  <schema_key>/schemas/apps/panel/objects/locked</schema_key>
+  <value>
+    <bool>true</bool>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/menu_path</key>
+  <schema_key>/schemas/apps/panel/objects/menu_path</schema_key>
+  <value>
+    <string>applications:/</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/object_type</key>
+  <schema_key>/schemas/apps/panel/objects/object_type</schema_key>
+  <value>
+    <string>launcher-object</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/panel_right_stick</key>
+  <schema_key>/schemas/apps/panel/objects/panel_right_stick</schema_key>
+  <value>
+    <bool>false</bool>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/position</key>
+  <schema_key>/schemas/apps/panel/objects/position</schema_key>
+  <value>
+    <int>282</int>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/tooltip</key>
+  <schema_key>/schemas/apps/panel/objects/tooltip</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/toplevel_id</key>
+  <schema_key>/schemas/apps/panel/objects/toplevel_id</schema_key>
+  <value>
+    <string>top_panel</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/use_custom_icon</key>
+  <schema_key>/schemas/apps/panel/objects/use_custom_icon</schema_key>
+  <value>
+    <bool>false</bool>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_1/use_menu_path</key>
+  <schema_key>/schemas/apps/panel/objects/use_menu_path</schema_key>
+  <value>
+    <bool>false</bool>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/action_type</key>
+  <schema_key>/schemas/apps/panel/objects/action_type</schema_key>
+  <value>
+    <string>lock</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/attached_toplevel_id</key>
+  <schema_key>/schemas/apps/panel/objects/attached_toplevel_id</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/bonobo_iid</key>
+  <schema_key>/schemas/apps/panel/objects/bonobo_iid</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/custom_icon</key>
+  <schema_key>/schemas/apps/panel/objects/custom_icon</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/launcher_location</key>
+  <schema_key>/schemas/apps/panel/objects/launcher_location</schema_key>
+  <value>
+    <string>/usr/share/applications/geany.desktop</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/locked</key>
+  <schema_key>/schemas/apps/panel/objects/locked</schema_key>
+  <value>
+    <bool>true</bool>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/menu_path</key>
+  <schema_key>/schemas/apps/panel/objects/menu_path</schema_key>
+  <value>
+    <string>applications:/</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/object_type</key>
+  <schema_key>/schemas/apps/panel/objects/object_type</schema_key>
+  <value>
+    <string>launcher-object</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/panel_right_stick</key>
+  <schema_key>/schemas/apps/panel/objects/panel_right_stick</schema_key>
+  <value>
+    <bool>false</bool>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/position</key>
+  <schema_key>/schemas/apps/panel/objects/position</schema_key>
+  <value>
+    <int>346</int>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/tooltip</key>
+  <schema_key>/schemas/apps/panel/objects/tooltip</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/toplevel_id</key>
+  <schema_key>/schemas/apps/panel/objects/toplevel_id</schema_key>
+  <value>
+    <string>top_panel</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/use_custom_icon</key>
+  <schema_key>/schemas/apps/panel/objects/use_custom_icon</schema_key>
+  <value>
+    <bool>false</bool>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_3/use_menu_path</key>
+  <schema_key>/schemas/apps/panel/objects/use_menu_path</schema_key>
+  <value>
+    <bool>false</bool>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/action_type</key>
+  <schema_key>/schemas/apps/panel/objects/action_type</schema_key>
+  <value>
+    <string>lock</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/attached_toplevel_id</key>
+  <schema_key>/schemas/apps/panel/objects/attached_toplevel_id</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/bonobo_iid</key>
+  <schema_key>/schemas/apps/panel/objects/bonobo_iid</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/custom_icon</key>
+  <schema_key>/schemas/apps/panel/objects/custom_icon</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/launcher_location</key>
+  <schema_key>/schemas/apps/panel/objects/launcher_location</schema_key>
+  <value>
+    <string>/usr/share/applications/gedit.desktop</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/locked</key>
+  <schema_key>/schemas/apps/panel/objects/locked</schema_key>
+  <value>
+    <bool>true</bool>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/menu_path</key>
+  <schema_key>/schemas/apps/panel/objects/menu_path</schema_key>
+  <value>
+    <string>applications:/</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/object_type</key>
+  <schema_key>/schemas/apps/panel/objects/object_type</schema_key>
+  <value>
+    <string>launcher-object</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/panel_right_stick</key>
+  <schema_key>/schemas/apps/panel/objects/panel_right_stick</schema_key>
+  <value>
+    <bool>false</bool>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/position</key>
+  <schema_key>/schemas/apps/panel/objects/position</schema_key>
+  <value>
+    <int>314</int>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/tooltip</key>
+  <schema_key>/schemas/apps/panel/objects/tooltip</schema_key>
+  <value>
+    <string></string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/toplevel_id</key>
+  <schema_key>/schemas/apps/panel/objects/toplevel_id</schema_key>
+  <value>
+    <string>top_panel</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/use_custom_icon</key>
+  <schema_key>/schemas/apps/panel/objects/use_custom_icon</schema_key>
+  <value>
+    <bool>false</bool>
+  </value>
+</entry>
+<entry>
+  <key>/apps/panel/objects/object_5/use_menu_path</key>
+  <schema_key>/schemas/apps/panel/objects/use_menu_path</schema_key>
+  <value>
+    <bool>false</bool>
+  </value>
+</entry>
+
+
+<entry>
+  <key>/apps/gnome-terminal/profiles/Default/background_color</key>
+  <schema_key>/schemas/apps/gnome-terminal/profiles/Default/background_color</schema_key>
+  <value>
+    <string>#000000000000</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/gnome-terminal/profiles/Default/foreground_color</key>
+  <schema_key>/schemas/apps/gnome-terminal/profiles/Default/foreground_color</schema_key>
+  <value>
+    <string>#FFFFFFFFFFFF</string>
+  </value>
+</entry>
+<entry>
+  <key>/apps/gnome-terminal/profiles/Default/scrollback_lines</key>
+  <schema_key>/schemas/apps/gnome-terminal/profiles/Default/scrollback_lines</schema_key>
+  <value>
+    <int>16536</int>
+  </value>
+</entry>
+<entry>
+  <key>/apps/gnome-terminal/profiles/Default/use_theme_colors</key>
+  <schema_key>/schemas/apps/gnome-terminal/profiles/Default/use_theme_colors</schema_key>
+  <value>
+    <bool>false</bool>
+  </value>
+</entry>
+</entrylist>
 </gconfentryfile>
 EOF
 
+gconftool-2 --load /home/magma/gconf.conf
+
 # Till we mess with it.
-rm -f /home/magma/panel.conf
+rm -f /home/magma/gconf.conf
 
 # Ensure the files created as root, will belong to the magma user.
 chown --recursive magma:magma /home/magma/
 
 # Customize the message of the day.
 printf "Magma Daemon Desktop Development Environment\nTo download and compile magma, just execute the magma-build.sh script.\n\n" > /etc/motd
+
+# Enable automatic login for the magma user.
+sed -i -e "s/\[daemon\]/[daemon]\nAutomaticLoginEnable=true\nAutomaticLogin=magma\n/g" /etc/gdm/custom.conf
+
+# Hide the clamav and vagrant users when showing the greeter.
+sed -i -e "s/\[greeter\]/[greeter]\nExclude=bin,root,daemon,adm,lp,sync,shutdown,"\
+"halt,mail,news,uucp,operator,nobody,nobody4,noaccess,postgres,pvm,rpm,"\
+"nfsnobody,pcap,clamav,vagrant\n/g" /etc/gdm/custom.conf
