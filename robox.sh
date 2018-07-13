@@ -698,9 +698,12 @@ function libvirt() {
 function parallels() {
   if [[ `uname` == "Darwin" ]]; then
 
-    # Ideally, we run this. However our Mac is resource starved
-    # so we need to build each box individually.
-    # build generic-parallels
+    # Ideally, we shouldn't need this. However the ancient Macbook Air
+    # used to make the Parallels boxes doesn't have the resources to
+    # load the full template at once. As a workaround, the logic below
+    # makes packer build the boxes, one at a time. This function also
+    # removes the box file (but not the checksum) to avoid running out
+    # of disk space.
 
     LIST=($BOXES)
 
