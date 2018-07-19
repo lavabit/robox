@@ -105,7 +105,7 @@ Vagrant.configure(2) do |config|
     v.video_vram = 256
     v.memory = 4096
     v.cpus = 4
-    v.graphics_type = "gtk"
+    #v.graphics_type = "gtk"
     v.driver = "kvm"
   end
 
