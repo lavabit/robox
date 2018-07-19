@@ -102,15 +102,18 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :libvirt do |v, override|
-    v.driver = "kvm"
     v.video_vram = 256
     v.memory = 4096
     v.cpus = 4
+    v.graphics_type = "gtk"
+    v.driver = "kvm"
   end
 
   config.vm.provider :parallels do |v, override|
-    v.memory = 4096
-    v.cpus = 4
+    v.customize["set", :id, "--on-window-close", "keep-running"]
+    v.customize["set", :id, "--startup-view", "window"]
+    v.customize["set", :id, "--memsize", "4096"]
+    v.customize["set", :id, "--cpus", "4"]
   end
 
   config.vm.provider :virtualbox do |v, override|
@@ -122,11 +125,11 @@ Vagrant.configure(2) do |config|
 
   ["vmware_fusion", "vmware_workstation", "vmware_desktop"].each do |provider|
     config.vm.provider provider do |v, override|
-      v.whitelist_verified = true
-      v.gui = false
       v.vmx["cpuid.coresPerSocket"] = "1"
       v.vmx["memsize"] = "4096"
       v.vmx["numvcpus"] = "4"
+      v.whitelist_verified = true
+      v.gui = true
     end
   end
 

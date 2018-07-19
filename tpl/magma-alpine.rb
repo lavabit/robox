@@ -108,8 +108,10 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :parallels do |v, override|
-    v.cpus = 2
-    v.memory = 2048
+    v.customize["set", :id, "--on-window-close", "keep-running"]
+    v.customize["set", :id, "--startup-view", "headless"]
+    v.customize["set", :id, "--memsize", "2048"]
+    v.customize["set", :id, "--cpus", "2"]
   end
 
   config.vm.provider :virtualbox do |v, override|
