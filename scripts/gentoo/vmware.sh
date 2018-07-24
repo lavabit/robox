@@ -8,7 +8,7 @@ if [[ `dmidecode -s system-product-name` != "VMware Virtual Platform" ]]; then
 fi
 
 # echo "app-emulation/open-vm-tools ~amd64" > /etc/portage/package.accept_keywords/vmware
-emerge --update --ask=n --autounmask-continue=y app-emulation/open-vm-tools
+USE="-X python_targets_python3_6" emerge --update --ask=n --autounmask-continue=y app-emulation/open-vm-tools
 
 # Perform any configuration file updates.
 etc-update --automode -5
