@@ -67,7 +67,7 @@ TAGS="$GENERIC_TAGS $ROBOXES_TAGS $MAGMA_TAGS $LINEAGE_TAGS"
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
 
 # A list of configs to skip during complete build operations.
-export EXCEPTIONS="generic-alpine35-virtualbox,generic-alpine36-virtualbox,generic-alpine37-virtualbox,generic-alpine38-virtualbox,magma-alpine36-virtualbox,generic-arch-virtualbox,generic-centos6-virtualbox,generic-gentoo-virtualbox"
+export EXCEPTIONS=""
 
 function start() {
   # Disable IPv6 or the VMware builder won't be able to load the Kick Start configuration.
