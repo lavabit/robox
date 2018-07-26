@@ -1270,10 +1270,15 @@ cat <<-EOF > /home/magma/gconf.conf
 </gconfentryfile>
 EOF
 
-gconftool-2 --load /home/magma/gconf.conf
+# We need to load the configuration as the magma user, so make the file
+# avaialble to we change the owner to magma.
+chown magma:magma /home/magma/gconf.conf
 
-# Till we mess with it.
-rm -f /home/magma/gconf.conf
+# Now we load the file as magma.
+su magma --command "gconftool-2 --owner=magma --load /home/magma/gconf.conf"
+
+# With the settings loaded, we no longer need the config file.
+rm --force /home/magma/gconf.conf
 
 # Ensure the files created as root, will belong to the magma user.
 chown --recursive magma:magma /home/magma/

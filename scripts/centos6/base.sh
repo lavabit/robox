@@ -59,9 +59,32 @@ yum --assumeyes install sudo dmidecode yum-utils; error
 # often interupt the the provisioning process.
 yum --assumeyes --disablerepo=epel update; error
 
+# Remove the spurious pip warning about an insecure urllib3 library.
+patch /usr/lib/python2.6/site-packages/pip/_vendor/requests/packages/urllib3/util/ssl_.py <<-EOF
+diff --git a/ssl_.py b/ssl_.py
+index b846d42..b22f7a3 100644
+--- a/ssl_.py
++++ b/ssl_.py
+@@ -81,14 +81,6 @@ except ImportError:
+             self.ciphers = cipher_suite
+
+         def wrap_socket(self, socket, server_hostname=None):
+-            warnings.warn(
+-                'A true SSLContext object is not available. This prevents '
+-                'urllib3 from configuring SSL appropriately and may cause '
+-                'certain SSL connections to fail. For more information, see '
+-                'https://urllib3.readthedocs.org/en/latest/security.html'
+-                '#insecureplatformwarning.',
+-                InsecurePlatformWarning
+-            )
+             kwargs = {
+                 'keyfile': self.keyfile,
+                 'certfile': self.certfile,
+EOF
+
 # Install the Python Cryptography Module
 pip install --ignore-installed asn1crypto==0.23.0 cffi==1.8.3 cryptography==1.5.2 enum34==1.1.6 idna==2.6 iniparse==0.3.1 \
-ipaddress==1.0.18 pycparser==2.14 setuptools==28.2.0 six==1.11.0 urlgrabber==3.9.1; error
+ipaddress==1.0.18 pycparser==2.14 setuptools==28.2.0 six==1.11.0 urlgrabber==3.10.2; error
 
 # Enable and start the daemons.
 chkconfig mysqld on
