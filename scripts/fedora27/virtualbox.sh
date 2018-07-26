@@ -17,7 +17,6 @@ error() {
     else
       printf "\n\nThe /var/log/vboxadd-install.log is missing...\n\n"
     fi
-
     exit 1
   fi
 }
@@ -33,12 +32,18 @@ printf "Installing the Virtual Box Tools.\n"
 # Read in the version number.
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
-dnf install --assumeyes dkms binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel bzip2
+dnf install --assumeyes binutils bzip2 dkms gcc gcc-c++ glibc-devel glibc-headers kBuild kernel-devel kernel-headers libgomp libstdc++-static libxslt make openssl-devel pam-devel patch python2-devel systemd zlib-devel; error
+
+# The group vboxsf is needed for shared folder access.
+getent group vboxsf >/dev/null || groupadd --system vboxsf; error
+getent passwd vboxadd >/dev/null || useradd --system --gid bin --home-dir /var/run/vboxadd --shell /sbin/nologin vboxadd; error
 
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
 
-sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; error
+# For some reason the vboxsf module fails the first time, but installs
+# successfully if we run the installer a second time.
+sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11 || sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; error
 ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions; error
 
 umount /mnt/virtualbox; error

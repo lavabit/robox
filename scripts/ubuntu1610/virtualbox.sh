@@ -21,11 +21,17 @@ export VBOXVERSION=`cat /root/VBoxVersion.txt`
 export DEBCONF_NONINTERACTIVE_SEEN=true
 # apt-get --assume-yes install dkms build-essential module-assistant linux-headers-$(uname -r)
 #
-# mkdir -p /mnt/virtualbox
-# mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox
+# # The group vboxsf is needed for shared folder access.
+# getent group vboxsf >/dev/null || groupadd --system vboxsf; error
+# getent passwd vboxadd >/dev/null || useradd --system --gid bin --home-dir /var/run/vboxadd --shell /sbin/nologin vboxadd; error
 #
-# /mnt/virtualbox/VBoxLinuxAdditions.run --nox11
-# ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
+# mkdir -p /mnt/virtualbox; error
+# mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
+#
+# # For some reason the vboxsf module fails the first time, but installs
+# # successfully if we run the installer a second time.
+# sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11 || sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; error
+# ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions; error
 #
 # umount /mnt/virtualbox
 rm -rf /root/VBoxVersion.txt

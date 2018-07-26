@@ -33,3 +33,6 @@ sysrc vboxservice_enable="YES"
 sysrc rpcbind_enable="YES"
 sysrc rpc_lockd_enable="YES"
 sysrc nfs_client_enable="YES"
+
+rm -rf /root/VBoxVersion.txt
+rm -rf /root/VBoxGuestAdditions.iso

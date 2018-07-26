@@ -11,3 +11,6 @@ pacman --sync --noconfirm virtualbox-guest-modules-arch virtualbox-guest-utils-n
 
 systemctl enable vboxservice.service
 systemctl start vboxservice.service
+
+rm -rf /root/VBoxVersion.txt
+rm -rf /root/VBoxGuestAdditions.iso

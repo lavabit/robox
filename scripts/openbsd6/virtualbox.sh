@@ -7,3 +7,6 @@ pkg_add -I dmidecode
 if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
     exit 0
 fi
+
+rm -rf /root/VBoxVersion.txt
+rm -rf /root/VBoxGuestAdditions.iso
