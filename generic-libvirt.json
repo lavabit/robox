@@ -214,6 +214,8 @@
                 "scripts/centos6/vagrant.sh",
                 "scripts/centos6/tuning.sh",
                 "scripts/centos6/sshd.sh",
+                "scripts/centos6/randomness.sh",
+                "scripts/centos6/updatedb.sh",
                 "scripts/centos6/cleanup.sh"
             ],
             "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
@@ -251,6 +253,8 @@
                 "scripts/centos7/vagrant.sh",
                 "scripts/centos7/tuning.sh",
                 "scripts/centos7/sshd.sh",
+                "scripts/centos7/randomness.sh",
+                "scripts/centos7/updatedb.sh",
                 "scripts/centos7/cleanup.sh",
                 "scripts/centos7/unyum.sh"
             ],
@@ -834,6 +838,7 @@
         {
             "scripts": [
                 "scripts/common/motd.sh",
+                "scripts/common/keys.sh",
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],

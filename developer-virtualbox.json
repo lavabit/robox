@@ -26,9 +26,11 @@
                 "scripts/centos6/qemu.sh",
                 "scripts/centos6/postfix.sh",
                 "scripts/centos6/vagrant.sh",
+                "scripts/centos6/sshd.sh",
+                "scripts/centos6/randomness.sh",
+                "scripts/centos6/updatedb.sh",
                 "scripts/centos6/developer.sh",
                 "scripts/centos6/tuning.sh",
-                "scripts/centos6/sshd.sh",
                 "scripts/centos6/cleanup.sh"
             ],
             "pause_before": "120s",
@@ -41,6 +43,7 @@
         {
             "scripts": [
                 "scripts/common/motd.sh",
+                "scripts/common/keys.sh",
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],

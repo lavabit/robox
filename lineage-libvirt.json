@@ -70,6 +70,7 @@
         {
             "scripts": [
                 "scripts/common/motd.sh",
+                "scripts/common/keys.sh",
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],
