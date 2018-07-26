@@ -57,7 +57,7 @@
           "output_directory": "output/magma-developer-hyperv",
           "boot_wait": "20s",
           "boot_command": [
-              "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
+              "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
           ],
           "disk_size": 131072,
           "ram_size": 1024,

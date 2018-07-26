@@ -1,6 +1,7 @@
 #!/bin/bash -eux
-#
-# Setup the the box. This runs as root
+
+# Install Developer Packages
+yum --assumeyes install ElectricFence archivemount autofs crypto-utils diffuse eclipse-mylyn-cdt eclipse-mylyn-pde eclipse-mylyn-trac eclipse-mylyn-webtasks eclipse-mylyn-wikitext eclipse-subclipse-graph expect file-devel finger ftp gcc-gnat gcc-java gcc-objc gcc-objc++ gd gdb-gdbserver geany gedit-plugins glibc-utils gperf httpd-devel httpd-manual imake iotop iptables-devel iptraf jwhois libevent-devel libevent-doc libevent-headers libmemcached libstdc++-docs libuuid-devel libzip lm_sensors lm_sensors-devel lm_sensors-libs lslk m2crypto mc mcelog meld memtest86+ mercurial mod_perl mod_ssl mysql-bench mysql-connector-java nasm net-snmp net-snmp-devel net-snmp-libs net-snmp-perl net-snmp-python net-snmp-utils nmap numpy oprofile-gui oprofile-jit perf powertop psutils screen setools-console setroubleshoot setroubleshoot-plugins setroubleshoot-server stunnel telnet tokyocabinet tokyocabinet-devel wireshark wireshark-gnome xmlto xz-devel
 
 # Disable the default users.
 usermod --lock --shell /sbin/nologin clamav
@@ -1282,6 +1283,11 @@ printf "Magma Daemon Desktop Development Environment\nTo download and compile ma
 
 # Enable automatic login for the magma user.
 sed -i -e "s/\[daemon\]/[daemon]\nAutomaticLoginEnable=true\nAutomaticLogin=magma\n/g" /etc/gdm/custom.conf
+
+# Ensure vagrant can ssh into the machine. Only the developer desktop builds
+# use password authentication, which is why the sshd script disables password
+# authentication by default. We reverse that actipn here.
+sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 
 # Hide the clamav and vagrant users when showing the greeter.
 sed -i -e "s/\[greeter\]/[greeter]\nExclude=bin,root,daemon,adm,lp,sync,shutdown,"\

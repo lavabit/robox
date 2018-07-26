@@ -209,7 +209,7 @@ function provide-packer() {
   go get github.com/mitchellh/gox && cd $GOPATH/src/github.com/mitchellh/gox
   go build -o bin/gox .
 
-  # Fetch Patchker
+  # Fetch Packer
   go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
 
   # Checkout the Proper Version

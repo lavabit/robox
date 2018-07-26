@@ -23,6 +23,10 @@ else
   yum --quiet --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
 fi
 
+if [ ! -d /var/run/vmware ]; then
+  mkdir --parents /var/run/vmware
+fi
+
 chkconfig vmtoolsd on
 service vmtoolsd start
 
