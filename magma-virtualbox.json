@@ -475,6 +475,12 @@
                 [
                     "modifyvm",
                     "{{.Name}}",
+                    "--vram",
+                    "64"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
                     "--cpus",
                     "4"
                 ]
@@ -514,6 +520,12 @@
                     "{{.Name}}",
                     "--memory",
                     "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--vram",
+                    "64"
                 ],
                 [
                     "modifyvm",
@@ -561,6 +573,12 @@
                 [
                     "modifyvm",
                     "{{.Name}}",
+                    "--vram",
+                    "64"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
                     "--cpus",
                     "4"
                 ]
@@ -600,6 +618,12 @@
                     "{{.Name}}",
                     "--memory",
                     "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--vram",
+                    "64"
                 ],
                 [
                     "modifyvm",
@@ -647,6 +671,12 @@
                 [
                     "modifyvm",
                     "{{.Name}}",
+                    "--vram",
+                    "64"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
                     "--cpus",
                     "4"
                 ]
@@ -688,6 +718,12 @@
                     "{{.Name}}",
                     "--memory",
                     "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--vram",
+                    "64"
                 ],
                 [
                     "modifyvm",
@@ -739,6 +775,12 @@
                 [
                     "modifyvm",
                     "{{.Name}}",
+                    "--vram",
+                    "64"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
                     "--cpus",
                     "4"
                 ]
@@ -781,6 +823,12 @@
                     "{{.Name}}",
                     "--memory",
                     "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--vram",
+                    "64"
                 ],
                 [
                     "modifyvm",
@@ -844,6 +892,12 @@
                 [
                     "modifyvm",
                     "{{.Name}}",
+                    "--vram",
+                    "64"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
                     "--cpus",
                     "4"
                 ]
@@ -903,6 +957,12 @@
                 [
                     "modifyvm",
                     "{{.Name}}",
+                    "--vram",
+                    "64"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
                     "--cpus",
                     "4"
                 ]
@@ -950,6 +1010,12 @@
                     "{{.Name}}",
                     "--memory",
                     "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--vram",
+                    "64"
                 ],
                 [
                     "modifyvm",
@@ -1005,6 +1071,12 @@
                 [
                     "modifyvm",
                     "{{.Name}}",
+                    "--vram",
+                    "64"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
                     "--cpus",
                     "4"
                 ]
@@ -1051,6 +1123,12 @@
                     "{{.Name}}",
                     "--memory",
                     "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--vram",
+                    "64"
                 ],
                 [
                     "modifyvm",
@@ -1107,6 +1185,12 @@
                 [
                     "modifyvm",
                     "{{.Name}}",
+                    "--vram",
+                    "64"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
                     "--cpus",
                     "4"
                 ]
@@ -1150,6 +1234,12 @@
                     "{{.Name}}",
                     "--memory",
                     "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--vram",
+                    "64"
                 ],
                 [
                     "modifyvm",

@@ -70,6 +70,12 @@
                 [
                     "modifyvm",
                     "{{.Name}}",
+                    "--vram",
+                    "64"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
                     "--cpus",
                     "4"
                 ]
