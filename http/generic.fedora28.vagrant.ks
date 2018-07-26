@@ -1,8 +1,6 @@
 install
 text
 reboot --eject
-url --url=https://mirrors.kernel.org/fedora/releases/28/Everything/x86_64/os/
-# url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Everything/x86_64/os/
 lang en_US.UTF-8
 keyboard us
 timezone US/Pacific
@@ -11,10 +9,17 @@ user --name=vagrant --password=vagrant --plaintext
 zerombr
 autopart --type=plain --nohome
 clearpart --all --initlabel
-bootloader --timeout=1
 firewall --enabled --service=ssh
-#network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora28.localdomain
 authconfig --enableshadow --passalgo=sha512
+
+# Hyper-V builds are having trouble with the default video driver. Since this is a
+# command line driven system, we force the kernel to use the VGA driver at a
+# resolution of 1024x768.
+bootloader --timeout=1 --append="vga=792"
+
+# When this release is no longer available from mirrors, enable the archive url.
+url --url=https://mirrors.kernel.org/fedora/releases/28/Everything/x86_64/os/
+# url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Everything/x86_64/os/
 
 %packages
 @core
