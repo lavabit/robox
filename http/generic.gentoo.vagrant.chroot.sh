@@ -18,8 +18,8 @@ MAKEOPTS="-j8"
 EMERGE_DEFAULT_OPTS="-j8 --with-bdeps=y --quiet-build=y --complete-graph"
 FEATURES="\${FEATURES} parallel-fetch"
 USE="nls alsa usb unicode"
-USE_PYTHON="3.2 2.7"
-PYTHON_TARGETS="python2_7 python3_2 python3_3"
+USE_PYTHON="3.6"
+PYTHON_TARGETS="python3_6"
 GRUB_PLATFORMS="emu pc"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
@@ -1228,6 +1228,7 @@ CONFIG_BLK_DEV_NVME=m
 # CONFIG_HMC6352 is not set
 # CONFIG_DS1682 is not set
 CONFIG_VMWARE_BALLOON=m
+CONFIG_VMWARE_VMCI_VSOCKETS=m
 # CONFIG_BMP085_I2C is not set
 # CONFIG_USB_SWITCH_FSA9480 is not set
 # CONFIG_SRAM is not set
