@@ -13,3 +13,5 @@ systemctl enable vmtoolsd.service
 systemctl enable vmware-vmblock-fuse.service
 systemctl start vmtoolsd.service
 systemctl start vmware-vmblock-fuse.service
+
+rm --force /root/linux.iso
