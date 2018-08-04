@@ -8,7 +8,7 @@ if [[ `dmidecode -s system-product-name` != "KVM" && `dmidecode -s system-manufa
 fi
 
 # echo "app-emulation/qemu-guest-agent ~amd64" > /etc/portage/package.accept_keywords/qemu
-emerge --ask=n --autounmask-continue=y app-emulation/qemu-guest-agent
+emerge --ask=n --autounmask-write=y --autounmask-continue=y app-emulation/qemu-guest-agent
 
 # Perform any configuration file updates.
 etc-update --automode -5

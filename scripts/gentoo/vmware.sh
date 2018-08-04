@@ -7,8 +7,7 @@ if [[ `dmidecode -s system-product-name` != "VMware Virtual Platform" ]]; then
     exit 0
 fi
 
-# echo "app-emulation/open-vm-tools ~amd64" > /etc/portage/package.accept_keywords/vmware
-USE="python_targets_python2_7 python_targets_python3_6" emerge --ask=n --autounmask-continue=y app-emulation/open-vm-tools
+USE="-X -resolutionkms icu pam ssl fuse vgauth xml-security-c grabbitmqproxy python_targets_python3_6" emerge --ask=n --autounmask-write=y --autounmask-continue=y app-emulation/open-vm-tools =openssh-7.5_p1-r4
 
 # Perform any configuration file updates.
 etc-update --automode -5
@@ -20,5 +19,3 @@ rc-service vmware-tools start
 
 rm --force /root/linux.iso
 
-# Rebuild the whole system so the VMWware drivers are supported properly.
-emerge --deep --with-bdeps=y @system @world
