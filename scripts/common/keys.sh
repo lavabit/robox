@@ -17,3 +17,7 @@ rm -f /etc/ssh/ssh_host_ecdsa_key.pub
 
 rm -f /etc/ssh/ssh_host_ed25519_key
 rm -f /etc/ssh/ssh_host_ed25519_key.pub
+
+if [[ "$PACKER_BUILD_NAME" =~ ^.*(ubuntu|debian|lineage).*$ ]]; then
+  printf "@reboot root command bash -c '/usr/sbin/dpkg-reconfigure openssh-server ; /bin/systemctl restart ssh.service ; rm --force /etc/cron.d/keys'\n" > /etc/cron.d/keys
+fi
