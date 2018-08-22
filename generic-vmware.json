@@ -1750,7 +1750,7 @@
             "vnc_bind_address": "127.0.0.1",
             "vmx_remove_ethernet_interfaces": true,
             "iso_url": "res/media/ubuntu-18.10-server-amd64.iso",
-            "iso_checksum": "028a07c2593901a3426a3b94cbe7d838d063160bc732cb18e0a559c1874b7f9d",
+            "iso_checksum": "d0189a58621e872c80d9b06c8e3f422f8a9563953da72d35ca8599e6b420399a",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
