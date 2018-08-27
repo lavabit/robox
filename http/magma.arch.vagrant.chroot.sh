@@ -41,23 +41,29 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
     su -l vagrant -c /bin/bash <<-EOF
     cd $HOME
 
+    # The PKGBUILD file is using an out-of-date kernel version, so we replace it
+    # with version of the currently running kernel. Note that the PKGBUILD files
+    # are attempting to download the kernel sources from a v4.x directory, which
+    # will probably need to be updated when the major version changes.
+
     # hypervvsh
-    git clone https://aur.archlinux.org/hypervvssd.git hypervvssd
-    cd hypervvssd
+    git clone https://aur.archlinux.org/hypervvssd.git hypervvssd && cd hypervvssd
+    sed "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
     makepkg --cleanbuild --noconfirm --syncdeps --install
     cd $HOME && rm -rf hypervvssd
 
     # hypervkvpd
-    git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd
-    cd hypervkvpd
+    git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd && cd hypervkvpd
+    sed "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
     makepkg --cleanbuild --noconfirm --syncdeps --install
     cd $HOME && rm -rf hypervkvpd
 
     # hypervfcopyd
-    git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd
-    cd hypervfcopyd
+    git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd && cd hypervfcopyd
+    sed "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
     makepkg --cleanbuild --noconfirm --syncdeps --install
     cd $HOME && rm -rf hypervfcopyd
+    
 EOF
     systemctl enable hypervkvpd.service
     systemctl enable hypervvssd.service
