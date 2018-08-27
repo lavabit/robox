@@ -207,6 +207,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/centos6/kernel.sh",
+                "scripts/centos6/vga.sh",
                 "scripts/centos6/virtualbox.sh",
                 "scripts/centos6/parallels.sh",
                 "scripts/centos6/vmware.sh",
@@ -449,6 +450,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/fedora25/kernel.sh",
+                "scripts/fedora25/vga.sh",
                 "scripts/fedora25/virtualbox.sh",
                 "scripts/fedora25/parallels.sh",
                 "scripts/fedora25/vmware.sh",
@@ -491,6 +493,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/fedora26/kernel.sh",
+                "scripts/fedora26/vga.sh",
                 "scripts/fedora26/virtualbox.sh",
                 "scripts/fedora26/parallels.sh",
                 "scripts/fedora26/vmware.sh",
@@ -533,6 +536,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/fedora27/kernel.sh",
+                "scripts/fedora27/vga.sh",
                 "scripts/fedora27/virtualbox.sh",
                 "scripts/fedora27/parallels.sh",
                 "scripts/fedora27/vmware.sh",
@@ -575,6 +579,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/fedora28/kernel.sh",
+                "scripts/fedora28/vga.sh",
                 "scripts/fedora28/virtualbox.sh",
                 "scripts/fedora28/parallels.sh",
                 "scripts/fedora28/vmware.sh",

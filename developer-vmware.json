@@ -21,6 +21,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/centos6/kernel.sh",
+                "scripts/centos6/vga.sh",
                 "scripts/centos6/virtualbox.sh",
                 "scripts/centos6/parallels.sh",
                 "scripts/centos6/vmware.sh",
