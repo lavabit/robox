@@ -1,13 +1,19 @@
-#!/bin/bash
+#!/bin/bash -eux
 
 # Remove the hard coded kernel VGA resolution needed to workaround Hyper-V bugs during installation.
-sed -i 's/^GRUB_CMDLINE_LINUX="\(.*\)vga=792\(.*\)"$/GRUB_CMDLINE_LINUX="\1\2"/g' /etc/default/grub
+sed -i "s/kernel \(.*\)vga=792\(.*\)/kernel \1\2/g" /etc/grub.conf
 
-# On UEFI systems.
-if [ -f /boot/efi/EFI/centos/grub.cfg ]; then
-  grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
+# In thoery the /etc/grub.conf file is linked to the approriate grub.conf file
+# but just in case, we run sed against the config files on the boot partition.
+if [ -f /boot/efi/EFI/fedora/grub.cfg ]; then
+  sed -i "s/kernel \(.*\)vga=792\(.*\)/kernel \1\2/g" /boot/efi/EFI/fedora/grub.conf
 
-# On BIOS systems.
+elif [ -f /boot/efi/EFI/centos/grub.cfg ]; then
+  sed -i "s/kernel \(.*\)vga=792\(.*\)/kernelQ \1\2/g" /boot/efi/EFI/centos/grub.conf
+
+elif [ -f /boot/efi/EFI/redhat/grub.cfg ]; then
+  sed -i "s/kernel \(.*\)vga=792\(.*\)/kernel \1\2/g" /boot/efi/EFI/redhat/grub.conf
+
 else
-  grub2-mkconfig -o /boot/grub2/grub.cfg
+  sed -i "s/kernel \(.*\)vga=792\(.*\)/kernel \1\2/g" /boot/grub/grub.conf
 fi

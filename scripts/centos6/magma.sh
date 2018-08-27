@@ -1,6 +1,74 @@
 #!/bin/bash -eux
 #
-# Setup the the box. This runs as root
+# Setup the box, for magma. These commands will be run as root during provisioning.
+error() {
+        if [ $? -ne 0 ]; then
+                printf "\n\nbase configuration script failure...\n\n";
+                exit 1
+        fi
+}
+
+# Install the the EPEL repository.
+yum --assumeyes --enablerepo=extras install epel-release; error
+
+# Packages needed beyond a minimal install to build and run magma.
+yum --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers libgomp mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes cmake libarchive; error
+
+# Install libbsd because DSPAM relies upon for the strl functions, and the
+# entropy which improves the availability of random bits, and helps magma
+# launch and complete her unit tests faster.
+yum --assumeyes install mlocate sysstat libbsd libbsd-devel inotify-tools haveged; error
+
+# The MySQL services magma relies upon.
+yum --assumeyes install mysql mysql-server perl-DBI perl-DBD-MySQL; error
+
+# The memcached services magma uses.
+yum --assumeyes install libevent memcached; error
+
+# Packages used to retrieve the magma code, but aren't required for building/running the daemon.
+yum --assumeyes install wget git rsync perl-Git perl-Error; error
+
+# Enable and start the daemons.
+chkconfig mysqld on
+chkconfig memcached on
+service mysqld start
+service memcached start
+
+# Setup the mysql root account with a random password.
+export PRAND=`openssl rand -base64 18`
+mysqladmin --user=root password "$PRAND"
+
+# Allow the root user to login to mysql as root by saving the randomly generated password.
+printf "\n\n[mysql]\nuser=root\npassword=$PRAND\n\n" >> /root/.my.cnf
+
+# Create the mytool user and grant the required permissions.
+mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
+mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
+
+# Install the python packages needed for the stacie script to run, which requires the python cryptography package (installed via pip).
+yum --assumeyes install zlib-devel openssl-devel libffi-devel python-pip python-ply python-devel python-pycparser python-crypto2.6 libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel; error
+
+# Install the Python Prerequisites
+pip install --disable-pip-version-check setuptools==11.3 2>&1 | grep -v "Requirement already"; error
+pip install --disable-pip-version-check cryptography==1.5.2 2>&1 | grep -v "Requirement already"; error
+
+printf "export PYTHONPATH=/usr/lib64/python2.6/site-packages/pycrypto-2.6.1-py2.6-linux-x86_64.egg/\n" > /etc/profile.d/pypath.sh
+chcon "system_u:object_r:bin_t:s0" /etc/profile.d/pypath.sh
+chmod 644 /etc/profile.d/pypath.sh
+
+# Find out how much RAM is installed, and what 50% would be in KB.
+TOTALMEM=`free -k | grep -E "^Mem:" | awk -F' ' '{print $2}'`
+HALFMEM=`echo $(($TOTALMEM/2))`
+
+# Setup the memory locking limits.
+printf "*    soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-magmad.conf
+printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.conf
+
+# Fix the SELinux context.
+chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
+
+# Create the clamav user to avoid spurious errors when compilintg ClamAV.
+useradd clamav
 
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
