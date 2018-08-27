@@ -11,7 +11,7 @@ user --name=vagrant --password=vagrant --plaintext
 zerombr
 autopart --type=plain --nohome
 clearpart --all --initlabel
-bootloader --timeout=1
+bootloader --timeout=1 --append="vga=792"
 firewall --enabled --service=ssh
 #network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora27.localdomain
 authconfig --enableshadow --passalgo=sha512

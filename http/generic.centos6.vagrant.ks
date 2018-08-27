@@ -16,7 +16,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=centos6.localdomain
 
 zerombr
 clearpart --all --initlabel
-bootloader --location=mbr --append="no_timer_check console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 elevator=noop"
+bootloader --location=mbr --append="no_timer_check console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 elevator=noop vga=792" 
 autopart
 
 rootpw vagrant
