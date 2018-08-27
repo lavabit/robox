@@ -100,3 +100,6 @@ printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
 export SYSPRODNAME=`dmidecode -s system-product-name`
 export SYSMANUNAME=`dmidecode -s system-manufacturer`
 printf "System Product String:  $SYSPRODNAME\nSystem Manufacturer String: $SYSMANUNAME\n"
+
+# Seed the database.
+updatedb

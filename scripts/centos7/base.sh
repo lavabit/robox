@@ -13,7 +13,7 @@ yum --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtoo
 # Install the libbsd packages from the EPEL repository, which DSPAM relies upon for the strl functions.
 # The entropy daemon is optional, but improves the availability of entropy, which makes magma launch
 # and complete her unit tests faster.
-yum --assumeyes install libbsd libbsd-devel inotify-tools; error
+yum --assumeyes install mlocate sysstat libbsd libbsd-devel inotify-tools; error
 
 # Boosts the available entropy which allows magma to start faster.
 yum --assumeyes install haveged; error
@@ -89,3 +89,6 @@ printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
 export SYSPRODNAME=`dmidecode -s system-product-name`
 export SYSMANUNAME=`dmidecode -s system-manufacturer`
 printf "System Product String:  $SYSPRODNAME\nSystem Manufacturer String: $SYSMANUNAME\n"
+
+# Seed the database.
+updatedb
