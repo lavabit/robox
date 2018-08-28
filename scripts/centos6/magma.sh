@@ -1,5 +1,5 @@
 #!/bin/bash -eux
-#
+
 # Setup the box, for magma. These commands will be run as root during provisioning.
 error() {
         if [ $? -ne 0 ]; then
@@ -17,7 +17,7 @@ yum --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtoo
 # Install libbsd because DSPAM relies upon for the strl functions, and the
 # entropy which improves the availability of random bits, and helps magma
 # launch and complete her unit tests faster.
-yum --assumeyes install mlocate sysstat libbsd libbsd-devel inotify-tools haveged; error
+yum --assumeyes install libbsd libbsd-devel inotify-tools haveged; error
 
 # The MySQL services magma relies upon.
 yum --assumeyes install mysql mysql-server perl-DBI perl-DBD-MySQL; error

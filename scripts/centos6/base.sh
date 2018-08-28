@@ -34,17 +34,18 @@ yum --assumeyes --enablerepo=extras install epel-release; error
 # Import the EPEL key.
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
-# Grab the required packages from the EPEL repo.
-yum --assumeyes install mlocate sysstat libbsd libbsd-devel inotify-tools haveged; error
+# Install the basic packages we'd expect to find.
+yum --assumeyes install deltarpm net-tools sudo dmidecode yum-utils man bash-completion man-pages vim-common vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers; error
 
-# Packages used during the provisioning process and then removed during the cleanup stage.
-yum --assumeyes install sudo dmidecode yum-utils; error
+deltarpm net-tools sudo dmidecode yum-utils bash-completion man man-pages vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers
+deltarpm net-tools sudo dmidecode yum-utils bash-completion man man-pages vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers
+
 
 # Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays
 # often interupt the the provisioning process.
 yum --assumeyes --disablerepo=epel update; error
 
-# Configure pip in case anybody needs it.
+# Configure pip in case anybody needs it. We do this seperately to make it easier to skip/remove.
 yum --assumeyes install python-pip; error
 
 # Remove the spurious pip warning about an insecure urllib3 library.
@@ -70,13 +71,7 @@ index b846d42..b22f7a3 100644
                  'certfile': self.certfile,
 EOF
 
-
-# Enable and start the daemons.
-chkconfig haveged on
-service haveged start
-
-# Disable IPv6 and the iptables module used to firewall IPv6.
-chkconfig ip6tables off
+# Disable IPv6 by default.
 printf "\n\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
 
 sed -i -e "s/IPV6INIT=yes/IPV6INIT=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
@@ -86,20 +81,26 @@ sed -i -e "s/IPV6_PEERDNS=yes/IPV6_PEERDNS=no/g" /etc/sysconfig/network-scripts/
 sed -i -e "s/IPV6_PEERROUTES=yes/IPV6_PEERROUTES=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 
 # Close a potential security hole.
-#chkconfig netfs off
+chkconfig netfs off
 
-# Setup the python path and increase the history size.
+# Prevent udev from persisting the network interface rules.
+rm -f /etc/udev/rules.d/70-persistent-net.rules
+sed -i -e 's/\(\[ "\$comment" \] && echo "# \$comment"\)/# \1/g' /lib/udev/write_net_rules
+sed -i -e 's/\(echo "SUBSYSTEM==\\\"net\\\", ACTION==\\\"add\\\"\$match, NAME\=\\\"\$name\\\""\)/# \1/g' /lib/udev/write_net_rules
+
+# Increase the history size.
 printf "export HISTSIZE=\"100000\"\n" > /etc/profile.d/histsize.sh
 chcon "system_u:object_r:bin_t:s0" /etc/profile.d/histsize.sh
 chmod 644 /etc/profile.d/histsize.sh
 
+# Always use vim, even as root.
+printf "alias vi vim\n" > /etc/profile.d/vim.csh
+printf "# For bash/zsh, if no alias is already set.\nalias vi >/dev/null 2>&1 || alias vi=vim\n" > /etc/profile.d/vim.sh
+
 # Set the timezone to Pacific time.
 printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
 
-# Output the system vendor string detected.
-export SYSPRODNAME=`dmidecode -s system-product-name`
-export SYSMANUNAME=`dmidecode -s system-manufacturer`
-printf "System Product String:  $SYSPRODNAME\nSystem Manufacturer String: $SYSMANUNAME\n"
-
-# Seed the database.
-updatedb
+# If postfix is installed, configure it use only ipv4 interfaces, or it will fail to start properly.
+if [ -f /etc/postfix/main.cf ]; then
+  sed -i "s/^inet_protocols.*$/inet_protocols = ipv4/g" /etc/postfix/main.cf
+fi

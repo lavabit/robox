@@ -12,23 +12,6 @@ if [ ! -f /media/media.repo ]; then
   mount /dev/cdrom /media; error
 fi
 
-# Packages needed beyond a minimal install to build and run magma.
-yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive; error
-
-# Grab the required packages from the EPEL repo.
-yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
-
-# Boosts the available entropy which allows magma to start faster.
-yum --quiet --assumeyes install haveged; error
-
-# The daemon services magma relies upon.
-yum --quiet --assumeyes install libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL; error
-
-# Packages used to retrieve the magma code, but aren't required for building/running the daemon.
-yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
-
-# These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
-yum --quiet --assumeyes install python-crypto python-cryptography
 
 # Packages used during the provisioning process and then removed during the cleanup stage.
 yum --quiet --assumeyes install sudo dmidecode yum-utils; error
@@ -37,13 +20,6 @@ yum --quiet --assumeyes install sudo dmidecode yum-utils; error
 # often interupt the the provisioning process.
 yum --quiet --assumeyes --disablerepo=epel update; error
 
-# Enable and start the daemons.
-systemctl enable mariadb
-systemctl enable haveged
-systemctl enable memcached
-systemctl start mariadb
-systemctl start haveged
-systemctl start memcached
 
 # Close a potential security hole.
 systemctl disable remote-fs.target

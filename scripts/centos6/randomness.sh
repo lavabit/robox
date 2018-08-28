@@ -1,11 +1,21 @@
-#!/bin/bash
+#!/bin/bash -eux
+
+# Install haveged, which should improve the entropy pool performance
+# inside a virtual machines, but be careful, it doesn't end up running
+# on systems which aren't virtualized. The patch command is included
+# to ensure its use below doesn't cause an error.
+yum --assumeyes install haveged patch
+
+# Enable and start the daemons.
+chkconfig haveged on
+service haveged start
 
 # Improve the kernel entropy performance.
 printf "kernel.random.read_wakeup_threshold = 64\n" >> /etc/sysctl.d/50-random.conf
 printf "kernel.random.write_wakeup_threshold = 3072\n" >> /etc/sysctl.d/50-random.conf
 chcon "system_u:object_r:etc_t:s0" /etc/sysctl.d/50-random.conf
 
-# If the haveged daemon is installed, this patch will speed it up even more.
+# This patch should increase the available entropy pool even more.
 if [ -f /etc/init.d/haveged ]; then
 patch /etc/init.d/haveged <<-EOF
 diff --git a/haveged b/haveged
