@@ -61,6 +61,8 @@
                 "scripts/centos7/kernel.sh",
                 "scripts/centos7/floppy.sh",
                 "scripts/centos7/postfix.sh",
+                "scripts/centos7/memcached.sh",
+                "scripts/centos7/mariadb.sh",
                 "scripts/centos7/magma.sh",
                 "scripts/centos7/cleanup.sh",
                 "scripts/centos7/unyum.sh",

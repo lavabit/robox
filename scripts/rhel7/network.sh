@@ -24,6 +24,11 @@ sed -i -e "s/IPV6_DEFROUTE=yes/IPV6_DEFROUTE=no/g" /etc/sysconfig/network-script
 sed -i -e "s/IPV6_PEERDNS=yes/IPV6_PEERDNS=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "s/IPV6_PEERROUTES=yes/IPV6_PEERROUTES=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 
+# If postfix is installed, configure it use only ipv4 interfaces, or it will fail to start properly.
+if [ -f /etc/postfix/main.cf ]; then
+  sed -i "s/^inet_protocols.*$/inet_protocols = ipv4/g" /etc/postfix/main.cf
+fi
+
 # Works around a bug which slows down DNS queries on Virtualbox.
 # https://access.redhat.com/site/solutions/58625
 

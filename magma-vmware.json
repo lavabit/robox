@@ -113,6 +113,8 @@
                 "scripts/centos7/qemu.sh",
                 "scripts/centos7/postfix.sh",
                 "scripts/centos7/vagrant.sh",
+                "scripts/centos7/memcached.sh",
+                "scripts/centos7/mariadb.sh",
                 "scripts/centos7/magma.sh",
                 "scripts/centos7/tuning.sh",
                 "scripts/centos7/sshd.sh",

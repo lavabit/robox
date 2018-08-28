@@ -294,6 +294,8 @@
                 "scripts/rhel7/vagrant.sh",
                 "scripts/rhel7/tuning.sh",
                 "scripts/rhel7/sshd.sh",
+				"scripts/rhel7/randomness.sh",
+                "scripts/rhel7/updatedb.sh",
                 "scripts/rhel7/cleanup.sh",
                 "scripts/rhel7/unyum.sh"
             ],

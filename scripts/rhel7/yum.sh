@@ -294,7 +294,4 @@ sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/mirrors.kernel.org\/fedora-epel\//g" /etc/yum.repos.d/epel.repo
 
 # Install the basic packages we'd expect to find.
-yum --assumeyes install deltarpm net-tools yum-utils bash-completion man-pages vim-enhanced mlocate sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl
-
-# Update the locate database.
-/etc/cron.daily/mlocate
+yum --assumeyes install  sudo dmidecode yum-utils bash-completion man man-pages vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers
