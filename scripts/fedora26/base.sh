@@ -21,6 +21,13 @@ sed -i -e "s/IPV6_DEFROUTE=yes/IPV6_DEFROUTE=no/g" /etc/sysconfig/network-script
 sed -i -e "s/IPV6_PEERDNS=yes/IPV6_PEERDNS=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "s/IPV6_PEERROUTES=yes/IPV6_PEERROUTES=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 
+# Ensure good DNS servers are being used.
+if [ -f /etc/sysconfig/network-scripts/ifcfg-eth0 ]; then
+  printf "DNS1=\"4.2.2.1\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  printf "DNS2=\"4.2.2.2\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  printf "DNS3=\"208.67.220.220\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+fi
+
 # Close a potential security hole.
 systemctl disable remote-fs.target
 

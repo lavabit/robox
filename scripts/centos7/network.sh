@@ -30,6 +30,7 @@ if [ -f /etc/postfix/main.cf ]; then
 fi
 
 # Works around a bug which slows down DNS queries on Virtualbox.
+# We assume that this bug applies to CentOS as well.
 # https://access.redhat.com/site/solutions/58625
 
 # Bail if we are not running atop VirtualBox.

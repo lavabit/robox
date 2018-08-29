@@ -40,7 +40,6 @@ yum --assumeyes install deltarpm net-tools sudo dmidecode yum-utils man bash-com
 deltarpm net-tools sudo dmidecode yum-utils bash-completion man man-pages vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers
 deltarpm net-tools sudo dmidecode yum-utils bash-completion man man-pages vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers
 
-
 # Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays
 # often interupt the the provisioning process.
 yum --assumeyes --disablerepo=epel update; error
@@ -79,6 +78,28 @@ sed -i -e "s/IPV6_AUTOCONF=yes/IPV6_AUTOCONF=no/g" /etc/sysconfig/network-script
 sed -i -e "s/IPV6_DEFROUTE=yes/IPV6_DEFROUTE=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "s/IPV6_PEERDNS=yes/IPV6_PEERDNS=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "s/IPV6_PEERROUTES=yes/IPV6_PEERROUTES=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
+
+# Delete the network manager line and recreate it.
+sed -i -e "/NM_CONTROLLED/d" /etc/sysconfig/network-scripts/ifcfg-eth0
+
+# Ensure good DNS servers are being used.
+printf "DNS1=\"4.2.2.1\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+printf "DNS2=\"4.2.2.2\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+printf "DNS3=\"208.67.220.220\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+
+# Add extra options so missing or unplugged ethernet devices don't cause problems during boot.
+printf "IPV4_FAILURE_FATAL=\"no\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+printf "PERSISTENT_DHCLIENT=\"yes\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+printf "NM_CONTROLLED=\"no\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+printf "DHCPRELEASE=\"yes\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+printf "LINKDELAY=\"5\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+
+# Don't wait for the interface to be configured during boot.
+printf "NETWORKDELAY=\"\"\n" >> /etc/sysconfig/network
+
+# Make sure the dhcp client continues to retry.
+printf "timeout 10;\n" >> /etc/dhcp/dhclient-eth0.conf
+printf "retry 5;\n" >> /etc/dhcp/dhclient-eth0.conf
 
 # Close a potential security hole.
 chkconfig netfs off

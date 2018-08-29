@@ -6,7 +6,6 @@ printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\nnames
 # Set the local hostname to resolve properly.
 printf "\n127.0.0.1	magma.builder\n\n" >> /etc/hosts
 
-
 # Enable and start the daemons.
 systemctl enable haveged
 systemctl enable memcached
@@ -21,6 +20,13 @@ sed -i -e "s/IPV6_AUTOCONF=yes/IPV6_AUTOCONF=no/g" /etc/sysconfig/network-script
 sed -i -e "s/IPV6_DEFROUTE=yes/IPV6_DEFROUTE=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "s/IPV6_PEERDNS=yes/IPV6_PEERDNS=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "s/IPV6_PEERROUTES=yes/IPV6_PEERROUTES=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
+
+# Ensure good DNS servers are being used.
+if [ -f /etc/sysconfig/network-scripts/ifcfg-eth0 ]; then
+  printf "DNS1=\"4.2.2.1\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  printf "DNS2=\"4.2.2.2\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  printf "DNS3=\"208.67.220.220\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+fi
 
 # Close a potential security hole.
 systemctl disable remote-fs.target
@@ -38,11 +44,6 @@ chmod 644 /etc/profile.d/histsize.sh
 
 # Set the timezone to Pacific time.
 printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
-
-# Output the system vendor string detected.
-export SYSPRODNAME=`dmidecode -s system-product-name`
-export SYSMANUNAME=`dmidecode -s system-manufacturer`
-printf "System Product String:  $SYSPRODNAME\nSystem Manufacturer String: $SYSMANUNAME\n"
 
 # Reboot
 shutdown --reboot --no-wall +1
