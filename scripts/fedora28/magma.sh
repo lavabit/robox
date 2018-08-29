@@ -1,6 +1,8 @@
 #!/bin/bash -eux
 #
 # Setup the the box. This runs as root
+# Create the clamav user to avoid spurious errors.
+useradd clamav
 
 # Set the local hostname to resolve properly.
 printf "\n127.0.0.1	bazinga.localdomain\n\n" >> /etc/hosts

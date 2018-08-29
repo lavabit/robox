@@ -48,7 +48,7 @@
             "scripts": [
                 "scripts/centos6/fixdns.sh",
                 "scripts/centos6/base.sh",
-                "scripts/centos6/reboot.sh"
+                "scripts/centos6/network.sh"
             ],
             "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
             "start_retry_timeout": "15m",

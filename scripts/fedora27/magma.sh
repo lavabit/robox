@@ -1,6 +1,8 @@
 #!/bin/bash -eux
 #
 # Setup the the box. This runs as root
+# Create the clamav user to avoid spurious errors.
+useradd clamav
 
 # Set the local hostname to resolve properly.
 printf "\n127.0.0.1	bazinga.localdomain\n\n" >> /etc/hosts
@@ -16,7 +18,7 @@ printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.
 # Fix the SELinux context.
 chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
 
-# Packages required to compile magma. 
+# Packages required to compile magma.
 dnf install --assumeyes zlib-devel
 
 if [ -d /home/vagrant/ ]; then

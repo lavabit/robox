@@ -14,7 +14,7 @@ firewall --enabled --service=ssh --port=6000:tcp,6050:tcp,7000:tcp,7050:tcp,7500
 network --device eth0 --bootproto dhcp --noipv6 --hostname=magma.local
 zerombr
 clearpart --all --initlabel
-bootloader --append="net.ifnames=0 biosdevname=0 elevator=noop elevator=noop no_timer_check vga=792"
+bootloader --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=792"
 autopart
 rootpw magma
 authconfig --enableshadow --passalgo=sha512

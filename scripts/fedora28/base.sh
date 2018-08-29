@@ -33,8 +33,6 @@ systemctl disable remote-fs.target
 # Disable kernel dumping.
 # systemctl disable kdump.service
 
-# Create the clamav user to avoid spurious errors.
-useradd clamav
 
 # Setup the python path and increase the history size.
 printf "export HISTSIZE=\"100000\"\n" > /etc/profile.d/histsize.sh

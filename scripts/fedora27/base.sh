@@ -6,7 +6,6 @@ printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\nnames
 # Set the local hostname to resolve properly.
 printf "\n127.0.0.1	magma.builder\n\n" >> /etc/hosts
 
-
 # Enable and start the daemons.
 systemctl enable haveged
 systemctl enable memcached
@@ -34,9 +33,6 @@ systemctl disable remote-fs.target
 # Disable kernel dumping.
 # systemctl disable kdump.service
 
-# Create the clamav user to avoid spurious errors.
-useradd clamav
-
 # Setup the python path and increase the history size.
 printf "export HISTSIZE=\"100000\"\n" > /etc/profile.d/histsize.sh
 chcon "system_u:object_r:bin_t:s0" /etc/profile.d/histsize.sh
@@ -44,11 +40,6 @@ chmod 644 /etc/profile.d/histsize.sh
 
 # Set the timezone to Pacific time.
 printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
-
-# Output the system vendor string detected.
-export SYSPRODNAME=`dmidecode -s system-product-name`
-export SYSMANUNAME=`dmidecode -s system-manufacturer`
-printf "System Product String:  $SYSPRODNAME\nSystem Manufacturer String: $SYSMANUNAME\n"
 
 # Reboot
 shutdown --reboot --no-wall +1

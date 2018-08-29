@@ -8,7 +8,7 @@
             "scripts": [
                 "scripts/centos6/fixdns.sh",
                 "scripts/centos6/base.sh",
-                "scripts/centos6/reboot.sh"
+                "scripts/centos6/network.sh"
             ],
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
