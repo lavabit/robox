@@ -80,9 +80,8 @@ sed -i -e "s/IPV6_PEERROUTES=yes/IPV6_PEERROUTES=no/g" /etc/sysconfig/network-sc
 sed -i -e "/NM_CONTROLLED/d" /etc/sysconfig/network-scripts/ifcfg-eth0
 
 # Ensure good DNS servers are being used.
-printf "DNS1=\"4.2.2.1\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-printf "DNS2=\"4.2.2.2\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-printf "DNS3=\"208.67.220.220\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+printf "DNS1=4.2.2.1\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+printf "DNS2=4.2.2.2\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 
 # Add extra options so missing or unplugged ethernet devices don't cause problems during boot.
 printf "IPV4_FAILURE_FATAL=\"no\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0

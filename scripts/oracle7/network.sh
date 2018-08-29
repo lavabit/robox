@@ -31,9 +31,8 @@ sed -i -e "s/IPV6_PEERROUTES=yes/IPV6_PEERROUTES=no/g" /etc/sysconfig/network-sc
 
 # Ensure good DNS servers are being used.
 if [ -f /etc/sysconfig/network-scripts/ifcfg-eth0 ]; then
-  printf "DNS1=\"4.2.2.1\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-  printf "DNS2=\"4.2.2.2\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-  printf "DNS3=\"208.67.220.220\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  printf "DNS1=4.2.2.1\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  printf "DNS2=4.2.2.2\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 fi
 
 # Make sure Udev doesn't block our network
