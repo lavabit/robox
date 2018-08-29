@@ -23,7 +23,7 @@ index 8f4c1c6..e95c0a9 100755
 --- a/haveged
 +++ b/haveged
 @@ -37,7 +37,7 @@ test -x \${HAVEGED_BIN} || { echo "Cannot find haveged executable \${HAVEGED_BIN}"
- case "$1" in
+ case "\$1" in
  start)
    echo -n \$"Starting \$prog: "
 -  \${HAVEGED_BIN} -w 1024 -v 1 && success || failure

@@ -24,7 +24,7 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6; error
 yum --assumeyes update; error
 
 # We'll want the EPEL repo installed.
-yum --assumeyes --enablerepo=extras install deltarpm pel-release; error
+yum --assumeyes --enablerepo=extras install deltarpm epel-release; error
 
 # Import the EPEL key.
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6; error
