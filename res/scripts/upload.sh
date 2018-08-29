@@ -1,15 +1,18 @@
 #!/bin/bash
 
-ORG="roboxes"
-NAME="ubuntu1804"
-VERSION="1.8.10"
-PROVIDER="libvirt"
+ORG="$1"
+NAME="$2"
+PROVIDER="$3"
+VERSION="$4"
+FILE="$5"
 
-# Cross Platform Script Directory
+CURL=/opt/vagrant/embedded/bin/curl
+LD_PRELOAD="/opt/vagrant/embedded/lib/libcrypto.so:/opt/vagrant/embedded/lib/libssl.so"
+
+# Cross platform scripting directory plus munchie madness.
 pushd `dirname $0` > /dev/null
 BASE=`pwd -P`
 popd > /dev/null
-cd $BASE
 
 # The jq tool is needed to parse JSON responses.
 if [ ! -f /usr/bin/jq ]; then
@@ -32,12 +35,12 @@ fi
 
 printf "\n\n"
 
-# Create a Version
-curl \
-  --silent \
+# Assume the position, while you create the version.
+${CURL} \
+  --tlsv1.2 \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  https://app.vagrantup.com/api/v1/box/$ORG/$NAME/versions \
+  "https://app.vagrantup.com/api/v1/box/$ORG/$NAME/versions" \
   --data "
     {
       \"version\": {
@@ -48,9 +51,9 @@ curl \
   "
 printf "\n\n"
 
-# Create a Provider
-curl \
-  --silent \
+# Create the provider, while become one with your inner child.
+${CURL} \
+  --tlsv1.2 \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/providers \
@@ -58,25 +61,30 @@ curl \
 
 printf "\n\n"
 
-# Prepare for the Upload
-RESPONSE=$(curl \
+# Prepare an upload path, and then extract that upload path from the JSON
+# response using the jq command.
+UPLOAD_PATH=`${CURL} \
+  --tlsv1.2 \
   --silent \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/$PROVIDER/upload)
+  https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/$PROVIDER/upload | jq -r .upload_path`
 
-# Extract the upload URL from the response (requires the jq command)
-UPLOAD_PATH=$(echo "$RESPONSE" | jq .upload_path)
+# Perform the upload, and see the bits boil.
+${CURL} --tlsv1.2 --include --max-time 7200 --expect100-timeout 7200 --request PUT --output "$FILE.upload.log.txt" --upload-file "$FILE" "$UPLOAD_PATH"
 
-# Perform the Upload
-bash -c "curl --proto https --request PUT --insecure --upload-file $BASE/../../output/$ORG-$NAME-$PROVIDER-$VERSION.box $UPLOAD_PATH"
+printf "\n-----------------------------------------------------\n"
+tput setaf 5
+cat "$FILE.upload.log.txt"
+tput sgr0
+printf -- "-----------------------------------------------------\n\n"
 
-printf "\n\n"
-
-# Release the Version
-curl \
+# Release the version, and watch the party rage.
+${CURL} \
+  --tlsv1.2 \
+  --silent \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/release \
-  --request PUT
+  --request PUT | jq '.status,.version,.providers[]' | grep -vE "hosted|hosted_token|original_url|created_at|updated_at|\}|\{"
 
 printf "\n\n"
 
@@ -84,13 +92,13 @@ printf "\n\n"
 
 
 # Revoke a Version
-# curl \
+# ${CURL} \
 #   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-#   https://app.vagrantup.com/api/v1/box/myuser/test/version/1.2.3/revoke \
+#   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/revoke \
 #   --request PUT
 
-# Delete a Version
-# curl \
+# # Delete a Version
+# ${CURL} \
 #   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
 #   --request DELETE \
-#   https://app.vagrantup.com/api/v1/box/myuser/test/version/1.2.3
+#   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION
