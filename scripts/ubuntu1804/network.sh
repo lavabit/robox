@@ -27,6 +27,7 @@ network:
     eth0:
       dhcp4: true
       dhcp6: false
+      optional: true
       nameservers:
         addresses: [4.2.2.1, 4.2.2.2, 208.67.220.220, 208.67.222.222]
 EOF
@@ -35,9 +36,18 @@ EOF
 netplan generate
 
 # Ensure a nameserver is being used that won't return an IP for non-existent domain names.
-sed -i -e "s/#DNS=/DNS=4.2.2.1 4.2.2.2/g" /etc/systemd/resolved.conf
-sed -i -e "s/#FallbackDNS=/FallbackDNS=/g" /etc/systemd/resolved.conf
-sed -i -e "s/#Domains=/Domains=/g" /etc/systemd/resolved.conf
+
+sed -i -e "s/#DNS=.*/DNS=4.2.2.1 4.2.2.2 208.67.220.220 208.67.222.222/g" /etc/systemd/resolved.conf
+sed -i -e "s/#FallbackDNS=.*/FallbackDNS=/g" /etc/systemd/resolved.conf
+sed -i -e "s/#Domains=.*/Domains=/g" /etc/systemd/resolved.conf
+sed -i -e "s/#DNSSEC=.*/DNSSEC=yes/g" /etc/systemd/resolved.conf
+sed -i -e "s/#Cache=.*/Cache=yes/g" /etc/systemd/resolved.conf
+sed -i -e "s/#DNSStubListener=.*/DNSStubListener=yes/g" /etc/systemd/resolved.conf
+
 
 # Ensure the networking interfaces get configured on boot.
-systemctl enable systemd-networkd.service
+systemctl enable networking.service
+
+# Reboot onto the new kernel (if applicable).
+reboot
+

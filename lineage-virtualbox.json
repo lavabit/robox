@@ -5,8 +5,8 @@
     "provisioners": [
         {
             "scripts": [
-                "scripts/ubuntu1604/network.sh",
-                "scripts/ubuntu1604/apt.sh"
+                "scripts/ubuntu1604/apt.sh",
+                "scripts/ubuntu1604/network.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",

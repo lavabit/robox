@@ -40,3 +40,6 @@ printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\nnames
 
 # Ensure the networking interfaces get configured on boot.
 systemctl enable networking.service
+
+# Reboot onto the new kernel (if applicable).
+reboot

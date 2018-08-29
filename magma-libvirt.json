@@ -331,8 +331,8 @@
         },
         {
             "scripts": [
-                "scripts/ubuntu1604/network.sh",
-                "scripts/ubuntu1604/apt.sh"
+                "scripts/ubuntu1604/apt.sh",
+                "scripts/ubuntu1604/network.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",
@@ -370,8 +370,8 @@
         },
         {
             "scripts": [
-                "scripts/ubuntu1610/network.sh",
-                "scripts/ubuntu1610/apt.sh"
+                "scripts/ubuntu1610/apt.sh",
+                "scripts/ubuntu1610/network.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",
@@ -407,8 +407,8 @@
         },
         {
             "scripts": [
-                "scripts/ubuntu1704/network.sh",
-                "scripts/ubuntu1704/apt.sh"
+                "scripts/ubuntu1704/apt.sh",
+                "scripts/ubuntu1704/network.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",

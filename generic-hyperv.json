@@ -653,8 +653,8 @@
         },
         {   "type": "shell",
             "scripts": [
-                "scripts/ubuntu1604/network.sh",
-                "scripts/ubuntu1604/apt.sh"
+                "scripts/ubuntu1604/apt.sh",
+                "scripts/ubuntu1604/network.sh"
             ],
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -685,8 +685,8 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/ubuntu1610/network.sh",
-                "scripts/ubuntu1610/apt.sh"
+                "scripts/ubuntu1610/apt.sh",
+                "scripts/ubuntu1610/network.sh"
             ],
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -717,8 +717,8 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/ubuntu1704/network.sh",
-                "scripts/ubuntu1704/apt.sh"
+                "scripts/ubuntu1704/apt.sh",
+                "scripts/ubuntu1704/network.sh"
             ],
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -749,8 +749,8 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/ubuntu1710/network.sh",
-                "scripts/ubuntu1710/apt.sh"
+                "scripts/ubuntu1710/apt.sh",
+                "scripts/ubuntu1710/network.sh"
             ],
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -781,8 +781,8 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/ubuntu1804/network.sh",
-                "scripts/ubuntu1804/apt.sh"
+                "scripts/ubuntu1804/apt.sh",
+                "scripts/ubuntu1804/network.sh"
             ],
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -813,8 +813,8 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/ubuntu1810/network.sh",
-                "scripts/ubuntu1810/apt.sh"
+                "scripts/ubuntu1810/apt.sh",
+                "scripts/ubuntu1810/network.sh"
             ],
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
