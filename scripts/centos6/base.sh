@@ -40,7 +40,7 @@ yum --assumeyes --disablerepo=epel update; error
 yum --assumeyes install python-pip; error
 
 # Remove the spurious pip warning about an insecure urllib3 library.
-patch /usr/lib/python2.6/site-packages/pip/_vendor/requests/packages/urllib3/util/ssl_.py; error <<-EOF
+patch /usr/lib/python2.6/site-packages/pip/_vendor/requests/packages/urllib3/util/ssl_.py <<-EOF
 diff --git a/ssl_.py b/ssl_.py
 index b846d42..b22f7a3 100644
 --- a/ssl_.py
