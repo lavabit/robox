@@ -1,7 +1,49 @@
 #!/bin/bash -eux
 
+# Install the the EPEL repository.
+yum --assumeyes --enablerepo=extras install epel-release
+
 # Install Developer Packages
-yum --assumeyes install ElectricFence archivemount autofs crypto-utils diffuse eclipse-mylyn-cdt eclipse-mylyn-pde eclipse-mylyn-trac eclipse-mylyn-webtasks eclipse-mylyn-wikitext eclipse-subclipse-graph expect file-devel finger ftp gcc-gnat gcc-java gcc-objc gcc-objc++ gd gdb-gdbserver geany gedit-plugins glibc-utils gperf httpd-devel httpd-manual imake iotop iptables-devel iptraf jwhois libevent-devel libevent-doc libevent-headers libmemcached libstdc++-docs libuuid-devel libzip lm_sensors lm_sensors-devel lm_sensors-libs lslk m2crypto mc mcelog meld memtest86+ mercurial mod_perl mod_ssl mysql-bench mysql-connector-java nasm net-snmp net-snmp-devel net-snmp-libs net-snmp-perl net-snmp-python net-snmp-utils nmap numpy oprofile-gui oprofile-jit perf powertop psutils screen setools-console setroubleshoot setroubleshoot-plugins setroubleshoot-server stunnel telnet tokyocabinet tokyocabinet-devel wireshark wireshark-gnome xmlto xz-devel
+yum --assumeyes install archivemount autoconf autofs automake cloog-ppl cmake cpp crypto-utils diffuse eclipse-mylyn-cdt eclipse-mylyn-pde eclipse-mylyn-trac eclipse-mylyn-webtasks eclipse-mylyn-wikitext eclipse-subclipse-graph ElectricFence expect file-devel finger ftp gcc gcc-c++ gcc-gnat gcc-java gcc-objc gcc-objc++ gd gdb-gdbserver geany gedit-plugins git glibc-devel glibc-headers glibc-utils gperf haveged httpd-devel httpd-manual imake inotify-tools iotop iptables-devel iptraf jwhois kernel-headers keyutils-libs-devel krb5-devel libarchive libbsd libbsd-devel libcom_err-devel libevent libevent-devel libevent-doc libevent-headers libffi-devel libgomp libmemcached libselinux-devel libsepol-devel libstdc++-devel libstdc++-docs libtool libuuid-devel libzip lm_sensors lm_sensors-devel lm_sensors-libs lslk m2crypto mc mcelog meld memcached memtest86+ mercurial mod_perl mod_ssl mpfr mysql mysql-bench mysql-connector-java mysql-server nasm ncurses-devel net-snmp net-snmp-devel net-snmp-libs net-snmp-perl net-snmp-python net-snmp-utils nmap numpy openssl-devel oprofile-gui oprofile-jit patch perf perl perl-DBD-MySQL perl-DBI perl-Error perl-Git perl-libs perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-Time-HiRes perl-version powertop ppl psutils python-crypto2.6 python-devel python-pip python-ply python-pycparser rsync screen setools-console setroubleshoot setroubleshoot-plugins setroubleshoot-server stunnel sysstat telnet texinfo tokyocabinet tokyocabinet-devel valgrind valgrind-devel wget wireshark wireshark-gnome xmlto xz-devel zlib-devel
+
+# Enable and start the daemons.
+chkconfig mysqld on
+chkconfig memcached on
+service mysqld start
+service memcached start
+
+# Setup the mysql root account with a random password.
+export PRAND=`openssl rand -base64 18`
+mysqladmin --user=root password "$PRAND"
+
+# Allow the root user to login to mysql as root by saving the randomly generated password.
+printf "\n\n[mysql]\nuser=root\npassword=$PRAND\n\n" >> /root/.my.cnf
+
+# Create the mytool user and grant the required permissions.
+mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
+mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
+
+# Install the Python Prerequisites
+pip install --disable-pip-version-check setuptools==11.3 2>&1 | grep -v "Requirement already"; error
+pip install --disable-pip-version-check cryptography==1.5.2 2>&1 | grep -v "Requirement already"; error
+
+printf "export PYTHONPATH=/usr/lib64/python2.6/site-packages/pycrypto-2.6.1-py2.6-linux-x86_64.egg/\n" > /etc/profile.d/pypath.sh
+chcon "system_u:object_r:bin_t:s0" /etc/profile.d/pypath.sh
+chmod 644 /etc/profile.d/pypath.sh
+
+# Find out how much RAM is installed, and what 50% would be in KB.
+TOTALMEM=`free -k | grep -E "^Mem:" | awk -F' ' '{print $2}'`
+HALFMEM=`echo $(($TOTALMEM/2))`
+
+# Setup the memory locking limits.
+printf "*    soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-magmad.conf
+printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.conf
+
+# Fix the SELinux context.
+chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
+
+# Create the clamav user to avoid spurious errors when compilintg ClamAV.
+useradd clamav
 
 # Disable the default users.
 usermod --lock --shell /sbin/nologin clamav

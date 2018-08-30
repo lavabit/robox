@@ -68,7 +68,7 @@ printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.
 chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
 
 # Create the clamav user to avoid spurious errors when compilintg ClamAV.
-useradd clamav
+useradd clamav && usermod --lock --shell /sbin/nologin clamav
 
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
