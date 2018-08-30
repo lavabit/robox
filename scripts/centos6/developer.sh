@@ -24,8 +24,8 @@ mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
 mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
 
 # Install the Python Prerequisites
-pip install --disable-pip-version-check setuptools==11.3 2>&1 | grep -v "Requirement already"; error
-pip install --disable-pip-version-check cryptography==1.5.2 2>&1 | grep -v "Requirement already"; error
+pip install --disable-pip-version-check setuptools==11.3
+pip install --disable-pip-version-check cryptography==1.5.2
 
 printf "export PYTHONPATH=/usr/lib64/python2.6/site-packages/pycrypto-2.6.1-py2.6-linux-x86_64.egg/\n" > /etc/profile.d/pypath.sh
 chcon "system_u:object_r:bin_t:s0" /etc/profile.d/pypath.sh

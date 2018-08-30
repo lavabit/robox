@@ -1,32 +1,24 @@
 #!/bin/bash -eux
 
-# Setup the box, for magma. These commands will be run as root during provisioning.
-error() {
-        if [ $? -ne 0 ]; then
-                printf "\n\nbase configuration script failure...\n\n";
-                exit 1
-        fi
-}
-
 # Install the the EPEL repository.
-yum --assumeyes --enablerepo=extras install epel-release; error
+yum --assumeyes --enablerepo=extras install epel-release
 
 # Packages needed beyond a minimal install to build and run magma.
-yum --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers libgomp mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes cmake libarchive; error
+yum --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers libgomp mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes cmake libarchive
 
 # Install libbsd because DSPAM relies upon for the strl functions, and the
 # entropy which improves the availability of random bits, and helps magma
 # launch and complete her unit tests faster.
-yum --assumeyes install libbsd libbsd-devel inotify-tools haveged; error
+yum --assumeyes install libbsd libbsd-devel inotify-tools haveged
 
 # The MySQL services magma relies upon.
-yum --assumeyes install mysql mysql-server perl-DBI perl-DBD-MySQL; error
+yum --assumeyes install mysql mysql-server perl-DBI perl-DBD-MySQL
 
 # The memcached services magma uses.
-yum --assumeyes install libevent memcached; error
+yum --assumeyes install libevent memcached
 
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
-yum --assumeyes install wget git rsync perl-Git perl-Error; error
+yum --assumeyes install wget git rsync perl-Git perl-Error
 
 # Enable and start the daemons.
 chkconfig mysqld on
@@ -46,11 +38,11 @@ mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
 mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
 
 # Install the python packages needed for the stacie script to run, which requires the python cryptography package (installed via pip).
-yum --assumeyes install zlib-devel openssl-devel libffi-devel python-pip python-ply python-devel python-pycparser python-crypto2.6 libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel; error
+yum --assumeyes install zlib-devel openssl-devel libffi-devel python-pip python-ply python-devel python-pycparser python-crypto2.6 libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel
 
 # Install the Python Prerequisites
-pip install --disable-pip-version-check setuptools==11.3 2>&1 | grep -v "Requirement already"; error
-pip install --disable-pip-version-check cryptography==1.5.2 2>&1 | grep -v "Requirement already"; error
+pip install --disable-pip-version-check setuptools==11.3
+pip install --disable-pip-version-check cryptography==1.5.2
 
 printf "export PYTHONPATH=/usr/lib64/python2.6/site-packages/pycrypto-2.6.1-py2.6-linux-x86_64.egg/\n" > /etc/profile.d/pypath.sh
 chcon "system_u:object_r:bin_t:s0" /etc/profile.d/pypath.sh
