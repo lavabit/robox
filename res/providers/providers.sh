@@ -213,19 +213,19 @@ function provide-packer() {
   go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
 
   # Checkout the Proper Version
-  if [ -z $PACKER_VERSION ]; then
-    git checkout "$PACKER_VERSION"
-  fi
+  # if [ -z $PACKER_VERSION ]; then
+  #   git checkout "$PACKER_VERSION"
+  # fi
 
   # Add the Split Function
-  cat $BASE/packer-split-function.patch | patch -p1
+  # cat $BASE/packer-split-function.patch | patch -p1
 
   # Only Needed for v1.2.4
   # Fix the HyperV Issue with Parsing Addresses
-  cat $BASE/hyperv-array-function.patch | patch -p1
+  # cat $BASE/hyperv-array-function.patch | patch -p1
 
   # Retry Upload Failures Twenty Times
-  sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 30, 20/g" post-processor/vagrant-cloud/step_upload.go
+  sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
 
   # Build for Linux, Darwin, and Windows
   XC_ARCH=amd64 XC_OS="linux darwin windows" scripts/build.sh
