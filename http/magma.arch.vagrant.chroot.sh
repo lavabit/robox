@@ -27,7 +27,7 @@ systemctl enable sshd
 systemctl enable dhcpcd.service
 
 # Ensure the network is always eth0.
-sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0"/g' /etc/default/grub
+sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0 biosdevname=0 elevator=noop vga=792"/g' /etc/default/grub
 sed -i -e 's/^GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=5/' /etc/default/grub
 
 grub-install "$device"
@@ -39,32 +39,32 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
     pacman -S --noconfirm git base-devel
 
     su -l vagrant -c /bin/bash <<-EOF
-    cd $HOME
+    cd /home/vagrant/
 
-    # The PKGBUILD file is using an out-of-date kernel version, so we replace it
-    # with version of the currently running kernel. Note that the PKGBUILD files
-    # are attempting to download the kernel sources from a v4.x directory, which
-    # will probably need to be updated when the major version changes.
+    # The PKGBUILD file seems to use an out-of-date kernel version, so it might be
+    # necessary to replace it with a version that uses the currently running kernel.
+    # Note the PKGBUILD files simply download the kernel sources using a v4.x directory,
+    # which will probably need to be updated when the major version changes.
+
+    # sed "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
 
     # hypervvsh
     git clone https://aur.archlinux.org/hypervvssd.git hypervvssd && cd hypervvssd
-    sed "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
     makepkg --cleanbuild --noconfirm --syncdeps --install
-    cd $HOME && rm -rf hypervvssd
+    cd /home/vagrant/ && rm -rf hypervvssd
 
     # hypervkvpd
     git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd && cd hypervkvpd
-    sed "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
     makepkg --cleanbuild --noconfirm --syncdeps --install
-    cd $HOME && rm -rf hypervkvpd
+    cd /home/vagrant/ && rm -rf hypervkvpd
 
     # hypervfcopyd
     git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd && cd hypervfcopyd
-    sed "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
     makepkg --cleanbuild --noconfirm --syncdeps --install
-    cd $HOME && rm -rf hypervfcopyd
-    
+    cd /home/vagrant/ && rm -rf hypervfcopyd
+
 EOF
     systemctl enable hypervkvpd.service
     systemctl enable hypervvssd.service
+    systemctl enable hypervfcopyd.service
 fi
