@@ -41,8 +41,7 @@ mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
 yum --assumeyes install zlib-devel openssl-devel libffi-devel python-pip python-ply python-devel python-pycparser python-crypto2.6 libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel
 
 # Install the Python Prerequisites
-pip install --disable-pip-version-check setuptools==11.3
-pip install --disable-pip-version-check cryptography==1.5.2
+pip install --disable-pip-version-check cryptography==1.5.2 cffi==1.11.5 enum34==1.1.6 idna==2.7 ipaddress==1.0.22 pyasn1==0.4.4 six==1.11.0 setuptools==11.3
 
 printf "export PYTHONPATH=/usr/lib64/python2.6/site-packages/pycrypto-2.6.1-py2.6-linux-x86_64.egg/\n" > /etc/profile.d/pypath.sh
 chcon "system_u:object_r:bin_t:s0" /etc/profile.d/pypath.sh
