@@ -20,10 +20,10 @@ apt-get --assume-yes install openjdk-8-jdk openjdk-8-jdk-headless openjdk-8-jre 
 apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni libpng16-16 libsctp1
 
 # Download the OpenJDK 1.7 packages.
-curl --output openjdk-7-jre_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u121-2.6.8-2_amd64.deb
-curl --output openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb
-curl --output openjdk-7-jdk_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u121-2.6.8-2_amd64.deb
-curl --output libjpeg62-turbo_1.5.1-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
+curl --location --output openjdk-7-jre_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u121-2.6.8-2_amd64.deb
+curl --location  --output openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb
+curl --location  --output openjdk-7-jdk_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u121-2.6.8-2_amd64.deb
+curl --location  --output libjpeg62-turbo_1.5.1-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
 
 # Install via dpkg.
 dpkg -i openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
@@ -67,7 +67,7 @@ dpkg -i `find ../* -type f -name *amd64.deb`
 cd $HOME && rm --force --recursive $HOME/git-openssl
 
 # Download the Android tools.
-curl --output platform-tools-latest-linux.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
+curl  --location --output platform-tools-latest-linux.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 
 # Install the platform tools.
 unzip platform-tools-latest-linux.zip -d /usr/local/
@@ -79,7 +79,7 @@ rm --force platform-tools-latest-linux.zip
 printf "PATH=/usr/local/platform-tools/:$PATH\n" > /etc/profile.d/platform-tools.sh
 
 # Install the repo utility.
-curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
+curl  --location https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
 chmod a+x /usr/bin/repo
 
 # Setup the android udev rules.
@@ -462,7 +462,7 @@ sed -i -e "s/-Xmx2048m/-Xmx512m/g" \$HOME/android/lineage/build/tools/releasetoo
 breakfast \$DEVICE
 
 # # Find the latest upstream build.
-# ARCHIVE=\`curl --silent https://download.lineageos.org/\$DEVICE | grep href | grep https://mirrorbits.lineageos.org/full/\$DEVICE/ | head -1 | awk -F'"' '{print \$2}'\`
+# ARCHIVE=\`curl  --location --silent https://download.lineageos.org/\$DEVICE | grep href | grep https://mirrorbits.lineageos.org/full/\$DEVICE/ | head -1 | awk -F'"' '{print \$2}'\`
 #
 # # Create a system dump directory.
 # mkdir -p \$HOME/android/system_dump/ && cd \$HOME/android/system_dump/
