@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eux
 
 # Disable IPv6 for the current boot.
 sysctl net.ipv6.conf.all.disable_ipv6=1
@@ -50,4 +50,3 @@ systemctl enable networking.service
 
 # Reboot onto the new kernel (if applicable).
 reboot
-

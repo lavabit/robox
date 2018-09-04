@@ -6,10 +6,10 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/oracle7/fixdns.sh",
+                "scripts/oracle7/network.sh",
                 "scripts/oracle7/yum.sh"
             ],
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -29,7 +29,7 @@
                 "scripts/oracle7/tuning.sh",
                 "scripts/oracle7/network.sh"
             ],
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -50,7 +50,7 @@
                 "scripts/opensuse42/floppy.sh",
                 "scripts/opensuse42/postfix.sh"
             ],
-            "execute_command": "/bin/bash '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -192,11 +192,10 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/centos6/fixdns.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/network.sh"
             ],
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -219,7 +218,7 @@
                 "scripts/centos6/updatedb.sh",
                 "scripts/centos6/cleanup.sh"
             ],
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -235,7 +234,7 @@
                 "scripts/centos7/base.sh",
                 "scripts/centos7/reboot.sh"
             ],
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -259,7 +258,7 @@
                 "scripts/centos7/cleanup.sh",
                 "scripts/centos7/unyum.sh"
             ],
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -275,7 +274,7 @@
                 "scripts/rhel7/base.sh",
                 "scripts/rhel7/reboot.sh"
             ],
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -294,12 +293,12 @@
                 "scripts/rhel7/vagrant.sh",
                 "scripts/rhel7/tuning.sh",
                 "scripts/rhel7/sshd.sh",
-				"scripts/rhel7/randomness.sh",
+				        "scripts/rhel7/randomness.sh",
                 "scripts/rhel7/updatedb.sh",
                 "scripts/rhel7/cleanup.sh",
                 "scripts/rhel7/unyum.sh"
             ],
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
