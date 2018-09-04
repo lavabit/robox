@@ -201,7 +201,7 @@
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         },
-    {
+        {
             "type": "qemu",
             "name": "lineage-nash-libvirt",
             "vm_name": "lineage-nash-libvirt",
@@ -329,7 +329,7 @@
                 "vagrantfile_template": "tpl/lineage.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/lineage/info.json"
+                    "tpl/lineage/info.json"
                 ]
             },
             {

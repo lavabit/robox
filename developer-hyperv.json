@@ -53,37 +53,37 @@
         }
     ],
     "builders": [
-      {
-          "type": "hyperv-iso",
-          "name": "magma-developer-hyperv",
-          "vm_name": "magma-developer-hyperv",
-          "output_directory": "output/magma-developer-hyperv",
-          "boot_wait": "20s",
-          "boot_command": [
-              "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
-          ],
-          "disk_size": 131072,
-          "ram_size": 1024,
-          "cpu": 2,
-          "http_directory": "http",
-          "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-          "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-          "iso_checksum_type": "sha256",
-          "ssh_username": "root",
-          "ssh_password": "magma",
-          "ssh_port": 22,
-          "ssh_timeout": "3600s",
-          "shutdown_command": "sudo -S shutdown -P now",
-          "generation": 1,
+        {
+            "type": "hyperv-iso",
+            "name": "magma-developer-hyperv",
+            "vm_name": "magma-developer-hyperv",
+            "output_directory": "output/magma-developer-hyperv",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
+            ],
+            "disk_size": 131072,
+            "ram_size": 1024,
+            "cpu": 2,
+            "http_directory": "http",
+            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "magma",
+            "ssh_port": 22,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "sudo -S shutdown -P now",
+            "generation": 1,
             "headless": true,
-          "communicator": "ssh",
-          "skip_compaction": false,
-          "enable_secure_boot": false,
-          "enable_mac_spoofing": true,
-          "enable_dynamic_memory": false,
-          "guest_additions_mode": "disable",
-          "enable_virtualization_extensions": false
-      }
+            "communicator": "ssh",
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": true,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        }
     ],
     "post-processors": [
         [
@@ -94,10 +94,10 @@
                 "vagrantfile_template": "tpl/developer.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/lavabit/info.json"
+                    "tpl/lavabit/info.json"
                 ],
                 "only": [
-                  "magma-developer-hyperv"
+                    "magma-developer-hyperv"
                 ]
             },
             {
@@ -113,7 +113,7 @@
                 "type": "artifice",
                 "keep_input_artifact": false,
                 "files": [
-                  "output/{{build_name}}-{{user `box_version`}}.box"
+                    "output/{{build_name}}-{{user `box_version`}}.box"
                 ]
             },
             {

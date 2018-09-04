@@ -183,7 +183,7 @@
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "tools_upload_flavor": "linux"
         },
-            {
+        {
             "type": "vmware-iso",
             "name": "lineage-nash-vmware",
             "vm_name": "lineage-nash-vmware",
@@ -293,7 +293,7 @@
                 "vagrantfile_template": "tpl/lineage.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/lineage/info.json"
+                    "tpl/lineage/info.json"
                 ]
             },
             {

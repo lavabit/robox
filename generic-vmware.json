@@ -1719,27 +1719,27 @@
             "output_directory": "output/generic-ubuntu1810-vmware",
             "boot_wait": "1s",
             "boot_command": [
-              "<tab><wait><tab><wait><tab><wait><tab><wait>",
-              "<tab><wait><tab><wait><tab><wait><tab><wait>",
-              "<tab><wait><tab><wait><tab><wait><tab><wait>",
-              "<esc><f6><esc>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "/install/vmlinuz ",
-              "initrd=/install/initrd.gz ",
-              "fb=false ",
-              "auto-install/enable=true ",
-              "debconf/priority=critical ",
-              "console-setup/ask_detect=false ",
-              "debconf/frontend=noninteractive ",
-              "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1810.vagrant.cfg<wait> ",
-              " --- <enter>"
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<esc><f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "fb=false ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "console-setup/ask_detect=false ",
+                "debconf/frontend=noninteractive ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1810.vagrant.cfg<wait> ",
+                " --- <enter>"
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
@@ -1903,7 +1903,7 @@
                 "vagrantfile_template": "tpl/generic-alpine.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/generic/info.json"
+                    "tpl/generic/info.json"
                 ],
                 "only": [
                     "generic-alpine35-vmware",
@@ -1919,7 +1919,7 @@
                 "vagrantfile_template": "tpl/generic-bsd.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/generic/info.json"
+                    "tpl/generic/info.json"
                 ],
                 "only": [
                     "generic-openbsd6-vmware",
@@ -1933,7 +1933,7 @@
                 "vagrantfile_template": "tpl/generic-default.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/generic/info.json"
+                    "tpl/generic/info.json"
                 ],
                 "except": [
                     "generic-alpine35-vmware",
@@ -2193,7 +2193,7 @@
                 "vagrantfile_template": "tpl/roboxes-alpine.rb",
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/roboxes/info.json"
+                    "tpl/roboxes/info.json"
                 ],
                 "only": [
                     "generic-alpine35-vmware",
@@ -2209,7 +2209,7 @@
                 "vagrantfile_template": "tpl/roboxes-bsd.rb",
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/roboxes/info.json"
+                    "tpl/roboxes/info.json"
                 ],
                 "only": [
                     "generic-openbsd6-vmware",
@@ -2223,7 +2223,7 @@
                 "vagrantfile_template": "tpl/roboxes-default.rb",
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/roboxes/info.json"
+                    "tpl/roboxes/info.json"
                 ],
                 "except": [
                     "generic-alpine35-vmware",

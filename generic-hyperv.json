@@ -552,7 +552,6 @@
                 "generic-fedora27-hyperv"
             ]
         },
-
         {
             "type": "shell",
             "scripts": [
@@ -650,7 +649,8 @@
                 "generic-openbsd6-hyperv"
             ]
         },
-        {   "type": "shell",
+        {
+            "type": "shell",
             "scripts": [
                 "scripts/ubuntu1604/apt.sh",
                 "scripts/ubuntu1604/network.sh"
@@ -1586,27 +1586,27 @@
             "output_directory": "output/generic-ubuntu1804-hyperv",
             "boot_wait": "1s",
             "boot_command": [
-              "<tab><wait><tab><wait><tab><wait><tab><wait>",
-              "<tab><wait><tab><wait><tab><wait><tab><wait>",
-              "<tab><wait><tab><wait><tab><wait><tab><wait>",
-              "<esc><f6><esc>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "/install/vmlinuz ",
-              "initrd=/install/initrd.gz ",
-              "fb=false ",
-              "auto-install/enable=true ",
-              "debconf/priority=critical ",
-              "console-setup/ask_detect=false ",
-              "debconf/frontend=noninteractive ",
-              "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1804.vagrant.cfg<wait> ",
-              " --- <enter>"
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<esc><f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "fb=false ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "console-setup/ask_detect=false ",
+                "debconf/frontend=noninteractive ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1804.vagrant.cfg<wait> ",
+                " --- <enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
@@ -1637,27 +1637,27 @@
             "output_directory": "output/generic-ubuntu1810-hyperv",
             "boot_wait": "1s",
             "boot_command": [
-              "<tab><wait><tab><wait><tab><wait><tab><wait>",
-              "<tab><wait><tab><wait><tab><wait><tab><wait>",
-              "<tab><wait><tab><wait><tab><wait><tab><wait>",
-              "<esc><f6><esc>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-              "/install/vmlinuz ",
-              "initrd=/install/initrd.gz ",
-              "fb=false ",
-              "auto-install/enable=true ",
-              "debconf/priority=critical ",
-              "console-setup/ask_detect=false ",
-              "debconf/frontend=noninteractive ",
-              "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1810.vagrant.cfg<wait> ",
-              " --- <enter>"
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<esc><f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "fb=false ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "console-setup/ask_detect=false ",
+                "debconf/frontend=noninteractive ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1810.vagrant.cfg<wait> ",
+                " --- <enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
@@ -1802,44 +1802,44 @@
     ],
     "post-processors": [
         [
-          {
-              "type": "vagrant",
-              "compression_level": 9,
-              "keep_input_artifact": false,
-              "vagrantfile_template": "tpl/generic-alpine.rb",
-              "output": "output/{{build_name}}-{{user `box_version`}}.box",
-              "include": [
-                "tpl/generic/info.json"
-              ],
-              "only": [
-                  "generic-alpine35-hyperv",
-                  "generic-alpine36-hyperv",
-                  "generic-alpine37-hyperv",
-                  "generic-alpine38-hyperv"
-              ]
-          },
-          {
-              "type": "vagrant",
-              "compression_level": 9,
-              "keep_input_artifact": false,
-              "vagrantfile_template": "tpl/generic-bsd.rb",
-              "output": "output/{{build_name}}-{{user `box_version`}}.box",
-              "include": [
-                "tpl/generic/info.json"
-              ],
-              "only": [
-                  "generic-openbsd6-hyperv",
-                  "generic-freebsd11-hyperv"
-              ]
-          },
-          {
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/generic-alpine.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/generic/info.json"
+                ],
+                "only": [
+                    "generic-alpine35-hyperv",
+                    "generic-alpine36-hyperv",
+                    "generic-alpine37-hyperv",
+                    "generic-alpine38-hyperv"
+                ]
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/generic-bsd.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/generic/info.json"
+                ],
+                "only": [
+                    "generic-openbsd6-hyperv",
+                    "generic-freebsd11-hyperv"
+                ]
+            },
+            {
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/generic-default.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/generic/info.json"
+                    "tpl/generic/info.json"
                 ],
                 "except": [
                     "generic-alpine35-hyperv",
@@ -2092,44 +2092,44 @@
             }
         ],
         [
-          {
-              "type": "vagrant",
-              "compression_level": 9,
-              "keep_input_artifact": false,
-              "vagrantfile_template": "tpl/roboxes-alpine.rb",
-              "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
-              "include": [
-                "tpl/roboxes/info.json"
-              ],
-              "only": [
-                  "generic-alpine35-hyperv",
-                  "generic-alpine36-hyperv",
-                  "generic-alpine37-hyperv",
-                  "generic-alpine38-hyperv"
-              ]
-          },
-          {
-              "type": "vagrant",
-              "compression_level": 9,
-              "keep_input_artifact": false,
-              "vagrantfile_template": "tpl/roboxes-bsd.rb",
-              "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
-              "include": [
-                "tpl/roboxes/info.json"
-              ],
-              "only": [
-                  "generic-openbsd6-hyperv",
-                  "generic-freebsd11-hyperv"
-              ]
-          },
-          {
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/roboxes-alpine.rb",
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/roboxes/info.json"
+                ],
+                "only": [
+                    "generic-alpine35-hyperv",
+                    "generic-alpine36-hyperv",
+                    "generic-alpine37-hyperv",
+                    "generic-alpine38-hyperv"
+                ]
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/roboxes-bsd.rb",
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/roboxes/info.json"
+                ],
+                "only": [
+                    "generic-openbsd6-hyperv",
+                    "generic-freebsd11-hyperv"
+                ]
+            },
+            {
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/roboxes-default.rb",
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/roboxes/info.json"
+                    "tpl/roboxes/info.json"
                 ],
                 "except": [
                     "generic-alpine35-hyperv",

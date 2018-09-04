@@ -343,7 +343,6 @@
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "virtualbox_version_file": "VBoxVersion.txt"
         }
-
     ],
     "post-processors": [
         [
@@ -354,7 +353,7 @@
                 "vagrantfile_template": "tpl/lineage.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
-                  "tpl/lineage/info.json"
+                    "tpl/lineage/info.json"
                 ]
             },
             {
