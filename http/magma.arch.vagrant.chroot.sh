@@ -36,6 +36,10 @@ grub-mkconfig -o /boot/grub/grub.cfg
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
 
+    # Hyper-V builds don't reboot properly without the no_timer_check kernel parameter.
+    sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 no_timer_check"/g' /etc/default/grub
+    grub-mkconfig -o /boot/grub/grub.cfg
+
     pacman -S --noconfirm git base-devel
 
     su -l vagrant -c /bin/bash <<-EOF
@@ -46,20 +50,27 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
     # Note the PKGBUILD files simply download the kernel sources using a v4.x directory,
     # which will probably need to be updated when the major version changes.
 
-    # sed "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
-
     # hypervvsh
     git clone https://aur.archlinux.org/hypervvssd.git hypervvssd && cd hypervvssd
+    sed --in-place "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
+    sed --in-place "s/pkgver = .*/pkgver = `uname -r | awk -F'-' '{print $1}'`/g" .SRCINFO
+    sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-`uname -r | awk -F'-' '{print $1}'`.tar.gz/g" .SRCINFO
     makepkg --cleanbuild --noconfirm --syncdeps --install
     cd /home/vagrant/ && rm -rf hypervvssd
 
     # hypervkvpd
     git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd && cd hypervkvpd
+    sed --in-place "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
+    sed --in-place "s/pkgver = .*/pkgver = `uname -r | awk -F'-' '{print $1}'`/g" .SRCINFO
+    sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-`uname -r | awk -F'-' '{print $1}'`.tar.gz/g" .SRCINFO
     makepkg --cleanbuild --noconfirm --syncdeps --install
     cd /home/vagrant/ && rm -rf hypervkvpd
 
     # hypervfcopyd
     git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd && cd hypervfcopyd
+    sed --in-place "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
+    sed --in-place "s/pkgver = .*/pkgver = `uname -r | awk -F'-' '{print $1}'`/g" .SRCINFO
+    sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-`uname -r | awk -F'-' '{print $1}'`.tar.gz/g" .SRCINFO
     makepkg --cleanbuild --noconfirm --syncdeps --install
     cd /home/vagrant/ && rm -rf hypervfcopyd
 
@@ -67,4 +78,9 @@ EOF
     systemctl enable hypervkvpd.service
     systemctl enable hypervvssd.service
     systemctl enable hypervfcopyd.service
+
+    sync; sync; sync
+    eject --force /dev/cdrom
+    echo 1 > /proc/sys/kernel/sysrq
+    echo b > /proc/sysrq-trigger
 fi
