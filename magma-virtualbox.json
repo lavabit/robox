@@ -210,6 +210,7 @@
                 "scripts/debian8/mysql.sh",
                 "scripts/debian8/memcached.sh",
                 "scripts/debian8/floppy.sh",
+                "scripts/debian8/profile.sh",
                 "scripts/debian8/vagrant.sh",
                 "scripts/debian8/motd.sh",
                 "scripts/debian8/magma.sh",

@@ -376,6 +376,7 @@
         {
             "scripts": [
                 "scripts/debian8/floppy.sh",
+                "scripts/debian8/profile.sh",
                 "scripts/debian8/vagrant.sh",
                 "scripts/debian8/motd.sh",
                 "scripts/debian8/fixtty.sh",
@@ -407,6 +408,7 @@
         {
             "scripts": [
                 "scripts/debian9/floppy.sh",
+                "scripts/debian9/profile.sh",
                 "scripts/debian9/vagrant.sh",
                 "scripts/debian9/motd.sh",
                 "scripts/debian9/fixtty.sh",
