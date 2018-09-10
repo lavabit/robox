@@ -1,5 +1,9 @@
 #!/bin/bash -eux
 
+# To allow for autmated installs, we disable interactive configuration steps.
+export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
+
 # Disable IPv6 for the current boot.
 sysctl net.ipv6.conf.all.disable_ipv6=1
 
@@ -19,34 +23,35 @@ fi
 sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0"/g' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
-cat <<-EOF > /etc/netplan/01-netcfg.yaml
-network:
-  version: 2
-  renderer: networkd
-  ethernets:
-    eth0:
-      dhcp4: true
-      dhcp6: false
-      optional: true
-      nameservers:
-        addresses: [4.2.2.1, 4.2.2.2, 208.67.220.220, 208.67.222.222]
-EOF
+# Clear out the existing automatic ifup rules.
+sed -i -e '/^auto/d' /etc/network/interfaces
+sed -i -e '/^iface/d' /etc/network/interfaces
 
-# Apply the network plan configuration.
-netplan generate
+# Ensure the loopback, and default network interface are automatically enabled and then dhcp'ed.
+printf "auto lo\n" >> /etc/network/interfaces
+printf "iface lo inet loopback\n" >> /etc/network/interfaces
+printf "iface eth0 inet dhcp\n" >> /etc/network/interfaces
+printf "dns-nameserver 4.2.2.1\n" >> /etc/network/interfaces
+printf "dns-nameserver 4.2.2.2\n" >> /etc/network/interfaces
+printf "dns-nameserver 208.67.220.220\n" >> /etc/network/interfaces
+
+# Adding a delay so dhclient will work properly.
+printf "pre-up sleep 2\n" >> /etc/network/interfaces
 
 # Ensure a nameserver is being used that won't return an IP for non-existent domain names.
+printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\nnameserver 208.67.222.222\n" > /etc/resolv.conf
 
-sed -i -e "s/#DNS=.*/DNS=4.2.2.1 4.2.2.2 208.67.220.220 208.67.222.222/g" /etc/systemd/resolved.conf
-sed -i -e "s/#FallbackDNS=.*/FallbackDNS=/g" /etc/systemd/resolved.conf
-sed -i -e "s/#Domains=.*/Domains=/g" /etc/systemd/resolved.conf
-sed -i -e "s/#DNSSEC=.*/DNSSEC=yes/g" /etc/systemd/resolved.conf
-sed -i -e "s/#Cache=.*/Cache=yes/g" /etc/systemd/resolved.conf
-sed -i -e "s/#DNSStubListener=.*/DNSStubListener=yes/g" /etc/systemd/resolved.conf
+# Install ifplugd so we can monitor and auto-configure nics.
+apt-get --assume-yes install ifplugd
 
+# Configure ifplugd to monitor the eth0 interface.
+sed -i -e 's/INTERFACES=.*/INTERFACES="eth0"/g' /etc/default/ifplugd
 
 # Ensure the networking interfaces get configured on boot.
-# systemctl enable networking.service
+systemctl enable networking.service
+
+# Ensure ifplugd also gets started, so the ethernet interface is monitored.
+systemctl enable ifplugd.service
 
 # Reboot onto the new kernel (if applicable).
 reboot
