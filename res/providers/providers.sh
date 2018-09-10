@@ -1,8 +1,7 @@
 #!/bin/bash -eux
 
+# The unprivileged user that will be running packer/using the boxes.
 export HUMAN="ladar"
-export PACKER_VERSION="v1.2.4"
-export VAGRANT_VERSION="2.1.4"
 
 # Cross Platform Script Directory
 pushd `dirname $0` > /dev/null
@@ -26,6 +25,8 @@ function provide-limits() {
   printf "$HUMAN    soft    stack      unlimited\n" >> /etc/security/limits.d/50-$HUMAN.conf
   printf "$HUMAN    hard    stack      unlimited\n" >> /etc/security/limits.d/50-$HUMAN.conf
 
+  chcon "system_u:object_r:etc_t:s0" /etc/security/limits.d/50-$HUMAN.conf
+
   # Now do the same for the root user.
   printf "root      soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-root.conf
   printf "root      hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-root.conf
@@ -36,6 +37,7 @@ function provide-limits() {
   printf "root      soft    stack      unlimited\n" >> /etc/security/limits.d/50-root.conf
   printf "root      hard    stack      unlimited\n" >> /etc/security/limits.d/50-root.conf
 
+  chcon "system_u:object_r:etc_t:s0" /etc/security/limits.d/50-root.conf
 }
 
 function provide-libvirt() {
@@ -77,11 +79,17 @@ function provide-lxc() {
 function provide-virtmanager() {
   # Remove Viewer / Virt Manager Client Install (Optional)
   yum --assumeyes install virt-manager virt-manager-common gvnc \
-    libgvnc gtk-vnc2 spice-glib spice-gtk3 libspice-client-glib \
-    libvirt-glib libvirt-gconfig libvirt-gobject libvirt-python
+    gtk-vnc2 spice-glib spice-gtk3  libvirt-python \
+    libvirt-glib libvirt-gconfig libvirt-gobject
 }
 
 function provide-vmware() {
+
+  if [ ! -f $BASE/VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle ]; then
+      tput setaf 1; printf "\nError. The VMware install bundle is missing.\n\n"; tput sgr0
+      exit 2
+  fi
+
   # VMware Workstation Install
   chmod +x VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle
   bash VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle --console \
@@ -127,7 +135,7 @@ function provide-vbox() {
     VBOXACCEPT=`tar --extract --to-stdout --file="${VBOXEXT}" ./ExtPack-license.txt | sha256sum | awk -F' ' '{print $1}'`
 
     # Uncomment this line to install the VirtualBox extensions.
-    VBoxManage extpack install --accept-license="${VBOXACCEPT}" "${VBOXEXT}"
+    VBoxManage extpack install --replace --accept-license="${VBOXACCEPT}" "${VBOXEXT}"
 
     # Cleanup the downloaded file.
     rm --force "${VBOXEXT}"
@@ -182,6 +190,9 @@ function provide-docker() {
 }
 
 function provide-vagrant() {
+
+  # Attempt to find out the latest Vagrant version automatically.
+  export VAGRANT_VERSION=`curl --silent https://www.vagrantup.com/ | grep button | grep Download | sed -e "s/.*Download \([0-9]*\.[0-9]*\.[0-9]*\).*/\1/g"`
 
   # Download Vagrant
   curl --location --output "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm" "https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
@@ -296,7 +307,8 @@ provide-vmware
 provide-packer
 provide-libvirt
 
-# provide-vagrant
+# provide-lxc
+provide-vagrant
 
 if [ -f /usr/bin/X ]; then
   provide-virtmanager
