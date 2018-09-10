@@ -847,6 +847,7 @@
             "scripts": [
                 "scripts/common/motd.sh",
                 "scripts/common/keys.sh",
+                "scripts/common/meachine.sh",
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],
@@ -1758,7 +1759,7 @@
             "vnc_bind_address": "127.0.0.1",
             "vmx_remove_ethernet_interfaces": true,
             "iso_url": "res/media/ubuntu-18.10-server-amd64.iso",
-            "iso_checksum": "50abacff9a7583b3ed655528b7e9dfe57c79227c8ee5fc081b6a90d23fe63d15",
+            "iso_checksum": "9b4aefd170d1ce2b4737012435ab155c17882130fd7df5b4b3ccb181805184ca",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -1799,8 +1800,8 @@
             "vnc_disable_password": true,
             "vnc_bind_address": "127.0.0.1",
             "vmx_remove_ethernet_interfaces": true,
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20180902T214502Z.iso",
-            "iso_checksum": "6f751ee45af6874e502312107f09ec7779e6bfdec0969039ce8a536feb722c5a",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20180909T214503Z.iso",
+            "iso_checksum": "850d3a093cb803c417c8e5786d3b409cd9b28e018aae4d511448fcd954bfaaad",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",

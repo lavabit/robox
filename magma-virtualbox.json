@@ -446,6 +446,7 @@
             "scripts": [
                 "scripts/common/motd.sh",
                 "scripts/common/keys.sh",
+                "scripts/common/meachine.sh",
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],
@@ -1152,8 +1153,8 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20180902T214502Z.iso",
-            "iso_checksum": "6f751ee45af6874e502312107f09ec7779e6bfdec0969039ce8a536feb722c5a",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20180909T214503Z.iso",
+            "iso_checksum": "850d3a093cb803c417c8e5786d3b409cd9b28e018aae4d511448fcd954bfaaad",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
