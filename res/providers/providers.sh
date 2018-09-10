@@ -2,7 +2,7 @@
 
 export HUMAN="ladar"
 export PACKER_VERSION="v1.2.4"
-export VAGRANT_VERSION="2.1.1"
+export VAGRANT_VERSION="2.1.4"
 
 # Cross Platform Script Directory
 pushd `dirname $0` > /dev/null
@@ -186,13 +186,13 @@ function provide-vagrant() {
   curl --location --output "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm" "https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
 
   # Install Vagrant
-  yum --assumeyes install $BASE/vagrant_2.1.1_x86_64.rpm
+  yum --assumeyes install $BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm
 
   # Vagrant Libvirt Plugin
   vagrant plugin install vagrant-libvirt
 
   # Delete the Download
-  rm --force $BASE/vagrant_2.1.1_x86_64.rpm
+  rm --force $BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm
 }
 
 function provide-packer() {
@@ -234,6 +234,14 @@ function provide-packer() {
   install pkg/linux_amd64/packer /usr/local/bin/
   chown root:root /usr/local/bin/packer
   chcon unconfined_u:object_r:bin_t:s0 /usr/local/bin/packer
+
+  # Ensure bash/csh use the local bin version instead of the default.
+  printf "alias packer='/usr/local/bin/packer'\n" > /etc/profile.d/packer.sh
+  printf "alias packer /usr/local/bin/packer\n" > /etc/profile.d/packer.csh
+
+  chcon system_u:object_r:bin_t:s0 /etc/profile.d/packer.csh
+  chcon system_u:object_r:bin_t:s0 /etc/profile.d/packer.sh
+
 }
 
 function provide-setup() {
@@ -283,6 +291,8 @@ provide-docker
 provide-vmware
 provide-packer
 provide-libvirt
+
+# provide-vagrant
 
 if [ -f /usr/bin/X ]; then
   provide-virtmanager
