@@ -182,11 +182,15 @@ function provide-docker() {
 }
 
 function provide-vagrant() {
+
   # Download Vagrant
   curl --location --output "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm" "https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
 
   # Install Vagrant
   yum --assumeyes install $BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm
+
+  # The Libvirt Headers are Required for the Vagrant Plugin
+  yum --assumeyes install libvirt-devel
 
   # Vagrant Libvirt Plugin
   vagrant plugin install vagrant-libvirt
