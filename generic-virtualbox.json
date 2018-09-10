@@ -2066,7 +2066,7 @@
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
             "iso_url": "res/media/ubuntu-18.10-server-amd64.iso",
-            "iso_checksum": "9b4aefd170d1ce2b4737012435ab155c17882130fd7df5b4b3ccb181805184ca",
+            "iso_checksum": "c3894ecfb0029d9b25507e6664ea6142e134485a9cfa1f2ff9b4bd5fc876c053",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
