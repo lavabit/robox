@@ -12,7 +12,7 @@ fi
 printf "Installing the Virtual Box Tools.\n"
 
 # Add the community repository.
-printf "@community https://mirror.leaseweb.com/alpine/v3.5/community\n" >> /etc/apk/repositories
+printf "@community https://dl-4.alpinelinux.org/alpine/v3.5/community\n" >> /etc/apk/repositories
 
 # Add the testing repository (which isn't available over HTTPS).
 printf "@testing http://nl.alpinelinux.org/alpine/edge/testing\n" >> /etc/apk/repositories

@@ -488,7 +488,7 @@
             "vnc_disable_password": true,
             "vnc_bind_address": "127.0.0.1",
             "vmx_remove_ethernet_interfaces": true,
-            "iso_url": "https://mirror.leaseweb.com/alpine/v3.6/releases/x86_64/alpine-virt-3.6.2-x86_64.iso",
+            "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.2-x86_64.iso",
             "iso_checksum": "92c80e151143da155fb99611ed8f0f3672fba4de228a85eb5f53bcb261bf4b0a",
             "iso_checksum_type": "sha256",
             "skip_compaction": false,
