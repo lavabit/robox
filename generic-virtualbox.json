@@ -970,11 +970,11 @@
                 "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
                 "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine35.vagrant.cfg<enter><wait>",
                 "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f generic.alpine35.vagrant.cfg && ",
+                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f generic.alpine35.vagrant.cfg ; ",
                 "mount /dev/sda3 /mnt && ",
                 "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-                "umount /mnt && reboot<enter>"
+                "umount /mnt/boot && umount /mnt ; reboot<enter>"
             ],
             "disk_size": 32768,
             "vboxmanage": [
@@ -1028,11 +1028,11 @@
                 "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
                 "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine36.vagrant.cfg<enter><wait>",
                 "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f generic.alpine36.vagrant.cfg && ",
+                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f generic.alpine36.vagrant.cfg ; ",
                 "mount /dev/sda3 /mnt && ",
                 "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-                "umount /mnt && reboot<enter>"
+                "umount /mnt/boot && umount /mnt ; reboot<enter>"
             ],
             "disk_size": 32768,
             "vboxmanage": [
@@ -1086,11 +1086,11 @@
                 "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
                 "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine37.vagrant.cfg<enter><wait>",
                 "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine37.vagrant.cfg && ",
+                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine37.vagrant.cfg ; ",
                 "mount /dev/sda3 /mnt && ",
                 "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-                "umount /mnt && reboot<enter>"
+                "umount /mnt/boot && umount /mnt ; reboot<enter>"
             ],
             "disk_size": 32768,
             "vboxmanage": [
@@ -1144,11 +1144,11 @@
                 "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
                 "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine38.vagrant.cfg<enter><wait>",
                 "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine38.vagrant.cfg && ",
+                "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine38.vagrant.cfg ; ",
                 "mount /dev/sda2 /mnt && ",
                 "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-                "umount /mnt && reboot<enter>"
+                "umount /mnt/boot && umount /mnt ; reboot<enter>"
             ],
             "disk_size": 32768,
             "vboxmanage": [
