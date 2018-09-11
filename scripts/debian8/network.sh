@@ -20,14 +20,16 @@ else
 fi
 
 # This will ensure the network device is named eth0.
-sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0"/g' /etc/default/grub
+sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0 biosdevname=0"/g' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Clear out the existing automatic ifup rules.
 sed -i -e '/^auto/d' /etc/network/interfaces
 sed -i -e '/^iface/d' /etc/network/interfaces
+sed -i -e '/^allow-hotplug/d' /etc/network/interfaces
 
 # Ensure the loopback, and default network interface are automatically enabled and then dhcp'ed.
+printf "allow-hotplug eth0\n" >> /etc/network/interfaces
 printf "auto lo\n" >> /etc/network/interfaces
 printf "iface lo inet loopback\n" >> /etc/network/interfaces
 printf "iface eth0 inet dhcp\n" >> /etc/network/interfaces
