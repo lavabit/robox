@@ -1527,7 +1527,7 @@
             "boot_command": [
                 "<esc><wait>",
                 "auto ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian8.vagrant.cfg ",
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian8.vagrant.cfg ",
                 "<enter>"
             ],
             "format": "qcow2",
@@ -1573,7 +1573,7 @@
             "boot_command": [
                 "<esc><wait>",
                 "auto ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian9.vagrant.cfg ",
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian9.vagrant.cfg ",
                 "<enter>"
             ],
             "format": "qcow2",
@@ -1632,7 +1632,7 @@
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",
                 "debconf/priority=critical ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1604.vagrant.cfg<wait> ",
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1604.vagrant.cfg<wait> ",
                 "<enter>"
             ],
             "format": "qcow2",
@@ -1683,7 +1683,7 @@
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",
                 "debconf/priority=critical ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1610.vagrant.cfg<wait> ",
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1610.vagrant.cfg<wait> ",
                 "<enter>"
             ],
             "format": "qcow2",
@@ -1734,7 +1734,7 @@
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",
                 "debconf/priority=critical ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1704.vagrant.cfg<wait> ",
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1704.vagrant.cfg<wait> ",
                 "<enter>"
             ],
             "format": "qcow2",
@@ -1785,7 +1785,7 @@
                 "initrd=/install/initrd.gz ",
                 "auto-install/enable=true ",
                 "debconf/priority=critical ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1710.vagrant.cfg<wait> ",
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1710.vagrant.cfg<wait> ",
                 "<enter>"
             ],
             "format": "qcow2",
@@ -1848,7 +1848,7 @@
                 "debconf/priority=critical ",
                 "console-setup/ask_detect=false ",
                 "debconf/frontend=noninteractive ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1804.vagrant.cfg<wait> ",
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1804.vagrant.cfg<wait> ",
                 " --- <enter>"
             ],
             "format": "qcow2",
@@ -1911,7 +1911,7 @@
                 "debconf/priority=critical ",
                 "console-setup/ask_detect=false ",
                 "debconf/frontend=noninteractive ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1810.vagrant.cfg<wait> ",
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1810.vagrant.cfg<wait> ",
                 " --- <enter>"
             ],
             "format": "qcow2",

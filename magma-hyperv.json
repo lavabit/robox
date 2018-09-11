@@ -706,7 +706,7 @@
             "boot_command": [
                 "<esc><wait>",
                 "auto ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian8.vagrant.cfg ",
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian8.vagrant.cfg ",
                 "<enter>"
             ],
             "disk_size": 32768,
@@ -752,7 +752,7 @@
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg --- <wait><enter>"
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
@@ -797,7 +797,7 @@
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg --- <wait><enter>"
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
@@ -834,7 +834,7 @@
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1610.vagrant.cfg --- <wait><enter>"
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1610.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
@@ -871,7 +871,7 @@
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "ipv6.disable_ipv6=1 fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1704.vagrant.cfg --- <wait><enter>"
+                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1704.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
