@@ -46,7 +46,7 @@ sed -i -e "s/#DNSStubListener=.*/DNSStubListener=yes/g" /etc/systemd/resolved.co
 
 
 # Ensure the networking interfaces get configured on boot.
-systemctl enable networking.service
+# systemctl enable networking.service
 
 # Reboot onto the new kernel (if applicable).
 reboot
