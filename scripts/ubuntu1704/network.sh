@@ -26,8 +26,10 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Clear out the existing automatic ifup rules.
 sed -i -e '/^auto/d' /etc/network/interfaces
 sed -i -e '/^iface/d' /etc/network/interfaces
+sed -i -e '/^allow-hotplug/d' /etc/network/interfaces
 
 # Ensure the loopback, and default network interface are automatically enabled and then dhcp'ed.
+printf "allow-hotplug eth0\n" >> /etc/network/interfaces
 printf "auto lo\n" >> /etc/network/interfaces
 printf "iface lo inet loopback\n" >> /etc/network/interfaces
 printf "iface eth0 inet dhcp\n" >> /etc/network/interfaces
