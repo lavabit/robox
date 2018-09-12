@@ -51,7 +51,10 @@ sed -i -e 's/INTERFACES=.*/INTERFACES="eth0"/g' /etc/default/ifplugd
 
 # Ensure the networking interfaces get configured on boot.
 systemctl enable systemd-networkd.service
-systemctl enable networking.service
+
+# Networking is handled by systemd, but in case that fails, there is still a 
+# SysV backup service that can be enabled.
+# systemctl enable networking.service
 
 # Ensure ifplugd also gets started, so the ethernet interface is monitored.
 systemctl enable ifplugd.service
