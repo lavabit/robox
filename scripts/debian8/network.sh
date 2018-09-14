@@ -19,10 +19,6 @@ else
   printf "\n127.0.0.1 magma.builder\n\n" >> /etc/hosts
 fi
 
-# This will ensure the network device is named eth0.
-sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0 biosdevname=0"/g' /etc/default/grub
-grub-mkconfig -o /boot/grub/grub.cfg
-
 # Clear out the existing automatic ifup rules.
 sed -i -e '/^auto/d' /etc/network/interfaces
 sed -i -e '/^iface/d' /etc/network/interfaces

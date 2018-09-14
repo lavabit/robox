@@ -19,10 +19,6 @@ else
   printf "\n127.0.0.1 magma.builder\n\n" >> /etc/hosts
 fi
 
-# This will ensure the network device is named eth0.
-sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0 biosdevname=0"/g' /etc/default/grub
-grub-mkconfig -o /boot/grub/grub.cfg
-
 # Clear out the existing automatic ifup rules.
 sed -i -e '/^auto/d' /etc/network/interfaces
 sed -i -e '/^iface/d' /etc/network/interfaces
@@ -49,15 +45,12 @@ apt-get --assume-yes install ifplugd
 # Configure ifplugd to monitor the eth0 interface.
 sed -i -e 's/INTERFACES=.*/INTERFACES="eth0"/g' /etc/default/ifplugd
 
-# Ensure the networking interfaces get configured on boot.
-systemctl enable systemd-networkd.service
-
-# Networking is handled by systemd, but in case that fails, there is still a 
-# SysV backup service that can be enabled.
-# systemctl enable networking.service
+# The SysV networking service seems to work better than systemd-network.
+systemctl enable networking.service
 
 # Ensure ifplugd also gets started, so the ethernet interface is monitored.
 systemctl enable ifplugd.service
 
 # Reboot onto the new kernel (if applicable).
-reboot
+$(shutdown -r +1) &
+

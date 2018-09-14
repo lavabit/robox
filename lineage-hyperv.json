@@ -105,7 +105,7 @@
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
-                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
+                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 98304,
             "ram_size": 1024,
@@ -150,7 +150,7 @@
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
-                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
+                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 98304,
             "ram_size": 1024,
@@ -195,7 +195,7 @@
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
-                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
+                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 98304,
             "ram_size": 1024,
@@ -240,7 +240,7 @@
                 "/install/vmlinuz ",
                 "initrd=/install/initrd.gz ",
                 "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
-                "ipv6.disable_ipv6=1 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
+                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 98304,
             "ram_size": 1024,
