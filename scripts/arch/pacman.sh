@@ -7,7 +7,7 @@ pacman --sync --noconfirm --refresh
 pacman --sync --noconfirm --refresh --sysupgrade
 
 # Useful tools.
-pacman --sync --noconfirm vim vim-runtime curl wget mlocate sysstat lm_sensors lsof
+pacman --sync --noconfirm vim vim-runtime curl wget mlocate sysstat lm_sensors lsof psmisc
 
 # Start the services we just added so the system will track its own performance.
 systemctl enable sysstat.service && systemctl start sysstat.service

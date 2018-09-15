@@ -18,8 +18,7 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 dnf upgrade --assumeyes; error
 
 # Needed to retrieve source code, and other misc system tools.
-dnf install --assumeyes vim git wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils; error
-
+dnf install --assumeyes vim git wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils psmisc; error
 
 # Packages needed beyond a minimal install to build and run magma.
 dnf install --assumeyes valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive deltarpm; error

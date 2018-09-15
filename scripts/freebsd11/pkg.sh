@@ -14,7 +14,7 @@ pkg-static update --force
 pkg-static upgrade --yes --force
 
 # Generic system utils.
-pkg install --yes vim curl wget sudo bash gnuls gnugrep
+pkg install --yes vim curl wget sudo bash gnuls gnugrep psmisc
 
 # Since most scripts expect bash to be in the bin directory, create a symlink.
 ln -s /usr/local/bin/bash /bin/bash
