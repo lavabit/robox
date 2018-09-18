@@ -16,6 +16,34 @@ apt-get --assume-yes install sysstat inotify-tools
 # Needed to run the stacie script.
 apt-get --assume-yes install python-crypto python-cryptography
 
+# Make sure the MySQLs server is available.
+apt-get --assume-yes install mysql-server
+
+# Force MySQL/MariaDB except the old fashioned '0000-00-00' date format.
+printf "[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/mysql/mysql.conf.d/server-mode.cnf
+printf "[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/mysql/mariadb.conf.d/server-mode.cnf
+
+# Create the mytool user and grant the required permissions.
+mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
+mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
+
+# The postfix server for message relays.
+apt-get --assume-yes install postfix
+
+# Configure the postfix hostname and origin parameters.
+printf "\ninet_interfaces = localhost\n" >> /etc/postfix/main.cf
+printf "inet_protocols = ipv4\n" >> /etc/postfix/main.cf
+printf "myhostname = relay.magma.builder\n" >> /etc/postfix/main.cf
+printf "myorigin = magma.builder\n" >> /etc/postfix/main.cf
+printf "transport_maps = hash:/etc/postfix/transport\n" >> /etc/postfix/main.cf
+
+# Configure postfix to listen for relays on port 2525 so it doesn't conflict with magma.
+sed -i -e "s/^smtp\([ ]*inet\)/127.0.0.1:2525\1/" /etc/postfix/master.cf
+
+printf "\nmagma.builder         smtp:[127.0.0.1]:7000\n" >> /etc/postfix/transport
+printf "magmadaemon.com         smtp:[127.0.0.1]:7000\n" >> /etc/postfix/transport
+postmap /etc/postfix/transport
+
 # Setup the the box. This runs as root
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"

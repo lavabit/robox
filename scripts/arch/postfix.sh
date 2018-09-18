@@ -1,10 +1,10 @@
 #!/bin/bash -eux
 
 # Update the package database.
-pacman --sync --noconfirm postfix libmariadbclient lzo postgresql-libs tinycdb
+pacman --sync --noconfirm --refresh postfix libmariadbclient lzo postgresql-libs tinycdb
 
 # Update the system packages.
-pacman --sync --noconfirm --refresh --sysupgrade
+# pacman --sync --noconfirm --refresh --sysupgrade
 
 # Configure postfix to listen for relays on port 2525 so it doesn't conflict with magma.
 sed -i -e "s/^smtp\([ ]*inet\)/127.0.0.1:2525\1/" /etc/postfix/master.cf

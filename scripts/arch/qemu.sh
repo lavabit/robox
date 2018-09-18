@@ -7,7 +7,7 @@ if [[ `dmidecode -s system-product-name` != "KVM" && `dmidecode -s system-manufa
   exit 0
 fi
 
-pacman --sync --noconfirm qemu-guest-agent
+pacman --sync --noconfirm --refresh qemu-guest-agent
 
 systemctl enable qemu-ga.service
 systemctl start qemu-ga.service

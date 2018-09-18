@@ -45,6 +45,10 @@ printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.
 # Fix the SELinux context.
 chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
 
+# Force MySQL/MariaDB except the old fashioned '0000-00-00' date format.
+printf "[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/my.cnf.d/server-mode.cnf
+chcon system_u:object_r:mysqld_etc_t:s0 /etc/my.cnf.d/server-mode.cnf
+
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
 else

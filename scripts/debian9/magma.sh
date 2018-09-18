@@ -2,6 +2,16 @@
 #
 # Setup the the box. This runs as root
 
+# To allow for autmated installs, we disable interactive configuration steps.
+export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
+
+# Install the SQL server.
+apt-get --assume-yes install mariadb-server
+
+# Force MySQL/MariaDB except the old fashioned '0000-00-00' date format.
+printf "[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/mysql/mariadb.conf.d/60-server-mode.cnf
+
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
 else
