@@ -121,7 +121,7 @@ fi
 sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
 
 # Launch the daemon.
-./magmad --config magma.system.daemonize=true sandbox/etc/magma.sandbox.config
+# ./magmad --config magma.system.daemonize=true sandbox/etc/magma.sandbox.config
 
 # Save the result.
 # RETVAL=\$?
