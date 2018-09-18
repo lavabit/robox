@@ -43,6 +43,10 @@ if [ -x /usr/bin/id ]; then
   fi
 fi
 
+# We need to give the box 30 seconds to get the networking setup or
+# the git clone operation will fail.
+sleep 30
+
 # Temporary [hopefully] workaround to avoid [yet another] bug in NSS.
 export NSS_DISABLE_HW_AES=1
 
