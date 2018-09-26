@@ -21,8 +21,9 @@
         {
             "scripts": [
                 "scripts/ubuntu1604/limits.sh",
-                "scripts/ubuntu1704/floppy.sh",
-                "scripts/ubuntu1704/vagrant.sh",
+                "scripts/ubuntu1604/floppy.sh",
+                "scripts/ubuntu1604/motd.sh",
+                "scripts/ubuntu1604/vagrant.sh",
                 "scripts/ubuntu1604/fixtty.sh",
                 "scripts/ubuntu1604/virtualbox.sh",
                 "scripts/ubuntu1604/parallels.sh",
@@ -66,10 +67,9 @@
                 "lineage-nash-vmware",
                 "lineageos-nash-vmware"
             ]
-        },
+        },"scripts/ubuntu1604/motd.sh",
         {
             "scripts": [
-                "scripts/common/motd.sh",
                 "scripts/common/keys.sh",
                 "scripts/common/machine.sh",
                 "scripts/common/zerodisk.sh",
