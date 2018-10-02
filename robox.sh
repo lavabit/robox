@@ -47,8 +47,8 @@ FILES="magma-docker.json "\
 "developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
 # Collect the list of ISO urls.
-ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/ubuntu-18.10-server-amd64.iso|res/media/rhel-server-6.10-x86_64-dvd.iso|res/media/rhel-server-7.5-x86_64-dvd.iso" | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_checksum_type" | grep -v -E "c3894ecfb0029d9b25507e6664ea6142e134485a9cfa1f2ff9b4bd5fc876c053|1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727|d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5" | awk -F'"' '{print $4}'`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/rhel-server-6.10-x86_64-dvd.iso|res/media/rhel-server-7.5-x86_64-dvd.iso" | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_cdimagechecksum_type" | grep -v -E "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727|d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5" | awk -F'"' '{print $4}'`)
 
 # Collect the list of box names.
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
@@ -561,9 +561,9 @@ function public() {
 }
 
 function localized() {
-  verify_local c3894ecfb0029d9b25507e6664ea6142e134485a9cfa1f2ff9b4bd5fc876c053 res/media/ubuntu-18.10-server-amd64.iso http://cdimage.ubuntu.com/ubuntu-server/daily/pending/cosmic-server-amd64.iso
-  # verify_local 1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727 res/media/rhel-server-6.10-x86_64-dvd.iso https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso
-  verify_local d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5 res/media/rhel-server-7.5-x86_64-dvd.iso https://archive.org/download/rhel-server-7.5-x86_64-dvd/rhel-server-7.5-x86_64-dvd.iso
+  # verify_local c3894ecfb0029d9b25507e6664ea6142e134485a9cfa1f2ff9b4bd5fc876c053 res/media/ubuntu-18.10-server-amd64.iso http://cdimage.ubuntu.com/ubuntu-server/daily/pending/cosmic-server-amd64.iso
+  verify_local 1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727 res/media/rhel-server-6.10-x86_64-dvd.iso https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso
+  # verify_local d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5 res/media/rhel-server-7.5-x86_64-dvd.iso https://archive.org/download/rhel-server-7.5-x86_64-dvd/rhel-server-7.5-x86_64-dvd.iso
 }
 
 function cleanup() {
