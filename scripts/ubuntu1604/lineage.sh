@@ -82,6 +82,12 @@ printf "PATH=/usr/local/platform-tools/:$PATH\n" > /etc/profile.d/platform-tools
 curl  --location https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
 chmod a+x /usr/bin/repo
 
+# Setup higher resource limits.
+printf "*    soft    nofile    8192\n" >> /etc/security/limits.d/60-lineage.conf
+printf "*    hard    nofile    8192\n" >> /etc/security/limits.d/60-lineage.conf
+printf "*    soft    stack     65536\n" >> /etc/security/limits.d/60-lineage.conf
+printf "*    hard    stack     65536\n" >> /etc/security/limits.d/60-lineage.conf
+
 # Setup the android udev rules.
 cat <<-EOF | base64 --decode > /etc/udev/rules.d/51-android.rules
 IyBUaGVzZSBydWxlcyByZWZlcjogaHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vc3R1ZGlv
@@ -425,9 +431,11 @@ export USE_CCACHE=1
 export TMPDIR="\$HOME/temp"
 export ANDROID_CCACHE_SIZE="20G"
 export ANDROID_CCACHE_DIR="\$HOME/cache"
+export PROCESSOR_COUNT=`cat /proc/cpuinfo  | grep processor | wc -l`
 
-# Jack is the Java compiler used by LineageOS 14.1+. Run this command to avoid running out of memory.
-export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx2G"
+# Jack is the Java compiler used by LineageOS 14.1+, and it is memory hungry.
+# We specify a memory limit of 8gb to avoid 'out of memory' errors.
+export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
 
 # If the environment indicates we should use Java 8 then run update alternatives to enable it.
 export EXPERIMENTAL_USE_JAVA8=\${EXPERIMENTAL_USE_JAVA8:="true"}
@@ -450,13 +458,13 @@ git config --global color.ui false
 
 # Initialize the repo and download the source code.
 repo init -u https://github.com/LineageOS/android.git -b \$BRANCH
-repo --color=never sync --quiet --jobs=2
+repo --color=never sync --quiet --jobs=\${PROCESSOR_COUNT}
 
 # Setup the environment.
 source build/envsetup.sh
 
 # Reduce the amount of memory required during compilation.
-sed -i -e "s/-Xmx2048m/-Xmx512m/g" \$HOME/android/lineage/build/tools/releasetools/common.py
+sed -i -e "s/-Xmx2048m/-Xmx4096m/g" \$HOME/android/lineage/build/tools/releasetools/common.py
 
 # Download and configure the environment for the device.
 breakfast \$DEVICE
@@ -504,7 +512,7 @@ rm -rf \$HOME/android/vendor/
 
 # Setup the environment.
 cd \$HOME/android/lineage/ && source build/envsetup.sh
-breakfast \$DEVICE
+breakfast \$DEVICE || ( printf "\n\n\nBuild failed. (breakfast)\n\n\n"; exit 1 )
 
 # Setup the cache.
 cd \$HOME/android/lineage/
@@ -512,17 +520,17 @@ prebuilts/misc/linux-x86/ccache/ccache -M 20G
 
 # Start the build.
 croot
-brunch \$DEVICE
+brunch \$DEVICE || ( printf "\n\n\nBuild failed. (brunch)\n\n\n"; exit 1 )
 
 # Calculate the filename.
-BUILDSTAMP=\`date +'%Y%m%d'\`
+BUILDSTAMP=\`date --utc +'%Y%m%d'\`
 DIRIMAGE="\$HOME/android/lineage/out/target/product/\$DEVICE"
 SYSIMAGE="\$DIRIMAGE/lineage-14.1-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
 SYSIMAGESUM="\$DIRIMAGE/lineage-14.1-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip.md5sum"
 #RECIMAGE="lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE-recovery.img"
 
 # Verify the image checksum.
-md5sum -c "\$SYSIMAGESUM"
+md5sum -c "\$SYSIMAGESUM" || ( printf "\n\n\nChecksum generation failed.\n\n\n"; exit 1 )
 
 # See what the output directory holds.
 ls -alh "\$SYSIMAGE" "\$SYSIMAGESUM"
@@ -537,4 +545,4 @@ chown vagrant:vagrant /home/vagrant/lineage-build.sh
 chmod +x /home/vagrant/lineage-build.sh
 
 # Customize the message of the day
-printf "Lineage Development Environment\nTo download and compile Lineage, just execute the lineage-build.sh script.\n\n" > /etc/motd
+printf "\nLineage Development Environment\nTo download and compile Lineage, just execute the lineage-build.sh script.\n\n" > /etc/motd
