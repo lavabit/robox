@@ -24,6 +24,9 @@ go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
 # Customize
 sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
 
+# Increase the upload timeout
+patch -p1 < $BASE/packer-upload-timeout.patch
+
 # Build for Linux, Darwin, and Windows
 PATH=$GOPATH/bin:$PATH
 XC_ARCH=amd64 XC_OS="windows darwin linux" scripts/build.sh
