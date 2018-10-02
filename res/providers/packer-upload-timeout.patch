@@ -1,5 +1,5 @@
 diff --git a/post-processor/vagrant-cloud/client.go b/post-processor/vagrant-cloud/client.go
-index a66d3eb..823a755 100644
+index a66d3eb..b4ab540 100644
 --- a/post-processor/vagrant-cloud/client.go
 +++ b/post-processor/vagrant-cloud/client.go
 @@ -9,6 +9,7 @@ import (
@@ -10,11 +10,12 @@ index a66d3eb..823a755 100644
  	"strings"
  )
  
-@@ -125,6 +126,7 @@ func (v VagrantCloudClient) Upload(path string, url string) (*http.Response, err
- 	log.Printf("Post-Processor Vagrant Cloud API Upload: %s %s", path, url)
- 
- 	request.ContentLength = fi.Size()
-+	v.client.Timeout = 300 * time.Second
- 	resp, err := v.client.Do(request)
- 
- 	log.Printf("Post-Processor Vagrant Cloud Upload Response: \n\n%+v", resp)
+@@ -41,6 +42,8 @@ func (v VagrantCloudClient) New(baseUrl string, token string) *VagrantCloudClien
+ 		client: &http.Client{
+ 			Transport: &http.Transport{
+ 				Proxy: http.ProxyFromEnvironment,
++				ExpectContinueTimeout: 300 * time.Second,
++				ResponseHeaderTimeout: 300 * time.Second,
+ 			},
+ 		},
+ 		BaseURL:     baseUrl,
