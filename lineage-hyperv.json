@@ -22,8 +22,8 @@
             "scripts": [
                 "scripts/ubuntu1604/limits.sh",
                 "scripts/ubuntu1604/floppy.sh",
-                "scripts/ubuntu1604/motd.sh",
                 "scripts/ubuntu1604/vagrant.sh",
+                "scripts/ubuntu1604/motd.sh",
                 "scripts/ubuntu1604/fixtty.sh",
                 "scripts/ubuntu1604/virtualbox.sh",
                 "scripts/ubuntu1604/parallels.sh",

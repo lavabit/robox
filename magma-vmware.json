@@ -346,8 +346,8 @@
             "scripts": [
                 "scripts/ubuntu1604/limits.sh",
                 "scripts/ubuntu1604/floppy.sh",
-                "scripts/ubuntu1604/motd.sh",
                 "scripts/ubuntu1604/vagrant.sh",
+                "scripts/ubuntu1604/motd.sh",
                 "scripts/ubuntu1604/postfix.sh",
                 "scripts/ubuntu1604/mysql.sh",
                 "scripts/ubuntu1604/memcached.sh",
@@ -384,8 +384,8 @@
             "scripts": [
                 "scripts/ubuntu1610/limits.sh",
                 "scripts/ubuntu1610/floppy.sh",
-                "scripts/ubuntu1610/motd.sh",
                 "scripts/ubuntu1610/vagrant.sh",
+                "scripts/ubuntu1610/motd.sh",
                 "scripts/ubuntu1610/postfix.sh",
                 "scripts/ubuntu1610/mysql.sh",
                 "scripts/ubuntu1610/memcached.sh",
@@ -421,8 +421,8 @@
             "scripts": [
                 "scripts/ubuntu1704/limits.sh",
                 "scripts/ubuntu1704/floppy.sh",
-                "scripts/ubuntu1704/motd.sh",
                 "scripts/ubuntu1704/vagrant.sh",
+                "scripts/ubuntu1704/motd.sh",
                 "scripts/ubuntu1704/postfix.sh",
                 "scripts/ubuntu1704/mysql.sh",
                 "scripts/ubuntu1704/memcached.sh",
