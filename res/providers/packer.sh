@@ -21,11 +21,6 @@ go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
 # For now, stick to the 1.2.4 version, as the 1.3.0 is too buggy.
 # git checkout v1.2.4
 
-# Apply the split function patch.
-# cat $BASE/packer-split-function.patch | patch -p1
-
-# cat $BASE/hyperv-array-function.patch | patch -p1
-
 # Customize
 sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
 

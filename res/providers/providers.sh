@@ -232,13 +232,6 @@ function provide-packer() {
   #   git checkout "$PACKER_VERSION"
   # fi
 
-  # Add the Split Function
-  # cat $BASE/packer-split-function.patch | patch -p1
-
-  # Only Needed for v1.2.4
-  # Fix the HyperV Issue with Parsing Addresses
-  # cat $BASE/hyperv-array-function.patch | patch -p1
-
   # Retry Upload Failures Twenty Times
   sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
 
