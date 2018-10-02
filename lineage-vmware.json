@@ -67,7 +67,7 @@
                 "lineage-nash-vmware",
                 "lineageos-nash-vmware"
             ]
-        },"scripts/ubuntu1604/motd.sh",
+        },
         {
             "scripts": [
                 "scripts/common/keys.sh",
