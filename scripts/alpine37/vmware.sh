@@ -11,9 +11,6 @@ fi
 # Install the VMWare Tools from the Linux ISO.
 printf "Installing the VMWare Tools.\n"
 
-# Add the community repository.
-printf "@community https://dl-4.alpinelinux.org/alpine/v3.7/community\n" >> /etc/apk/repositories
-
 # Update the APK cache.
 apk update
 
