@@ -20,8 +20,13 @@ apt-get --assume-yes install python-crypto python-cryptography
 apt-get --assume-yes install mysql-server
 
 # Force MySQL/MariaDB except the old fashioned '0000-00-00' date format.
-printf "[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/mysql/mysql.conf.d/server-mode.cnf
-printf "[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/mysql/mariadb.conf.d/server-mode.cnf
+if [ -d /etc/mysql/mysql.conf.d/ ]; then
+  printf "[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/mysql/mysql.conf.d/server-mode.cnf
+done
+
+if [ -d /etc/mysql/mariadb.conf.d/ ]; then
+  printf "[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/mysql/mariadb.conf.d/server-mode.cnf
+fi
 
 # Create the mytool user and grant the required permissions.
 mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
