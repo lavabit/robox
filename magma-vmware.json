@@ -482,6 +482,13 @@
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
             },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
+            },
             "guest_os_type": "otherlinux-64",
             "http_directory": "http",
             "headless": true,
@@ -515,6 +522,13 @@
                 "memsize": "2048",
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
+            },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -550,6 +564,13 @@
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
             },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
+            },
             "guest_os_type": "centos-64",
             "http_directory": "http",
             "headless": true,
@@ -584,6 +605,13 @@
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
             },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
+            },
             "guest_os_type": "centos-64",
             "http_directory": "http",
             "headless": true,
@@ -617,6 +645,13 @@
                 "memsize": "2048",
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
+            },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
@@ -653,6 +688,13 @@
                 "memsize": "2048",
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
+            },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
             },
             "guest_os_type": "otherlinux-64",
             "skip_compaction": false,
@@ -692,6 +734,13 @@
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
             },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
+            },
             "guest_os_type": "fedora-64",
             "skip_compaction": false,
             "http_directory": "http",
@@ -728,6 +777,13 @@
                 "memsize": "2048",
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
+            },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
             },
             "guest_os_type": "debian8-64",
             "skip_compaction": false,
@@ -779,6 +835,13 @@
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
             },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
+            },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
             "http_directory": "http",
@@ -829,6 +892,13 @@
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
             },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
+            },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
             "http_directory": "http",
@@ -870,6 +940,13 @@
                 "memsize": "2048",
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
+            },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
             },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
@@ -913,6 +990,13 @@
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
             },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
+            },
             "guest_os_type": "ubuntu-64",
             "skip_compaction": false,
             "http_directory": "http",
@@ -954,6 +1038,13 @@
                 "numvcpus": "4",
                 "cpuid.corespersocket": "2",
                 "vmci0.present": "TRUE"
+            },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
             },
             "guest_os_type": "otherlinux-64",
             "skip_compaction": false,
@@ -1003,6 +1094,13 @@
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
             },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
+            },
             "guest_os_type": "freebsd-64",
             "skip_compaction": false,
             "http_directory": "http",
@@ -1040,6 +1138,13 @@
                 "memsize": "2048",
                 "numvcpus": "2",
                 "cpuid.corespersocket": "2"
+            },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
             },
             "guest_os_type": "freeBSD-64",
             "skip_compaction": false,

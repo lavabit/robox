@@ -73,6 +73,13 @@
                 "numvcpus": "4",
                 "cpuid.corespersocket": "2"
             },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
+            },
             "guest_os_type": "centos-64",
             "http_directory": "http",
             "headless": true,
@@ -106,6 +113,13 @@
                 "memsize": "4096",
                 "numvcpus": "4",
                 "cpuid.corespersocket": "2"
+            },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
             },
             "guest_os_type": "centos-64",
             "http_directory": "http",
