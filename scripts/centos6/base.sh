@@ -36,6 +36,10 @@ yum --assumeyes install deltarpm net-tools sudo dmidecode yum-utils man bash-com
 # often interupt the the provisioning process.
 yum --assumeyes --disablerepo=epel update; error
 
+if [ -f /etc/yum.repos.d/CentOS-Vault.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/CentOS-Vault.repo.rpmnew
+fi
+
 # Configure pip in case anybody needs it. We do this seperately to make it easier to skip/remove.
 yum --assumeyes install python-pip; error
 
