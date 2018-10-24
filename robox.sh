@@ -40,8 +40,8 @@ fi
 source $BASE/.credentialsrc
 
 # The list of packer config files.
-FILES="magma-docker.json "\
-"magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
+FILES="packer-cache.json "\
+"magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
 "generic-hyperv.json generic-vmware.json generic-libvirt.json generic-parallels.json generic-virtualbox.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
 "developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
