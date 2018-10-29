@@ -226,6 +226,22 @@
         },
         {
             "type": "vmware-iso",
+            "name": "fedora29",
+            "output_directory": "output/fedora29",
+            "headless": true,
+            "disk_size": 1,
+            "boot_wait": "5s",
+            "iso_url": "https://mirrors.rit.edu/fedora/fedora/linux/releases/test/29_Beta/Server/x86_64/iso/Fedora-Server-netinst-x86_64-29_Beta-1.5.iso",
+            "iso_checksum": "93d8f809ad76d057a0b607961eb1f6fe062c49ffd0c5da609d4d3e7904a15adb",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10s",
+            "shutdown_command": "poweroff"
+        },
+        {
+            "type": "vmware-iso",
             "name": "debian8",
             "output_directory": "output/debian8",
             "headless": true,

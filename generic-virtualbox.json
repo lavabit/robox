@@ -598,6 +598,49 @@
             ]
         },
         {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora29/fixdns.sh",
+                "scripts/fedora29/dnf.sh"
+            ],
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora29-virtualbox"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora29/base.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora29-virtualbox"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora29/kernel.sh",
+                "scripts/fedora29/vga.sh",
+                "scripts/fedora29/virtualbox.sh",
+                "scripts/fedora29/parallels.sh",
+                "scripts/fedora29/vmware.sh",
+                "scripts/fedora29/qemu.sh",
+                "scripts/fedora29/vagrant.sh",
+                "scripts/fedora29/tuning.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora29-virtualbox"
+            ]
+        },
+        {
             "scripts": [
                 "scripts/freebsd11/pkg.sh",
                 "scripts/freebsd11/hostname.sh",
@@ -1602,6 +1645,59 @@
         },
         {
             "type": "virtualbox-iso",
+            "name": "generic-fedora29-virtualbox",
+            "vm_name": "generic-fedora29-virtualbox",
+            "output_directory": "output/generic-fedora29-virtualbox",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> ",
+                "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora29.vagrant.ks ",
+                "biosdevname=0 ",
+                "net.ifnames=0 ",
+                "<enter>"
+            ],
+            "disk_size": 32768,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--vram",
+                    "64"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "guest_os_type": "Fedora_64",
+            "http_directory": "http",
+            "headless": true,
+            "vrdp_bind_address": "127.0.0.1",
+            "vrdp_port_min": 11000,
+            "vrdp_port_max": 12000,
+            "iso_url": "https://mirrors.rit.edu/fedora/fedora/linux/releases/test/29_Beta/Server/x86_64/iso/Fedora-Server-netinst-x86_64-29_Beta-1.5.iso",
+            "iso_checksum": "93d8f809ad76d057a0b607961eb1f6fe062c49ffd0c5da609d4d3e7904a15adb",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
+        },
+        {
+            "type": "virtualbox-iso",
             "name": "generic-debian8-virtualbox",
             "vm_name": "generic-debian8-virtualbox",
             "output_directory": "output/generic-debian8-virtualbox",
@@ -2457,6 +2553,15 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
+                    "generic-fedora29-virtualbox"
+                ],
+                "box_tag": "generic/fedora29",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
                     "generic-freebsd11-virtualbox"
                 ],
                 "box_tag": "generic/freebsd11",
@@ -2741,6 +2846,15 @@
                     "generic-fedora28-virtualbox"
                 ],
                 "box_tag": "roboxes/fedora28",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-fedora29-virtualbox"
+                ],
+                "box_tag": "roboxes/fedora29",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },

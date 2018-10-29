@@ -598,6 +598,49 @@
             ]
         },
         {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora29/fixdns.sh",
+                "scripts/fedora29/dnf.sh"
+            ],
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora29-vmware"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora29/base.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora29-vmware"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora29/kernel.sh",
+                "scripts/fedora29/vga.sh",
+                "scripts/fedora29/virtualbox.sh",
+                "scripts/fedora29/parallels.sh",
+                "scripts/fedora29/vmware.sh",
+                "scripts/fedora29/qemu.sh",
+                "scripts/fedora29/vagrant.sh",
+                "scripts/fedora29/tuning.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora29-vmware"
+            ]
+        },
+        {
             "scripts": [
                 "scripts/freebsd11/pkg.sh",
                 "scripts/freebsd11/hostname.sh",
@@ -1510,6 +1553,51 @@
         },
         {
             "type": "vmware-iso",
+            "name": "generic-fedora29-vmware",
+            "vm_name": "generic-fedora29-vmware",
+            "vmdk_name": "generic-fedora29-vmware",
+            "output_directory": "output/generic-fedora29-vmware",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> ",
+                "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora29.vagrant.ks ",
+                "biosdevname=0 ",
+                "net.ifnames=0 ",
+                "<enter>"
+            ],
+            "disk_size": 32768,
+            "disk_type_id": "0",
+            "vmx_data": {
+                "memsize": "2048",
+                "numvcpus": "2",
+                "cpuid.corespersocket": "2"
+            },
+            "vmx_data_post": {
+              "cleanShutdown": "TRUE",
+              "softPowerOff": "FALSE",
+              "ethernet0.virtualDev": "e1000",
+              "ethernet0.startConnected": "TRUE",
+              "ethernet0.wakeonpcktrcv": "false"
+            },
+            "guest_os_type": "fedora-64",
+            "skip_compaction": false,
+            "http_directory": "http",
+            "headless": true,
+            "vnc_disable_password": true,
+            "vnc_bind_address": "127.0.0.1",
+            "vmx_remove_ethernet_interfaces": true,
+            "iso_url": "https://mirrors.rit.edu/fedora/fedora/linux/releases/test/29_Beta/Server/x86_64/iso/Fedora-Server-netinst-x86_64-29_Beta-1.5.iso",
+            "iso_checksum": "93d8f809ad76d057a0b607961eb1f6fe062c49ffd0c5da609d4d3e7904a15adb",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "tools_upload_flavor": "linux"
+        },
+        {
+            "type": "vmware-iso",
             "name": "generic-debian8-vmware",
             "vm_name": "generic-debian8-vmware",
             "vmdk_name": "generic-debian8-vmware",
@@ -2278,6 +2366,15 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
+                    "generic-fedora29-vmware"
+                ],
+                "box_tag": "generic/fedora29",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
                     "generic-freebsd11-vmware"
                 ],
                 "box_tag": "generic/freebsd11",
@@ -2562,6 +2659,15 @@
                     "generic-fedora28-vmware"
                 ],
                 "box_tag": "roboxes/fedora28",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-fedora29-vmware"
+                ],
+                "box_tag": "roboxes/fedora29",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },

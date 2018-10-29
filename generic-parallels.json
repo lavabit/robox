@@ -597,6 +597,51 @@
                 "generic-fedora28-parallels"
             ]
         },
+        
+        
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora29/fixdns.sh",
+                "scripts/fedora29/dnf.sh"
+            ],
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora29-parallels"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora29/base.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora29-parallels"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/fedora29/kernel.sh",
+                "scripts/fedora29/vga.sh",
+                "scripts/fedora29/virtualbox.sh",
+                "scripts/fedora29/parallels.sh",
+                "scripts/fedora29/vmware.sh",
+                "scripts/fedora29/qemu.sh",
+                "scripts/fedora29/vagrant.sh",
+                "scripts/fedora29/tuning.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora29-parallels"
+            ]
+        },
         {
             "scripts": [
                 "scripts/freebsd11/pkg.sh",
@@ -1667,6 +1712,63 @@
             "parallels_tools_mode": "upload",
             "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
             "prlctl_version_file": "/root/parallels-tools-version.txt"
+        },       
+        {
+            "type": "parallels-iso",
+            "name": "generic-fedora29-parallels",
+            "vm_name": "generic-fedora29-parallels",
+            "output_directory": "output/generic-fedora29-parallels",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> ",
+                "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora29.vagrant.ks ",
+                "biosdevname=0 ",
+                "net.ifnames=0 ",
+                "<enter>"
+            ],
+            "disk_size": 32768,
+            "prlctl": [
+                [
+                    "set",
+                    "{{.Name}}",
+                    "--adaptive-hypervisor",
+                    "on"
+                ],
+                [
+                    "set",
+                    "{{.Name}}",
+                    "--memsize",
+                    "1024"
+                ],
+                [
+                    "set",
+                    "{{.Name}}",
+                    "--pmu-virt",
+                    "on"
+                ],
+                [
+                    "set",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ],
+            "hard_drive_interface": "ide",
+            "guest_os_type": "linux",
+            "skip_compaction": false,
+            "http_directory": "http",
+            "iso_url": "https://mirrors.rit.edu/fedora/fedora/linux/releases/test/29_Beta/Server/x86_64/iso/Fedora-Server-netinst-x86_64-29_Beta-1.5.iso",
+            "iso_checksum": "93d8f809ad76d057a0b607961eb1f6fe062c49ffd0c5da609d4d3e7904a15adb",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "upload",
+            "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+            "prlctl_version_file": "/root/parallels-tools-version.txt"
         },
         {
             "type": "parallels-iso",
@@ -2575,6 +2677,15 @@
             {
                 "type": "vagrant-cloud",
                 "only": [
+                    "generic-fedora29-parallels"
+                ],
+                "box_tag": "generic/fedora29",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
                     "generic-freebsd11-parallels"
                 ],
                 "box_tag": "generic/freebsd11",
@@ -2859,6 +2970,15 @@
                     "generic-fedora28-parallels"
                 ],
                 "box_tag": "roboxes/fedora28",
+                "version": "{{user `box_version`}}",
+                "version_description": "A build environment for use in cross platform development."
+            },
+            {
+                "type": "vagrant-cloud",
+                "only": [
+                    "generic-fedora29-parallels"
+                ],
+                "box_tag": "roboxes/fedora29",
                 "version": "{{user `box_version`}}",
                 "version_description": "A build environment for use in cross platform development."
             },
