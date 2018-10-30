@@ -39,6 +39,8 @@ printf "\n\n"
 ${CURL} \
   --tlsv1.2 \
   --silent \
+  --retry 16 \
+  --retry-delay 60 \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   "https://app.vagrantup.com/api/v1/box/$ORG/$NAME/versions" \
@@ -55,6 +57,8 @@ printf "\n\n"
 # Delete the existing provider, if it exists already.
 ${CURL} \
   --silent \
+  --retry 16 \
+  --retry-delay 60 \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   --request DELETE \
   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/${PROVIDER}
@@ -65,6 +69,8 @@ printf "\n\n"
 ${CURL} \
   --tlsv1.2 \
   --silent \
+  --retry 16 \
+  --retry-delay 60 \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/providers \
@@ -88,6 +94,11 @@ UPLOAD_PATH=`${CURL} \
 # cat "$FILE.upload.log.txt"
 # tput sgr0
 # printf -- "-----------------------------------------------------\n\n"
+
+if [ "$UPLOAD_PATH" == "" ]; then
+  printf "\n\n$FILE failed to upload...\n\n"
+  exit 1
+fi
 
 ${CURL} --tlsv1.2 \
   --silent \
