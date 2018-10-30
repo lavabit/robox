@@ -627,7 +627,6 @@
             "type": "shell",
             "scripts": [
                 "scripts/fedora29/kernel.sh",
-                "scripts/fedora29/vga.sh",
                 "scripts/fedora29/virtualbox.sh",
                 "scripts/fedora29/parallels.sh",
                 "scripts/fedora29/vmware.sh",
