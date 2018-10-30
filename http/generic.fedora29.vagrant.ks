@@ -12,7 +12,7 @@ clearpart --all --initlabel
 firewall --enabled --service=ssh
 authconfig --enableshadow --passalgo=sha512
 network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora29.localdomain
-bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check gfxterm=1024x768x32,1024x768x24,auto"
+bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=0x117"
 
 # When this release is no longer available from mirrors, enable the archive url.
 url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/29/Server/x86_64/os/
