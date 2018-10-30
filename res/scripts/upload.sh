@@ -51,7 +51,15 @@ ${CURL} \
   "
 printf "\n\n"
 
-# Create the provider, while become one with your inner child.
+# Delete the existing provider, if it exists already.
+${CURL} \
+  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+  --request DELETE \
+  https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/${PROVIDER}
+
+printf "\n\n"
+
+# Create the provider, while becoming one with your inner child.
 ${CURL} \
   --tlsv1.2 \
   --header "Content-Type: application/json" \
@@ -96,9 +104,3 @@ printf "\n\n"
 #   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
 #   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/revoke \
 #   --request PUT
-
-# # Delete a Version
-# ${CURL} \
-#   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-#   --request DELETE \
-#   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION
