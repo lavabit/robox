@@ -15,10 +15,11 @@ authconfig --enableshadow --passalgo=sha512
 # Hyper-V builds are having trouble with the default video driver. Since this is a
 # command line driven system, we force the kernel to use the VGA driver at a
 # resolution of 1024x768.
-bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=792"
+bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=343"
 
 # When this release is no longer available from mirrors, enable the archive url.
-url --url=https://mirrors.kernel.org/fedora/releases/29/Everything/x86_64/os/
+url --url=https://mirrors.rit.edu/fedora/fedora/linux/releases/test/29_Beta/Everything/x86_64/os/
+# url --url=https://mirrors.kernel.org/fedora/releases/29/Everything/x86_64/os/
 # url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Everything/x86_64/os/
 
 %packages
