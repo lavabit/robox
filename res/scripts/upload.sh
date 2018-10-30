@@ -38,6 +38,7 @@ printf "\n\n"
 # Assume the position, while you create the version.
 ${CURL} \
   --tlsv1.2 \
+  --silent \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   "https://app.vagrantup.com/api/v1/box/$ORG/$NAME/versions" \
@@ -53,6 +54,7 @@ printf "\n\n"
 
 # Delete the existing provider, if it exists already.
 ${CURL} \
+  --silent \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   --request DELETE \
   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/${PROVIDER}
@@ -62,6 +64,7 @@ printf "\n\n"
 # Create the provider, while becoming one with your inner child.
 ${CURL} \
   --tlsv1.2 \
+  --silent \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/providers \
@@ -86,8 +89,13 @@ UPLOAD_PATH=`${CURL} \
 # tput sgr0
 # printf -- "-----------------------------------------------------\n\n"
 
-${CURL} --tlsv1.2 --include --max-time 7200 --expect100-timeout 7200 --request PUT \
-  --write-out "\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nSETUP TIME: %{time_starttransfer}\nTOTAL TIME: %{time_total}\n\n\n" \
+${CURL} --tlsv1.2 \
+  --silent \
+  --include \
+  --max-time 7200 \
+  --expect100-timeout 7200
+  --request PUT \
+  --write-out "\nFILE: $FILE\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nSETUP TIME: %{time_starttransfer}\nTOTAL TIME: %{time_total}\n\n\n" \
   --upload-file "$FILE" "$UPLOAD_PATH"
 
 # Release the version, and watch the party rage.
