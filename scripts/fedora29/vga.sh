@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # Remove the hard coded kernel VGA resolution needed to workaround Hyper-V bugs during installation.
-sed -i 's/^GRUB_CMDLINE_LINUX="\(.*\)vga=0x31b\(.*\)"$/GRUB_CMDLINE_LINUX="\1\2"/g' /etc/default/grub
+sed -i 's/^GRUB_CMDLINE_LINUX="\(.*\)gfxterm=1024x768x32,1024x768x24,auto\(.*\)"$/GRUB_CMDLINE_LINUX="\1\2"/g' /etc/default/grub
 
 # On UEFI systems.
 if [ -f /boot/efi/EFI/fedora/grub.cfg ]; then
