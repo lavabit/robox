@@ -78,13 +78,17 @@ UPLOAD_PATH=`${CURL} \
   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/$PROVIDER/upload | jq -r .upload_path`
 
 # Perform the upload, and see the bits boil.
-${CURL} --tlsv1.2 --include --max-time 7200 --expect100-timeout 7200 --request PUT --output "$FILE.upload.log.txt" --upload-file "$FILE" "$UPLOAD_PATH"
+# ${CURL} --tlsv1.2 --include --max-time 7200 --expect100-timeout 7200 --request PUT --output "$FILE.upload.log.txt" --upload-file "$FILE" "$UPLOAD_PATH"
+#
+# printf "\n-----------------------------------------------------\n"
+# tput setaf 5
+# cat "$FILE.upload.log.txt"
+# tput sgr0
+# printf -- "-----------------------------------------------------\n\n"
 
-printf "\n-----------------------------------------------------\n"
-tput setaf 5
-cat "$FILE.upload.log.txt"
-tput sgr0
-printf -- "-----------------------------------------------------\n\n"
+${CURL} --tlsv1.2 --include --max-time 7200 --expect100-timeout 7200 --request PUT \
+  --write-out "\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nSETUP TIME: %{time_starttransfer}\nTOTAL TIME: %{time_total}\n\n\n" \
+  --upload-file "$FILE" "$UPLOAD_PATH"
 
 # Release the version, and watch the party rage.
 ${CURL} \
