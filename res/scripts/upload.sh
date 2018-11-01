@@ -7,7 +7,8 @@ VERSION="$4"
 FILE="$5"
 
 CURL=/opt/vagrant/embedded/bin/curl
-LD_PRELOAD="/opt/vagrant/embedded/lib/libcrypto.so:/opt/vagrant/embedded/lib/libssl.so"
+export LD_PRELOAD="/opt/vagrant/embedded/lib64/libcrypto.so:/opt/vagrant/embedded/lib64/libssl.so"
+export LD_LIBRARY_PATH="/opt/vagrant/embedded/bin/lib/:/opt/vagrant/embedded/lib64/"
 
 # Cross platform scripting directory plus munchie madness.
 pushd `dirname $0` > /dev/null
@@ -35,7 +36,7 @@ fi
 
 printf "\n\n"
 
-# Assume the position, while you create the version.
+tput setaf 5; printf "Create the version.\n"; tput sgr0
 ${CURL} \
   --tlsv1.2 \
   --silent \
@@ -51,21 +52,25 @@ ${CURL} \
         \"description\": \"A build environment for use in cross platform development.\"
       }
     }
-  "
+  " | jq --color-output
+  
 printf "\n\n"
 
-# Delete the existing provider, if it exists already.
+tput setaf 5; printf "Delete the existing provider, if it exists already.\n"; tput sgr0
 ${CURL} \
   --silent \
   --retry 16 \
   --retry-delay 60 \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   --request DELETE \
-  https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/${PROVIDER}
+  https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/${PROVIDER} | jq --color-output
 
-printf "\n\n"
+printf "\n\n";
 
-# Create the provider, while becoming one with your inner child.
+# Sleep so the deletion can propagate.
+sleep 3
+
+tput setaf 5; printf "Create the provider.\n"; tput sgr0
 ${CURL} \
   --tlsv1.2 \
   --silent \
@@ -74,12 +79,17 @@ ${CURL} \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/providers \
-  --data "{ \"provider\": { \"name\": \"$PROVIDER\" } }"
+  --data "{ \"provider\": { \"name\": \"$PROVIDER\" } }" | jq --color-output
 
 printf "\n\n"
 
-# Prepare an upload path, and then extract that upload path from the JSON
-# response using the jq command.
+# ${CURL} \
+#   --tlsv1.2 \
+#   --silent \
+#   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+#   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/$PROVIDER/upload
+
+tput setaf 5; printf "Retrieve the upload path.\n"; tput sgr0
 UPLOAD_PATH=`${CURL} \
   --tlsv1.2 \
   --silent \
@@ -95,32 +105,50 @@ UPLOAD_PATH=`${CURL} \
 # tput sgr0
 # printf -- "-----------------------------------------------------\n\n"
 
-if [ "$UPLOAD_PATH" == "" ]; then
+if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "null" ]; then
   printf "\n\n$FILE failed to upload...\n\n"
   exit 1
 fi
 
+echo "$UPLOAD_PATH"
+
+tput setaf 5; printf "Perform the box upload.\n"; tput sgr0
 ${CURL} --tlsv1.2 \
   --silent \
-  --include \
-  --max-time 7200 \
-  --expect100-timeout 7200
+  --show-error \
   --request PUT \
+  --max-time 7200 \
+  --expect100-timeout 7200 \
+  --header "Connection: keep-alive" \
   --write-out "\nFILE: $FILE\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nSETUP TIME: %{time_starttransfer}\nTOTAL TIME: %{time_total}\n\n\n" \
   --upload-file "$FILE" "$UPLOAD_PATH"
 
-# Release the version, and watch the party rage.
+printf "\n\n"
+
+# Give the upload time to propagate.
+sleep 10
+
+tput setaf 5; printf "Version status.\n"; tput sgr0
+${CURL} \
+  --silent \
+  --max-time 7200 \
+  --connect-timeout 7200 \
+  --expect100-timeout 7200 \
+  "https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/$PROVIDER" | jq --color-output
+
+printf "\n\n"
+
+sleep 10
+
+tput setaf 5; printf " Release the version.\n"; tput sgr0
 ${CURL} \
   --tlsv1.2 \
   --silent \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/release \
-  --request PUT | jq '.status,.version,.providers[]' | grep -vE "hosted|hosted_token|original_url|created_at|updated_at|\}|\{"
+  --request PUT | jq  --color-output '.status,.version,.providers[]' | grep -vE "hosted|hosted_token|original_url|created_at|updated_at|\}|\{"
 
 printf "\n\n"
-
-
-
 
 # Revoke a Version
 # ${CURL} \
