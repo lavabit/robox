@@ -1,5 +1,12 @@
 #!/bin/bash
 
+error() {
+  if [ $? -ne 0 ]; then
+    printf "\n\nThe VirtualBox install failed...\n\n"
+    exit 1
+  fi
+}
+
 # Bail if we are not running atop VirtualBox.
 if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
     exit 0
@@ -12,13 +19,13 @@ printf "Installing the Virtual Box Tools.\n"
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
-apt-get --assume-yes install virtualbox-guest-additions-iso
+apt-get --assume-yes install virtualbox-guest-utils; error
 
 # Read in the version number.
 export VBOXVERSION=`cat /root/VBoxVersion.txt`
 
 # export DEBIAN_FRONTEND=noninteractive
-export DEBCONF_NONINTERACTIVE_SEEN=true
+# export DEBCONF_NONINTERACTIVE_SEEN=true
 # apt-get --assume-yes install dkms build-essential module-assistant linux-headers-$(uname -r)
 #
 # # The group vboxsf is needed for shared folder access.
