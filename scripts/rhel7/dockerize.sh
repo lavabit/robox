@@ -52,7 +52,21 @@ rm /var/run/nologin
 # Mark the docker box build time.
 date --utc > /etc/docker_box_build_time
 
-:> /etc/machine-id
+if [ -f /etc/machine-id ]; then
+  truncate --size=0 /etc/machine-id
+fi
 
-tar --create --numeric-owner --one-file-system --directory=/ --file=/tmp/magma-docker.tar \
---exclude=/tmp/magma-docker.tar --exclude=/boot --exclude=/run/* --exclude=/var/spool/postfix/private/* .
+# tar --create --numeric-owner --one-file-system --directory=/ --file=/tmp/magma-docker.tar \
+# --exclude=/tmp/magma-docker.tar --exclude=/boot --exclude=/run/* --exclude=/var/spool/postfix/private/* .
+
+# Build a list of special files to exclude from the tarball.
+find / -type b -print > /tmp/exclude
+find / -type c -print >> /tmp/exclude
+find / -type p -print >> /tmp/exclude
+find / -type s -print >> /tmp/exclude
+find /tmp -type f -or -type d -print | grep --invert-match --extended-regexp "^/tmp/$|^/tmp$" >> /tmp/exclude
+
+# Tarball the file we haven't excluded.
+tar --create --numeric-owner --preserve-permissions --one-file-system --directory=/ \
+  --exclude=/proc --exclude=/lost+found --exclude=/mnt --exclude=/sys --exclude-from=/tmp/exclude \
+  --exclude=/tmp/magma-docker.tar --exclude=/tmp/exclude --file=/tmp/magma-docker.tar .
