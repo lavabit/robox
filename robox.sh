@@ -49,6 +49,7 @@ FILES="packer-cache.json "\
 # Collect the list of ISO urls.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/rhel-server-6.10-x86_64-dvd.iso|res/media/rhel-server-7.5-x86_64-dvd.iso" | awk -F'"' '{print $4}'`)
 ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_checksum_type" | grep -v -E "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727|d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5" | awk -F'"' '{print $4}'`)
+UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/rhel-server-6.10-x86_64-dvd.iso|res/media/rhel-server-7.5-x86_64-dvd.iso" | awk -F'"' '{print $4}' | sort | uniq`)
 
 # Collect the list of box names.
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
@@ -172,7 +173,7 @@ function verify_url {
     sleep 10; curl --silent --location --head "$1" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
     if [ $? != 0 ]; then
-      printf "Link Failure:  $1\n\n"
+      printf "Link Failure:  $1\n"
       return 1
     fi
   fi
@@ -328,12 +329,15 @@ function box() {
 
 function links() {
 
-  for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
-      verify_url "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
+  for ((i = 0; i < ${#UNIQURLS[@]}; ++i)); do
+      (verify_url "${UNIQURLS[$i]}") &
   done
 
+  # Wait until the children re done working.
+  wait
+
   # Let the user know all of the links passed.
-  printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
+  printf "\nAll ${#UNIQURLS[@]} of the install media locations are still valid...\n\n"
 }
 
 function sums() {
