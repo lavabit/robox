@@ -28,7 +28,9 @@ echo 'container' > /etc/yum/vars/infra
 rm -f /usr/lib/locale/locale-archive
 
 # Setup the login message instructions.
-printf "Magma Daemon Development Environment\nTo download and compile magma, just execute the magma-build.sh script.\n\n" > /etc/motd
+if [[ "$PACKER_BUILD_NAME" =~ ^generic-.*$ ]]; then
+  printf "Magma Daemon Development Environment\nTo download and compile magma, just execute the magma-build.sh script.\n\n" > /etc/motd
+fi
 
 # Add a profile directive to send docker logins to the home directory.
 printf "if [ \"\$PS1\" ]; then\n  cd \$HOME\nfi\n" > /etc/profile.d/home.sh
@@ -56,8 +58,8 @@ if [ -f /etc/machine-id ]; then
   truncate --size=0 /etc/machine-id
 fi
 
-# tar --create --numeric-owner --one-file-system --directory=/ --file=/tmp/magma-docker.tar \
-# --exclude=/tmp/magma-docker.tar --exclude=/boot --exclude=/run/* --exclude=/var/spool/postfix/private/* .
+# tar --create --numeric-owner --one-file-system --directory=/ --file=/tmp/$PACKER_BUILD_NAME.tar \
+# --exclude=/tmp/$PACKER_BUILD_NAME.tar --exclude=/boot --exclude=/run/* --exclude=/var/spool/postfix/private/* .
 
 # Build a list of special files to exclude from the tarball.
 find / -type b -print > /tmp/exclude
@@ -69,4 +71,4 @@ find /tmp -type f -or -type d -print | grep --invert-match --extended-regexp "^/
 # Tarball the file we haven't excluded.
 tar --create --numeric-owner --preserve-permissions --one-file-system --directory=/ \
   --exclude=/proc --exclude=/lost+found --exclude=/mnt --exclude=/sys --exclude-from=/tmp/exclude \
-  --exclude=/tmp/magma-docker.tar --exclude=/tmp/exclude --file=/tmp/magma-docker.tar .
+  --exclude=/tmp/$PACKER_BUILD_NAME.tar --exclude=/tmp/exclude --file=/tmp/$PACKER_BUILD_NAME.tar .

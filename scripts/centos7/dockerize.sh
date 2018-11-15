@@ -28,7 +28,9 @@ echo 'container' > /etc/yum/vars/infra
 rm -f /usr/lib/locale/locale-archive
 
 # Setup the login message instructions.
-printf "Magma Daemon Development Environment\nTo download and compile magma, just execute the magma-build.sh script.\n\n" > /etc/motd
+if [[ "$PACKER_BUILD_NAME" =~ ^generic-.*$ ]]; then
+  printf "Magma Daemon Development Environment\nTo download and compile magma, just execute the magma-build.sh script.\n\n" > /etc/motd
+fi
 
 # Add a profile directive to send docker logins to the home directory.
 printf "if [ \"\$PS1\" ]; then\n  cd \$HOME\nfi\n" > /etc/profile.d/home.sh

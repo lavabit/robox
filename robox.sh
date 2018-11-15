@@ -42,7 +42,7 @@ source $BASE/.credentialsrc
 # The list of packer config files.
 FILES="packer-cache.json "\
 "magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
-"generic-hyperv.json generic-vmware.json generic-libvirt.json generic-parallels.json generic-virtualbox.json "\
+"generic-docker.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-parallels.json generic-virtualbox.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
 "developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
@@ -303,6 +303,8 @@ function box() {
       packer build -on-error=cleanup -parallel=false -only=$1 magma-libvirt.json
       export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-log-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 magma-virtualbox.json
+      export PACKER_LOG_PATH="$BASE/logs/generic-docker-log-${TIMESTAMP}.txt"
+      packer build -on-error=cleanup -parallel=false -only=$1 generic-docker.json
       export PACKER_LOG_PATH="$BASE/logs/generic-vmware-log-${TIMESTAMP}.txt"
       packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-log-${TIMESTAMP}.txt"
@@ -351,6 +353,7 @@ function validate() {
   verify_json magma-vmware
   verify_json magma-libvirt
   verify_json magma-virtualbox
+  verify_json generic-docker
   verify_json generic-hyperv
   verify_json generic-vmware
   verify_json generic-libvirt
@@ -606,6 +609,8 @@ function generic() {
     build generic-vmware
     build generic-libvirt
     build generic-virtualbox
+
+    docker-login ; build generic-docker; docker-logout
   fi
 }
 
@@ -779,10 +784,12 @@ elif [[ $1 == "cleanup" ]]; then cleanup
 # The type functions.
 elif [[ $1 == "vmware" ]]; then vmware
 elif [[ $1 == "hyperv" ]]; then hyperv
-elif [[ $1 == "docker" ]]; then verify_json magma-docker ; docker-login ; build magma-docker ; docker-logout
 elif [[ $1 == "libvirt" ]]; then libvirt
 elif [[ $1 == "parallels" ]]; then parallels
 elif [[ $1 == "virtualbox" ]]; then virtualbox
+
+# Docker is a command, so to avoid name space isues, we use an inline function.
+elif [[ $1 == "docker" ]]; then verify_json generic-docker ; verify_json magma-docker ; docker-login ; build generic-docker ; build magma-docker ; docker-logout
 
 # The helper functions.
 elif [[ $1 == "isos" ]]; then isos
@@ -815,6 +822,7 @@ elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv.json" ]]; then build gen
 elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt.json" ]]; then build generic-libvirt
 elif [[ $1 == "generic-parallels" || $1 == "generic-parallels.json" ]]; then build generic-parallels
 elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox.json" ]]; then build generic-virtualbox
+elif [[ $1 == "generic-docker" || $1 == "generic-docker.json" ]]; then verify_json generic-docker ; docker-login ; build generic-docker ; docker-logout
 
 elif [[ $1 == "lineage-vmware" || $1 == "lineage-vmware.json" ]]; then build lineage-vmware
 elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv.json" ]]; then build lineage-hyperv
