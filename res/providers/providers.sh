@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # The unprivileged user that will be running packer/using the boxes.
-export HUMAN="ladar"
+export HUMAN="`whoami`"
 
 # Cross Platform Script Directory
 pushd `dirname $0` > /dev/null
