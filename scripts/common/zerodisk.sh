@@ -1,6 +1,6 @@
 #!/bin/bash -ux
 
-if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd11|openbsd6|alpine3[5-8])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd11|freebsd12|openbsd6|alpine3[5-8])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 
   # We fill until full so don't abort on error.
   # set -ux
