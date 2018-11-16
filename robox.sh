@@ -59,8 +59,8 @@ BOXES="$GENERIC_BOXES $MAGMA_BOXES $LINEAGE_BOXES"
 
 # Collect the list of box tags.
 MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=-`
-ROBOXES_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "roboxes" | sort -u --field-separator=-`
-GENERIC_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sort -u --field-separator=-`
+ROBOXES_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
+GENERIC_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | sort -u --field-separator=-`
 LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=-`
 TAGS="$GENERIC_TAGS $ROBOXES_TAGS $MAGMA_TAGS $LINEAGE_TAGS"
 
@@ -302,7 +302,7 @@ function box() {
   else
 
       export PACKER_LOG_PATH="$BASE/logs/magma-docker-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && docker-login && packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json; docker-logout
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json; docker-logout)
       export PACKER_LOG_PATH="$BASE/logs/magma-vmware-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-log-${TIMESTAMP}.txt"
@@ -311,7 +311,7 @@ function box() {
       [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 magma-virtualbox.json
 
       export PACKER_LOG_PATH="$BASE/logs/generic-docker-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && docker-login && packer build -on-error=cleanup -parallel=false -only=$1 generic-docker.json; docker-logout
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=cleanup -parallel=false -only=$1 generic-docker.json; docker-logout)
       export PACKER_LOG_PATH="$BASE/logs/generic-vmware-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-log-${TIMESTAMP}.txt"
@@ -586,18 +586,30 @@ function cleanup() {
 }
 
 function docker-login() {
-  docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-  if [[ $? != 0 ]]; then
-    tput setaf 1; tput bold; printf "\n\nThe docker login credentials failed.\n\n"; tput sgr0
-    exit 1
+  RUNNING=`docker info 2>&1 | grep --count --extended-regexp "^Username:"`
+
+  if [ $RUNNING == 0 ]; then
+    docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+    if [[ $? != 0 ]]; then
+      tput setaf 1; tput bold; printf "\n\nThe docker login credentials failed.\n\n"; tput sgr0
+      exit 1
+    fi
+  else
+    tput setaf 3; tput bold; printf "\nSkipping docker login because the daemon is already authenticated.\n\n"; tput sgr0
   fi
 }
 
 function docker-logout() {
-  docker logout
-  if [[ $? != 0 ]]; then
-    tput setaf 1; tput bold; printf "\n\nThe docker logout command failed.\n\n"; tput sgr0
-    exit 1
+  RUNNING=`ps -ef | grep --invert grep | grep --count --extended-regexp "packer build.*generic-docker.json|packer build.*magma-docker.json"`
+
+  if [ $RUNNING == 0 ]; then
+    docker logout
+    if [[ $? != 0 ]]; then
+      tput setaf 1; tput bold; printf "\n\nThe docker logout command failed.\n\n"; tput sgr0
+      exit 1
+    fi
+  else
+    tput setaf 3; tput bold; printf "\nSkipping docker logout because builds are still running.\n\n"; tput sgr0
   fi
 }
 
