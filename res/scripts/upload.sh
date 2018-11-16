@@ -131,7 +131,8 @@ printf " Done.\n\n"
 
 tput setaf 5; printf "Perform the box upload.\n"; tput sgr0
 ${CURL} --tlsv1.2 \
-`#  --silent ` \
+`# --silent ` \
+`# --output "/dev/null"` \
   --show-error \
   --request PUT \
   --max-time 7200 \
