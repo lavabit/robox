@@ -105,7 +105,7 @@ printf "\n\n"
 #   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
 #   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/$PROVIDER/upload
 
-tput setaf 5; printf "Retrieve the upload path.\n"; tput sgr0
+tput setaf 5; printf "Retrieve the upload path."; tput sgr0
 UPLOAD_PATH=`${CURL} \
   --tlsv1.2 \
   --silent \
@@ -126,20 +126,19 @@ if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "null" ]; then
   exit 1
 fi
 
-echo "$UPLOAD_PATH"
+printf " Done.\n\n"
+# echo "$UPLOAD_PATH"
 
 tput setaf 5; printf "Perform the box upload.\n"; tput sgr0
 ${CURL} --tlsv1.2 \
-  --silent \
+`#  --silent ` \
   --show-error \
   --request PUT \
   --max-time 7200 \
   --expect100-timeout 7200 \
   --header "Connection: keep-alive" \
-  --write-out "\nFILE: $FILE\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nSETUP TIME: %{time_starttransfer}\nTOTAL TIME: %{time_total}\n\n\n" \
+  --write-out "\n\nFILE: $FILE\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nSETUP TIME: %{time_starttransfer}\nTOTAL TIME: %{time_total}\n\n\n" \
   --upload-file "$FILE" "$UPLOAD_PATH"
-
-printf "\n\n"
 
 # Give the upload time to propagate.
 sleep 10
@@ -156,7 +155,7 @@ printf "\n\n"
 
 sleep 10
 
-tput setaf 5; printf " Release the version.\n"; tput sgr0
+tput setaf 5; printf "Release the version.\n"; tput sgr0
 ${CURL} \
   --tlsv1.2 \
   --silent \
