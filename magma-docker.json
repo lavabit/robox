@@ -78,7 +78,7 @@
         {
             "type": "file",
             "direction": "download",
-            "source": "/tmp/magma-docker.tar",
+            "source": "/tmp/{{build_name}}.tar",
             "destination": "output/{{build_name}}-{{user `box_version`}}.tar"
         }
     ],
@@ -239,6 +239,22 @@
     "post-processors": [
         [
             {
+                "type": "shell-local",
+                "environment_vars": [
+                  "NAME={{build_name}}"
+                ],
+                "inline": [
+                  "[ `docker images lavabit/magma -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet lavabit/magma`",
+                  "[ `docker images lavabit/magma-centos -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet lavabit/magma-centos`",
+                  "[ `docker images lavabit/magma-centos6 -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet lavabit/magma-centos6`",
+                  "[ `docker images lavabit/magma-centos7 -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet lavabit/magma-centos7`",
+                  "rm --recursive --force output/$NAME",
+                  "exit 0"
+                ]
+            }
+        ],
+        [
+            {
                 "type": "artifice",
                 "keep_input_artifact": false,
                 "files": [
@@ -246,6 +262,7 @@
                 ]
             },
             {
+                "format": "gz",
                 "type": "compress",
                 "compression_level": 9,
                 "keep_input_artifact": false,

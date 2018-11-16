@@ -151,16 +151,32 @@
     "post-processors": [
         [
             {
+                "type": "shell-local",
+                "environment_vars": [
+                  "NAME={{build_name}}",
+                  "BOX={{split build_name \"-\" 1}}"
+                ],
+                "inline": [
+                  "[ `docker images roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet roboxes/$BOX`",
+                  "[ `docker images generic/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet generic/$BOX`",
+                  "rm --recursive --force output/$NAME",
+                  "exit 0"
+                ]
+            }
+        ],
+        [
+            {
                 "type": "artifice",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "files": [
                     "output/{{build_name}}-{{user `box_version`}}.tar"
                 ]
             },
             {
+                "format": "gz",
                 "type": "compress",
                 "compression_level": 9,
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz"
             },
             {
@@ -198,6 +214,22 @@
                 "login": "false",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/roboxes/info.json"
+                ]
+            },
+            {
+                "type": "vagrant-cloud",
+                "no_release": false,
+                "box_tag": "roboxes/{{split build_name \"-\" 1}}",
+                "version": "{{user `box_version`}}",
+                "version_description": "A generic base box image."
             }
         ],
         [
@@ -219,22 +251,6 @@
                 "login": "false",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
-            },
-            {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": true,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box",
-                "include": [
-                    "tpl/roboxes/info.json"
-                ]
-            },
-            {
-                "type": "vagrant-cloud",
-                "no_release": false,
-                "box_tag": "roboxes/{{split build_name \"-\" 1}}",
-                "version": "{{user `box_version`}}",
-                "version_description": "A generic base box image."
             }
         ]
     ]

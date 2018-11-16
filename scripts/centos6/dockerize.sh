@@ -1,22 +1,12 @@
 #!/bin/bash
 
-# Post configure tasks for Docker
-
-# remove stuff we don't need that anaconda insists on
-# kernel needs to be removed by rpm, because of grubby
-rpm -e kernel
-rpm -e --nodeps dhclient dhcp-libs dracut dracut-kernel grubby kmod grub2 centos-logos hwdata os-prober gettext bind-license freetype kmod-libs dracut firewalld dbus-glib dbus-python ebtables gobject-introspection pygobject3-base python-decorator python-slip python-slip-dbus kpartx kernel-firmware device-mapper device-mapper-event device-mapper-event-libs device-mapper-libs device-mapper-persistent-data e2fsprogs-libs kbd-misc iptables iptables-ipv6 haveged
-
+# Cleanup.
 rpm -Va --nofiles --nodigest
 yum clean all
 
-# Clean up unused directories
-# rm -rf /boot
-# rm -rf /etc/firewalld
-
 # Stop services to avoid tarring sockets.
 service abrt stop
-# service dbus stop
+service dbus stop
 service mysqld stop
 service postfix stop
 
@@ -38,14 +28,13 @@ fi
 # Add a profile directive to send docker logins to the home directory.
 printf "if [ \"\$PS1\" ]; then\n  cd \$HOME\nfi\n" > /etc/profile.d/home.sh
 
-# Setup the locale properly - arrogantly assume everyone lives in the US.
+# Setup the locale, and arrogantly assume everyone lives in the US.
 localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
 
 rm -rf /var/cache/yum/*
 rm -f /tmp/ks-script*
 rm -rf /var/log/*
 rm -rf /tmp/*
-rm -rf /etc/sysconfig/network-scripts/ifcfg-*
 
 # Mark the docker box build time.
 date --utc > /etc/docker_box_build_time
@@ -70,14 +59,26 @@ find / -type b -print >> /tmp/excludes
 find / -type c -print >> /tmp/excludes
 find / -type p -print >> /tmp/excludes
 find / -type s -print >> /tmp/excludes
+find /var/log/ -type f -print >> /tmp/excludes
 find /lib/modules/ -mindepth 1 -print >> /tmp/excludes
 find /usr/src/kernels/ -mindepth 1 -print >> /tmp/excludes
 find /var/lib/yum/yumdb/ -mindepth 1 -print >> /tmp/excludes
+find /etc/sysconfig/network-scripts/ -name "ifcfg-*" -print >> /tmp/excludes
 find /tmp -type f -or -type d -print | grep --invert-match --extended-regexp "^/tmp/$|^/tmp$" >> /tmp/excludes
 
+# Remove the files associated with these packages since containers don't need them.
+PACKAGES=`rpm -q kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs dhclient dhcp-libs dracut dracut-kernel grubby kmod grub2 centos-logos hwdata os-prober gettext bind-license freetype kmod-libs dracut firewalld dbus-glib dbus-python ebtables gobject-introspection pygobject3-base python-decorator python-slip python-slip-dbus kpartx kernel-firmware device-mapper device-mapper-event device-mapper-event-libs device-mapper-libs device-mapper-persistent-data e2fsprogs-libs kbd-misc iptables iptables-ipv6 haveged | grep --invert "not installed"`
+
+# Manually exclude certain files/directories from the list.
+rpm -q --list $PACKAGES | grep --invert "/usr/share/bash-completion/completions" | \
+  grep --invert "/etc/profile.d" >> /tmp/excludes
+
+# Remove the leading slash so the names match up with tar.
+sed --in-place "s/^\///g" /tmp/excludes
+
 # Tarball the filesystem.
-tar --create --absolute-names --numeric-owner --preserve-permissions --one-file-system \
-  --directory=/ --file=/tmp/$PACKER_BUILD_NAME.tar \
+tar --create --numeric-owner --preserve-permissions --one-file-system \
+  --directory=/ --file=/tmp/$PACKER_BUILD_NAME.tar --exclude=/etc/firewalld \
   --exclude=/boot --exclude=/proc --exclude=/lost+found --exclude=/mnt --exclude=/sys -X /tmp/excludes /
 
 if [ $? != 0 ] || [ ! -f /tmp/$PACKER_BUILD_NAME.tar ]; then
@@ -91,3 +92,5 @@ fi
 
 printf "locked\n" | passwd --stdin root
 passwd --unlock root
+
+dhclient
