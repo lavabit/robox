@@ -54,15 +54,16 @@ UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/
 # Collect the list of box names.
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
+ROBOX_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sed "s/generic-/roboxes\//g"| sort --field-separator=- -k 3i -k 2.1,2.0`
 LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-|lineageos-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
-BOXES="$GENERIC_BOXES $MAGMA_BOXES $LINEAGE_BOXES"
+BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES"
 
 # Collect the list of box tags.
 MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=-`
-ROBOXES_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
+ROBOX_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
 GENERIC_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | sort -u --field-separator=-`
 LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=-`
-TAGS="$GENERIC_TAGS $ROBOXES_TAGS $MAGMA_TAGS $LINEAGE_TAGS"
+TAGS="$GENERIC_TAGS $ROBOX_TAGS $MAGMA_TAGS $LINEAGE_TAGS"
 
 # These boxes aren't publicly available yet, so we filter them out of available test.
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"

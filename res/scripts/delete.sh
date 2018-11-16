@@ -5,8 +5,24 @@ NAME="$2"
 PROVIDER="$3"
 VERSION="$4"
 
-CURL=/opt/vagrant/embedded/bin/curl
-export LD_PRELOAD="/opt/vagrant/embedded/lib64/libcrypto.so:/opt/vagrant/embedded/lib64/libssl.so"
+if [ -f /opt/vagrant/embedded/bin/curl ]; then
+  export CURL="/opt/vagrant/embedded/bin/curl"
+else
+  export CURL="curl"
+fi
+
+if [ -f /opt/vagrant/embedded/lib64/libssl.so ] && [ -z LD_PRELOAD ]; then
+  export LD_PRELOAD="/opt/vagrant/embedded/lib64/libssl.so"
+elif [ -f /opt/vagrant/embedded/lib64/libssl.so ]; then
+  export LD_PRELOAD="/opt/vagrant/embedded/lib64/libssl.so:$LD_PRELOAD"
+fi
+
+if [ -f /opt/vagrant/embedded/lib64/libcrypto.so ] && [ -z LD_PRELOAD ]; then
+  export LD_PRELOAD="/opt/vagrant/embedded/lib64/libcrypto.so"
+elif [ -f /opt/vagrant/embedded/lib64/libcrypto.so ]; then
+  export LD_PRELOAD="/opt/vagrant/embedded/lib64/libcrypto.so:$LD_PRELOAD"
+fi
+
 export LD_LIBRARY_PATH="/opt/vagrant/embedded/bin/lib/:/opt/vagrant/embedded/lib64/"
 
 # Cross platform scripting directory plus munchie madness.
