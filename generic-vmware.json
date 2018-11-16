@@ -2244,7 +2244,7 @@
         "compression_level": 9,
         "keep_input_artifact": false,
         "vagrantfile_template": "tpl/generic-{{split build_name \"-\" 1}}.rb",
-        "output": "output/generic-{{split build_name \"-\" 1}}-roboxes-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
         "include": [
           "tpl/generic/info.json"
         ]
@@ -2260,7 +2260,7 @@
         "type": "artifice",
         "keep_input_artifact": false,
         "files": [
-          "output/{{build_name}}-{{user `box_version`}}.box"
+          "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
         ]
       },
       {
@@ -2269,7 +2269,7 @@
           "sha256"
         ],
         "keep_input_artifact": false,
-        "output": "output/generic-{{split build_name \"-\" 1}}-roboxes-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256"
+        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256"
       }
     ],
     [
@@ -2278,7 +2278,7 @@
         "compression_level": 9,
         "keep_input_artifact": false,
         "vagrantfile_template": "tpl/roboxes-{{split build_name \"-\" 1}}.rb",
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-roboxes-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
         "include": [
           "tpl/roboxes/info.json"
         ]
@@ -2294,7 +2294,7 @@
         "type": "artifice",
         "keep_input_artifact": false,
         "files": [
-          "output/{{build_name}}-{{user `box_version`}}.box"
+          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
         ]
       },
       {
@@ -2303,7 +2303,7 @@
           "sha256"
         ],
         "keep_input_artifact": false,
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-roboxes-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256"
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256"
       }
     ]
   ]
