@@ -21,8 +21,6 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/centos6/kernel.sh",
-                "scripts/centos6/postfix.sh",
                 "scripts/centos6/cleanup.sh",
                 "scripts/centos6/dockerize.sh"
             ],
@@ -52,9 +50,7 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/centos7/kernel.sh",
                 "scripts/centos7/floppy.sh",
-                "scripts/centos7/postfix.sh",
                 "scripts/centos7/cleanup.sh",
                 "scripts/centos7/unyum.sh",
                 "scripts/centos6/dockerize.sh"
@@ -156,7 +152,7 @@
         [
             {
                 "type": "artifice",
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "files": [
                     "output/{{build_name}}-{{user `box_version`}}.tar"
                 ]
@@ -164,7 +160,7 @@
             {
                 "type": "compress",
                 "compression_level": 9,
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz"
             },
             {
@@ -202,11 +198,32 @@
                 "login": "false",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "roboxes/{{split build_name \"-\" 1}}"
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `docker_username`}}",
+                "login_password": "{{user `docker_password`}}"
             },
             {
                 "type": "vagrant",
                 "compression_level": 9,
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/roboxes/info.json"
@@ -218,7 +235,7 @@
                 "box_tag": "roboxes/{{split build_name \"-\" 1}}",
                 "version": "{{user `box_version`}}",
                 "version_description": "A generic base box image."
-            },
+            }
         ]
     ]
 }
