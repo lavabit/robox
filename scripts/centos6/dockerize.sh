@@ -82,13 +82,12 @@ tar --create --absolute-names --numeric-owner --preserve-permissions --one-file-
 
 if [ $? != 0 ] || [ ! -f /tmp/$PACKER_BUILD_NAME.tar ]; then
   printf "\n\nTarball generation failed.\n\n"
-  printf "locked" | passwd --stdin root
+  printf "locked\n" | passwd --stdin root
   passwd --unlock root
   exit 1
+else
+  printf "\nTarball generation succeeded.\n"
 fi
 
-df -h /
-du -shc /tmp/$PACKER_BUILD_NAME.tar
-
-printf "locked" | passwd --stdin root
+printf "locked\n" | passwd --stdin root
 passwd --unlock root
