@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Handle self referencing, sourcing etc.
+if [[ $0 != $BASH_SOURCE ]]; then
+  export CMD=$BASH_SOURCE
+else
+  export CMD=$0
+fi
+
+# Ensure a consistent working directory so relative paths work.
+pushd `dirname $CMD` > /dev/null
+BASE=`pwd -P`
+popd > /dev/null
+
 ORG="$1"
 NAME="$2"
 PROVIDER="$3"
@@ -25,11 +37,6 @@ elif [ -f /opt/vagrant/embedded/lib64/libcrypto.so ]; then
 fi
 
 export LD_LIBRARY_PATH="/opt/vagrant/embedded/bin/lib/:/opt/vagrant/embedded/lib64/"
-
-# Cross platform scripting directory plus munchie madness.
-pushd `dirname $0` > /dev/null
-BASE=`pwd -P`
-popd > /dev/null
 
 # The jq tool is needed to parse JSON responses.
 if [ ! -f /usr/bin/jq ]; then

@@ -3,8 +3,15 @@
 # The unprivileged user that will be running packer/using the boxes.
 export HUMAN="`whoami`"
 
-# Cross Platform Script Directory
-pushd `dirname $0` > /dev/null
+# Handle self referencing, sourcing etc.
+if [[ $0 != $BASH_SOURCE ]]; then
+  export CMD=$BASH_SOURCE
+else
+  export CMD=$0
+fi
+
+# Ensure a consistent working directory so relative paths work.
+pushd `dirname $CMD` > /dev/null
 BASE=`pwd -P`
 popd > /dev/null
 cd $BASE

@@ -12,8 +12,15 @@ export AGENT="Vagrant/2.2.0 (+https://www.vagrantup.com; ruby2.4.4)"
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
 
+# Handle self referencing, sourcing etc.
+if [[ $0 != $BASH_SOURCE ]]; then
+  export CMD=$BASH_SOURCE
+else
+  export CMD=$0
+fi
+
 # Ensure a consistent working directory so relative paths work.
-pushd `dirname $0` > /dev/null
+pushd `dirname $CMD` > /dev/null
 BASE=`pwd -P`
 popd > /dev/null
 cd $BASE
