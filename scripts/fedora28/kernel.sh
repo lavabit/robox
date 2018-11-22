@@ -7,14 +7,13 @@ error() {
         fi
 }
 
-
-# Now that the system is running on the updated kernel, we can remove the
-# old kernel(s) from the system.
-#if [[ `rpm -q kernel | wc -l` != 1 ]]; then
-#  package-cleanup --quiet --assumeyes --oldkernels --count=1; error
-#fi
-
 # Now that the system is running atop the updated kernel, we can install the
 # development files for the kernel. These files are required to compile the
 # virtualization kernel modules later in the provisioning process.
 dnf install --assumeyes kernel-tools kernel-devel kernel-headers; error
+
+# Now that the system is running on the updated kernel, we can remove the
+# old kernel(s) from the system.
+if [[ `rpm -q kernel | wc -l` != 1 ]]; then
+  dnf --setopt=protected_packages remove $(dnf repoquery --installonly --latest-limit=-1 -q); error
+fi
