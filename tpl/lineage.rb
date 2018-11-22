@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
   # compile the code. This line will trigger that process automatically
   # when the box is provisioned.
   config.vm.provision "shell", run: "always", inline: <<-SHELL
-    su -l vagrant /home/vagrant/lineage-build.sh
+    su -l vagrant -c '/home/vagrant/lineage-build.sh'
   SHELL
 
   # Lineage will build and run comfortably with 1 CPU and 512MB of RAM
