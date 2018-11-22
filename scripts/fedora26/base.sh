@@ -6,6 +6,11 @@ printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\nnames
 # Set the local hostname to resolve properly.
 printf "\n127.0.0.1	bazinga.localdomain\n\n" >> /etc/hosts
 
+# Ensure memcached doesn't try to use IPv6.
+if [ -f /etc/sysconfig/memcached ]; then
+  sed -i "s/[,]\?\:\:1[,]\?//g" /etc/sysconfig/memcached
+fi
+
 # Enable and start the daemons.
 systemctl enable haveged
 systemctl enable memcached

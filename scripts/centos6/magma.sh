@@ -20,6 +20,11 @@ yum --assumeyes install libevent memcached
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
 yum --assumeyes install wget git rsync perl-Git perl-Error
 
+# Ensure memcached doesn't try to use IPv6.
+if [ -f /etc/sysconfig/memcached ]; then
+  sed -i "s/[,]\?\:\:1[,]\?//g" /etc/sysconfig/memcached
+fi
+
 # Enable and start the daemons.
 chkconfig mysqld on
 chkconfig memcached on
