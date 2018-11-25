@@ -911,6 +911,46 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/rhel6/network.sh",
+        "scripts/rhel6/yum.sh",
+        "scripts/rhel6/base.sh",
+        "scripts/rhel6/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel6-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/rhel6/kernel.sh",
+        "scripts/rhel6/vga.sh",
+        "scripts/rhel6/virtualbox.sh",
+        "scripts/rhel6/parallels.sh",
+        "scripts/rhel6/vmware.sh",
+        "scripts/rhel6/qemu.sh",
+        "scripts/rhel6/vagrant.sh",
+        "scripts/rhel6/tuning.sh",
+        "scripts/rhel6/sshd.sh",
+        "scripts/rhel6/randomness.sh",
+        "scripts/rhel6/updatedb.sh",
+        "scripts/rhel6/cleanup.sh",
+        "scripts/rhel6/unyum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel6-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -1230,7 +1270,10 @@
       "ram_size": 1024,
       "cpu": 2,
       "http_directory": "http",
-      "iso_urls": [ "res/media/rhel-server-7.6-x86_64-dvd.iso", "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso" ],
+      "iso_urls": [
+        "res/media/rhel-server-7.6-x86_64-dvd.iso",
+        "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"
+      ],
       "iso_checksum": "60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -1937,6 +1980,37 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-rhel6-hyperv",
+      "vm_name": "generic-rhel6-hyperv",
+      "output_directory": "output/generic-rhel6-hyperv",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "ram_size": 1024,
+      "cpu": 2,
+      "http_directory": "http",
+      "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
+      "iso_checksum": "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
       "communicator": "ssh",

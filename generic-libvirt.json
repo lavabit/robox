@@ -909,6 +909,46 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/rhel6/network.sh",
+        "scripts/rhel6/yum.sh",
+        "scripts/rhel6/base.sh",
+        "scripts/rhel6/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel6-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/rhel6/kernel.sh",
+        "scripts/rhel6/vga.sh",
+        "scripts/rhel6/virtualbox.sh",
+        "scripts/rhel6/parallels.sh",
+        "scripts/rhel6/vmware.sh",
+        "scripts/rhel6/qemu.sh",
+        "scripts/rhel6/vagrant.sh",
+        "scripts/rhel6/tuning.sh",
+        "scripts/rhel6/sshd.sh",
+        "scripts/rhel6/randomness.sh",
+        "scripts/rhel6/updatedb.sh",
+        "scripts/rhel6/cleanup.sh",
+        "scripts/rhel6/unyum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel6-libvirt"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -1339,7 +1379,10 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_urls": [ "res/media/rhel-server-7.6-x86_64-dvd.iso", "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso" ],
+      "iso_urls": [
+        "res/media/rhel-server-7.6-x86_64-dvd.iso",
+        "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"
+      ],
       "iso_checksum": "60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -2268,6 +2311,49 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "shutdown -p now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-rhel6-libvirt",
+      "vm_name": "generic-rhel6-libvirt",
+      "output_directory": "output/generic-rhel6-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-rhel6-libvirt/generic-rhel6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
+      "iso_checksum": "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     }
   ],
   "post-processors": [
