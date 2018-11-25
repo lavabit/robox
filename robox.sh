@@ -53,10 +53,21 @@ FILES="packer-cache.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
 "developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
+# Media Files
+MEDIAFILES="res/media/rhel-server-6.10-x86_64-dvd.iso"\
+"|res/media/rhel-server-7.6-x86_64-dvd.iso"\
+"|res/media/rhel-8.0-beta-1-x86_64-dvd.iso"
+MEDIASUMS="1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727"\
+"|60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c"\
+"|06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316"
+MEDIAURLS="https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso"\
+"|https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"\
+"|https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso"
+
 # Collect the list of ISO urls.
-ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/rhel-server-6.10-x86_64-dvd.iso|res/media/rhel-server-7.5-x86_64-dvd.iso" | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_checksum_type" | grep -v -E "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727|d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5" | awk -F'"' '{print $4}'`)
-UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "res/media/rhel-server-6.10-x86_64-dvd.iso|res/media/rhel-server-7.5-x86_64-dvd.iso" | awk -F'"' '{print $4}' | sort | uniq`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "$MEDIAFILES" | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_checksum_type" | grep -v -E "$MEDIASUMS" | awk -F'"' '{print $4}'`)
+UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "$MEDIAFILES" | awk -F'"' '{print $4}' | sort | uniq`)
 
 # Collect the list of box names.
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
@@ -346,6 +357,12 @@ function box() {
 
 function links() {
 
+  MURLS=(`echo $MEDIAURLS | sed "s/|/ /g"`)
+
+  for ((i = 0; i < ${#MURLS[@]}; ++i)); do
+    (verify_url "${MURLS[$i]}") &
+  done
+
   for ((i = 0; i < ${#UNIQURLS[@]}; ++i)); do
       (verify_url "${UNIQURLS[$i]}") &
   done
@@ -585,8 +602,23 @@ function public() {
 }
 
 function localized() {
+
+  MSUMS=(`echo $MEDIASUMS | sed "s/|/ /g"`)
+  MURLS=(`echo $MEDIAURLS | sed "s/|/ /g"`)
+  MFILES=(`echo $MEDIAFILES | sed "s/|/ /g"`)
+
+  # RHEL 6
+  verify_local "${MSUMS[0]}" "${MFILES[0]}" "${MURLS[0]}"
+  # RHEL 7
+  verify_local "${MSUMS[1]}" "${MFILES[1]}" "${MURLS[1]}"
+  # RHEL 8
+  verify_local "${MSUMS[2]}" "${MFILES[2]}" "${MURLS[2]}"
+
+  # Former Logic
   # verify_local 1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727 res/media/rhel-server-6.10-x86_64-dvd.iso https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso
-  verify_local d0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5 res/media/rhel-server-7.5-x86_64-dvd.iso https://archive.org/download/rhel-server-7.5-x86_64-dvd/rhel-server-7.5-x86_64-dvd.iso
+  # verify_local 60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c res/media/rhel-server-7.6-x86_64-dvd.iso https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso
+  # verify_local 06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316 res/media/rhel-8.0-beta-1-x86_64-dvd.iso https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso
+
 }
 
 function cleanup() {
