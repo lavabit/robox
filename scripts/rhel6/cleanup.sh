@@ -4,7 +4,6 @@
 if [ ! -f /media/media.repo ]; then
   mount /dev/cdrom /media
 fi
-sleep 7200
 printf "Cleanup stage.\n"
 
 # Make sure the ethnernet configuration script doesn't retain identifiers.
