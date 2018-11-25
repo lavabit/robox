@@ -20,7 +20,7 @@ dnf upgrade --assumeyes; error
 dnf install --assumeyes vim git wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils psmisc; error
 
 # Packages needed beyond a minimal install to build and run magma.
-dnf install --assumeyes valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive deltarpm; error
+dnf install --assumeyes valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive deltarpm net-tools; error
 
 # Grab the required packages from the EPEL repo.
 dnf install --assumeyes libbsd libbsd-devel inotify-tools; error
