@@ -2,15 +2,21 @@
 
 error() {
         if [ $? -ne 0 ]; then
-                printf "\n\nbase configuration script failure...\n\n";
+                printf "\n\nyum failed...\n\n";
                 exit 1
         fi
 }
 
 # Check whether the install media is mounted, and if necessary mount it.
 if [ ! -f /media/media.repo ]; then
-  mount /dev/cdrom /media
+  mount /dev/cdrom /media; error
 fi
+
+# Close a potential security hole.
+systemctl disable remote-fs.target
+
+# Disable kernel dumping.
+systemctl disable kdump.service
 
 # Always use vim, even as root.
 printf "alias vi vim\n" > /etc/profile.d/vim.csh

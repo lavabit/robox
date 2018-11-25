@@ -949,6 +949,46 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/rhel8/network.sh",
+        "scripts/rhel8/yum.sh",
+        "scripts/rhel8/base.sh",
+        "scripts/rhel8/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel8-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/rhel8/kernel.sh",
+        "scripts/rhel8/floppy.sh",
+        "scripts/rhel8/virtualbox.sh",
+        "scripts/rhel8/parallels.sh",
+        "scripts/rhel8/vmware.sh",
+        "scripts/rhel8/qemu.sh",
+        "scripts/rhel8/vagrant.sh",
+        "scripts/rhel8/tuning.sh",
+        "scripts/rhel8/sshd.sh",
+        "scripts/rhel8/randomness.sh",
+        "scripts/rhel8/updatedb.sh",
+        "scripts/rhel8/cleanup.sh",
+        "scripts/rhel8/unyum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel8-virtualbox"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -2512,6 +2552,58 @@
       "vrdp_port_max": 12000,
       "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
       "iso_checksum": "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+      "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-rhel8-virtualbox",
+      "vm_name": "generic-rhel8-virtualbox",
+      "output_directory": "output/generic-rhel8-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ],
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_urls": [
+        "res/media/rhel-server-7.6-x86_64-dvd.iso",
+        "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"
+      ],
+      "iso_checksum": "06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
