@@ -263,6 +263,7 @@
                 "scripts/fedora27/qemu.sh",
                 "scripts/fedora27/vagrant.sh",
                 "scripts/fedora27/mariadb.sh",
+                "scripts/fedora27/postfix.sh",
                 "scripts/fedora27/magma.sh",
                 "scripts/fedora27/tuning.sh"
             ],

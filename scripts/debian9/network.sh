@@ -40,7 +40,7 @@ printf "pre-up sleep 2\n" >> /etc/network/interfaces
 printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /etc/resolv.conf
 
 # Install ifplugd so we can monitor and auto-configure nics.
-apt-get --assume-yes install ifplugd
+apt-get --assume-yes install ifplugd resolvconf
 
 # Configure ifplugd to monitor the eth0 interface.
 sed -i -e 's/INTERFACES=.*/INTERFACES="eth0"/g' /etc/default/ifplugd
@@ -50,6 +50,9 @@ systemctl enable networking.service
 
 # Ensure ifplugd also gets started, so the ethernet interface is monitored.
 systemctl enable ifplugd.service
+
+# Ensure a sane DNSS configuration.
+systemctl enable resolvconf.service
 
 # Reboot onto the new kernel (if applicable).
 $(shutdown -r +1) &

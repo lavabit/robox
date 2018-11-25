@@ -12,9 +12,12 @@ printf "inet_protocols = ipv4\n" >> /etc/postfix/main.cf
 printf "myhostname = relay.magma.builder\n" >> /etc/postfix/main.cf
 printf "myorigin = magma.builder\n" >> /etc/postfix/main.cf
 printf "transport_maps = hash:/etc/postfix/transport\n" >> /etc/postfix/main.cf
+printf "queue_directory = /var/spool/postfix\n" >> /etc/postfix/main.cf
+printf "mynetworks = 127.0.0.0/8\n" >> /etc/postfix/main.cf
+printf "mydestination = \$myhostname, localhost.\$mydomain, localhost\n" >> /etc/postfix/main.cf
 
-# printf "magma.builder         smtp:[127.0.0.1]:7000\n" >> /etc/postfix/transport
-# postmap /etc/postfix/transport
+printf "magma.builder         smtp:[127.0.0.1]:7000\n" >> /etc/postfix/transport
+postmap /etc/postfix/transport
 
 # So it gets started automatically.
 systemctl enable postfix.service && systemctl start postfix.service
