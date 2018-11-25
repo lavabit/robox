@@ -1,11 +1,26 @@
 #!/bin/bash -eu
 
+# Handle self referencing, sourcing etc.
+if [[ $0 != $BASH_SOURCE ]]; then
+  export CMD=$BASH_SOURCE
+else
+  export CMD=$0
+fi
+
+# Ensure a consistent working directory so relative paths work.
+pushd `dirname $CMD` > /dev/null
+BASE=`pwd -P`
+popd > /dev/null
+cd $BASE
+
 if [ $# != 4 ]; then
   tput setaf 1; printf "\n   $0 SOURCE TARGET ISO SHA\n\n Please specify the source, target, install media, and hash.\n\n"; tput sgr0
   exit 1
 fi
 
-if [ ! -f generic-hyperv.json ]; then
+if [ ! -f packer-cache.json ]; then
+  tput setaf 1; printf "\n packer-cache.json file is missing.\n\n"; tput sgr0
+elif [ ! -f generic-hyperv.json ]; then
   tput setaf 1; printf "\n generic-hyperv.json file is missing.\n\n"; tput sgr0
 elif [ ! -f generic-vmware.json ]; then
   tput setaf 1; printf "\n generic-vmware.json file is missing.\n\n"; tput sgr0
@@ -69,6 +84,30 @@ rename "http/generic.${1}" "http/generic.${2}" http/generic.${1}.* && git checko
 
 # Replace the box name inside scripts (if applicable).
 find "http/" -name "generic.${2}*" -type f -exec sed --in-place "s/$1/$2/g" {} \;
+
+# Credentials and tokens.
+if [ ! -f $BASE/.credentialsrc ]; then
+tput setaf 1; printf "\n\nThe credentials file is missing, so the validation is being skipped.\n\n\n"; tput sgr0
+else
+
+  # Import the credentials.
+  source $BASE/.credentialsrc
+
+  # We need to specify a version, but since we aren't building at this point, any value should work.
+  export VERSION="1.0.0"
+
+  # We only validate these files, two at a time, because the packer validation process spwans 350+ processes.
+  packer validate $BASE/packer-cache.new.json &
+  packer validate $BASE/generic-hyperv.new.json &
+  wait
+  packer validate $BASE/generic-vmware.new.json &
+  packer validate $BASE/generic-libvirt.new.json &
+  wait
+  packer validate $BASE/generic-parallels.new.json &
+  packer validate $BASE/generic-virtualbox.new.json &
+  wait
+
+fi
 
 # mv packer-cache.new.json packer-cache.json
 # mv generic-hyperv.new.json generic-hyperv.json

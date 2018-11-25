@@ -26,9 +26,11 @@ reboot --eject
 
 %packages --nobase
 @core
-authconfig
-system-config-firewall-base
 sudo
+libedit
+authconfig
+openssh-clients
+system-config-firewall-base
 # Microcode updates don't work in a VM
 -microcode_ctl
 # Firmware packages aren't needed in a VM

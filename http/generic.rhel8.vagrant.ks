@@ -24,14 +24,10 @@ authconfig --enableshadow --passalgo=sha512
 
 reboot --eject
 
-%packages --instLangs=en --nobase
+%packages --instLangs=en
 @core
 authconfig
 sudo
-# Microcode updates don't work in a VM
--microcode_ctl
-# Firmware packages aren't needed in a VM
--*firmware
 %end
 
 %post

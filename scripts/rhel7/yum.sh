@@ -285,6 +285,9 @@ EOF
 # Install the EPEL release RPM.
 yum --assumeyes install epel-release-7-11.noarch.rpm
 
+# Delete the RPM file.
+rm --force epel-release-7.11.noarch.rpm
+
 # Setup the EPEL release signing key.
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
 

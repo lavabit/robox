@@ -9,7 +9,7 @@ error() {
 }
 
 # Check whether the install media is mounted, and if necessary mount it.
-if [ ! -f /media/media.repo ]; then
+if [ ! -d /media/BaseOS/ ]; then
   mount /dev/cdrom /media
 fi
 
