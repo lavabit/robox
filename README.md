@@ -24,7 +24,6 @@ OpenSUSE 15.1
 ## Potential Future Boxes
 
 Devuan  
-DragonFly BSD  
 Manjaro  
 Mint  
 OpenSolaris  
@@ -35,7 +34,6 @@ Slackware
   
 MacOS  
 ReactOS  
-Red Hat Enterprise v6 (already building v7)  
 Windows  
   
 Tails  

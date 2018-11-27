@@ -161,17 +161,17 @@ ${CURL} \
 
 printf "\n\n"
 
-sleep 10
-
-tput setaf 5; printf "Release the version.\n"; tput sgr0
-${CURL} \
-  --tlsv1.2 \
-  --silent \
-  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/release \
-  --request PUT | jq  --color-output '.status,.version,.providers[]' | grep -vE "hosted|hosted_token|original_url|created_at|updated_at|\}|\{"
-
-printf "\n\n"
+# sleep 10
+#
+# tput setaf 5; printf "Release the version.\n"; tput sgr0
+# ${CURL} \
+#   --tlsv1.2 \
+#   --silent \
+#   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+#   https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/release \
+#   --request PUT | jq  --color-output '.status,.version,.providers[]' | grep -vE "hosted|hosted_token|original_url|created_at|updated_at|\}|\{"
+#
+# printf "\n\n"
 
 # Revoke a Version
 # ${CURL} \

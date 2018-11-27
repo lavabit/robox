@@ -491,6 +491,22 @@
     },
     {
       "type": "vmware-iso",
+      "name": "netbsd8",
+      "output_directory": "output/netbsd8",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "https://iso.netbsd.org/pub/NetBSD/iso/8.0/NetBSD-8.0-amd64.iso",
+      "iso_checksum": "5978be870ed0bc0bf69e82f904b3cfb4a0806627181aa1f1bbc782c3c9fb37e1",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+    {
+      "type": "vmware-iso",
       "name": "openbsd6",
       "output_directory": "output/openbsd6",
       "headless": true,

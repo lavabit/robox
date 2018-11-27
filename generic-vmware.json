@@ -1034,6 +1034,38 @@
     },
     {
       "scripts": [
+        "scripts/netbsd8/pkg.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/bin/sh {{ .Path }}",
+      "only": [
+        "generic-netbsd8-vmware"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/netbsd8/hostname.sh",
+        "scripts/netbsd8/motd.sh",
+        "scripts/netbsd8/vagrant.sh",
+        "scripts/netbsd8/profile.sh",
+        "scripts/netbsd8/virtualbox.sh",
+        "scripts/netbsd8/parallels.sh",
+        "scripts/netbsd8/vmware.sh",
+        "scripts/netbsd8/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/bin/bash {{ .Path }}",
+      "only": [
+        "generic-netbsd8-vmware"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -2525,11 +2557,9 @@
         "<wait10><wait10><wait10>",
         "root<enter><wait5>",
         "/bin/sh<enter><wait5>",
-        "mdmfs -s 100m md1 /tmp<enter><wait>",
-        "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd5.vagrant.cfg<enter><wait10>",
-        "sh /tmp/installerconfig && reboot<enter><wait>"
+        "sh /tmp/installerconfig && reboot<enter><wait10>"
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
@@ -2560,6 +2590,80 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
+      "tools_upload_flavor": "freebsd"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-netbsd8-vmware",
+      "vm_name": "generic-netbsd8-vmware",
+      "vmdk_name": "generic-netbsd8-vmware",
+      "output_directory": "output/generic-netbsd8-vmware",
+      "boot_wait": "40s",
+      "boot_command": [
+        "<enter><wait><enter><wait>e",
+        "<enter><wait><enter><wait>",
+        "IF=`ifconfig | head -1 | awk -F':' '{print $1}'`<enter><wait5>",
+        "dhclient $IF<enter><wait5>",
+        "ftp -o /tmp/install-script.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.netbsd8.install.sh<enter><wait>",
+        "TERM=wsvt25 /usr/sbin/sysinst && sh /tmp/install-script.sh && reboot<enter>",
+        "a<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "b<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "b<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "b<wait><enter><wait>",
+        "x<wait><enter><wait>",
+        "<wait><enter><wait>",
+        "b<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "x<wait><enter><wait>",
+        "b<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait><enter><wait>",
+        "d<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "vagrant<enter><wait>",
+        "vagrant<enter><wait>",
+        "vagrant<enter><wait>",
+        "g<wait><enter><wait>",
+        "x<wait><enter><wait>",
+        "<wait><enter><wait>",
+        "x<wait><enter><wait>"
+      ],
+      "disk_size": 32768,
+      "disk_type_id": "0",
+      "vmx_data": {
+        "memsize": "2048",
+        "numvcpus": "2",
+        "cpuid.corespersocket": "2"
+      },
+      "vmx_data_post": {
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "freeBSD-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://iso.netbsd.org/pub/NetBSD/iso/8.0/NetBSD-8.0-amd64.iso",
+      "iso_checksum": "5978be870ed0bc0bf69e82f904b3cfb4a0806627181aa1f1bbc782c3c9fb37e1",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "shutdown -h -p now",
       "tools_upload_flavor": "freebsd"
     }
   ],
