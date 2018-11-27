@@ -2895,7 +2895,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
-      "shutdown_command": "shutdown -h -p now",
+      "shutdown_command": "/sbin/shutdown -h -p now",
       "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
       "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
       "guest_additions_path": "VBoxGuestAdditions.iso",

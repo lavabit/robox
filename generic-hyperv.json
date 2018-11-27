@@ -2316,7 +2316,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -h -p now",
+      "shutdown_command": "/sbin/shutdown -h -p now",
       "generation": 1,
       "headless": true,
       "communicator": "ssh",
