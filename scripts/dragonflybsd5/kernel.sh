@@ -4,7 +4,7 @@
 ln -sf 'abort:false,junk:false' /etc/malloc.conf
 
 # Disable crash dumps.
-sysrc dumpdev="NO"
+echo 'dumpdev="NO"' >> /etc/rc.conf
 
 # Boot faster.
 echo 'autoboot_delay="-1"' >> /boot/loader.conf

@@ -6,10 +6,9 @@ export FETCH_TIMEOUT=30
 export ASSUME_ALWAYS_YES=yes
 
 # Force the use of HTTPS for package updates.
-mkdir -p /usr/local/etc/pkg/repos/
-echo 'DragonFlyBSD: { url: "pkg+https://ftp.dragonflybsd.org/dports/dragonfly:5.2:x86:64/LATEST" }' > /usr/local/etc/pkg/repos/DragonFlyBSD.conf
+sed -i -f "s/http:\/\//https:\/\//g" /usr/local/etc/pkg/repos/df-latest.conf
 
-pkg bootstrap
+pkg-static clean --yes --all
 pkg-static update --force
 pkg-static upgrade --yes --force
 

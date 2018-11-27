@@ -24,6 +24,5 @@ echo 'virtio_balloon_load="YES"' >> /boot/loader.conf
 echo 'virtio_random_load="YES"' >> /boot/loader.conf
 
 # Enable the daemons used for host to geust communication.
-sysrc rpcbind_enable="YES"
-sysrc rpc_lockd_enable="YES"
-sysrc nfs_client_enable="YES"
+printf "rpcbind_enable=\"YES\"\n" >> /etc/rc.conf
+printf "nfsclient_enable=\"YES\"\n" >> /etc/rc.conf

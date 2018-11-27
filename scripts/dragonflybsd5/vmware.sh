@@ -13,18 +13,22 @@ if [[ `dmidecode -s system-product-name` != "VMware Virtual Platform" ]]; then
     exit 0
 fi
 
-pkg-static install --yes open-vm-tools-nox11
+# Dpownload the FreeBSD package beacause Dragonfly doesn't have one.
+curl -o open-vm-tools-nox11-10.3.0.txz https://pkg.freebsd.org/FreeBSD:11:amd64/quarterly/All/open-vm-tools-nox11-10.3.0,2.txz
 
-# Disable vmxnet in favor of whatever the OpenVM Tools are suggesting.
-sed -i -e 's#^ifconfig_vmx0#ifconfig_em0#g' /etc/rc.conf
-sed -i -e '/^if_vmx_load=.*/d' /boot/loader.conf
+# Fuse libraries are required.
+pkg-static install --yes fuse fuse-utils
 
-sysrc vmware_guest_vmblock_enable=YES
-sysrc vmware_guest_vmhgfs_enable=YES
-sysrc vmware_guest_vmmemctl_enable=YES
-sysrc vmware_guest_vmxnet_enable=YES
-sysrc vmware_guestd_enable=YES
+pkg-static install --yes open-vm-tools-nox11-10.3.0.txz
 
-sysrc rpcbind_enable="YES"
-sysrc rpc_lockd_enable="YES"
-sysrc nfs_client_enable="YES"
+printf "vmware_guest_vmblock_enable=\"YES\"\n" >> /etc/rc.conf
+printf "vmware_guest_vmhgfs_enable=\"YES\"\n" >> /etc/rc.conf
+printf "vmware_guest_vmmemctl_enable=\"YES\"\n" >> /etc/rc.conf
+printf "vmware_guest_vmxnet_enable=\"YES\"\n" >> /etc/rc.conf
+printf "vmware_guestd_enable=\"YES\"\n" >> /etc/rc.conf
+
+printf "rpcbind_enable=\"YES\"\n" >> /etc/rc.conf
+printf "nfsclient_enable=\"YES\"\n" >> /etc/rc.conf
+
+rm -f  open-vm-tools-nox11-10.3.0.txz
+rm -f /root/freebsd.iso

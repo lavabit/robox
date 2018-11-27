@@ -14,7 +14,7 @@ if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
 fi
 
 # Install the virtualbox guest additions.
-pkg-static install --yes virtualbox-ose-additions-nox11
+# pkg-static install --yes virtualbox-ose-additions-nox11
 
 # Load the virtio module at boot.
 echo 'if_vtnet_load="YES"' >> /boot/loader.conf
@@ -26,13 +26,12 @@ echo 'virtio_console_load="YES"' >> /boot/loader.conf
 echo 'virtio_balloon_load="YES"' >> /boot/loader.conf
 echo 'virtio_random_load="YES"' >> /boot/loader.conf
 
-sysrc ifconfig_em1="inet 10.6.66.42 netmask 255.255.255.0"
-sysrc vboxguest_enable="YES"
-sysrc vboxservice_enable="YES"
+# sysrc ifconfig_em1="inet 10.6.66.42 netmask 255.255.255.0"
+# sysrc vboxguest_enable="YES"
+# sysrc vboxservice_enable="YES"
 
-sysrc rpcbind_enable="YES"
-sysrc rpc_lockd_enable="YES"
-sysrc nfs_client_enable="YES"
+printf "rpcbind_enable=\"YES\"\n" >> /etc/rc.conf
+printf "nfsclient_enable=\"YES\"\n" >> /etc/rc.conf
 
 rm -rf /root/VBoxVersion.txt
 rm -rf /root/VBoxGuestAdditions.iso
