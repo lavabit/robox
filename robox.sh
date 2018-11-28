@@ -51,7 +51,8 @@ FILES="packer-cache.json "\
 "magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
 "generic-docker.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-parallels.json generic-virtualbox.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
-"developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
+"developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json "\
+"evil-hyperv.json evil-vmware.json evil-libvirt.json evil-virtualbox.json"
 
 # Media Files
 MEDIAFILES="res/media/rhel-server-6.10-x86_64-dvd.iso"\
@@ -70,18 +71,20 @@ ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_ch
 UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "$MEDIAFILES" | awk -F'"' '{print $4}' | sort | uniq`)
 
 # Collect the list of box names.
+EVIL_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "evil-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 ROBOX_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sed "s/generic-/roboxes-/g"| sort --field-separator=- -k 3i -k 2.1,2.0`
 LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-|lineageos-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
-BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES"
+BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $EVIL_BOXES"
 
 # Collect the list of box tags.
+EVIL_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "evil" | sort -u --field-separator=-`
 MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=-`
 ROBOX_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
 GENERIC_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | sort -u --field-separator=-`
 LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=-`
-TAGS="$GENERIC_TAGS $ROBOX_TAGS $MAGMA_TAGS $LINEAGE_TAGS"
+TAGS="$GENERIC_TAGS $ROBOX_TAGS $MAGMA_TAGS $LINEAGE_TAGS $EVIL_TAGS"
 
 # These boxes aren't publicly available yet, so we filter them out of available test.
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
@@ -312,6 +315,8 @@ function box() {
       [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/developer-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-hyperv.json
+      export PACKER_LOG_PATH="$BASE/logs/evil-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*evil.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 evil-hyperv.json
 
   elif [[ `uname` == "Darwin" ]]; then
 
@@ -351,6 +356,13 @@ function box() {
       [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-libvirt.json
       export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-virtualbox.json
+
+      export PACKER_LOG_PATH="$BASE/logs/evil-vmware-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*evil.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 evil-vmware.json
+      export PACKER_LOG_PATH="$BASE/logs/evil-libvirt-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*evil.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 evil-libvirt.json
+      export PACKER_LOG_PATH="$BASE/logs/evil-virtualbox-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*evil.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 evil-virtualbox.json
 
   fi
 }
@@ -405,6 +417,10 @@ function validate() {
   verify_json lineage-vmware
   verify_json lineage-libvirt
   verify_json lineage-virtualbox
+  verify_json evil-hyperv
+  verify_json evil-vmware
+  verify_json evil-libvirt
+  verify_json evil-virtualbox
 }
 
 function missing() {
@@ -689,6 +705,16 @@ function lineage() {
   fi
 }
 
+function evil() {
+  if [[ $OS == "Windows_NT" ]]; then
+    build evil-hyperv
+  else
+    build evil-vmware
+    build evil-libvirt
+    build evil-virtualbox
+  fi
+}
+
 function developer() {
   if [[ $OS == "Windows_NT" ]]; then
     build developer-hyperv
@@ -704,13 +730,14 @@ function vmware() {
   verify_json magma-vmware
   verify_json developer-vmware
   verify_json lineage-vmware
+  verify_json evil-vmware
 
   build generic-vmware
   build magma-vmware
   build developer-vmware
   build lineage-vmware
+  build evil-vmware
 }
-
 function hyperv() {
 
   if [[ $OS == "Windows_NT" ]]; then
@@ -721,12 +748,12 @@ function hyperv() {
     verify_json magma-hyperv
     verify_json developer-hyperv
     verify_json lineage-hyperv
+    verify_json evil-hyperv
 
     # Build the generic boxes first.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^generic-[a-z]*[0-9]*-hyperv$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv.json
-        rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
 
@@ -734,19 +761,16 @@ function hyperv() {
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-hyperv$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
-        rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-[a-z]*[0-9]*-hyperv$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
-        rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-developer-hyperv$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv.json
-        rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
 
@@ -754,13 +778,18 @@ function hyperv() {
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-hyperv$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
-        rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z]*[0-9]*-hyperv$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
-        rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
+      fi
+    done
+
+    # Build the Evil boxes fifth.
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+      if [[ "${LIST[$i]}" =~ ^(evil)-[a-z]*[0-9]*-hyperv$ ]]; then
+        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" evil-hyperv.json
       fi
     done
 
@@ -774,11 +803,13 @@ function libvirt() {
   verify_json magma-libvirt
   verify_json developer-libvirt
   verify_json lineage-libvirt
+  verify_json evil-libvirt
 
   build generic-libvirt
   build magma-libvirt
   build developer-libvirt
   build lineage-libvirt
+  build evil-libvirt
 }
 
 function parallels() {
@@ -815,11 +846,13 @@ function virtualbox() {
   verify_json magma-virtualbox
   verify_json developer-virtualbox
   verify_json lineage-virtualbox
+  verify_json evil-virtualbox
 
   build generic-virtualbox
   build magma-virtualbox
   build developer-virtualbox
   build lineage-virtualbox
+  build evil-virtualbox
 }
 
 function builder() {
@@ -827,6 +860,7 @@ function builder() {
   magma
   developer
   lineage
+  evil
 }
 
 function all() {
@@ -868,6 +902,7 @@ elif [[ $1 == "public" ]]; then public
 elif [[ $1 == "available" ]]; then available
 
 # The group builders.
+elif [[ $1 == "evil" ]]; then evil
 elif [[ $1 == "magma" ]]; then magma
 elif [[ $1 == "generic" ]]; then generic
 elif [[ $1 == "lineage" ]]; then lineage
@@ -897,6 +932,11 @@ elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv.json" ]]; then build lin
 elif [[ $1 == "lineage-libvirt" || $1 == "lineage-libvirt.json" ]]; then build lineage-libvirt
 elif [[ $1 == "lineage-virtualbox" || $1 == "lineage-virtualbox.json" ]]; then build lineage-virtualbox
 
+elif [[ $1 == "evil-vmware" || $1 == "evil-vmware.json" ]]; then build evil-vmware
+elif [[ $1 == "evil-hyperv" || $1 == "evil-hyperv.json" ]]; then build evil-hyperv
+elif [[ $1 == "evil-libvirt" || $1 == "evil-libvirt.json" ]]; then build evil-libvirt
+elif [[ $1 == "evil-virtualbox" || $1 == "evil-virtualbox.json" ]]; then build evil-virtualbox
+
 # Build a specific box.
 elif [[ $1 == "box" ]]; then box $2
 
@@ -913,7 +953,7 @@ else
   echo $"  `basename $0` {vmware|hyperv|libvirt|docker|parallels|virtualbox} or"
   echo ""
   echo " Groups"
-  echo $"  `basename $0` {magma|generic|lineage|developer} or"
+  echo $"  `basename $0` {magma|generic|lineage|developer|evil} or"
   echo ""
   echo " Media"
   echo $"  `basename $0` {isos|sums|links|local|cache} or"
