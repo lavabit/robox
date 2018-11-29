@@ -2451,6 +2451,7 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
+      "disk_adapter_type": "sata",
       "vmx_data": {
         "memsize": "2048",
         "numvcpus": "2",
