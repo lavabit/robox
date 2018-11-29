@@ -177,13 +177,13 @@
                 "type": "compress",
                 "compression_level": 9,
                 "keep_input_artifact": false,
-                "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz"
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
             },
             {
                 "type": "artifice",
                 "keep_input_artifact": true,
                 "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
+                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
                 ]
             },
             {
@@ -191,7 +191,38 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz.sha256",
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz.sha256",
+                "keep_input_artifact": true
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": false,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.tar"
+                ]
+            },
+            {
+                "format": "gz",
+                "type": "compress",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz.sha256",
                 "keep_input_artifact": true
             }
         ],
@@ -200,7 +231,7 @@
                 "type": "artifice",
                 "keep_input_artifact": true,
                 "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
+                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
                 ]
             },
             {
@@ -223,9 +254,19 @@
                 "include": [
                     "tpl/generic/info.json"
                 ]
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
             },
             {
-                "type": "docker-tag",
+                "type": "docker-import",
+                "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
                 "repository": "roboxes/{{split build_name \"-\" 1}}"
             },
@@ -235,7 +276,7 @@
                 "keep_input_artifact": true,
                 "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
                 "include": [
-                    "tpl/roboxes/info.json"
+                    "tpl/generic/info.json"
                 ]
             }
         ],
@@ -244,7 +285,7 @@
                 "type": "artifice",
                 "keep_input_artifact": true,
                 "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
+                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
                 ]
             },
             {
