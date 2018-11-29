@@ -193,8 +193,8 @@
         },
         {
             "scripts": [
-                "scripts/debian8/network.sh",
-                "scripts/debian8/apt.sh"
+                "scripts/debian8/apt.sh",
+                "scripts/debian8/network.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",

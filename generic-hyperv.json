@@ -364,8 +364,8 @@
     {
       "type": "shell",
       "scripts": [
-        "scripts/debian8/network.sh",
-        "scripts/debian8/apt.sh"
+        "scripts/debian8/apt.sh",
+        "scripts/debian8/network.sh"
       ],
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -396,8 +396,8 @@
     {
       "type": "shell",
       "scripts": [
-        "scripts/debian9/network.sh",
-        "scripts/debian9/apt.sh"
+        "scripts/debian9/apt.sh",
+        "scripts/debian9/network.sh"
       ],
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
