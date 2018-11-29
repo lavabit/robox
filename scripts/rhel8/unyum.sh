@@ -1,10 +1,17 @@
 #!/bin/bash
 
-rm --force /etc/yum.repos.d/media.repo
-umount /dev/cdrom
+(umount /dev/cdrom && eject /dev/cdrom) || printf "\nThe RHEL cdrom isn't mounted.\n"
 
-if [ -f /media/media.repo ]; then
-  rm --force --recursive /media/*
+if [ -d /media/BaseOS/ ]; then
+  rm --force --recursive /media/BaseOS/
+fi
+
+if [ -d /media/AppStream/ ]; then
+  rm --force --recursive /media/AppStream/
+fi
+
+if [ -f /etc/yum.repos.d/media.repo ]; then
+  rm --force /etc/yum.repos.d/media.repo
 fi
 
 # sed -i -e "s/^baseurl/#baseurl/g" /etc/yum.repos.d/epel.repo
