@@ -254,6 +254,21 @@
                 "include": [
                     "tpl/generic/info.json"
                 ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
             }
         ],
         [
@@ -278,6 +293,21 @@
                 "include": [
                     "tpl/generic/info.json"
                 ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
             }
         ],
         [
