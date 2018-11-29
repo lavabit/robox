@@ -40,7 +40,8 @@ printf "Installing the Virtual Box Tools.\n"
 # Read in the version number.
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
-yum --quiet --assumeyes install bzip2; error
+# Build will fail without the elf utilities.
+yum --quiet --assumeyes install bzip2 elfutils-libelf-devel; error
 
 # The group vboxsf is needed for shared folder access.
 getent group vboxsf >/dev/null || groupadd --system vboxsf; error
