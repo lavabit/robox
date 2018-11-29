@@ -1059,7 +1059,7 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "{{.Vars}} /bin/bash {{ .Path }}",
+      "execute_command": "{{ .Vars }} bash -x {{ .Path }}",
       "only": [
         "generic-netbsd8-parallels"
       ]
@@ -2923,7 +2923,8 @@
         "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
         "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
         "boot -s<enter>",
-        "<wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10>",
         "root<enter><wait5>",
         "/bin/sh<enter><wait10>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
@@ -3066,7 +3067,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_wait_timeout": "4800s",
       "shutdown_command": "/sbin/shutdown -h -p now",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
