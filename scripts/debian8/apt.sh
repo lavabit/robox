@@ -17,7 +17,7 @@ printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /
 # If the apt configuration directory exists, we add our own config options.
 if [ -d /etc/apt/apt.conf.d/ ]; then
 
-# Disable periodic activities of apt
+# Disable periodic activities of apt.
 printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
 
 # Enable retries, which should reduce the number box buld failures resulting from a temporal network problems.
