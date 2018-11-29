@@ -2,7 +2,7 @@
 
 # The postfix server for message relays. The checkpolicy, policycoreutils and the-
 # policycoreutils-python packages are needed to compile the selinux module below.
-yum --assumeyes install postfix checkpolicy policycoreutils policycoreutils-python
+dnf --assumeyes install postfix checkpolicy policycoreutils policycoreutils-python policycoreutils-python-utils
 
 # Postfix opportunistic TLS relay.
 printf "smtp_tls_CAfile = /etc/pki/tls/certs/ca-bundle.crt\n" >> /etc/postfix/main.cf
