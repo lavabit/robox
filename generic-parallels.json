@@ -2809,7 +2809,7 @@
         ]
       ],
       "hard_drive_interface": "ide",
-      "guest_os_type": "rhel8",
+      "guest_os_type": "rhel7",
       "http_directory": "http",
       "iso_urls": [
         "res/media/rhel-8.0-beta-1-x86_64-dvd.iso",
