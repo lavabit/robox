@@ -2463,7 +2463,7 @@
         "ethernet0.startConnected": "TRUE",
         "ethernet0.wakeonpcktrcv": "false"
       },
-      "guest_os_type": "rhel8-64",
+      "guest_os_type": "rhel7-64",
       "http_directory": "http",
       "headless": true,
       "vnc_disable_password": true,
