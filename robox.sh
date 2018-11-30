@@ -6,7 +6,7 @@
 # Description: Used to build various virtual machines using packer.
 
 # Version Information
-export VERSION="1.8.48"
+export VERSION="1.8.50"
 export AGENT="Vagrant/2.2.0 (+https://www.vagrantup.com; ruby2.4.4)"
 
 # Limit the number of cpus packer will use.
@@ -796,7 +796,10 @@ function parallels() {
     verify_json generic-parallels
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
+      # Ensure there is enough disk space.
+      if [ `df -m . | tail -1 |  awk -F' ' '{print $4}'` < 8192 ]; then
+        tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
+      elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
         rm --recursive --force $BASE/packer_cache/
       fi
