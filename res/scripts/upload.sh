@@ -120,7 +120,7 @@ fi
 printf "\n\n"
 
 tput setaf 5; printf "Create the version.\n"; tput sgr0
-${CURL} \
+(${CURL} \
   --tlsv1.2 \
   --silent \
   --retry 16 \
@@ -135,26 +135,27 @@ ${CURL} \
         \"description\": \"A build environment for use in cross platform development.\"
       }
     }
-  " | jq --color-output
+  " | jq --color-output 2>/dev/null) || (tput setaf 1; printf "Version creation failed. { $ORG $BOX $PROVIDER $VERSION }\n"; tput sgr0; exit)
 
 printf "\n\n"
 
 tput setaf 5; printf "Delete the existing provider, if it exists already.\n"; tput sgr0
-${CURL} \
+(${CURL} \
   --silent \
   --retry 16 \
   --retry-delay 60 \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   --request DELETE \
-  https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER} | jq --color-output
+  https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER} \
+  | jq --color-output 2>/dev/null) || (tput setaf 1; printf "Unable to delete an existing version of the box. { $ORG $BOX $PROVIDER $VERSION }\n"; tput sgr0)
 
 printf "\n\n";
 
-# Sleep so the deletion can propagate.
+# Sleep to let the deletion propagate.
 sleep 3
 
 tput setaf 5; printf "Create the provider.\n"; tput sgr0
-${CURL} \
+(${CURL} \
   --tlsv1.2 \
   --silent \
   --retry 16 \
@@ -162,7 +163,8 @@ ${CURL} \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/providers \
-  --data "{ \"provider\": { \"name\": \"$PROVIDER\" } }" | jq --color-output
+  --data "{ \"provider\": { \"name\": \"$PROVIDER\" } }" \
+  | jq --color-output) || (tput setaf 1; printf "Unable to delete an existing version of the box. { $ORG $BOX $PROVIDER $VERSION }\n"; tput sgr0; exit)
 
 printf "\n\n"
 
