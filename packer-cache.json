@@ -475,6 +475,22 @@
     },
     {
       "type": "vmware-iso",
+      "name": "dragonflybsd5",
+      "output_directory": "output/dragonflybsd5",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.2.2_REL.iso",
+      "iso_checksum": "57a63cea9496142561c4e261a252809831aba4366e5c642bcb53ce55469f03c2",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+    {
+      "type": "vmware-iso",
       "name": "openbsd6",
       "output_directory": "output/openbsd6",
       "headless": true,

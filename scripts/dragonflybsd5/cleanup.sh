@@ -5,4 +5,4 @@ pkg-static autoremove --yes
 
 # Clean the package cache.
 pkg-static clean --yes --all
-rm -f /var/db/pkg/repo-HardenedBSD.sqlite
+rm -f /var/db/pkg/repo-DragonFlyBSD.sqlite

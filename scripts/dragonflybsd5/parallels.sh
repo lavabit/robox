@@ -13,7 +13,7 @@ if [[ `dmidecode -s system-product-name` != "Parallels Virtual Platform" ]]; the
     exit 0
 fi
 
-# Install the HardenedBSD package with the Parallels guest tools.
+# Install the DragonFlyBSD package with the Parallels guest tools.
 pkg-static install --yes parallels-tools
 
 # Read in the version number.

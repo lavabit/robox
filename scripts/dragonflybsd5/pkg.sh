@@ -7,7 +7,7 @@ export ASSUME_ALWAYS_YES=yes
 
 # Force the use of HTTPS for package updates.
 mkdir -p /usr/local/etc/pkg/repos/
-echo 'HardenedBSD: { url: "pkg+https://pkg.hardenedbsd.org/HardenedBSD/pkg/${ABI}" }' > /usr/local/etc/pkg/repos/HardenedBSD.conf
+echo 'DragonFlyBSD: { url: "pkg+https://ftp.dragonflybsd.org/dports/dragonfly:5.2:x86:64/LATEST" }' > /usr/local/etc/pkg/repos/DragonFlyBSD.conf
 
 pkg bootstrap
 pkg-static update --force

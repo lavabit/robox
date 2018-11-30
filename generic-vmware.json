@@ -1012,6 +1012,28 @@
     },
     {
       "scripts": [
+        "scripts/dragonflybsd5/pkg.sh",
+        "scripts/dragonflybsd5/hostname.sh",
+        "scripts/dragonflybsd5/kernel.sh",
+        "scripts/dragonflybsd5/firstboot.sh",
+        "scripts/dragonflybsd5/motd.sh",
+        "scripts/dragonflybsd5/vagrant.sh",
+        "scripts/dragonflybsd5/virtualbox.sh",
+        "scripts/dragonflybsd5/parallels.sh",
+        "scripts/dragonflybsd5/vmware.sh",
+        "scripts/dragonflybsd5/qemu.sh",
+        "scripts/dragonflybsd5/cleanup.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-dragonflybsd5-vmware"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -2476,6 +2498,62 @@
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://installer.hardenedbsd.org/hardened_11_stable_master-LAST/HardenedBSD-11-STABLE-v1100056.8-amd64-disc1.iso",
       "iso_checksum": "4a5822a495dfddc3a77b1a66c258566142d0e45540112c5a90f1ee840aa663a3",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "tools_upload_flavor": "freebsd"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-dragonflybsd5-vmware",
+      "vm_name": "generic-dragonflybsd5-vmware",
+      "vmdk_name": "generic-dragonflybsd5-vmware",
+      "output_directory": "output/generic-dragonflybsd5-vmware",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "root<enter><wait5>",
+        "/bin/sh<enter><wait5>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd5.vagrant.cfg<enter><wait10>",
+        "sh /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "disk_type_id": "0",
+      "vmx_data": {
+        "memsize": "2048",
+        "numvcpus": "2",
+        "cpuid.corespersocket": "2"
+      },
+      "vmx_data_post": {
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "freebsd-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.2.2_REL.iso",
+      "iso_checksum": "57a63cea9496142561c4e261a252809831aba4366e5c642bcb53ce55469f03c2",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
