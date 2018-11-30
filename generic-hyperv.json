@@ -991,6 +991,28 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/hardenedbsd11/pkg.sh",
+        "scripts/hardenedbsd11/hostname.sh",
+        "scripts/hardenedbsd11/kernel.sh",
+        "scripts/hardenedbsd11/firstboot.sh",
+        "scripts/hardenedbsd11/motd.sh",
+        "scripts/hardenedbsd11/vagrant.sh",
+        "scripts/hardenedbsd11/virtualbox.sh",
+        "scripts/hardenedbsd11/parallels.sh",
+        "scripts/hardenedbsd11/vmware.sh",
+        "scripts/hardenedbsd11/qemu.sh",
+        "scripts/hardenedbsd11/cleanup.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd11-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -1310,7 +1332,10 @@
       "ram_size": 1024,
       "cpu": 2,
       "http_directory": "http",
-      "iso_urls": [ "res/media/rhel-server-7.6-x86_64-dvd.iso", "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso" ],
+      "iso_urls": [
+        "res/media/rhel-server-7.6-x86_64-dvd.iso",
+        "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"
+      ],
       "iso_checksum": "60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -2040,7 +2065,10 @@
       "ram_size": 1024,
       "cpu": 2,
       "http_directory": "http",
-      "iso_urls": [ "res/media/rhel-server-6.10-x86_64-dvd.iso", "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso" ],
+      "iso_urls": [
+        "res/media/rhel-server-6.10-x86_64-dvd.iso",
+        "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso"
+      ],
       "iso_checksum": "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -2071,7 +2099,10 @@
       "ram_size": 1024,
       "cpu": 2,
       "http_directory": "http",
-      "iso_urls": [ "res/media/rhel-8.0-beta-1-x86_64-dvd.iso", "https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso" ],
+      "iso_urls": [
+        "res/media/rhel-8.0-beta-1-x86_64-dvd.iso",
+        "https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso"
+      ],
       "iso_checksum": "06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -2079,6 +2110,51 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-hardenedbsd11-hyperv",
+      "vm_name": "generic-hardenedbsd11-hyperv",
+      "output_directory": "output/generic-hardenedbsd11-hyperv",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait5>",
+        "mdmfs -s 100m md2 /mnt<enter><wait5>",
+        "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd11.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig ; cdcontrol -f /dev/cd0 eject ; reboot<wait><enter>"
+      ],
+      "disk_size": 32768,
+      "ram_size": 1024,
+      "cpu": 2,
+      "http_directory": "http",
+      "iso_url": "https://installer.hardenedbsd.org/hardened_11_stable_master-LAST/HardenedBSD-11-STABLE-v1100056.8-amd64-disc1.iso",
+      "iso_checksum": "4a5822a495dfddc3a77b1a66c258566142d0e45540112c5a90f1ee840aa663a3",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
       "generation": 1,
       "headless": true,
       "communicator": "ssh",
