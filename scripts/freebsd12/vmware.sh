@@ -29,4 +29,4 @@ sysrc rpcbind_enable="YES"
 sysrc rpc_lockd_enable="YES"
 sysrc nfs_client_enable="YES"
 
-rm --force /root/freebsd.iso
+rm -f /root/freebsd.iso
