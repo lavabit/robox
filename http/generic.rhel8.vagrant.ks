@@ -67,4 +67,8 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
 
 fi
 
+# Anaconda is having trouble ejecting the install media, so we take care of it.
+umount --detach-loop --fake /mnt/
+eject /dev/cdrom
+
 %end
