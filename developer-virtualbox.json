@@ -120,15 +120,6 @@
                 ]
             },
             {
-                "type": "vagrant-cloud",
-                "only": [
-                    "magma-developer-virtualbox"
-                ],
-                "box_tag": "lavabit/magma-developer",
-                "version": "{{user `box_version`}}",
-                "version_description": "A graphical development environment for the magma encrypted mail daemon."
-            },
-            {
                 "type": "artifice",
                 "keep_input_artifact": false,
                 "files": [

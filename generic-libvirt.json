@@ -2449,13 +2449,6 @@
         ]
       },
       {
-        "type": "vagrant-cloud",
-        "no_release": false,
-        "box_tag": "generic/{{split build_name \"-\" 1}}",
-        "version": "{{user `box_version`}}",
-        "version_description": "A generic base box image."
-      },
-      {
         "type": "artifice",
         "keep_input_artifact": false,
         "files": [
@@ -2481,13 +2474,6 @@
         "include": [
           "tpl/roboxes/info.json"
         ]
-      },
-      {
-        "type": "vagrant-cloud",
-        "no_release": false,
-        "box_tag": "roboxes/{{split build_name \"-\" 1}}",
-        "version": "{{user `box_version`}}",
-        "version_description": "A generic base box image."
       },
       {
         "type": "artifice",

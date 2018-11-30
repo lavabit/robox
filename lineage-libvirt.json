@@ -334,42 +334,6 @@
                 ]
             },
             {
-                "type": "vagrant-cloud",
-                "only": [
-                    "lineage-libvirt"
-                ],
-                "box_tag": "lineage/lineage",
-                "version": "{{user `box_version`}}",
-                "version_description": "The Lineage mobile operating system build environment."
-            },
-            {
-                "type": "vagrant-cloud",
-                "only": [
-                    "lineageos-libvirt"
-                ],
-                "box_tag": "lineageos/lineage",
-                "version": "{{user `box_version`}}",
-                "version_description": "The Lineage mobile operating system build environment."
-            },
-            {
-                "type": "vagrant-cloud",
-                "only": [
-                    "lineage-nash-libvirt"
-                ],
-                "box_tag": "lineage/lineage-nash",
-                "version": "{{user `box_version`}}",
-                "version_description": "The Lineage mobile operating system build environment."
-            },
-            {
-                "type": "vagrant-cloud",
-                "only": [
-                    "lineageos-nash-libvirt"
-                ],
-                "box_tag": "lineageos/lineage-nash",
-                "version": "{{user `box_version`}}",
-                "version_description": "The Lineage mobile operating system build environment."
-            },
-            {
                 "type": "artifice",
                 "keep_input_artifact": true,
                 "files": [
