@@ -20,7 +20,7 @@ if [ ! -f /bin/bash ] && [ -f /usr/pkg/bin/bash ]; then
 fi
 
 # Make bash the default shell.
-chsh -s bash root
+chsh -s /usr/pkg/bin/bash root
 
 # Setup the locate database.
 cp /usr/pkg/share/examples/slocate/updatedb.conf /etc/updatedb.conf
@@ -47,9 +47,24 @@ fi
 # Auto update the database.
 printf "\n16 * * * * /usr/pkg/bin/updatedb\n" >> /var/cron/tabs/root
 
+# Create an empty bashrc file.
+touch $HOME/.bashrc
+
+# Add logic to the shrc file that will read the bashrc if the shell is bash.
+cat <<-EOF >> /root/.shrc
+
+if [ "\$SHELL" == "/usr/pkg/bin/bash" ] && [ -f \$HOME/.bashrc ]; then
+	source \$HOME/.bashrc
+fi
+
+EOF
+
 # Make the path, and package repo variables persistent.
 echo 'export PATH="/usr/sbin/:/usr/pkg/bin/:$PATH"' >> /etc/profile
 echo 'export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0/All"' >> /etc/profile
 
 # Load the bash helpers.
 echo 'source /usr/pkg/share/bash-completion/bash_completion' >> /etc/profile
+
+# Reboot so everything initializes properly.
+/sbin/shutdown -r +1 &
