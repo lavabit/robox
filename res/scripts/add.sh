@@ -18,18 +18,46 @@ if [ $# != 4 ]; then
   exit 1
 fi
 
+# Verify the files exist.
 if [ ! -f packer-cache.json ]; then
   tput setaf 1; printf "\n packer-cache.json file is missing.\n\n"; tput sgr0
+  exit 1
 elif [ ! -f generic-hyperv.json ]; then
   tput setaf 1; printf "\n generic-hyperv.json file is missing.\n\n"; tput sgr0
+  exit 1
 elif [ ! -f generic-vmware.json ]; then
   tput setaf 1; printf "\n generic-vmware.json file is missing.\n\n"; tput sgr0
+  exit 1
 elif [ ! -f generic-libvirt.json ]; then
   tput setaf 1; printf "\n generic-libvirt.json file is missing.\n\n"; tput sgr0
+  exit 1
 elif [ ! -f generic-parallels.json ]; then
   tput setaf 1; printf "\n generic-parallels.json file is missing.\n\n"; tput sgr0
+  exit 1
 elif [ ! -f generic-virtualbox.json ]; then
   tput setaf 1; printf "\n generic-virtualbox.json file is missing.\n\n"; tput sgr0
+  exit 1
+fi
+
+# Ensure we aren't overwriting unsaved changes.
+if [ `git status --short packer-cache.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n packer-cache.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
+elif [ `git status --short generic-hyperv.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-hyperv.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
+elif [ `git status --short generic-vmware.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-vmware.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
+elif [ `git status --short generic-libvirt.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-libvirt.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
+elif [ `git status --short generic-parallels.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-parallels.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
+elif [ `git status --short generic-virtualbox.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-virtualbox.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
 fi
 
 URL=`printf "$3" | sed "s/\//\\\\\\\\\//g"`
@@ -97,21 +125,30 @@ else
   export VERSION="1.0.0"
 
   # We only validate these files, two at a time, because the packer validation process spwans 350+ processes.
-  packer validate $BASE/packer-cache.new.json &
-  packer validate $BASE/generic-hyperv.new.json &
-  wait
-  packer validate $BASE/generic-vmware.new.json &
-  packer validate $BASE/generic-libvirt.new.json &
-  wait
-  packer validate $BASE/generic-parallels.new.json &
-  packer validate $BASE/generic-virtualbox.new.json &
-  wait
+  packer validate $BASE/packer-cache.new.json &> /dev/null &
+  P1=$!
+  packer validate $BASE/generic-hyperv.new.json &> /dev/null &
+  P2=$!
+  wait $P1 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  wait $P2 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  packer validate $BASE/generic-vmware.new.json &> /dev/null &
+  P1=$!
+  packer validate $BASE/generic-libvirt.new.json &> /dev/null &
+  P2=$!
+  wait $P1 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  wait $P2 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  packer validate $BASE/generic-parallels.new.json &> /dev/null &
+  P1=$!
+  packer validate $BASE/generic-virtualbox.new.json &> /dev/null &
+  P2=$!
+  wait $P1 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  wait $P2 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
 
 fi
 
-# mv packer-cache.new.json packer-cache.json
-# mv generic-hyperv.new.json generic-hyperv.json
-# mv generic-vmware.new.json generic-vmware.json
-# mv generic-libvirt.new.json generic-libvirt.json
-# mv generic-parallels.new.json generic-parallels.json
-# mv generic-virtualbox.new.json generic-virtualbox.json
+mv packer-cache.new.json packer-cache.json
+mv generic-hyperv.new.json generic-hyperv.json
+mv generic-vmware.new.json generic-vmware.json
+mv generic-libvirt.new.json generic-libvirt.json
+mv generic-parallels.new.json generic-parallels.json
+mv generic-virtualbox.new.json generic-virtualbox.json
