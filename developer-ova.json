@@ -12,7 +12,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-vmware"
+                "magma-developer-ova"
             ]
         },
         {
@@ -37,7 +37,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-vmware"
+                "magma-developer-ova"
             ]
         },
         {
@@ -56,13 +56,13 @@
     "builders": [
         {
             "type": "vmware-iso",
-            "name": "magma-developer-vmware",
-            "vm_name": "magma-developer-vmware",
-            "vmdk_name": "magma-developer-vmware",
-            "output_directory": "output/magma-developer-vmware",
+            "name": "magma-developer-ova",
+            "vm_name": "magma-developer",
+            "vmdk_name": "magma-developer",
+            "output_directory": "output/magma-developer-ova",
             "boot_wait": "20s",
             "boot_command": [
-                "<tab> biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
+                "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
             ],
             "disk_size": 131072,
             "disk_type_id": "0",
@@ -83,7 +83,7 @@
             "headless": true,
             "vnc_disable_password": true,
             "vnc_bind_address": "127.0.0.1",
-            "vmx_remove_ethernet_interfaces": true,
+            "vmx_remove_ethernet_interfaces": false,
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
             "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
             "iso_checksum_type": "sha256",
@@ -99,32 +99,14 @@
     "post-processors": [
         [
             {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/developer.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box",
-                "include": [
-                    "tpl/lavabit/info.json"
+                "type": "shell-local",
+                "inline": [
+                    "ovftool --diskMode=thin --compress=9 --name=\"magma.local\" --prop:vendor=\"Lavabit\" --prop:vendorUrl=\"https://lavabit.com\" --prop:product=\"magma.local\" --prop:productUrl=\"https://lavabit.com\" --prop:version=\"{{user `box_version`}}\" --prop:fullVersion=\"{{user `box_version`}}\" --annotation=\"The magma encrypted mail daemon desktop development environment.\" \"output/magma-developer-ova/magma-developer.vmx\" \"output/magma-developer-{{user `box_version`}}.ova\"",
+                    "rm --recursive --force  \"output/magma-developer-ova/\""
                 ],
                 "only": [
-                    "magma-developer-vmware"
+                    "magma-developer-ova"
                 ]
-            },
-            {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.box"
-                ]
-            },
-            {
-                "type": "checksum",
-                "checksum_types": [
-                    "sha256"
-                ],
-                "keep_input_artifact": true,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
             }
         ]
     ]

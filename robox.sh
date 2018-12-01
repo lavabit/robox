@@ -51,7 +51,7 @@ FILES="packer-cache.json "\
 "magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
 "generic-docker.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-parallels.json generic-virtualbox.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
-"developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
+"developer-ova.json developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
 # Media Files
 MEDIAFILES="res/media/rhel-server-6.10-x86_64-dvd.iso"\
@@ -338,6 +338,8 @@ function box() {
       export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
 
+      export PACKER_LOG_PATH="$BASE/logs/developer-ova-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-ova.json
       export PACKER_LOG_PATH="$BASE/logs/developer-vmware-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-log-${TIMESTAMP}.txt"
@@ -370,8 +372,11 @@ function links() {
   # Wait until the children re done working.
   wait
 
+  # Combine the media URLs with the regular box ISO urls.
+  let TOTAL=${#UNIQURLS[@]}+${#MURLS[@]}
+
   # Let the user know all of the links passed.
-  printf "\nAll ${#UNIQURLS[@]} of the install media locations are still valid...\n\n"
+  printf "\nAll $TOTAL of the install media locations are still valid...\n\n"
 }
 
 function sums() {
@@ -397,6 +402,7 @@ function validate() {
   verify_json generic-libvirt
   verify_json generic-parallels
   verify_json generic-virtualbox
+  verify_json developer-ova
   verify_json developer-hyperv
   verify_json developer-vmware
   verify_json developer-libvirt
@@ -413,11 +419,30 @@ function missing() {
     LIST=($BOXES)
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-        if [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.box" ] && [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.tar.gz" ]; then
-          let MISSING+=1
-          printf "Box  -  "; tput setaf 1; printf "${LIST[$i]}\n"; tput sgr0
+        # With OVA boxes we need to parse the box name and convert it to a filename.
+        if [[ "${LIST[$i]}" =~ ^.*-ova$ ]]; then
+          FILENAME=`echo "${LIST[$i]}" | sed "s/\([a-z]*-[a-z0-9-]*\)-ova/\1-${VERSION}.ova/g"`
+          if [ ! -f $BASE/output/"$FILENAME" ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]}\n"; tput sgr0
+          fi
+        # With Docker boxes we need to look for a tarball and a box file.
+        elif [[ "${LIST[$i]}" =~ ^.*-docker$ ]]; then
+          if [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.tar.gz" ] || [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.box" ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]}\n"; tput sgr0
+          fi
         else
-          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]}\n"; tput sgr0
+          if [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.box" ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]}\n"; tput sgr0
+          fi
         fi
     done
 
@@ -693,10 +718,17 @@ function developer() {
   if [[ $OS == "Windows_NT" ]]; then
     build developer-hyperv
   else
+    build developer-ova
     build developer-vmware
     build developer-libvirt
     build developer-virtualbox
   fi
+}
+
+function ova() {
+  verify_json developer-ova
+
+  build developer-ova
 }
 
 function vmware() {
@@ -850,6 +882,7 @@ elif [[ $1 == "build" ]]; then builder
 elif [[ $1 == "cleanup" ]]; then cleanup
 
 # The type functions.
+elif [[ $1 == "ova" ]]; then vmware
 elif [[ $1 == "vmware" ]]; then vmware
 elif [[ $1 == "hyperv" ]]; then hyperv
 elif [[ $1 == "libvirt" ]]; then libvirt
@@ -910,7 +943,7 @@ else
   echo $"  `basename $0` {start|validate|build|cleanup} or"
   echo ""
   echo " Types"
-  echo $"  `basename $0` {vmware|hyperv|libvirt|docker|parallels|virtualbox} or"
+  echo $"  `basename $0` {ova|vmware|hyperv|libvirt|docker|parallels|virtualbox} or"
   echo ""
   echo " Groups"
   echo $"  `basename $0` {magma|generic|lineage|developer} or"
