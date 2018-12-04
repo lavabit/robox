@@ -96,6 +96,11 @@ if [ "$ORG" == "lineage" ] || [ "$ORG" == "lineageos" ]; then
   fi
 fi
 
+# Handle the Vmware provider type.
+if [ "$PROVIDER" == "vmware" ]; then
+  PROVIDER="vmware_desktop"
+fi
+
 # Verify the values were all parsed properly.
 if [ "$ORG" == "" ]; then
   tput setaf 1; printf "\n\nThe organization couldn't be parsed from the file name.\n\n\n"; tput sgr0
