@@ -53,7 +53,7 @@
                 "scripts/centos7/floppy.sh",
                 "scripts/centos7/cleanup.sh",
                 "scripts/centos7/unyum.sh",
-                "scripts/centos6/dockerize.sh"
+                "scripts/centos7/dockerize.sh"
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "pause_before": "120s",
