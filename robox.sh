@@ -829,7 +829,7 @@ function parallels() {
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       # Ensure there is enough disk space.
-      if [[ `df -m . | tail -1 |  awk -F' ' '{print $4}'` < 8192 ]]; then
+      if [[ `df -m . | tail -1 |  awk -F' ' '{print $4}'` -lt 8192 ]]; then
         tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
       elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
