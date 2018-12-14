@@ -470,15 +470,34 @@ function available() {
       ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
       BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
 
-      PROVIDER="hyperv"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      PROVIDER="docker"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
+        if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || \
+          [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
+          [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
+          curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
-      if [ $? != 0 ]; then
-        let MISSING+=1
-        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
-      else
-        let FOUND+=1
-        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          if [ $? != 0 ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          else
+            let FOUND+=1
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          fi
+        fi
+      fi
+
+      PROVIDER="hyperv"
+      if [[ "${BOX}" != "dragonflybsd5" ]] && [[ "${BOX}" != "netbsd8" ]]; then
+        curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+
+        if [ $? != 0 ]; then
+          let MISSING+=1
+          printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        else
+          let FOUND+=1
+          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        fi
       fi
 
       PROVIDER="libvirt"
@@ -556,15 +575,34 @@ function public() {
       ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
       BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
 
-      PROVIDER="hyperv"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      PROVIDER="docker"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes)$ ]]; then
+        if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || \
+          [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
+          [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
+          curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
-      if [ $? != 0 ]; then
-        let MISSING+=1
-        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
-      else
-        let FOUND+=1
-        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          if [ $? != 0 ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          else
+            let FOUND+=1
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          fi
+        fi
+      fi
+
+      PROVIDER="hyperv"
+      if [[ "${BOX}" != "dragonflybsd5" ]] && [[ "${BOX}" != "netbsd8" ]]; then
+        curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+
+        if [ $? != 0 ]; then
+          let MISSING+=1
+          printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        else
+          let FOUND+=1
+          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        fi
       fi
 
       PROVIDER="libvirt"
