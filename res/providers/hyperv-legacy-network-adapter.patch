@@ -1,0 +1,172 @@
+diff --git a/builder/hyperv/common/driver.go b/builder/hyperv/common/driver.go
+index 5f96398..e93d6a5 100644
+--- a/builder/hyperv/common/driver.go
++++ b/builder/hyperv/common/driver.go
+@@ -58,6 +58,9 @@ type Driver interface {
+ 
+ 	SetVmNetworkAdapterMacAddress(string, string) error
+ 
++	//Replace the network adapter with a (non-)legacy adapter
++	ReplaceVirtualMachineNetworkAdapter(string, bool) error
++
+ 	UntagVirtualMachineNetworkAdapterVlan(string, string) error
+ 
+ 	CreateExternalVirtualSwitch(string, string) error
+diff --git a/builder/hyperv/common/driver_ps_4.go b/builder/hyperv/common/driver_ps_4.go
+index 0ef7acc..38952e7 100644
+--- a/builder/hyperv/common/driver_ps_4.go
++++ b/builder/hyperv/common/driver_ps_4.go
+@@ -151,6 +151,11 @@ func (d *HypervPS4Driver) SetVmNetworkAdapterMacAddress(vmName string, mac strin
+ 	return hyperv.SetVmNetworkAdapterMacAddress(vmName, mac)
+ }
+ 
++//Replace the network adapter with a (non-)legacy adapter
++func (d *HypervPS4Driver) ReplaceVirtualMachineNetworkAdapter(vmName string, virtual bool) error {
++	return hyperv.ReplaceVirtualMachineNetworkAdapter(vmName, virtual)
++}
++
+ func (d *HypervPS4Driver) UntagVirtualMachineNetworkAdapterVlan(vmName string, switchName string) error {
+ 	return hyperv.UntagVirtualMachineNetworkAdapterVlan(vmName, switchName)
+ }
+diff --git a/builder/hyperv/common/step_create_vm.go b/builder/hyperv/common/step_create_vm.go
+index b5b36dd..67ef7b9 100644
+--- a/builder/hyperv/common/step_create_vm.go
++++ b/builder/hyperv/common/step_create_vm.go
+@@ -22,6 +22,7 @@ type StepCreateVM struct {
+ 	RamSize                        uint
+ 	DiskSize                       uint
+ 	DiskBlockSize                  uint
++	UseLegacyNetworkAdapter        bool
+ 	Generation                     uint
+ 	Cpu                            uint
+ 	EnableMacSpoofing              bool
+@@ -72,6 +73,16 @@ func (s *StepCreateVM) Run(_ context.Context, state multistep.StateBag) multiste
+ 		return multistep.ActionHalt
+ 	}
+ 
++	if s.UseLegacyNetworkAdapter {
++		err := driver.ReplaceVirtualMachineNetworkAdapter(s.VMName, true)
++		if err != nil {
++			err := fmt.Errorf("Error creating legacy network adapter: %s", err)
++			state.Put("error", err)
++			ui.Error(err.Error())
++			return multistep.ActionHalt
++		}
++	}
++
+ 	err = driver.SetVirtualMachineCpuCount(s.VMName, s.Cpu)
+ 	if err != nil {
+ 		err := fmt.Errorf("Error setting virtual machine cpu count: %s", err)
+diff --git a/builder/hyperv/iso/builder.go b/builder/hyperv/iso/builder.go
+index 682e2cb..b21f2f3 100644
+--- a/builder/hyperv/iso/builder.go
++++ b/builder/hyperv/iso/builder.go
+@@ -90,6 +90,7 @@ type Config struct {
+ 	Cpu                            uint   `mapstructure:"cpu"`
+ 	Generation                     uint   `mapstructure:"generation"`
+ 	EnableMacSpoofing              bool   `mapstructure:"enable_mac_spoofing"`
++	UseLegacyNetworkAdapter        bool   `mapstructure:"use_legacy_network_adapter"`
+ 	EnableDynamicMemory            bool   `mapstructure:"enable_dynamic_memory"`
+ 	EnableSecureBoot               bool   `mapstructure:"enable_secure_boot"`
+ 	SecureBootTemplate             string `mapstructure:"secure_boot_template"`
+@@ -188,6 +189,10 @@ func (b *Builder) Prepare(raws ...interface{}) ([]string, error) {
+ 			err = errors.New("Generation 2 vms don't support floppy drives. Use ISO image instead.")
+ 			errs = packer.MultiErrorAppend(errs, err)
+ 		}
++		if b.config.UseLegacyNetworkAdapter {
++			err = errors.New("Generation 2 vms don't support legacy network adapters.")
++			errs = packer.MultiErrorAppend(errs, err)
++		}
+ 	}
+ 
+ 	if len(b.config.AdditionalDiskSize) > 64 {
+@@ -408,6 +413,7 @@ func (b *Builder) Run(ui packer.Ui, hook packer.Hook, cache packer.Cache) (packe
+ 			EnableSecureBoot:               b.config.EnableSecureBoot,
+ 			SecureBootTemplate:             b.config.SecureBootTemplate,
+ 			EnableVirtualizationExtensions: b.config.EnableVirtualizationExtensions,
++			UseLegacyNetworkAdapter:        b.config.UseLegacyNetworkAdapter,
+ 			AdditionalDiskSize:             b.config.AdditionalDiskSize,
+ 			DifferencingDisk:               b.config.DifferencingDisk,
+ 			MacAddress:                     b.config.MacAddress,
+diff --git a/builder/hyperv/iso/builder_test.go b/builder/hyperv/iso/builder_test.go
+index 0369c0d..9520db8 100644
+--- a/builder/hyperv/iso/builder_test.go
++++ b/builder/hyperv/iso/builder_test.go
+@@ -632,3 +632,32 @@ func TestUserVariablesInBootCommand(t *testing.T) {
+ 		t.Fatalf("should not have error: %#v", ret)
+ 	}
+ }
++
++func TestBuilderPrepare_UseLegacyNetworkAdapter(t *testing.T) {
++	var b Builder
++	config := testConfig()
++
++	// should be allowed for default config
++	config["use_legacy_network_adapter"] = true
++
++	b = Builder{}
++	warns, err := b.Prepare(config)
++	if len(warns) > 0 {
++		t.Fatalf("bad: %#v", warns)
++	}
++	if err != nil {
++		t.Errorf("should not have error: %s", err)
++	}
++
++	// should not be allowed for gen 2
++	config["generation"] = 2
++
++	b = Builder{}
++	warns, err = b.Prepare(config)
++	if len(warns) > 0 {
++		t.Fatalf("bad: %#v", warns)
++	}
++	if err == nil {
++		t.Fatal("should have error")
++	}
++}
+diff --git a/common/powershell/hyperv/hyperv.go b/common/powershell/hyperv/hyperv.go
+index 89489f8..23e5f50 100644
+--- a/common/powershell/hyperv/hyperv.go
++++ b/common/powershell/hyperv/hyperv.go
+@@ -955,6 +955,24 @@ Hyper-V\Set-VMNetworkAdapterVlan -VMName $vmName -Access -VlanId $vlanId
+ 	return err
+ }
+ 
++func ReplaceVirtualMachineNetworkAdapter(vmName string, legacy bool) error {
++
++	var script = `
++param([string]$vmName,[string]$legacyString)
++$legacy = [System.Boolean]::Parse($legacyString)
++$switch = (Get-VMNetworkAdapter -VMName $vmName).SwitchName
++Remove-VMNetworkAdapter -VMName $vmName
++Add-VMNetworkAdapter -VMName $vmName -SwitchName $switch -Name $vmName -IsLegacy $legacy
++`
++	legacyString := "False"
++	if legacy {
++		legacyString = "True"
++	}
++	var ps powershell.PowerShellCmd
++	err := ps.Run(script, vmName, legacyString)
++	return err
++}
++
+ func GetExternalOnlineVirtualSwitch() (string, error) {
+ 
+ 	var script = `
+diff --git a/website/source/docs/builders/hyperv-iso.html.md.erb b/website/source/docs/builders/hyperv-iso.html.md.erb
+index 6960a31..c0547cd 100644
+--- a/website/source/docs/builders/hyperv-iso.html.md.erb
++++ b/website/source/docs/builders/hyperv-iso.html.md.erb
+@@ -282,6 +282,11 @@ builder.
+     without the file extension. By default this is "packer-BUILDNAME",
+     where "BUILDNAME" is the name of the build.
+ 
++-   `use_legacy_network_adapter` (bool) - If true use a legacy network adapter as the NIC.
++    This defaults to false. A legacy network adapter is fully emulated NIC, and is thus
++    supported by various exotic operating systems, but this emulation requires
++    additional overhead and should only be used if absolutely necessary.
++
+ ## Boot Command
+ 
+ The `boot_command` configuration is very important: it specifies the keys to
