@@ -34,7 +34,7 @@ sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/va
 
 # Increase the upload timeout
 patch -p1 < $BASE/packer-upload-timeout.patch
-patch -p1 < $BASE/hyperv-legacy-network-adapter.patch
+# patch -p1 < $BASE/hyperv-legacy-network-adapter.patch
 
 # Build for Linux, Darwin, and Windows
 PATH=$GOPATH/bin:$PATH

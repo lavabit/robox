@@ -2358,6 +2358,7 @@
       "enable_mac_spoofing": true,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
+      "use_legacy_network_adapter": true,
       "enable_virtualization_extensions": false
     }
   ],
