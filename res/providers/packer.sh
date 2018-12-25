@@ -34,6 +34,11 @@ sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/va
 
 # Increase the upload timeout
 patch -p1 < $BASE/packer-upload-timeout.patch
+
+# Fix the Hyper-V boot dervice ordering for generation one virtual machines.
+patch -p1 < $BASE/hyperv-boot-order.patch
+
+# Merged into packer version >= 1.3.4.
 # patch -p1 < $BASE/hyperv-legacy-network-adapter.patch
 
 # Build for Linux, Darwin, and Windows
