@@ -66,11 +66,8 @@
             ],
             "disk_size": 131072,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "4096",
-                "numvcpus": "4",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 4,
+            "memory": 4096,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",

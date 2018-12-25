@@ -1090,11 +1090,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1134,11 +1131,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1184,10 +1178,9 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2",
         "softpoweroff": "FALSE",
         "powertype.poweroff": "hard",
         "powertype.poweron": "hard",
@@ -1239,10 +1232,9 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2",
         "softpoweroff": "FALSE",
         "powertype.poweroff": "hard",
         "powertype.poweron": "hard",
@@ -1294,10 +1286,9 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2",
         "softpoweroff": "FALSE",
         "powertype.poweroff": "hard",
         "powertype.poweron": "hard",
@@ -1349,10 +1340,9 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2",
         "softpoweroff": "FALSE",
         "powertype.poweroff": "hard",
         "powertype.poweron": "hard",
@@ -1395,11 +1385,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1436,11 +1423,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1477,11 +1461,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1523,11 +1504,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1568,11 +1546,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1613,11 +1588,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1658,11 +1630,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1703,11 +1672,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1748,11 +1714,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1792,11 +1755,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1836,11 +1796,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1893,11 +1850,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1942,11 +1896,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -1991,11 +1942,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -2040,11 +1988,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -2101,11 +2046,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -2162,11 +2104,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -2210,10 +2149,9 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
+      "cpus": 4,
+      "memory": 2048,
       "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "4",
-        "cpuid.corespersocket": "2",
         "vmci0.present": "TRUE"
       },
       "vmx_data_post": {
@@ -2266,11 +2204,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -2311,11 +2246,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -2366,11 +2298,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -2407,11 +2336,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -2452,11 +2378,8 @@
       "disk_size": 32768,
       "disk_type_id": "0",
       "disk_adapter_type": "sata",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -2510,11 +2433,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -2577,11 +2497,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
@@ -2661,11 +2578,8 @@
       ],
       "disk_size": 32768,
       "disk_type_id": "0",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "cpuid.corespersocket": "2"
-      },
+      "cpus": 2,
+      "memory": 2048,
       "vmx_data_post": {
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
