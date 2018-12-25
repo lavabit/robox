@@ -23,8 +23,8 @@ go get github.com/mitchellh/gox && cd $GOPATH/src/github.com/mitchellh/gox
 go build -o bin/gox .
 
 # Fetch packer
-#go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
-go get github.com/ladar/packer && cd $GOPATH/src/github.com/ladar/packer
+go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
+# go get github.com/ladar/packer && cd $GOPATH/src/github.com/ladar/packer
 
 # For now, stick to the 1.2.4 version, as the 1.3.0 is too buggy.
 # git checkout v1.2.4
