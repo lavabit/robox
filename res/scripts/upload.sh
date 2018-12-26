@@ -42,8 +42,12 @@ fi
 
 export LD_LIBRARY_PATH="/opt/vagrant/embedded/bin/lib/:/opt/vagrant/embedded/lib64/"
 
+if [[ `uname` == "Darwin" ]]; then
+  export CURL_CA_BUNDLE=/opt/vagrant/embedded/cacert.pem
+fi
+
 # The jq tool is needed to parse JSON responses.
-if [ ! -f /usr/bin/jq ]; then
+if [ ! -f /usr/bin/jq ] && [ ! -f /usr/local/bin/jq ]; then
   tput setaf 1; printf "\n\nThe 'jq' utility is not installed.\n\n\n"; tput sgr0
   exit 1
 fi
