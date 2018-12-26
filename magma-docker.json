@@ -297,6 +297,10 @@
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-docker"
                 ]
@@ -306,6 +310,10 @@
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma-centos",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos-docker"
                 ]
@@ -315,6 +323,10 @@
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma-centos6",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos6-docker"
                 ]
@@ -324,6 +336,10 @@
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma-centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos7-docker"
                 ]
@@ -372,6 +388,10 @@
                 "keep_input_artifact": true,
                 "tag": "latest",
                 "repository": "lavabit/magma",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-docker"
                 ]
@@ -381,6 +401,10 @@
                 "keep_input_artifact": true,
                 "tag": "latest",
                 "repository": "lavabit/magma-centos",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos-docker"
                 ]
@@ -390,6 +414,10 @@
                 "keep_input_artifact": true,
                 "tag": "latest",
                 "repository": "lavabit/magma-centos6",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos6-docker"
                 ]
@@ -399,6 +427,10 @@
                 "keep_input_artifact": true,
                 "tag": "latest",
                 "repository": "lavabit/magma-centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos7-docker"
                 ]

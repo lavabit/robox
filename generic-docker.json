@@ -238,7 +238,11 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "roboxes/{{split build_name \"-\" 1}}"
+                "repository": "roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
             },
             {
                 "type": "docker-push",
@@ -283,7 +287,11 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "roboxes/{{split build_name \"-\" 1}}"
+                "repository": "roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
             },
             {
                 "type": "vagrant",
@@ -322,7 +330,11 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "latest",
-                "repository": "roboxes/{{split build_name \"-\" 1}}"
+                "repository": "roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
             },
             {
                 "type": "docker-push",
