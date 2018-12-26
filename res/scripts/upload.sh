@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# On MacOS the following utilities are needed.
+# brew install --with-default-names jq gnu-sed coreutils
+
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
   export CMD=$BASH_SOURCE
