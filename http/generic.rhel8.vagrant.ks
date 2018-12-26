@@ -55,22 +55,6 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
   systemctl enable hypervkvpd.service
   systemctl enable hypervvssd.service
 
-#  if [ ! -f /usr/bin/eject ] && [ ! -f /bin/eject ]; then
-#
-#    EJECT_RPMS=`find /mnt/BaseOS/Packages/ -iname "util-linux*rpm" -and -not -iname "util-linux-user*rpm"`
-#
-#    yum --assumeyes install $HYPERV_RPMS
-#
-#    eject /dev/cdrom
-#
-#  fi
-
-  # Anaconda is having trouble ejecting the install media, so we take care of it.
-  umount --detach-loop --fake /mnt/
-  eject /dev/cdrom
-  
 fi
-
-
 
 %end
