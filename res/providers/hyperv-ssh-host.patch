@@ -1,0 +1,75 @@
+diff --git a/builder/hyperv/common/ssh.go b/builder/hyperv/common/ssh.go
+index ab136f3..95d4eea 100644
+--- a/builder/hyperv/common/ssh.go
++++ b/builder/hyperv/common/ssh.go
+@@ -1,22 +1,32 @@
+ package common
+ 
+ import (
++	"log"
++
+ 	"github.com/hashicorp/packer/helper/multistep"
+ )
+ 
+-func CommHost(state multistep.StateBag) (string, error) {
+-	vmName := state.Get("vmName").(string)
+-	driver := state.Get("driver").(Driver)
++func CommHost(host string) func(multistep.StateBag) (string, error) {
++	return func(state multistep.StateBag) (string, error) {
+ 
+-	mac, err := driver.Mac(vmName)
+-	if err != nil {
+-		return "", err
+-	}
++		if host != "" {
++			log.Println("Using ssh_host value: %s", ipAddress)
++			return host, nil
++		}
+ 
+-	ip, err := driver.IpAddress(mac)
+-	if err != nil {
+-		return "", err
+-	}
++		vmName := state.Get("vmName").(string)
++		driver := state.Get("driver").(Driver)
+ 
+-	return ip, nil
++		mac, err := driver.Mac(vmName)
++		if err != nil {
++			return "", err
++		}
++
++		ip, err := driver.IpAddress(mac)
++		if err != nil {
++			return "", err
++		}
++
++		return ip, nil
++	}
+ }
+diff --git a/builder/hyperv/iso/builder.go b/builder/hyperv/iso/builder.go
+index b21f2f3..27d32ff 100644
+--- a/builder/hyperv/iso/builder.go
++++ b/builder/hyperv/iso/builder.go
+@@ -459,7 +459,7 @@ func (b *Builder) Run(ui packer.Ui, hook packer.Hook, cache packer.Cache) (packe
+ 		// configure the communicator ssh, winrm
+ 		&communicator.StepConnect{
+ 			Config:    &b.config.SSHConfig.Comm,
+-			Host:      hypervcommon.CommHost,
++			Host:      hypervcommon.CommHost(b.config.SSHConfig.Comm.SSHHost),
+ 			SSHConfig: b.config.SSHConfig.Comm.SSHConfigFunc(),
+ 		},
+ 
+diff --git a/builder/hyperv/vmcx/builder.go b/builder/hyperv/vmcx/builder.go
+index e207c54..d9da950 100644
+--- a/builder/hyperv/vmcx/builder.go
++++ b/builder/hyperv/vmcx/builder.go
+@@ -482,7 +482,7 @@ func (b *Builder) Run(ui packer.Ui, hook packer.Hook, cache packer.Cache) (packe
+ 		// configure the communicator ssh, winrm
+ 		&communicator.StepConnect{
+ 			Config:    &b.config.SSHConfig.Comm,
+-			Host:      hypervcommon.CommHost,
++			Host:      hypervcommon.CommHost(b.config.SSHConfig.Comm.SSHHost),
+ 			SSHConfig: b.config.SSHConfig.Comm.SSHConfigFunc(),
+ 		},
+ 

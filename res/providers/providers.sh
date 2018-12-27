@@ -248,6 +248,9 @@ function provide-packer() {
   # Fix the Hyper-V boot dervice ordering for generation one virtual machines.
   patch -p1 < $BASE/hyperv-boot-order.patch
 
+  # Fox the Hyper-V SSH host value bug.
+  patch -p1 < $BASH/hyperv-ssh-host.patch
+
   # Merged into packer version >= 1.3.4.
   # patch -p1 < $BASE/hyperv-legacy-network-adapter.patch
 
