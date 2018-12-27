@@ -2251,7 +2251,7 @@
         "<wait10><wait10><wait10><wait10>",
         "root<enter><wait5>",
         "/bin/sh<enter><wait5>",
-        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "dhclient -l /tmp/dhclient.lease.de0 de0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd5.vagrant.cfg<enter><wait10>",
         "sh /tmp/installerconfig && reboot<wait><enter>"
       ],
