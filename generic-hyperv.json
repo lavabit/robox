@@ -2252,7 +2252,7 @@
         "/bin/sh<enter><wait5>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd5.vagrant.cfg<enter><wait10>",
-        "sh /tmp/installerconfig ; cdcontrol -f /dev/cd0 eject ; reboot<wait><enter>"
+        "sh /tmp/installerconfig && reboot<wait><enter>"
       ],
       "disk_size": 32768,
       "ram_size": 1024,
