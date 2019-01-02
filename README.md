@@ -34,18 +34,29 @@ Consolidate magma/docker post processors by making better use of the split funct
 
 ## Pending Additions
 
-Devuan 8
-HardenedBSD 12
-Debian 10 (Feb/Mar)
-Ubuntu 19.04 (Feb/Mar)
+[Devuan 8](https://devuan.org/)  
+[HardenedBSD 12](https://hardenedbsd.org/)  
+[Debian 10 (Feb/Mar)](https://wiki.debian.org/DebianBuster)  
+[Ubuntu 19.04 (Feb/Mar)](https://wiki.ubuntu.com/DiscoDingo)  
+
+## Operating System Requests
+
+The following operating systems have been requested by a member of the robox community, but require a volunteer, so they can be incorporated into the robox workflow.
+
+[Haiku](https://www.haiku-os.org/get-haiku/)  
+[Minix](https://www.minix3.org/)  
+[Parrot](https://www.parrotsec.org/)  
+[SmartOS](https://www.joyent.com/smartos) 
 
 ## Operating System Candidates
+
+The following operating systems are on my personal list, but haven't been added because of various resource contraints.
 
 Manjaro  
 Mint  
 OpenSolaris  
 OpenSUSE Leap v15 (already building v42.3)  
-Oracle 6 (already building v7)  
+Oracle v6 (already building v7)  
 Scientific Linux v6/v7  
 Slackware  
 
@@ -55,4 +66,4 @@ Windows
 
 Tails  
 Kali  
-Parrot
+
