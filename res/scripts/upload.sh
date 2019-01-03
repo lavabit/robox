@@ -129,6 +129,29 @@ if [ "$VERSION" == "" ]; then
   exit 1
 fi
 
+# Experimental retry function.
+retry() {
+  local count=1
+  local result=0
+  while [[ "${count}" -le 10 ]]; do
+    [[ "${result}" -ne 0 ]] && {
+      echo -e "\\n$(tput setaf 1)${*} failed... retrying ${count} of 10.$(tput sgr0)\\n" >&2
+    }
+    "${@}" && { result=0 && break; } || result="${?}"
+    count="$((count + 1))"
+
+    # Increase the delay with each iteration.
+    delay="$((delay + 10))"
+    sleep $delay
+  done
+
+  [[ "${count}" -gt 3 ]] && {
+    echo -e "\\n$(tput setaf 1)The command failed 10 times.$(tput sgr0)\\n" >&2
+  }
+
+  return "${result}"
+}
+
 printf "\n\n"
 
 tput setaf 5; printf "Create the version.\n"; tput sgr0
@@ -211,7 +234,7 @@ printf " Done.\n\n"
 # echo "$UPLOAD_PATH"
 
 tput setaf 5; printf "Perform the box upload.\n"; tput sgr0
-${CURL} --tlsv1.2 \
+retry ${CURL} --tlsv1.2 \
 `# --silent ` \
 `# --output "/dev/null"` \
   --show-error \
