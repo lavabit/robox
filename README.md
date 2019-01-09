@@ -46,7 +46,7 @@ The following operating systems have been requested by a member of the robox com
 [Haiku](https://www.haiku-os.org/get-haiku/)  
 [Minix](https://www.minix3.org/)  
 [Parrot](https://www.parrotsec.org/)  
-[SmartOS](https://www.joyent.com/smartos) 
+[SmartOS](https://www.joyent.com/smartos)
 
 ## Operating System Candidates
 
@@ -67,3 +67,15 @@ Windows
 Tails  
 Kali  
 
+## Donate
+
+The roboxes are maintained by volunteers, and provided for free. As such we rely on donations to cover the cost of the hardware, and bandwidth. If you find this project useful, and would like to see it grow, please help by making a Bitcoin, Bitcoin Cash, Monero or [monetary donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=99THGS6F4HGLU&source=url). If you represent a public cloud, and would like to provide infrastructure support, please contact us directly, or open a ticket.
+
+Monero
+8B3BsNGvpT3SAkMCa672FaCjRfouqnwtxMKiZrMx27ry1KA7aNy5J4kWuJBBRfwzsKZrTvud2wrLH2uvaDBdBw9cSrVRzxC
+
+Bitcoin
+3NKSTPEeTGmuA95CGGqnyi3zPASSApLZbE
+
+Bitcoin Cash
+qqxyedtn68jg84w4mkd3vsw2nu6pgkydnudza0ed0m
