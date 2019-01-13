@@ -13,7 +13,7 @@
             "expect_disconnect": "true",
             "only": [
 
-                "evilpot-hyperv"
+                "evilpot-ubuntu1604-hyperv"
             ]
         },
         {
@@ -35,7 +35,7 @@
             "expect_disconnect": "true",
             "only": [
 
-                "evilpot-hyperv"
+                "evilpot-ubuntu1604-hyperv"
             ]
         },
         {
@@ -44,19 +44,19 @@
             "source": "res/blobs/system-blobs.tar.gz",
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
-                "evilpot-hyperv"
+                "evilpot-ubuntu1604-hyperv"
             ]
         },
         {
             "scripts": [
-                "scripts/ubuntu1604/lineage.sh"
+                "scripts/ubuntu1604/honeypot.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
 
-                "evilpot-hyperv"
+                "evilpot-ubuntu1604-hyperv"
             ]
         },
         {
@@ -77,9 +77,9 @@
     "builders": [
         {
             "type": "hyperv-iso",
-            "name": "lineage-hyperv",
-            "vm_name": "lineage-hyperv",
-            "output_directory": "output/lineage-hyperv",
+            "name": "evilpot-hyperv",
+            "vm_name": "evilpot-hyperv",
+            "output_directory": "output/evilpot-hyperv",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -167,9 +167,9 @@
         },
         {
             "type": "hyperv-iso",
-            "name": "lineage-nash-hyperv",
-            "vm_name": "lineage-nash-hyperv",
-            "output_directory": "output/lineage-nash-hyperv",
+            "name": "evilpot-hyperv",
+            "vm_name": "evilpot-hyperv",
+            "output_directory": "output/evilpot-hyperv",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -262,7 +262,7 @@
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/lineage.rb",
+                "vagrantfile_template": "tpl/evilpot.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/evilpot/info.json"
