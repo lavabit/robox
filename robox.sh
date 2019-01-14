@@ -369,7 +369,7 @@ function links() {
       (verify_url "${UNIQURLS[$i]}") &
   done
 
-  # Wait until the children re done working.
+  # Wait until the children done working.
   wait
 
   # Combine the media URLs with the regular box ISO urls.
@@ -381,12 +381,14 @@ function links() {
 
 function sums() {
 
-  for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
-      verify_sum "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
-  done
+  # for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
+  #     verify_sum "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
+  # done
+  export -f verify_sum
+  parallel -j 16 --xapply verify_sum {1} {2} ::: "${ISOURLS[@]}" ::: "${ISOSUMS[@]}"
 
   # Let the user know all of the links passed.
-  printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
+  # printf "\nAll ${#ISOURLS[@]} of the install media locations have been validated...\n\n"
 }
 
 function validate() {
