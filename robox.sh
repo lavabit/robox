@@ -6,8 +6,8 @@
 # Description: Used to build various virtual machines using packer.
 
 # Version Information
-export VERSION="1.8.54"
-export AGENT="Vagrant/2.2.0 (+https://www.vagrantup.com; ruby2.4.4)"
+export VERSION="1.8.56"
+export AGENT="Vagrant/2.2.3 (+https://www.vagrantup.com; ruby2.4.4)"
 
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
@@ -376,7 +376,7 @@ function links() {
   let TOTAL=${#UNIQURLS[@]}+${#MURLS[@]}
 
   # Let the user know all of the links passed.
-  printf "\nAll $TOTAL of the install media locations are still valid...\n\n"
+  printf "\nAll $TOTAL of the install media locations have been checked...\n\n"
 }
 
 function sums() {
