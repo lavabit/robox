@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "lavabit/lineage"
+  # config.vm.box = "lineage/lineage"
   # config.vm.hostname = "lineage.build.box"
 
   config.vm.synced_folder ".", "/vagrant", disabled: true

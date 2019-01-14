@@ -13,9 +13,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt",
-                "lineage-nash-libvirt",
-                "lineageos-nash-libvirt"
+                "lineage-nash-libvirt"
+
             ]
         },
         {
@@ -37,9 +36,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt",
-                "lineage-nash-libvirt",
-                "lineageos-nash-libvirt"
+                "lineage-nash-libvirt"
+
             ]
         },
         {
@@ -49,9 +47,8 @@
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt",
-                "lineage-nash-libvirt",
-                "lineageos-nash-libvirt"
+                "lineage-nash-libvirt"
+
             ]
         },
         {
@@ -63,9 +60,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt",
-                "lineage-nash-libvirt",
-                "lineageos-nash-libvirt"
+                "lineage-nash-libvirt"
+
             ]
         },
         {
@@ -334,10 +330,23 @@
                 ]
             },
             {
-                "type": "artifice",
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
                 "keep_input_artifact": true,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.box"
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+			{
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/lineageos.rb",
+                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lineage/info.json"
                 ]
             },
             {
@@ -346,7 +355,7 @@
                     "sha256"
                 ],
                 "keep_input_artifact": true,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box.sha256"
             }
         ]
     ]

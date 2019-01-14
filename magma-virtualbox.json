@@ -53,8 +53,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-virtualbox",
-                "magma-centos-virtualbox",
                 "magma-centos6-virtualbox"
             ]
         },
@@ -81,8 +79,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-virtualbox",
-                "magma-centos-virtualbox",
                 "magma-centos6-virtualbox"
             ]
         },
@@ -339,7 +335,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu-virtualbox",
                 "magma-ubuntu1604-virtualbox"
             ]
         },
@@ -365,7 +360,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu-virtualbox",
                 "magma-ubuntu1604-virtualbox"
             ]
         },
@@ -510,104 +504,6 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "/sbin/poweroff",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
-            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        },
-        {
-            "type": "virtualbox-iso",
-            "name": "magma-virtualbox",
-            "vm_name": "magma-virtualbox",
-            "output_directory": "output/magma-virtualbox",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
-            ],
-            "disk_size": 32768,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vram",
-                    "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
-                ]
-            ],
-            "guest_os_type": "RedHat_64",
-            "http_directory": "http",
-            "headless": true,
-            "vrdp_bind_address": "127.0.0.1",
-            "vrdp_port_min": 11000,
-            "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
-            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        },
-        {
-            "type": "virtualbox-iso",
-            "name": "magma-centos-virtualbox",
-            "vm_name": "magma-centos-virtualbox",
-            "output_directory": "output/magma-centos-virtualbox",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
-            ],
-            "disk_size": 32768,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vram",
-                    "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
-                ]
-            ],
-            "guest_os_type": "RedHat_64",
-            "http_directory": "http",
-            "headless": true,
-            "vrdp_bind_address": "127.0.0.1",
-            "vrdp_port_min": 11000,
-            "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
             "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
             "guest_additions_path": "VBoxGuestAdditions.iso",
@@ -856,71 +752,6 @@
             "vrdp_port_max": 12000,
             "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.0/amd64/iso-cd/debian-8.11.0-amd64-netinst.iso",
             "iso_checksum": "ea799ed959d77359783e7922ed4c94a7437b083a4ce6f09e9fe41a7af6ba60df",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
-            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        },
-        {
-            "type": "virtualbox-iso",
-            "name": "magma-ubuntu-virtualbox",
-            "vm_name": "magma-ubuntu-virtualbox",
-            "output_directory": "output/magma-ubuntu-virtualbox",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "disk_size": 32768,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vram",
-                    "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
-                ]
-            ],
-            "guest_os_type": "Ubuntu_64",
-            "http_directory": "http",
-            "headless": true,
-            "vrdp_bind_address": "127.0.0.1",
-            "vrdp_port_min": 11000,
-            "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -1329,10 +1160,26 @@
                 ]
             },
             {
-                "type": "artifice",
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
                 "keep_input_artifact": true,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.box"
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+			{
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/magma-default.rb",
+                "output": "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lavabit/info.json"
+                ],
+                "only": [
+                    "magma-centos6-virtualbox"
                 ]
             },
             {
@@ -1341,8 +1188,54 @@
                     "sha256"
                 ],
                 "keep_input_artifact": true,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+                "output": "output/{{sed \"s/centos6//\" build_name}}-{{user `box_version`}}.box.sha256"
             }
-        ]
+        ],
+        [
+			{
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/magma-default.rb",
+                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lavabit/info.json"
+                ],
+                "only": [
+                    "magma-centos6-virtualbox"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": true,
+                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+			{
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/magma-default.rb",
+                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lavabit/info.json"
+                ],
+                "only": [
+                    "magma-ubuntu1604-virtualbox"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": true,
+                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ]        
     ]
 }
