@@ -28,7 +28,7 @@ Create standalone release script
 Add upload/delete/release functions to robox.sh
 Add vagrant user password randomization logic to the bundled Vagrantfiles
 Add init based test, and SSH command test to the box test and check script
-Add an explicit storage path to the Hyper-V templates
+-Add an explicit storage path to the Hyper-V templates
 Update the parallels/vitualbox configs so they use the new cpus/memory template keys
 Consolidate magma/docker post processors by making better use of the split function
 

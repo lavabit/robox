@@ -1082,6 +1082,7 @@
       "type": "hyperv-iso",
       "name": "generic-oracle7-hyperv",
       "vm_name": "generic-oracle7-hyperv",
+      "temp_path": "output/generic-oracle7-hyperv",
       "output_directory": "output/generic-oracle7-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1113,6 +1114,7 @@
       "type": "hyperv-iso",
       "name": "generic-opensuse42-hyperv",
       "vm_name": "generic-opensuse42-hyperv",
+      "temp_path": "output/generic-opensuse42-hyperv",
       "output_directory": "output/generic-opensuse42-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1147,6 +1149,7 @@
       "type": "hyperv-iso",
       "name": "generic-alpine35-hyperv",
       "vm_name": "generic-alpine35-hyperv",
+      "temp_path": "output/generic-alpine35-hyperv",
       "output_directory": "output/generic-alpine35-hyperv",
       "boot_wait": "60s",
       "boot_command": [
@@ -1188,6 +1191,7 @@
       "type": "hyperv-iso",
       "name": "generic-alpine36-hyperv",
       "vm_name": "generic-alpine36-hyperv",
+      "temp_path": "output/generic-alpine36-hyperv",
       "output_directory": "output/generic-alpine36-hyperv",
       "boot_wait": "60s",
       "boot_command": [
@@ -1229,6 +1233,7 @@
       "type": "hyperv-iso",
       "name": "generic-alpine37-hyperv",
       "vm_name": "generic-alpine37-hyperv",
+      "temp_path": "output/generic-alpine37-hyperv",
       "output_directory": "output/generic-alpine37-hyperv",
       "boot_wait": "60s",
       "boot_command": [
@@ -1270,6 +1275,7 @@
       "type": "hyperv-iso",
       "name": "generic-alpine38-hyperv",
       "vm_name": "generic-alpine38-hyperv",
+      "temp_path": "output/generic-alpine38-hyperv",
       "output_directory": "output/generic-alpine38-hyperv",
       "boot_wait": "60s",
       "boot_command": [
@@ -1311,6 +1317,7 @@
       "type": "hyperv-iso",
       "name": "generic-centos6-hyperv",
       "vm_name": "generic-centos6-hyperv",
+      "temp_path": "output/generic-centos6-hyperv",
       "output_directory": "output/generic-centos6-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1342,6 +1349,7 @@
       "type": "hyperv-iso",
       "name": "generic-centos7-hyperv",
       "vm_name": "generic-centos7-hyperv",
+      "temp_path": "output/generic-centos7-hyperv",
       "output_directory": "output/generic-centos7-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1373,6 +1381,7 @@
       "type": "hyperv-iso",
       "name": "generic-rhel7-hyperv",
       "vm_name": "generic-rhel7-hyperv",
+      "temp_path": "output/generic-rhel7-hyperv",
       "output_directory": "output/generic-rhel7-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1407,6 +1416,7 @@
       "type": "hyperv-iso",
       "name": "generic-arch-hyperv",
       "vm_name": "generic-arch-hyperv",
+      "temp_path": "output/generic-arch-hyperv",
       "output_directory": "output/generic-arch-hyperv",
       "boot_wait": "30s",
       "boot_command": [
@@ -1440,6 +1450,7 @@
       "type": "hyperv-iso",
       "name": "generic-fedora25-hyperv",
       "vm_name": "generic-fedora25-hyperv",
+      "temp_path": "output/generic-fedora25-hyperv",
       "output_directory": "output/generic-fedora25-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1475,6 +1486,7 @@
       "type": "hyperv-iso",
       "name": "generic-fedora26-hyperv",
       "vm_name": "generic-fedora26-hyperv",
+      "temp_path": "output/generic-fedora26-hyperv",
       "output_directory": "output/generic-fedora26-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1510,6 +1522,7 @@
       "type": "hyperv-iso",
       "name": "generic-fedora27-hyperv",
       "vm_name": "generic-fedora27-hyperv",
+      "temp_path": "output/generic-fedora27-hyperv",
       "output_directory": "output/generic-fedora27-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1545,6 +1558,7 @@
       "type": "hyperv-iso",
       "name": "generic-fedora28-hyperv",
       "vm_name": "generic-fedora28-hyperv",
+      "temp_path": "output/generic-fedora28-hyperv",
       "output_directory": "output/generic-fedora28-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1580,6 +1594,7 @@
       "type": "hyperv-iso",
       "name": "generic-fedora29-hyperv",
       "vm_name": "generic-fedora29-hyperv",
+      "temp_path": "output/generic-fedora29-hyperv",
       "output_directory": "output/generic-fedora29-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1615,6 +1630,7 @@
       "type": "hyperv-iso",
       "name": "generic-debian8-hyperv",
       "vm_name": "generic-debian8-hyperv",
+      "temp_path": "output/generic-debian8-hyperv",
       "output_directory": "output/generic-debian8-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1649,6 +1665,7 @@
       "type": "hyperv-iso",
       "name": "generic-debian9-hyperv",
       "vm_name": "generic-debian9-hyperv",
+      "temp_path": "output/generic-debian9-hyperv",
       "output_directory": "output/generic-debian9-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1683,6 +1700,7 @@
       "type": "hyperv-iso",
       "name": "generic-ubuntu1604-hyperv",
       "vm_name": "generic-ubuntu1604-hyperv",
+      "temp_path": "output/generic-ubuntu1604-hyperv",
       "output_directory": "output/generic-ubuntu1604-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1728,6 +1746,7 @@
       "type": "hyperv-iso",
       "name": "generic-ubuntu1610-hyperv",
       "vm_name": "generic-ubuntu1610-hyperv",
+      "temp_path": "output/generic-ubuntu1610-hyperv",
       "output_directory": "output/generic-ubuntu1610-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1765,6 +1784,7 @@
       "type": "hyperv-iso",
       "name": "generic-ubuntu1704-hyperv",
       "vm_name": "generic-ubuntu1704-hyperv",
+      "temp_path": "output/generic-ubuntu1704-hyperv",
       "output_directory": "output/generic-ubuntu1704-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1802,6 +1822,7 @@
       "type": "hyperv-iso",
       "name": "generic-ubuntu1710-hyperv",
       "vm_name": "generic-ubuntu1710-hyperv",
+      "temp_path": "output/generic-ubuntu1710-hyperv",
       "output_directory": "output/generic-ubuntu1710-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -1839,6 +1860,7 @@
       "type": "hyperv-iso",
       "name": "generic-ubuntu1804-hyperv",
       "vm_name": "generic-ubuntu1804-hyperv",
+      "temp_path": "output/generic-ubuntu1804-hyperv",
       "output_directory": "output/generic-ubuntu1804-hyperv",
       "boot_wait": "1s",
       "boot_command": [
@@ -1890,6 +1912,7 @@
       "type": "hyperv-iso",
       "name": "generic-ubuntu1810-hyperv",
       "vm_name": "generic-ubuntu1810-hyperv",
+      "temp_path": "output/generic-ubuntu1810-hyperv",
       "output_directory": "output/generic-ubuntu1810-hyperv",
       "boot_wait": "1s",
       "boot_command": [
@@ -1941,6 +1964,7 @@
       "type": "hyperv-iso",
       "name": "generic-gentoo-hyperv",
       "vm_name": "generic-gentoo-hyperv",
+      "temp_path": "output/generic-gentoo-hyperv",
       "output_directory": "output/generic-gentoo-hyperv",
       "boot_wait": "5s",
       "boot_command": [
@@ -1979,6 +2003,7 @@
       "type": "hyperv-iso",
       "name": "generic-freebsd11-hyperv",
       "vm_name": "generic-freebsd11-hyperv",
+      "temp_path": "output/generic-freebsd11-hyperv",
       "output_directory": "output/generic-freebsd11-hyperv",
       "boot_wait": "1s",
       "boot_command": [
@@ -2024,6 +2049,7 @@
       "type": "hyperv-iso",
       "name": "generic-openbsd6-hyperv",
       "vm_name": "generic-openbsd6-hyperv",
+      "temp_path": "output/generic-openbsd6-hyperv",
       "output_directory": "output/generic-openbsd6-hyperv",
       "boot_wait": "40s",
       "boot_command": [
@@ -2059,6 +2085,7 @@
       "type": "hyperv-iso",
       "name": "generic-freebsd12-hyperv",
       "vm_name": "generic-freebsd12-hyperv",
+      "temp_path": "output/generic-freebsd12-hyperv",
       "output_directory": "output/generic-freebsd12-hyperv",
       "boot_wait": "1s",
       "boot_command": [
@@ -2104,6 +2131,7 @@
       "type": "hyperv-iso",
       "name": "generic-rhel6-hyperv",
       "vm_name": "generic-rhel6-hyperv",
+      "temp_path": "output/generic-rhel6-hyperv",
       "output_directory": "output/generic-rhel6-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -2138,6 +2166,7 @@
       "type": "hyperv-iso",
       "name": "generic-rhel8-hyperv",
       "vm_name": "generic-rhel8-hyperv",
+      "temp_path": "output/generic-rhel8-hyperv",
       "output_directory": "output/generic-rhel8-hyperv",
       "boot_wait": "20s",
       "boot_command": [
@@ -2172,6 +2201,7 @@
       "type": "hyperv-iso",
       "name": "generic-hardenedbsd11-hyperv",
       "vm_name": "generic-hardenedbsd11-hyperv",
+      "temp_path": "output/generic-hardenedbsd11-hyperv",
       "output_directory": "output/generic-hardenedbsd11-hyperv",
       "boot_wait": "1s",
       "boot_command": [
@@ -2217,6 +2247,7 @@
       "type": "hyperv-iso",
       "name": "generic-dragonflybsd5-hyperv",
       "vm_name": "generic-dragonflybsd5-hyperv",
+      "temp_path": "output/generic-dragonflybsd5-hyperv",
       "output_directory": "output/generic-dragonflybsd5-hyperv",
       "boot_wait": "1s",
       "boot_command": [
@@ -2278,6 +2309,7 @@
       "type": "hyperv-iso",
       "name": "generic-netbsd8-hyperv",
       "vm_name": "generic-netbsd8-hyperv",
+      "temp_path": "output/generic-netbsd8-hyperv",
       "output_directory": "output/generic-netbsd8-hyperv",
       "boot_wait": "40s",
       "boot_command": [

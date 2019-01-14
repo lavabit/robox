@@ -456,6 +456,7 @@
             "type": "hyperv-iso",
             "name": "magma-centos6-hyperv",
             "vm_name": "magma-centos6-hyperv",
+            "temp_path": "output/magma-centos6-hyperv",
             "output_directory": "output/magma-centos6-hyperv",
             "boot_wait": "20s",
             "boot_command": [
@@ -488,6 +489,7 @@
             "type": "hyperv-iso",
             "name": "magma-centos7-hyperv",
             "vm_name": "magma-centos7-hyperv",
+            "temp_path": "output/magma-centos7-hyperv",
             "output_directory": "output/magma-centos7-hyperv",
             "boot_wait": "20s",
             "boot_command": [
@@ -520,6 +522,7 @@
             "type": "hyperv-iso",
             "name": "magma-alpine36-hyperv",
             "vm_name": "magma-alpine36-hyperv",
+            "temp_path": "output/magma-alpine36-hyperv",
             "output_directory": "output/magma-alpine36-hyperv",
             "boot_wait": "60s",
             "boot_command": [
@@ -562,6 +565,7 @@
             "type": "hyperv-iso",
             "name": "magma-arch-hyperv",
             "vm_name": "magma-arch-hyperv",
+            "temp_path": "output/magma-arch-hyperv",
             "output_directory": "output/magma-arch-hyperv",
             "boot_wait": "30s",
             "boot_command": [
@@ -595,6 +599,7 @@
             "type": "hyperv-iso",
             "name": "magma-fedora27-hyperv",
             "vm_name": "magma-fedora27-hyperv",
+            "temp_path": "output/magma-fedora27-hyperv",
             "output_directory": "output/magma-fedora27-hyperv",
             "boot_wait": "20s",
             "boot_command": [
@@ -630,6 +635,7 @@
             "type": "hyperv-iso",
             "name": "magma-debian8-hyperv",
             "vm_name": "magma-debian8-hyperv",
+            "temp_path": "output/magma-debian8-hyperv",
             "output_directory": "output/magma-debian8-hyperv",
             "boot_wait": "20s",
             "boot_command": [
@@ -664,6 +670,7 @@
             "type": "hyperv-iso",
             "name": "magma-ubuntu1604-hyperv",
             "vm_name": "magma-ubuntu1604-hyperv",
+            "temp_path": "output/magma-ubuntu1604-hyperv",
             "output_directory": "output/magma-ubuntu1604-hyperv",
             "boot_wait": "20s",
             "boot_command": [
@@ -709,6 +716,7 @@
             "type": "hyperv-iso",
             "name": "magma-ubuntu1610-hyperv",
             "vm_name": "magma-ubuntu1610-hyperv",
+            "temp_path": "output/magma-ubuntu1610-hyperv",
             "output_directory": "output/magma-ubuntu1610-hyperv",
             "boot_wait": "20s",
             "boot_command": [
@@ -746,6 +754,7 @@
             "type": "hyperv-iso",
             "name": "magma-ubuntu1704-hyperv",
             "vm_name": "magma-ubuntu1704-hyperv",
+            "temp_path": "output/magma-ubuntu1704-hyperv",
             "output_directory": "output/magma-ubuntu1704-hyperv",
             "boot_wait": "20s",
             "boot_command": [
@@ -783,6 +792,7 @@
             "type": "hyperv-iso",
             "name": "magma-gentoo-hyperv",
             "vm_name": "magma-gentoo-hyperv",
+            "temp_path": "output/magma-gentoo-hyperv",
             "output_directory": "output/magma-gentoo-hyperv",
             "boot_wait": "5s",
             "boot_command": [
@@ -821,6 +831,7 @@
             "type": "hyperv-iso",
             "name": "magma-freebsd11-hyperv",
             "vm_name": "magma-freebsd11-hyperv",
+            "temp_path": "output/magma-freebsd11-hyperv",
             "output_directory": "output/magma-freebsd11-hyperv",
             "boot_wait": "1s",
             "boot_command": [
@@ -866,6 +877,7 @@
             "type": "hyperv-iso",
             "name": "magma-openbsd6-hyperv",
             "vm_name": "magma-openbsd6-hyperv",
+            "temp_path": "output/magma-openbsd6-hyperv",
             "output_directory": "output/magma-openbsd6-hyperv",
             "boot_wait": "40s",
             "boot_command": [
