@@ -58,6 +58,7 @@ sed --in-place "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBU
 sed --in-place "s/pkgver = .*/pkgver = `uname -r | awk -F'-' '{print $1}'`/g" .SRCINFO
 sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-`uname -r | awk -F'-' '{print $1}'`.tar.gz/g" .SRCINFO
 makepkg --cleanbuild --noconfirm --syncdeps --install
+sed --in-place "s/www.kernel.org/mirrors.kernel.org/g" .SRCINFO PKGBUILD
 cd /home/vagrant/ && rm -rf hypervvssd
 
 # hypervkvpd
@@ -65,6 +66,7 @@ git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd && cd hypervkvpd
 sed --in-place "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
 sed --in-place "s/pkgver = .*/pkgver = `uname -r | awk -F'-' '{print $1}'`/g" .SRCINFO
 sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-`uname -r | awk -F'-' '{print $1}'`.tar.gz/g" .SRCINFO
+sed --in-place "s/www.kernel.org/mirrors.kernel.org/g" .SRCINFO PKGBUILD
 makepkg --cleanbuild --noconfirm --syncdeps --install
 cd /home/vagrant/ && rm -rf hypervkvpd
 
@@ -73,6 +75,7 @@ git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd && cd hypervfc
 sed --in-place "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
 sed --in-place "s/pkgver = .*/pkgver = `uname -r | awk -F'-' '{print $1}'`/g" .SRCINFO
 sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-`uname -r | awk -F'-' '{print $1}'`.tar.gz/g" .SRCINFO
+sed --in-place "s/www.kernel.org/mirrors.kernel.org/g" .SRCINFO PKGBUILD
 makepkg --cleanbuild --noconfirm --syncdeps --install
 cd /home/vagrant/ && rm -rf hypervfcopyd
 

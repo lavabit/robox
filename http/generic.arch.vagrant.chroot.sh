@@ -57,6 +57,7 @@ git clone https://aur.archlinux.org/hypervvssd.git hypervvssd && cd hypervvssd
 sed --in-place "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
 sed --in-place "s/pkgver = .*/pkgver = `uname -r | awk -F'-' '{print $1}'`/g" .SRCINFO
 sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-`uname -r | awk -F'-' '{print $1}'`.tar.gz/g" .SRCINFO
+sed --in-place "s/www.kernel.org/mirrors.kernel.org/g" .SRCINFO PKGBUILD
 makepkg --cleanbuild --noconfirm --syncdeps --install
 cd /home/vagrant/ && rm -rf hypervvssd
 
@@ -65,6 +66,7 @@ git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd && cd hypervkvpd
 sed --in-place "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
 sed --in-place "s/pkgver = .*/pkgver = `uname -r | awk -F'-' '{print $1}'`/g" .SRCINFO
 sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-`uname -r | awk -F'-' '{print $1}'`.tar.gz/g" .SRCINFO
+sed --in-place "s/www.kernel.org/mirrors.kernel.org/g" .SRCINFO PKGBUILD
 makepkg --cleanbuild --noconfirm --syncdeps --install
 cd /home/vagrant/ && rm -rf hypervkvpd
 
@@ -73,6 +75,7 @@ git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd && cd hypervfc
 sed --in-place "s/^pkgver=.*/pkgver=`uname -r | awk -F'-' '{print $1}'`/g" PKGBUILD
 sed --in-place "s/pkgver = .*/pkgver = `uname -r | awk -F'-' '{print $1}'`/g" .SRCINFO
 sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-`uname -r | awk -F'-' '{print $1}'`.tar.gz/g" .SRCINFO
+sed --in-place "s/www.kernel.org/mirrors.kernel.org/g" .SRCINFO PKGBUILD
 makepkg --cleanbuild --noconfirm --syncdeps --install
 cd /home/vagrant/ && rm -rf hypervfcopyd
 
@@ -81,7 +84,7 @@ EOF
   chmod +x /home/vagrant/hyperv.sh
   su -l vagrant /home/vagrant/hyperv.sh
   rm -f /home/vagrant/hyperv.sh
-  
+
   systemctl enable hypervkvpd.service
   systemctl enable hypervvssd.service
   systemctl enable hypervfcopyd.service
