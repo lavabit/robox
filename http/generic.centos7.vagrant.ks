@@ -47,10 +47,9 @@ chmod 0440 /etc/sudoers.d/vagrant
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
-    yum --assumeyes install eject hyperv-daemons
+    yum --assumeyes install hyperv-daemons
     systemctl enable hypervkvpd.service
     systemctl enable hypervvssd.service
-#    eject /dev/cdrom
 fi
 
 %end

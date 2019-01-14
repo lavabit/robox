@@ -19,8 +19,8 @@ Note, the generic templates are being refactored to use the split function. This
 ## Pending Tasks
 
 Merge duplicate magma and lineage configurations
-Remove ejection logic from Hyper-V configurations
-Troubleshoot Dragonfly/NetBSD on Hyper-V
+-Remove ejection logic from Hyper-V configurations
+-Troubleshoot Dragonfly/NetBSD on Hyper-V
 Add retry function to scripts and wrap yum/apt/apk/pacman/etc (prototype in upload.sh already)
 Automatically retry failed box builds
 Generate docker variants for the RHEL/Oracle/Ubuntu/Debian/Alpine configurations

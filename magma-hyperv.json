@@ -602,8 +602,7 @@
                 "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
                 "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
-                "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && ",
-                "umount /dev/loop0 && umount /dev/sr0 && eject /dev/cdrom && reboot<enter>"
+                "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
@@ -637,9 +636,7 @@
             "boot_command": [
                 "<enter><wait10><wait10><wait10><wait10>",
                 "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.arch.vagrant{,.chroot}.sh'<enter><wait>",
-                "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && sync && ",
-                "umount -d -l -f /run/archiso/bootmnt/ && eject /dev/cdrom && ",
-                "echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger<enter>"
+                "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
@@ -955,7 +952,7 @@
                 "mdmfs -s 100m md2 /mnt<enter><wait5>",
                 "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
                 "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait10>",
-                "bsdinstall script /tmp/installerconfig ; cdcontrol -f /dev/cd0 eject ; reboot<wait><enter>"
+                "bsdinstall script /tmp/installerconfig && reboot<wait><enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,
@@ -990,7 +987,7 @@
                 "dhclient hvn0<enter><wait5>",
                 "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait>",
                 "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
-                "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && eject /dev/cd0a && reboot<enter>"
+                "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 32768,
             "ram_size": 1024,

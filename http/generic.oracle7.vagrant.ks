@@ -55,9 +55,6 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
   # Change the default boot kernel to the base model, otherwise the Hyper-V daemons will fail to start.
   KERN=`grep menuentry /boot/grub2/grub.cfg  | awk -F"'" '{print $2}' | grep -v -E "^$|Unbreakable|rescue"`
   sed -i -e "s/saved_entry=.*/saved_entry=$KERN/g" /boot/grub2/grubenv
-
-  (shutdown -r +1) &
-  umount --force --lazy --detach-loop /dev/sr0
 fi
 
 %end

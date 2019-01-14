@@ -56,10 +56,9 @@ chmod 0440 /etc/sudoers.d/magma
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
-    yum --assumeyes install eject hyperv-daemons
+    yum --assumeyes install hyperv-daemons
     chkconfig hypervvssd on
     chkconfig hypervkvpd on
-#    eject /dev/cdrom
 fi
 
 %end
