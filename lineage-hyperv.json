@@ -84,7 +84,7 @@
             "type": "hyperv-iso",
             "name": "lineage-hyperv",
             "vm_name": "lineage-hyperv",
-            "temp_path": "output/lineage-hyperv",
+            "temp_path": "output/",
             "output_directory": "output/lineage-hyperv",
             "boot_wait": "20s",
             "boot_command": [
@@ -130,7 +130,7 @@
             "type": "hyperv-iso",
             "name": "lineage-nash-hyperv",
             "vm_name": "lineage-nash-hyperv",
-            "temp_path": "output/lineage-nash-hyperv",
+            "temp_path": "output/",
             "output_directory": "output/lineage-nash-hyperv",
             "boot_wait": "20s",
             "boot_command": [

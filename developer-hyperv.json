@@ -58,7 +58,7 @@
             "type": "hyperv-iso",
             "name": "magma-developer-hyperv",
             "vm_name": "magma-developer-hyperv",
-            "temp_path": "output/magma-developer-hyperv",
+            "temp_path": "output/",
             "output_directory": "output/magma-developer-hyperv",
             "boot_wait": "20s",
             "boot_command": [
