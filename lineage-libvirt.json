@@ -216,12 +216,12 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
             }
         ],
         [
-			{
+          {
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
@@ -236,7 +236,7 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box.sha256"
             }
         ]

@@ -1092,12 +1092,12 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
             }
         ],
         [
-			{
+            {
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
@@ -1115,12 +1115,12 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "output": "output/{{sed \"s/centos6//\" build_name}}-{{user `box_version`}}.box.sha256"
             }
         ],
         [
-			{
+            {
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
@@ -1138,12 +1138,12 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box.sha256"
             }
         ],
         [
-			{
+            {
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
@@ -1161,7 +1161,7 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box.sha256"
             }
         ]

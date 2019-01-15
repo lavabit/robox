@@ -270,7 +270,7 @@
             },
             {
                 "type": "artifice",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "files": [
                     "output/{{build_name}}-{{user `box_version`}}.tar.gz"
                 ]
@@ -287,14 +287,14 @@
         [
             {
                 "type": "artifice",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "files": [
                     "output/{{build_name}}-{{user `box_version`}}.tar.gz"
                 ]
             },
             {
                 "type": "docker-import",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma",
                 "changes": [
@@ -307,7 +307,7 @@
             },
             {
                 "type": "docker-import",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma-centos",
                 "changes": [
@@ -320,7 +320,7 @@
             },
             {
                 "type": "docker-import",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma-centos6",
                 "changes": [
@@ -333,7 +333,7 @@
             },
             {
                 "type": "docker-import",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma-centos7",
                 "changes": [
@@ -353,7 +353,7 @@
             {
                 "type": "vagrant",
                 "compression_level": 9,
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/generic/info.json"
@@ -361,7 +361,7 @@
             },
             {
                 "type": "artifice",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "files": [
                     "output/{{build_name}}-{{user `box_version`}}.tar.gz"
                 ]
@@ -378,14 +378,14 @@
         [
             {
                 "type": "artifice",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "files": [
                     "output/{{build_name}}-{{user `box_version`}}.tar.gz"
                 ]
             },
             {
                 "type": "docker-import",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "tag": "latest",
                 "repository": "lavabit/magma",
                 "changes": [
@@ -398,7 +398,7 @@
             },
             {
                 "type": "docker-import",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "tag": "latest",
                 "repository": "lavabit/magma-centos",
                 "changes": [
@@ -411,7 +411,7 @@
             },
             {
                 "type": "docker-import",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "tag": "latest",
                 "repository": "lavabit/magma-centos6",
                 "changes": [
@@ -424,7 +424,7 @@
             },
             {
                 "type": "docker-import",
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "tag": "latest",
                 "repository": "lavabit/magma-centos7",
                 "changes": [
