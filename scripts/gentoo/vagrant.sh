@@ -6,6 +6,18 @@
 # Enable exit/failure on error.
 set -eux
 
+# Gentoo builds don't include polkit but they may in the future.
+if [ -d /etc/polkit-1/rules.d/ ]; then
+cat <<EOF > /etc/polkit-1/rules.d/49-vagrant.rules
+polkit.addRule(function(action, subject) {
+    if (subject.isInGroup("vagrant")) {
+        return polkit.Result.YES;
+    }
+});
+EOF
+chmod 0440 /etc/polkit-1/rules.d/49-vagrant.rules
+fi
+
 printf "vagrant\nvagrant\n" | passwd vagrant
 sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 printf "vagrant        ALL=(ALL)       NOPASSWD: ALL\n" > /etc/sudoers.d/vagrant
