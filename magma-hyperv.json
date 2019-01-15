@@ -178,7 +178,8 @@
                 "scripts/arch/vmware.sh",
                 "scripts/arch/qemu.sh",
                 "scripts/arch/vagrant.sh",
-                "scripts/arch/magma.sh"
+                "scripts/arch/magma.sh",
+                "scripts/arch/cleanup.sh"
             ],
             "type": "shell",
             "pause_before": "120s",

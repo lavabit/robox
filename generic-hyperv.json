@@ -352,7 +352,8 @@
         "scripts/arch/parallels.sh",
         "scripts/arch/vmware.sh",
         "scripts/arch/qemu.sh",
-        "scripts/arch/vagrant.sh"
+        "scripts/arch/vagrant.sh",
+        "scripts/arch/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
