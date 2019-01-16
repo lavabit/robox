@@ -1,13 +1,22 @@
 #!/bin/bash -eux
 # To allow for automated installs, we disable interactive configuration steps.
+# INetSim setup script
+#
+# Sets some required file permissions
+#
+# This script must be run as root!
+#
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
+#curl -O https://www.inetsim.org/downloads/inetsim-1.2.8.tar.gz
+#tar xvzf inetsim-1.2.8.tar.gz && cd inetsim-1.2.8
+3bash setup.sh
 #install inetsim using debian apt packages.
 apt install apt-transport-https --assume-yes
 echo "deb https://www.inetsim.org/debian/ binary/" > /etc/apt/sources.list.d/inetsim.list
 curl --remote-name https://www.inetsim.org/inetsim-archive-signing-key.asc
 apt-key add inetsim-archive-signing-key.asc
-apt update --assume-yes && apt install insetsim --assume-yes
+apt update --assume-yes
 apt install inetsim --assume-yes
 
 # print inetsim configuration file to inetsim.conf
@@ -1950,7 +1959,7 @@ redirect_external_address	10.10.10.1
 #############################################################
 EOF
 
-#>> /tmp/inetsim.conf
+#>> /etc/inetsim.conf
 
 
-inetsim --config=/etc/inetsim.conf #--bind-address= hostname -I
+inetsim --config=/etc/inetsim.conf &
