@@ -863,7 +863,7 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "cpus": 4,
+            "cpus": 2,
             "memory": 2048,
             "vmx_data": {
                 "cpuid.corespersocket": "2",

@@ -35,14 +35,17 @@ sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/va
 # Increase the upload timeout
 patch -p1 < $BASE/packer-upload-timeout.patch
 
-# Fix the Hyper-V boot dervice ordering for generation one virtual machines.
-patch -p1 < $BASE/hyperv-boot-order.patch
+# Fix the Hyper-V boot dervice ordering for generation one virtual machines. - MERGED
+# patch -p1 < $BASE/hyperv-boot-order.patch
 
-# Fox the Hyper-V SSH host value bug.
-patch -p1 < $BASH/hyperv-ssh-host.patch
+# Fox the Hyper-V SSH host value bug. - MERGED
+# patch -p1 < $BASH/hyperv-ssh-host.patch
 
-# Merged into packer version >= 1.3.4.
+# Force Hyper-V to use a legacy network adapter. - MERGED
 # patch -p1 < $BASE/hyperv-legacy-network-adapter.patch
+
+# Allow QEMU builds to specify cpu count, and memory via template params.
+patch -p1 < $BASE/libvirt-cpu-mem.patch
 
 # Build for Linux, Darwin, and Windows
 PATH=$GOPATH/bin:$PATH

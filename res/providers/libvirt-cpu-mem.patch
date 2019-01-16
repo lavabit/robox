@@ -1,0 +1,53 @@
+diff --git a/builder/qemu/builder.go b/builder/qemu/builder.go
+index 1535eda867..d4d8a96762 100644
+--- a/builder/qemu/builder.go
++++ b/builder/qemu/builder.go
+@@ -96,6 +96,7 @@ type Config struct {
+ 
+ 	ISOSkipCache      bool       `mapstructure:"iso_skip_cache"`
+ 	Accelerator       string     `mapstructure:"accelerator"`
++	CpuCount          int        `mapstructure:"cpus"`
+ 	DiskInterface     string     `mapstructure:"disk_interface"`
+ 	DiskSize          uint       `mapstructure:"disk_size"`
+ 	DiskCache         string     `mapstructure:"disk_cache"`
+@@ -108,6 +109,7 @@ type Config struct {
+ 	DiskImage         bool       `mapstructure:"disk_image"`
+ 	UseBackingFile    bool       `mapstructure:"use_backing_file"`
+ 	MachineType       string     `mapstructure:"machine_type"`
++	MemorySize        int        `mapstructure:"memory"`
+ 	NetDevice         string     `mapstructure:"net_device"`
+ 	OutputDir         string     `mapstructure:"output_directory"`
+ 	QemuArgs          [][]string `mapstructure:"qemuargs"`
+@@ -200,6 +202,16 @@ func (b *Builder) Prepare(raws ...interface{}) ([]string, error) {
+ 		b.config.QemuBinary = "qemu-system-x86_64"
+ 	}
+ 
++	if b.config.MemorySize < 10*1024*1024 {
++		log.Printf("MemorySize %d is too small, use default 512M", b.config.MemorySize)
++		b.config.MemorySize = 512 * 1024 * 1024
++	}
++
++	if b.config.CpuCount < 1 {
++		log.Printf("CpuCount %d too small, use default 1", b.config.CpuCount)
++		b.config.CpuCount = 1
++	}
++
+ 	if b.config.SSHHostPortMin == 0 {
+ 		b.config.SSHHostPortMin = 2222
+ 	}
+diff --git a/builder/qemu/step_run.go b/builder/qemu/step_run.go
+index 1d4fa9dfcd..26d076b0bd 100644
+--- a/builder/qemu/step_run.go
++++ b/builder/qemu/step_run.go
+@@ -150,7 +150,10 @@ func getCommandArgs(bootDrive string, state multistep.StateBag) ([]string, error
+ 		defaultArgs["-cdrom"] = isoPath
+ 	}
+ 	defaultArgs["-boot"] = bootDrive
+-	defaultArgs["-m"] = "512M"
++	defaultArgs["-m"] = config.MemorySize
++	if config.CpuCount > 1 {
++		defaultArgs["-smp"] = fmt.Sprintf("cpus=%d,sockets=%d", config.CpuCount, config.CpuCount)
++	}
+ 	defaultArgs["-vnc"] = vnc
+ 
+ 	// Append the accelerator to the machine type if it is specified
