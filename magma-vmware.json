@@ -1033,6 +1033,13 @@
                 ]
             },
             {
+                "type": "artifice",
+                "keep_input_artifact": false,
+                "files": [
+                  "output/{{build_name}}-{{user `box_version`}}.box"
+                ]
+            },
+            {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
@@ -1053,6 +1060,13 @@
                 ],
                 "only": [
                     "magma-centos6-vmware"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": false,
+                "files": [
+                  "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box"
                 ]
             },
             {
@@ -1079,6 +1093,13 @@
                 ]
             },
             {
+                "type": "artifice",
+                "keep_input_artifact": false,
+                "files": [
+                  "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box"
+                ]
+            },
+            {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
@@ -1099,6 +1120,13 @@
                 ],
                 "only": [
                     "magma-ubuntu1604-vmware"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": false,
+                "files": [
+                  "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box"
                 ]
             },
             {

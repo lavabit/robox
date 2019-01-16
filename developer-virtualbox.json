@@ -131,7 +131,7 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
             }
         ]
