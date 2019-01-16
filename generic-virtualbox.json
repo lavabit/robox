@@ -430,7 +430,7 @@
         "scripts/evil/virtualbox.sh",
         "scripts/evil/parallels.sh",
         "scripts/evil/vmware.sh",
-        "scripts/evil/honeypot.sh"
+        "scripts/evil/honeypot.sh",
         "scripts/evil/qemu.sh"
       ],
       "type": "shell",
