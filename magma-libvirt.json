@@ -479,9 +479,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-alpine36-libvirt/magma-alpine36-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -516,9 +522,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-centos6-libvirt/magma-centos6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -553,9 +565,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-centos7-libvirt/magma-centos7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -592,9 +610,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-arch-libvirt/magma-arch-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -633,9 +657,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-fedora27-libvirt/magma-fedora27-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -673,9 +703,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-debian8-libvirt/magma-debian8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -726,9 +762,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-ubuntu1604-libvirt/magma-ubuntu1604-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -771,9 +813,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-ubuntu1610-libvirt/magma-ubuntu1610-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -816,9 +864,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-ubuntu1704-libvirt/magma-ubuntu1704-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -860,9 +914,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=4"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-gentoo-libvirt/magma-gentoo-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -911,9 +971,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-freebsd11-libvirt/magma-freebsd11-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -952,9 +1018,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/magma-openbsd6-libvirt/magma-openbsd6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"

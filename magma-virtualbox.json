@@ -488,7 +488,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Linux_64",
@@ -537,7 +537,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -586,7 +586,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -637,7 +637,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "ArchLinux_64",
@@ -690,7 +690,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Fedora_64",
@@ -742,7 +742,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Debian_64",
@@ -807,7 +807,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -864,7 +864,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -921,7 +921,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -977,7 +977,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "Gentoo_64",
@@ -1040,7 +1040,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "FreeBSD_64",
@@ -1093,7 +1093,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "OpenBSD_64",

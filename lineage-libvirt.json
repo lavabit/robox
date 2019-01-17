@@ -114,9 +114,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/lineage-libvirt/lineage-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -167,9 +173,15 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
                 [
                     "-drive",
                     "if=none,file=output/lineage-nash-libvirt/lineage-nash-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"

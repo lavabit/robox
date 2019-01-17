@@ -1097,9 +1097,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-oracle7-libvirt/generic-oracle7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1137,9 +1143,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-opensuse42-libvirt/generic-opensuse42-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1183,9 +1195,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-alpine35-libvirt/generic-alpine35-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1229,9 +1247,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-alpine36-libvirt/generic-alpine36-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1275,9 +1299,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-alpine37-libvirt/generic-alpine37-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1321,9 +1351,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-alpine38-libvirt/generic-alpine38-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1358,9 +1394,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-centos6-libvirt/generic-centos6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1395,9 +1437,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-centos7-libvirt/generic-centos7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1432,9 +1480,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-rhel7-libvirt/generic-rhel7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1474,9 +1528,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-arch-libvirt/generic-arch-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1515,9 +1575,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-fedora25-libvirt/generic-fedora25-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1556,9 +1622,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-fedora26-libvirt/generic-fedora26-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1597,9 +1669,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-fedora27-libvirt/generic-fedora27-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1638,9 +1716,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-fedora28-libvirt/generic-fedora28-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1679,9 +1763,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-fedora29-libvirt/generic-fedora29-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1719,9 +1809,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-debian8-libvirt/generic-debian8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1759,9 +1855,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-debian9-libvirt/generic-debian9-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1812,9 +1914,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-ubuntu1604-libvirt/generic-ubuntu1604-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1857,9 +1965,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-ubuntu1610-libvirt/generic-ubuntu1610-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1902,9 +2016,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-ubuntu1704-libvirt/generic-ubuntu1704-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -1947,9 +2067,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-ubuntu1710-libvirt/generic-ubuntu1710-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -2004,9 +2130,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-ubuntu1804-libvirt/generic-ubuntu1804-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -2061,9 +2193,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-ubuntu1810-libvirt/generic-ubuntu1810-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -2105,9 +2243,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=4,sockets=4"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-gentoo-libvirt/generic-gentoo-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -2156,9 +2300,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-freebsd11-libvirt/generic-freebsd11-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -2197,9 +2347,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-openbsd6-libvirt/generic-openbsd6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -2248,9 +2404,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-freebsd12-libvirt/generic-freebsd12-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -2285,9 +2447,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-rhel6-libvirt/generic-rhel6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -2325,9 +2493,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-rhel8-libvirt/generic-rhel8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -2379,9 +2553,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-hardenedbsd11-libvirt/generic-hardenedbsd11-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -2442,9 +2622,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-dragonflybsd5-libvirt/generic-dragonflybsd5-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
@@ -2522,9 +2708,15 @@
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
       "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
         [
           "-drive",
           "if=none,file=output/generic-netbsd8-libvirt/generic-netbsd8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"

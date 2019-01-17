@@ -100,8 +100,16 @@
             "disk_compression": true,
             "disk_discard": "unmap",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ]
+            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
@@ -130,8 +138,16 @@
             "disk_compression": true,
             "disk_discard": "unmap",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ]
+            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
@@ -160,8 +176,16 @@
             "disk_compression": true,
             "disk_discard": "unmap",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ]
+            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
@@ -190,8 +214,16 @@
             "disk_compression": true,
             "disk_discard": "unmap",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
+            "qemuargs": [
+                [
+                    "-m",
+                    "2048M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ]
+            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",

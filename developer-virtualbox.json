@@ -81,7 +81,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "2"
+                    "4"
                 ]
             ],
             "guest_os_type": "RedHat_64",
