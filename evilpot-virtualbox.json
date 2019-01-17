@@ -13,7 +13,7 @@
             "expect_disconnect": "true",
             "only": [
 
-                "evilpot-virtualbox"
+                "evilpot-ubuntu1604-virtualbox"
             ]
         },
         {
@@ -34,8 +34,8 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
- 
-                "evilpot-virtualbox"
+
+                "evilpot-ubuntu1604-virtualbox"
             ]
         },
         {
@@ -45,7 +45,7 @@
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
 
-                "evilpot-virtualbox"
+                "evilpot-ubuntu1604-virtualbox"
             ]
         },
         {
@@ -56,8 +56,8 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-    
-                "evilpot-virtualbox"
+
+                "evilpot-ubuntu1604-virtualbox"
             ]
         },
         {
@@ -80,7 +80,7 @@
             "type": "virtualbox-iso",
             "name": "evilpot-virtualbox",
             "vm_name": "evilpot-virtualbox",
-            "output_directory": "output/evilpot-virtualbox",
+            "output_directory": "output/evilpot-ubuntu1604-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -143,9 +143,9 @@
         },
         {
             "type": "virtualbox-iso",
-            "name": "evilpot-virtualbox",
-            "vm_name": "evilpot-virtualbox",
-            "output_directory": "output/evilpot-virtualbox",
+            "name": "evilpot-ubuntu1604-virtualbox",
+            "vm_name": "evilpot-ubuntu1604-virtualbox",
+            "output_directory": "output/evilpot-ubuntu1604-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -208,9 +208,9 @@
         },
         {
             "type": "virtualbox-iso",
-            "name": "evilpot-virtualbox",
-            "vm_name": "evilpot-virtualbox",
-            "output_directory": "output/evilpot-virtualbox",
+            "name": "evilpot-ubuntu1604-virtualbox",
+            "vm_name": "evilpot-ubuntu1604-virtualbox",
+            "output_directory": "output/evilpot-ubuntu1604-virtualbox",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -273,7 +273,7 @@
         },
         {
             "type": "virtualbox-iso",
-            "name": "evilpot-virtualbox",
+            "name": "evilpot-ubuntu1604-virtualbox",
             "vm_name": "evilpot-virtualbox",
             "output_directory": "output/evilpot-virtualbox",
             "boot_wait": "20s",

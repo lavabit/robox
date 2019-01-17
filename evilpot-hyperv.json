@@ -77,9 +77,9 @@
     "builders": [
         {
             "type": "hyperv-iso",
-            "name": "evilpot-hyperv",
-            "vm_name": "evilpot-hyperv",
-            "output_directory": "output/evilpot-hyperv",
+            "name": "evilpot-ubuntu1604-hyperv",
+            "vm_name": "evilpot-ubuntu1604-hyperv",
+            "output_directory": "output/evilpot-ubuntu1604-hyperv",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -122,9 +122,9 @@
         },
         {
             "type": "hyperv-iso",
-            "name": "evilpot-hyperv",
-            "vm_name": "evilpot-hyperv",
-            "output_directory": "output/evilpot-hyperv",
+            "name": "evilpot-ubuntu1604-hyperv",
+            "vm_name": "evilpot-ubuntu1604-hyperv",
+            "output_directory": "output/evilpot-ubuntu1604-hyperv",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -167,9 +167,9 @@
         },
         {
             "type": "hyperv-iso",
-            "name": "evilpot-hyperv",
-            "vm_name": "evilpot-hyperv",
-            "output_directory": "output/evilpot-hyperv",
+            "name": "evilpot-ubuntu1604-hyperv",
+            "vm_name": "evilpot-ubuntu1604-hyperv",
+            "output_directory": "output/evilpot-ubuntu1604-hyperv",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -212,9 +212,9 @@
         },
         {
             "type": "hyperv-iso",
-            "name": "evilpot-hyperv",
-            "vm_name": "evilpot-hyperv",
-            "output_directory": "output/evilpot-hyperv",
+            "name": "evilpot-ubuntu1604-hyperv",
+            "vm_name": "evilpot-ubuntu1604-hyperv",
+            "output_directory": "output/evilpot-ubuntu1604-hyperv",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",

@@ -12,7 +12,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-         
+
                 "evilpot-vmware"
             ]
         },
@@ -34,8 +34,8 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-            
-                "evilpot-vmware"
+
+                "evilpot-ubuntu1604-vmware"
             ]
         },
         {
@@ -44,8 +44,8 @@
             "source": "res/blobs/system-blobs.tar.gz",
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
-              
-                "evilpot-vmware"
+
+                "evilpot-ubuntu1604-vmware"
             ]
         },
         {
@@ -56,8 +56,8 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-             
-                "evilpot-vmware"
+
+                "evilpot-ubuntu1604-vmware"
             ]
         },
         {
@@ -135,10 +135,10 @@
         },
         {
             "type": "vmware-iso",
-            "name": "evilpot-vmware",
-            "vm_name": "evilpot-vmware",
-            "vmdk_name": "evilpot-vmware",
-            "output_directory": "output/evilpot-vmware",
+            "name": "evilpot-ubuntu1604-vmware",
+            "vm_name": "evilpot-ubuntu1604-vmware",
+            "vmdk_name": "evilpot-ubuntu1604-vmware",
+            "output_directory": "output/evilpot-ubuntu1604-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -192,10 +192,10 @@
         },
         {
             "type": "vmware-iso",
-            "name": "evilpot-vmware",
-            "vm_name": "evilpot-vmware",
-            "vmdk_name": "evilpot-vmware",
-            "output_directory": "output/evilpot-vmware",
+            "name": "evilpot-ubuntu1604-vmware",
+            "vm_name": "evilpot-ubuntu1604-vmware",
+            "vmdk_name": "evilpot-ubuntu1604-vmware",
+            "output_directory": "output/evilpot-ubuntu1604-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
@@ -249,10 +249,10 @@
         },
         {
             "type": "vmware-iso",
-            "name": "evilpot-vmware",
-            "vm_name": "evilpot-vmware",
-            "vmdk_name": "evilpot-vmware",
-            "output_directory": "output/evilpot-vmware",
+            "name": "evilpot-ubuntu1604-vmware",
+            "vm_name": "evilpot-ubuntu1604-vmware",
+            "vmdk_name": "evilpot-ubuntu1604-vmware",
+            "output_directory": "output/evilpot-ubuntu1604-vmware",
             "boot_wait": "20s",
             "boot_command": [
                 "<enter><wait>",
