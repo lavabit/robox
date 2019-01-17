@@ -394,13 +394,7 @@
       ]
     },
 
-
-
-
-
-
-
-    {
+{
       "scripts": [
         "scripts/debian9/network.sh",
         "scripts/debian9/apt.sh"
