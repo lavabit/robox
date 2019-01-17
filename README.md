@@ -1,6 +1,8 @@
 
 # Roboxes
 
+The tools needed to robotically create/configure/provision a large number of operating systems, for a variety of type 2 hypervisors, using packer.
+
 Generic base boxes, providing a variety of operating systems, and available across a number of different virtualized platforms.
 
 ## Website
