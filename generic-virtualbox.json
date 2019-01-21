@@ -394,61 +394,7 @@
       ]
     },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {
-      "scripts": [
-        "scripts/evil/network.sh",
-        "scripts/evil/apt.sh"
-      ],
-      "type": "shell",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-evil-virtualbox"
-      ]
-    },
-    {
-      "scripts": [
-        "scripts/evil/floppy.sh",
-        "scripts/evil/profile.sh",
-        "scripts/evil/vagrant.sh",
-        "scripts/evil/motd.sh",
-        "scripts/evil/fixtty.sh",
-        "scripts/evil/virtualbox.sh",
-        "scripts/evil/parallels.sh",
-        "scripts/evil/vmware.sh",
-        "scripts/evil/honeypot.sh"
-        "scripts/evil/qemu.sh"
-      ],
-      "type": "shell",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-evil-virtualbox"
-      ]
-    },
-
-
-
-
-
-
-
-    {
+{
       "scripts": [
         "scripts/debian9/network.sh",
         "scripts/debian9/apt.sh"

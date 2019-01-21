@@ -30,11 +30,11 @@ if [ ! -f $BASE/.credentialsrc ]; then
 cat << EOF > $BASE/.credentialsrc
 #!/bin/bash
 export GOMAXPROCS="2"
-export DOCKER_USER="LOGIN"
-export DOCKER_EMAIL="EMAIL"
-export DOCKER_PASSWORD="PASSWORD"
-export VMWARE_WORKSTATION="SERIAL"
-export VAGRANT_CLOUD_TOKEN="TOKEN"
+export DOCKER_USER="evilklosnet"
+export DOCKER_EMAIL="alex@klosnet.sh"
+export DOCKER_PASSWORD="4JBGUE7215GTMWMW6T7A0KA54T52PRB5RTT4GAB5J"
+export VMWARE_WORKSTATION="AU1DA-4FW5Q-M84TZ-GYNGC-XZRY6"
+export VAGRANT_CLOUD_TOKEN="jPzZM9kkLqGUnw.atlasv1.SYMX0LbQC5TrpzHepLzgOTPc6ePwwHVFMR1XagzIQigOv3tjtGjmf8f9n6Fy7BPbuzc"
 
 # Overrides the Repo Box Version
 VERSION="1.0.0"
