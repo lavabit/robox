@@ -1066,6 +1066,11 @@
                 "keep_input_artifact": false,
                 "files": [
                   "output/{{build_name}}-{{user `box_version`}}.box"
+                ],
+                "except": [
+                    "magma-alpine36-libvirt",
+                    "magma-openbsd6-libvirt",
+                    "magma-freebsd11-libvirt"
                 ]
             },
             {
@@ -1074,7 +1079,12 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+                "except": [
+                    "magma-alpine36-libvirt",
+                    "magma-openbsd6-libvirt",
+                    "magma-freebsd11-libvirt"
+                ]
             }
         ],
         [
@@ -1096,6 +1106,9 @@
                 "keep_input_artifact": false,
                 "files": [
                   "output/{{build_name}}-{{user `box_version`}}.box"
+                ],
+                "only": [
+                    "magma-alpine36-libvirt"
                 ]
             },
             {
@@ -1104,7 +1117,10 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-alpine36-libvirt"
+                ]
             }
         ],
         [
@@ -1127,6 +1143,10 @@
                 "keep_input_artifact": false,
                 "files": [
                   "output/{{build_name}}-{{user `box_version`}}.box"
+                ],
+                "only": [
+                    "magma-openbsd6-libvirt",
+                    "magma-freebsd11-libvirt"
                 ]
             },
             {
@@ -1135,7 +1155,11 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-openbsd6-libvirt",
+                    "magma-freebsd11-libvirt"
+                ]
             }
         ],
         [
@@ -1157,6 +1181,9 @@
                 "keep_input_artifact": false,
                 "files": [
                   "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box"
+                ],
+                "only": [
+                    "magma-centos6-libvirt"
                 ]
             },
             {
@@ -1165,7 +1192,10 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box.sha256"
+                "output": "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-centos6-libvirt"
+                ]
             }
         ],
         [
@@ -1187,6 +1217,9 @@
                 "keep_input_artifact": false,
                 "files": [
                   "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box"
+                ],
+                "only": [
+                    "magma-centos6-libvirt"
                 ]
             },
             {
@@ -1195,7 +1228,10 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box.sha256"
+                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-centos6-libvirt"
+                ]
             }
         ],
         [
@@ -1217,6 +1253,9 @@
                 "keep_input_artifact": false,
                 "files": [
                   "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box"
+                ],
+                "only": [
+                    "magma-ubuntu1604-libvirt"
                 ]
             },
             {
@@ -1225,7 +1264,10 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box.sha256"
+                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-ubuntu1604-libvirt"
+                ]
             }
         ]
     ]
