@@ -242,7 +242,7 @@ retry ${CURL} --tlsv1.2 \
   --max-time 7200 \
   --expect100-timeout 7200 \
   --header "Connection: keep-alive" \
-  --write-out "\n\nFILE: $FILENAME\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nSETUP TIME: %{time_starttransfer}\nTOTAL TIME: %{time_total}\n\n\n" \
+  --write-out "FILE: $FILENAME\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n\n" \
   --upload-file "$FILEPATH" "$UPLOAD_PATH"
 
 # Give the upload time to propagate.
