@@ -20,7 +20,7 @@ printf "*    hard    nofile     65536\n" >> /etc/security/limits.d/50-magmad.con
 # Fix the SELinux context.
 chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
 
-# Packages required to compile magma. 
+# Packages required to compile magma.
 dnf install --assumeyes zlib-devel
 
 if [ -d /home/vagrant/ ]; then
@@ -59,6 +59,9 @@ export NSS_DISABLE_HW_AES=1
 # Clone the magma repository off Github.
 git clone https://github.com/lavabit/magma.git magma-develop; error
 cd magma-develop; error
+
+# Setup the bin links, just in case we need to troubleshoot things manually.
+dev/scripts/linkup.sh; error
 
 # Compile the dependencies into a shared library.
 dev/scripts/builders/build.lib.sh all; error

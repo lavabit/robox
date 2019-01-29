@@ -73,6 +73,9 @@ sleep 30
 git clone https://github.com/lavabit/magma.git magma-develop; error
 cd magma-develop; error
 
+# Setup the bin links, just in case we need to troubleshoot things manually.
+dev/scripts/linkup.sh; error
+
 # Compile the dependencies into a shared library.
 dev/scripts/builders/build.lib.sh all; error
 
