@@ -875,7 +875,7 @@ function parallels() {
         tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
       elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
-        rm -rf $BASE/packer_cache/
+        # mv output/*.box output/*.box.sha256 /Volumes/Files/robox/output
       fi
     done
 
