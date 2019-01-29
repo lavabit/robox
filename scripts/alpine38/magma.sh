@@ -69,6 +69,11 @@ export NSS_DISABLE_HW_AES=1
 # the git clone operation will fail.
 sleep 30
 
+# If the directory is present, remove it so we can clone a fresh copy.
+if [ -d magma-develop ]; then
+  rm --recursive --force magma-develop
+fi
+
 # Clone the magma repository off Github.
 git clone https://github.com/lavabit/magma.git magma-develop; error
 cd magma-develop; error
