@@ -41,7 +41,7 @@ apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade
 apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade
 
 # Needed to retrieve source code, and other misc system tools.
-apt-get --assume-yes install vim vim-nox git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils lsb-release psmisc
+apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils lsb-release psmisc
 
 # Enable the sysstat collection service.
 sed -i -e "s|.*ENABLED=\".*\"|ENABLED=\"true\"|g" /etc/default/sysstat
