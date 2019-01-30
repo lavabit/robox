@@ -162,6 +162,15 @@ function provide-vbox() {
   if [ -f /usr/bin/firewall-cmd ]; then
     firewall-cmd --permanent --zone=trusted --add-interface=vibr0
   fi
+
+  # Fix a permission issue to avoid spurious error messages in the system log.
+  if [ -f /usr/lib/virtualbox/VMMR0.r0 ]; then
+    chmod 755 /usr/lib/virtualbox/VMMR0.r0
+  fi
+  if [ -f /usr/lib/virtualbox/VBoxDDR0.r0 ]; then
+    chmod 755 /usr/lib/virtualbox/VBoxDDR0.r0
+  fi
+
 }
 
 function provide-docker() {
