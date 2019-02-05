@@ -106,7 +106,7 @@
                 "<enter>"
             ],
             "disk_size": 196608,
-            "cpus": 2,
+            "cpus": 4,
             "memory": 2048,
             "vboxmanage": [
                 [
@@ -161,7 +161,7 @@
                 "<enter>"
             ],
             "disk_size": 196608,
-            "cpus": 2,
+            "cpus": 4,
             "memory": 2048,
             "vboxmanage": [
                 [

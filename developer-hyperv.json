@@ -66,7 +66,7 @@
             ],
             "disk_size": 131072,
             "ram_size": 1024,
-            "cpu": 2,
+            "cpu": 4,
             "http_directory": "http",
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
             "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",

@@ -114,7 +114,7 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
+            "cpus": 4,
             "memory": 2048,
             "qemuargs": [
                 [
@@ -167,7 +167,7 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
+            "cpus": 4,
             "memory": 2048,
             "qemuargs": [
                 [

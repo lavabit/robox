@@ -2143,7 +2143,7 @@
         "bash generic.gentoo.vagrant.sh<enter>"
       ],
       "disk_size": 32768,
-      "cpus": 2,
+      "cpus": 4,
       "memory": 2048,
       "vboxmanage": [
         [
@@ -2528,7 +2528,8 @@
       "name": "generic-netbsd8-virtualbox",
       "vm_name": "generic-netbsd8-virtualbox",
       "output_directory": "output/generic-netbsd8-virtualbox",
-      "boot_wait": "40s","cpus": 2,
+      "boot_wait": "40s",
+      "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
         [

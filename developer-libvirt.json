@@ -72,8 +72,8 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
+            "cpus": 4,
+            "memory": 4096,
             "qemuargs": [
                 [
                     "-drive",

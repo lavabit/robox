@@ -108,7 +108,7 @@
             ],
             "disk_size": 196608,
             "disk_type_id": "0",
-            "cpus": 2,
+            "cpus": 4,
             "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
@@ -162,7 +162,7 @@
             ],
             "disk_size": 196608,
             "disk_type_id": "0",
-            "cpus": 2,
+            "cpus": 4,
             "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",

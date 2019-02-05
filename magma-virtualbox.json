@@ -870,7 +870,7 @@
                 "bash magma.gentoo.vagrant.sh<enter>"
             ],
             "disk_size": 32768,
-            "cpus": 2,
+            "cpus": 4,
             "memory": 2048,
             "vboxmanage": [
                 [
