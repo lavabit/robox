@@ -14,23 +14,17 @@ https://app.vagrantup.com/lineage
 ## Docker Images  
 https://hub.docker.com/r/lavabit/  
 
-Note, the generic templates are being refactored to use the split function. This requires packer v1.2.6+.
+The templates in this repo require a current version of packer, and in some cases, make use of features which haven't been officially merged and/or released yet. Use the res/providers/packer.sh script to build an appropriately patched packer binary.
 
 ## Pending Tasks
 
--Merge duplicate magma and lineage configurations
--Remove ejection logic from Hyper-V configurations
--Troubleshoot Dragonfly/NetBSD on Hyper-V
-Add retry function to scripts and wrap yum/apt/apk/pacman/etc (prototype in upload.sh already)
-Automatically retry failed box builds
-Generate docker variants for the RHEL/Oracle/Ubuntu/Debian/Alpine configurations
-Create standalone release script
-Add upload/delete/release functions to robox.sh
-Add vagrant user password randomization logic to the bundled Vagrantfiles
-Add init based test, and SSH command test to the box test and check script
--Add an explicit storage path to the Hyper-V templates
-Update the parallels/vitualbox configs so they use the new cpus/memory template keys
-Consolidate magma/docker post processors by making better use of the split function
+Add retry function to scripts and wrap yum/apt/apk/pacman/etc (prototype in silent.sh already)  
+Automatically retry failed box builds  
+Generate docker variants for the RHEL/Oracle/Ubuntu/Debian/Alpine configurations  
+Add upload/delete/release functions to robox.sh  
+Add vagrant user password randomization logic to the bundled Vagrantfiles  
+Add init based test, and SSH command test to the box test and check script  
+Update the parallels/vitualbox configs so they use the new cpus/memory template keys  
 
 ## Pending Additions
 
