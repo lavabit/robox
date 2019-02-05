@@ -2,6 +2,8 @@
 
 # On MacOS the following utilities are needed.
 # brew install --with-default-names jq gnu-sed coreutils
+# BOXES=(`find output -type f -name "*.box"`)
+# parallel -j 4 --xapply res/scripts/upload.sh {1} ::: "${BOXES[@]}"
 
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
