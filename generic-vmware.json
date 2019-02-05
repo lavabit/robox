@@ -1154,6 +1154,38 @@
     },
     {
       "scripts": [
+        "scripts/ubuntu1904/apt.sh",
+        "scripts/ubuntu1904/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1904-vmware"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1904/floppy.sh",
+        "scripts/ubuntu1904/vagrant.sh",
+        "scripts/ubuntu1904/motd.sh",
+        "scripts/ubuntu1904/fixtty.sh",
+        "scripts/ubuntu1904/virtualbox.sh",
+        "scripts/ubuntu1904/parallels.sh",
+        "scripts/ubuntu1904/vmware.sh",
+        "scripts/ubuntu1904/qemu.sh",
+        "scripts/ubuntu1904/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1904-vmware"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -2831,6 +2863,64 @@
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso",
       "iso_checksum": "e5473b27d0cb8b1abb12e5e4b29d7be7c2043845ec937dadb42a8b3fea10500f",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-ubuntu1904-vmware",
+      "vm_name": "generic-ubuntu1904-vmware",
+      "vmdk_name": "generic-ubuntu1904-vmware",
+      "output_directory": "output/generic-ubuntu1904-vmware",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<esc><f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "console-setup/ask_detect=false ",
+        "debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1904.vagrant.cfg<wait> ",
+        " --- <enter>"
+      ],
+      "disk_size": 32768,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "vmx_data_post": {
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "ubuntu-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso",
+      "iso_checksum": "bdf8d32352bb0f953d9709063b38b4752b488c09cf902bdf32bb004c3ac94f76",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",

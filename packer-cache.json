@@ -555,6 +555,22 @@
     },
     {
       "type": "vmware-iso",
+      "name": "ubuntu1904",
+      "output_directory": "output/ubuntu1904",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso",
+      "iso_checksum": "bdf8d32352bb0f953d9709063b38b4752b488c09cf902bdf32bb004c3ac94f76",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+    {
+      "type": "vmware-iso",
       "name": "openbsd6",
       "output_directory": "output/openbsd6",
       "headless": true,
