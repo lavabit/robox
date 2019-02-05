@@ -3,7 +3,7 @@
 # On MacOS the following utilities are needed.
 # brew install --with-default-names jq gnu-sed coreutils
 # BOXES=(`find output -type f -name "*.box"`)
-# parallel -j 4 --xapply res/scripts/upload.sh {1} ::: "${BOXES[@]}"
+# parallel -j 4 --xapply res/scripts/silent.sh {1} ::: "${BOXES[@]}"
 
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
@@ -135,15 +135,15 @@ fi
 retry() {
   local count=1
   local result=0
-  while [[ "${count}" -le 10 ]]; do
+  while [[ "${count}" -le 30 ]]; do
     [[ "${result}" -ne 0 ]] && {
-      echo -e "\\n$(tput setaf 1)${*} failed... retrying ${count} of 10.$(tput sgr0)\\n" >&2
+      echo -e "\\n$(tput setaf 1)$FILENAME failed... retrying ${count} of 10.$(tput sgr0)\\n" >&2
     }
     "${@}" && { result=0 && break; } || result="${?}"
     count="$((count + 1))"
 
     # Increase the delay with each iteration.
-    delay="$((delay + 10))"
+    delay="$((delay + 20))"
     sleep $delay
   done
 
@@ -154,126 +154,10 @@ retry() {
   return "${result}"
 }
 
-printf "\n\n"
-
-tput setaf 5; printf "Create the version.\n"; tput sgr0
-(${CURL} \
-  --tlsv1.2 \
-  --silent \
-  --retry 16 \
-  --retry-delay 60 \
-  --header "Content-Type: application/json" \
-  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  "https://app.vagrantup.com/api/v1/box/$ORG/$BOX/versions" \
-  --data "
-    {
-      \"version\": {
-        \"version\": \"$VERSION\",
-        \"description\": \"A build environment for use in cross platform development.\"
-      }
-    }
-  " | jq --color-output 2>/dev/null) || (tput setaf 1; printf "Version creation failed. { $ORG $BOX $PROVIDER $VERSION }\n"; tput sgr0; exit)
-
-printf "\n\n"
-
-tput setaf 5; printf "Delete the existing provider, if it exists already.\n"; tput sgr0
-(${CURL} \
-  --silent \
-  --retry 16 \
-  --retry-delay 60 \
-  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  --request DELETE \
-  https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER} \
-  | jq --color-output 2>/dev/null) || (tput setaf 1; printf "Unable to delete an existing version of the box. { $ORG $BOX $PROVIDER $VERSION }\n"; tput sgr0)
-
-printf "\n\n";
-
-# Sleep to let the deletion propagate.
-sleep 3
-
-tput setaf 5; printf "Create the provider.\n"; tput sgr0
-(${CURL} \
-  --tlsv1.2 \
-  --silent \
-  --retry 16 \
-  --retry-delay 60 \
-  --header "Content-Type: application/json" \
-  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/providers \
-  --data "{ \"provider\": { \"name\": \"$PROVIDER\" } }" \
-  | jq --color-output) || (tput setaf 1; printf "Unable to create the box provider. { $ORG $BOX $PROVIDER $VERSION }\n"; tput sgr0; exit)
-
-printf "\n\n"
-
-# ${CURL} \
-#   --tlsv1.2 \
-#   --silent \
-#   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-#   https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/upload
-
-tput setaf 5; printf "Retrieve the upload path."; tput sgr0
-UPLOAD_PATH=`${CURL} \
+tput setaf 5; printf "Release the version.\n"; tput sgr0
+retry ${CURL} \
   --tlsv1.2 \
   --silent \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/upload | jq -r .upload_path`
-
-# Perform the upload, and see the bits boil.
-# ${CURL} --tlsv1.2 --include --max-time 7200 --expect100-timeout 7200 --request PUT --output "$FILEPATH.upload.log.txt" --upload-file "$FILEPATH" "$UPLOAD_PATH"
-#
-# printf "\n-----------------------------------------------------\n"
-# tput setaf 5
-# cat "$FILEPATH.upload.log.txt"
-# tput sgr0
-# printf -- "-----------------------------------------------------\n\n"
-
-if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "null" ]; then
-  printf "\n\n$FILENAME failed to upload...\n\n"
-  exit 1
-fi
-
-printf " Done.\n\n"
-# echo "$UPLOAD_PATH"
-
-tput setaf 5; printf "Perform the box upload.\n"; tput sgr0
-retry ${CURL} --tlsv1.2 \
-`# --silent ` \
-`# --output "/dev/null"` \
-  --show-error \
-  --request PUT \
-  --max-time 7200 \
-  --expect100-timeout 7200 \
-  --header "Connection: keep-alive" \
-  --write-out "FILE: $FILENAME\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n\n" \
-  --upload-file "$FILEPATH" "$UPLOAD_PATH"
-
-# Give the upload time to propagate.
-sleep 10
-
-tput setaf 5; printf "Version status.\n"; tput sgr0
-${CURL} \
-  --silent \
-  --max-time 7200 \
-  --connect-timeout 7200 \
-  --expect100-timeout 7200 \
-  "https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER" | jq --color-output
-
-printf "\n\n"
-
-# sleep 10
-#
-# tput setaf 5; printf "Release the version.\n"; tput sgr0
-# ${CURL} \
-#   --tlsv1.2 \
-#   --silent \
-#   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-#   https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/release \
-#   --request PUT | jq  --color-output '.status,.version,.providers[]' | grep -vE "hosted|hosted_token|original_url|created_at|updated_at|\}|\{"
-#
-# printf "\n\n"
-
-# Revoke a Version
-# ${CURL} \
-#   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-#   https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/revoke \
-#   --request PUT
+  https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/release \
+  --request PUT | jq  --color-output '.status,.version,.providers[]' | grep -vE "hosted|hosted_token|original_url|created_at|updated_at|\}|\{"
