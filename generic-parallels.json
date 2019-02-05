@@ -1089,6 +1089,8 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 1,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1099,20 +1101,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "1"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1145,6 +1141,8 @@
         "<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1155,20 +1153,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1207,6 +1199,8 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 1,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1223,26 +1217,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
-          "--faster-vm",
-          "off"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "off"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "1"
+          "--faster-vm",
+          "off"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1281,6 +1263,8 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1291,20 +1275,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1343,6 +1321,8 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1353,20 +1333,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1405,6 +1379,8 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1415,20 +1391,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1458,6 +1428,8 @@
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1468,20 +1440,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1511,6 +1477,8 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1521,20 +1489,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1564,6 +1526,8 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1574,20 +1538,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1622,6 +1580,8 @@
         "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1632,20 +1592,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1679,6 +1633,8 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1689,20 +1645,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1736,6 +1686,8 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1746,20 +1698,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1793,6 +1739,8 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1803,20 +1751,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1850,6 +1792,8 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1860,20 +1804,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1907,6 +1845,8 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1917,20 +1857,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -1963,6 +1897,8 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -1973,20 +1909,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2019,6 +1949,8 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2029,20 +1961,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2088,6 +2014,8 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2098,20 +2026,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2149,6 +2071,8 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2159,20 +2083,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2210,6 +2128,8 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2220,20 +2140,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2271,6 +2185,8 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2281,20 +2197,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2344,6 +2254,8 @@
         " --- <enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2354,20 +2266,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2417,6 +2323,8 @@
         " --- <enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2427,20 +2335,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2477,18 +2379,14 @@
         "bash generic.gentoo.vagrant.sh<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 4,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
-        ],
-        [
-          "set",
-          "{{.Name}}",
-          "--memsize",
-          "1024"
         ],
         [
           "set",
@@ -2501,12 +2399,6 @@
           "{{.Name}}",
           "--faster-vm",
           "on"
-        ],
-        [
-          "set",
-          "{{.Name}}",
-          "--cpus",
-          "4"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2550,6 +2442,8 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2560,20 +2454,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2607,6 +2495,8 @@
         "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2617,20 +2507,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2674,6 +2558,8 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2684,20 +2570,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2727,6 +2607,8 @@
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2737,20 +2619,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2783,6 +2659,8 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2793,20 +2671,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2853,6 +2725,8 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2863,20 +2737,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -2933,6 +2801,8 @@
         "sh /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -2943,20 +2813,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -3039,6 +2903,8 @@
         "x<wait><enter><wait10>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
       "prlctl": [
         [
           "set",
@@ -3049,20 +2915,14 @@
         [
           "set",
           "{{.Name}}",
-          "--memsize",
-          "1024"
-        ],
-        [
-          "set",
-          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
         [
           "set",
           "{{.Name}}",
-          "--cpus",
-          "2"
+          "--faster-vm",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
