@@ -471,24 +471,14 @@
                 "umount /mnt && reboot<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "Linux_64",
@@ -520,24 +510,14 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -569,24 +549,14 @@
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -620,24 +590,14 @@
                 "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "ArchLinux_64",
@@ -673,24 +633,14 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "Fedora_64",
@@ -725,24 +675,14 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "Debian_64",
@@ -790,24 +730,14 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -847,24 +777,14 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -904,24 +824,14 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -960,24 +870,14 @@
                 "bash magma.gentoo.vagrant.sh<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "Gentoo_64",
@@ -1023,24 +923,14 @@
                 "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "FreeBSD_64",
@@ -1076,24 +966,14 @@
                 "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "OpenBSD_64",

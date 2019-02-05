@@ -106,24 +106,14 @@
                 "<enter>"
             ],
             "disk_size": 196608,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -171,24 +161,14 @@
                 "<enter>"
             ],
             "disk_size": 196608,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",

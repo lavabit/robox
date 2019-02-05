@@ -64,24 +64,14 @@
                 "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
             ],
             "disk_size": 131072,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "4096"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "2"
                 ]
             ],
             "guest_os_type": "RedHat_64",
