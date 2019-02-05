@@ -123,7 +123,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -188,7 +188,7 @@
                     "modifyvm",
                     "{{.Name}}",
                     "--cpus",
-                    "4"
+                    "2"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
