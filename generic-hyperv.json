@@ -1068,6 +1068,28 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/hardenedbsd12/pkg.sh",
+        "scripts/hardenedbsd12/hostname.sh",
+        "scripts/hardenedbsd12/kernel.sh",
+        "scripts/hardenedbsd12/firstboot.sh",
+        "scripts/hardenedbsd12/motd.sh",
+        "scripts/hardenedbsd12/vagrant.sh",
+        "scripts/hardenedbsd12/virtualbox.sh",
+        "scripts/hardenedbsd12/parallels.sh",
+        "scripts/hardenedbsd12/vmware.sh",
+        "scripts/hardenedbsd12/qemu.sh",
+        "scripts/hardenedbsd12/cleanup.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd12-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -2392,6 +2414,52 @@
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "use_legacy_network_adapter": true,
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-hardenedbsd12-hyperv",
+      "vm_name": "generic-hardenedbsd12-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-hardenedbsd12-hyperv",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait5>",
+        "mdmfs -s 100m md2 /mnt<enter><wait5>",
+        "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig && reboot<wait><enter>"
+      ],
+      "disk_size": 32768,
+      "ram_size": 1024,
+      "cpu": 2,
+      "http_directory": "http",
+      "iso_url": "https://installer.hardenedbsd.org/hardened_12_stable_master-LAST/HardenedBSD-12-STABLE-v1200058.2-amd64-disc1.iso",
+      "iso_checksum": "f77a0f23ea65503031d9510d5b8a566dfe262a639733d2e8dd28ff55d989cfdf",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
     }
   ],

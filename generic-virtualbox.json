@@ -1067,6 +1067,28 @@
     },
     {
       "scripts": [
+        "scripts/hardenedbsd12/pkg.sh",
+        "scripts/hardenedbsd12/hostname.sh",
+        "scripts/hardenedbsd12/kernel.sh",
+        "scripts/hardenedbsd12/firstboot.sh",
+        "scripts/hardenedbsd12/motd.sh",
+        "scripts/hardenedbsd12/vagrant.sh",
+        "scripts/hardenedbsd12/virtualbox.sh",
+        "scripts/hardenedbsd12/parallels.sh",
+        "scripts/hardenedbsd12/vmware.sh",
+        "scripts/hardenedbsd12/qemu.sh",
+        "scripts/hardenedbsd12/cleanup.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd12-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -2586,16 +2608,6 @@
         "x<wait><enter><wait10>"
       ],
       "disk_size": 32768,
-      "cpus": 2,
-      "memory": 2048,
-      "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--vram",
-          "64"
-        ]
-      ],
       "guest_os_type": "NetBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -2610,6 +2622,59 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/shutdown -h -p now",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+      "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-hardenedbsd12-virtualbox",
+      "vm_name": "generic-hardenedbsd12-virtualbox",
+      "output_directory": "output/generic-hardenedbsd12-virtualbox",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait5>",
+        "mdmfs -s 100m md2 /mnt<enter><wait5>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "FreeBSD_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://installer.hardenedbsd.org/hardened_12_stable_master-LAST/HardenedBSD-12-STABLE-v1200058.2-amd64-disc1.iso",
+      "iso_checksum": "f77a0f23ea65503031d9510d5b8a566dfe262a639733d2e8dd28ff55d989cfdf",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
       "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
       "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
       "guest_additions_path": "VBoxGuestAdditions.iso",

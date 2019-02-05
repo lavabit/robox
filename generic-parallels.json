@@ -1067,6 +1067,28 @@
     },
     {
       "scripts": [
+        "scripts/hardenedbsd12/pkg.sh",
+        "scripts/hardenedbsd12/hostname.sh",
+        "scripts/hardenedbsd12/kernel.sh",
+        "scripts/hardenedbsd12/firstboot.sh",
+        "scripts/hardenedbsd12/motd.sh",
+        "scripts/hardenedbsd12/vagrant.sh",
+        "scripts/hardenedbsd12/virtualbox.sh",
+        "scripts/hardenedbsd12/parallels.sh",
+        "scripts/hardenedbsd12/vmware.sh",
+        "scripts/hardenedbsd12/qemu.sh",
+        "scripts/hardenedbsd12/cleanup.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd12-parallels"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -2937,6 +2959,69 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "4800s",
       "shutdown_command": "/sbin/shutdown -h -p now",
+      "parallels_tools_flavor": "other",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-other.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-hardenedbsd12-parallels",
+      "vm_name": "generic-hardenedbsd12-parallels",
+      "output_directory": "output/generic-hardenedbsd12-parallels",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait5>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "freebsd",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "iso_url": "https://installer.hardenedbsd.org/hardened_12_stable_master-LAST/HardenedBSD-12-STABLE-v1200058.2-amd64-disc1.iso",
+      "iso_checksum": "f77a0f23ea65503031d9510d5b8a566dfe262a639733d2e8dd28ff55d989cfdf",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
       "parallels_tools_guest_path": "/root/parallels-tools-other.iso",

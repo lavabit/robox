@@ -1067,6 +1067,28 @@
     },
     {
       "scripts": [
+        "scripts/hardenedbsd12/pkg.sh",
+        "scripts/hardenedbsd12/hostname.sh",
+        "scripts/hardenedbsd12/kernel.sh",
+        "scripts/hardenedbsd12/firstboot.sh",
+        "scripts/hardenedbsd12/motd.sh",
+        "scripts/hardenedbsd12/vagrant.sh",
+        "scripts/hardenedbsd12/virtualbox.sh",
+        "scripts/hardenedbsd12/parallels.sh",
+        "scripts/hardenedbsd12/vmware.sh",
+        "scripts/hardenedbsd12/qemu.sh",
+        "scripts/hardenedbsd12/cleanup.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd12-vmware"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -2603,6 +2625,58 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/shutdown -h -p now",
+      "tools_upload_flavor": "freebsd"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-hardenedbsd12-vmware",
+      "vm_name": "generic-hardenedbsd12-vmware",
+      "vmdk_name": "generic-hardenedbsd12-vmware",
+      "output_directory": "output/generic-hardenedbsd12-vmware",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait5>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "vmx_data_post": {
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "freebsd-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://installer.hardenedbsd.org/hardened_12_stable_master-LAST/HardenedBSD-12-STABLE-v1200058.2-amd64-disc1.iso",
+      "iso_checksum": "f77a0f23ea65503031d9510d5b8a566dfe262a639733d2e8dd28ff55d989cfdf",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
       "tools_upload_flavor": "freebsd"
     }
   ],

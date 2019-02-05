@@ -507,6 +507,22 @@
     },
     {
       "type": "vmware-iso",
+      "name": "hardenedbsd12",
+      "output_directory": "output/hardenedbsd12",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "https://installer.hardenedbsd.org/hardened_12_stable_master-LAST/HardenedBSD-12-STABLE-v1200058.2-amd64-disc1.iso",
+      "iso_checksum": "f77a0f23ea65503031d9510d5b8a566dfe262a639733d2e8dd28ff55d989cfdf",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+    {
+      "type": "vmware-iso",
       "name": "openbsd6",
       "output_directory": "output/openbsd6",
       "headless": true,
