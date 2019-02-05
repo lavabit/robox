@@ -14,7 +14,7 @@ https://app.vagrantup.com/lineage
 ## Docker Images  
 https://hub.docker.com/r/lavabit/  
 
-The templates in this repo require a current version of packer, and in some cases, make use of features which haven't been officially merged and/or released yet. Use the res/providers/packer.sh script to build an appropriately patched packer binary.
+The templates in this repo require a current version of packer, (1.3.4+) and in some cases, make use of features which haven't been officially merged and/or released yet. Use the res/providers/packer.sh script to build an appropriately patched packer binary.
 
 ## Pending Tasks
 
@@ -24,14 +24,17 @@ Generate docker variants for the RHEL/Oracle/Ubuntu/Debian/Alpine configurations
 Add upload/delete/release functions to robox.sh  
 Add vagrant user password randomization logic to the bundled Vagrantfiles  
 Add init based test, and SSH command test to the box test and check script  
-Update the parallels/vitualbox configs so they use the new cpus/memory template keys  
 
 ## Pending Additions
 
-[Devuan 8](https://devuan.org/)  
+[Devuan 1.0/2.0](https://devuan.org/)  
+
+## Works in Progress
+
 [HardenedBSD 12](https://hardenedbsd.org/)  
-[Debian 10 (Feb/Mar)](https://wiki.debian.org/DebianBuster)  
-[Ubuntu 19.04 (Feb/Mar)](https://wiki.ubuntu.com/DiscoDingo)  
+[Debian 10](https://wiki.debian.org/DebianBuster)  
+[Ubuntu 19.04](https://wiki.ubuntu.com/DiscoDingo)  
+[Alpine 3.9](https://www.alpinelinux.org)  
 
 ## Operating System Requests
 
