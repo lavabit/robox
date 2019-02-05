@@ -30,10 +30,10 @@ go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
 # git checkout v1.2.4
 
 # Customize
-sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
+# sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
 
 # Increase the upload timeout
-patch -p1 < $BASE/packer-upload-timeout.patch
+# patch -p1 < $BASE/packer-upload-timeout.patch
 
 # Fix the Hyper-V boot dervice ordering for generation one virtual machines. - MERGED
 # patch -p1 < $BASE/hyperv-boot-order.patch
