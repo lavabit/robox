@@ -131,27 +131,26 @@ if [ "$VERSION" == "" ]; then
   exit 1
 fi
 
-# Experimental retry function.
 retry() {
-  local count=1
-  local result=0
-  while [[ "${count}" -le 30 ]]; do
-    [[ "${result}" -ne 0 ]] && {
-      echo -e "\\n$(tput setaf 1)$FILENAME failed... retrying ${count} of 10.$(tput sgr0)\\n" >&2
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      echo -e "\\n$(tput setaf 1)${*} failed... retrying ${COUNT} of 10.$(tput sgr0)\\n" >&2
     }
-    "${@}" && { result=0 && break; } || result="${?}"
-    count="$((count + 1))"
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
 
     # Increase the delay with each iteration.
-    delay="$((delay + 20))"
-    sleep $delay
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
   done
 
-  [[ "${count}" -gt 3 ]] && {
+  [[ "${COUNT}" -gt 10 ]] && {
     echo -e "\\n$(tput setaf 1)The command failed 10 times.$(tput sgr0)\\n" >&2
   }
 
-  return "${result}"
+  return "${RESULT}"
 }
 
 (${CURL} \
