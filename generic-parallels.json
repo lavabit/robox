@@ -27,7 +27,7 @@
         "scripts/oracle7/qemu.sh",
         "scripts/oracle7/vagrant.sh",
         "scripts/oracle7/tuning.sh",
-        "scripts/oracle7/network.sh"
+        "scripts/oracle7/cleanup.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
