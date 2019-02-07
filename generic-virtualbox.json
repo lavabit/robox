@@ -2914,7 +2914,7 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso",
-      "iso_checksum": "bdf8d32352bb0f953d9709063b38b4752b488c09cf902bdf32bb004c3ac94f76",
+      "iso_checksum": "6cdb72c85c72730b89e22ac10cd1c23cb2b74325ef903264a651517263825282",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
