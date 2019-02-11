@@ -333,8 +333,7 @@ function build() {
     fi
   done
 
-  packer build -on-error=cleanup -parall+ COUNT=5
-el=false -except="${EXCEPTIONS}" $1.json
+  packer build -on-error=cleanup -parallel=false -except="${EXCEPTIONS}" $1.json
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
