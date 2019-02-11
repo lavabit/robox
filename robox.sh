@@ -204,6 +204,20 @@ function isos {
   SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
   printf "${URL}\n${SHA}\n\n"
 
+  tput setaf 2; printf "\nDisco\n\n"; tput sgr0;
+  URL="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso"
+  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
+  URL="${URL}${ISO}"
+  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+  printf "${URL}\n${SHA}\n\n"
+
+  tput setaf 2; printf "\nBuster\n\n"; tput sgr0;
+  URL="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
+  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
+  URL="${URL}${ISO}"
+  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+  printf "${URL}\n${SHA}\n\n"
+
   # tput setaf 2; printf "\nOpenSUSE\n\n"; tput sgr0;
   # URL="https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/"
   # ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "openSUSE\-Leap\-42\.3\-NET\-x86\_64\-Build[0-9]{4}\-Media.iso|openSUSE\-Leap\-42\.3\-NET\-x86\_64.iso" | uniq`
