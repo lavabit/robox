@@ -237,13 +237,6 @@
                 "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz"
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": true,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
-                ]
-            },
-            {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
@@ -325,13 +318,6 @@
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/generic/info.json"
-                ]
-            },
-            {
-                "type": "artifice",
-                "keep_input_artifact": true,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
                 ]
             },
             {

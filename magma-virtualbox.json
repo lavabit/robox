@@ -1014,18 +1014,6 @@
                 ]
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                  "output/{{build_name}}-{{user `box_version`}}.box"
-                ],
-                "except": [
-                    "magma-alpine36-virtualbox",
-                    "magma-openbsd6-virtualbox",
-                    "magma-freebsd11-virtualbox"
-                ]
-            },
-            {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
@@ -1054,16 +1042,6 @@
                 ]
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                  "output/{{build_name}}-{{user `box_version`}}.box"
-                ],
-                "only": [
-                    "magma-alpine36-virtualbox"
-                ]
-            },
-            {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
@@ -1084,17 +1062,6 @@
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lavabit/info.json"
-                ],
-                "only": [
-                    "magma-openbsd6-virtualbox",
-                    "magma-freebsd11-virtualbox"
-                ]
-            },
-            {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                  "output/{{build_name}}-{{user `box_version`}}.box"
                 ],
                 "only": [
                     "magma-openbsd6-virtualbox",
@@ -1129,16 +1096,6 @@
                 ]
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                  "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box"
-                ],
-                "only": [
-                    "magma-centos6-virtualbox"
-                ]
-            },
-            {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
@@ -1165,16 +1122,6 @@
                 ]
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                  "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box"
-                ],
-                "only": [
-                    "magma-centos6-virtualbox"
-                ]
-            },
-            {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
@@ -1195,16 +1142,6 @@
                 "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lavabit/info.json"
-                ],
-                "only": [
-                    "magma-ubuntu1604-virtualbox"
-                ]
-            },
-            {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                  "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box"
                 ],
                 "only": [
                     "magma-ubuntu1604-virtualbox"
