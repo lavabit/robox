@@ -186,13 +186,6 @@
                 ]
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                  "output/{{build_name}}-{{user `box_version`}}.box"
-                ]
-            },
-            {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
@@ -210,13 +203,6 @@
                 "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lineage/info.json"
-                ]
-            },
-            {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                  "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box"
                 ]
             },
             {
