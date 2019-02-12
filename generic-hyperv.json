@@ -2569,9 +2569,9 @@
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
-        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
-        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine39.vagrant.cfg<enter><wait>",
-        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait5>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine39.vagrant.cfg<enter><wait5>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait5>",
         "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine39.vagrant.cfg ; ",
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
