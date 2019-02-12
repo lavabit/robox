@@ -108,13 +108,6 @@
                 ]
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.box"
-                ]
-            },
-            {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
