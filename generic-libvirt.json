@@ -2868,13 +2868,6 @@
         ]
       },
       {
-        "type": "artifice",
-        "keep_input_artifact": false,
-        "files": [
-          "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
-        ]
-      },
-      {
         "type": "checksum",
         "checksum_types": [
           "sha256"
@@ -2892,13 +2885,6 @@
         "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
         "include": [
           "tpl/roboxes/info.json"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": false,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
         ]
       },
       {
