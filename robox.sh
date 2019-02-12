@@ -187,43 +187,41 @@ function start() {
   fi
 }
 
+function print_iso() {
+  SHA=`curl --silent --location "${2}" | sha256sum | awk -F' ' '{print $1}'`
+  if [ $? != 0 ]; then
+      tput setaf 1; printf "\n$1 failed.\n\n"; tput sgr0; printf "${2}\n\n"
+      return 1
+  fi
+  tput setaf 2; printf "\n$1\n\n"; tput sgr0; printf "${2}\n${SHA}\n\n"
+}
+
 # Print the current URL and SHA hash for install discs which are updated frequently.
 function isos {
 
-  tput setaf 2; printf "\nGentoo\n\n"; tput sgr0;
+  # Find the Gentoo URL.
   URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
   ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
   URL="${URL}${ISO}"
-  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
-  printf "${URL}\n${SHA}\n\n"
+  N=( "${N[@]}" "Gentoo" ); U=( "${U[@]}" "$URL" )
 
-  tput setaf 2; printf "\nArch\n\n"; tput sgr0;
+  # Find the Arch URL.
   URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
   ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
   URL="${URL}${ISO}"
-  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
-  printf "${URL}\n${SHA}\n\n"
+  N=( "${N[@]}" "Arch" ); U=( "${U[@]}" "$URL" )
 
-  tput setaf 2; printf "\nDisco\n\n"; tput sgr0;
+  # Ubuntu Disco
   URL="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso"
-  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
-  URL="${URL}${ISO}"
-  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
-  printf "${URL}\n${SHA}\n\n"
+  N=( "${N[@]}" "Disco" ); U=( "${U[@]}" "$URL" )
 
-  tput setaf 2; printf "\nBuster\n\n"; tput sgr0;
+  # Debian Buster
   URL="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
-  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
-  URL="${URL}${ISO}"
-  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
-  printf "${URL}\n${SHA}\n\n"
+  N=( "${N[@]}" "Buster" ); U=( "${U[@]}" "$URL" )
 
-  # tput setaf 2; printf "\nOpenSUSE\n\n"; tput sgr0;
-  # URL="https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/"
-  # ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "openSUSE\-Leap\-42\.3\-NET\-x86\_64\-Build[0-9]{4}\-Media.iso|openSUSE\-Leap\-42\.3\-NET\-x86\_64.iso" | uniq`
-  # URL="${URL}${ISO}"
-  # SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
-  # printf "${URL}\n${SHA}\n\n"
+  export -f print_iso
+  parallel -j 16 --xapply print_iso {1} {2} ::: "${N[@]}" ::: "${U[@]}"
+
 }
 
 function cache {

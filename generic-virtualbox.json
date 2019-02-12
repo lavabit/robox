@@ -2855,7 +2855,7 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso",
-      "iso_checksum": "6112be6c6ecca87f12890ec91afde11db77361e6e851a4bf0535d0511a94966e",
+      "iso_checksum": "0555ebd4cd126833b0555a5ede318ccb1702bf8669a7a2f43480d113bdee2c6e",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
