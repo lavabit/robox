@@ -3291,7 +3291,7 @@
       "skip_compaction": false,
       "http_directory": "http",
       "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso",
-      "iso_checksum": "f6da7d23654d87f511088358d30d0927412fcb3d90a90f35285ec33e11a77392",
+      "iso_checksum": "8a04310237af50773069d9be254b74c789c4a8c40680d5dc9919a6756028e73b",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
