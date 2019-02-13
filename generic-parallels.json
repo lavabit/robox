@@ -3105,6 +3105,14 @@
           "{{.Name}}",
           "--faster-vm",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--device-set",
+          "cdrom0",
+          "--iface",
+          "ide"
         ]
       ],
       "hard_drive_interface": "ide",
