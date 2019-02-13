@@ -3092,19 +3092,25 @@
           "set",
           "{{.Name}}",
           "--adaptive-hypervisor",
-          "on"
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
         ],
         [
           "set",
           "{{.Name}}",
           "--pmu-virt",
-          "on"
+          "off"
         ],
         [
           "set",
           "{{.Name}}",
           "--faster-vm",
-          "on"
+          "off"
         ],
         [
           "set",
