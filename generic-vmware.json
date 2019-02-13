@@ -2920,7 +2920,7 @@
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso",
-      "iso_checksum": "8a04310237af50773069d9be254b74c789c4a8c40680d5dc9919a6756028e73b",
+      "iso_checksum": "ffcd7ce3cfa29c467c2f485b94358dbc28eb1385913815839fff283dba3f5161",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
