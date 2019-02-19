@@ -26,6 +26,7 @@
                 "scripts/alpine36/lsb.sh",
                 "scripts/alpine36/floppy.sh",
                 "scripts/alpine36/vagrant.sh",
+        "scripts/alpine36/sshd.sh",
                 "scripts/alpine36/glibc.sh",
                 "scripts/alpine36/gcc.sh",
                 "scripts/alpine36/magma.sh",
