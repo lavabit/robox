@@ -18,7 +18,7 @@ echo 'container' > /etc/yum/vars/infra
 rm -f /usr/lib/locale/locale-archive
 
 # Setup the login message instructions.
-if [[ "$PACKER_BUILD_NAME" =~ ^generic-.*$ ]]; then
+if [[ ! "$PACKER_BUILD_NAME" =~ ^generic-.*$ ]]; then
   printf "Magma Daemon Development Environment\nTo download and compile magma, just execute the magma-build.sh script.\n\n" > /etc/motd
 fi
 
@@ -59,10 +59,10 @@ printf "/tmp/excludes\n" > /tmp/excludes
 printf "/tmp/$PACKER_BUILD_NAME.tar\n" >> /tmp/excludes
 
 # Exclude all of the special files from the tarball.
-find / -type b -print >> /tmp/excludes
-find / -type c -print >> /tmp/excludes
-find / -type p -print >> /tmp/excludes
-find / -type s -print >> /tmp/excludes
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type b -print >> /tmp/excludes
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type c -print >> /tmp/excludes
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type p -print >> /tmp/excludes
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type s -print >> /tmp/excludes
 find /var/log/ -type f -print >> /tmp/excludes
 find /lib/modules/ -mindepth 1 -print >> /tmp/excludes
 find /usr/src/kernels/ -mindepth 1 -print >> /tmp/excludes
@@ -71,7 +71,7 @@ find /etc/sysconfig/network-scripts/ -name "ifcfg-*" -print >> /tmp/excludes
 find /tmp -type f -or -type d -print | grep --invert-match --extended-regexp "^/tmp/$|^/tmp$" >> /tmp/excludes
 
 # Remove the files associated with these packages since containers don't need them.
-PACKAGES=`rpm -q kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs bind-libs bind-libs-lite dhclient dhcp-common dhcp-libs dracut-network e2fsprogs e2fsprogs-libs ebtables ethtool file firewalld freetype gettext gettext-libs groff-base grub2 grub2-tools grubby initscripts iproute iptables kexec-tools libcroco libgomp libmnl libnetfilter_conntrack libnfnetlink libselinux-python lzo libunistring os-prober python-decorator python-slip python-slip-dbus snappy sysvinit-tools which linux-firmware haveged | grep --invert "not installed"`
+PACKAGES=`rpm -q kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs bind-libs bind-libs-lite dhclient dhcp-common dhcp-libs dracut-network e2fsprogs e2fsprogs-libs ebtables ethtool firewalld grub2 grub2-tools grubby initscripts iproute iptables kexec-tools libmnl libnetfilter_conntrack libnfnetlink python-decorator python-slip python-slip-dbus snappy sysvinit-tools linux-firmware | grep --invert "not installed"`
 
 # Manually exclude certain files/directories from the list.
 rpm -q --list $PACKAGES | grep --invert "/usr/share/bash-completion/completions" | \
