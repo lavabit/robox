@@ -9,7 +9,7 @@
 export VERSION="1.8.50"
 export AGENT="Vagrant/2.2.0 (+https://www.vagrantup.com; ruby2.4.4)"
 
-# Limit the number of cpus packer will use.
+# Limit the number of cpus /usr/local/packer will use.
 export GOMAXPROCS="2"
 
 # Handle self referencing, sourcing etc.
@@ -46,7 +46,7 @@ fi
 # Import the credentials.
 source $BASE/.credentialsrc
 
-# The list of packer config files.
+# The list of /usr/local/packer config files.
 FILES="packer-cache.json "\
 "magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
 "generic-docker.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-parallels.json generic-virtualbox.json "\
@@ -169,7 +169,7 @@ function isos {
 function cache {
 
   unset PACKER_LOG
-  packer build -on-error=cleanup -color=false -parallel=false packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+  /usr/local/packer build -on-error=cleanup -color=false -parallel=false packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\nDistro disc image download aborted...\n\n"; tput sgr0
@@ -253,9 +253,9 @@ function verify_local {
 
 # Validate the templates before building.
 function verify_json() {
-  packer validate $1.json
+  /usr/local/packer validate $1.json
   if [[ $? != 0 ]]; then
-    tput setaf 1; tput bold; printf "\n\nthe $1 packer template failed to validate...\n\n"; tput sgr0
+    tput setaf 1; tput bold; printf "\n\nthe $1 /usr/local/packer template failed to validate...\n\n"; tput sgr0
     for i in 1 2 3; do printf "\a"; sleep 1; done
     exit 1
   fi
@@ -271,7 +271,7 @@ function verify_logdir {
   fi
 }
 
-# Build the boxes and cleanup the packer cache after each run.
+# Build the boxes and cleanup the /usr/local/packer cache after each run.
 function build() {
 
   verify_logdir
@@ -287,7 +287,7 @@ function build() {
     fi
   done
 
-  packer build -on-error=cleanup -parallel=false -except="${EXCEPTIONS}" $1.json
+  /usr/local/packer build -on-error=cleanup -parallel=false -except="${EXCEPTIONS}" $1.json
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
@@ -305,52 +305,52 @@ function box() {
   if [[ $OS == "Windows_NT" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/magma-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 magma-hyperv.json
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 magma-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/generic-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-hyperv.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 generic-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/lineage-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/developer-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-hyperv.json
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 developer-hyperv.json
 
   elif [[ `uname` == "Darwin" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/generic-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*parallels.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-parallels.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*parallels.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 generic-parallels.json
 
   else
 
       export PACKER_LOG_PATH="$BASE/logs/magma-docker-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json; docker-logout)
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json; docker-logout)
       export PACKER_LOG_PATH="$BASE/logs/magma-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 magma-libvirt.json
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 magma-libvirt.json
       export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 magma-virtualbox.json
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 magma-virtualbox.json
 
       export PACKER_LOG_PATH="$BASE/logs/generic-docker-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=cleanup -parallel=false -only=$1 generic-docker.json; docker-logout)
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 generic-docker.json; docker-logout)
       export PACKER_LOG_PATH="$BASE/logs/generic-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-libvirt.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 generic-libvirt.json
       export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
 
       export PACKER_LOG_PATH="$BASE/logs/developer-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-vmware.json
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 developer-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-libvirt.json
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 developer-libvirt.json
       export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-virtualbox.json
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 developer-virtualbox.json
 
       export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-vmware.json
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 lineage-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/lineage-libvirt-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-libvirt.json
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 lineage-libvirt.json
       export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-virtualbox.json
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && /usr/local/packer build -on-error=cleanup -parallel=false -only=$1 lineage-virtualbox.json
 
   fi
 }
@@ -640,7 +640,7 @@ function docker-login() {
 }
 
 function docker-logout() {
-  RUNNING=`ps -ef | grep --invert grep | grep --count --extended-regexp "packer build.*generic-docker.json|packer build.*magma-docker.json"`
+  RUNNING=`ps -ef | grep --invert grep | grep --count --extended-regexp "/usr/local/packer build.*generic-docker.json|/usr/local/packer build.*magma-docker.json"`
 
   if [ $RUNNING == 0 ]; then
     docker logout
@@ -725,7 +725,7 @@ function hyperv() {
     # Build the generic boxes first.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^generic-[a-z]*[0-9]*-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv.json
+        /usr/local/packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv.json
         rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
@@ -733,19 +733,19 @@ function hyperv() {
     # Build the magma boxes second.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
+        /usr/local/packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
         rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-[a-z]*[0-9]*-hyperv$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
+        /usr/local/packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
         rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-developer-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv.json
+        /usr/local/packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv.json
         rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
@@ -753,13 +753,13 @@ function hyperv() {
     # Build the Lineage boxes fourth.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
+        /usr/local/packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
         rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z]*[0-9]*-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
+        /usr/local/packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
         rm -f $BASE/output/"${LIST[$i]}-${VERSION}.box"
       fi
     done
@@ -787,7 +787,7 @@ function parallels() {
     # Ideally, we shouldn't need this. However the ancient Macbook Air
     # used to make the Parallels boxes doesn't have the resources to
     # load the full template at once. As a workaround, the logic below
-    # makes packer build the boxes, one at a time. This function also
+    # makes /usr/local/packer build the boxes, one at a time. This function also
     # removes the box file (but not the checksum) to avoid running out
     # of disk space.
 
@@ -800,7 +800,7 @@ function parallels() {
       if [ `df -m . | tail -1 |  awk -F' ' '{print $4}'` < 8192 ]; then
         tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
       elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
+        /usr/local/packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
         rm --recursive --force $BASE/packer_cache/
       fi
     done

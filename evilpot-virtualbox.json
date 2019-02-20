@@ -12,8 +12,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-
-                "evilpot-ubuntu1604-virtualbox"
+                "evilpot-virtualbox"
             ]
         },
         {
@@ -35,7 +34,7 @@
             "expect_disconnect": "true",
             "only": [
 
-                "evilpot-ubuntu1604-virtualbox"
+                "evilpot-virtualbox"
             ]
         },
         {
@@ -76,201 +75,6 @@
         }
     ],
     "builders": [
-        {
-            "type": "virtualbox-iso",
-            "name": "evilpot-virtualbox",
-            "vm_name": "evilpot-virtualbox",
-            "output_directory": "output/evilpot-ubuntu1604-virtualbox",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/evilpot.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "disk_size": 196608,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vram",
-                    "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
-                ]
-            ],
-            "guest_os_type": "Ubuntu_64",
-            "http_directory": "http",
-            "headless": true,
-            "vrdp_bind_address": "127.0.0.1",
-            "vrdp_port_min": 11000,
-            "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
-            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        },
-        {
-            "type": "virtualbox-iso",
-            "name": "evilpot-ubuntu1604-virtualbox",
-            "vm_name": "evilpot-ubuntu1604-virtualbox",
-            "output_directory": "output/evilpot-ubuntu1604-virtualbox",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/evilpot.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "disk_size": 196608,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vram",
-                    "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
-                ]
-            ],
-            "guest_os_type": "Ubuntu_64",
-            "http_directory": "http",
-            "headless": true,
-            "vrdp_bind_address": "127.0.0.1",
-            "vrdp_port_min": 11000,
-            "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
-            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        },
-        {
-            "type": "virtualbox-iso",
-            "name": "evilpot-ubuntu1604-virtualbox",
-            "vm_name": "evilpot-ubuntu1604-virtualbox",
-            "output_directory": "output/evilpot-ubuntu1604-virtualbox",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/evilpot.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "disk_size": 196608,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vram",
-                    "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
-                ]
-            ],
-            "guest_os_type": "Ubuntu_64",
-            "http_directory": "http",
-            "headless": true,
-            "vrdp_bind_address": "127.0.0.1",
-            "vrdp_port_min": 11000,
-            "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
-            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        },
         {
             "type": "virtualbox-iso",
             "name": "evilpot-ubuntu1604-virtualbox",
@@ -335,7 +139,79 @@
             "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "virtualbox_version_file": "VBoxVersion.txt"
+        },
+
+
+        {
+          "type": "virtualbox-iso",
+          "name": "evilpot-ubuntu1810-virtualbox",
+          "vm_name": "evilpot-ubuntu1810-virtualbox",
+          "output_directory": "output/evilpot-ubuntu1810-virtualbox",
+          "boot_wait": "1s",
+          "boot_command": [
+            "<tab><wait><tab><wait><tab><wait><tab><wait>",
+            "<tab><wait><tab><wait><tab><wait><tab><wait>",
+            "<tab><wait><tab><wait><tab><wait><tab><wait>",
+            "<esc><f6><esc>",
+            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "/install/vmlinuz ",
+            "initrd=/install/initrd.gz ",
+            "fb=false ",
+            "auto-install/enable=true ",
+            "debconf/priority=critical ",
+            "console-setup/ask_detect=false ",
+            "debconf/frontend=noninteractive ",
+            "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1810.vagrant.cfg<wait> ",
+            " --- <enter>"
+          ],
+          "disk_size": 32768,
+          "vboxmanage": [
+            [
+              "modifyvm",
+              "{{.Name}}",
+              "--memory",
+              "2048"
+            ],
+            [
+              "modifyvm",
+              "{{.Name}}",
+              "--vram",
+              "64"
+            ],
+            [
+              "modifyvm",
+              "{{.Name}}",
+              "--cpus",
+              "2"
+            ]
+          ],
+          "guest_os_type": "Ubuntu_64",
+          "http_directory": "http",
+          "headless": true,
+          "vrdp_bind_address": "127.0.0.1",
+          "vrdp_port_min": 11000,
+          "vrdp_port_max": 12000,
+          "iso_url": "https://mirror.leaseweb.net/ubuntu-cdimage/releases/18.10/release/ubuntu-18.10-server-amd64.iso",
+          "iso_checksum": "cf9250781dadd919f23c9d9612212cad653e35fccc2fbcf6853f67ad09e067ba",
+          "iso_checksum_type": "sha256",
+          "ssh_username": "root",
+          "ssh_password": "vagrant",
+          "ssh_port": 22,
+          "ssh_wait_timeout": "3600s",
+          "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+          "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+          "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+          "guest_additions_path": "VBoxGuestAdditions.iso",
+          "virtualbox_version_file": "VBoxVersion.txt"
         }
+
     ],
     "post-processors": [
         [
