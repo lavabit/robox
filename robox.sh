@@ -260,7 +260,7 @@ function verify_url {
 function verify_sum {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
-  curl --silent --location --head "$1" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+  curl --silent --location --head "$1" | grep --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
