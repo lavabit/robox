@@ -64,10 +64,14 @@ MEDIAURLS="https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-
 "|https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"\
 "|https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso"
 
+# When validating ISO checksums skip these URLS.
+DYNAMICURLS="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso|"\
+"https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
+
 # Collect the list of ISO urls.
-ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "$MEDIAFILES" | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_checksum_type" | grep -v -E "$MEDIASUMS" | awk -F'"' '{print $4}'`)
-UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "$MEDIAFILES" | awk -F'"' '{print $4}' | sort | uniq`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -Ev "$DYNAMICURLS" | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -Ev "iso_checksum_type|iso_checksum_url" | awk -F'"' '{print $4}'`)
+UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}' | sort | uniq`)
 
 # Collect the list of box names.
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
@@ -442,8 +446,9 @@ function sums() {
   # for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
   #     verify_sum "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
   # done
+
   export -f verify_sum
-  parallel -j 16 --xapply verify_sum {1} {2} ::: "${ISOURLS[@]}" ::: "${ISOSUMS[@]}"
+  parallel -j 16 --xapply verify_sum {1} {2} ":::" "${ISOURLS[@]}" ":::" "${ISOSUMS[@]}"
 
   # Let the user know all of the links passed.
   # printf "\nAll ${#ISOURLS[@]} of the install media locations have been validated...\n\n"

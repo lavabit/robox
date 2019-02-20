@@ -407,8 +407,7 @@
       "headless": true,
       "disk_size": 1,
       "boot_wait": "5s",
-      "iso_url": 
-      "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190219T214502Z.iso",
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190219T214502Z.iso",
       "iso_checksum": "a47f26868a8613eab634c7d1a13a10587d7018489680627aa25c26e3ebb92823",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
