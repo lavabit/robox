@@ -10,7 +10,7 @@ export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 #curl -O https://www.inetsim.org/downloads/inetsim-1.2.8.tar.gz
 #tar xvzf inetsim-1.2.8.tar.gz && cd inetsim-1.2.8
-3bash setup.sh
+bash setup.sh
 #install inetsim using debian apt packages.
 apt install apt-transport-https --assume-yes
 echo "deb https://www.inetsim.org/debian/ binary/" > /etc/apt/sources.list.d/inetsim.list
@@ -141,7 +141,7 @@ service_bind_address	0.0.0.0
 #
 # Default: yes
 #
-#create_reports		no
+create_reports yes
 
 
 #########################################
@@ -154,7 +154,7 @@ service_bind_address	0.0.0.0
 #
 # Default: en
 #
-#report_language	de
+report_language	en
 
 
 #############################################################
@@ -216,7 +216,7 @@ faketime_auto_increment	31337
 #
 # Default: 53
 #
-#dns_bind_port		53
+dns_bind_port		53
 
 
 #########################################
@@ -240,7 +240,7 @@ dns_default_ip		10.0.0.1
 #
 # Default: www
 #
-#dns_default_hostname		somehost
+dns_default_hostname		klosnet
 
 
 #########################################
@@ -252,7 +252,7 @@ dns_default_ip		10.0.0.1
 #
 # Default: inetsim.org
 #
-#dns_default_domainname		some.domain
+dns_default_domainname		klosnet.biz
 
 
 #########################################
@@ -278,7 +278,7 @@ dns_default_ip		10.0.0.1
 #
 # Default: \"INetSim DNS Server\"
 #
-#dns_version \"9.2.4\"
+dns_version \"9.2.4\"
 
 
 #############################################################
@@ -294,7 +294,7 @@ dns_default_ip		10.0.0.1
 #
 # Default: 80
 #
-#http_bind_port		80
+http_bind_port		80
 
 
 #########################################
@@ -334,18 +334,18 @@ http_version		\"Server: Apache/2.2.15 (CentOS) DAV/2 PHP/5.3.3 mod_ssl/2.2.15 Op
 #
 # Default: none
 #
-http_fakefile		txt	sample.txt	text/plain
-http_fakefile		htm	sample.html	text/html
-http_fakefile		html	sample.html	text/html
-http_fakefile		php	sample.html	text/html
-http_fakefile		gif	sample.gif	image/gif
-http_fakefile		jpg	sample.jpg	image/jpeg
-http_fakefile		jpeg	sample.jpg	image/jpeg
-http_fakefile		png	sample.png	image/png
-http_fakefile		bmp	sample.bmp	image/x-ms-bmp
-http_fakefile		ico	favicon.ico	image/x-icon
-http_fakefile		exe	sample_gui.exe	x-msdos-program
-http_fakefile		com	sample_gui.exe	x-msdos-program
+#http_fakefile		txt	sample.txt	text/plain
+#http_fakefile		htm	sample.html	text/html
+#http_fakefile		html	sample.html	text/html
+#http_fakefile		php	sample.html	text/html
+#http_fakefile		gif	sample.gif	image/gif
+#http_fakefile		jpg	sample.jpg	image/jpeg
+#http_fakefile		jpeg	sample.jpg	image/jpeg
+#http_fakefile		png	sample.png	image/png
+#http_fakefile		bmp	sample.bmp	image/x-ms-bmp
+#http_fakefile		ico	favicon.ico	image/x-icon
+#http_fakefile		exe	sample_gui.exe	x-msdos-program
+#http_fakefile		com	sample_gui.exe	x-msdos-program
 
 
 #########################################
@@ -361,7 +361,7 @@ http_fakefile		com	sample_gui.exe	x-msdos-program
 #
 # Default: none
 #
-http_default_fakefile	sample.html	text/html
+#http_default_fakefile	sample.html	text/html
 
 
 #########################################
@@ -391,7 +391,7 @@ http_default_fakefile	sample.html	text/html
 #
 # Default: 443
 #
-https_bind_port		8443
+https_bind_port		443
 
 
 #########################################
@@ -415,7 +415,7 @@ https_version		\"Server: Apache/2.2.15 (CentOS) DAV/2 PHP/5.3.3 mod_ssl/2.2.15 O
 #
 # Default: yes
 #
-#https_fakemode		no
+https_fakemode		yes
 
 
 #########################################
@@ -429,18 +429,18 @@ https_version		\"Server: Apache/2.2.15 (CentOS) DAV/2 PHP/5.3.3 mod_ssl/2.2.15 O
 #
 # Default: none
 #
-https_fakefile		txt	sample.txt	text/plain
-https_fakefile		htm	sample.html	text/html
-https_fakefile		html	sample.html	text/html
-https_fakefile		php	sample.html	text/html
-https_fakefile		gif	sample.gif	image/gif
-https_fakefile		jpg	sample.jpg	image/jpeg
-https_fakefile		jpeg	sample.jpg	image/jpeg
-https_fakefile		png	sample.png	image/png
-https_fakefile		bmp	sample.bmp	image/x-ms-bmp
-https_fakefile		ico	favicon.ico	image/x-icon
-https_fakefile		exe	sample_gui.exe	x-msdos-program
-https_fakefile		com	sample_gui.exe	x-msdos-program
+#https_fakefile		txt	sample.txt	text/plain
+#https_fakefile		htm	sample.html	text/html
+#https_fakefile		html	sample.html	text/html
+#https_fakefile		php	sample.html	text/html
+#https_fakefile		gif	sample.gif	image/gif
+#https_fakefile		jpg	sample.jpg	image/jpeg
+#https_fakefile		jpeg	sample.jpg	image/jpeg
+#https_fakefile		png	sample.png	image/png
+#https_fakefile		bmp	sample.bmp	image/x-ms-bmp
+#https_fakefile		ico	favicon.ico	image/x-icon
+#https_fakefile		exe	sample_gui.exe	x-msdos-program
+#https_fakefile		com	sample_gui.exe	x-msdos-program
 
 
 #########################################
@@ -513,7 +513,7 @@ https_default_fakefile	sample.html	text/html
 #
 # Default: none
 #
-#https_ssl_dhfile	https_dh1024.pem
+https_ssl_dhfile	https_dh1024.pem
 
 
 #############################################################
@@ -529,7 +529,7 @@ https_default_fakefile	sample.html	text/html
 #
 # Default: 25
 #
-#smtp_bind_port		25
+smtp_bind_port		25
 
 
 #########################################
@@ -540,7 +540,7 @@ https_default_fakefile	sample.html	text/html
 # Syntax: smtp_fqdn_hostname <string>
 #
 # Default: mail.inetsim.org
-smtp_fqdn_hostname	lavabit.com
+smtp_fqdn_hostname	mail.klosnet.biz
 #smtp_fqdn
 
 
@@ -566,7 +566,7 @@ smtp_banner		\"220 Magma SMTP Mailer ready.\"
 #
 # Default: no
 #
-#smtp_helo_required	yes
+smtp_helo_required	yes
 
 
 #########################################
@@ -578,7 +578,7 @@ smtp_banner		\"220 Magma SMTP Mailer ready.\"
 #
 # Default: yes
 #
-#smtp_extended_smtp	no
+smtp_extended_smtp	yes
 
 
 #########################################
@@ -604,7 +604,7 @@ smtp_banner		\"220 Magma SMTP Mailer ready.\"
 # SOML
 # TURN
 # ETRN
-# ATRN
+## ATRN
 # VERP
 # MTRK
 # CHUNKING
@@ -615,7 +615,7 @@ smtp_banner		\"220 Magma SMTP Mailer ready.\"
 # BINARYMIME
 # NO-SOLICITING		# one optional parameter
 # FUTURERELEASE		# two required parameters
-#
+
 # Default: none
 #
 smtp_service_extension		VRFY
