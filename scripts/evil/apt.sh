@@ -44,4 +44,4 @@ apt-get --assume-yes install sysstat inotify-tools; error
 apt-get --assume-yes install python-crypto python-cryptography; error
 
 # Boosts the available entropy which allows magma to start faster.
-apt-get --assume-yes install haveged; error
+apt-get --assume-yes install inetsim haveged; error
