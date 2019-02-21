@@ -171,6 +171,11 @@ function provide-vbox() {
     chmod 755 /usr/lib/virtualbox/VBoxDDR0.r0
   fi
 
+  # If there is a set of user preferences, relocate the default box directory.
+  if [ -f $HOME/.config/VirtualBox/VirtualBox.xml ]; then
+     sed -i "s/defaultMachineFolder=\"[^\"]*\"/defaultMachineFolder=\"${HOME////\\/}\/\.virtualbox\"/g" /home/ladar/.config/VirtualBox/VirtualBox.xml
+  fi
+
 }
 
 function provide-docker() {
