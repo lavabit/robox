@@ -1,5 +1,31 @@
 #!/bin/bash -eux
 
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 # Setup the box, for magma. These commands will be run as root during provisioning.
 error() {
         if [ $? -ne 0 ]; then
@@ -9,22 +35,22 @@ error() {
 }
 
 # Install the the EPEL repository.
-yum --assumeyes --enablerepo=extras install epel-release; error
+retry yum --assumeyes --enablerepo=extras install epel-release; error
 
 # Packages needed beyond a minimal install to build and run magma.
-yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel; error
+retry yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel; error
 
 # Grab the required packages from the EPEL repo.
-yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
+retry yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
 
 # Boosts the available entropy which allows magma to start faster.
-yum --quiet --assumeyes install haveged; error
+retry yum --quiet --assumeyes install haveged; error
 
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
-yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
+retry yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
 
 # These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
-yum --quiet --assumeyes install python-crypto python-cryptography
+retry yum --quiet --assumeyes install python-crypto python-cryptography
 
 # Create the clamav user to avoid spurious errors.
 useradd clamav

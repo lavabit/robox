@@ -1,5 +1,31 @@
 #!/bin/bash
 
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 error() {
         if [ $? -ne 0 ]; then
                 printf "\n\nbase configuration script failure...\n\n";
@@ -21,27 +47,27 @@ truncate --size=0 /etc/yum.repos.d/CentOS-Media.repo /etc/yum.repos.d/CentOS-Vau
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6; error
 
 # Update the base install first.
-yum --assumeyes update; error
+retry yum --assumeyes update; error
 
 # We'll want the EPEL repo installed.
-yum --assumeyes --enablerepo=extras install deltarpm epel-release; error
+retry yum --assumeyes --enablerepo=extras install deltarpm epel-release; error
 
 # Import the EPEL key.
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6; error
 
 # Install the basic packages we'd expect to find.
-yum --assumeyes install deltarpm net-tools sudo dmidecode yum-utils man bash-completion man-pages vim-common vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc; error
+retry yum --assumeyes install deltarpm net-tools sudo dmidecode yum-utils man bash-completion man-pages vim-common vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc; error
 
 # Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays
 # often interupt the the provisioning process.
-yum --assumeyes --disablerepo=epel update; error
+retry yum --assumeyes --disablerepo=epel update; error
 
 if [ -f /etc/yum.repos.d/CentOS-Vault.repo.rpmnew ]; then
   rm --force /etc/yum.repos.d/CentOS-Vault.repo.rpmnew
 fi
 
 # Configure pip in case anybody needs it. We do this seperately to make it easier to skip/remove.
-yum --assumeyes install python-pip; error
+retry yum --assumeyes install python-pip; error
 
 # Remove the spurious pip warning about an insecure urllib3 library.
 patch /usr/lib/python2.6/site-packages/pip/_vendor/requests/packages/urllib3/util/ssl_.py <<-EOF

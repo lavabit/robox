@@ -1,24 +1,50 @@
 #!/bin/bash -eux
 
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 # Install the the EPEL repository.
-yum --assumeyes --enablerepo=extras install epel-release
+retry yum --assumeyes --enablerepo=extras install epel-release
 
 # Packages needed beyond a minimal install to build and run magma.
-yum --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers libgomp mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes cmake libarchive
+retry yum --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers libgomp mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes cmake libarchive
 
 # Install libbsd because DSPAM relies upon for the strl functions, and the
 # entropy which improves the availability of random bits, and helps magma
 # launch and complete her unit tests faster.
-yum --assumeyes install libbsd libbsd-devel inotify-tools haveged
+retry yum --assumeyes install libbsd libbsd-devel inotify-tools haveged
 
 # The MySQL services magma relies upon.
-yum --assumeyes install mysql mysql-server perl-DBI perl-DBD-MySQL
+retry yum --assumeyes install mysql mysql-server perl-DBI perl-DBD-MySQL
 
 # The memcached services magma uses.
-yum --assumeyes install libevent memcached
+retry yum --assumeyes install libevent memcached
 
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
-yum --assumeyes install wget git rsync perl-Git perl-Error
+retry yum --assumeyes install wget git rsync perl-Git perl-Error
 
 # Ensure memcached doesn't try to use IPv6.
 if [ -f /etc/sysconfig/memcached ]; then
@@ -43,7 +69,7 @@ mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
 mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
 
 # Install the python packages needed for the stacie script to run, which requires the python cryptography package (installed via pip).
-yum --assumeyes install zlib-devel openssl-devel libffi-devel python-pip python-ply python-devel python-pycparser python-crypto2.6 libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel
+retry yum --assumeyes install zlib-devel openssl-devel libffi-devel python-pip python-ply python-devel python-pycparser python-crypto2.6 libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel
 
 # Install the Python Prerequisites
 pip install --disable-pip-version-check cryptography==1.5.2 cffi==1.11.5 enum34==1.1.6 idna==2.7 ipaddress==1.0.22 pyasn1==0.4.4 six==1.11.0 setuptools==11.3
