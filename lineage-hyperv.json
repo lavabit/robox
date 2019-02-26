@@ -13,9 +13,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-hyperv",
-                "lineageos-hyperv",
-                "lineage-nash-hyperv",
-                "lineageos-nash-hyperv"
+                "lineage-nash-hyperv"
+
             ]
         },
         {
@@ -37,9 +36,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-hyperv",
-                "lineageos-hyperv",
-                "lineage-nash-hyperv",
-                "lineageos-nash-hyperv"
+                "lineage-nash-hyperv"
+
             ]
         },
         {
@@ -49,9 +47,8 @@
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
                 "lineage-hyperv",
-                "lineageos-hyperv",
-                "lineage-nash-hyperv",
-                "lineageos-nash-hyperv"
+                "lineage-nash-hyperv"
+
             ]
         },
         {
@@ -63,9 +60,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-hyperv",
-                "lineageos-hyperv",
-                "lineage-nash-hyperv",
-                "lineageos-nash-hyperv"
+                "lineage-nash-hyperv"
+
             ]
         },
         {
@@ -88,6 +84,7 @@
             "type": "hyperv-iso",
             "name": "lineage-hyperv",
             "vm_name": "lineage-hyperv",
+            "temp_path": "output/",
             "output_directory": "output/lineage-hyperv",
             "boot_wait": "20s",
             "boot_command": [
@@ -109,52 +106,7 @@
             ],
             "disk_size": 98304,
             "ram_size": 1024,
-            "cpu": 2,
-            "http_directory": "http",
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "generation": 1,
-            "headless": true,
-            "communicator": "ssh",
-            "skip_compaction": false,
-            "enable_secure_boot": false,
-            "enable_mac_spoofing": true,
-            "enable_dynamic_memory": false,
-            "guest_additions_mode": "disable",
-            "enable_virtualization_extensions": false
-        },
-        {
-            "type": "hyperv-iso",
-            "name": "lineageos-hyperv",
-            "vm_name": "lineageos-hyperv",
-            "output_directory": "output/lineageos-hyperv",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
-            ],
-            "disk_size": 98304,
-            "ram_size": 1024,
-            "cpu": 2,
+            "cpu": 4,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
             "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
@@ -178,6 +130,7 @@
             "type": "hyperv-iso",
             "name": "lineage-nash-hyperv",
             "vm_name": "lineage-nash-hyperv",
+            "temp_path": "output/",
             "output_directory": "output/lineage-nash-hyperv",
             "boot_wait": "20s",
             "boot_command": [
@@ -199,52 +152,7 @@
             ],
             "disk_size": 98304,
             "ram_size": 1024,
-            "cpu": 2,
-            "http_directory": "http",
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "generation": 1,
-            "headless": true,
-            "communicator": "ssh",
-            "skip_compaction": false,
-            "enable_secure_boot": false,
-            "enable_mac_spoofing": true,
-            "enable_dynamic_memory": false,
-            "guest_additions_mode": "disable",
-            "enable_virtualization_extensions": false
-        },
-        {
-            "type": "hyperv-iso",
-            "name": "lineageos-nash-hyperv",
-            "vm_name": "lineageos-nash-hyperv",
-            "output_directory": "output/lineageos-nash-hyperv",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
-            ],
-            "disk_size": 98304,
-            "ram_size": 1024,
-            "cpu": 2,
+            "cpu": 4,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
             "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
@@ -278,10 +186,23 @@
                 ]
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": true,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.box"
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+          {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/lineageos.rb",
+                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lineage/info.json"
                 ]
             },
             {
@@ -289,8 +210,8 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+                "keep_input_artifact": false,
+                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box.sha256"
             }
         ]
     ]

@@ -64,6 +64,8 @@ HALFMEM=`echo $(($TOTALMEM/2))`
 # Setup the memory locking limits.
 printf "*    soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-magmad.conf
 printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.conf
+printf "*    soft    nofile     65536\n" >> /etc/security/limits.d/50-magmad.conf
+printf "*    hard    nofile     65536\n" >> /etc/security/limits.d/50-magmad.conf
 
 # Fix the SELinux context.
 chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
@@ -104,9 +106,17 @@ sleep 30
 # Temporary [hopefully] workaround to avoid [yet another] bug in NSS.
 export NSS_DISABLE_HW_AES=1
 
+# If the directory is present, remove it so we can clone a fresh copy.
+if [ -d magma-develop ]; then
+  rm --recursive --force magma-develop
+fi
+
 # Clone the magma repository off Github.
 git clone https://github.com/lavabit/magma.git magma-develop; error
 cd magma-develop; error
+
+# Setup the bin links, just in case we need to troubleshoot things manually.
+dev/scripts/linkup.sh; error
 
 # Compile the dependencies into a shared library.
 dev/scripts/builders/build.lib.sh all; error

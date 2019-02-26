@@ -13,9 +13,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-vmware",
-                "lineageos-vmware",
-                "lineage-nash-vmware",
-                "lineageos-nash-vmware"
+                "lineage-nash-vmware"
+
             ]
         },
         {
@@ -37,9 +36,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-vmware",
-                "lineageos-vmware",
-                "lineage-nash-vmware",
-                "lineageos-nash-vmware"
+                "lineage-nash-vmware"
+
             ]
         },
         {
@@ -49,9 +47,8 @@
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
                 "lineage-vmware",
-                "lineageos-vmware",
-                "lineage-nash-vmware",
-                "lineageos-nash-vmware"
+                "lineage-nash-vmware"
+
             ]
         },
         {
@@ -63,9 +60,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-vmware",
-                "lineageos-vmware",
-                "lineage-nash-vmware",
-                "lineageos-nash-vmware"
+                "lineage-nash-vmware"
+
             ]
         },
         {
@@ -112,68 +108,8 @@
             ],
             "disk_size": 196608,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
-            "vmx_data_post": {
-              "cleanShutdown": "TRUE",
-              "softPowerOff": "FALSE",
-              "ethernet0.virtualDev": "e1000",
-              "ethernet0.startConnected": "TRUE",
-              "ethernet0.wakeonpcktrcv": "false"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": false,
-            "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vnc_bind_address": "127.0.0.1",
-            "vmx_remove_ethernet_interfaces": true,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
-        },
-        {
-            "type": "vmware-iso",
-            "name": "lineageos-vmware",
-            "vm_name": "lineageos-vmware",
-            "vmdk_name": "lineageos-vmware",
-            "output_directory": "output/lineageos-vmware",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "disk_size": 196608,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 4,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -226,68 +162,8 @@
             ],
             "disk_size": 196608,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
-            "vmx_data_post": {
-              "cleanShutdown": "TRUE",
-              "softPowerOff": "FALSE",
-              "ethernet0.virtualDev": "e1000",
-              "ethernet0.startConnected": "TRUE",
-              "ethernet0.wakeonpcktrcv": "false"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": false,
-            "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vnc_bind_address": "127.0.0.1",
-            "vmx_remove_ethernet_interfaces": true,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
-        },
-        {
-            "type": "vmware-iso",
-            "name": "lineageos-nash-vmware",
-            "vm_name": "lineageos-nash-vmware",
-            "vmdk_name": "lineageos-nash-vmware",
-            "output_directory": "output/lineageos-nash-vmware",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "disk_size": 196608,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 4,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -326,10 +202,23 @@
                 ]
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": true,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.box"
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+          {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/lineageos.rb",
+                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lineage/info.json"
                 ]
             },
             {
@@ -337,8 +226,8 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+                "keep_input_artifact": false,
+                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box.sha256"
             }
         ]
     ]

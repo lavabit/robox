@@ -1,5 +1,9 @@
 #!/bin/bash -ux
 
+if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
+  mount /dev/cdrom /media || (printf "\nFailed mount RHEL cdrom.\n"; exit 1)
+fi
+
 # Needed to check whether we're running atop Parallels.
 yum --assumeyes install dmidecode
 

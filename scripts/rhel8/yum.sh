@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Check whether the install media is mounted, and if necessary mount it.
-if [ ! -d /media/BaseOS/ ]; then
-  mount /dev/cdrom /media
+if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
+  mount /dev/cdrom /media || (printf "\nFailed mount RHEL cdrom.\n"; exit 1)
 fi
 
 # Setup the install DVD as the yum repo location.
@@ -48,7 +48,10 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 # sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/mirrors.kernel.org\/fedora-epel\//g" /etc/yum.repos.d/epel.repo
 
 # Install the basic packages we'd expect to find.
-yum --assumeyes install  sudo dmidecode yum-utils bash-completion man man-pages vim-enhanced sysstat bind-utils wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive info autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc
+yum --assumeyes install sudo dmidecode yum-utils bash-completion man man-pages vim-enhanced sysstat bind-utils wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive info autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc
+
+# For some reason the beta thinks this package is installed, when in fact it's missing.
+yum --assumeyes reinstall libunistring
 
 # Whois is missing from the beta.
 # jwhois

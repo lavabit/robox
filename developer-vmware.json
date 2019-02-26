@@ -12,7 +12,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer",
                 "magma-developer-vmware"
             ]
         },
@@ -38,7 +37,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer",
                 "magma-developer-vmware"
             ]
         },
@@ -58,47 +56,6 @@
     "builders": [
         {
             "type": "vmware-iso",
-            "name": "magma-developer",
-            "vm_name": "magma-developer",
-            "vmdk_name": "magma-developer",
-            "output_directory": "output/magma-developer",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
-            ],
-            "disk_size": 131072,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "4096",
-                "numvcpus": "4",
-                "cpuid.corespersocket": "2"
-            },
-            "vmx_data_post": {
-              "cleanShutdown": "TRUE",
-              "softPowerOff": "FALSE",
-              "ethernet0.virtualDev": "e1000",
-              "ethernet0.startConnected": "TRUE",
-              "ethernet0.wakeonpcktrcv": "false"
-            },
-            "guest_os_type": "centos-64",
-            "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vnc_bind_address": "127.0.0.1",
-            "vmx_remove_ethernet_interfaces": false,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
-            "skip_compaction": false,
-            "ssh_username": "root",
-            "ssh_password": "magma",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "7200s",
-            "shutdown_command": "sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
-        },
-        {
-            "type": "vmware-iso",
             "name": "magma-developer-vmware",
             "vm_name": "magma-developer-vmware",
             "vmdk_name": "magma-developer-vmware",
@@ -109,11 +66,8 @@
             ],
             "disk_size": 131072,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "4096",
-                "numvcpus": "4",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 4,
+            "memory": 4096,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -142,16 +96,6 @@
     "post-processors": [
         [
             {
-                "type": "shell-local",
-                "inline": [
-                    "ovftool --diskMode=thin --compress=9 --name=\"magma.local\" --prop:vendor=\"Lavabit\" --prop:vendorUrl=\"https://lavabit.com\" --prop:product=\"magma.local\" --prop:productUrl=\"https://lavabit.com\" --prop:version=\"{{user `box_version`}}\" --prop:fullVersion=\"{{user `box_version`}}\" --annotation=\"The magma encrypted mail daemon desktop development environment.\" \"output/magma-developer/magma-developer.vmx\" \"output/magma-developer-{{user `box_version`}}.ova\"",
-                    "rm --recursive --force  \"output/magma-developer/\""
-                ],
-                "only": [
-                    "magma-developer"
-                ]
-            },
-            {
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
@@ -165,18 +109,11 @@
                 ]
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.box"
-                ]
-            },
-            {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
             }
         ]

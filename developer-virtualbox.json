@@ -64,24 +64,14 @@
                 "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
             ],
             "disk_size": 131072,
+            "cpus": 4,
+            "memory": 4096,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "4096"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -120,18 +110,11 @@
                 ]
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": false,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.box"
-                ]
-            },
-            {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
+                "keep_input_artifact": false,
                 "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
             }
         ]

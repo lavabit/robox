@@ -7,7 +7,7 @@ error() {
         fi
 }
 
-# Tell yum to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
+# Tell dnf to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
 printf "\nretries=128\ndeltarpm=false\nmetadata_expire=20\ntimeout=300\n" >> /etc/dnf/dnf.conf
 
 # Disable IPv6 or dnf will resolve mirror names to IPv6 address and then fail to connect with them.

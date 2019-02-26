@@ -9,7 +9,8 @@
             "type": "shell",
             "scripts": [
                 "scripts/centos6/base.sh",
-                "scripts/centos6/network.sh"
+                "scripts/centos6/network.sh",
+                "scripts/centos6/vga.sh"
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "start_retry_timeout": "15m",
@@ -21,6 +22,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos6/updatedb.sh",
                 "scripts/centos6/cleanup.sh",
                 "scripts/centos6/dockerize.sh"
             ],
@@ -53,7 +55,7 @@
                 "scripts/centos7/floppy.sh",
                 "scripts/centos7/cleanup.sh",
                 "scripts/centos7/unyum.sh",
-                "scripts/centos6/dockerize.sh"
+                "scripts/centos7/dockerize.sh"
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "pause_before": "120s",
@@ -62,6 +64,130 @@
             "only": [
                 "generic-centos7-docker"
             ]
+        },
+        {
+          "type": "shell",
+          "scripts": [
+            "scripts/rhel6/network.sh",
+            "scripts/rhel6/yum.sh",
+            "scripts/rhel6/base.sh",
+            "scripts/rhel6/reboot.sh"
+          ],
+          "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": [
+            "generic-rhel6-docker"
+          ]
+        },
+        {
+          "type": "shell",
+          "scripts": [
+            "scripts/rhel6/vga.sh",
+            "scripts/rhel6/updatedb.sh",
+            "scripts/rhel6/cleanup.sh",
+            "scripts/rhel6/unyum.sh",
+            "scripts/rhel6/dockerize.sh"
+          ],
+          "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+          "pause_before": "120s",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": [
+            "generic-rhel6-docker"
+          ]
+        },
+        {
+          "type": "shell",
+          "scripts": [
+            "scripts/rhel7/network.sh",
+            "scripts/rhel7/yum.sh",
+            "scripts/rhel7/base.sh",
+            "scripts/rhel7/reboot.sh"
+          ],
+          "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": [
+            "generic-rhel7-docker"
+          ]
+        },
+        {
+          "type": "shell",
+          "scripts": [
+            "scripts/rhel7/floppy.sh",
+            "scripts/rhel7/updatedb.sh",
+            "scripts/rhel7/cleanup.sh",
+            "scripts/rhel7/unyum.sh",
+            "scripts/rhel7/dockerize.sh"
+          ],
+          "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+          "pause_before": "120s",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": [
+            "generic-rhel7-docker"
+          ]
+        },
+        {
+          "type": "shell",
+          "scripts": [
+            "scripts/rhel8/network.sh",
+            "scripts/rhel8/yum.sh",
+            "scripts/rhel8/base.sh",
+            "scripts/rhel8/reboot.sh"
+          ],
+          "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": [
+            "generic-rhel8-docker"
+          ]
+        },
+        {
+          "type": "shell",
+          "scripts": [
+            "scripts/rhel8/floppy.sh",
+            "scripts/rhel8/updatedb.sh",
+            "scripts/rhel8/cleanup.sh",
+            "scripts/rhel8/unyum.sh",
+            "scripts/rhel8/dockerize.sh"
+          ],
+          "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+          "pause_before": "120s",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": [
+            "generic-rhel8-docker"
+          ]
+        },
+        {
+          "type": "shell",
+          "scripts": [
+            "scripts/oracle7/network.sh",
+            "scripts/oracle7/yum.sh"
+          ],
+          "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": [
+            "generic-oracle7-docker"
+          ]
+        },
+        {
+          "type": "shell",
+          "scripts": [
+            "scripts/oracle7/floppy.sh",
+            "scripts/oracle7/cleanup.sh",
+            "scripts/oracle7/dockerize.sh"
+          ],
+          "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+          "pause_before": "120s",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": [
+            "generic-oracle7-docker"
+          ]
         },
         {
             "type": "file",
@@ -88,16 +214,8 @@
             "disk_compression": true,
             "disk_discard": "unmap",
             "net_device": "virtio-net",
-            "qemuargs": [
-                [
-                    "-m",
-                    "2048M"
-                ],
-                [
-                    "-smp",
-                    "cpus=4,sockets=2"
-                ]
-            ],
+            "cpus": 2,
+            "memory": 2048,
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
@@ -126,26 +244,166 @@
             "disk_compression": true,
             "disk_discard": "unmap",
             "net_device": "virtio-net",
-            "qemuargs": [
-                [
-                    "-m",
-                    "2048M"
-                ],
-                [
-                    "-smp",
-                    "cpus=4,sockets=2"
-                ]
-            ],
+            "cpus": 2,
+            "memory": 2048,
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso",
-            "iso_checksum": "714acc0aefb32b7d51b515e25546835e55a90da9fb00417fbee2d03a62801efd",
+            "iso_url": "https://mirrors.edge.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
+            "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
+        },
+        {
+          "type": "qemu",
+          "name": "generic-oracle7-docker",
+          "vm_name": "generic-oracle7-docker",
+          "output_directory": "output/generic-oracle7-docker",
+          "accelerator": "kvm",
+          "qemu_binary": "/usr/libexec/qemu-kvm",
+          "boot_wait": "20s",
+          "boot_command": [
+            "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
+          ],
+          "format": "qcow2",
+          "disk_size": 32768,
+          "disk_discard": "unmap",
+          "disk_cache": "unsafe",
+          "disk_compression": true,
+          "disk_interface": "virtio-scsi",
+          "net_device": "virtio-net",
+          "cpus": 2,
+          "memory": 2048,
+          "qemuargs": [
+            [
+              "-drive",
+              "if=none,file=output/generic-oracle7-docker/generic-oracle7-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+            ]
+          ],
+          "http_directory": "http",
+          "headless": true,
+          "iso_url": "https://mirrors.kernel.org/oracle/OL7/u6/x86_64/OracleLinux-R7-U6-Server-x86_64-dvd.iso",
+          "iso_checksum": "a3156e9dc53ace74b81f6e37f284b74498057efd02babebd88aa2a51cc44d7e7",
+          "iso_checksum_type": "sha256",
+          "ssh_username": "root",
+          "ssh_password": "vagrant",
+          "ssh_port": 22,
+          "ssh_wait_timeout": "3600s",
+          "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+        {
+          "type": "qemu",
+          "name": "generic-rhel6-docker",
+          "vm_name": "generic-rhel6-docker",
+          "output_directory": "output/generic-rhel6-docker",
+          "accelerator": "kvm",
+          "qemu_binary": "/usr/libexec/qemu-kvm",
+          "boot_wait": "20s",
+          "boot_command": [
+            "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
+          ],
+          "format": "qcow2",
+          "disk_size": 32768,
+          "disk_discard": "unmap",
+          "disk_cache": "unsafe",
+          "disk_compression": true,
+          "disk_interface": "virtio-scsi",
+          "net_device": "virtio-net",
+          "cpus": 2,
+          "memory": 2048,
+          "qemuargs": [
+            [
+              "-drive",
+              "if=none,file=output/generic-rhel6-docker/generic-rhel6-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+            ]
+          ],
+          "http_directory": "http",
+          "headless": true,
+          "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
+          "iso_checksum": "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
+          "iso_checksum_type": "sha256",
+          "ssh_username": "root",
+          "ssh_password": "vagrant",
+          "ssh_port": 22,
+          "ssh_wait_timeout": "3600s",
+          "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+        {
+          "type": "qemu",
+          "name": "generic-rhel7-docker",
+          "vm_name": "generic-rhel7-docker",
+          "output_directory": "output/generic-rhel7-docker",
+          "accelerator": "kvm",
+          "qemu_binary": "/usr/libexec/qemu-kvm",
+          "boot_wait": "20s",
+          "boot_command": [
+            "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
+          ],
+          "format": "qcow2",
+          "disk_size": 32768,
+          "disk_discard": "unmap",
+          "disk_cache": "unsafe",
+          "disk_compression": true,
+          "disk_interface": "virtio-scsi",
+          "net_device": "virtio-net",
+          "cpus": 2,
+          "memory": 2048,
+          "qemuargs": [
+            [
+              "-drive",
+              "if=none,file=output/generic-rhel7-docker/generic-rhel7-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+            ]
+          ],
+          "http_directory": "http",
+          "headless": true,
+          "iso_urls": "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso",
+          "iso_checksum": "60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c",
+          "iso_checksum_type": "sha256",
+          "ssh_username": "root",
+          "ssh_password": "vagrant",
+          "ssh_port": 22,
+          "ssh_wait_timeout": "3600s",
+          "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+        {
+          "type": "qemu",
+          "name": "generic-rhel8-docker",
+          "vm_name": "generic-rhel8-docker",
+          "output_directory": "output/generic-rhel8-docker",
+          "accelerator": "kvm",
+          "qemu_binary": "/usr/libexec/qemu-kvm",
+          "boot_wait": "20s",
+          "boot_command": [
+            "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
+          ],
+          "format": "qcow2",
+          "disk_size": 32768,
+          "disk_discard": "unmap",
+          "disk_cache": "unsafe",
+          "disk_compression": true,
+          "disk_interface": "virtio-scsi",
+          "net_device": "virtio-net",
+          "cpus": 2,
+          "memory": 2048,
+          "qemuargs": [
+            [
+              "-drive",
+              "if=none,file=output/generic-rhel8-docker/generic-rhel8-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+            ]
+          ],
+          "http_directory": "http",
+          "headless": true,
+          "iso_urls": "https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso",
+          "iso_checksum": "06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316",
+          "iso_checksum_type": "sha256",
+          "ssh_username": "root",
+          "ssh_password": "vagrant",
+          "ssh_port": 22,
+          "ssh_wait_timeout": "3600s",
+          "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         }
     ],
     "post-processors": [
@@ -176,22 +434,39 @@
                 "format": "gz",
                 "type": "compress",
                 "compression_level": 9,
-                "keep_input_artifact": false,
-                "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz"
-            },
-            {
-                "type": "artifice",
                 "keep_input_artifact": true,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
-                ]
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
             },
             {
                 "type": "checksum",
                 "checksum_types": [
                     "sha256"
                 ],
-                "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz.sha256",
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz.sha256",
+                "keep_input_artifact": true
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": false,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.tar"
+                ]
+            },
+            {
+                "format": "gz",
+                "type": "compress",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz.sha256",
                 "keep_input_artifact": true
             }
         ],
@@ -200,14 +475,18 @@
                 "type": "artifice",
                 "keep_input_artifact": true,
                 "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
+                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
                 ]
             },
             {
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "roboxes/{{split build_name \"-\" 1}}"
+                "repository": "roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
             },
             {
                 "type": "docker-push",
@@ -219,10 +498,18 @@
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": true,
-                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
                 "include": [
-                    "tpl/roboxes/info.json"
+                    "tpl/generic/info.json"
                 ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
             }
         ],
         [
@@ -230,14 +517,54 @@
                 "type": "artifice",
                 "keep_input_artifact": true,
                 "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/generic/info.json"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
                 ]
             },
             {
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "latest",
-                "repository": "roboxes/{{split build_name \"-\" 1}}"
+                "repository": "roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
             },
             {
                 "type": "docker-push",

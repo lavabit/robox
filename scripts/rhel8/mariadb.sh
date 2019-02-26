@@ -1,5 +1,9 @@
 #!/bin/bash -eux
 
+if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
+  mount /dev/cdrom /media || (printf "\nFailed mount RHEL cdrom.\n"; exit 1)
+fi
+
 # Install MariaDB
 yum install --assumeyes mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL
 

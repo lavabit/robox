@@ -16,31 +16,65 @@ https://app.vagrantup.com/lineage
 ## Docker Images  
 https://hub.docker.com/r/lavabit/  
 
-Note, the generic templates are being refactored to use the split function. This requires packer v1.2.6+.
+The templates in this repo require a current version of packer, (1.3.4+) and in some cases, make use of features which haven't been officially merged and/or released yet. Use the res/providers/packer.sh script to build an appropriately patched packer binary.
 
-## Upcoming Boxes
-Debian 10 Buster
-Parrot
-Backbox
-Pentoo
-Kali
-Subgraph OS
-Tails
-Arch Assault
+## Pending Tasks
 
+Add retry function to scripts and wrap yum/apt/apk/pacman/etc (prototype in silent.sh already)  
+Automatically retry failed box builds  
+Generate docker variants for the RHEL/Oracle/Ubuntu/Debian/Alpine configurations  
+Add upload/delete/release functions to robox.sh  
+Add vagrant user password randomization logic to the bundled Vagrantfiles  
+Add init based test, and SSH command test to the box test and check script  
 
-## Potential Future Boxes
+## Pending Additions
 
-Devuan  
+[Devuan 1.0/2.0](https://devuan.org/)  
+
+## Works in Progress
+
+[HardenedBSD 12](https://hardenedbsd.org/)  
+[Debian 10](https://wiki.debian.org/DebianBuster)  
+[Ubuntu 19.04](https://wiki.ubuntu.com/DiscoDingo)  
+[Alpine 3.9](https://www.alpinelinux.org)  
+
+## Operating System Requests
+
+The following operating systems have been requested by a member of the robox community, but require a volunteer, so they can be incorporated into the robox workflow.
+
+[Haiku](https://www.haiku-os.org/get-haiku/)  
+[Minix](https://www.minix3.org/)  
+[Parrot](https://www.parrotsec.org/)  
+[SmartOS](https://www.joyent.com/smartos)
+
+## Operating System Candidates
+
+The following operating systems are on my personal list, but haven't been added because of various resource contraints.
+
 Manjaro  
 Mint  
 OpenSolaris  
 OpenSUSE Leap v15 (already building v42.3)  
-Oracle 6 (already building v7)  
+Oracle v6 (already building v7)  
 Scientific Linux v6/v7  
 Slackware  
-  
+
 MacOS  
 ReactOS  
 Windows  
+Tails  
+Kali  
+
+## Donate
+
+The roboxes are maintained by volunteers, and provided for free. As such we rely on donations to cover the cost of the hardware, and bandwidth. If you find this project useful, and would like to see it grow, please help by making a Bitcoin, Bitcoin Cash, Monero or [monetary donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=99THGS6F4HGLU&source=url). If you represent a public cloud, and would like to provide infrastructure support, please contact us directly, or open a ticket.
+
+Monero
+8B3BsNGvpT3SAkMCa672FaCjRfouqnwtxMKiZrMx27ry1KA7aNy5J4kWuJBBRfwzsKZrTvud2wrLH2uvaDBdBw9cSrVRzxC
+
+Bitcoin
+3NKSTPEeTGmuA95CGGqnyi3zPASSApLZbE
+
+Bitcoin Cash
+qqxyedtn68jg84w4mkd3vsw2nu6pgkydnudza0ed0m
   

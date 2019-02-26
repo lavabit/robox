@@ -13,9 +13,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt",
-                "lineage-nash-libvirt",
-                "lineageos-nash-libvirt"
+                "lineage-nash-libvirt"
+
             ]
         },
         {
@@ -37,9 +36,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt",
-                "lineage-nash-libvirt",
-                "lineageos-nash-libvirt"
+                "lineage-nash-libvirt"
+
             ]
         },
         {
@@ -49,9 +47,8 @@
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt",
-                "lineage-nash-libvirt",
-                "lineageos-nash-libvirt"
+                "lineage-nash-libvirt"
+
             ]
         },
         {
@@ -63,9 +60,8 @@
             "expect_disconnect": "true",
             "only": [
                 "lineage-libvirt",
-                "lineageos-libvirt",
-                "lineage-nash-libvirt",
-                "lineageos-nash-libvirt"
+                "lineage-nash-libvirt"
+
             ]
         },
         {
@@ -118,77 +114,12 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
+            "cpus": 4,
+            "memory": 2048,
             "qemuargs": [
-                [
-                    "-m",
-                    "2048M"
-                ],
-                [
-                    "-smp",
-                    "cpus=4,sockets=2"
-                ],
                 [
                     "-drive",
                     "if=none,file=output/lineage-libvirt/lineage-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
-            "http_directory": "http",
-            "headless": true,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
-        },
-        {
-            "type": "qemu",
-            "name": "lineageos-libvirt",
-            "vm_name": "lineageos-libvirt",
-            "output_directory": "output/lineageos-libvirt",
-            "accelerator": "kvm",
-            "qemu_binary": "/usr/libexec/qemu-kvm",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "format": "qcow2",
-            "disk_size": 196608,
-            "disk_discard": "unmap",
-            "disk_cache": "unsafe",
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "qemuargs": [
-                [
-                    "-m",
-                    "2048M"
-                ],
-                [
-                    "-smp",
-                    "cpus=4,sockets=2"
-                ],
-                [
-                    "-drive",
-                    "if=none,file=output/lineageos-libvirt/lineageos-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -236,77 +167,12 @@
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
+            "cpus": 4,
+            "memory": 2048,
             "qemuargs": [
-                [
-                    "-m",
-                    "2048M"
-                ],
-                [
-                    "-smp",
-                    "cpus=4,sockets=2"
-                ],
                 [
                     "-drive",
                     "if=none,file=output/lineage-nash-libvirt/lineage-nash-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
-            "http_directory": "http",
-            "headless": true,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
-        },
-        {
-            "type": "qemu",
-            "name": "lineageos-nash-libvirt",
-            "vm_name": "lineageos-nash-libvirt",
-            "output_directory": "output/lineageos-nash-libvirt",
-            "accelerator": "kvm",
-            "qemu_binary": "/usr/libexec/qemu-kvm",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "format": "qcow2",
-            "disk_size": 196608,
-            "disk_discard": "unmap",
-            "disk_cache": "unsafe",
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "qemuargs": [
-                [
-                    "-m",
-                    "2048M"
-                ],
-                [
-                    "-smp",
-                    "cpus=4,sockets=2"
-                ],
-                [
-                    "-drive",
-                    "if=none,file=output/lineageos-nash-libvirt/lineageos-nash-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
                 ]
             ],
             "http_directory": "http",
@@ -334,10 +200,23 @@
                 ]
             },
             {
-                "type": "artifice",
-                "keep_input_artifact": true,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.box"
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+          {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/lineageos.rb",
+                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lineage/info.json"
                 ]
             },
             {
@@ -345,8 +224,8 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+                "keep_input_artifact": false,
+                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box.sha256"
             }
         ]
     ]

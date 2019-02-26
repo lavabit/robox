@@ -27,7 +27,7 @@
         "scripts/oracle7/qemu.sh",
         "scripts/oracle7/vagrant.sh",
         "scripts/oracle7/tuning.sh",
-        "scripts/oracle7/network.sh"
+        "scripts/oracle7/cleanup.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
@@ -76,6 +76,7 @@
         "scripts/alpine35/lsb.sh",
         "scripts/alpine35/floppy.sh",
         "scripts/alpine35/vagrant.sh",
+        "scripts/alpine35/sshd.sh",
         "scripts/alpine35/virtualbox.sh",
         "scripts/alpine35/parallels.sh",
         "scripts/alpine35/vmware.sh",
@@ -109,6 +110,7 @@
         "scripts/alpine36/lsb.sh",
         "scripts/alpine36/floppy.sh",
         "scripts/alpine36/vagrant.sh",
+        "scripts/alpine36/sshd.sh",
         "scripts/alpine36/virtualbox.sh",
         "scripts/alpine36/parallels.sh",
         "scripts/alpine36/vmware.sh",
@@ -142,6 +144,7 @@
         "scripts/alpine37/lsb.sh",
         "scripts/alpine37/floppy.sh",
         "scripts/alpine37/vagrant.sh",
+        "scripts/alpine37/sshd.sh",
         "scripts/alpine37/virtualbox.sh",
         "scripts/alpine37/parallels.sh",
         "scripts/alpine37/vmware.sh",
@@ -175,6 +178,7 @@
         "scripts/alpine38/lsb.sh",
         "scripts/alpine38/floppy.sh",
         "scripts/alpine38/vagrant.sh",
+        "scripts/alpine38/sshd.sh",
         "scripts/alpine38/virtualbox.sh",
         "scripts/alpine38/parallels.sh",
         "scripts/alpine38/vmware.sh",
@@ -351,7 +355,8 @@
         "scripts/arch/parallels.sh",
         "scripts/arch/vmware.sh",
         "scripts/arch/qemu.sh",
-        "scripts/arch/vagrant.sh"
+        "scripts/arch/vagrant.sh",
+        "scripts/arch/cleanup.sh"
       ],
       "type": "shell",
       "pause_before": "120s",
@@ -363,8 +368,8 @@
     },
     {
       "scripts": [
-        "scripts/debian8/network.sh",
-        "scripts/debian8/apt.sh"
+        "scripts/debian8/apt.sh",
+        "scripts/debian8/network.sh"
       ],
       "type": "shell",
       "start_retry_timeout": "15m",
@@ -396,8 +401,8 @@
 
 {
       "scripts": [
-        "scripts/debian9/network.sh",
-        "scripts/debian9/apt.sh"
+        "scripts/debian9/apt.sh",
+        "scripts/debian9/network.sh"
       ],
       "type": "shell",
       "start_retry_timeout": "15m",
@@ -1060,9 +1065,129 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "/bin/bash { .Path }}",
+      "execute_command": "{{ .Vars }} bash {{ .Path }}",
       "only": [
         "generic-netbsd8-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/hardenedbsd12/pkg.sh",
+        "scripts/hardenedbsd12/hostname.sh",
+        "scripts/hardenedbsd12/kernel.sh",
+        "scripts/hardenedbsd12/firstboot.sh",
+        "scripts/hardenedbsd12/motd.sh",
+        "scripts/hardenedbsd12/vagrant.sh",
+        "scripts/hardenedbsd12/virtualbox.sh",
+        "scripts/hardenedbsd12/parallels.sh",
+        "scripts/hardenedbsd12/vmware.sh",
+        "scripts/hardenedbsd12/qemu.sh",
+        "scripts/hardenedbsd12/cleanup.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd12-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine39/network.sh",
+        "scripts/alpine39/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine39-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine39/lsb.sh",
+        "scripts/alpine39/floppy.sh",
+        "scripts/alpine39/vagrant.sh",
+        "scripts/alpine39/sshd.sh",
+        "scripts/alpine39/virtualbox.sh",
+        "scripts/alpine39/parallels.sh",
+        "scripts/alpine39/vmware.sh",
+        "scripts/alpine39/qemu.sh",
+        "scripts/alpine39/cache.sh"
+      ],
+      "execute_command": "/bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine39-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian10/apt.sh",
+        "scripts/debian10/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian10-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian10/floppy.sh",
+        "scripts/debian10/profile.sh",
+        "scripts/debian10/vagrant.sh",
+        "scripts/debian10/motd.sh",
+        "scripts/debian10/fixtty.sh",
+        "scripts/debian10/virtualbox.sh",
+        "scripts/debian10/parallels.sh",
+        "scripts/debian10/vmware.sh",
+        "scripts/debian10/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian10-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1904/apt.sh",
+        "scripts/ubuntu1904/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1904-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1904/floppy.sh",
+        "scripts/ubuntu1904/vagrant.sh",
+        "scripts/ubuntu1904/motd.sh",
+        "scripts/ubuntu1904/fixtty.sh",
+        "scripts/ubuntu1904/virtualbox.sh",
+        "scripts/ubuntu1904/parallels.sh",
+        "scripts/ubuntu1904/vmware.sh",
+        "scripts/ubuntu1904/qemu.sh",
+        "scripts/ubuntu1904/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1904-virtualbox"
       ]
     },
     {
@@ -1089,24 +1214,14 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Oracle_64",
@@ -1141,24 +1256,14 @@
         "<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "OpenSUSE_64",
@@ -1199,24 +1304,14 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Linux_64",
@@ -1257,24 +1352,14 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Linux_64",
@@ -1315,24 +1400,14 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Linux_64",
@@ -1373,24 +1448,14 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Linux_64",
@@ -1399,8 +1464,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.8/releases/x86_64/alpine-virt-3.8.1-x86_64.iso",
-      "iso_checksum": "83ede521b174d99a0975c3653e7310b58075fa68fb773ed6995b974a44df60ce",
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.8/releases/x86_64/alpine-virt-3.8.2-x86_64.iso",
+      "iso_checksum": "77a609dd710ba0d3b0806a314f5c4ef1718ce140b522bf7c7ca081eba664db2c",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -1422,24 +1487,14 @@
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "RedHat_64",
@@ -1471,24 +1526,14 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "RedHat_64",
@@ -1497,8 +1542,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.edge.kernel.org/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso",
-      "iso_checksum": "714acc0aefb32b7d51b515e25546835e55a90da9fb00417fbee2d03a62801efd",
+      "iso_url": "https://mirrors.edge.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
+      "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -1520,24 +1565,14 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "RedHat_64",
@@ -1546,10 +1581,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_urls": [
-        "res/media/rhel-server-7.6-x86_64-dvd.iso",
-        "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"
-      ],
+      "iso_url": "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso",
       "iso_checksum": "60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -1574,24 +1606,14 @@
         "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "ArchLinux_64",
@@ -1600,8 +1622,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2018.11.01-x86_64.iso",
-      "iso_checksum": "1f063b0714b94b937eb4da2914be2e4a0f3d7bda0f03ddd796314664cb4c9479",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2019.02.01-x86_64.iso",
+      "iso_checksum": "ded3152b5b369a7a1697f1081147bfb27c0245de685e55a5b033f6620833809b",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -1627,24 +1649,14 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Fedora_64",
@@ -1680,24 +1692,14 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Fedora_64",
@@ -1733,24 +1735,14 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Fedora_64",
@@ -1786,24 +1778,14 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Fedora_64",
@@ -1839,24 +1821,14 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Fedora_64",
@@ -1891,24 +1863,14 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Debian_64",
@@ -1943,24 +1905,14 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Debian_64",
@@ -1969,8 +1921,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.kernel.org/debian-cd/9.6.0/amd64/iso-cd/debian-9.6.0-amd64-netinst.iso",
-      "iso_checksum": "c51d84019c3637ae9d12aa6658ea8c613860c776bd84c6a71eaaf765a0dd60fe",
+      "iso_url": "https://mirrors.kernel.org/debian-cd/9.8.0/amd64/iso-cd/debian-9.8.0-amd64-netinst.iso",
+      "iso_checksum": "73bd56fb4548efa384bf32fd25808b99198f81c23cf19ab9e6507d898cd58dce",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2008,24 +1960,14 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Ubuntu_64",
@@ -2065,24 +2007,14 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Ubuntu_64",
@@ -2122,24 +2054,14 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Ubuntu_64",
@@ -2179,24 +2101,14 @@
         "<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Ubuntu_64",
@@ -2248,24 +2160,14 @@
         " --- <enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Ubuntu_64",
@@ -2274,8 +2176,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04.1/release/ubuntu-18.04.1-server-amd64.iso",
-      "iso_checksum": "a5b0ea5918f850124f3d72ef4b85bda82f0fcd02ec721be19c1a6952791c8ee8",
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04.2/release/ubuntu-18.04.2-server-amd64.iso",
+      "iso_checksum": "a2cb36dc010d98ad9253ea5ad5a07fd6b409e3412c48f1860536970b073c98f5",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2317,24 +2219,14 @@
         " --- <enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "Ubuntu_64",
@@ -2373,24 +2265,14 @@
         "bash generic.gentoo.vagrant.sh<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 4,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "4"
         ]
       ],
       "guest_os_type": "Gentoo_64",
@@ -2399,8 +2281,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20181113T214502Z.iso",
-      "iso_checksum": "004c4a6d6cc4b57e689e9629d259acb320eeef022be05a4bd0dd8e21d17fb40e",
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190219T214502Z.iso",
+      "iso_checksum": "a47f26868a8613eab634c7d1a13a10587d7018489680627aa25c26e3ebb92823",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2436,24 +2318,14 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "FreeBSD_64",
@@ -2489,24 +2361,14 @@
         "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "OpenBSD_64",
@@ -2552,24 +2414,14 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "FreeBSD_64",
@@ -2578,8 +2430,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/12.0/FreeBSD-12.0-RC2-amd64-disc1.iso",
-      "iso_checksum": "c2cbca2fb589b1d0ff65898b5858d28411edc74e6a7a0cfdd53f4fc9173a1a9f",
+      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/12.0/FreeBSD-12.0-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "63abec8aeb915f1a021dd2df6c7767251f9b6e87f403b7ddf9a423446d0a5453",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2601,24 +2453,14 @@
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "RedHat_64",
@@ -2627,10 +2469,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_urls": [
-        "res/media/rhel-server-6.10-x86_64-dvd.iso",
-        "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso"
-      ],
+      "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
       "iso_checksum": "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -2653,24 +2492,14 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "RedHat_64",
@@ -2679,10 +2508,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_urls": [
-        "res/media/rhel-8.0-beta-1-x86_64-dvd.iso",
-        "https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso"
-      ],
+      "iso_url": "https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso",
       "iso_checksum": "06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -2719,24 +2545,14 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "FreeBSD_64",
@@ -2745,8 +2561,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://installer.hardenedbsd.org/hardened_11_stable_master-LAST/HardenedBSD-11-STABLE-v1100056.8-amd64-disc1.iso",
-      "iso_checksum": "4a5822a495dfddc3a77b1a66c258566142d0e45540112c5a90f1ee840aa663a3",
+      "iso_url": "https://installer.hardenedbsd.org/hardened_11_stable_master-LAST/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
+      "iso_checksum": "8b2c90dc41ec68b561028af885eecb66bfd36223970d1c594923d1d54bf83467",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2770,6 +2586,19 @@
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
         "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
         "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
         "boot -s<enter>",
@@ -2781,24 +2610,14 @@
         "sh /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
       "guest_os_type": "FreeBSD_64",
@@ -2807,8 +2626,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.2.2_REL.iso",
-      "iso_checksum": "57a63cea9496142561c4e261a252809831aba4366e5c642bcb53ce55469f03c2",
+      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.4.1_REL.iso",
+      "iso_checksum": "bd7b5421cc205b4c25ea9ac9e5a53fe6c04fcb133311966796f7f3ce4941ccb8",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2826,70 +2645,70 @@
       "vm_name": "generic-netbsd8-virtualbox",
       "output_directory": "output/generic-netbsd8-virtualbox",
       "boot_wait": "40s",
-      "boot_command": [
-        "<enter><wait><enter><wait>e",
-        "<enter><wait><enter><wait>",
-        "IF=`ifconfig | head -1 | awk -F':' '{print $1}'`<enter><wait5>",
-        "dhclient $IF<enter><wait5>",
-        "ftp -o /tmp/install-script.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.netbsd8.install.sh<enter><wait>",
-        "TERM=wsvt25 /usr/sbin/sysinst && sh /tmp/install-script.sh && reboot<enter>",
-        "a<wait><enter><wait>",
-        "a<wait><enter><wait>",
-        "a<wait><enter><wait>",
-        "b<wait><enter><wait>",
-        "a<wait><enter><wait>",
-        "a<wait><enter><wait>",
-        "b<wait><enter><wait>",
-        "a<wait><enter><wait>",
-        "b<wait><enter><wait>",
-        "x<wait><enter><wait>",
-        "<wait><enter><wait>",
-        "b<wait><enter><wait>",
-        "a<wait><enter><wait>",
-        "x<wait><enter><wait>",
-        "b<wait><enter><wait>",
-        "a<wait><enter><wait>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10>",
-        "<wait><enter><wait>",
-        "d<wait><enter><wait>",
-        "a<wait><enter><wait>",
-        "vagrant<enter><wait>",
-        "vagrant<enter><wait>",
-        "vagrant<enter><wait>",
-        "g<wait><enter><wait>",
-        "x<wait><enter><wait>",
-        "<wait><enter><wait>",
-        "x<wait><enter><wait>"
-      ],
-      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
         [
           "modifyvm",
           "{{.Name}}",
           "--vram",
           "64"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
         ]
       ],
-      "guest_os_type": "OpenBSD_64",
+      "boot_command": [
+        "<enter><wait10>",
+        "<enter><wait10>",
+        "e<enter><wait10>",
+        "<enter><wait10>",
+        "IF=`ifconfig | head -1 | awk -F':' '{print $1}'`<enter><wait10>",
+        "dhclient $IF<enter><wait10>",
+        "ftp -o /tmp/install-script.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.netbsd8.install.sh<enter><wait10>",
+        "TERM=wsvt25 /usr/sbin/sysinst && sh /tmp/install-script.sh && reboot<enter><wait10>",
+        "a<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "b<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "b<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "b<wait><enter><wait10>",
+        "x<wait><enter><wait10>",
+        "<wait><enter><wait10>",
+        "b<wait><enter><wait30>",
+        "a<wait><enter><wait10>",
+        "x<wait><enter><wait10>",
+        "b<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait><enter><wait10>",
+        "d<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "vagrant<enter><wait10>",
+        "vagrant<enter><wait10>",
+        "vagrant<enter><wait10>",
+        "g<wait><enter><wait10>",
+        "x<wait><enter><wait10>",
+        "<wait><enter><wait10>",
+        "x<wait><enter><wait10>"
+      ],
+      "disk_size": 32768,
+      "guest_os_type": "NetBSD_64",
       "http_directory": "http",
       "headless": true,
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://iso.netbsd.org/pub/NetBSD/iso/8.0/NetBSD-8.0-amd64.iso",
+      "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/8.0/NetBSD-8.0-amd64.iso",
       "iso_checksum": "5978be870ed0bc0bf69e82f904b3cfb4a0806627181aa1f1bbc782c3c9fb37e1",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -2897,6 +2716,208 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/shutdown -h -p now",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+      "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-hardenedbsd12-virtualbox",
+      "vm_name": "generic-hardenedbsd12-virtualbox",
+      "output_directory": "output/generic-hardenedbsd12-virtualbox",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait5>",
+        "mdmfs -s 100m md2 /mnt<enter><wait5>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "FreeBSD_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://installer.hardenedbsd.org/hardened_12_stable_master-LAST/HardenedBSD-12-STABLE-v1200058.3-amd64-disc1.iso",
+      "iso_checksum": "246ab0182b634b3f5d3a3b4ba40e0c66b6210bb288a745e519f085d00a6bab60",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+      "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-alpine39-virtualbox",
+      "vm_name": "generic-alpine39-virtualbox",
+      "output_directory": "output/generic-alpine39-virtualbox",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine39.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine39.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Linux_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.9/releases/x86_64/alpine-virt-3.9.0-x86_64.iso",
+      "iso_checksum": "e87e0256d10ca2125455fb5023687b2346740a8cbae54972312fe1626f07494c",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+      "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-debian10-virtualbox",
+      "vm_name": "generic-debian10-virtualbox",
+      "output_directory": "output/generic-debian10-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian10.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Debian_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso",
+      "iso_checksum_url": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/SHA256SUMS",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+      "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-ubuntu1904-virtualbox",
+      "vm_name": "generic-ubuntu1904-virtualbox",
+      "output_directory": "output/generic-ubuntu1904-virtualbox",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<esc><f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "console-setup/ask_detect=false ",
+        "debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1904.vagrant.cfg<wait> ",
+        " --- <enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso",
+      "iso_checksum_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/pending/SHA256SUMS",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
       "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
       "guest_additions_path": "VBoxGuestAdditions.iso",
@@ -2913,13 +2934,6 @@
         "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
         "include": [
           "tpl/generic/info.json"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": false,
-        "files": [
-          "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
         ]
       },
       {
@@ -2940,13 +2954,6 @@
         "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
         "include": [
           "tpl/roboxes/info.json"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": false,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
         ]
       },
       {

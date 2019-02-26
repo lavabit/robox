@@ -26,6 +26,7 @@
                 "scripts/alpine36/lsb.sh",
                 "scripts/alpine36/floppy.sh",
                 "scripts/alpine36/vagrant.sh",
+        "scripts/alpine36/sshd.sh",
                 "scripts/alpine36/glibc.sh",
                 "scripts/alpine36/gcc.sh",
                 "scripts/alpine36/magma.sh",
@@ -53,8 +54,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-virtualbox",
-                "magma-centos-virtualbox",
                 "magma-centos6-virtualbox"
             ]
         },
@@ -81,8 +80,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-virtualbox",
-                "magma-centos-virtualbox",
                 "magma-centos6-virtualbox"
             ]
         },
@@ -181,7 +178,8 @@
                 "scripts/arch/vmware.sh",
                 "scripts/arch/qemu.sh",
                 "scripts/arch/vagrant.sh",
-                "scripts/arch/magma.sh"
+                "scripts/arch/magma.sh",
+                "scripts/arch/cleanup.sh"
             ],
             "type": "shell",
             "pause_before": "120s",
@@ -193,8 +191,8 @@
         },
         {
             "scripts": [
-                "scripts/debian8/network.sh",
-                "scripts/debian8/apt.sh"
+                "scripts/debian8/apt.sh",
+                "scripts/debian8/network.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",
@@ -339,7 +337,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu-virtualbox",
                 "magma-ubuntu1604-virtualbox"
             ]
         },
@@ -365,7 +362,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu-virtualbox",
                 "magma-ubuntu1604-virtualbox"
             ]
         },
@@ -476,24 +472,14 @@
                 "umount /mnt && reboot<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "Linux_64",
@@ -517,104 +503,6 @@
         },
         {
             "type": "virtualbox-iso",
-            "name": "magma-virtualbox",
-            "vm_name": "magma-virtualbox",
-            "output_directory": "output/magma-virtualbox",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
-            ],
-            "disk_size": 32768,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vram",
-                    "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
-                ]
-            ],
-            "guest_os_type": "RedHat_64",
-            "http_directory": "http",
-            "headless": true,
-            "vrdp_bind_address": "127.0.0.1",
-            "vrdp_port_min": 11000,
-            "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
-            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        },
-        {
-            "type": "virtualbox-iso",
-            "name": "magma-centos-virtualbox",
-            "vm_name": "magma-centos-virtualbox",
-            "output_directory": "output/magma-centos-virtualbox",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
-            ],
-            "disk_size": 32768,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vram",
-                    "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
-                ]
-            ],
-            "guest_os_type": "RedHat_64",
-            "http_directory": "http",
-            "headless": true,
-            "vrdp_bind_address": "127.0.0.1",
-            "vrdp_port_min": 11000,
-            "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
-            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        },
-        {
-            "type": "virtualbox-iso",
             "name": "magma-centos6-virtualbox",
             "vm_name": "magma-centos6-virtualbox",
             "output_directory": "output/magma-centos6-virtualbox",
@@ -623,24 +511,14 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -672,24 +550,14 @@
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "RedHat_64",
@@ -698,8 +566,8 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso",
-            "iso_checksum": "714acc0aefb32b7d51b515e25546835e55a90da9fb00417fbee2d03a62801efd",
+            "iso_url": "https://mirrors.edge.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
+            "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -723,24 +591,14 @@
                 "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "ArchLinux_64",
@@ -749,8 +607,8 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2018.11.01-x86_64.iso",
-            "iso_checksum": "1f063b0714b94b937eb4da2914be2e4a0f3d7bda0f03ddd796314664cb4c9479",
+            "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2019.02.01-x86_64.iso",
+            "iso_checksum": "ded3152b5b369a7a1697f1081147bfb27c0245de685e55a5b033f6620833809b",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -776,24 +634,14 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "Fedora_64",
@@ -828,24 +676,14 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "Debian_64",
@@ -856,71 +694,6 @@
             "vrdp_port_max": 12000,
             "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.0/amd64/iso-cd/debian-8.11.0-amd64-netinst.iso",
             "iso_checksum": "ea799ed959d77359783e7922ed4c94a7437b083a4ce6f09e9fe41a7af6ba60df",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
-            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        },
-        {
-            "type": "virtualbox-iso",
-            "name": "magma-ubuntu-virtualbox",
-            "vm_name": "magma-ubuntu-virtualbox",
-            "output_directory": "output/magma-ubuntu-virtualbox",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "disk_size": 32768,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vram",
-                    "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
-                ]
-            ],
-            "guest_os_type": "Ubuntu_64",
-            "http_directory": "http",
-            "headless": true,
-            "vrdp_bind_address": "127.0.0.1",
-            "vrdp_port_min": 11000,
-            "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -958,24 +731,14 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1015,24 +778,14 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1072,24 +825,14 @@
                 "<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "Ubuntu_64",
@@ -1128,24 +871,14 @@
                 "bash magma.gentoo.vagrant.sh<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 4,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "Gentoo_64",
@@ -1154,8 +887,8 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20181113T214502Z.iso",
-            "iso_checksum": "004c4a6d6cc4b57e689e9629d259acb320eeef022be05a4bd0dd8e21d17fb40e",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190219T214502Z.iso",
+            "iso_checksum": "a47f26868a8613eab634c7d1a13a10587d7018489680627aa25c26e3ebb92823",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -1191,24 +924,14 @@
                 "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "FreeBSD_64",
@@ -1244,24 +967,14 @@
                 "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 32768,
+            "cpus": 2,
+            "memory": 2048,
             "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "2048"
-                ],
                 [
                     "modifyvm",
                     "{{.Name}}",
                     "--vram",
                     "64"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "4"
                 ]
             ],
             "guest_os_type": "OpenBSD_64",
@@ -1290,6 +1003,36 @@
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/magma-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lavabit/info.json"
+                ],
+                "except": [
+                    "magma-alpine36-virtualbox",
+                    "magma-openbsd6-virtualbox",
+                    "magma-freebsd11-virtualbox"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+                "except": [
+                    "magma-alpine36-virtualbox",
+                    "magma-openbsd6-virtualbox",
+                    "magma-freebsd11-virtualbox"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-alpine.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
@@ -1299,6 +1042,19 @@
                     "magma-alpine36-virtualbox"
                 ]
             },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-alpine36-virtualbox"
+                ]
+            }
+        ],
+        [
             {
                 "type": "vagrant",
                 "compression_level": 9,
@@ -1314,25 +1070,30 @@
                 ]
             },
             {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-openbsd6-virtualbox",
+                    "magma-freebsd11-virtualbox"
+                ]
+            }
+        ],
+        [
+            {
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-default.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "output": "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lavabit/info.json"
                 ],
-                "except": [
-                    "magma-alpine36-virtualbox",
-                    "magma-openbsd6-virtualbox",
-                    "magma-freebsd11-virtualbox"
-                ]
-            },
-            {
-                "type": "artifice",
-                "keep_input_artifact": true,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.box"
+                "only": [
+                    "magma-centos6-virtualbox"
                 ]
             },
             {
@@ -1340,8 +1101,63 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+                "keep_input_artifact": false,
+                "output": "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-centos6-virtualbox"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/magma-default.rb",
+                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lavabit/info.json"
+                ],
+                "only": [
+                    "magma-centos6-virtualbox"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-centos6-virtualbox"
+                ]
+            }
+        ],
+        [
+          {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/magma-default.rb",
+                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lavabit/info.json"
+                ],
+                "only": [
+                    "magma-ubuntu1604-virtualbox"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-ubuntu1604-virtualbox"
+                ]
             }
         ]
     ]

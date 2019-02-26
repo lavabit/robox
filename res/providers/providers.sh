@@ -162,6 +162,20 @@ function provide-vbox() {
   if [ -f /usr/bin/firewall-cmd ]; then
     firewall-cmd --permanent --zone=trusted --add-interface=vibr0
   fi
+
+  # Fix a permission issue to avoid spurious error messages in the system log.
+  if [ -f /usr/lib/virtualbox/VMMR0.r0 ]; then
+    chmod 755 /usr/lib/virtualbox/VMMR0.r0
+  fi
+  if [ -f /usr/lib/virtualbox/VBoxDDR0.r0 ]; then
+    chmod 755 /usr/lib/virtualbox/VBoxDDR0.r0
+  fi
+
+  # If there is a set of user preferences, relocate the default box directory.
+  if [ -f $HOME/.config/VirtualBox/VirtualBox.xml ]; then
+     sed -i "s/defaultMachineFolder=\"[^\"]*\"/defaultMachineFolder=\"${HOME////\\/}\/\.virtualbox\"/g" /home/ladar/.config/VirtualBox/VirtualBox.xml
+  fi
+
 }
 
 function provide-docker() {
@@ -240,7 +254,19 @@ function provide-packer() {
   # fi
 
   # Retry Upload Failures Twenty Times
-  sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
+  # sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
+
+  # Increase the upload timeout.
+  # patch -p1 < $BASE/packer-upload-timeout.patch
+
+  # Fix the Hyper-V boot dervice ordering for generation one virtual machines. - MERGED
+  # patch -p1 < $BASE/hyperv-boot-order.patch
+
+  # Fox the Hyper-V SSH host value bug. - MERGED
+  # patch -p1 < $BASH/hyperv-ssh-host.patch
+
+  # Force Hyper-V to use a legacy network adapter. - MERGED
+  # patch -p1 < $BASE/hyperv-legacy-network-adapter.patch
 
   # Build for Linux, Darwin, and Windows
   XC_ARCH=amd64 XC_OS="linux darwin windows" scripts/build.sh

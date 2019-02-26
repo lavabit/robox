@@ -100,16 +100,8 @@
             "disk_compression": true,
             "disk_discard": "unmap",
             "net_device": "virtio-net",
-            "qemuargs": [
-                [
-                    "-m",
-                    "2048M"
-                ],
-                [
-                    "-smp",
-                    "cpus=4,sockets=2"
-                ]
-            ],
+            "cpus": 2,
+            "memory": 2048,
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
@@ -138,16 +130,8 @@
             "disk_compression": true,
             "disk_discard": "unmap",
             "net_device": "virtio-net",
-            "qemuargs": [
-                [
-                    "-m",
-                    "2048M"
-                ],
-                [
-                    "-smp",
-                    "cpus=4,sockets=2"
-                ]
-            ],
+            "cpus": 2,
+            "memory": 2048,
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
@@ -176,16 +160,8 @@
             "disk_compression": true,
             "disk_discard": "unmap",
             "net_device": "virtio-net",
-            "qemuargs": [
-                [
-                    "-m",
-                    "2048M"
-                ],
-                [
-                    "-smp",
-                    "cpus=4,sockets=2"
-                ]
-            ],
+            "cpus": 2,
+            "memory": 2048,
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
@@ -214,20 +190,12 @@
             "disk_compression": true,
             "disk_discard": "unmap",
             "net_device": "virtio-net",
-            "qemuargs": [
-                [
-                    "-m",
-                    "2048M"
-                ],
-                [
-                    "-smp",
-                    "cpus=4,sockets=2"
-                ]
-            ],
+            "cpus": 2,
+            "memory": 2048,
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso",
-            "iso_checksum": "714acc0aefb32b7d51b515e25546835e55a90da9fb00417fbee2d03a62801efd",
+            "iso_url": "https://mirrors.edge.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
+            "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "locked",
@@ -256,7 +224,7 @@
         [
             {
                 "type": "artifice",
-                "keep_input_artifact": false,
+                "keep_input_artifact": true,
                 "files": [
                     "output/{{build_name}}-{{user `box_version`}}.tar"
                 ]
@@ -265,15 +233,8 @@
                 "format": "gz",
                 "type": "compress",
                 "compression_level": 9,
-                "keep_input_artifact": false,
-                "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz"
-            },
-            {
-                "type": "artifice",
                 "keep_input_artifact": true,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
-                ]
+                "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz"
             },
             {
                 "type": "checksum",
@@ -297,6 +258,10 @@
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-docker"
                 ]
@@ -306,6 +271,10 @@
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma-centos",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos-docker"
                 ]
@@ -315,6 +284,10 @@
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma-centos6",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos6-docker"
                 ]
@@ -324,6 +297,10 @@
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
                 "repository": "lavabit/magma-centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos7-docker"
                 ]
@@ -333,6 +310,23 @@
                 "login": "false",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/generic/info.json"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz.sha256",
+                "keep_input_artifact": true
             }
         ],
         [
@@ -348,6 +342,10 @@
                 "keep_input_artifact": true,
                 "tag": "latest",
                 "repository": "lavabit/magma",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-docker"
                 ]
@@ -357,6 +355,10 @@
                 "keep_input_artifact": true,
                 "tag": "latest",
                 "repository": "lavabit/magma-centos",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos-docker"
                 ]
@@ -366,6 +368,10 @@
                 "keep_input_artifact": true,
                 "tag": "latest",
                 "repository": "lavabit/magma-centos6",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos6-docker"
                 ]
@@ -375,6 +381,10 @@
                 "keep_input_artifact": true,
                 "tag": "latest",
                 "repository": "lavabit/magma-centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
                 "only": [
                     "magma-centos7-docker"
                 ]

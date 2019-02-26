@@ -26,6 +26,7 @@
                 "scripts/alpine36/lsb.sh",
                 "scripts/alpine36/floppy.sh",
                 "scripts/alpine36/vagrant.sh",
+        "scripts/alpine36/sshd.sh",
                 "scripts/alpine36/glibc.sh",
                 "scripts/alpine36/gcc.sh",
                 "scripts/alpine36/magma.sh",
@@ -53,8 +54,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-vmware",
-                "magma-centos-vmware",
                 "magma-centos6-vmware"
             ]
         },
@@ -81,8 +80,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-vmware",
-                "magma-centos-vmware",
                 "magma-centos6-vmware"
             ]
         },
@@ -181,7 +178,8 @@
                 "scripts/arch/vmware.sh",
                 "scripts/arch/qemu.sh",
                 "scripts/arch/vagrant.sh",
-                "scripts/arch/magma.sh"
+                "scripts/arch/magma.sh",
+                "scripts/arch/cleanup.sh"
             ],
             "type": "shell",
             "pause_before": "120s",
@@ -193,8 +191,8 @@
         },
         {
             "scripts": [
-                "scripts/debian8/network.sh",
-                "scripts/debian8/apt.sh"
+                "scripts/debian8/apt.sh",
+                "scripts/debian8/network.sh"
             ],
             "type": "shell",
             "start_retry_timeout": "15m",
@@ -339,7 +337,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu-vmware",
                 "magma-ubuntu1604-vmware"
             ]
         },
@@ -365,7 +362,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-ubuntu-vmware",
                 "magma-ubuntu1604-vmware"
             ]
         },
@@ -478,11 +474,8 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 2,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -509,88 +502,6 @@
         },
         {
             "type": "vmware-iso",
-            "name": "magma-vmware",
-            "vm_name": "magma-vmware",
-            "vmdk_name": "magma-vmware",
-            "output_directory": "output/magma-vmware",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
-            ],
-            "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
-            "vmx_data_post": {
-              "cleanShutdown": "TRUE",
-              "softPowerOff": "FALSE",
-              "ethernet0.virtualDev": "e1000",
-              "ethernet0.startConnected": "TRUE",
-              "ethernet0.wakeonpcktrcv": "false"
-            },
-            "guest_os_type": "centos-64",
-            "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vnc_bind_address": "127.0.0.1",
-            "vmx_remove_ethernet_interfaces": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
-            "skip_compaction": false,
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
-        },
-        {
-            "type": "vmware-iso",
-            "name": "magma-centos-vmware",
-            "vm_name": "magma-centos-vmware",
-            "vmdk_name": "magma-centos-vmware",
-            "output_directory": "output/magma-centos-vmware",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
-            ],
-            "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
-            "vmx_data_post": {
-              "cleanShutdown": "TRUE",
-              "softPowerOff": "FALSE",
-              "ethernet0.virtualDev": "e1000",
-              "ethernet0.startConnected": "TRUE",
-              "ethernet0.wakeonpcktrcv": "false"
-            },
-            "guest_os_type": "centos-64",
-            "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vnc_bind_address": "127.0.0.1",
-            "vmx_remove_ethernet_interfaces": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
-            "skip_compaction": false,
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
-        },
-        {
-            "type": "vmware-iso",
             "name": "magma-centos6-vmware",
             "vm_name": "magma-centos6-vmware",
             "vmdk_name": "magma-centos6-vmware",
@@ -601,11 +512,8 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 2,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -642,11 +550,8 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 2,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -660,8 +565,8 @@
             "vnc_disable_password": true,
             "vnc_bind_address": "127.0.0.1",
             "vmx_remove_ethernet_interfaces": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso",
-            "iso_checksum": "714acc0aefb32b7d51b515e25546835e55a90da9fb00417fbee2d03a62801efd",
+            "iso_url": "https://mirrors.edge.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
+            "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
             "iso_checksum_type": "sha256",
             "skip_compaction": false,
             "ssh_username": "root",
@@ -685,11 +590,8 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 2,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -704,8 +606,8 @@
             "vnc_disable_password": true,
             "vnc_bind_address": "127.0.0.1",
             "vmx_remove_ethernet_interfaces": true,
-            "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2018.11.01-x86_64.iso",
-            "iso_checksum": "1f063b0714b94b937eb4da2914be2e4a0f3d7bda0f03ddd796314664cb4c9479",
+            "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2019.02.01-x86_64.iso",
+            "iso_checksum": "ded3152b5b369a7a1697f1081147bfb27c0245de685e55a5b033f6620833809b",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -730,11 +632,8 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 2,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -774,11 +673,8 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 2,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -795,63 +691,6 @@
             "vmx_remove_ethernet_interfaces": true,
             "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.0/amd64/iso-cd/debian-8.11.0-amd64-netinst.iso",
             "iso_checksum": "ea799ed959d77359783e7922ed4c94a7437b083a4ce6f09e9fe41a7af6ba60df",
-            "iso_checksum_type": "sha256",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "tools_upload_flavor": "linux"
-        },
-        {
-            "type": "vmware-iso",
-            "name": "magma-ubuntu-vmware",
-            "vm_name": "magma-ubuntu-vmware",
-            "vmdk_name": "magma-ubuntu-vmware",
-            "output_directory": "output/magma-ubuntu-vmware",
-            "boot_wait": "20s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "disk_size": 32768,
-            "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
-            "vmx_data_post": {
-              "cleanShutdown": "TRUE",
-              "softPowerOff": "FALSE",
-              "ethernet0.virtualDev": "e1000",
-              "ethernet0.startConnected": "TRUE",
-              "ethernet0.wakeonpcktrcv": "false"
-            },
-            "guest_os_type": "ubuntu-64",
-            "skip_compaction": false,
-            "http_directory": "http",
-            "headless": true,
-            "vnc_disable_password": true,
-            "vnc_bind_address": "127.0.0.1",
-            "vmx_remove_ethernet_interfaces": true,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -888,11 +727,8 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 2,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -937,11 +773,8 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 2,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -986,11 +819,8 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 2,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -1034,10 +864,9 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
+            "cpus": 4,
+            "memory": 2048,
             "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "4",
-                "cpuid.corespersocket": "2",
                 "vmci0.present": "TRUE"
             },
             "vmx_data_post": {
@@ -1054,8 +883,8 @@
             "vnc_disable_password": true,
             "vnc_bind_address": "127.0.0.1",
             "vmx_remove_ethernet_interfaces": true,
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20181113T214502Z.iso",
-            "iso_checksum": "004c4a6d6cc4b57e689e9629d259acb320eeef022be05a4bd0dd8e21d17fb40e",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190219T214502Z.iso",
+            "iso_checksum": "a47f26868a8613eab634c7d1a13a10587d7018489680627aa25c26e3ebb92823",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -1090,11 +919,8 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 2,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -1135,11 +961,8 @@
             ],
             "disk_size": 32768,
             "disk_type_id": "0",
-            "vmx_data": {
-                "memsize": "2048",
-                "numvcpus": "2",
-                "cpuid.corespersocket": "2"
-            },
+            "cpus": 2,
+            "memory": 2048,
             "vmx_data_post": {
               "cleanShutdown": "TRUE",
               "softPowerOff": "FALSE",
@@ -1171,6 +994,36 @@
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/magma-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lavabit/info.json"
+                ],
+                "except": [
+                    "magma-alpine36-vmware",
+                    "magma-openbsd6-vmware",
+                    "magma-freebsd11-vmware"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+                "except": [
+                    "magma-alpine36-vmware",
+                    "magma-openbsd6-vmware",
+                    "magma-freebsd11-vmware"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-alpine.rb",
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
@@ -1180,6 +1033,19 @@
                     "magma-alpine36-vmware"
                 ]
             },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-alpine36-vmware"
+                ]
+            }
+        ],
+        [
             {
                 "type": "vagrant",
                 "compression_level": 9,
@@ -1195,25 +1061,30 @@
                 ]
             },
             {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-openbsd6-vmware",
+                    "magma-freebsd11-vmware"
+                ]
+            }
+        ],
+        [
+          {
                 "type": "vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-default.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "output": "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lavabit/info.json"
                 ],
-                "except": [
-                    "magma-alpine36-vmware",
-                    "magma-openbsd6-vmware",
-                    "magma-freebsd11-vmware"
-                ]
-            },
-            {
-                "type": "artifice",
-                "keep_input_artifact": true,
-                "files": [
-                    "output/{{build_name}}-{{user `box_version`}}.box"
+                "only": [
+                    "magma-centos6-vmware"
                 ]
             },
             {
@@ -1221,8 +1092,63 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "keep_input_artifact": true,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+                "keep_input_artifact": false,
+                "output": "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-centos6-vmware"
+                ]
+            }
+        ],
+        [
+          {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/magma-default.rb",
+                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lavabit/info.json"
+                ],
+                "only": [
+                    "magma-centos6-vmware"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-centos6-vmware"
+                ]
+            }
+        ],
+        [
+          {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/magma-default.rb",
+                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lavabit/info.json"
+                ],
+                "only": [
+                    "magma-ubuntu1604-vmware"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box.sha256",
+                "only": [
+                    "magma-ubuntu1604-vmware"
+                ]
             }
         ]
     ]

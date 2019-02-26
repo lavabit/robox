@@ -11,8 +11,19 @@ error() {
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
-# Disable periodic activities of apt
+# We handle name server setup later, but for now, we need to ensure valid resolvers are available.
+printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /etc/resolv.conf
+
+# If the apt configuration directory exists, we add our own config options.
+if [ -d /etc/apt/apt.conf.d/ ]; then
+
+# Disable periodic activities of apt.
 printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
+
+# Enable retries, which should reduce the number box buld failures resulting from a temporal network problems.
+printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/20retries
+
+fi
 
 # Remove the CDROM as a media source.
 sed -i -e "/cdrom:/d" /etc/apt/sources.list
@@ -26,7 +37,7 @@ apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
 apt-get --assume-yes install vim net-tools mlocate psmisc; error
 
 # The packages needed to compile magma.
-apt-get --assume-yes install vim gcc g++ gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
+apt-get --assume-yes install vim gcc g++ gawk gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
 
 # The memcached server.
 apt-get --assume-yes install memcached libevent-dev; error

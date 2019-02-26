@@ -12,7 +12,8 @@ clearpart --all --initlabel
 firewall --enabled --service=ssh
 authconfig --enableshadow --passalgo=sha512
 network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora29.localdomain
-bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=normal nomodeset text"
+# bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=normal nomodeset text"
+bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=792 nomodeset text"
 
 # When this release is no longer available from mirrors, enable the archive url.
 url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/29/Server/x86_64/os/
@@ -37,13 +38,9 @@ chmod 0440 /etc/sudoers.d/vagrant
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
-    dnf --assumeyes install eject hyperv-daemons
+    dnf --assumeyes install hyperv-daemons
     systemctl enable hypervvssd.service
     systemctl enable hypervkvpd.service
-    sync; eject -m /dev/cdrom
-    # umount --force --lazy --detach-loop /dev/sr0
-    echo 1 > /proc/sys/kernel/sysrq
-    echo b > /proc/sysrq-trigger
 fi
 
 %end

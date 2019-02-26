@@ -43,24 +43,18 @@ chmod 0440 /etc/sudoers.d/vagrant
 
 # Duplicate the install media so the DVD can be ejected.
 mount /dev/cdrom /mnt/
-cp --recursive /mnt/* /media/
-umount /mnt/
+cp --recursive /mnt/BaseOS/ /media/ && cp --recursive /mnt/AppStream/ /media/
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
-    if [ ! -f /media/media.repo ]; then
-      mount /dev/cdrom /media
-    fi
 
-    cp /media/media.repo /etc/yum.repos.d/media.repo
-    printf "enabled=1\n" >> /etc/yum.repos.d/media.repo
-    printf "baseurl=file:///media/\n" >> /etc/yum.repos.d/media.repo
+  HYPERV_RPMS=`find /mnt/AppStream/Packages/ -iname "hyperv*rpm"`
 
-    yum --assumeyes install eject hyperv-daemons
-    systemctl enable hypervkvpd.service
-    systemctl enable hypervvssd.service
+  yum --assumeyes install $HYPERV_RPMS
 
-    rm --force /etc/yum.repos.d/media.repo
+  systemctl enable hypervkvpd.service
+  systemctl enable hypervvssd.service
+
 fi
 
 %end

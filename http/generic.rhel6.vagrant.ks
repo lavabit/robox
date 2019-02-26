@@ -63,7 +63,7 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
     printf "enabled=1\n" >> /etc/yum.repos.d/media.repo
     printf "baseurl=file:///media/\n" >> /etc/yum.repos.d/media.repo
 
-    yum --assumeyes install eject hyperv-daemons
+    yum --assumeyes install hyperv-daemons
     systemctl enable hypervkvpd.service
     systemctl enable hypervvssd.service
 

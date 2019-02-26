@@ -1,6 +1,6 @@
 #!/bin/bash -ux
 
-emerge --ask=n --autounmask-write=y --autounmask-continue=y sys-devel/autoconf sys-devel/gcc sys-devel/flex sys-devel/binutils-config sys-devel/autogen  sys-devel/binutils sys-devel/m4 sys-devel/make sys-devel/libtool sys-devel/automake sys-devel/gettext  sys-devel/bison dev-util/valgrind dev-util/pkgconf sys-libs/readline sys-libs/glibc sys-libs/binutils-libs dev-libs/openssl dev-libs/libevent dev-libs/expat dev-libs/crypto++ dev-libs/check dev-libs/libbsd dev-libs/nspr dev-libs/mpfr dev-libs/mpc dev-libs/libxml2 dev-libs/libxslt dev-libs/shhopt sys-devel/gdb dev-vcs/git dev-vcs/git-tools 
+emerge --ask=n --autounmask-write=y --autounmask-continue=y sys-devel/autoconf sys-devel/gcc sys-devel/flex sys-devel/binutils-config sys-devel/autogen  sys-devel/binutils sys-devel/m4 sys-devel/make sys-devel/libtool sys-devel/automake sys-devel/gettext  sys-devel/bison dev-util/valgrind dev-util/pkgconf sys-libs/readline sys-libs/glibc sys-libs/binutils-libs dev-libs/openssl dev-libs/libevent dev-libs/expat dev-libs/crypto++ dev-libs/check dev-libs/libbsd dev-libs/nspr dev-libs/mpfr dev-libs/mpc dev-libs/libxml2 dev-libs/libxslt dev-libs/shhopt sys-devel/gdb dev-vcs/git dev-vcs/git-tools
 
 # Perform any configuration file updates.
 etc-update --automode -5
@@ -72,9 +72,17 @@ sleep 30
 # Temporary [hopefully] workaround to avoid [yet another] bug in NSS.
 export NSS_DISABLE_HW_AES=1
 
+# If the directory is present, remove it so we can clone a fresh copy.
+if [ -d magma-develop ]; then
+  rm --recursive --force magma-develop
+fi
+
 # Clone the magma repository off Github.
 git clone https://github.com/lavabit/magma.git magma-develop; error
 cd magma-develop; error
+
+# Setup the bin links, just in case we need to troubleshoot things manually.
+dev/scripts/linkup.sh; error
 
 # Compile the dependencies into a shared library.
 dev/scripts/builders/build.lib.sh all; error

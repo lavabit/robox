@@ -24,15 +24,26 @@ go build -o bin/gox .
 
 # Fetch packer
 go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
+# go get github.com/ladar/packer && cd $GOPATH/src/github.com/ladar/packer
 
-# For now, stick to the 1.2.4 version, as the 1.3.0 is too buggy.
-# git checkout v1.2.4
+# To build a specific version, or branch uncomment as needed.
+# git checkout v1.3.4
+# git checkout gogetter
 
 # Customize
-sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
+# sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
 
 # Increase the upload timeout
-patch -p1 < $BASE/packer-upload-timeout.patch
+# patch -p1 < $BASE/packer-upload-timeout.patch
+
+# Fix the Hyper-V boot dervice ordering for generation one virtual machines. - MERGED
+# patch -p1 < $BASE/hyperv-boot-order.patch
+
+# Fox the Hyper-V SSH host value bug. - MERGED
+# patch -p1 < $BASH/hyperv-ssh-host.patch
+
+# Force Hyper-V to use a legacy network adapter. - MERGED
+# patch -p1 < $BASE/hyperv-legacy-network-adapter.patch
 
 # Build for Linux, Darwin, and Windows
 PATH=$GOPATH/bin:$PATH
