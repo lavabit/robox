@@ -288,6 +288,24 @@
       "ssh_wait_timeout": "10s",
       "shutdown_command": "poweroff"
     },
+
+    {
+      "type": "vmware-iso",
+      "name": "evil",
+      "output_directory": "output/evil",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.0/amd64/iso-cd/debian-8.11.0-amd64-netinst.iso",
+      "iso_checksum": "ea799ed959d77359783e7922ed4c94a7437b083a4ce6f09e9fe41a7af6ba60df",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+
     {
       "type": "vmware-iso",
       "name": "debian9",

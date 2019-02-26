@@ -398,7 +398,8 @@
         "generic-debian8-virtualbox"
       ]
     },
-    {
+
+{
       "scripts": [
         "scripts/debian9/apt.sh",
         "scripts/debian9/network.sh"

@@ -12,7 +12,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-
                 "evilpot-ubuntu1604-vmware"
             ]
         },
@@ -34,7 +33,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-
               "evilpot-ubuntu1604-vmware"
             ]
         },
@@ -44,8 +42,7 @@
             "source": "res/blobs/system-blobs.tar.gz",
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
-
-                "evilpot-vmware"
+                "evilpot-ubuntu1604-vmware"
             ]
         },
         {
@@ -56,7 +53,6 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-
               "evilpot-ubuntu1604-vmware"
             ]
         },
@@ -80,7 +76,7 @@
             "type": "vmware-iso",
             "name": "evilpot-ubuntu1604-vmware",
             "vm_name": "evilpot-ubuntu1604-vmware",
-            "vmdk_name": "evilpot-vmware",
+            "vmdk_name": "evilpot-ubuntu1604-vmware",
             "output_directory": "output/evilpot-ubuntu1604-vmware",
             "boot_wait": "20s",
             "boot_command": [
@@ -132,67 +128,6 @@
             "ssh_wait_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "tools_upload_flavor": "linux"
-        },
-        {
-          "type": "vmware-iso",
-          "name": "evilpot-ubuntu1804-vmware",
-          "vm_name": "evilpot-ubuntu1804-vmware",
-          "vmdk_name": "evilpot-ubuntu1804-vmware",
-          "output_directory": "output/generic-ubuntu1804-vmware",
-          "boot_wait": "1s",
-          "boot_command": [
-            "<tab><wait><tab><wait><tab><wait><tab><wait>",
-            "<tab><wait><tab><wait><tab><wait><tab><wait>",
-            "<tab><wait><tab><wait><tab><wait><tab><wait>",
-            "<esc><f6><esc>",
-            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "/install/vmlinuz ",
-            "initrd=/install/initrd.gz ",
-            "fb=false ",
-            "auto-install/enable=true ",
-            "debconf/priority=critical ",
-            "console-setup/ask_detect=false ",
-            "debconf/frontend=noninteractive ",
-            "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1804.vagrant.cfg<wait> ",
-            " --- <enter>"
-          ],
-          "disk_size": 32768,
-          "disk_type_id": "0",
-          "vmx_data": {
-            "memsize": "2048",
-            "numvcpus": "2",
-            "cpuid.corespersocket": "2"
-          },
-          "vmx_data_post": {
-            "cleanShutdown": "TRUE",
-            "softPowerOff": "FALSE",
-            "ethernet0.virtualDev": "e1000",
-            "ethernet0.startConnected": "TRUE",
-            "ethernet0.wakeonpcktrcv": "false"
-          },
-          "guest_os_type": "ubuntu-64",
-          "skip_compaction": false,
-          "http_directory": "http",
-          "headless": true,
-          "vnc_disable_password": true,
-          "vnc_bind_address": "127.0.0.1",
-          "vmx_remove_ethernet_interfaces": true,
-          "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04.1/release/ubuntu-18.04.1-server-amd64.iso",
-          "iso_checksum": "a5b0ea5918f850124f3d72ef4b85bda82f0fcd02ec721be19c1a6952791c8ee8",
-          "iso_checksum_type": "sha256",
-          "ssh_username": "root",
-          "ssh_password": "vagrant",
-          "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
-          "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-          "tools_upload_flavor": "linux"
         }
     ],
     "post-processors": [
