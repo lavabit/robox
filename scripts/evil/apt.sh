@@ -17,10 +17,13 @@ printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
 # Remove the CDROM as a media source.
 sed -i -e "/cdrom:/d" /etc/apt/sources.list
 
+
 # Ensure the server includes any necessary updates.
 apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
 apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
 apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
+apt install apt-transport-https --assume-yes
+
 
 # The packages users expect on a sane system.
 apt-get --assume-yes install vim net-tools mlocate psmisc; error
