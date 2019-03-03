@@ -1,0 +1,175 @@
+{
+    "variables": {
+        "box_version": "{{env `VERSION`}}"
+    },
+    "provisioners": [
+        {
+            "scripts": [
+                "scripts/evil/apt.sh",
+                "scripts/evil/network.sh"
+            ],
+            "type": "shell",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+
+                "evil-honeypot-virtualbox"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/evil/limits.sh",
+                "scripts/evil/floppy.sh",
+                "scripts/evil/vagrant.sh",
+                "scripts/evil/motd.sh",
+                "scripts/evil/fixtty.sh",
+                "scripts/evil/virtualbox.sh",
+                "scripts/evil/parallels.sh",
+                "scripts/evil/vmware.sh",
+                "scripts/evil/qemu.sh",
+                "scripts/evil/cleanup.sh"
+            ],
+            "type": "shell",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+
+                "evil-honeypot-virtualbox"
+            ]
+        },
+        {
+            "type": "file",
+            "direction": "upload",
+            "source": "res/blobs/system-blobs.tar.gz",
+            "destination": "/home/vagrant/system-blobs.tar.gz",
+            "only": [
+
+                "evil-honeypot-virtualbox"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/evil/evilpot.sh"
+            ],
+            "type": "shell",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+
+                "evil-honeypot-virtualbox"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/common/keys.sh",
+                "scripts/common/machine.sh",
+                "scripts/common/zerodisk.sh",
+                "scripts/common/lockout.sh"
+            ],
+            "type": "shell",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "except": [
+
+            ]
+        }
+    ],
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "name": "evil-honeypot-virtualbox",
+            "vm_name": "evil-virtualbox",
+            "output_directory": "output/evil-honeypot-virtualbox",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<enter><wait>",
+                "<f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "/install/vmlinuz ",
+                "initrd=/install/initrd.gz ",
+                "auto-install/enable=true ",
+                "debconf/priority=critical ",
+                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/evilpot.ubuntu1604.vagrant.cfg<wait> ",
+                "<enter>"
+            ],
+            "disk_size": 196608,
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "2048"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--vram",
+                    "64"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "4"
+                ]
+            ],
+            "guest_os_type": "Ubuntu_64",
+            "http_directory": "http",
+            "headless": true,
+            "vrdp_bind_address": "127.0.0.1",
+            "vrdp_port_min": 11000,
+            "vrdp_port_max": 12000,
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
+            "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+            "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+            "guest_additions_path": "VBoxGuestAdditions.iso",
+            "virtualbox_version_file": "VBoxVersion.txt"
+        },
+
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/evil.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/evil/info.json"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.box"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": true,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ]
+    ]
+}
