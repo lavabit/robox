@@ -10,7 +10,7 @@ export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 #curl -O https://www.inetsim.org/downloads/inetsim-1.2.8.tar.gz
 #tar xvzf inetsim-1.2.8.tar.gz && cd inetsim-1.2.8
-3bash setup.sh
+#bash setup.sh
 #install inetsim using debian apt packages.
 apt install apt-transport-https --assume-yes
 echo "deb https://www.inetsim.org/debian/ binary/" > /etc/apt/sources.list.d/inetsim.list
@@ -278,7 +278,7 @@ dns_default_ip		10.0.0.1
 #
 # Default: \"INetSim DNS Server\"
 #
-#dns_version \"9.2.4\"
+dns_version \" MAGMA DNS BITCH 9.2.4\"
 
 
 #############################################################
@@ -306,7 +306,7 @@ dns_default_ip		10.0.0.1
 #
 # Default: \"INetSim HTTP server\"
 #
-http_version		\"Server: Apache/2.2.15 (CentOS) DAV/2 PHP/5.3.3 mod_ssl/2.2.15 OpenSSL/1.0.1e-fips Phusion_Passenger/4.0.59 mod_perl/2.0.4 Perl/v5.10.1\"
+http_version		\"LULZ Server: Apache/2.2.15 (CentOS) DAV/2 PHP/5.3.3 mod_ssl/2.2.15 OpenSSL/1.0.1e-fips Phusion_Passenger/4.0.59 mod_perl/2.0.4 Perl/v5.10.1\"
 
 
 
@@ -540,7 +540,7 @@ https_default_fakefile	sample.html	text/html
 # Syntax: smtp_fqdn_hostname <string>
 #
 # Default: mail.inetsim.org
-smtp_fqdn_hostname	lavabit.com
+smtp_fqdn_hostname	klostech.group
 #smtp_fqdn
 
 
@@ -1569,7 +1569,7 @@ ftps_version		\"vsFTPd 2.0.4 - secure, fast, stable\"
 #
 # Default: irc.inetsim.org
 #
-irc_fqdn_hostname	irc.lavabit.com
+irc_fqdn_hostname	irc.klostech.group
 
 
 #########################################
@@ -1579,7 +1579,7 @@ irc_fqdn_hostname	irc.lavabit.com
 #
 # Syntax: irc_version <string>
 #
-# Default: \"INetSim IRC Server\"
+# Default: \"MAGMA IRC Server\"
 #
 irc_version		\"Unreal3.2.7\"
 
