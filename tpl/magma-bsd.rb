@@ -3,6 +3,7 @@
 
 Vagrant.configure(2) do |config|
 
+  config.vm.boot_timeout = 1800
   # config.vm.box = "lavabit/magma"
   # config.vm.hostname = "magma.build.box"
   config.vm.synced_folder ".", "/vagrant", disabled: true
@@ -10,7 +11,9 @@ Vagrant.configure(2) do |config|
   config.vm.box_check_update = true
 
   # config.vm.post_up_message = ""
+  config.vm.boot_timeout = 1800
   # config.vm.box_download_checksum = true
+  config.vm.boot_timeout = 1800
   # config.vm.box_download_checksum_type = "sha256"
 
   config.vm.usable_port_range = 20000..30000

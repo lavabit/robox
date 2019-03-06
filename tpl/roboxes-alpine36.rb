@@ -3,6 +3,7 @@
 
 Vagrant.configure(2) do |config|
 
+  config.vm.boot_timeout = 1800
   # config.vm.box = "roboxes/bazinga"
   # config.vm.hostname = "bazinga.roboxes"
   config.vm.synced_folder ".", "/vagrant", disabled: true
@@ -10,7 +11,9 @@ Vagrant.configure(2) do |config|
   config.vm.box_check_update = true
 
   # config.vm.post_up_message = ""
+  config.vm.boot_timeout = 1800
   # config.vm.box_download_checksum = true
+  config.vm.boot_timeout = 1800
   # config.vm.box_download_checksum_type = "sha256"
 
   # config.vm.provision "shell", run: "always", inline: <<-SHELL
