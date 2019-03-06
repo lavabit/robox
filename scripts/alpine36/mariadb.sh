@@ -29,9 +29,13 @@ retry() {
 # The mysql client and related utilities.
 retry apk add mariadb mariadb-client mariadb-common libaio libgcc libstdc++
 
-# For some reason the data directory isn't being created properly.
+# For some reason the data/socket directories aren't being created properly.
 if [ ! -d /var/lib/mysql ]; then
   mkdir -p /var/lib/mysql
+fi
+
+if [ ! -d /run/mysqld/ ]; then
+  mkdir -p /run/mysqld/
 fi
 
 # Create the initial database.
