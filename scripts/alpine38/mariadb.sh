@@ -29,14 +29,10 @@ retry() {
 # The mysql client and related utilities.
 retry apk add mariadb mariadb-client mariadb-common libaio libgcc libstdc++
 
-# For some reason the data/socket directories aren't being created properly.
-if [ ! -d /var/lib/mysql ]; then
-  mkdir -p /var/lib/mysql
-fi
-
-if [ ! -d /run/mysqld/ ]; then
-  mkdir -p /run/mysqld/
-fi
+# Delete these lines, if they exist, and explicitly configure the data directory.
+sed -i "/datadir/d" /etc/mysql/my.cnf
+sed -i "/innodb_data_home_dir/d" /etc/mysql/my.cnf
+sed -i '/\[mysqld\].*/a \datadir\=\/var\/lib\/mysql\/\ninnodb_data_home_dir\=\/var\/lib\/mysql\/\n\end' /etc/mysql/my.cnf
 
 # Create the initial database.
 /etc/init.d/mariadb setup
