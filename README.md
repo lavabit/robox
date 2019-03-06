@@ -29,13 +29,6 @@ Add init based test, and SSH command test to the box test and check script
 
 [Devuan 1.0/2.0](https://devuan.org/)  
 
-## Works in Progress
-
-[HardenedBSD 12](https://hardenedbsd.org/)  
-[Debian 10](https://wiki.debian.org/DebianBuster)  
-[Ubuntu 19.04](https://wiki.ubuntu.com/DiscoDingo)  
-[Alpine 3.9](https://www.alpinelinux.org)  
-
 ## Operating System Requests
 
 The following operating systems have been requested by a member of the robox community, but require a volunteer, so they can be incorporated into the robox workflow.
@@ -76,3 +69,5 @@ Bitcoin
 
 Bitcoin Cash
 qqxyedtn68jg84w4mkd3vsw2nu6pgkydnudza0ed0m
+
+[Robxes](https://roboxes.org) is maintained by Ladar Levison, with infrastructure provided by [Hacking and Coffee LLC](https://hackingand.coffee), and [Lavabit LLC](https://lavabit.com).
