@@ -1,10 +1,10 @@
 #!/bin/bash
 
 error() {
-        if [ $? -ne 0 ]; then
-                printf "\n\napt failed...\n\n";
-                exit 1
-        fi
+  if [ $? -ne 0 ]; then
+    printf "\n\napt failed...\n\n";
+    exit 1
+  fi
 }
 
 # To allow for autmated installs, we disable interactive configuration steps.
@@ -13,7 +13,6 @@ export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # Reset the apt sources.
 sed -i -e "s/https:\/\/mirrors.lavabit.com/http:\/\/old-releases.ubuntu.com/g" /etc/apt/sources.list
-
 
 # Keep the daily apt updater from deadlocking our installs.
 systemctl stop apt-daily.service apt-daily.timer
