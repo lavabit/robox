@@ -1,6 +1,31 @@
 #!/bin/bash -eux
-#
-# Setup the the box. This runs as root
+
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 # Create the clamav user to avoid spurious errors.
 useradd clamav
 
@@ -21,7 +46,7 @@ printf "*    hard    nofile     65536\n" >> /etc/security/limits.d/50-magmad.con
 chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
 
 # Packages required to compile magma.
-dnf install --assumeyes zlib-devel
+retry dnf install --assumeyes zlib-devel
 
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
