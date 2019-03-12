@@ -28,6 +28,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :libvirt do |v, override|
+    v.nic_model_type = "e1000"
     v.disk_bus = "scsi"
     v.driver = "kvm"
     v.video_vram = 256
