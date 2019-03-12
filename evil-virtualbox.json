@@ -100,6 +100,7 @@
                 "debconf/priority=critical ",
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/evilpot.ubuntu1604.vagrant.cfg<wait> ",
                 "<enter>"
+                #evil-honeypot need to change vagrant config names
             ],
             "disk_size": 196608,
             "vboxmanage": [
