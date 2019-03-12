@@ -13,7 +13,7 @@
             "expect_disconnect": "true",
             "only": [
 
-                "evilpot-vmware"
+                "evil-honeypot-vmware"
             ]
         },
         {
@@ -35,7 +35,7 @@
             "expect_disconnect": "true",
             "only": [
 
-                "evilpot-ubuntu1604-vmware"
+                "evil-honeypot-vmware"
             ]
         },
         {
@@ -45,7 +45,7 @@
             "destination": "/home/vagrant/system-blobs.tar.gz",
             "only": [
 
-                "evilpot-ubuntu1604-vmware"
+                "evil-honeypot-vmware"
             ]
         },
         {
@@ -57,7 +57,7 @@
             "expect_disconnect": "true",
             "only": [
 
-                "evilpot-ubuntu1604-vmware"
+                "evil-honeypot-vmware"
             ]
         },
         {
