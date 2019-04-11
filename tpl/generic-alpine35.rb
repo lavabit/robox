@@ -3,8 +3,9 @@
 
 Vagrant.configure(2) do |config|
 
+  config.vm.guest = :alpine
   config.vm.boot_timeout = 1800
-  # config.vm.box = "generic/bazinga"
+  # config.vm.box= "generic/bazinga"
   # config.vm.hostname = "bazinga.box"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
@@ -32,7 +33,6 @@ Vagrant.configure(2) do |config|
     v.memory = 2048
     v.driver = "kvm"
     v.video_vram = 256
-    config.vm.guest = :alt
     v.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
   end
 
