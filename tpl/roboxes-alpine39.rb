@@ -32,7 +32,7 @@ Vagrant.configure(2) do |config|
     v.memory = 2048
     v.driver = "kvm"
     v.video_vram = 256
-    config.vm.guest = :alt
+    override.vm.guest = :alt
     v.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
   end
 
