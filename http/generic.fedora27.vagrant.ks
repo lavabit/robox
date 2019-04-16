@@ -1,8 +1,7 @@
 install
 text
 reboot --eject
-url --url=https://mirrors.kernel.org/fedora/releases/27/Everything/x86_64/os/
-# url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/
+url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/
 lang en_US.UTF-8
 keyboard us
 timezone US/Pacific
