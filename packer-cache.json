@@ -552,7 +552,7 @@
       "disk_size": 1,
       "boot_wait": "5s",
       "iso_url": "http://cdimage.ubuntu.com/releases/19.04/beta/ubuntu-19.04-beta-server-amd64.iso",
-      "iso_checksum_url": "a74696d8fcad83264fac9fefb26b098e98b3f1ab518597ac2eb8eb492fcf217b",
+      "iso_checksum": "a74696d8fcad83264fac9fefb26b098e98b3f1ab518597ac2eb8eb492fcf217b",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
