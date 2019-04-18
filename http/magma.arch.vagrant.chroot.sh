@@ -40,7 +40,7 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
 sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 no_timer_check"/g' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -S --noconfirm git base-devel
+pacman -S --noconfirm git base-devel bind-tools
 
 su -l vagrant -c /bin/bash <<-EOF
 cd /home/vagrant/
