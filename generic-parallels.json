@@ -1190,6 +1190,49 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora30/fixdns.sh",
+        "scripts/fedora30/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora30-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora30/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora30-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora30/kernel.sh",
+        "scripts/fedora30/vga.sh",
+        "scripts/fedora30/virtualbox.sh",
+        "scripts/fedora30/parallels.sh",
+        "scripts/fedora30/vmware.sh",
+        "scripts/fedora30/qemu.sh",
+        "scripts/fedora30/vagrant.sh",
+        "scripts/fedora30/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora30-parallels"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -3302,6 +3345,59 @@
       "http_directory": "http",
       "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/19.04/release/ubuntu-19.04-server-amd64.iso",
       "iso_checksum": "7e8a0d07522f591dfee9bc9fcd7c05466763161e6cb0117906655bce1750b2fa",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-fedora30-parallels",
+      "vm_name": "generic-fedora30-parallels",
+      "output_directory": "output/generic-fedora30-parallels",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora30.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "linux",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
+      "iso_checksum": "5e4eac4566d8c572bfb3bcf54b7d6c82006ec3c6c882a2c9235c6d3494d7b100",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
