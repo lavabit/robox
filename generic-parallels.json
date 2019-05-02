@@ -3154,6 +3154,12 @@
         [
           "set",
           "{{.Name}}",
+          "--efi-boot",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--device-set",
           "cdrom0",
           "--iface",
