@@ -6,7 +6,7 @@
 # Description: Used to build various virtual machines using packer.
 
 # Version Information
-export VERSION="1.9.10"
+export VERSION="1.9.12"
 export AGENT="Vagrant/2.2.3 (+https://www.vagrantup.com; ruby2.4.4)"
 
 # Limit the number of cpus packer will use.
@@ -216,8 +216,8 @@ function isos {
   N=( "${N[@]}" "Arch" ); U=( "${U[@]}" "$URL" )
 
   # Ubuntu Disco
-  URL="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso"
-  N=( "${N[@]}" "Disco" ); U=( "${U[@]}" "$URL" )
+  # URL="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso"
+  # N=( "${N[@]}" "Disco" ); U=( "${U[@]}" "$URL" )
 
   # Debian Buster
   URL="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
