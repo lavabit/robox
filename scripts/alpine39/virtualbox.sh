@@ -81,7 +81,7 @@ else
 	echo vboxsf >> /etc/modules
 	##echo vboxvideo >> /etc/modules
 	fi
-set +vx
+
 	rm -rf /root/VBoxVersion.txt
 	rm -rf /root/VBoxGuestAdditions.iso
 
