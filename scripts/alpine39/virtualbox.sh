@@ -29,6 +29,13 @@ retry() {
   return "${RESULT}"
 }
 
+if ! grep -q '^[^#].\+alpine/.\+/community' /etc/apk/repositories; then
+    # Add community repository entry based on the "main" repo URL
+    __REPO=$(grep '^[^#].\+alpine/.\+/main\>' /etc/apk/repositories)
+    echo "${__REPO}" | sed -e 's/main/community/' >> /etc/apk/repositories
+fi
+
+
 # Ensure dmidecode is available.
 retry apk add dmidecode
 
@@ -45,7 +52,7 @@ if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(alpine3[5-7])-(vmware|hyperv|lib
 	# Add the testing repository (which isn't available over HTTPS).
 	printf "@testing http://nl.alpinelinux.org/alpine/edge/testing\n" >> /etc/apk/repositories
 
-	# Add the primary site.
+	# Add the edge repository entry based on the "main" repo URL.
 	printf "@edge http://nl.alpinelinux.org/alpine/edge/main/\n" >> /etc/apk/repositories
 
 	# Update the APK cache.
