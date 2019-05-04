@@ -26,8 +26,18 @@ retry() {
   return "${RESULT}"
 }
 
-# Setup the apk cache.
+
+## Setup the apk cache.
 retry setup-apkcache /var/cache/apk
 
-# Delete unnecessary packages, and download any missing packages.
-retry apk cache -v sync
+rm -fr /var/cache/*
+rm -fr /var/cache/*
+sync
+
+# rebuild only index files
+#apk -v cache clean
+apk -v update --no-cache
+
+##### Delete unnecessary packages, and download any missing packages.
+####retry apk cache -v sync
+
