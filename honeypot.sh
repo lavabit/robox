@@ -19,6 +19,30 @@ apt-key add inetsim-archive-signing-key.asc
 apt update --assume-yes
 apt install inetsim --assume-yes
 
+
+# Update the package database.
+apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
+
+# Ensure the linux-tools and linux-cloud-tools get updated with the kernel.
+apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic
+
+# Upgrade the installed packages.
+apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
+apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
+
+# Needed to retrieve source code, and other misc system tools.
+apt-get --assume-yes install vim vim-nox git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils lsb-release psmisc; error
+
+# Enable the sysstat collection service.
+sed -i -e "s|.*ENABLED=\".*\"|ENABLED=\"true\"|g" /etc/default/sysstat
+
+# Start the services we just added so the system will track its own performance.
+systemctl enable sysstat.service && systemctl start sysstat.service
+
+# Setup vim as the default editor.
+printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
+
+
 # print inetsim configuration file to inetsim.conf
 
 cat <<EOF >> /etc/inetsim.conf
