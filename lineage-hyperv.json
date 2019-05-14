@@ -105,8 +105,8 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 98304,
-            "ram_size": 1024,
-            "cpu": 4,
+            "memory": 1024,
+            "cpus": 4,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.6/ubuntu-16.04.6-server-amd64.iso",
             "iso_checksum": "16afb1375372c57471ea5e29803a89a5a6bd1f6aabea2e5e34ac1ab7eb9786ac",
@@ -151,8 +151,8 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 98304,
-            "ram_size": 1024,
-            "cpu": 4,
+            "memory": 1024,
+            "cpus": 4,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.6/ubuntu-16.04.6-server-amd64.iso",
             "iso_checksum": "16afb1375372c57471ea5e29803a89a5a6bd1f6aabea2e5e34ac1ab7eb9786ac",
