@@ -59,10 +59,10 @@ MEDIAFILES="res/media/rhel-server-6.10-x86_64-dvd.iso"\
 "|res/media/rhel-8.0-beta-1-x86_64-dvd.iso"
 MEDIASUMS="1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727"\
 "|60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c"\
-"|06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316"
+"|005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43"
 MEDIAURLS="https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso"\
 "|https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"\
-"|https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso"
+"|https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso"
 
 # When validating ISO checksums skip these URLS.
 DYNAMICURLS="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso|"\
@@ -745,7 +745,7 @@ function localized() {
   # Former Logic
   # verify_local 1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727 res/media/rhel-server-6.10-x86_64-dvd.iso https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso
   # verify_local 60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c res/media/rhel-server-7.6-x86_64-dvd.iso https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso
-  # verify_local 06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316 res/media/rhel-8.0-beta-1-x86_64-dvd.iso https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso
+  # verify_local 005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43 res/media/rhel-8.0-beta-1-x86_64-dvd.iso https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso
 
 }
 
