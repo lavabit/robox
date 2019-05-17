@@ -21,30 +21,6 @@ Vagrant.configure("2") do |config|
   # when the box is provisioned.
   config.vm.provision "shell", run: "always", inline: <<-SHELL
     su -l vagrant -c '/home/vagrant/evil-build.sh'
-  SHELL
-
-  # Lineage will build and run comfortably with 1 CPU and 512MB of RAM
-  # but adding a second CPU and increasing the RAM to 2048MB will speed
-  # things up considerably during the build process.
-  config.vm.provider :hyperv do |v, override|
-    v.maxmemory = 2048
-    v.memory = 2048
-    v.cpus = 2
-  end
-
-  config.vm.provider :libvirt do |v, override|
-    v.driver = "kvm"
-    v.video_vram = 256
-    v.memory = 2048
-    v.cpus = 2
-  end
-
-  config.vm.provider :parallels do |v, override|
-    v.customize ["set", :id, "--on-window-close", "keep-running"]
-    v.customize ["set", :id, "--startup-view", "headless"]
-    v.customize ["set", :id, "--memsize", "2048"]
-    v.customize ["set", :id, "--cpus", "2"]
-  end
 
   config.vm.provider :virtualbox do |v, override|
     v.customize ["modifyvm", :id, "--memory", 2048]
