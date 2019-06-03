@@ -24,6 +24,8 @@ Generate docker variants for the RHEL/Oracle/Ubuntu/Debian/Alpine configurations
 Add upload/delete/release functions to robox.sh  
 Add vagrant user password randomization logic to the bundled Vagrantfiles  
 Add init based test, and SSH command test to the box test and check script  
+Ad `IPQoS lowdelay throughput` to the relevant configs to solve the [OpenSSH bug](https://github.com/hashicorp/vagrant/issues/10730)
+
 
 ## Pending Additions
 
