@@ -31,17 +31,11 @@ sed -i -e "/IPV6_PEERROUTES.*/d;$ a IPV6_PEERROUTES=no" /etc/sysconfig/network-s
 sed -i -e "/IPV6FORWARDING.*/d;$ a IPV6FORWARDING=no" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "/IPV6_AUTOTUNNEL.*/d;$ a IPV6_AUTOTUNNEL=no" /etc/sysconfig/network-scripts/ifcfg-eth0
 
-
 # Ensure good DNS servers are being used.
 if [ -f /etc/sysconfig/network-scripts/ifcfg-eth0 ]; then
   printf "DNS1=4.2.2.1\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
   printf "DNS2=4.2.2.2\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 fi
-
-# Make sure Udev doesn't block our network
-printf "Cleaning up udev rules.\n"
-rm /etc/udev/rules.d/70-persistent-net.rules
-mkdir /etc/udev/rules.d/70-persistent-net.rules
 
 # If postfix is installed, configure it use only ipv4 interfaces, or it will fail to start properly.
 if [ -f /etc/postfix/main.cf ]; then

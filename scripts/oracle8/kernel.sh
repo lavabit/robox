@@ -19,7 +19,7 @@ fi
 
 # Make sure we have the right kernel-uek-devel package installed, or the VirtualBox
 # addons won't build properly.
-yum --enablerepo=ol7_UEKR* --assumeyes install kernel-uek-devel-`uname -r`
+yum --enablerepo=ol8_UEKR* --assumeyes install kernel-uek-devel-`uname -r`
 
 # Now that the system is running on the updated kernel, we can remove the
 # old kernel(s) from the system.
