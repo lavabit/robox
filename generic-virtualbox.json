@@ -1233,6 +1233,40 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/oracle8/network.sh",
+        "scripts/oracle8/yum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle8-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/oracle8/kernel.sh",
+        "scripts/oracle8/floppy.sh",
+        "scripts/oracle8/virtualbox.sh",
+        "scripts/oracle8/parallels.sh",
+        "scripts/oracle8/vmware.sh",
+        "scripts/oracle8/qemu.sh",
+        "scripts/oracle8/vagrant.sh",
+        "scripts/oracle8/tuning.sh",
+        "scripts/oracle8/cleanup.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle8-virtualbox"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -2997,6 +3031,45 @@
       "vrdp_port_max": 12000,
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
       "iso_checksum": "5e4eac4566d8c572bfb3bcf54b7d6c82006ec3c6c882a2c9235c6d3494d7b100",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
+      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-oracle8-virtualbox",
+      "vm_name": "generic-oracle8-virtualbox",
+      "output_directory": "output/generic-oracle8-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Oracle_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://download.oracle.com/otn-pub/otn_software/linux/OracleLinux-R8-U0-BETA-x86_64-dvd.iso",
+      "iso_checksum": "3872f95ad0b119839f01aa665d2342701fff66fefdac040b039fcb61c65b2c44",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",

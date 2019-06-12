@@ -1235,6 +1235,40 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/oracle8/network.sh",
+        "scripts/oracle8/yum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle8-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/oracle8/kernel.sh",
+        "scripts/oracle8/floppy.sh",
+        "scripts/oracle8/virtualbox.sh",
+        "scripts/oracle8/parallels.sh",
+        "scripts/oracle8/vmware.sh",
+        "scripts/oracle8/qemu.sh",
+        "scripts/oracle8/vagrant.sh",
+        "scripts/oracle8/tuning.sh",
+        "scripts/oracle8/cleanup.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle8-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -2747,6 +2781,38 @@
       "http_directory": "http",
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
       "iso_checksum": "5e4eac4566d8c572bfb3bcf54b7d6c82006ec3c6c882a2c9235c6d3494d7b100",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-oracle8-hyperv",
+      "vm_name": "generic-oracle8-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-oracle8-hyperv",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "memory": 1024,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://download.oracle.com/otn-pub/otn_software/linux/OracleLinux-R8-U0-BETA-x86_64-dvd.iso",
+      "iso_checksum": "3872f95ad0b119839f01aa665d2342701fff66fefdac040b039fcb61c65b2c44",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",

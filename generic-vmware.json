@@ -1233,6 +1233,40 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/oracle8/network.sh",
+        "scripts/oracle8/yum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle8-vmware"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/oracle8/kernel.sh",
+        "scripts/oracle8/floppy.sh",
+        "scripts/oracle8/virtualbox.sh",
+        "scripts/oracle8/parallels.sh",
+        "scripts/oracle8/vmware.sh",
+        "scripts/oracle8/qemu.sh",
+        "scripts/oracle8/vagrant.sh",
+        "scripts/oracle8/tuning.sh",
+        "scripts/oracle8/cleanup.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle8-vmware"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -3003,6 +3037,44 @@
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
       "iso_checksum": "5e4eac4566d8c572bfb3bcf54b7d6c82006ec3c6c882a2c9235c6d3494d7b100",
       "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-oracle8-vmware",
+      "vm_name": "generic-oracle8-vmware",
+      "vmdk_name": "generic-oracle8-vmware",
+      "output_directory": "output/generic-oracle8-vmware",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "vmx_data_post": {
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "oraclelinux-64",
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://download.oracle.com/otn-pub/otn_software/linux/OracleLinux-R8-U0-BETA-x86_64-dvd.iso",
+      "iso_checksum": "3872f95ad0b119839f01aa665d2342701fff66fefdac040b039fcb61c65b2c44",
+      "iso_checksum_type": "sha256",
+      "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

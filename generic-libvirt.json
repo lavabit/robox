@@ -1233,6 +1233,40 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/oracle8/network.sh",
+        "scripts/oracle8/yum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle8-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/oracle8/kernel.sh",
+        "scripts/oracle8/floppy.sh",
+        "scripts/oracle8/virtualbox.sh",
+        "scripts/oracle8/parallels.sh",
+        "scripts/oracle8/vmware.sh",
+        "scripts/oracle8/qemu.sh",
+        "scripts/oracle8/vagrant.sh",
+        "scripts/oracle8/tuning.sh",
+        "scripts/oracle8/cleanup.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle8-libvirt"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -2927,6 +2961,43 @@
       "headless": true,
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
       "iso_checksum": "5e4eac4566d8c572bfb3bcf54b7d6c82006ec3c6c882a2c9235c6d3494d7b100",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-oracle8-libvirt",
+      "vm_name": "generic-oracle8-libvirt",
+      "output_directory": "output/generic-oracle8-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "qemuargs": [
+        [
+          "-drive",
+          "if=none,file=output/generic-oracle8-libvirt/generic-oracle8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://download.oracle.com/otn-pub/otn_software/linux/OracleLinux-R8-U0-BETA-x86_64-dvd.iso",
+      "iso_checksum": "3872f95ad0b119839f01aa665d2342701fff66fefdac040b039fcb61c65b2c44",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
