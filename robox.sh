@@ -963,7 +963,6 @@ function all() {
 
   links
   validate
-  localized
 
   builder
 
