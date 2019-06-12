@@ -3,7 +3,7 @@
 yum --assumeyes install mlocate
 
 # Update the locate database.
-cp /etc/cron.daily/mlocate.cron /etc/cron.hourly/mlocate.cron && /etc/cron.daily/mlocate.cron
+# cp /etc/cron.daily/mlocate.cron /etc/cron.hourly/mlocate.cron && /etc/cron.daily/mlocate.cron
 
 # A very simple script designed to ensure the locate database gets updated
 # automatically when the box is booted and provisioned.
