@@ -16,7 +16,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=oracle8.localdomain
 
 zerombr
 clearpart --all --initlabel
-bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check"
+bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 no_timer_check"
 autopart
 
 rootpw vagrant
@@ -24,15 +24,10 @@ authconfig --enableshadow --passalgo=sha512
 
 reboot --eject
 
-%packages --instLangs=en --nobase
+%packages --instLangs=en
 @core
 authconfig
 sudo
-# Microcode updates don't work in a VM
-#-microcode_ctl
-# Firmware packages aren't needed in a VM
-#-*firmware
-kernel-abi-whitelists
 %end
 
 %post
