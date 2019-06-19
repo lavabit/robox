@@ -44,6 +44,13 @@ error() {
       printf "\n\nThe /var/log/vboxadd-install.log is missing...\n\n"
     fi
 
+    if [ -f /var/log/vboxadd-setup.log ]; then
+      printf "\n\n/var/log/vboxadd-setup.log\n\n"
+      cat /var/log/vboxadd-setup.log
+    else
+      printf "\n\nThe /var/log/vboxadd-setup.log is missing...\n\n"
+    fi
+
     exit 1
   fi
 }
