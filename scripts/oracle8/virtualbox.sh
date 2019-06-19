@@ -41,7 +41,8 @@ printf "Installing the Virtual Box Tools.\n"
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
 # Packages required to build the guest additions.
-yum --assumeyes install gcc make perl dkms bzip2 kernel-tools kernel-headers kernel-devel kernel-uek-devel autoconf automake binutils bison flex gcc-c++ gettext libtool make patch pkgconfig; error
+# yum --assumeyes install gcc make perl dkms bzip2 kernel-tools kernel-headers kernel-devel kernel-uek-devel autoconf automake binutils bison flex gcc-c++ gettext libtool make patch pkgconfig; error
+yum --assumeyes install gcc make perl bzip2 kernel-tools kernel-headers kernel-devel autoconf automake binutils bison flex gcc-c++ gettext libtool make patch pkgconfig; error
 
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
