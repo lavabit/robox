@@ -594,6 +594,22 @@
     },
     {
       "type": "vmware-iso",
+      "name": "alpine310",
+      "output_directory": "output/alpine310",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.10/releases/x86_64/alpine-virt-3.10.0-x86_64.iso",
+      "iso_checksum": "b3d8fe65c2777edcbc30b52cde7f5ae21dff8ecda612d5fe7b10d5c23cda40c4",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+    {
+      "type": "vmware-iso",
       "name": "openbsd6",
       "output_directory": "output/openbsd6",
       "headless": true,

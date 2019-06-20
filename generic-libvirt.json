@@ -1267,6 +1267,40 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine310/network.sh",
+        "scripts/alpine310/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine310-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine310/lsb.sh",
+        "scripts/alpine310/floppy.sh",
+        "scripts/alpine310/vagrant.sh",
+        "scripts/alpine310/sshd.sh",
+        "scripts/alpine310/virtualbox.sh",
+        "scripts/alpine310/parallels.sh",
+        "scripts/alpine310/vmware.sh",
+        "scripts/alpine310/qemu.sh",
+        "scripts/alpine310/cache.sh"
+      ],
+      "execute_command": "/bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine310-libvirt"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -3004,6 +3038,52 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-alpine310-libvirt",
+      "vm_name": "generic-alpine310-libvirt",
+      "output_directory": "output/generic-alpine310-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine310.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine310.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "qemuargs": [
+        [
+          "-drive",
+          "if=none,file=output/generic-alpine310-libvirt/generic-alpine310-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.10/releases/x86_64/alpine-virt-3.10.0-x86_64.iso",
+      "iso_checksum": "b3d8fe65c2777edcbc30b52cde7f5ae21dff8ecda612d5fe7b10d5c23cda40c4",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff"
     }
   ],
   "post-processors": [
