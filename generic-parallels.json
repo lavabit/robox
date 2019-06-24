@@ -3199,39 +3199,25 @@
           "set",
           "{{.Name}}",
           "--adaptive-hypervisor",
-          "off"
-        ],
-        [
-          "set",
-          "{{.Name}}",
-          "--3d-accelerate",
-          "off"
+          "on"
         ],
         [
           "set",
           "{{.Name}}",
           "--pmu-virt",
-          "off"
+          "on"
         ],
         [
           "set",
           "{{.Name}}",
           "--faster-vm",
-          "off"
+          "on"
         ],
         [
           "set",
           "{{.Name}}",
           "--efi-boot",
           "on"
-        ],
-        [
-          "set",
-          "{{.Name}}",
-          "--device-set",
-          "cdrom0",
-          "--iface",
-          "sata"
         ]
       ],
       "hard_drive_interface": "ide",
