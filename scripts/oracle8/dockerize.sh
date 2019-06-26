@@ -66,7 +66,7 @@ find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type s -print >> /tmp/excludes
 find /var/log/ -type f -print >> /tmp/excludes
 find /lib/modules/ -mindepth 1 -print >> /tmp/excludes
 find /usr/src/kernels/ -mindepth 1 -print >> /tmp/excludes
-find /var/lib/yum/yumdb/ -mindepth 1 -print >> /tmp/excludes
+# find /var/lib/yum/yumdb/ -mindepth 1 -print >> /tmp/excludes
 find /etc/sysconfig/network-scripts/ -name "ifcfg-*" -print >> /tmp/excludes
 find /tmp -type f -or -type d -print | grep --invert-match --extended-regexp "^/tmp/$|^/tmp$" >> /tmp/excludes
 
