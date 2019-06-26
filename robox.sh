@@ -658,16 +658,14 @@ function public() {
       fi
 
       PROVIDER="hyperv"
-      if [[ "${BOX}" != "dragonflybsd5" ]] && [[ "${BOX}" != "netbsd8" ]]; then
-        curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" |  grep --silent "200"
+      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" |  grep --silent "200"
 
-        if [ $? != 0 ]; then
-          let MISSING+=1
-          printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
-        else
-          let FOUND+=1
-          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
-        fi
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        let FOUND+=1
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
 
       PROVIDER="libvirt"
