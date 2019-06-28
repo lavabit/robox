@@ -30,6 +30,9 @@ retry() {
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
+# Install the missing dependencies used to compile magma.
+retry apt-get --assume-yes install cmake mariadb-server
+
 # Install the SQL server.
 retry apt-get --assume-yes install mariadb-server
 

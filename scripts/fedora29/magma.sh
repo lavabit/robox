@@ -46,7 +46,7 @@ printf "*    hard    nofile     65536\n" >> /etc/security/limits.d/50-magmad.con
 chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
 
 # Packages required to compile magma.
-retry dnf install --assumeyes zlib-devel
+retry dnf install --assumeyes cmake zlib-devel
 
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
