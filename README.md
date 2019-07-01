@@ -12,7 +12,8 @@ https://app.vagrantup.com/lavabit
 https://app.vagrantup.com/lineage  
 
 ## Docker Images  
-https://hub.docker.com/r/lavabit/  
+https://hub.docker.com/u/roboxes/  
+https://hub.docker.com/u/lavabit/  
 
 The templates in this repo require a current version of packer, (1.3.4+) and in some cases, make use of features which haven't been officially merged and/or released yet. Use the res/providers/packer.sh script to build an appropriately patched packer binary.
 
