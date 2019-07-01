@@ -39,10 +39,10 @@ retry pacman --sync --noconfirm --refresh sysstat lm_sensors inotify-tools
 retry pacman --sync --noconfirm --refresh python-asn1crypto python-cffi python-idna python-ply python-pycparser python-crypto python-cryptography
 
 # Install MaraDB.
-retry pacman --sync --noconfirm --refresh  mariadb
+retry pacman --sync --noconfirm --refresh mariadb
 
 # Append the SQL mode to the config file.
-printf "\n\n[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/mysql/my.cnf
+printf "\n\n[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/my.cnf
 
 # Setup the the box. This runs as root
 if [ -d /home/vagrant/ ]; then
