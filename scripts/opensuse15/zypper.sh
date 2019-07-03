@@ -34,4 +34,4 @@ zypper --non-interactive update --auto-agree-with-licenses
 zypper --non-interactive install man mlocate sysstat psmisc
 
 # Update the locate database.
-/etc/cron.daily/mlocate.cron
+# /etc/cron.daily/mlocate.cron
