@@ -1301,6 +1301,26 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/opensuse15/zypper.sh",
+        "scripts/opensuse15/virtualbox.sh",
+        "scripts/opensuse15/parallels.sh",
+        "scripts/opensuse15/vmware.sh",
+        "scripts/opensuse15/qemu.sh",
+        "scripts/opensuse15/vagrant.sh",
+        "scripts/opensuse15/network.sh",
+        "scripts/opensuse15/floppy.sh",
+        "scripts/opensuse15/postfix.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-opensuse15-virtualbox"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -3158,6 +3178,48 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
+      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-opensuse15-virtualbox",
+      "vm_name": "generic-opensuse15-virtualbox",
+      "output_directory": "output/generic-opensuse15-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
+        "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse15.vagrant.cfg<wait>",
+        "<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "OpenSUSE_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.1/iso/openSUSE-Leap-15.1-NET-x86_64.iso",
+      "iso_checksum": "609d0ad527ab13681b44e28326cd7941e87adfe8d522e2b31d0d7c71e9d92992",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
       "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
       "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
       "guest_additions_path": "VBoxGuestAdditions.iso",

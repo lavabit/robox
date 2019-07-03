@@ -1303,6 +1303,26 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/opensuse15/zypper.sh",
+        "scripts/opensuse15/virtualbox.sh",
+        "scripts/opensuse15/parallels.sh",
+        "scripts/opensuse15/vmware.sh",
+        "scripts/opensuse15/qemu.sh",
+        "scripts/opensuse15/vagrant.sh",
+        "scripts/opensuse15/network.sh",
+        "scripts/opensuse15/floppy.sh",
+        "scripts/opensuse15/postfix.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-opensuse15-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -2895,6 +2915,41 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-opensuse15-hyperv",
+      "vm_name": "generic-opensuse15-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-opensuse15-hyperv",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
+        "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse15.vagrant.cfg<wait>",
+        "<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "memory": 1024,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.1/iso/openSUSE-Leap-15.1-NET-x86_64.iso",
+      "iso_checksum": "609d0ad527ab13681b44e28326cd7941e87adfe8d522e2b31d0d7c71e9d92992",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
       "generation": 1,
       "headless": true,
       "communicator": "ssh",
