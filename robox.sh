@@ -6,8 +6,8 @@
 # Description: Used to build various virtual machines using packer.
 
 # Version Information
-export VERSION="1.9.18"
-export AGENT="Vagrant/2.2.3 (+https://www.vagrantup.com; ruby2.4.4)"
+export VERSION="1.9.20"
+export AGENT="Vagrant/2.2.5 (+https://www.vagrantup.com; ruby2.4.6)"
 
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
@@ -220,8 +220,8 @@ function isos {
   # N=( "${N[@]}" "Disco" ); U=( "${U[@]}" "$URL" )
 
   # Debian Buster
-  URL="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
-  N=( "${N[@]}" "Buster" ); U=( "${U[@]}" "$URL" )
+  # URL="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
+  # N=( "${N[@]}" "Buster" ); U=( "${U[@]}" "$URL" )
 
   export -f print_iso
   parallel -j 16 --xapply print_iso {1} {2} ::: "${N[@]}" ::: "${U[@]}"
@@ -231,7 +231,7 @@ function isos {
 function cache {
 
   unset PACKER_LOG
-  packer build -on-error=cleanup -color=false -parallel=false -except=debian10,ubuntu1904 packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+  packer build -on-error=cleanup -color=false -parallel=false -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\nDistro disc image download aborted...\n\n"; tput sgr0
