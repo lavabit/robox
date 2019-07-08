@@ -232,47 +232,18 @@ function provide-vagrant() {
 }
 
 function provide-packer() {
-  # Install Golang Compiler
-  yum --assumeyes install golang
 
-  # Setup the Go Path
-  export GOPATH=$HOME/go/
+  # Attempt to find out the latest Packer version automatically.
+  export PACKER_VERSION=`curl --silent https://www.packer.io/ | grep button | grep Download | sed -e "s/.*Download \([0-9]*\.[0-9]*\.[0-9]*\).*/\1/g"`
 
-  # Remove Previous Builds
-  rm --recursive --force $GOPATH
+  # Download Packer
+  curl --location --output "$BASE/packer_${PACKER_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip"
 
-  # Fetch and Compile Gox
-  go get github.com/mitchellh/gox && cd $GOPATH/src/github.com/mitchellh/gox
-  go build -o bin/gox .
-
-  # Fetch Packer
-  go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
-
-  # Checkout the Proper Version
-  # if [ -z $PACKER_VERSION ]; then
-  #   git checkout "$PACKER_VERSION"
-  # fi
-
-  # Retry Upload Failures Twenty Times
-  # sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
-
-  # Increase the upload timeout.
-  # patch -p1 < $BASE/packer-upload-timeout.patch
-
-  # Fix the Hyper-V boot dervice ordering for generation one virtual machines. - MERGED
-  # patch -p1 < $BASE/hyperv-boot-order.patch
-
-  # Fox the Hyper-V SSH host value bug. - MERGED
-  # patch -p1 < $BASH/hyperv-ssh-host.patch
-
-  # Force Hyper-V to use a legacy network adapter. - MERGED
-  # patch -p1 < $BASE/hyperv-legacy-network-adapter.patch
-
-  # Build for Linux, Darwin, and Windows
-  XC_ARCH=amd64 XC_OS="linux darwin windows" scripts/build.sh
+  # Decompress
+  unzip "$BASE/packer_${PACKER_VERSION}_linux_amd64.zip"
 
   # Install
-  install pkg/linux_amd64/packer /usr/local/bin/
+  install "$BASE/packer" /usr/local/bin/
   chown root:root /usr/local/bin/packer
   chcon unconfined_u:object_r:bin_t:s0 /usr/local/bin/packer
 
