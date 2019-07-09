@@ -33,10 +33,6 @@ error() {
         fi
 }
 
-# We setup permanently good DNS servers later, but we write these out directly here to make
-# sure there are good ones available for the package installlation tasks below.
-printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /etc/resolv.conf
-
 # Tell yum to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
 printf "\nretries=128\nmetadata_expire=0\nmirrorlist_expire=0\n" >> /etc/yum.conf
 

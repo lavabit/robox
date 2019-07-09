@@ -37,9 +37,6 @@ error() {
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
-# We handle name server setup later, but for now, we need to ensure valid resolvers are available.
-printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /etc/resolv.conf
-
 # If the apt configuration directory exists, we add our own config options.
 if [ -d /etc/apt/apt.conf.d/ ]; then
 
