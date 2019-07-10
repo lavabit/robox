@@ -22,7 +22,6 @@ ln -s /usr/local/bin/bash /bin/bash
 # Disable fortunate cookies.
 sed -i "" -e "/fortune/d" /usr/share/skel/dot.login
 sed -i "" -e "/fortune/d" /usr/share/skel/dot.profile
-sed -i "" -e "/fortune/d" /usr/share/skel/dot.profile-e
 
 sed -i "" -e "/fortune/d" /home/vagrant/.login
 sed -i "" -e "/fortune/d" /home/vagrant/.profile
