@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-yum --assumeyes install mlocate
+dnf --assumeyes install mlocate
 
 # Update the locate database.
 # cp /etc/cron.daily/mlocate.cron /etc/cron.hourly/mlocate.cron && /etc/cron.daily/mlocate.cron

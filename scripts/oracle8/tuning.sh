@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configure tuned
-yum --assumeyes install tuned
+dnf --assumeyes install tuned
 systemctl enable tuned
 systemctl start tuned
 

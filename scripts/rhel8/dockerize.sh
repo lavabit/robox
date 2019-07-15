@@ -2,7 +2,7 @@
 
 # Cleanup.
 rpm -Va --nofiles --nodigest
-yum clean all
+dnf clean all
 
 # Stop services to avoid tarring sockets.
 systemctl stop abrt

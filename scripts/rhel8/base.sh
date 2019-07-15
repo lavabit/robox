@@ -2,7 +2,7 @@
 
 error() {
         if [ $? -ne 0 ]; then
-                printf "\n\nyum failed...\n\n";
+                printf "\n\ndnf failed...\n\n";
                 exit 1
         fi
 }

@@ -12,7 +12,7 @@ if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
   mount /dev/cdrom /media || (printf "\nFailed mount RHEL cdrom.\n"; exit 1)
 fi
 
-yum --assumeyes install dmidecode; error
+dnf --assumeyes install dmidecode; error
 
 # Bail if we are not running inside VMWare.
 if [[ `dmidecode -s system-product-name` != "VMware Virtual Platform" ]]; then
@@ -22,7 +22,7 @@ fi
 # Install the VMWare Tools.
 printf "Installing the VMWare Tools.\n"
 
-yum --quiet --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
+dnf --quiet --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
 systemctl enable vmtoolsd
 systemctl start vmtoolsd
 

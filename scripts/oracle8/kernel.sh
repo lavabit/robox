@@ -3,7 +3,7 @@
 # Now that the system is running atop the updated kernel, we can install the
 # development files for the kernel. These files are required to compile the
 # virtualization kernel modules later in the provisioning process.
-yum --assumeyes install kernel-tools kernel-devel kernel-headers
+dnf --assumeyes install kernel-tools kernel-devel kernel-headers
 
 # Remove the duplicate UEK firmware packatges first.
 PACKAGES=`rpm --query --last kernel-uek-firmware | awk -F' ' '{print $1}' | tail --lines=+2`
@@ -19,7 +19,7 @@ fi
 
 # Make sure we have the right kernel-uek-devel package installed, or the VirtualBox
 # addons won't build properly.
-yum --enablerepo=ol8_UEKR* --assumeyes install kernel-uek-devel-`uname -r`
+dnf --enablerepo=ol8_UEKR* --assumeyes install kernel-uek-devel-`uname -r`
 
 # Now that the system is running on the updated kernel, we can remove the
 # old kernel(s) from the system.

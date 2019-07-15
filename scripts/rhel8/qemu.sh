@@ -12,7 +12,7 @@ if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
   mount /dev/cdrom /media || (printf "\nFailed mount RHEL cdrom.\n"; exit 1)
 fi
 
-yum --assumeyes install dmidecode; error
+dnf --assumeyes install dmidecode; error
 
 # Bail if we are not running atop QEMU.
 if [[ `dmidecode -s system-product-name` != "KVM" && `dmidecode -s system-manufacturer` != "QEMU" ]]; then
@@ -22,4 +22,4 @@ fi
 # Install the QEMU using Yum.
 printf "Installing the QEMU Tools.\n"
 
-yum --quiet --assumeyes install qemu-guest-agent; error
+dnf --quiet --assumeyes install qemu-guest-agent; error
