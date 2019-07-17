@@ -1361,7 +1361,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1396,7 +1396,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1438,7 +1438,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1480,7 +1480,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1522,7 +1522,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1564,7 +1564,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1596,7 +1596,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1628,7 +1628,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1660,7 +1660,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1694,7 +1694,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1730,7 +1730,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1766,7 +1766,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1802,7 +1802,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1838,7 +1838,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1874,7 +1874,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1909,7 +1909,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1944,7 +1944,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -1990,7 +1990,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2028,7 +2028,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2066,7 +2066,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2104,7 +2104,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2156,7 +2156,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2208,7 +2208,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2247,7 +2247,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2293,7 +2293,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2329,7 +2329,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2375,7 +2375,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2407,7 +2407,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2439,7 +2439,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2485,7 +2485,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2546,7 +2546,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "use_legacy_network_adapter": true,
@@ -2634,7 +2634,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "use_legacy_network_adapter": true,
@@ -2681,7 +2681,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2723,7 +2723,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2758,7 +2758,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2810,7 +2810,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2846,7 +2846,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2878,7 +2878,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2920,7 +2920,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
@@ -2955,7 +2955,7 @@
       "communicator": "ssh",
       "skip_compaction": false,
       "enable_secure_boot": false,
-      "enable_mac_spoofing": true,
+      "enable_mac_spoofing": false,
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
