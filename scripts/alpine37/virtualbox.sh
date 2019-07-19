@@ -47,12 +47,13 @@ printf "@edge http://nl.alpinelinux.org/alpine/edge/main/\n" >> /etc/apk/reposit
 retry apk update --no-cache
 
 # Install the VirtualBox kernel modules for guest services.
-retry apk add linux-hardened@edge virtualbox-additions-hardened@testing
+retry apk add virtualbox-guest-additions virtualbox-guest-modules-virthardened
 
 # Autoload the virtualbox kernel modules.
 echo vboxpci >> /etc/modules
 echo vboxdrv >> /etc/modules
 echo vboxnetflt >> /etc/modules
+echo vboxsf >> /etc/modules
 
 # Read in the version number.
 # export VBOXVERSION=`cat /root/VBoxVersion.txt`
