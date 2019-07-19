@@ -45,7 +45,6 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider :virtualbox do |v, override|
     v.gui = false
-    v.check_guest_additions = false
     v.customize ["modifyvm", :id, "--vram", 256]
     v.customize ["modifyvm", :id, "--cpus", 2]
     v.customize ["modifyvm", :id, "--memory", 2048]
