@@ -2,6 +2,7 @@
 
 echo 'Creating File System Table'
 cat <<-EOF > /etc/fstab
+/dev/sda1       /boot/efi 	vfat	      noauto,noatime 1 2
 /dev/sda2       /boot       ext4        defaults   0 0
 /dev/sda3       none        swap        defaults   0 0
 /dev/sda4       /           ext4        defaults   0 0
@@ -20,7 +21,7 @@ FEATURES="\${FEATURES} parallel-fetch"
 USE="nls alsa usb unicode"
 USE_PYTHON="3.6 2.7"
 PYTHON_TARGETS="python3_6 python2_7"
-GRUB_PLATFORMS="emu pc"
+GRUB_PLATFORMS="emu efi-32 efi-64 pc"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
@@ -48,8 +49,9 @@ mkdir -p "/etc/portage/package.unmask"
 
 echo 'Emerging Dependencies'
 cd /usr/portage
-emerge sys-kernel/gentoo-sources sys-boot/grub app-editors/vim app-admin/sudo \
-sys-apps/netplug sys-apps/dmidecode
+profile="grep stable profiles/profiles.desc | grep no-multilib | grep amd64 | awk -F' ' '{print $2}' | grep -E 'no-multilib$' | tail -1"
+rm -f /etc/portage/make.profile && ln -s /usr/portage/profiles/$profile /etc/portage/make.profile
+emerge sys-kernel/gentoo-sources sys-boot/grub app-editors/vim app-admin/sudo sys-apps/netplug sys-apps/dmidecode
 
 # If necessary, include the Hyper-V modules in the initramfs and then load them at boot.
 if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
@@ -4746,7 +4748,7 @@ make modules_install
 echo 'Configuring Grub'
 DEVID=`blkid -s UUID -o value /dev/sda4`
 printf "\nGRUB_DEVICE_UUID=\"$DEVID\"\n" >> /etc/default/grub
-grub-install /dev/sda
+grub-install --efi-directory=/boot/efi /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 echo 'Configuring Network Services'
