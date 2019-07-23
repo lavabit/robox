@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -x
 
 # Create the vagrant user account.
 /usr/sbin/useradd vagrant
