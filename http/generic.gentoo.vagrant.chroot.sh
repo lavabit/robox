@@ -49,7 +49,7 @@ mkdir -p "/etc/portage/package.unmask"
 
 echo 'Emerging Dependencies'
 cd /usr/portage
-profile="grep stable profiles/profiles.desc | grep no-multilib | grep amd64 | awk -F' ' '{print $2}' | grep -E 'no-multilib$' | tail -1"
+profile="`grep stable profiles/profiles.desc | grep no-multilib | grep amd64 | awk -F' ' '{print \$2}' | grep -E 'no-multilib\$' | tail -1`"
 rm -f /etc/portage/make.profile && ln -s /usr/portage/profiles/$profile /etc/portage/make.profile
 emerge sys-kernel/gentoo-sources sys-boot/grub app-editors/vim app-admin/sudo sys-apps/netplug sys-apps/dmidecode
 

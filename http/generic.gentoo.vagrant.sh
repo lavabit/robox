@@ -1120,8 +1120,8 @@ cd /mnt/gentoo
 # Download the current-stage3-amd64-nomultilib and the portage tarballs, unpack them, and then delete the archive files.
 echo 'Downloading Image Overlay'
 # host="https://gentoo.osuosl.org"
-# host="https://mirrors.kernel.org/gentoo"
-host="https://mirror.yandex.ru/gentoo-distfiles/"
+host="https://mirrors.kernel.org/gentoo"
+# host="https://mirror.yandex.ru/gentoo-distfiles/"
 tarball=$(wget -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/ -O - | grep -E -o -e "stage3-amd64-nomultilib-[0-9]{8}T[0-9]{6}Z.tar.xz" | uniq)
 wget --tries=5 --progress=dot:binary $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/$tarball || exit 1
 wget --tries=5 -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/$tarball.DIGESTS.asc || exit 1
@@ -1150,7 +1150,7 @@ mount --make-rslave /mnt/gentoo/dev
 cp /etc/resolv.conf /mnt/gentoo/etc
 
 # Execute the chroot script.
-chroot /mnt/gentoo /bin/bash < /root/generic.gentoo.vagrant.chroot.sh
+(chroot /mnt/gentoo /bin/bash -ex < /root/generic.gentoo.vagrant.chroot.sh) || exit 1
 
 # And then reboot.
 echo "Chroot finished, ready to restart."
