@@ -10,7 +10,6 @@ parted -a opt -s /dev/sda -- "mkpart BOOT ext4       $(( current ))  $(( current
 parted -a opt -s /dev/sda -- "mkpart SWAP linux-swap $(( current ))m $(( current += 4096  ))m"
 parted -a opt -s /dev/sda -- "mkpart ROOT ext4       $(( current ))m -1"
 parted -a opt -s /dev/sda -- "set 1 bios_grub on"
-parted -a opt -s /dev/sda -- "set 1 boot on"
 parted -a opt -s /dev/sda -- "set 2 boot on"
 
 echo 'Formatting Filesystems'
@@ -1120,8 +1119,8 @@ cd /mnt/gentoo
 # Download the current-stage3-amd64-nomultilib and the portage tarballs, unpack them, and then delete the archive files.
 echo 'Downloading Image Overlay'
 # host="https://gentoo.osuosl.org"
-host="https://mirrors.kernel.org/gentoo"
-# host="https://mirror.yandex.ru/gentoo-distfiles/"
+# host="https://mirrors.kernel.org/gentoo"
+host="https://mirror.yandex.ru/gentoo-distfiles/"
 tarball=$(wget -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/ -O - | grep -E -o -e "stage3-amd64-nomultilib-[0-9]{8}T[0-9]{6}Z.tar.xz" | uniq)
 wget --tries=5 --progress=dot:binary $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/$tarball || exit 1
 wget --tries=5 -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/$tarball.DIGESTS.asc || exit 1

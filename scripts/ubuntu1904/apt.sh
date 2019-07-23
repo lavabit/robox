@@ -1,4 +1,9 @@
-#!/bin/bash
+#!/bin/bash -ex
+
+# If the TERM environment variable is missing, then tput may produce spurrious error messages.
+if [[ ! -n "$TERM" ]] || [[ "$TERM" -eq "dumb" ]]; then
+  export TERM="vt100"
+fi
 
 retry() {
   local COUNT=1
@@ -58,13 +63,13 @@ printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/20retries
 fi
 # Keep the daily apt updater from deadlocking our installs.
 systemctl stop apt-daily.service apt-daily.timer
-systemctl stop snapd.service snapd.socket snapd.refresh.timer
+systemctl stop snapd.service snapd.socket
 
 # Update the package database.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
 
 # Ensure the linux-tools and linux-cloud-tools get updated with the kernel.
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic
+# retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic
 
 # Upgrade the installed packages.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
