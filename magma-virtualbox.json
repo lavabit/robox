@@ -499,6 +499,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -538,6 +539,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -577,6 +579,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -618,6 +621,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -661,6 +665,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
             "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -703,6 +708,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -758,6 +764,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -805,6 +812,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -852,6 +860,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -898,6 +907,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -951,6 +961,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -994,6 +1005,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         }
     ],
