@@ -13,14 +13,15 @@
             "expect_disconnect": "true",
             "only": [
 
-                "evil-honeypot-virtualbox"
+                "evilpot-honeypot-virtualbox"
+
             ]
         },
         {
             "scripts": [
-                "scripts/evil/limits.sh",
-                "scripts/evil/floppy.sh",
-                "scripts/evil/vagrant.sh",
+                "scripts/evilpot/limits.sh",
+                "scripts/evilpot/floppy.sh",
+                "scripts/evilpot/vagrant.sh",
                 "scripts/evil/motd.sh",
                 "scripts/evil/fixtty.sh",
                 "scripts/evil/virtualbox.sh",

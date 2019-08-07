@@ -2,7 +2,7 @@ d-i base-installer/kernel/override-image string linux-server
 d-i keyboard-configuration/xkb-keymap select us
 d-i time/zone string US/Pacific
 d-i debian-installer/locale string en_US
-d-i debian-installer/add-kernel-opts string net.ifnames=0 biosdevname=0 
+d-i debian-installer/add-kernel-opts string net.ifnames=0 biosdevname=0
 d-i finish-install/reboot_in_progress note
 d-i grub-installer/bootdev string default
 d-i partman-auto/method string regular
@@ -41,28 +41,26 @@ d-i passwd/user-password-again password vagrant
 d-i passwd/username string vagrant
 d-i user-setup/allow-password-weak boolean true
 d-i user-setup/encrypt-home boolean false
-d-i netcfg/hostname string ubuntu1604.localdomain
+d-i netcfg/hostname string ubuntu1804.localdomain
 
 tasksel tasksel/first multiselect standard, server
 d-i pkgsel/include string curl openssh-server sudo sed linux-tools-$(uname -r) linux-cloud-tools-$(uname -r) linux-cloud-tools-common linux-cloud-tools-generic linux-cloud-tools-virtual
 d-i pkgsel/install-language-support boolean false
 d-i pkgsel/language-packs multiselect en
 d-i pkgsel/update-policy select none
-d-i pkgsel/upgrade select none
+d-i pkgsel/upgrade select full-upgrade
 
-# Remove the following when the mirrors no longer support 16.04 updates.
-choose-mirror-bin mirror/http/proxy string
-
-#d-i mirror/http/proxy string
-#d-i mirror/country string manual
+d-i mirror/http/proxy string
+d-i mirror/country string manual
+d-i mirror/http/hostname string us.archive.ubuntu.com
 #d-i mirror/http/hostname string old-releases.ubuntu.com
-#d-i mirror/http/directory string /ubuntu
+d-i mirror/http/directory string /ubuntu
 
+d-i apt-setup/security_host string security.ubuntu.com
 #d-i apt-setup/security_host string old-releases.ubuntu.com
-#d-i apt-setup/security_path string /ubuntu
+d-i apt-setup/security_path string /ubuntu
 
-# Add the following when the mirrors no longer support 16.04 updates.
-#; \
+# Add the following when the mirrors no longer support 18.04 updates.
 #sed -i -e "s/security.ubuntu.com/old-releases.ubuntu.com/g" /target/etc/apt/sources.list ; \
 #sed -i -e "s/us.archive.ubuntu.com/old-releases.ubuntu.com/g" /target/etc/apt/sources.list
 
