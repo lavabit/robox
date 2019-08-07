@@ -1,10 +1,10 @@
 #!/bin/bash
 
 error() {
-        if [ $? -ne 0 ]; then
-                printf "\n\nyum failed...\n\n";
-                exit 1
-        fi
+	if [ $? -ne 0 ]; then
+			printf "\n\nyum failed...\n\n";
+			exit 1
+	fi
 }
 
 # Close a potential security hole.

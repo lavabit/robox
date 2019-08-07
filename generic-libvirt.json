@@ -1190,6 +1190,137 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora30/fixdns.sh",
+        "scripts/fedora30/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora30-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora30/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora30-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora30/kernel.sh",
+        "scripts/fedora30/vga.sh",
+        "scripts/fedora30/virtualbox.sh",
+        "scripts/fedora30/parallels.sh",
+        "scripts/fedora30/vmware.sh",
+        "scripts/fedora30/qemu.sh",
+        "scripts/fedora30/vagrant.sh",
+        "scripts/fedora30/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora30-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/oracle8/network.sh",
+        "scripts/oracle8/yum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle8-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/oracle8/kernel.sh",
+        "scripts/oracle8/floppy.sh",
+        "scripts/oracle8/virtualbox.sh",
+        "scripts/oracle8/parallels.sh",
+        "scripts/oracle8/vmware.sh",
+        "scripts/oracle8/qemu.sh",
+        "scripts/oracle8/vagrant.sh",
+        "scripts/oracle8/tuning.sh",
+        "scripts/oracle8/cleanup.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle8-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine310/network.sh",
+        "scripts/alpine310/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine310-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine310/lsb.sh",
+        "scripts/alpine310/floppy.sh",
+        "scripts/alpine310/vagrant.sh",
+        "scripts/alpine310/sshd.sh",
+        "scripts/alpine310/virtualbox.sh",
+        "scripts/alpine310/parallels.sh",
+        "scripts/alpine310/vmware.sh",
+        "scripts/alpine310/qemu.sh",
+        "scripts/alpine310/cache.sh"
+      ],
+      "execute_command": "/bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine310-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/opensuse15/zypper.sh",
+        "scripts/opensuse15/virtualbox.sh",
+        "scripts/opensuse15/parallels.sh",
+        "scripts/opensuse15/vmware.sh",
+        "scripts/opensuse15/qemu.sh",
+        "scripts/opensuse15/vagrant.sh",
+        "scripts/opensuse15/network.sh",
+        "scripts/opensuse15/floppy.sh",
+        "scripts/opensuse15/postfix.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-opensuse15-libvirt"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -1363,8 +1494,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.3-x86_64.iso",
-      "iso_checksum": "9129a3982364254cf9dd563d75a6a4a396a8aa941671a51de4667de8423ffb37",
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
+      "iso_checksum": "b5936e27487e605ea3cbf040d444505ea7fd735021258d7b119faaa9b4b5b083",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -1409,8 +1540,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.7/releases/x86_64/alpine-virt-3.7.1-x86_64.iso",
-      "iso_checksum": "69e30614159cc93b7327059b56a542faca8a2fd6f4a5ace33a2e5130c5c02e7f",
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.7/releases/x86_64/alpine-virt-3.7.3-x86_64.iso",
+      "iso_checksum": "2f7a23fc31a6f67348e5614597b23ab8d9340e8a0f4368e96797b1a6c65fa6b8",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -1455,8 +1586,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.8/releases/x86_64/alpine-virt-3.8.2-x86_64.iso",
-      "iso_checksum": "77a609dd710ba0d3b0806a314f5c4ef1718ce140b522bf7c7ca081eba664db2c",
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.8/releases/x86_64/alpine-virt-3.8.4-x86_64.iso",
+      "iso_checksum": "20d20e0658b6cc361832cfb49367f0a4c33570ef1521f2e394e9164d2a9bd9df",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -1605,8 +1736,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2019.02.01-x86_64.iso",
-      "iso_checksum": "ded3152b5b369a7a1697f1081147bfb27c0245de685e55a5b033f6620833809b",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2019.07.01-x86_64.iso",
+      "iso_checksum": "4ab6a48f6baf63524733d851f63f78944fff6448aa3d2e780316eb2263212e1f",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -1728,7 +1859,7 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.kernel.org/fedora/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
       "iso_checksum": "2b93836c38833b26891345388ff5ddea60529b27a616b4539d432a3520d1c90b",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -1850,8 +1981,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.0/amd64/iso-cd/debian-8.11.0-amd64-netinst.iso",
-      "iso_checksum": "ea799ed959d77359783e7922ed4c94a7437b083a4ce6f09e9fe41a7af6ba60df",
+      "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
+      "iso_checksum": "ea444d6f8ac95fd51d2aedb8015c57410d1ad19b494cedec6914c17fda02733c",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -1890,8 +2021,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.kernel.org/debian-cd/9.8.0/amd64/iso-cd/debian-9.8.0-amd64-netinst.iso",
-      "iso_checksum": "73bd56fb4548efa384bf32fd25808b99198f81c23cf19ab9e6507d898cd58dce",
+      "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.9.0/amd64/iso-cd/debian-9.9.0-amd64-netinst.iso",
+      "iso_checksum": "d4a22c81c76a66558fb92e690ef70a5d67c685a08216701b15746586520f6e8e",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -1943,8 +2074,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
-      "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
+      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.6/ubuntu-16.04.6-server-amd64.iso",
+      "iso_checksum": "16afb1375372c57471ea5e29803a89a5a6bd1f6aabea2e5e34ac1ab7eb9786ac",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2236,8 +2367,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190219T214502Z.iso",
-      "iso_checksum": "a47f26868a8613eab634c7d1a13a10587d7018489680627aa25c26e3ebb92823",
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190721T214502Z.iso",
+      "iso_checksum": "92ea51f200ea25efc268bb593ff4dca9cc77f69632e82b4a69e366905493d9cc",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2287,8 +2418,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.2/FreeBSD-11.2-RELEASE-amd64-disc1.iso",
-      "iso_checksum": "710d237907f1753dbfbecb1186e401d9635156eeef6914f24f632f3219e59d3b",
+      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.3/FreeBSD-11.3-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "d268db365e26305ec3d51b29211caad903749c33a4a8f2cf661d671f8e0ba0b0",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2328,8 +2459,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://ftp.usa.openbsd.org/pub/OpenBSD/6.4/amd64/cd64.iso",
-      "iso_checksum": "1a280cd45ea5fe8d818b61f9d8702c58d5edeff9aee1575f7445b505f45a8c77",
+      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.5/amd64/cd65.iso",
+      "iso_checksum": "c0ed31c5f50de4cc80bed01e6080beab96df4ee50a5ad14be88faf40a20c43ed",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2453,8 +2584,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso",
-      "iso_checksum": "06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316",
+      "iso_url": "https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso",
+      "iso_checksum": "005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2567,8 +2698,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.4.1_REL.iso",
-      "iso_checksum": "bd7b5421cc205b4c25ea9ac9e5a53fe6c04fcb133311966796f7f3ce4941ccb8",
+      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.6.1_REL.iso",
+      "iso_checksum": "45b43aa56c19d07327e2944fe7fa82c46da0bac4b8046a82bdc1ab3080f95274",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2698,8 +2829,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://installer.hardenedbsd.org/hardened_12_stable_master-LAST/HardenedBSD-12-STABLE-v1200058.3-amd64-disc1.iso",
-      "iso_checksum": "246ab0182b634b3f5d3a3b4ba40e0c66b6210bb288a745e519f085d00a6bab60",
+      "iso_url": "https://installer.hardenedbsd.org/hardened_12_stable_master-LAST/HardenedBSD-12-STABLE-v1200059.1-amd64-disc1.iso",
+      "iso_checksum": "b2bc9a0c5067100d9592dc228ed76a652464730b6bb673c88de2eab145ed172b",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2744,8 +2875,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.9/releases/x86_64/alpine-virt-3.9.0-x86_64.iso",
-      "iso_checksum": "e87e0256d10ca2125455fb5023687b2346740a8cbae54972312fe1626f07494c",
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.9/releases/x86_64/alpine-virt-3.9.4-x86_64.iso",
+      "iso_checksum": "4122dce1092564aa88415c21702d6cb973a7d29f91658d24316f7f0aac3a6761",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2784,8 +2915,8 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso",
-      "iso_checksum_url": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/SHA256SUMS",
+      "iso_url": "https://gensho.ftp.acc.umu.se/debian-cd/current/amd64/iso-cd/debian-10.0.0-amd64-netinst.iso",
+      "iso_checksum": "3dbb597b7f11dbda71cda08d4c1339c1eb565e784c75409987fa2b91182d9240",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2841,14 +2972,178 @@
       ],
       "http_directory": "http",
       "headless": true,
-      "iso_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso",
-      "iso_checksum_url": "http://cdimage.ubuntu.com/ubuntu-server/daily/pending/SHA256SUMS",
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/19.04/release/ubuntu-19.04-server-amd64.iso",
+      "iso_checksum": "7e8a0d07522f591dfee9bc9fcd7c05466763161e6cb0117906655bce1750b2fa",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-fedora30-libvirt",
+      "vm_name": "generic-fedora30-libvirt",
+      "output_directory": "output/generic-fedora30-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora30.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "qemuargs": [
+        [
+          "-drive",
+          "if=none,file=output/generic-fedora30-libvirt/generic-fedora30-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
+      "iso_checksum": "5e4eac4566d8c572bfb3bcf54b7d6c82006ec3c6c882a2c9235c6d3494d7b100",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-oracle8-libvirt",
+      "vm_name": "generic-oracle8-libvirt",
+      "output_directory": "output/generic-oracle8-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "qemuargs": [
+        [
+          "-drive",
+          "if=none,file=output/generic-oracle8-libvirt/generic-oracle8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://download.oracle.com/otn-pub/otn_software/linux/OracleLinux-R8-U0-BETA-x86_64-dvd.iso",
+      "iso_checksum": "3872f95ad0b119839f01aa665d2342701fff66fefdac040b039fcb61c65b2c44",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-alpine310-libvirt",
+      "vm_name": "generic-alpine310-libvirt",
+      "output_directory": "output/generic-alpine310-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine310.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine310.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "qemuargs": [
+        [
+          "-drive",
+          "if=none,file=output/generic-alpine310-libvirt/generic-alpine310-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.10/releases/x86_64/alpine-virt-3.10.1-x86_64.iso",
+      "iso_checksum": "b5cce7d94652e547f07b7dc9e55b1f0b258180b474408e543241be12e0ae255d",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-opensuse15-libvirt",
+      "vm_name": "generic-opensuse15-libvirt",
+      "output_directory": "output/generic-opensuse15-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.1/repo/oss/ lang=en_US  textmode=1 <wait>",
+        "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse15.vagrant.cfg<wait>",
+        "<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "qemuargs": [
+        [
+          "-drive",
+          "if=none,file=output/generic-opensuse15-libvirt/generic-opensuse15-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.1/iso/openSUSE-Leap-15.1-NET-x86_64.iso",
+      "iso_checksum": "609d0ad527ab13681b44e28326cd7941e87adfe8d522e2b31d0d7c71e9d92992",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
     }
   ],
   "post-processors": [

@@ -84,6 +84,6 @@ ${CURL} \
   --retry-delay 60 \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   --request DELETE \
-  https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION/provider/$PROVIDER
+  https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION
 
 printf "\n\n"

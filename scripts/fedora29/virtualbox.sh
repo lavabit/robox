@@ -1,5 +1,31 @@
 #!/bin/bash
 
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 error() {
   if [ $? -ne 0 ]; then
     printf "\n\nThe VirtualBox install failed...\n\n"
@@ -32,10 +58,10 @@ printf "Installing the Virtual Box Tools.\n"
 # Read in the version number.
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
-dnf install --assumeyes virtualbox-guest-additions; error
+retry dnf install --assumeyes virtualbox-guest-additions; error
 
 # # Experimental logic. Guessing it doesn't work yet because the RPM is dependent upon a repo specific kernel dependency.
-# curl --location --output akmod-VirtualBox-5.2.20-1.fc29.x86_64.rpm "https://download1.rpmfusion.org/free/fedora/releases/29/Everything/x86_64/os/Packages/a/akmod-VirtualBox-5.2.20-1.fc29.x86_64.rpm"; error
+# retry curl --location --output akmod-VirtualBox-5.2.20-1.fc29.x86_64.rpm "https://download1.rpmfusion.org/free/fedora/releases/29/Everything/x86_64/os/Packages/a/akmod-VirtualBox-5.2.20-1.fc29.x86_64.rpm"; error
 # echo "0b898908a8cf8965f5931f3cdc01f231743e858319cd83419d54863973bb584b  akmod-VirtualBox-5.2.20-1.fc29.x86_64.rpm" | sha256sum --check; error
 # dnf install --assumeyes akmod-VirtualBox-5.2.20-1.fc29.x86_64.rpm; error
 

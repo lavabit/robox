@@ -136,7 +136,9 @@ retry() {
   local RESULT=0
   while [[ "${COUNT}" -le 10 ]]; do
     [[ "${RESULT}" -ne 0 ]] && {
-      echo -e "\\n$(tput setaf 1)${*} failed... retrying ${COUNT} of 10.$(tput sgr0)\\n" >&2
+      echo ""
+      echo -e "$(tput setaf 1)${*} failed... retrying ${COUNT} of 10.$(tput sgr0)" | tr -d \\n >&2
+      echo ""
     }
     "${@}" && { RESULT=0 && break; } || RESULT="${?}"
     COUNT="$((COUNT + 1))"

@@ -16,7 +16,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=rhel8.localdomain
 
 zerombr
 clearpart --all --initlabel
-bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check"
+bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 no_timer_check"
 autopart
 
 rootpw vagrant
@@ -50,7 +50,7 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
 
   HYPERV_RPMS=`find /mnt/AppStream/Packages/ -iname "hyperv*rpm"`
 
-  yum --assumeyes install $HYPERV_RPMS
+  dnf --assumeyes install $HYPERV_RPMS
 
   systemctl enable hypervkvpd.service
   systemctl enable hypervvssd.service

@@ -1,5 +1,31 @@
 #!/bin/bash -eux
 
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\\n${*} failed... retrying ${COUNT} of 10.\\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\\nThe command failed 10 times.\\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 VERSION="4.9.4"
 
 LIBITM=true
@@ -23,12 +49,9 @@ export CPLUS_INCLUDE_PATH="/usr/glibc-compat/include/"
 export OBJC_INCLUDE_PATH="/usr/glibc-compat/include/"
 # export GCC_EXEC_PREFIX="/usr/glibc-compat/"
 
-# Download the gcc packages.
-apk add wget ca-certificates
-
 # Compilation prerequisites.
-apk add bash build-base m4 gcc g++ gcc-gnat libtool flex bison make glib expat automake autoconf \
-mpc1 mpc1-doc mpc1-dev nasm nasm-doc mpfr3 mpfr3-doc mpfr-dev gmp gmp-dev gmp-doc \
+retry apk add bash build-base m4 curl gcc g++ gcc-gnat libtool flex bison make glib expat automake autoconf \
+mpc1 mpc1-doc mpc1-dev nasm nasm-doc mpfr3 mpfr3-doc mpfr-dev gmp gmp-dev gmp-doc ca-certificates \
 gawk sed texinfo patchutils grep binutils binutils-libs binutils-dev binutils-gold \
 zlib zlib-dev gzip bzip2 tar gettext gettext-lang linux-headers \
 gettext-asprintf gperf expect expect-dev tcl tcl-dev ttf-dejavu zip paxmark \
@@ -44,7 +67,7 @@ ldconfig
 # lbzip2 biblatex dejagnu gettext-static
 
 # Download the tarball.
-wget --quiet https://mirrors.kernel.org/gnu/gcc/gcc-${VERSION}/gcc-${VERSION}.tar.gz gcc-${VERSION}.tar.gz
+retry curl --silent --show-error --location --output gcc-${VERSION}.tar.gz https://mirrors.kernel.org/gnu/gcc/gcc-${VERSION}/gcc-${VERSION}.tar.gz
 
 # Uncompress the tarball.
 tar xzf gcc-${VERSION}.tar.gz && cd gcc-${VERSION}

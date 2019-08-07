@@ -18,6 +18,13 @@ error() {
       printf "\n\nThe /var/log/vboxadd-install.log is missing...\n\n"
     fi
 
+    if [ -f /var/log/vboxadd-setup.log ]; then
+      printf "\n\n/var/log/vboxadd-setup.log\n\n"
+      cat /var/log/vboxadd-setup.log
+    else
+      printf "\n\nThe /var/log/vboxadd-setup.log is missing...\n\n"
+    fi
+
     exit 1
   fi
 }
@@ -27,7 +34,7 @@ if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
   mount /dev/cdrom /media || (printf "\nFailed mount RHEL cdrom.\n"; exit 1)
 fi
 
-yum --assumeyes install dmidecode; error
+dnf --assumeyes install dmidecode; error
 
 # Bail if we are not running atop VirtualBox.
 if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
@@ -41,7 +48,7 @@ printf "Installing the Virtual Box Tools.\n"
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
 # Build will fail without the elf utilities.
-yum --quiet --assumeyes install bzip2 elfutils-libelf-devel; error
+dnf --quiet --assumeyes install bzip2 elfutils-libelf-devel; error
 
 # The group vboxsf is needed for shared folder access.
 getent group vboxsf >/dev/null || groupadd --system vboxsf; error

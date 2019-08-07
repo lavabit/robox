@@ -1,5 +1,31 @@
 #!/bin/bash
 
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 error() {
         if [ $? -ne 0 ]; then
                 printf "\n\napt failed...\n\n";
@@ -35,17 +61,17 @@ systemctl stop apt-daily.service apt-daily.timer
 systemctl stop snapd.service snapd.socket snapd.refresh.timer
 
 # Update the package database.
-apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
 
 # Ensure the linux-tools and linux-cloud-tools get updated with the kernel.
-apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic
 
 # Upgrade the installed packages.
-apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
-apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
 
 # Needed to retrieve source code, and other misc system tools.
-apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils lsb-release psmisc; error
+retry apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils lsb-release psmisc; error
 
 # Enable the sysstat collection service.
 sed -i -e "s|.*ENABLED=\".*\"|ENABLED=\"true\"|g" /etc/default/sysstat

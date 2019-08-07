@@ -51,28 +51,29 @@ cd /home/vagrant/
 # which will probably need to be updated when the major version changes.
 
 KERN=\`uname -r | awk -F'-' '{print \$1}' | sed -e 's/\.0$//g'\`
+MAJOR=\`uname -r | awk -F'.' '{print \$1}'\`
 
 # hypervvsh
-git clone https://aur.archlinux.org/hypervvssd.git hypervvssd && cd hypervvssd
+sudo git clone https://aur.archlinux.org/hypervvssd.git hypervvssd && cd hypervvssd
 sed --in-place "s/^pkgver=.*/pkgver=\$KERN/g" PKGBUILD
 sed --in-place "s/pkgver = .*/pkgver = \$KERN/g" .SRCINFO
-sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-\$KERN.tar.gz/g" .SRCINFO
+sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-\$KERN.tar.gz/g" .SRCINFO
 makepkg --cleanbuild --noconfirm --syncdeps --install
 cd /home/vagrant/ && rm -rf hypervvssd
 
 # hypervkvpd
-git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd && cd hypervkvpd
+sudo git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd && cd hypervkvpd
 sed --in-place "s/^pkgver=.*/pkgver=\$KERN/g" PKGBUILD
 sed --in-place "s/pkgver = .*/pkgver = \$KERN/g" .SRCINFO
-sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-\$KERN.tar.gz/g" .SRCINFO
+sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-\$KERN.tar.gz/g" .SRCINFO
 makepkg --cleanbuild --noconfirm --syncdeps --install
 cd /home/vagrant/ && rm -rf hypervkvpd
 
 # hypervfcopyd
-git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd && cd hypervfcopyd
+sudo git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd && cd hypervfcopyd
 sed --in-place "s/^pkgver=.*/pkgver=\$KERN/g" PKGBUILD
 sed --in-place "s/pkgver = .*/pkgver = \$KERN/g" .SRCINFO
-sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v4.x\/linux-\$KERN.tar.gz/g" .SRCINFO
+sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-\$KERN.tar.gz/g" .SRCINFO
 makepkg --cleanbuild --noconfirm --syncdeps --install
 cd /home/vagrant/ && rm -rf hypervfcopyd
 

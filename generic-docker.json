@@ -190,6 +190,34 @@
           ]
         },
         {
+          "type": "shell",
+          "scripts": [
+            "scripts/oracle8/network.sh",
+            "scripts/oracle8/yum.sh"
+          ],
+          "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": [
+            "generic-oracle8-docker"
+          ]
+        },
+        {
+          "type": "shell",
+          "scripts": [
+            "scripts/oracle8/floppy.sh",
+            "scripts/oracle8/cleanup.sh",
+            "scripts/oracle8/dockerize.sh"
+          ],
+          "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+          "pause_before": "120s",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true",
+          "only": [
+            "generic-oracle8-docker"
+          ]
+        },
+        {
             "type": "file",
             "direction": "download",
             "source": "/tmp/{{build_name}}.tar",
@@ -266,7 +294,7 @@
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
           "boot_command": [
-            "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
+            "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.docker.ks<enter><wait>"
           ],
           "format": "qcow2",
           "disk_size": 32768,
@@ -289,10 +317,47 @@
           "iso_checksum": "a3156e9dc53ace74b81f6e37f284b74498057efd02babebd88aa2a51cc44d7e7",
           "iso_checksum_type": "sha256",
           "ssh_username": "root",
-          "ssh_password": "vagrant",
+          "ssh_password": "locked",
           "ssh_port": 22,
           "ssh_wait_timeout": "3600s",
-          "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+          "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+        },
+        {
+          "type": "qemu",
+          "name": "generic-oracle8-docker",
+          "vm_name": "generic-oracle8-docker",
+          "output_directory": "output/generic-oracle8-docker",
+          "accelerator": "kvm",
+          "qemu_binary": "/usr/libexec/qemu-kvm",
+          "boot_wait": "20s",
+          "boot_command": [
+            "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.docker.ks<enter><wait>"
+          ],
+          "format": "qcow2",
+          "disk_size": 32768,
+          "disk_discard": "unmap",
+          "disk_cache": "unsafe",
+          "disk_compression": true,
+          "disk_interface": "virtio-scsi",
+          "net_device": "virtio-net",
+          "cpus": 2,
+          "memory": 2048,
+          "qemuargs": [
+            [
+              "-drive",
+              "if=none,file=output/generic-oracle8-docker/generic-oracle8-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+            ]
+          ],
+          "http_directory": "http",
+          "headless": true,
+          "iso_url": "https://download.oracle.com/otn-pub/otn_software/linux/OracleLinux-R8-U0-BETA-x86_64-dvd.iso",
+          "iso_checksum": "3872f95ad0b119839f01aa665d2342701fff66fefdac040b039fcb61c65b2c44",
+          "iso_checksum_type": "sha256",
+          "ssh_username": "root",
+          "ssh_password": "locked",
+          "ssh_port": 22,
+          "ssh_wait_timeout": "3600s",
+          "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
         },
         {
           "type": "qemu",
@@ -396,8 +461,8 @@
           ],
           "http_directory": "http",
           "headless": true,
-          "iso_urls": "https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso",
-          "iso_checksum": "06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316",
+          "iso_urls": "https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso",
+          "iso_checksum": "005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43",
           "iso_checksum_type": "sha256",
           "ssh_username": "root",
           "ssh_password": "vagrant",
