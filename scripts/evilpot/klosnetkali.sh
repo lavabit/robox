@@ -15,11 +15,11 @@ export domain=miskc.org
 #export domain=example.com
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
-sudo update update && sudo apt -y install wget
+sudo update update --assume-yes && sudo apt --assume-yes install wget
 wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-sudo apt update
-sudo apt -y install powershell
+sudo dpkg -i packages-microsoft-prod.deb 
+sudo apt update --assume-yes
+sudo apt --assume-yes powershell
 
 #To start PowerShell, use the command:
 
