@@ -1,4 +1,17 @@
+#Author Alexander Kloster
 #apt-get update && apt-get -y dist-upgrade
+
+#!/bin/bash -eux
+# To allow for automated installs, we disable interactive configuration steps.
+# kali setup script
+#
+# Sets some required file permissions
+#
+# This script must be run as root!
+#
+export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
+
 apt-get update && apt-get -y upgrade
 apt-get update && apt-get -y dist-upgrade && apt-get autoremove -y && apt-get -y autoclean
 out=`grep  "kali-bleeding-edge" /etc/apt/sources.list` &>/dev/null
