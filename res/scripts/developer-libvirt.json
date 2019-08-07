@@ -1,0 +1,133 @@
+{
+    "variables": {
+        "box_version": "{{env `VERSION`}}"
+    },
+    "provisioners": [
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/centos6/base.sh",
+                "scripts/centos6/network.sh"
+            ],
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "magma-developer-libvirt"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/centos6/kernel.sh",
+                "scripts/centos6/vga.sh",
+                "scripts/centos6/virtualbox.sh",
+                "scripts/centos6/parallels.sh",
+                "scripts/centos6/vmware.sh",
+                "scripts/centos6/qemu.sh",
+                "scripts/centos6/postfix.sh",
+                "scripts/centos6/vagrant.sh",
+                "scripts/centos6/sshd.sh",
+                "scripts/centos6/randomness.sh",
+                "scripts/centos6/updatedb.sh",
+                "scripts/centos6/developer.sh",
+                "scripts/centos6/tuning.sh",
+                "scripts/centos6/cleanup.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "magma-developer-libvirt"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/common/motd.sh",
+                "scripts/common/keys.sh",
+                "scripts/common/machine.sh",
+                "scripts/common/zerodisk.sh",
+                "scripts/common/lockout.sh"
+            ],
+            "type": "shell",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true"
+        }
+    ],
+    "builders": [
+        {
+            "type": "qemu",
+            "name": "magma-developer-libvirt",
+            "vm_name": "magma-developer-libvirt",
+            "output_directory": "output/magma-developer-libvirt",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
+            ],
+            "format": "qcow2",
+            "disk_size": 131072,
+            "disk_discard": "unmap",
+            "disk_cache": "unsafe",
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "qemuargs": [
+                [
+                    "-m",
+                    "4096M"
+                ],
+                [
+                    "-smp",
+                    "cpus=4,sockets=2"
+                ],
+                [
+                    "-drive",
+                    "if=none,file=output/magma-developer-libvirt/magma-developer-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+                ]
+            ],
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "magma",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "sudo -S shutdown -P now"
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/developer.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/lavabit/info.json"
+                ],
+                "only": [
+                    "magma-developer-libvirt"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": false,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.box"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": true,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ]
+    ]
+}

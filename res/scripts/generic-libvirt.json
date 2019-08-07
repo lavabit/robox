@@ -1,0 +1,2769 @@
+{
+  "variables": {
+    "box_version": "{{env `VERSION`}}"
+  },
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/oracle7/network.sh",
+        "scripts/oracle7/yum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle7-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/oracle7/kernel.sh",
+        "scripts/oracle7/floppy.sh",
+        "scripts/oracle7/virtualbox.sh",
+        "scripts/oracle7/parallels.sh",
+        "scripts/oracle7/vmware.sh",
+        "scripts/oracle7/qemu.sh",
+        "scripts/oracle7/vagrant.sh",
+        "scripts/oracle7/tuning.sh",
+        "scripts/oracle7/network.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle7-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/opensuse42/zypper.sh",
+        "scripts/opensuse42/virtualbox.sh",
+        "scripts/opensuse42/parallels.sh",
+        "scripts/opensuse42/vmware.sh",
+        "scripts/opensuse42/qemu.sh",
+        "scripts/opensuse42/vagrant.sh",
+        "scripts/opensuse42/network.sh",
+        "scripts/opensuse42/floppy.sh",
+        "scripts/opensuse42/postfix.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-opensuse42-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine35/network.sh",
+        "scripts/alpine35/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine35-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine35/lsb.sh",
+        "scripts/alpine35/floppy.sh",
+        "scripts/alpine35/vagrant.sh",
+        "scripts/alpine35/virtualbox.sh",
+        "scripts/alpine35/parallels.sh",
+        "scripts/alpine35/vmware.sh",
+        "scripts/alpine35/qemu.sh",
+        "scripts/alpine35/cache.sh"
+      ],
+      "execute_command": "/bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine35-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine36/network.sh",
+        "scripts/alpine36/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine36-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine36/lsb.sh",
+        "scripts/alpine36/floppy.sh",
+        "scripts/alpine36/vagrant.sh",
+        "scripts/alpine36/virtualbox.sh",
+        "scripts/alpine36/parallels.sh",
+        "scripts/alpine36/vmware.sh",
+        "scripts/alpine36/qemu.sh",
+        "scripts/alpine36/cache.sh"
+      ],
+      "execute_command": "/bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine36-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine37/network.sh",
+        "scripts/alpine37/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine37-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine37/lsb.sh",
+        "scripts/alpine37/floppy.sh",
+        "scripts/alpine37/vagrant.sh",
+        "scripts/alpine37/virtualbox.sh",
+        "scripts/alpine37/parallels.sh",
+        "scripts/alpine37/vmware.sh",
+        "scripts/alpine37/qemu.sh",
+        "scripts/alpine37/cache.sh"
+      ],
+      "execute_command": "/bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine37-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine38/network.sh",
+        "scripts/alpine38/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine38-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine38/lsb.sh",
+        "scripts/alpine38/floppy.sh",
+        "scripts/alpine38/vagrant.sh",
+        "scripts/alpine38/virtualbox.sh",
+        "scripts/alpine38/parallels.sh",
+        "scripts/alpine38/vmware.sh",
+        "scripts/alpine38/qemu.sh",
+        "scripts/alpine38/cache.sh"
+      ],
+      "execute_command": "/bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine38-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/centos6/base.sh",
+        "scripts/centos6/network.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos6-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/centos6/kernel.sh",
+        "scripts/centos6/vga.sh",
+        "scripts/centos6/virtualbox.sh",
+        "scripts/centos6/parallels.sh",
+        "scripts/centos6/vmware.sh",
+        "scripts/centos6/qemu.sh",
+        "scripts/centos6/vagrant.sh",
+        "scripts/centos6/tuning.sh",
+        "scripts/centos6/sshd.sh",
+        "scripts/centos6/randomness.sh",
+        "scripts/centos6/updatedb.sh",
+        "scripts/centos6/cleanup.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos6-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/centos7/network.sh",
+        "scripts/centos7/yum.sh",
+        "scripts/centos7/base.sh",
+        "scripts/centos7/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos7-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/centos7/kernel.sh",
+        "scripts/centos7/floppy.sh",
+        "scripts/centos7/virtualbox.sh",
+        "scripts/centos7/parallels.sh",
+        "scripts/centos7/vmware.sh",
+        "scripts/centos7/qemu.sh",
+        "scripts/centos7/vagrant.sh",
+        "scripts/centos7/tuning.sh",
+        "scripts/centos7/sshd.sh",
+        "scripts/centos7/randomness.sh",
+        "scripts/centos7/updatedb.sh",
+        "scripts/centos7/cleanup.sh",
+        "scripts/centos7/unyum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos7-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/rhel7/network.sh",
+        "scripts/rhel7/yum.sh",
+        "scripts/rhel7/base.sh",
+        "scripts/rhel7/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel7-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/rhel7/kernel.sh",
+        "scripts/rhel7/floppy.sh",
+        "scripts/rhel7/virtualbox.sh",
+        "scripts/rhel7/parallels.sh",
+        "scripts/rhel7/vmware.sh",
+        "scripts/rhel7/qemu.sh",
+        "scripts/rhel7/vagrant.sh",
+        "scripts/rhel7/tuning.sh",
+        "scripts/rhel7/sshd.sh",
+        "scripts/rhel7/randomness.sh",
+        "scripts/rhel7/updatedb.sh",
+        "scripts/rhel7/cleanup.sh",
+        "scripts/rhel7/unyum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel7-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/gentoo/network.sh",
+        "scripts/gentoo/emerge.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-gentoo-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/gentoo/virtualbox.sh",
+        "scripts/gentoo/parallels.sh",
+        "scripts/gentoo/vmware.sh",
+        "scripts/gentoo/qemu.sh",
+        "scripts/gentoo/vagrant.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-gentoo-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/arch/pacman.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-arch-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/arch/virtualbox.sh",
+        "scripts/arch/parallels.sh",
+        "scripts/arch/vmware.sh",
+        "scripts/arch/qemu.sh",
+        "scripts/arch/vagrant.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-arch-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian8/network.sh",
+        "scripts/debian8/apt.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian8-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian8/floppy.sh",
+        "scripts/debian8/profile.sh",
+        "scripts/debian8/vagrant.sh",
+        "scripts/debian8/motd.sh",
+        "scripts/debian8/fixtty.sh",
+        "scripts/debian8/virtualbox.sh",
+        "scripts/debian8/parallels.sh",
+        "scripts/debian8/vmware.sh",
+        "scripts/debian8/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian8-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian9/network.sh",
+        "scripts/debian9/apt.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian9-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian9/floppy.sh",
+        "scripts/debian9/profile.sh",
+        "scripts/debian9/vagrant.sh",
+        "scripts/debian9/motd.sh",
+        "scripts/debian9/fixtty.sh",
+        "scripts/debian9/virtualbox.sh",
+        "scripts/debian9/parallels.sh",
+        "scripts/debian9/vmware.sh",
+        "scripts/debian9/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian9-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora25/fixdns.sh",
+        "scripts/fedora25/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora25-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora25/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora25-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora25/kernel.sh",
+        "scripts/fedora25/vga.sh",
+        "scripts/fedora25/virtualbox.sh",
+        "scripts/fedora25/parallels.sh",
+        "scripts/fedora25/vmware.sh",
+        "scripts/fedora25/qemu.sh",
+        "scripts/fedora25/vagrant.sh",
+        "scripts/fedora25/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora25-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora26/fixdns.sh",
+        "scripts/fedora26/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora26-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora26/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora26-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora26/kernel.sh",
+        "scripts/fedora26/vga.sh",
+        "scripts/fedora26/virtualbox.sh",
+        "scripts/fedora26/parallels.sh",
+        "scripts/fedora26/vmware.sh",
+        "scripts/fedora26/qemu.sh",
+        "scripts/fedora26/vagrant.sh",
+        "scripts/fedora26/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora26-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora27/fixdns.sh",
+        "scripts/fedora27/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora27-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora27/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora27-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora27/kernel.sh",
+        "scripts/fedora27/vga.sh",
+        "scripts/fedora27/virtualbox.sh",
+        "scripts/fedora27/parallels.sh",
+        "scripts/fedora27/vmware.sh",
+        "scripts/fedora27/qemu.sh",
+        "scripts/fedora27/vagrant.sh",
+        "scripts/fedora27/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora27-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora28/fixdns.sh",
+        "scripts/fedora28/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora28-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora28/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora28-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora28/kernel.sh",
+        "scripts/fedora28/vga.sh",
+        "scripts/fedora28/virtualbox.sh",
+        "scripts/fedora28/parallels.sh",
+        "scripts/fedora28/vmware.sh",
+        "scripts/fedora28/qemu.sh",
+        "scripts/fedora28/vagrant.sh",
+        "scripts/fedora28/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora28-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora29/fixdns.sh",
+        "scripts/fedora29/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora29-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora29/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora29-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora29/kernel.sh",
+        "scripts/fedora29/vga.sh",
+        "scripts/fedora29/virtualbox.sh",
+        "scripts/fedora29/parallels.sh",
+        "scripts/fedora29/vmware.sh",
+        "scripts/fedora29/qemu.sh",
+        "scripts/fedora29/vagrant.sh",
+        "scripts/fedora29/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora29-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/freebsd11/pkg.sh",
+        "scripts/freebsd11/hostname.sh",
+        "scripts/freebsd11/kernel.sh",
+        "scripts/freebsd11/firstboot.sh",
+        "scripts/freebsd11/motd.sh",
+        "scripts/freebsd11/vagrant.sh",
+        "scripts/freebsd11/virtualbox.sh",
+        "scripts/freebsd11/parallels.sh",
+        "scripts/freebsd11/vmware.sh",
+        "scripts/freebsd11/qemu.sh",
+        "scripts/freebsd11/cleanup.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-freebsd11-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/openbsd6/pkg.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/bin/sh {{ .Path }}",
+      "only": [
+        "generic-openbsd6-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/openbsd6/hostname.sh",
+        "scripts/openbsd6/motd.sh",
+        "scripts/openbsd6/vagrant.sh",
+        "scripts/openbsd6/profile.sh",
+        "scripts/openbsd6/virtualbox.sh",
+        "scripts/openbsd6/parallels.sh",
+        "scripts/openbsd6/vmware.sh",
+        "scripts/openbsd6/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-openbsd6-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1604/apt.sh",
+        "scripts/ubuntu1604/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1604-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1604/floppy.sh",
+        "scripts/ubuntu1604/vagrant.sh",
+        "scripts/ubuntu1604/motd.sh",
+        "scripts/ubuntu1604/fixtty.sh",
+        "scripts/ubuntu1604/virtualbox.sh",
+        "scripts/ubuntu1604/parallels.sh",
+        "scripts/ubuntu1604/vmware.sh",
+        "scripts/ubuntu1604/qemu.sh",
+        "scripts/ubuntu1604/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1604-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1610/apt.sh",
+        "scripts/ubuntu1610/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1610-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1610/floppy.sh",
+        "scripts/ubuntu1610/vagrant.sh",
+        "scripts/ubuntu1610/motd.sh",
+        "scripts/ubuntu1610/fixtty.sh",
+        "scripts/ubuntu1610/virtualbox.sh",
+        "scripts/ubuntu1610/parallels.sh",
+        "scripts/ubuntu1610/vmware.sh",
+        "scripts/ubuntu1610/qemu.sh",
+        "scripts/ubuntu1610/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1610-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1704/apt.sh",
+        "scripts/ubuntu1704/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1704-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1704/floppy.sh",
+        "scripts/ubuntu1704/vagrant.sh",
+        "scripts/ubuntu1704/motd.sh",
+        "scripts/ubuntu1704/fixtty.sh",
+        "scripts/ubuntu1704/virtualbox.sh",
+        "scripts/ubuntu1704/parallels.sh",
+        "scripts/ubuntu1704/vmware.sh",
+        "scripts/ubuntu1704/qemu.sh",
+        "scripts/ubuntu1704/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1704-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1710/apt.sh",
+        "scripts/ubuntu1710/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1710-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1710/floppy.sh",
+        "scripts/ubuntu1710/vagrant.sh",
+        "scripts/ubuntu1710/motd.sh",
+        "scripts/ubuntu1710/fixtty.sh",
+        "scripts/ubuntu1710/virtualbox.sh",
+        "scripts/ubuntu1710/parallels.sh",
+        "scripts/ubuntu1710/vmware.sh",
+        "scripts/ubuntu1710/qemu.sh",
+        "scripts/ubuntu1710/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1710-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1804/apt.sh",
+        "scripts/ubuntu1804/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1804-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1804/floppy.sh",
+        "scripts/ubuntu1804/vagrant.sh",
+        "scripts/ubuntu1804/motd.sh",
+        "scripts/ubuntu1804/fixtty.sh",
+        "scripts/ubuntu1804/virtualbox.sh",
+        "scripts/ubuntu1804/parallels.sh",
+        "scripts/ubuntu1804/vmware.sh",
+        "scripts/ubuntu1804/qemu.sh",
+        "scripts/ubuntu1804/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1804-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1810/apt.sh",
+        "scripts/ubuntu1810/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1810-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1810/floppy.sh",
+        "scripts/ubuntu1810/vagrant.sh",
+        "scripts/ubuntu1810/motd.sh",
+        "scripts/ubuntu1810/fixtty.sh",
+        "scripts/ubuntu1810/virtualbox.sh",
+        "scripts/ubuntu1810/parallels.sh",
+        "scripts/ubuntu1810/vmware.sh",
+        "scripts/ubuntu1810/qemu.sh",
+        "scripts/ubuntu1810/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1810-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/freebsd12/pkg.sh",
+        "scripts/freebsd12/hostname.sh",
+        "scripts/freebsd12/kernel.sh",
+        "scripts/freebsd12/firstboot.sh",
+        "scripts/freebsd12/motd.sh",
+        "scripts/freebsd12/vagrant.sh",
+        "scripts/freebsd12/virtualbox.sh",
+        "scripts/freebsd12/parallels.sh",
+        "scripts/freebsd12/vmware.sh",
+        "scripts/freebsd12/qemu.sh",
+        "scripts/freebsd12/cleanup.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-freebsd12-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/rhel6/network.sh",
+        "scripts/rhel6/yum.sh",
+        "scripts/rhel6/base.sh",
+        "scripts/rhel6/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel6-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/rhel6/kernel.sh",
+        "scripts/rhel6/vga.sh",
+        "scripts/rhel6/virtualbox.sh",
+        "scripts/rhel6/parallels.sh",
+        "scripts/rhel6/vmware.sh",
+        "scripts/rhel6/qemu.sh",
+        "scripts/rhel6/vagrant.sh",
+        "scripts/rhel6/tuning.sh",
+        "scripts/rhel6/sshd.sh",
+        "scripts/rhel6/randomness.sh",
+        "scripts/rhel6/updatedb.sh",
+        "scripts/rhel6/cleanup.sh",
+        "scripts/rhel6/unyum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel6-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/rhel8/network.sh",
+        "scripts/rhel8/yum.sh",
+        "scripts/rhel8/base.sh",
+        "scripts/rhel8/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel8-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/rhel8/kernel.sh",
+        "scripts/rhel8/floppy.sh",
+        "scripts/rhel8/virtualbox.sh",
+        "scripts/rhel8/parallels.sh",
+        "scripts/rhel8/vmware.sh",
+        "scripts/rhel8/qemu.sh",
+        "scripts/rhel8/vagrant.sh",
+        "scripts/rhel8/tuning.sh",
+        "scripts/rhel8/sshd.sh",
+        "scripts/rhel8/randomness.sh",
+        "scripts/rhel8/updatedb.sh",
+        "scripts/rhel8/cleanup.sh",
+        "scripts/rhel8/unyum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel8-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/hardenedbsd11/pkg.sh",
+        "scripts/hardenedbsd11/hostname.sh",
+        "scripts/hardenedbsd11/kernel.sh",
+        "scripts/hardenedbsd11/firstboot.sh",
+        "scripts/hardenedbsd11/motd.sh",
+        "scripts/hardenedbsd11/vagrant.sh",
+        "scripts/hardenedbsd11/virtualbox.sh",
+        "scripts/hardenedbsd11/parallels.sh",
+        "scripts/hardenedbsd11/vmware.sh",
+        "scripts/hardenedbsd11/qemu.sh",
+        "scripts/hardenedbsd11/cleanup.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd11-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/dragonflybsd5/pkg.sh",
+        "scripts/dragonflybsd5/hostname.sh",
+        "scripts/dragonflybsd5/kernel.sh",
+        "scripts/dragonflybsd5/firstboot.sh",
+        "scripts/dragonflybsd5/motd.sh",
+        "scripts/dragonflybsd5/vagrant.sh",
+        "scripts/dragonflybsd5/virtualbox.sh",
+        "scripts/dragonflybsd5/parallels.sh",
+        "scripts/dragonflybsd5/vmware.sh",
+        "scripts/dragonflybsd5/qemu.sh",
+        "scripts/dragonflybsd5/cleanup.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-dragonflybsd5-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/netbsd8/pkg.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/bin/sh {{ .Path }}",
+      "only": [
+        "generic-netbsd8-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/netbsd8/hostname.sh",
+        "scripts/netbsd8/motd.sh",
+        "scripts/netbsd8/vagrant.sh",
+        "scripts/netbsd8/profile.sh",
+        "scripts/netbsd8/virtualbox.sh",
+        "scripts/netbsd8/parallels.sh",
+        "scripts/netbsd8/vmware.sh",
+        "scripts/netbsd8/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "/bin/bash {{ .Path }}",
+      "only": [
+        "generic-netbsd8-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/common/motd.sh",
+        "scripts/common/keys.sh",
+        "scripts/common/machine.sh",
+        "scripts/common/zerodisk.sh",
+        "scripts/common/lockout.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
+    }
+  ],
+  "builders": [
+    {
+      "type": "qemu",
+      "name": "generic-oracle7-libvirt",
+      "vm_name": "generic-oracle7-libvirt",
+      "output_directory": "output/generic-oracle7-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-oracle7-libvirt/generic-oracle7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.kernel.org/oracle/OL7/u6/x86_64/OracleLinux-R7-U6-Server-x86_64-dvd.iso",
+      "iso_checksum": "a3156e9dc53ace74b81f6e37f284b74498057efd02babebd88aa2a51cc44d7e7",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-opensuse42-libvirt",
+      "vm_name": "generic-opensuse42-libvirt",
+      "output_directory": "output/generic-opensuse42-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
+        "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
+        "<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-opensuse42-libvirt/generic-opensuse42-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64.iso",
+      "iso_checksum": "d1a17116cf33a5582b83ef479d7b151b33938e60f07eebc544abf162e2aa5c12",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-alpine35-libvirt",
+      "vm_name": "generic-alpine35-libvirt",
+      "output_directory": "output/generic-alpine35-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine35.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f generic.alpine35.vagrant.cfg ; ",
+        "mount /dev/sda3 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-alpine35-libvirt/generic-alpine35-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-virt-3.5.3-x86_64.iso",
+      "iso_checksum": "580bc6379e4b246d24b5e32d2637319a60ac953279b3e0df523222ef561bf2f5",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-alpine36-libvirt",
+      "vm_name": "generic-alpine36-libvirt",
+      "output_directory": "output/generic-alpine36-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine36.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f generic.alpine36.vagrant.cfg ; ",
+        "mount /dev/sda3 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-alpine36-libvirt/generic-alpine36-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.3-x86_64.iso",
+      "iso_checksum": "9129a3982364254cf9dd563d75a6a4a396a8aa941671a51de4667de8423ffb37",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-alpine37-libvirt",
+      "vm_name": "generic-alpine37-libvirt",
+      "output_directory": "output/generic-alpine37-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine37.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine37.vagrant.cfg ; ",
+        "mount /dev/sda3 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-alpine37-libvirt/generic-alpine37-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.7/releases/x86_64/alpine-virt-3.7.1-x86_64.iso",
+      "iso_checksum": "69e30614159cc93b7327059b56a542faca8a2fd6f4a5ace33a2e5130c5c02e7f",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-alpine38-libvirt",
+      "vm_name": "generic-alpine38-libvirt",
+      "output_directory": "output/generic-alpine38-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine38.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine38.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-alpine38-libvirt/generic-alpine38-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.8/releases/x86_64/alpine-virt-3.8.1-x86_64.iso",
+      "iso_checksum": "83ede521b174d99a0975c3653e7310b58075fa68fb773ed6995b974a44df60ce",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-centos6-libvirt",
+      "vm_name": "generic-centos6-libvirt",
+      "output_directory": "output/generic-centos6-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-centos6-libvirt/generic-centos6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+      "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-centos7-libvirt",
+      "vm_name": "generic-centos7-libvirt",
+      "output_directory": "output/generic-centos7-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-centos7-libvirt/generic-centos7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.edge.kernel.org/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso",
+      "iso_checksum": "714acc0aefb32b7d51b515e25546835e55a90da9fb00417fbee2d03a62801efd",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-rhel7-libvirt",
+      "vm_name": "generic-rhel7-libvirt",
+      "output_directory": "output/generic-rhel7-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-rhel7-libvirt/generic-rhel7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_urls": [
+        "res/media/rhel-server-7.6-x86_64-dvd.iso",
+        "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"
+      ],
+      "iso_checksum": "60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-arch-libvirt",
+      "vm_name": "generic-arch-libvirt",
+      "output_directory": "output/generic-arch-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "30s",
+      "boot_command": [
+        "<enter><wait10><wait10><wait10><wait10>",
+        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.vagrant{,.chroot}.sh'<enter><wait>",
+        "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-arch-libvirt/generic-arch-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2018.11.01-x86_64.iso",
+      "iso_checksum": "1f063b0714b94b937eb4da2914be2e4a0f3d7bda0f03ddd796314664cb4c9479",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "7200s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-fedora25-libvirt",
+      "vm_name": "generic-fedora25-libvirt",
+      "output_directory": "output/generic-fedora25-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora25.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-fedora25-libvirt/generic-fedora25-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/25/Server/x86_64/iso/Fedora-Server-netinst-x86_64-25-1.3.iso",
+      "iso_checksum": "86bc3694f4938382753d1e9536f2140a6c9c1978207766340c679a89509073c7",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-fedora26-libvirt",
+      "vm_name": "generic-fedora26-libvirt",
+      "output_directory": "output/generic-fedora26-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora26.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-fedora26-libvirt/generic-fedora26-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/26/Server/x86_64/iso/Fedora-Server-netinst-x86_64-26-1.5.iso",
+      "iso_checksum": "e260921ef5c7bd5ee2a7b2f2f1156af6483014c73984e4cf37f2b6690e0155e5",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-fedora27-libvirt",
+      "vm_name": "generic-fedora27-libvirt",
+      "output_directory": "output/generic-fedora27-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora27.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-fedora27-libvirt/generic-fedora27-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.kernel.org/fedora/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
+      "iso_checksum": "2b93836c38833b26891345388ff5ddea60529b27a616b4539d432a3520d1c90b",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-fedora28-libvirt",
+      "vm_name": "generic-fedora28-libvirt",
+      "output_directory": "output/generic-fedora28-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora28.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-fedora28-libvirt/generic-fedora28-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.kernel.org/fedora/releases/28/Server/x86_64/iso/Fedora-Server-netinst-x86_64-28-1.1.iso",
+      "iso_checksum": "ea1efdc692356b3346326f82e2f468903e8da59324fdee8b10eac4fea83f23fe",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-fedora29-libvirt",
+      "vm_name": "generic-fedora29-libvirt",
+      "output_directory": "output/generic-fedora29-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora29.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-fedora29-libvirt/generic-fedora29-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/29/Server/x86_64/iso/Fedora-Server-netinst-x86_64-29-1.2.iso",
+      "iso_checksum": "aa7fb0e6e5b71774ebdaab0dae76bdd9246a5bc7aedc28b7f1103aaaf9750654",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-debian8-libvirt",
+      "vm_name": "generic-debian8-libvirt",
+      "output_directory": "output/generic-debian8-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian8.vagrant.cfg ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-debian8-libvirt/generic-debian8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.0/amd64/iso-cd/debian-8.11.0-amd64-netinst.iso",
+      "iso_checksum": "ea799ed959d77359783e7922ed4c94a7437b083a4ce6f09e9fe41a7af6ba60df",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-debian9-libvirt",
+      "vm_name": "generic-debian9-libvirt",
+      "output_directory": "output/generic-debian9-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian9.vagrant.cfg ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-debian9-libvirt/generic-debian9-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.kernel.org/debian-cd/9.6.0/amd64/iso-cd/debian-9.6.0-amd64-netinst.iso",
+      "iso_checksum": "c51d84019c3637ae9d12aa6658ea8c613860c776bd84c6a71eaaf765a0dd60fe",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-ubuntu1604-libvirt",
+      "vm_name": "generic-ubuntu1604-libvirt",
+      "output_directory": "output/generic-ubuntu1604-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<enter><wait>",
+        "<f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1604.vagrant.cfg<wait> ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-ubuntu1604-libvirt/generic-ubuntu1604-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.5/ubuntu-16.04.5-server-amd64.iso",
+      "iso_checksum": "c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-ubuntu1610-libvirt",
+      "vm_name": "generic-ubuntu1610-libvirt",
+      "output_directory": "output/generic-ubuntu1610-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1610.vagrant.cfg<wait> ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-ubuntu1610-libvirt/generic-ubuntu1610-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "http://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
+      "iso_checksum": "72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-ubuntu1704-libvirt",
+      "vm_name": "generic-ubuntu1704-libvirt",
+      "output_directory": "output/generic-ubuntu1704-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1704.vagrant.cfg<wait> ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-ubuntu1704-libvirt/generic-ubuntu1704-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "http://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
+      "iso_checksum": "ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-ubuntu1710-libvirt",
+      "vm_name": "generic-ubuntu1710-libvirt",
+      "output_directory": "output/generic-ubuntu1710-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1710.vagrant.cfg<wait> ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-ubuntu1710-libvirt/generic-ubuntu1710-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "http://old-releases.ubuntu.com/releases/17.10/ubuntu-17.10.1-server-amd64.iso",
+      "iso_checksum": "8ff73f1b622276758475c3bd5190b382774626de5a82c50930519381f6c3a3f8",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-ubuntu1804-libvirt",
+      "vm_name": "generic-ubuntu1804-libvirt",
+      "output_directory": "output/generic-ubuntu1804-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<esc><f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "console-setup/ask_detect=false ",
+        "debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1804.vagrant.cfg<wait> ",
+        " --- <enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-ubuntu1804-libvirt/generic-ubuntu1804-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04.1/release/ubuntu-18.04.1-server-amd64.iso",
+      "iso_checksum": "a5b0ea5918f850124f3d72ef4b85bda82f0fcd02ec721be19c1a6952791c8ee8",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-ubuntu1810-libvirt",
+      "vm_name": "generic-ubuntu1810-libvirt",
+      "output_directory": "output/generic-ubuntu1810-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<esc><f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "console-setup/ask_detect=false ",
+        "debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1810.vagrant.cfg<wait> ",
+        " --- <enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-ubuntu1810-libvirt/generic-ubuntu1810-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirror.leaseweb.net/ubuntu-cdimage/releases/18.10/release/ubuntu-18.10-server-amd64.iso",
+      "iso_checksum": "cf9250781dadd919f23c9d9612212cad653e35fccc2fbcf6853f67ad09e067ba",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-gentoo-libvirt",
+      "vm_name": "generic-gentoo-libvirt",
+      "output_directory": "output/generic-gentoo-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "5s",
+      "boot_command": [
+        "gentoo-nofb<enter>",
+        "<wait10><enter>",
+        "<wait10><wait10><wait10><wait10>",
+        "passwd root<enter><wait>",
+        "vagrant<enter><wait>",
+        "vagrant<enter><wait>",
+        "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
+        "bash generic.gentoo.vagrant.sh<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=4,sockets=4"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-gentoo-libvirt/generic-gentoo-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20181113T214502Z.iso",
+      "iso_checksum": "004c4a6d6cc4b57e689e9629d259acb320eeef022be05a4bd0dd8e21d17fb40e",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "7200s",
+      "shutdown_command": "shutdown -hP now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-freebsd11-libvirt",
+      "vm_name": "generic-freebsd11-libvirt",
+      "output_directory": "output/generic-freebsd11-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd11.vagrant.cfg<enter><wait5>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-freebsd11-libvirt/generic-freebsd11-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.2/FreeBSD-11.2-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "710d237907f1753dbfbecb1186e401d9635156eeef6914f24f632f3219e59d3b",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "shutdown -p now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-openbsd6-libvirt",
+      "vm_name": "generic-openbsd6-libvirt",
+      "output_directory": "output/generic-openbsd6-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "40s",
+      "boot_command": [
+        "S<enter><wait>",
+        "dhclient vio0<enter><wait5>",
+        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.cfg<enter><wait>",
+        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.chroot.sh<enter><wait>",
+        "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-openbsd6-libvirt/generic-openbsd6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://ftp.usa.openbsd.org/pub/OpenBSD/6.4/amd64/cd64.iso",
+      "iso_checksum": "1a280cd45ea5fe8d818b61f9d8702c58d5edeff9aee1575f7445b505f45a8c77",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "shutdown -h -p now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-freebsd12-libvirt",
+      "vm_name": "generic-freebsd12-libvirt",
+      "output_directory": "output/generic-freebsd12-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd12.vagrant.cfg<enter><wait5>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-freebsd12-libvirt/generic-freebsd12-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/12.0/FreeBSD-12.0-RC2-amd64-disc1.iso",
+      "iso_checksum": "c2cbca2fb589b1d0ff65898b5858d28411edc74e6a7a0cfdd53f4fc9173a1a9f",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "shutdown -p now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-rhel6-libvirt",
+      "vm_name": "generic-rhel6-libvirt",
+      "output_directory": "output/generic-rhel6-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-rhel6-libvirt/generic-rhel6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_urls": [
+        "res/media/rhel-server-6.10-x86_64-dvd.iso",
+        "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso"
+      ],
+      "iso_checksum": "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-rhel8-libvirt",
+      "vm_name": "generic-rhel8-libvirt",
+      "output_directory": "output/generic-rhel8-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-rhel8-libvirt/generic-rhel8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_urls": [
+        "res/media/rhel-8.0-beta-1-x86_64-dvd.iso",
+        "https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso"
+      ],
+      "iso_checksum": "06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-hardenedbsd11-libvirt",
+      "vm_name": "generic-hardenedbsd11-libvirt",
+      "output_directory": "output/generic-hardenedbsd11-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd11.vagrant.cfg<enter><wait5>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-hardenedbsd11-libvirt/generic-hardenedbsd11-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://installer.hardenedbsd.org/hardened_11_stable_master-LAST/HardenedBSD-11-STABLE-v1100056.8-amd64-disc1.iso",
+      "iso_checksum": "4a5822a495dfddc3a77b1a66c258566142d0e45540112c5a90f1ee840aa663a3",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "shutdown -p now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-dragonflybsd5-libvirt",
+      "vm_name": "generic-dragonflybsd5-libvirt",
+      "output_directory": "output/generic-dragonflybsd5-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "root<enter><wait5>",
+        "/bin/sh<enter><wait10>",
+        "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd5.vagrant.cfg<enter><wait10>",
+        "sh /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-dragonflybsd5-libvirt/generic-dragonflybsd5-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.2.2_REL.iso",
+      "iso_checksum": "57a63cea9496142561c4e261a252809831aba4366e5c642bcb53ce55469f03c2",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "shutdown -p now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-netbsd8-libvirt",
+      "vm_name": "generic-netbsd8-libvirt",
+      "output_directory": "output/generic-netbsd8-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "40s",
+      "boot_command": [
+        "<enter><wait><enter><wait>e",
+        "<enter><wait><enter><wait>",
+        "IF=`ifconfig | head -1 | awk -F':' '{print $1}'`<enter><wait5>",
+        "dhclient $IF<enter><wait5>",
+        "ftp -o /tmp/install-script.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.netbsd8.install.sh<enter><wait>",
+        "TERM=wsvt25 /usr/sbin/sysinst && sh /tmp/install-script.sh && reboot<enter>",
+        "a<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "b<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "b<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "b<wait><enter><wait>",
+        "x<wait><enter><wait>",
+        "<wait><enter><wait>",
+        "b<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "x<wait><enter><wait>",
+        "b<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait><enter><wait>",
+        "d<wait><enter><wait>",
+        "a<wait><enter><wait>",
+        "vagrant<enter><wait>",
+        "vagrant<enter><wait>",
+        "vagrant<enter><wait>",
+        "g<wait><enter><wait>",
+        "x<wait><enter><wait>",
+        "<wait><enter><wait>",
+        "x<wait><enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+        [
+          "-m",
+          "2048M"
+        ],
+        [
+          "-smp",
+          "cpus=2,sockets=2"
+        ],
+        [
+          "-drive",
+          "if=none,file=output/generic-netbsd8-libvirt/generic-netbsd8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://iso.netbsd.org/pub/NetBSD/iso/8.0/NetBSD-8.0-amd64.iso",
+      "iso_checksum": "5978be870ed0bc0bf69e82f904b3cfb4a0806627181aa1f1bbc782c3c9fb37e1",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "/sbin/shutdown -h -p now"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/generic-{{split build_name \"-\" 1}}.rb",
+        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/generic/info.json"
+        ]
+      },
+      {
+        "type": "artifice",
+        "keep_input_artifact": false,
+        "files": [
+          "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256"
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/roboxes-{{split build_name \"-\" 1}}.rb",
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/roboxes/info.json"
+        ]
+      },
+      {
+        "type": "artifice",
+        "keep_input_artifact": false,
+        "files": [
+          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256"
+      }
+    ]
+  ]
+}
