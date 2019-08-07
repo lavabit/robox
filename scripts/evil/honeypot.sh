@@ -1,3 +1,5 @@
+#Author Alexander Kloster
+
 #!/bin/bash -eux
 # To allow for automated installs, we disable interactive configuration steps.
 # INetSim setup script
@@ -102,7 +104,7 @@ service_bind_address	0.0.0.0
 #
 # Default: inetsim
 #
-#service_run_as_user	nobody
+service_run_as_user	nobody
 
 
 #########################################
@@ -115,7 +117,7 @@ service_bind_address	0.0.0.0
 #
 # Default: 10
 #
-#service_max_childs	15
+service_max_childs	15
 
 
 #########################################
@@ -128,7 +130,7 @@ service_bind_address	0.0.0.0
 #
 # Default: 120
 #
-#service_timeout	60
+service_timeout	60
 
 
 #########################################
@@ -240,7 +242,7 @@ dns_default_ip		10.0.0.1
 #
 # Default: www
 #
-#dns_default_hostname		somehost
+dns_default_hostname		kubectl
 
 
 #########################################
@@ -252,7 +254,7 @@ dns_default_ip		10.0.0.1
 #
 # Default: inetsim.org
 #
-#dns_default_domainname		some.domain
+dns_default_domainname		klosnet.com
 
 
 #########################################
@@ -278,7 +280,7 @@ dns_default_ip		10.0.0.1
 #
 # Default: \"INetSim DNS Server\"
 #
-dns_version \" MAGMA DNS BITCH 9.2.4\"
+dns_version \" MAGMA DNS 9.2.4\"
 
 
 #############################################################
@@ -658,7 +660,7 @@ smtp_service_extension		STARTTLS
 #
 # Default: no
 #
-#smtp_auth_required	yes
+smtp_auth_required	yes
 
 
 #########################################
@@ -679,7 +681,7 @@ smtp_service_extension		STARTTLS
 #
 # Default: default_key.pem
 #
-#smtp_ssl_keyfile	smtp_key.pem
+smtp_ssl_keyfile	smtp_key.pem
 
 
 #########################################
@@ -699,7 +701,7 @@ smtp_service_extension		STARTTLS
 #
 # Default: default_cert.pem
 #
-#smtp_ssl_certfile	smtp_cert.pem
+smtp_ssl_certfile	smtp_cert.pem
 
 
 #########################################
@@ -713,7 +715,7 @@ smtp_service_extension		STARTTLS
 #
 # Default: none
 #
-#smtp_ssl_dhfile	smtp_dh1024.pem
+smtp_ssl_dhfile	smtp_dh1024.pem
 
 
 
@@ -730,7 +732,7 @@ smtp_service_extension		STARTTLS
 #
 # Default: 465
 #
-#smtps_bind_port	465
+smtps_bind_port	465
 
 
 #########################################
@@ -742,7 +744,7 @@ smtp_service_extension		STARTTLS
 #
 # Default: mail.inetsim.org
 #
-smtps_fqdn_hostname	mail.lavabit.com
+smtps_fqdn_hostname	mail.klosnet.com
 
 
 #########################################
@@ -1487,7 +1489,7 @@ ftps_version		\"vsFTPd 2.0.4 - secure, fast, stable\"
 #
 # Default: default_cert.pem
 #
-#ftps_ssl_certfile	ftps_cert.pem
+ftps_ssl_certfile	ftps_cert.pem
 
 
 #########################################
@@ -1501,7 +1503,7 @@ ftps_version		\"vsFTPd 2.0.4 - secure, fast, stable\"
 #
 # Default: none
 #
-#ftps_ssl_dhfile	ftps_dh1024.pem
+ftps_ssl_dhfile	ftps_dh1024.pem
 
 
 #############################################################
@@ -1517,7 +1519,7 @@ ftps_version		\"vsFTPd 2.0.4 - secure, fast, stable\"
 #
 # Default: 123
 #
-#ntp_bind_port		123
+ntp_bind_port		123
 
 
 #########################################
@@ -1569,7 +1571,7 @@ ftps_version		\"vsFTPd 2.0.4 - secure, fast, stable\"
 #
 # Default: irc.inetsim.org
 #
-irc_fqdn_hostname	irc.klostech.group
+irc_fqdn_hostname	irc.klosnet.com
 
 
 #########################################
@@ -1581,7 +1583,7 @@ irc_fqdn_hostname	irc.klostech.group
 #
 # Default: \"MAGMA IRC Server\"
 #
-irc_version		\"Unreal3.2.7\"
+irc_version		\"KLOSNET.COM Unreal3.2.7\"
 
 
 #############################################################
@@ -1597,7 +1599,7 @@ irc_version		\"Unreal3.2.7\"
 #
 # Default: 37
 #
-#time_bind_port		37
+time_bind_port		37
 
 
 #############################################################
@@ -1613,7 +1615,7 @@ irc_version		\"Unreal3.2.7\"
 #
 # Default: 13
 #
-#daytime_bind_port	13
+daytime_bind_port	13
 
 
 #############################################################
@@ -1629,7 +1631,7 @@ irc_version		\"Unreal3.2.7\"
 #
 # Default: 7
 #
-#echo_bind_port		7
+echo_bind_port		7
 
 
 #############################################################
@@ -1645,7 +1647,7 @@ irc_version		\"Unreal3.2.7\"
 #
 # Default: 9
 #
-#discard_bind_port	9
+discard_bind_port	9
 
 
 #############################################################
@@ -1661,7 +1663,7 @@ irc_version		\"Unreal3.2.7\"
 #
 # Default: 17
 #
-#quotd_bind_port	17
+quotd_bind_port	17
 
 
 #############################################################
@@ -1677,7 +1679,7 @@ irc_version		\"Unreal3.2.7\"
 #
 # Default: 19
 #
-#chargen_bind_port	19
+chargen_bind_port	19
 
 
 #############################################################
@@ -1693,7 +1695,7 @@ irc_version		\"Unreal3.2.7\"
 #
 # Default: 79
 #
-#finger_bind_port	79
+finger_bind_port	79
 
 
 #############################################################
@@ -1709,7 +1711,7 @@ irc_version		\"Unreal3.2.7\"
 #
 # Default: 113
 #
-#ident_bind_port	113
+ident_bind_port	113
 
 
 #############################################################
@@ -1725,7 +1727,7 @@ irc_version		\"Unreal3.2.7\"
 #
 # Default: 514
 #
-#syslog_bind_port	514
+syslog_bind_port	514
 
 
 #########################################
@@ -1749,7 +1751,7 @@ irc_version		\"Unreal3.2.7\"
 #
 # Default: no
 #
-#syslog_accept_invalid		yes
+syslog_accept_invalid		yes
 
 
 #############################################################
@@ -1765,7 +1767,7 @@ irc_version		\"Unreal3.2.7\"
 #
 # Default: 1
 #
-#dummy_bind_port	1
+dummy_bind_port	1
 
 
 #########################################
@@ -1866,10 +1868,10 @@ redirect_external_address	10.10.10.1
 # Examples:
 #
 # WWW caching service
-#redirect_static_rule	tcp             :8080			:80
+redirect_static_rule	tcp             :8080			:80
 #
 # Submission [RFC4409]
-#redirect_static_rule	tcp             :587			:25
+redirect_static_rule	tcp             :587			:25
 #
 # Echo-Request [RFC792]
 #redirect_static_rule	icmp 10.10.10.20:echo-request	10.1.0.25
@@ -1890,7 +1892,7 @@ redirect_external_address	10.10.10.1
 #
 # Default: no
 #
-#redirect_change_ttl	yes
+redirect_change_ttl	yes
 
 
 #########################################
