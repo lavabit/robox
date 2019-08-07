@@ -6,8 +6,8 @@
 # Description: Used to build various virtual machines using packer.
 
 # Version Information
-export VERSION="1.8.50"
-export AGENT="Vagrant/2.2.0 (+https://www.vagrantup.com; ruby2.4.4)"
+export VERSION="1.9.20"
+export AGENT="Vagrant/2.2.5 (+https://www.vagrantup.com; ruby2.4.6)"
 
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
@@ -30,11 +30,11 @@ if [ ! -f $BASE/.credentialsrc ]; then
 cat << EOF > $BASE/.credentialsrc
 #!/bin/bash
 export GOMAXPROCS="2"
-export DOCKER_USER="evilklosnet"
-export DOCKER_EMAIL="alex@klosnet.sh"
-export DOCKER_PASSWORD="4JBGUE7215GTMWMW6T7A0KA54T52PRB5RTT4GAB5J"
-export VMWARE_WORKSTATION="AU1DA-4FW5Q-M84TZ-GYNGC-XZRY6"
-export VAGRANT_CLOUD_TOKEN="jPzZM9kkLqGUnw.atlasv1.SYMX0LbQC5TrpzHepLzgOTPc6ePwwHVFMR1XagzIQigOv3tjtGjmf8f9n6Fy7BPbuzc"
+export DOCKER_USER="LOGIN"
+export DOCKER_EMAIL="EMAIL"
+export DOCKER_PASSWORD="PASSWORD"
+export VMWARE_WORKSTATION="SERIAL"
+export VAGRANT_CLOUD_TOKEN="TOKEN"
 
 # Overrides the Repo Box Version
 VERSION="1.0.0"
@@ -51,8 +51,7 @@ FILES="packer-cache.json "\
 "magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
 "generic-docker.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-parallels.json generic-virtualbox.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
-"developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json "\
-"evil-hyperv.json evil-vmware.json evil-libvirt.json evil-virtualbox.json"
+"developer-ova.json developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
 # Media Files
 MEDIAFILES="res/media/rhel-server-6.10-x86_64-dvd.iso"\
@@ -60,37 +59,85 @@ MEDIAFILES="res/media/rhel-server-6.10-x86_64-dvd.iso"\
 "|res/media/rhel-8.0-beta-1-x86_64-dvd.iso"
 MEDIASUMS="1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727"\
 "|60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c"\
-"|06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316"
+"|005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43"
 MEDIAURLS="https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso"\
 "|https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"\
-"|https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso"
+"|https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso"
+
+# When validating ISO checksums skip these URLS.
+DYNAMICURLS="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso|"\
+"https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
 
 # Collect the list of ISO urls.
-ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "$MEDIAFILES" | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -v "iso_checksum_type" | grep -v -E "$MEDIASUMS" | awk -F'"' '{print $4}'`)
-UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -v -E "$MEDIAFILES" | awk -F'"' '{print $4}' | sort | uniq`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -Ev "$DYNAMICURLS" | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -Ev "iso_checksum_type|iso_checksum_url" | awk -F'"' '{print $4}'`)
+UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}' | sort | uniq`)
 
 # Collect the list of box names.
-EVIL_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "evil-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
+MAGMA_SPECIAL_BOXES="magma-hyperv magma-vmware magma-libvirt magma-virtualbox magma-docker "\
+"magma-centos-hyperv magma-centos-vmware magma-centos-libvirt magma-centos-virtualbox magma-centos-docker "\
+"magma-ubuntu-hyperv magma-ubuntu-vmware magma-ubuntu-libvirt magma-ubuntu-virtualbox"
 GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 ROBOX_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sed "s/generic-/roboxes-/g"| sort --field-separator=- -k 3i -k 2.1,2.0`
-LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-|lineageos-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
-BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $EVIL_BOXES"
+LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
+LINEAGEOS_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sed "s/lineage-/lineageos-/g"| sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
+MAGMA_BOXES=`echo $MAGMA_SPECIAL_BOXES $MAGMA_BOXES | sed 's/ /\n/g' | sort -u --field-separator=- -k 3i -k 2.1,2.0`
+BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $LINEAGEOS_BOXES"
 
 # Collect the list of box tags.
-EVIL_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "evil" | sort -u --field-separator=-`
-MAGMA_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "magma" | sort -u --field-separator=-`
+MAGMA_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/debian8/debian/g" | sed "s/fedora27/fedora/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
+MAGMA_SPECIAL_TAGS="lavabit/magma lavabit/magma-centos lavabit/magma-ubuntu"
 ROBOX_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
 GENERIC_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | sort -u --field-separator=-`
-LINEAGE_TAGS=`grep -E '"box_tag":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sort -u --field-separator=-`
-TAGS="$GENERIC_TAGS $ROBOX_TAGS $MAGMA_TAGS $LINEAGE_TAGS $EVIL_TAGS"
+LINEAGE_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineage\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
+LINEAGEOS_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineageos\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
+MAGMA_TAGS=`echo $MAGMA_SPECIAL_TAGS $MAGMA_TAGS | sed 's/ /\n/g' | sort -u --field-separator=-`
+TAGS="$GENERIC_TAGS $ROBOX_TAGS $MAGMA_TAGS $LINEAGE_TAGS $LINEAGEOS_TAGS"
 
 # These boxes aren't publicly available yet, so we filter them out of available test.
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
 
 # A list of configs to skip during complete build operations.
 export EXCEPTIONS=""
+
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      tput setaf 1; printf "\n${*} failed... retrying ${COUNT} of 10.\n" >&2; tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    tput setaf 1; printf "\nThe command failed 10 times.\n" >&2; tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
+curltry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 100 ]]; do
+    RESULT=0 ; OUTPUT=`"${@}"` || RESULT="${?}"
+    if [[ $RESULT == 0 ]] || [[ `echo "$OUTPUT" | grep --count "404"` == 1 ]]; then
+      break
+    fi
+    COUNT="$((COUNT + 1))"
+    DELAY="$((DELAY + 1))"
+    sleep $DELAY
+  done
+  echo "$OUTPUT"
+  return "${RESULT}"
+}
 
 function start() {
   # Disable IPv6 or the VMware builder won't be able to load the Kick Start configuration.
@@ -144,35 +191,47 @@ function start() {
   fi
 }
 
+function print_iso() {
+  SHA=`curl --silent --location "${2}" | sha256sum | awk -F' ' '{print $1}'`
+  if [ $? != 0 ]; then
+      tput setaf 1; printf "\n$1 failed.\n\n"; tput sgr0; printf "${2}\n\n"
+      return 1
+  fi
+  tput setaf 2; printf "\n$1\n\n"; tput sgr0; printf "${2}\n${SHA}\n\n"
+}
+
 # Print the current URL and SHA hash for install discs which are updated frequently.
 function isos {
 
-  tput setaf 2; printf "\nGentoo\n\n"; tput sgr0;
+  # Find the Gentoo URL.
   URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
   ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
   URL="${URL}${ISO}"
-  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
-  printf "${URL}\n${SHA}\n\n"
+  N=( "${N[@]}" "Gentoo" ); U=( "${U[@]}" "$URL" )
 
-  tput setaf 2; printf "\nArch\n\n"; tput sgr0;
+  # Find the Arch URL.
   URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
   ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
   URL="${URL}${ISO}"
-  SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
-  printf "${URL}\n${SHA}\n\n"
+  N=( "${N[@]}" "Arch" ); U=( "${U[@]}" "$URL" )
 
-  # tput setaf 2; printf "\nOpenSUSE\n\n"; tput sgr0;
-  # URL="https://mirrors.kernel.org/opensuse/distribution/leap/42.3/iso/"
-  # ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "openSUSE\-Leap\-42\.3\-NET\-x86\_64\-Build[0-9]{4}\-Media.iso|openSUSE\-Leap\-42\.3\-NET\-x86\_64.iso" | uniq`
-  # URL="${URL}${ISO}"
-  # SHA=`curl --silent "${URL}" | sha256sum | awk -F' ' '{print $1}'`
-  # printf "${URL}\n${SHA}\n\n"
+  # Ubuntu Disco
+  # URL="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso"
+  # N=( "${N[@]}" "Disco" ); U=( "${U[@]}" "$URL" )
+
+  # Debian Buster
+  # URL="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
+  # N=( "${N[@]}" "Buster" ); U=( "${U[@]}" "$URL" )
+
+  export -f print_iso
+  parallel -j 16 --xapply print_iso {1} {2} ::: "${N[@]}" ::: "${U[@]}"
+
 }
 
 function cache {
 
   unset PACKER_LOG
-  packer build -on-error=cleanup -color=false -parallel=false packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+  packer build -on-error=cleanup -color=false -parallel=false -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\nDistro disc image download aborted...\n\n"; tput sgr0
@@ -205,7 +264,7 @@ function verify_url {
 function verify_sum {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
-  curl --silent --location --head "$1" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+  curl --silent --location --head "$1" | grep --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
 
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
@@ -315,8 +374,6 @@ function box() {
       [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/developer-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-hyperv.json
-      export PACKER_LOG_PATH="$BASE/logs/evil-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*evil.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 evil-hyperv.json
 
   elif [[ `uname` == "Darwin" ]]; then
 
@@ -343,6 +400,8 @@ function box() {
       export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
 
+      export PACKER_LOG_PATH="$BASE/logs/developer-ova-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-ova.json
       export PACKER_LOG_PATH="$BASE/logs/developer-vmware-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-log-${TIMESTAMP}.txt"
@@ -356,13 +415,6 @@ function box() {
       [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-libvirt.json
       export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-virtualbox.json
-
-      export PACKER_LOG_PATH="$BASE/logs/evil-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*evil.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 evil-vmware.json
-      export PACKER_LOG_PATH="$BASE/logs/evil-libvirt-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*evil.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 evil-libvirt.json
-      export PACKER_LOG_PATH="$BASE/logs/evil-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*evil.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 evil-virtualbox.json
 
   fi
 }
@@ -379,21 +431,27 @@ function links() {
       (verify_url "${UNIQURLS[$i]}") &
   done
 
-  # Wait until the children re done working.
+  # Wait until the children done working.
   wait
 
+  # Combine the media URLs with the regular box ISO urls.
+  let TOTAL=${#UNIQURLS[@]}+${#MURLS[@]}
+
   # Let the user know all of the links passed.
-  printf "\nAll ${#UNIQURLS[@]} of the install media locations are still valid...\n\n"
+  printf "\nAll $TOTAL of the install media locations have been checked...\n\n"
 }
 
 function sums() {
 
-  for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
-      verify_sum "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
-  done
+  # for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
+  #     verify_sum "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
+  # done
+
+  export -f verify_sum
+  parallel -j 16 --xapply verify_sum {1} {2} ":::" "${ISOURLS[@]}" ":::" "${ISOSUMS[@]}"
 
   # Let the user know all of the links passed.
-  printf "\nAll ${#ISOURLS[@]} of the install media locations are still valid...\n\n"
+  # printf "\nAll ${#ISOURLS[@]} of the install media locations have been validated...\n\n"
 }
 
 function validate() {
@@ -409,6 +467,7 @@ function validate() {
   verify_json generic-libvirt
   verify_json generic-parallels
   verify_json generic-virtualbox
+  verify_json developer-ova
   verify_json developer-hyperv
   verify_json developer-vmware
   verify_json developer-libvirt
@@ -417,10 +476,6 @@ function validate() {
   verify_json lineage-vmware
   verify_json lineage-libvirt
   verify_json lineage-virtualbox
-  verify_json evil-hyperv
-  verify_json evil-vmware
-  verify_json evil-libvirt
-  verify_json evil-virtualbox
 }
 
 function missing() {
@@ -429,11 +484,30 @@ function missing() {
     LIST=($BOXES)
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-        if [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.box" ] && [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.tar.gz" ]; then
-          let MISSING+=1
-          printf "Box  -  "; tput setaf 1; printf "${LIST[$i]}\n"; tput sgr0
+        # With OVA boxes we need to parse the box name and convert it to a filename.
+        if [[ "${LIST[$i]}" =~ ^.*-ova$ ]]; then
+          FILENAME=`echo "${LIST[$i]}" | sed "s/\([a-z]*-[a-z0-9-]*\)-ova/\1-${VERSION}.ova/g"`
+          if [ ! -f $BASE/output/"$FILENAME" ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]}\n"; tput sgr0
+          fi
+        # With Docker boxes we need to look for a tarball and a box file.
+        elif [[ "${LIST[$i]}" =~ ^.*-docker$ ]]; then
+          if [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.tar.gz" ] || [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.box" ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]}\n"; tput sgr0
+          fi
         else
-          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]}\n"; tput sgr0
+          if [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.box" ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]}\n"; tput sgr0
+          fi
         fi
     done
 
@@ -460,6 +534,23 @@ function available() {
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
       BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
+
+      PROVIDER="docker"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
+        if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || \
+          [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
+          [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
+          curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+
+          if [ $? != 0 ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          else
+            let FOUND+=1
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          fi
+        fi
+      fi
 
       PROVIDER="hyperv"
       curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
@@ -547,8 +638,27 @@ function public() {
       ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
       BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
 
+      PROVIDER="docker"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
+        if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
+          [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
+          [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
+          curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+
+          if [ $? != 0 ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          else
+            let FOUND+=1
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          fi
+        fi
+      fi
+
       PROVIDER="hyperv"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -559,7 +669,7 @@ function public() {
       fi
 
       PROVIDER="libvirt"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -571,7 +681,7 @@ function public() {
 
       PROVIDER="parallels"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes)$ ]]; then
-        curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+        curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
         if [ $? != 0 ]; then
           let MISSING+=1
@@ -583,7 +693,7 @@ function public() {
       fi
 
       PROVIDER="virtualbox"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -594,7 +704,7 @@ function public() {
       fi
 
       PROVIDER="vmware_desktop"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -633,7 +743,7 @@ function localized() {
   # Former Logic
   # verify_local 1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727 res/media/rhel-server-6.10-x86_64-dvd.iso https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso
   # verify_local 60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c res/media/rhel-server-7.6-x86_64-dvd.iso https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso
-  # verify_local 06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316 res/media/rhel-8.0-beta-1-x86_64-dvd.iso https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso
+  # verify_local 005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43 res/media/rhel-8.0-beta-1-x86_64-dvd.iso https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso
 
 }
 
@@ -705,24 +815,21 @@ function lineage() {
   fi
 }
 
-function evil() {
-  if [[ $OS == "Windows_NT" ]]; then
-    build evil-hyperv
-  else
-    build evil-vmware
-    build evil-libvirt
-    build evil-virtualbox
-  fi
-}
-
 function developer() {
   if [[ $OS == "Windows_NT" ]]; then
     build developer-hyperv
   else
+    build developer-ova
     build developer-vmware
     build developer-libvirt
     build developer-virtualbox
   fi
+}
+
+function ova() {
+  verify_json developer-ova
+
+  build developer-ova
 }
 
 function vmware() {
@@ -730,14 +837,13 @@ function vmware() {
   verify_json magma-vmware
   verify_json developer-vmware
   verify_json lineage-vmware
-  verify_json evil-vmware
 
   build generic-vmware
   build magma-vmware
   build developer-vmware
   build lineage-vmware
-  build evil-vmware
 }
+
 function hyperv() {
 
   if [[ $OS == "Windows_NT" ]]; then
@@ -748,7 +854,6 @@ function hyperv() {
     verify_json magma-hyperv
     verify_json developer-hyperv
     verify_json lineage-hyperv
-    verify_json evil-hyperv
 
     # Build the generic boxes first.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
@@ -786,13 +891,6 @@ function hyperv() {
       fi
     done
 
-    # Build the Evil boxes fifth.
-    for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^(evil)-[a-z]*[0-9]*-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" evil-hyperv.json
-      fi
-    done
-
   else
     tput setaf 1; tput bold; printf "\n\nThe HyperV roboxes require a Windows host...\n\n"; tput sgr0
   fi
@@ -803,13 +901,11 @@ function libvirt() {
   verify_json magma-libvirt
   verify_json developer-libvirt
   verify_json lineage-libvirt
-  verify_json evil-libvirt
 
   build generic-libvirt
   build magma-libvirt
   build developer-libvirt
   build lineage-libvirt
-  build evil-libvirt
 }
 
 function parallels() {
@@ -828,11 +924,11 @@ function parallels() {
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       # Ensure there is enough disk space.
-      if [ `df -m . | tail -1 |  awk -F' ' '{print $4}'` < 8192 ]; then
+      if [[ `df -m . | tail -1 |  awk -F' ' '{print $4}'` -lt 8192 ]]; then
         tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
       elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
         packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
-        rm --recursive --force $BASE/packer_cache/
+        # mv output/*.box output/*.box.sha256 /Volumes/Files/robox/output
       fi
     done
 
@@ -846,13 +942,11 @@ function virtualbox() {
   verify_json magma-virtualbox
   verify_json developer-virtualbox
   verify_json lineage-virtualbox
-  verify_json evil-virtualbox
 
   build generic-virtualbox
   build magma-virtualbox
   build developer-virtualbox
   build lineage-virtualbox
-  build evil-virtualbox
 }
 
 function builder() {
@@ -860,7 +954,6 @@ function builder() {
   magma
   developer
   lineage
-  evil
 }
 
 function all() {
@@ -868,11 +961,10 @@ function all() {
 
   links
   validate
-  localized
 
   builder
 
-  for i in 1 2 3 4 5 6 7 8 9 10; do printf "\a"; sleep 1; done
+  for i in 1 2 3; do printf "\a"; sleep 1; done
 }
 
 # The stage functions.
@@ -884,6 +976,7 @@ elif [[ $1 == "build" ]]; then builder
 elif [[ $1 == "cleanup" ]]; then cleanup
 
 # The type functions.
+elif [[ $1 == "ova" ]]; then vmware
 elif [[ $1 == "vmware" ]]; then vmware
 elif [[ $1 == "hyperv" ]]; then hyperv
 elif [[ $1 == "libvirt" ]]; then libvirt
@@ -902,7 +995,6 @@ elif [[ $1 == "public" ]]; then public
 elif [[ $1 == "available" ]]; then available
 
 # The group builders.
-elif [[ $1 == "evil" ]]; then evil
 elif [[ $1 == "magma" ]]; then magma
 elif [[ $1 == "generic" ]]; then generic
 elif [[ $1 == "lineage" ]]; then lineage
@@ -932,11 +1024,6 @@ elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv.json" ]]; then build lin
 elif [[ $1 == "lineage-libvirt" || $1 == "lineage-libvirt.json" ]]; then build lineage-libvirt
 elif [[ $1 == "lineage-virtualbox" || $1 == "lineage-virtualbox.json" ]]; then build lineage-virtualbox
 
-elif [[ $1 == "evil-vmware" || $1 == "evil-vmware.json" ]]; then build evil-vmware
-elif [[ $1 == "evil-hyperv" || $1 == "evil-hyperv.json" ]]; then build evil-hyperv
-elif [[ $1 == "evil-libvirt" || $1 == "evil-libvirt.json" ]]; then build evil-libvirt
-elif [[ $1 == "evil-virtualbox" || $1 == "evil-virtualbox.json" ]]; then build evil-virtualbox
-
 # Build a specific box.
 elif [[ $1 == "box" ]]; then box $2
 
@@ -950,10 +1037,10 @@ else
   echo $"  `basename $0` {start|validate|build|cleanup} or"
   echo ""
   echo " Types"
-  echo $"  `basename $0` {vmware|hyperv|libvirt|docker|parallels|virtualbox} or"
+  echo $"  `basename $0` {ova|vmware|hyperv|libvirt|docker|parallels|virtualbox} or"
   echo ""
   echo " Groups"
-  echo $"  `basename $0` {magma|generic|lineage|developer|evil} or"
+  echo $"  `basename $0` {magma|generic|lineage|developer} or"
   echo ""
   echo " Media"
   echo $"  `basename $0` {isos|sums|links|local|cache} or"
