@@ -9,6 +9,10 @@
 #
 # This script must be run as root!
 #
+#
+##export domain=example.com
+export domain=miskc.org
+#export domain=example.com
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 sudo update update && sudo apt -y install wget
@@ -26,6 +30,12 @@ sudo apt -y install powershell
 #Type 'help' to get help.
 
 #PS /home/vagrant>
+# This script must be run as root!
+mkdir /opt/ && cd /opt/
+git clone https://github.com/certbot/certbot
+/opt/certbot/certbot-auto certonly --standalone --non-interactive --agree-tos --rsa-key-size 4096 --email "admin@$domain" -d "$domain, www.$domain,imap.$domain,pop.$domain,smtp.$domain"
+# This script must be run as root!
+# This script must be run as root!
 apt-get update && apt-get -y upgrade
 apt-get update && apt-get -y dist-upgrade && apt-get autoremove -y && apt-get -y autoclean
 out=`grep  "kali-bleeding-edge" /etc/apt/sources.list` &>/dev/null
