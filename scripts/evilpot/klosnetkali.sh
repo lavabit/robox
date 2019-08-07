@@ -1,5 +1,32 @@
 #Author Alexander Kloster
 #apt-get update && apt-get -y dist-upgrade
+#http://dev.mysql.com/doc/refman/5.7/en/document-store-setting-up.html
+#Section -> "Installing MySQL Shell on Yum-based Systems"
+#If you already have the MySQL Yum repository as a software repository on your system, do the following:
+# Update the Yum repository release package with the following command: 
+# yum update mysql-community-release
+# yum install mysql-community-release
+#Check with:
+# rpm -q  mysql57-community-release
+#Seems like a typo in the doc page, should have been:
+#sudo yum update mysql57-community-release
+# rpm -q  mysql57-community-release
+# rpm -q  mysql57-community-release
+#yum install mysql-community*
+# yum install mysql-community*
+to
+# yum install mysql-community*5.7*
+or just install the package you want (all deps will follow any way), for example for server package:
+# yum install mysql-community-server
+
+
+
+
+
+
+
+
+
 
 #!/bin/bash -eux
 # To allow for automated installs, we disable interactive configuration steps.
