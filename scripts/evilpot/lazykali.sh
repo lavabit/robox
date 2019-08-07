@@ -24,6 +24,10 @@ sudo apt -y install powershell
 
 #https://aka.ms/pscore6-docs
 #Type 'help' to get help.
+#Test command execution:
+#Test command execution:
+
+#PS /home/vagrant> Get-ChildItem /
 
 #PS /home/vagrant>
 apt-get update && apt-get -y upgrade
