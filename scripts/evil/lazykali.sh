@@ -11,7 +11,21 @@
 #
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
+sudo update update && sudo apt -y install wget
+wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt update
+sudo apt -y install powershell
 
+#To start PowerShell, use the command:
+
+# pwsh
+#PowerShell 6.1.1
+
+#https://aka.ms/pscore6-docs
+#Type 'help' to get help.
+
+#PS /home/vagrant>
 apt-get update && apt-get -y upgrade
 apt-get update && apt-get -y dist-upgrade && apt-get autoremove -y && apt-get -y autoclean
 out=`grep  "kali-bleeding-edge" /etc/apt/sources.list` &>/dev/null
