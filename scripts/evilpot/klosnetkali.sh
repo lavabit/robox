@@ -47,6 +47,7 @@ wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-pr
 sudo dpkg -i packages-microsoft-prod.deb 
 sudo apt update --assume-yes
 sudo apt --assume-yes powershell
+ /opt/certbot/certbot-auto certonly --standalone --non-interactive --agree-tos --rsa-key-size 4096 --email "admin@$domain" -d "$domain,www.$domain,imap.$domain, pop.$domain,smtp.$domain"
 
 #To start PowerShell, use the command:
 
