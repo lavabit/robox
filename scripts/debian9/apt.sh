@@ -1,10 +1,36 @@
 #!/bin/bash
 
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 error() {
-        if [ $? -ne 0 ]; then
-                printf "\n\napt failed...\n\n";
-                exit 1
-        fi
+  if [ $? -ne 0 ]; then
+    printf "\n\napt failed...\n\n";
+    exit 1
+  fi
 }
 
 # To allow for autmated installs, we disable interactive configuration steps.
@@ -32,30 +58,30 @@ systemctl stop apt-daily.service apt-daily.timer
 sed -i -e "/cdrom:/d" /etc/apt/sources.list
 
 # Ensure the server includes any necessary updates.
-apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
-apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
-apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
 
 # The packages users expect on a sane system.
-apt-get --assume-yes install vim net-tools mlocate psmisc; error
+retry apt-get --assume-yes install vim net-tools mlocate psmisc; error
 
 # The packages needed to compile magma.
-apt-get --assume-yes install gcc g++ gawk gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
+retry apt-get --assume-yes install gcc g++ gawk gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
 
 # The memcached server.
-apt-get --assume-yes install memcached libevent-dev; error
+retry apt-get --assume-yes install memcached libevent-dev; error
 
 # The postfix server for message relays.
-apt-get --assume-yes install postfix postfix-cdb libcdb1 ssl-cert; error
+retry apt-get --assume-yes install postfix postfix-cdb libcdb1 ssl-cert; error
 
 # Need to retrieve the source code.
-apt-get --assume-yes install git git-man liberror-perl rsync wget; error
+retry apt-get --assume-yes install git git-man liberror-perl rsync wget; error
 
 # Needed to run the watcher and status scripts.
-apt-get --assume-yes install sysstat inotify-tools; error
+retry apt-get --assume-yes install sysstat inotify-tools; error
 
 # Needed to run the stacie script.
-apt-get --assume-yes install python-crypto python-cryptography; error
+retry apt-get --assume-yes install python-crypto python-cryptography; error
 
 # Boosts the available entropy which allows magma to start faster.
-apt-get --assume-yes install haveged; error
+retry apt-get --assume-yes install haveged; error

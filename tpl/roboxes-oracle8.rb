@@ -3,14 +3,17 @@
 
 Vagrant.configure(2) do |config|
 
-  # config.vm.box = "generic/bazinga"
-  # config.vm.hostname = "bazinga.box"
+  config.vm.boot_timeout = 1800
+  # config.vm.box = "roboxes/bazinga"
+  # config.vm.hostname = "bazinga.roboxes"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.box_check_update = true
 
   # config.vm.post_up_message = ""
+  config.vm.boot_timeout = 1800
   # config.vm.box_download_checksum = true
+  config.vm.boot_timeout = 1800
   # config.vm.box_download_checksum_type = "sha256"
 
   # config.vm.provision "shell", run: "always", inline: <<-SHELL
@@ -40,18 +43,15 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :virtualbox do |v, override|
-    v.gui = false
-    v.functional_vboxsf = false
-    v.check_guest_additions = false
+    v.customize ["modifyvm", :id, "--memory", 2048]
     v.customize ["modifyvm", :id, "--vram", 256]
     v.customize ["modifyvm", :id, "--cpus", 2]
-    v.customize ["modifyvm", :id, "--memory", 2048]
+    v.gui = false
   end
 
   ["vmware_fusion", "vmware_workstation", "vmware_desktop"].each do |provider|
     config.vm.provider provider do |v, override|
       v.whitelist_verified = true
-      v.functional_hgfs = false
       v.gui = false
       v.vmx["cpuid.coresPerSocket"] = "1"
       v.vmx["memsize"] = "2048"

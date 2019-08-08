@@ -14,22 +14,22 @@ if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
 fi
 
 # Install the the EPEL repository.
-yum --assumeyes --enablerepo=extras install epel-release; error
+dnf --assumeyes --enablerepo=extras install epel-release; error
 
 # Packages needed beyond a minimal install to build and run magma.
-yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel; error
+dnf --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel; error
 
 # Grab the required packages from the EPEL repo.
-yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
+dnf --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
 
 # Boosts the available entropy which allows magma to start faster.
-yum --quiet --assumeyes install haveged; error
+dnf --quiet --assumeyes install haveged; error
 
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
-yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
+dnf --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
 
 # These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
-yum --quiet --assumeyes install python-crypto python-cryptography
+dnf --quiet --assumeyes install python-crypto python-cryptography
 
 # Create the clamav user to avoid spurious errors.
 useradd clamav
@@ -75,6 +75,13 @@ if [ -x /usr/bin/id ]; then
     systemctl start postfix.service
     systemctl start memcached.service
   fi
+fi
+
+# If the TERM environment variable is missing, then tput may trigger a fatal error.
+if [[ -n "$TERM" ]] && [[ "$TERM" -ne "dumb" ]]; then
+  export TPUT="tput"
+else
+  export TPUT="tput -Tvt100"
 fi
 
 # We need to give the box 30 seconds to get the networking setup or
@@ -125,7 +132,7 @@ dev/scripts/launch/check.run.sh
 
 # If the unit tests fail, print an error, but contine running.
 if [ \$? -ne 0 ]; then
-  tput setaf 1; tput bold; printf "\n\nsome of the magma daemon unit tests failed...\n\n"; tput sgr0;
+  \${TPUT} setaf 1; \${TPUT} bold; printf "\n\nsome of the magma daemon unit tests failed...\n\n"; \${TPUT} sgr0;
   for i in 1 2 3; do
     printf "\a"; sleep 1
   done

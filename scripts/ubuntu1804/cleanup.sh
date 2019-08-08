@@ -1,10 +1,10 @@
 #!/bin/bash
 
 error() {
-        if [ $? -ne 0 ]; then
-                printf "\n\napt failed...\n\n";
-                exit 1
-        fi
+  if [ $? -ne 0 ]; then
+    printf "\n\napt failed...\n\n";
+    exit 1
+  fi
 }
 
 # To allow for autmated installs, we disable interactive configuration steps.

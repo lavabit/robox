@@ -11,7 +11,7 @@ fi
 pushd `dirname $CMD` > /dev/null
 BASE=`pwd -P`
 popd > /dev/null
-cd $BASE
+cd $BASE/../../
 
 if [ $# != 4 ]; then
   tput setaf 1; printf "\n   $0 SOURCE TARGET ISO SHA\n\n Please specify the source, target, install media, and hash.\n\n"; tput sgr0

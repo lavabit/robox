@@ -6,8 +6,8 @@
 # Description: Used to build various virtual machines using packer.
 
 # Version Information
-export VERSION="1.9.2"
-export AGENT="Vagrant/2.2.3 (+https://www.vagrantup.com; ruby2.4.4)"
+export VERSION="1.9.20"
+export AGENT="Vagrant/2.2.5 (+https://www.vagrantup.com; ruby2.4.6)"
 
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
@@ -60,10 +60,10 @@ MEDIAFILES="res/media/rhel-server-6.10-x86_64-dvd.iso"\
 "|res/media/rhel-8.0-beta-1-x86_64-dvd.iso"
 MEDIASUMS="1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727"\
 "|60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c"\
-"|06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316"
+"|005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43"
 MEDIAURLS="https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso"\
 "|https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"\
-"|https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso"
+"|https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso"
 
 # When validating ISO checksums skip these URLS.
 DYNAMICURLS="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso|"\
@@ -129,13 +129,13 @@ retry() {
 curltry() {
   local COUNT=1
   local RESULT=0
-  while [[ "${COUNT}" -le 10 ]]; do
+  while [[ "${COUNT}" -le 100 ]]; do
     RESULT=0 ; OUTPUT=`"${@}"` || RESULT="${?}"
     if [[ $RESULT == 0 ]] || [[ `echo "$OUTPUT" | grep --count "404"` == 1 ]]; then
       break
     fi
     COUNT="$((COUNT + 1))"
-    DELAY="$((DELAY + 10))"
+    DELAY="$((DELAY + 1))"
     sleep $DELAY
   done
   echo "$OUTPUT"
@@ -219,12 +219,12 @@ function isos {
   N=( "${N[@]}" "Arch" ); U=( "${U[@]}" "$URL" )
 
   # Ubuntu Disco
-  URL="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso"
-  N=( "${N[@]}" "Disco" ); U=( "${U[@]}" "$URL" )
+  # URL="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso"
+  # N=( "${N[@]}" "Disco" ); U=( "${U[@]}" "$URL" )
 
   # Debian Buster
-  URL="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
-  N=( "${N[@]}" "Buster" ); U=( "${U[@]}" "$URL" )
+  # URL="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
+  # N=( "${N[@]}" "Buster" ); U=( "${U[@]}" "$URL" )
 
   export -f print_iso
   parallel -j 16 --xapply print_iso {1} {2} ::: "${N[@]}" ::: "${U[@]}"
@@ -234,7 +234,7 @@ function isos {
 function cache {
 
   unset PACKER_LOG
-  packer build -on-error=cleanup -color=false -parallel=false packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+  packer build -on-error=cleanup -color=false -parallel=false -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\nDistro disc image download aborted...\n\n"; tput sgr0
@@ -569,16 +569,14 @@ function available() {
       fi
 
       PROVIDER="hyperv"
-      if [[ "${BOX}" != "dragonflybsd5" ]] && [[ "${BOX}" != "netbsd8" ]]; then
-        curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
 
-        if [ $? != 0 ]; then
-          let MISSING+=1
-          printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
-        else
-          let FOUND+=1
-          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
-        fi
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        let FOUND+=1
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
 
       PROVIDER="libvirt"
@@ -659,9 +657,11 @@ function public() {
       PROVIDER="docker"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
         if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
-          curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" |  grep --silent "200"
+          curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
           if [ $? != 0 ]; then
             let MISSING+=1
@@ -674,20 +674,18 @@ function public() {
       fi
 
       PROVIDER="hyperv"
-      if [[ "${BOX}" != "dragonflybsd5" ]] && [[ "${BOX}" != "netbsd8" ]]; then
-        curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" |  grep --silent "200"
+      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
-        if [ $? != 0 ]; then
-          let MISSING+=1
-          printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
-        else
-          let FOUND+=1
-          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
-        fi
+      if [ $? != 0 ]; then
+        let MISSING+=1
+        printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        let FOUND+=1
+        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
 
       PROVIDER="libvirt"
-      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" |  grep --silent "200"
+      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -699,7 +697,7 @@ function public() {
 
       PROVIDER="parallels"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes)$ ]]; then
-        curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" |  grep --silent "200"
+        curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
         if [ $? != 0 ]; then
           let MISSING+=1
@@ -711,7 +709,7 @@ function public() {
       fi
 
       PROVIDER="virtualbox"
-      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" |  grep --silent "200"
+      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -722,7 +720,7 @@ function public() {
       fi
 
       PROVIDER="vmware_desktop"
-      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" |  grep --silent "200"
+      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -761,7 +759,7 @@ function localized() {
   # Former Logic
   # verify_local 1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727 res/media/rhel-server-6.10-x86_64-dvd.iso https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso
   # verify_local 60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c res/media/rhel-server-7.6-x86_64-dvd.iso https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso
-  # verify_local 06bec9e7de3ebfcdb879804be8c452b69ba3e046daedac3731e1ccd169cfd316 res/media/rhel-8.0-beta-1-x86_64-dvd.iso https://archive.org/download/rhel-8.0-beta-1-x86_64-dvd/rhel-8.0-beta-1-x86_64-dvd.iso
+  # verify_local 005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43 res/media/rhel-8.0-beta-1-x86_64-dvd.iso https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso
 
 }
 
@@ -1004,7 +1002,6 @@ function all() {
 
   links
   validate
-  localized
 
   builder
 

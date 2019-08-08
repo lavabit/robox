@@ -33,6 +33,13 @@ if [ -x /usr/bin/id ]; then
   fi
 fi
 
+# If the TERM environment variable is missing, then tput may trigger a fatal error.
+if [[ -n "$TERM" ]] && [[ "$TERM" -ne "dumb" ]]; then
+  export TPUT="tput"
+else
+  export TPUT="tput -Tvt100"
+fi
+
 # We need to give the box 30 seconds to get the networking setup or
 # the git clone operation will fail.
 sleep 30
@@ -60,12 +67,12 @@ dev/scripts/database/schema.reset.sh; error
 
 # Enable the anti-virus engine and update the signatures.
 dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
-sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
+sed -i "" -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 
 # Ensure the sandbox config uses port 2525 for relays.
-sed -i -e "/magma.relay\[[0-9]*\].name.*/d" sandbox/etc/magma.sandbox.config
-sed -i -e "/magma.relay\[[0-9]*\].port.*/d" sandbox/etc/magma.sandbox.config
-sed -i -e "/magma.relay\[[0-9]*\].secure.*/d" sandbox/etc/magma.sandbox.config
+sed -i "" -e "/magma.relay\[[0-9]*\].name.*/d" sandbox/etc/magma.sandbox.config
+sed -i "" -e "/magma.relay\[[0-9]*\].port.*/d" sandbox/etc/magma.sandbox.config
+sed -i "" -e "/magma.relay\[[0-9]*\].secure.*/d" sandbox/etc/magma.sandbox.config
 printf "\n\nmagma.relay[1].name = localhost\nmagma.relay[1].port = 2525\n\n" >> sandbox/etc/magma.sandbox.config
 
 # Bug fix... create the scan directory so ClamAV unit tests work.
@@ -81,7 +88,7 @@ dev/scripts/launch/check.run.sh
 
 # If the unit tests fail, print an error, but contine running.
 if [ \$? -ne 0 ]; then
-  tput setaf 1; tput bold; printf "\n\nsome of the magma daemon unit tests failed...\n\n"; tput sgr0;
+  \${TPUT} setaf 1; \${TPUT} bold; printf "\n\nsome of the magma daemon unit tests failed...\n\n"; \${TPUT} sgr0;
   for i in 1 2 3; do
     printf "\a"; sleep 1
   done
@@ -93,8 +100,8 @@ fi
 # dev/scripts/launch/check.vg
 
 # Daemonize instead of running on the console.
-# sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
-# sed -i -e "s/magma.system.daemonize = false/magma.system.daemonize = true/g" sandbox/etc/magma.sandbox.config
+# sed -i "" -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
+# sed -i "" -e "s/magma.system.daemonize = false/magma.system.daemonize = true/g" sandbox/etc/magma.sandbox.config
 
 # Launch the daemon.
 # ./magmad --config magma.system.daemonize=true sandbox/etc/magma.sandbox.config

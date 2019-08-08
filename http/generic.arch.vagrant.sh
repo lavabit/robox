@@ -23,16 +23,13 @@ mount "${device}2" /mnt
 
 # Ensure the kernel.org mirror is always listed, so things work, even when the archlinux
 # website goes offline.
-printf "Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /tmp/mirrolist.50
 printf "Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /etc/pacman.d/mirrorlist
 
 curl -fsS https://www.archlinux.org/mirrorlist/?country=all > /tmp/mirrolist
-grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 5 | sed 's/^#//' >> /tmp/mirrolist.50
-rankmirrors -v /tmp/mirrolist.50 | tee --append /etc/pacman.d/mirrorlist
+grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 5 | sed 's/^#//' >>  /etc/pacman.d/mirrorlist
 pacstrap /mnt base grub bash sudo openssh
 
 swapon "${device}1"
 genfstab -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash
 swapoff "${device}1"
-

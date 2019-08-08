@@ -1,10 +1,36 @@
 #!/bin/bash -eux
 
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 # Install the the EPEL repository.
-yum --assumeyes --enablerepo=extras install epel-release
+retry yum --assumeyes --enablerepo=extras install epel-release
 
 # Install Developer Packages
-yum --assumeyes install archivemount autoconf autofs automake cloog-ppl cmake cpp crypto-utils diffuse eclipse-mylyn-cdt eclipse-mylyn-pde eclipse-mylyn-trac eclipse-mylyn-webtasks eclipse-mylyn-wikitext eclipse-subclipse-graph ElectricFence expect file-devel finger ftp gcc gcc-c++ gcc-gnat gcc-java gcc-objc gcc-objc++ gd gdb-gdbserver geany gedit-plugins git glibc-devel glibc-headers glibc-utils gperf haveged httpd-devel httpd-manual imake inotify-tools iotop iptables-devel iptraf jwhois kernel-headers keyutils-libs-devel krb5-devel libarchive libbsd libbsd-devel libcom_err-devel libevent libevent-devel libevent-doc libevent-headers libffi-devel libgomp libmemcached libselinux-devel libsepol-devel libstdc++-devel libstdc++-docs libtool libuuid-devel libzip lm_sensors lm_sensors-devel lm_sensors-libs lslk m2crypto mc mcelog meld memcached memtest86+ mercurial mod_perl mod_ssl mpfr mysql mysql-bench mysql-connector-java mysql-server nasm ncurses-devel net-snmp net-snmp-devel net-snmp-libs net-snmp-perl net-snmp-python net-snmp-utils nmap numpy openssl-devel oprofile-gui oprofile-jit patch perf perl perl-DBD-MySQL perl-DBI perl-Error perl-Git perl-libs perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-Time-HiRes perl-version powertop ppl psutils python-crypto2.6 python-devel python-pip python-ply python-pycparser rsync screen setools-console setroubleshoot setroubleshoot-plugins setroubleshoot-server stunnel sysstat telnet texinfo tokyocabinet tokyocabinet-devel valgrind valgrind-devel wget wireshark wireshark-gnome xmlto xz-devel zlib-devel
+retry yum --assumeyes install archivemount autoconf autofs automake cloog-ppl cmake cpp crypto-utils diffuse eclipse-mylyn-cdt eclipse-mylyn-pde eclipse-mylyn-trac eclipse-mylyn-webtasks eclipse-mylyn-wikitext eclipse-subclipse-graph ElectricFence expect file-devel finger ftp gcc gcc-c++ gcc-gnat gcc-java gcc-objc gcc-objc++ gd gdb-gdbserver geany gedit-plugins git glibc-devel glibc-headers glibc-utils gperf haveged httpd-devel httpd-manual imake inotify-tools iotop iptables-devel iptraf jwhois kernel-headers keyutils-libs-devel krb5-devel libarchive libbsd libbsd-devel libcom_err-devel libevent libevent-devel libevent-doc libevent-headers libffi-devel libgomp libmemcached libselinux-devel libsepol-devel libstdc++-devel libstdc++-docs libtool libuuid-devel libzip lm_sensors lm_sensors-devel lm_sensors-libs lslk m2crypto mc mcelog meld memcached memtest86+ mercurial mod_perl mod_ssl mpfr mysql mysql-bench mysql-connector-java mysql-server nasm ncurses-devel net-snmp net-snmp-devel net-snmp-libs net-snmp-perl net-snmp-python net-snmp-utils nmap numpy openssl-devel oprofile-gui oprofile-jit patch perf perl perl-DBD-MySQL perl-DBI perl-Error perl-Git perl-libs perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-Time-HiRes perl-version powertop ppl psutils python-crypto2.6 python-devel python-pip python-ply python-pycparser rsync screen setools-console setroubleshoot setroubleshoot-plugins setroubleshoot-server stunnel sysstat telnet texinfo tokyocabinet tokyocabinet-devel valgrind valgrind-devel wget wireshark wireshark-gnome xmlto xz-devel zlib-devel
 
 # Enable and start the daemons.
 chkconfig mysqld on

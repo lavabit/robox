@@ -1,6 +1,31 @@
 #!/bin/bash -eux
-#
-# Setup the the box. This runs as root
+
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 # Create the clamav user to avoid spurious errors.
 useradd clamav
 
@@ -21,7 +46,7 @@ printf "*    hard    nofile     65536\n" >> /etc/security/limits.d/50-magmad.con
 chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
 
 # Packages required to compile magma.
-dnf install --assumeyes zlib-devel
+retry dnf install --assumeyes cmake zlib-devel
 
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
@@ -47,6 +72,13 @@ if [ -x /usr/bin/id ]; then
     systemctl start postfix.service
     systemctl start memcached.service
   fi
+fi
+
+# If the TERM environment variable is missing, then tput may trigger a fatal error.
+if [[ -n "$TERM" ]] && [[ "$TERM" -ne "dumb" ]]; then
+  export TPUT="tput"
+else
+  export TPUT="tput -Tvt100"
 fi
 
 # We need to give the box 30 seconds to get the networking setup or
@@ -97,7 +129,7 @@ dev/scripts/launch/check.run.sh
 
 # If the unit tests fail, print an error, but contine running.
 if [ \$? -ne 0 ]; then
-  tput setaf 1; tput bold; printf "\n\nsome of the magma daemon unit tests failed...\n\n"; tput sgr0;
+  \${TPUT} setaf 1; \${TPUT} bold; printf "\n\nsome of the magma daemon unit tests failed...\n\n"; \${TPUT} sgr0;
   for i in 1 2 3; do
     printf "\a"; sleep 1
   done

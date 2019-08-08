@@ -1,23 +1,49 @@
 #!/bin/bash -eux
 
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\\n${*} failed... retrying ${COUNT} of 10.\\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\\nThe command failed 10 times.\\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 # Download the glibc Alpine packages.
-apk --no-cache add wget ca-certificates
-wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub
+retry apk --no-cache add wget ca-certificates
+retry wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
 
 # Unstable.
-wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.26-r0/glibc-2.26-r0.apk
-wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.26-r0/glibc-bin-2.26-r0.apk
-wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.26-r0/glibc-dev-2.26-r0.apk
-wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.26-r0/glibc-i18n-2.26-r0.apk
+retry wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/glibc-2.29-r0.apk
+retry wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/glibc-bin-2.29-r0.apk
+retry wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/glibc-dev-2.29-r0.apk
+retry wget --quiet https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/glibc-i18n-2.29-r0.apk
 
 # Ensure the compatability library has been removed, to avoid conflicts.
-apk del libc6-compat
+retry apk del libc6-compat
 
 # Install glibc.
-apk add glibc-2.26-r0.apk glibc-bin-2.26-r0.apk glibc-dev-2.26-r0.apk glibc-i18n-2.26-r0.apk
+retry apk add glibc-2.29-r0.apk glibc-bin-2.29-r0.apk glibc-dev-2.29-r0.apk glibc-i18n-2.29-r0.apk
 
 # Cleanup the apk files.
-rm -f glibc-2.26-r0.apk glibc-bin-2.26-r0.apk glibc-dev-2.26-r0.apk glibc-i18n-2.26-r0.apk
+rm -f glibc-2.29-r0.apk glibc-bin-2.29-r0.apk glibc-dev-2.29-r0.apk glibc-i18n-2.29-r0.apk
 
 #  Generate the English/USA locale.
 /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8

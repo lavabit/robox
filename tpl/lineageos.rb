@@ -3,6 +3,7 @@
 
 Vagrant.configure("2") do |config|
 
+  config.vm.boot_timeout = 1800
   # config.vm.box = "lineageos/lineage"
   # config.vm.hostname = "lineageos.build.box"
 
@@ -11,7 +12,9 @@ Vagrant.configure("2") do |config|
   config.vm.box_check_update = true
 
   # config.vm.post_up_message = ""
+  config.vm.boot_timeout = 1800
   # config.vm.box_download_checksum = true
+  config.vm.boot_timeout = 1800
   # config.vm.box_download_checksum_type = "sha256"
 
   config.vm.usable_port_range = 20000..30000
@@ -56,6 +59,7 @@ Vagrant.configure("2") do |config|
 
   ["vmware_fusion", "vmware_workstation", "vmware_desktop"].each do |provider|
     config.vm.provider provider do |v, override|
+      v.ssh_info_public = true
       v.whitelist_verified = true
       v.gui = false
       v.vmx["cpuid.coresPerSocket"] = "1"

@@ -1,5 +1,31 @@
 #!/bin/bash
 
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 error() {
   if [ $? -ne 0 ]; then
     printf "\n\nThe VirtualBox install failed...\n\n"
@@ -18,6 +44,13 @@ error() {
       printf "\n\nThe /var/log/vboxadd-install.log is missing...\n\n"
     fi
 
+    if [ -f /var/log/vboxadd-setup.log ]; then
+      printf "\n\n/var/log/vboxadd-setup.log\n\n"
+      cat /var/log/vboxadd-setup.log
+    else
+      printf "\n\nThe /var/log/vboxadd-setup.log is missing...\n\n"
+    fi
+
     exit 1
   fi
 }
@@ -33,7 +66,7 @@ printf "Installing the Virtual Box Tools.\n"
 # Read in the version number.
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
-dnf install --assumeyes dkms binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel bzip2; error
+retry dnf install --assumeyes dkms binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel bzip2; error
 
 # The group vboxsf is needed for shared folder access.
 getent group vboxsf >/dev/null || groupadd --system vboxsf; error

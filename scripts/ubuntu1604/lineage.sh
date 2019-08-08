@@ -1,5 +1,31 @@
 #!/bin/bash
 
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 # Disable IPv6 or DNS names will resolve to AAAA yet connections will fail.
 sysctl net.ipv6.conf.all.disable_ipv6=1
 
@@ -8,28 +34,28 @@ export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # Install developer tools.
-apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pciutils usbutils
+retry apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pciutils usbutils
 
 # Install the build dependencies.
-apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev ninja-build
+retry apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev ninja-build
 
 # Java 8 Support
-apt-get --assume-yes install openjdk-8-jdk openjdk-8-jdk-headless openjdk-8-jre openjdk-8-jre-headless icedtea-8-plugin
+retry apt-get --assume-yes install openjdk-8-jdk openjdk-8-jdk-headless openjdk-8-jre openjdk-8-jre-headless icedtea-8-plugin
 
 # Java dependencies
-apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni libpng16-16 libsctp1
+retry apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni libpng16-16 libsctp1
 
 # Download the OpenJDK 1.7 packages.
-curl --location --output openjdk-7-jre_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u121-2.6.8-2_amd64.deb
-curl --location  --output openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb
-curl --location  --output openjdk-7-jdk_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u121-2.6.8-2_amd64.deb
-curl --location  --output libjpeg62-turbo_1.5.1-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
+retry curl --location --output openjdk-7-jre_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u121-2.6.8-2_amd64.deb
+retry curl --location  --output openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb
+retry curl --location  --output openjdk-7-jdk_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u121-2.6.8-2_amd64.deb
+retry curl --location  --output libjpeg62-turbo_1.5.1-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
 
 # Install via dpkg.
 dpkg -i openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
 
 # Assuming the OpenJDK has dependencies... install them here.
-apt --assume-yes install -f
+retry apt --assume-yes install -f
 
 # Setup OpenJDK 1.7 as the default, which is required for the 13.0 branch.
 update-java-alternatives -s java-1.7.0-openjdk-amd64
@@ -39,19 +65,19 @@ rm --force openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.
 
 # Enable the source code repositories.
 sed -i -e "s|.*deb-src |deb-src |g" /etc/apt/sources.list
-apt-get --assume-yes update
+retry apt-get --assume-yes update
 
 # Ensure the dependencies required to compile git are available.
-apt-get --assume-yes install build-essential fakeroot dpkg-dev
-apt-get --assume-yes build-dep git
+retry apt-get --assume-yes install build-essential fakeroot dpkg-dev
+retry apt-get --assume-yes build-dep git
 
 # The build-dep command will remove the OpenSSL version of libcurl, so we have to
 # install here instead.
-apt-get --assume-yes install libcurl4-openssl-dev
+retry apt-get --assume-yes install libcurl4-openssl-dev
 
 # Download the git sourcecode.
 mkdir -p $HOME/git-openssl && cd $HOME/git-openssl
-apt-get source git
+retry apt-get source git
 dpkg-source -x `find * -type f -name *.dsc`
 cd `find * -maxdepth 0 -type d`
 
@@ -67,7 +93,7 @@ dpkg -i `find ../* -type f -name *amd64.deb`
 cd $HOME && rm --force --recursive $HOME/git-openssl
 
 # Download the Android tools.
-curl  --location --output platform-tools-latest-linux.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
+retry curl  --location --output platform-tools-latest-linux.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 
 # Install the platform tools.
 unzip platform-tools-latest-linux.zip -d /usr/local/
@@ -79,7 +105,7 @@ rm --force platform-tools-latest-linux.zip
 printf "PATH=/usr/local/platform-tools/:$PATH\n" > /etc/profile.d/platform-tools.sh
 
 # Install the repo utility.
-curl  --location https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
+retry curl  --location https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
 chmod a+x /usr/bin/repo
 
 # Setup higher resource limits.

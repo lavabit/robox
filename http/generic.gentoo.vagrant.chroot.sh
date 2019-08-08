@@ -2,6 +2,7 @@
 
 echo 'Creating File System Table'
 cat <<-EOF > /etc/fstab
+/dev/sda1       /boot/efi 	vfat	      noauto,noatime 1 2
 /dev/sda2       /boot       ext4        defaults   0 0
 /dev/sda3       none        swap        defaults   0 0
 /dev/sda4       /           ext4        defaults   0 0
@@ -20,7 +21,7 @@ FEATURES="\${FEATURES} parallel-fetch"
 USE="nls alsa usb unicode"
 USE_PYTHON="3.6 2.7"
 PYTHON_TARGETS="python3_6 python2_7"
-GRUB_PLATFORMS="emu pc"
+GRUB_PLATFORMS="emu efi-32 efi-64 pc"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
@@ -48,8 +49,9 @@ mkdir -p "/etc/portage/package.unmask"
 
 echo 'Emerging Dependencies'
 cd /usr/portage
-emerge sys-kernel/gentoo-sources sys-boot/grub app-editors/vim app-admin/sudo \
-sys-apps/netplug sys-apps/dmidecode
+profile="`grep stable profiles/profiles.desc | grep no-multilib | grep amd64 | awk -F' ' '{print \$2}' | grep -E 'no-multilib\$' | tail -1`"
+rm -f /etc/portage/make.profile && ln -s /usr/portage/profiles/$profile /etc/portage/make.profile
+emerge sys-kernel/gentoo-sources sys-boot/grub app-editors/vim app-admin/sudo sys-apps/netplug sys-apps/dmidecode
 
 # If necessary, include the Hyper-V modules in the initramfs and then load them at boot.
 if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
@@ -225,28 +227,31 @@ CONFIG_ARCH_WANT_BATCHED_UNMAP_TLB_FLUSH=y
 CONFIG_ARCH_SUPPORTS_INT128=y
 # CONFIG_NUMA_BALANCING is not set
 CONFIG_CGROUPS=y
-# CONFIG_MEMCG is not set
-# CONFIG_BLK_CGROUP is not set
+CONFIG_MEMCG=y
+CONFIG_MEMCG_SWAP=y
+CONFIG_MEMCG_SWAP_ENABLED=y
+CONFIG_BLK_CGROUP=y
+CONFIG_BLK_DEV_THROTTLING=y
 CONFIG_CGROUP_SCHED=y
 CONFIG_FAIR_GROUP_SCHED=y
-# CONFIG_CFS_BANDWIDTH is not set
-# CONFIG_RT_GROUP_SCHED is not set
-# CONFIG_CGROUP_PIDS is not set
+CONFIG_CFS_BANDWIDTH=y
+CONFIG_RT_GROUP_SCHED=y
+CONFIG_CGROUP_PIDS=y
 # CONFIG_CGROUP_RDMA is not set
 CONFIG_CGROUP_FREEZER=y
-# CONFIG_CGROUP_HUGETLB is not set
+CONFIG_CGROUP_HUGETLB=y
 CONFIG_CPUSETS=y
 CONFIG_PROC_PID_CPUSET=y
-# CONFIG_CGROUP_DEVICE is not set
+CONFIG_CGROUP_DEVICE=y
 CONFIG_CGROUP_CPUACCT=y
-# CONFIG_CGROUP_PERF is not set
+CONFIG_CGROUP_PERF=y
 # CONFIG_CGROUP_DEBUG is not set
 # CONFIG_SOCK_CGROUP_DATA is not set
 # CONFIG_CHECKPOINT_RESTORE is not set
 CONFIG_NAMESPACES=y
 CONFIG_UTS_NS=y
 CONFIG_IPC_NS=y
-# CONFIG_USER_NS is not set
+CONFIG_USER_NS=y
 CONFIG_PID_NS=y
 CONFIG_NET_NS=y
 CONFIG_SCHED_AUTOGROUP=y
@@ -471,6 +476,7 @@ CONFIG_BLK_MQ_VIRTIO=y
 CONFIG_IOSCHED_NOOP=y
 CONFIG_IOSCHED_DEADLINE=y
 CONFIG_IOSCHED_CFQ=y
+CONFIG_CFQ_GROUP_IOSCHED=y
 # CONFIG_DEFAULT_DEADLINE is not set
 CONFIG_DEFAULT_CFQ=y
 # CONFIG_DEFAULT_NOOP is not set
@@ -966,11 +972,11 @@ CONFIG_SYN_COOKIES=y
 # CONFIG_NET_FOU is not set
 # CONFIG_NET_FOU_IP_TUNNELS is not set
 # CONFIG_INET_AH is not set
-# CONFIG_INET_ESP is not set
+CONFIG_INET_ESP=y
 # CONFIG_INET_IPCOMP is not set
 # CONFIG_INET_XFRM_TUNNEL is not set
 CONFIG_INET_TUNNEL=y
-# CONFIG_INET_XFRM_MODE_TRANSPORT is not set
+CONFIG_INET_XFRM_MODE_TRANSPORT=y
 # CONFIG_INET_XFRM_MODE_TUNNEL is not set
 # CONFIG_INET_XFRM_MODE_BEET is not set
 # CONFIG_INET_DIAG is not set
@@ -1043,15 +1049,16 @@ CONFIG_NF_CONNTRACK_FTP=y
 CONFIG_NF_CONNTRACK_IRC=y
 # CONFIG_NF_CONNTRACK_NETBIOS_NS is not set
 CONFIG_NF_CONNTRACK_SIP=y
+CONFIG_NF_CONNTRACK_TFTP=y
 CONFIG_NF_CT_NETLINK=y
 # CONFIG_NETFILTER_NETLINK_GLUE_CT is not set
 CONFIG_NF_NAT=m
 CONFIG_NF_NAT_NEEDED=y
 # CONFIG_NF_NAT_AMANDA is not set
-CONFIG_NF_NAT_FTP=m
+CONFIG_NF_NAT_FTP=y
 CONFIG_NF_NAT_IRC=m
 CONFIG_NF_NAT_SIP=m
-# CONFIG_NF_NAT_TFTP is not set
+CONFIG_NF_NAT_TFTP=y
 # CONFIG_NF_NAT_REDIRECT is not set
 # CONFIG_NF_TABLES is not set
 CONFIG_NETFILTER_XTABLES=y
@@ -1076,12 +1083,17 @@ CONFIG_NETFILTER_XT_TARGET_TCPMSS=y
 #
 # Xtables matches
 #
-CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=m
+CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=y
 CONFIG_NETFILTER_XT_MATCH_CONNTRACK=y
 CONFIG_NETFILTER_XT_MATCH_POLICY=y
 CONFIG_NETFILTER_XT_MATCH_STATE=y
+CONFIG_NETFILTER_XT_MATCH_IPVS=y
 # CONFIG_IP_SET is not set
-# CONFIG_IP_VS is not set
+CONFIG_IP_VS=y
+CONFIG_IP_VS_NFCT=y
+CONFIG_IP_VS_PROTO_TCP=y
+CONFIG_IP_VS_PROTO_UDP=y
+CONFIG_IP_VS_RR=y
 
 #
 # IP: Netfilter Configuration
@@ -1093,18 +1105,18 @@ CONFIG_NF_CONNTRACK_IPV4=y
 CONFIG_NF_LOG_ARP=m
 CONFIG_NF_LOG_IPV4=m
 CONFIG_NF_REJECT_IPV4=y
-CONFIG_NF_NAT_IPV4=m
+CONFIG_NF_NAT_IPV4=y
 CONFIG_NF_NAT_MASQUERADE_IPV4=m
 # CONFIG_NF_NAT_PPTP is not set
 # CONFIG_NF_NAT_H323 is not set
 CONFIG_IP_NF_IPTABLES=y
 CONFIG_IP_NF_FILTER=y
 CONFIG_IP_NF_TARGET_REJECT=y
-CONFIG_IP_NF_NAT=m
-CONFIG_IP_NF_TARGET_MASQUERADE=m
+CONFIG_IP_NF_NAT=y
+CONFIG_IP_NF_TARGET_MASQUERADE=y
 CONFIG_IP_NF_MANGLE=y
 # CONFIG_IP_NF_RAW is not set
-
+CONFIG_IP_NF_TARGET_REDIRECT=y
 #
 # IPv6: Netfilter Configuration
 #
@@ -1126,7 +1138,9 @@ CONFIG_IP6_NF_MANGLE=y
 # CONFIG_TIPC is not set
 # CONFIG_ATM is not set
 # CONFIG_L2TP is not set
-# CONFIG_BRIDGE is not set
+CONFIG_BRIDGE=y
+CONFIG_BRIDGE_NETFILTER=y
+CONFIG_BRIDGE_VLAN_FILTERING=y
 CONFIG_HAVE_NET_DSA=y
 # CONFIG_NET_DSA is not set
 # CONFIG_VLAN_8021Q is not set
@@ -1182,7 +1196,7 @@ CONFIG_NET_CLS=y
 # CONFIG_NET_CLS_RSVP is not set
 # CONFIG_NET_CLS_RSVP6 is not set
 # CONFIG_NET_CLS_FLOW is not set
-# CONFIG_NET_CLS_CGROUP is not set
+CONFIG_NET_CLS_CGROUP=y
 # CONFIG_NET_CLS_BPF is not set
 # CONFIG_NET_CLS_FLOWER is not set
 # CONFIG_NET_CLS_MATCHALL is not set
@@ -1229,7 +1243,7 @@ CONFIG_VIRTIO_VSOCKETS_COMMON=y
 CONFIG_RPS=y
 CONFIG_RFS_ACCEL=y
 CONFIG_XPS=y
-# CONFIG_CGROUP_NET_PRIO is not set
+CONFIG_CGROUP_NET_PRIO=y
 # CONFIG_CGROUP_NET_CLASSID is not set
 CONFIG_NET_RX_BUSY_POLL=y
 CONFIG_BQL=y
@@ -1682,7 +1696,7 @@ CONFIG_BLK_DEV_DM=y
 # CONFIG_DM_DEBUG is not set
 # CONFIG_DM_CRYPT is not set
 # CONFIG_DM_SNAPSHOT is not set
-# CONFIG_DM_THIN_PROVISIONING is not set
+CONFIG_DM_THIN_PROVISIONING=y
 # CONFIG_DM_CACHE is not set
 # CONFIG_DM_ERA is not set
 CONFIG_DM_MIRROR=y
@@ -1717,12 +1731,13 @@ CONFIG_NETDEVICES=y
 CONFIG_MII=y
 CONFIG_NET_CORE=y
 # CONFIG_BONDING is not set
-# CONFIG_DUMMY is not set
+CONFIG_DUMMY=y
 # CONFIG_EQUALIZER is not set
 # CONFIG_NET_FC is not set
 # CONFIG_IFB is not set
 # CONFIG_NET_TEAM is not set
-# CONFIG_MACVLAN is not set
+CONFIG_MACVLAN=y
+CONFIG_IPVLAN=y
 # CONFIG_VXLAN is not set
 # CONFIG_MACSEC is not set
 CONFIG_NETCONSOLE=y
@@ -1732,7 +1747,7 @@ CONFIG_NET_POLL_CONTROLLER=y
 # CONFIG_RIONET is not set
 CONFIG_TUN=m
 # CONFIG_TUN_VNET_CROSS_LE is not set
-CONFIG_VETH=m
+CONFIG_VETH=y
 CONFIG_VIRTIO_NET=y
 # CONFIG_NLMON is not set
 # CONFIG_ARCNET is not set
@@ -3999,8 +4014,9 @@ CONFIG_FS_IOMAP=y
 CONFIG_EXT2_FS=y
 # CONFIG_EXT2_FS_XATTR is not set
 CONFIG_EXT3_FS=y
-# CONFIG_EXT3_FS_POSIX_ACL is not set
-# CONFIG_EXT3_FS_SECURITY is not set
+CONFIG_EXT3_FS_XATTR=y
+CONFIG_EXT3_FS_POSIX_ACL=y
+CONFIG_EXT3_FS_SECURITY=y
 CONFIG_EXT4_FS=y
 CONFIG_EXT4_FS_POSIX_ACL=y
 CONFIG_EXT4_FS_SECURITY=y
@@ -4045,7 +4061,7 @@ CONFIG_QUOTACTL_COMPAT=y
 CONFIG_AUTOFS4_FS=y
 CONFIG_FUSE_FS=m
 CONFIG_CUSE=m
-# CONFIG_OVERLAY_FS is not set
+CONFIG_OVERLAY_FS=y
 
 #
 # Caches
@@ -4746,7 +4762,7 @@ make modules_install
 echo 'Configuring Grub'
 DEVID=`blkid -s UUID -o value /dev/sda4`
 printf "\nGRUB_DEVICE_UUID=\"$DEVID\"\n" >> /etc/default/grub
-grub-install /dev/sda
+grub-install --efi-directory=/boot/efi /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 echo 'Configuring Network Services'

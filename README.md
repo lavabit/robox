@@ -14,7 +14,8 @@ https://app.vagrantup.com/lavabit
 https://app.vagrantup.com/lineage  
 
 ## Docker Images  
-https://hub.docker.com/r/lavabit/  
+https://hub.docker.com/u/roboxes/  
+https://hub.docker.com/u/lavabit/  
 
 The templates in this repo require a current version of packer, (1.3.4+) and in some cases, make use of features which haven't been officially merged and/or released yet. Use the res/providers/packer.sh script to build an appropriately patched packer binary.
 
@@ -26,17 +27,12 @@ Generate docker variants for the RHEL/Oracle/Ubuntu/Debian/Alpine configurations
 Add upload/delete/release functions to robox.sh  
 Add vagrant user password randomization logic to the bundled Vagrantfiles  
 Add init based test, and SSH command test to the box test and check script  
+Ad `IPQoS lowdelay throughput` to the relevant configs to solve the [OpenSSH bug](https://github.com/hashicorp/vagrant/issues/10730)
+
 
 ## Pending Additions
 
 [Devuan 1.0/2.0](https://devuan.org/)  
-
-## Works in Progress
-
-[HardenedBSD 12](https://hardenedbsd.org/)  
-[Debian 10](https://wiki.debian.org/DebianBuster)  
-[Ubuntu 19.04](https://wiki.ubuntu.com/DiscoDingo)  
-[Alpine 3.9](https://www.alpinelinux.org)  
 
 ## Operating System Requests
 
@@ -77,4 +73,4 @@ Bitcoin
 
 Bitcoin Cash
 qqxyedtn68jg84w4mkd3vsw2nu6pgkydnudza0ed0m
-  
+

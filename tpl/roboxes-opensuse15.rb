@@ -3,6 +3,7 @@
 
 Vagrant.configure(2) do |config|
 
+  config.vm.boot_timeout = 1800
   # config.vm.box = "roboxes/bazinga"
   # config.vm.hostname = "bazinga.roboxes"
   config.vm.synced_folder ".", "/vagrant", disabled: true
@@ -10,7 +11,9 @@ Vagrant.configure(2) do |config|
   config.vm.box_check_update = true
 
   # config.vm.post_up_message = ""
+  config.vm.boot_timeout = 1800
   # config.vm.box_download_checksum = true
+  config.vm.boot_timeout = 1800
   # config.vm.box_download_checksum_type = "sha256"
 
   # config.vm.provision "shell", run: "always", inline: <<-SHELL
@@ -19,18 +22,17 @@ Vagrant.configure(2) do |config|
   # Adding a second CPU and increasing the RAM to 2048MB will speed
   # things up considerably should you decide to do anythinc with this box.
   config.vm.provider :hyperv do |v, override|
-    v.cpus = 2
-    v.memory = 2048
     v.maxmemory = 2048
+    v.memory = 2048
+    v.cpus = 2
   end
 
   config.vm.provider :libvirt do |v, override|
-    v.cpus = 2
-    v.memory = 2048
+    v.disk_bus = "scsi"
     v.driver = "kvm"
     v.video_vram = 256
-    config.vm.guest = :alt
-    v.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
+    v.memory = 2048
+    v.cpus = 2
   end
 
   config.vm.provider :parallels do |v, override|
@@ -41,18 +43,15 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :virtualbox do |v, override|
-    v.gui = false
-    v.functional_vboxsf = false
-    v.check_guest_additions = false
+    v.customize ["modifyvm", :id, "--memory", 2048]
     v.customize ["modifyvm", :id, "--vram", 256]
     v.customize ["modifyvm", :id, "--cpus", 2]
-    v.customize ["modifyvm", :id, "--memory", 2048]
+    v.gui = false
   end
 
   ["vmware_fusion", "vmware_workstation", "vmware_desktop"].each do |provider|
     config.vm.provider provider do |v, override|
       v.whitelist_verified = true
-      v.functional_hgfs = false
       v.gui = false
       v.vmx["cpuid.coresPerSocket"] = "1"
       v.vmx["memsize"] = "2048"

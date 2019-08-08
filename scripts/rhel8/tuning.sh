@@ -5,10 +5,10 @@ if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
   mount /dev/cdrom /media || (printf "\nFailed mount RHEL cdrom.\n"; exit 1)
 fi
 
-yum --assumeyes install dmidecode
+dnf --assumeyes install dmidecode
 
 # Configure tuned
-yum --assumeyes install tuned
+dnf --assumeyes install tuned
 systemctl enable tuned
 systemctl start tuned
 

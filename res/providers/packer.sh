@@ -28,7 +28,7 @@ go get github.com/hashicorp/packer && cd $GOPATH/src/github.com/hashicorp/packer
 
 # To build a specific version, or branch uncomment as needed.
 # git checkout v1.3.4
-# git checkout gogetter
+git checkout except_post_processor_tests
 
 # Customize
 # sed -i -e "s/common.Retry(10, 10, 3/common.Retry(10, 10, 20/g" post-processor/vagrant-cloud/step_upload.go
