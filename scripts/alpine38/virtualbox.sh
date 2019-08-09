@@ -37,22 +37,14 @@ fi
 # Install the Virtual Box Tools from the Linux Guest Additions ISO.
 printf "Installing the Virtual Box Tools.\n"
 
-# Add the testing repository (which isn't available over HTTPS).
-printf "@testing http://nl.alpinelinux.org/alpine/edge/testing\n" >> /etc/apk/repositories
-
-# Add the primary site.
-printf "@edge http://nl.alpinelinux.org/alpine/edge/main/\n" >> /etc/apk/repositories
-
-# Update the APK cache.
-retry apk update --no-cache
-
 # Install the VirtualBox kernel modules for guest services.
-retry apk add linux-hardened@edge virtualbox-additions-hardened@testing
+retry apk add virtualbox-guest-additions virtualbox-guest-modules-virt
 
 # Autoload the virtualbox kernel modules.
 echo vboxpci >> /etc/modules
 echo vboxdrv >> /etc/modules
 echo vboxnetflt >> /etc/modules
+echo vboxsf >> /etc/modules
 
 # Read in the version number.
 # export VBOXVERSION=`cat /root/VBoxVersion.txt`
