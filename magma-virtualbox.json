@@ -7,7 +7,6 @@
             "type": "shell",
             "scripts": [
                 "scripts/alpine36/network.sh",
-        "scripts/alpine36/hostname.sh",
                 "scripts/alpine36/apk.sh"
             ],
             "execute_command": "/bin/sh '{{.Path}}'",
@@ -24,10 +23,11 @@
                 "scripts/alpine36/mariadb.sh",
                 "scripts/alpine36/memcached.sh",
                 "scripts/alpine36/postfix.sh",
+                "scripts/alpine36/hostname.sh",
                 "scripts/alpine36/lsb.sh",
                 "scripts/alpine36/floppy.sh",
                 "scripts/alpine36/vagrant.sh",
-        "scripts/alpine36/sshd.sh",
+                "scripts/alpine36/sshd.sh",
                 "scripts/alpine36/glibc.sh",
                 "scripts/alpine36/gcc.sh",
                 "scripts/alpine36/magma.sh",
@@ -37,7 +37,7 @@
                 "scripts/alpine36/qemu.sh",
                 "scripts/alpine36/cache.sh"
             ],
-            "execute_command": "/bin/bash '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",

@@ -61,7 +61,6 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine35/network.sh",
-        "scripts/alpine35/hostname.sh",
         "scripts/alpine35/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
@@ -74,6 +73,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine35/hostname.sh",
         "scripts/alpine35/lsb.sh",
         "scripts/alpine35/floppy.sh",
         "scripts/alpine35/vagrant.sh",
@@ -84,7 +84,7 @@
         "scripts/alpine35/qemu.sh",
         "scripts/alpine35/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -96,7 +96,6 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine36/network.sh",
-        "scripts/alpine36/hostname.sh",
         "scripts/alpine36/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
@@ -109,6 +108,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine36/hostname.sh",
         "scripts/alpine36/lsb.sh",
         "scripts/alpine36/floppy.sh",
         "scripts/alpine36/vagrant.sh",
@@ -119,7 +119,7 @@
         "scripts/alpine36/qemu.sh",
         "scripts/alpine36/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -131,7 +131,6 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine37/network.sh",
-        "scripts/alpine37/hostname.sh",
         "scripts/alpine37/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
@@ -144,6 +143,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine37/hostname.sh",
         "scripts/alpine37/lsb.sh",
         "scripts/alpine37/floppy.sh",
         "scripts/alpine37/vagrant.sh",
@@ -154,7 +154,7 @@
         "scripts/alpine37/qemu.sh",
         "scripts/alpine37/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -166,7 +166,6 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine38/network.sh",
-        "scripts/alpine38/hostname.sh",
         "scripts/alpine38/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
@@ -179,6 +178,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine38/hostname.sh",
         "scripts/alpine38/lsb.sh",
         "scripts/alpine38/floppy.sh",
         "scripts/alpine38/vagrant.sh",
@@ -189,7 +189,7 @@
         "scripts/alpine38/qemu.sh",
         "scripts/alpine38/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1099,7 +1099,6 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine39/network.sh",
-        "scripts/alpine39/hostname.sh",
         "scripts/alpine39/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
@@ -1112,6 +1111,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine39/hostname.sh",
         "scripts/alpine39/lsb.sh",
         "scripts/alpine39/floppy.sh",
         "scripts/alpine39/vagrant.sh",
@@ -1122,7 +1122,7 @@
         "scripts/alpine39/qemu.sh",
         "scripts/alpine39/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1275,7 +1275,6 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine310/network.sh",
-        "scripts/alpine310/hostname.sh",
         "scripts/alpine310/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
@@ -1288,6 +1287,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine310/hostname.sh",
         "scripts/alpine310/lsb.sh",
         "scripts/alpine310/floppy.sh",
         "scripts/alpine310/vagrant.sh",
@@ -1298,7 +1298,7 @@
         "scripts/alpine310/qemu.sh",
         "scripts/alpine310/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
