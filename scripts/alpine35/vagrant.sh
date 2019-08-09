@@ -28,3 +28,10 @@ date --utc > /etc/vagrant_box_build_time
 
 # Truncate the motd file.
 truncate -s 0 /etc/motd
+
+# Workaround issues with setting the hostname in older Vagrant releases.
+if [ ! -f /etc/init.d/network ]; ln -s /etc/init.d/networking /etc/init.d/network ; fi
+if [ ! -d /etc/sysconfig/ ]; then mkdir -p /etc/sysconfig/ ; fi
+cat <<-EOF > /etc/sysconfig/network
+HOSTNAME="`hostname`"
+EOF

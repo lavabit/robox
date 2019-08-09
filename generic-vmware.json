@@ -61,6 +61,7 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine35/network.sh",
+        "scripts/alpine35/hostname.sh",
         "scripts/alpine35/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
@@ -95,6 +96,7 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine36/network.sh",
+        "scripts/alpine36/hostname.sh",
         "scripts/alpine36/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
@@ -129,6 +131,7 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine37/network.sh",
+        "scripts/alpine37/hostname.sh",
         "scripts/alpine37/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
@@ -163,6 +166,7 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine38/network.sh",
+        "scripts/alpine38/hostname.sh",
         "scripts/alpine38/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
@@ -1095,6 +1099,7 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine39/network.sh",
+        "scripts/alpine39/hostname.sh",
         "scripts/alpine39/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
@@ -1270,6 +1275,7 @@
       "type": "shell",
       "scripts": [
         "scripts/alpine310/network.sh",
+        "scripts/alpine310/hostname.sh",
         "scripts/alpine310/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",

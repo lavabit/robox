@@ -7,6 +7,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/alpine36/network.sh",
+        "scripts/alpine36/hostname.sh",
                 "scripts/alpine36/apk.sh"
             ],
             "execute_command": "/bin/sh '{{.Path}}'",
