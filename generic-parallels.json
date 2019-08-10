@@ -2607,7 +2607,7 @@
       "guest_os_type": "ubuntu",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://mirror.leaseweb.net/ubuntu-cdimage/releases/18.10/release/ubuntu-18.10-server-amd64.iso",
+      "iso_url": "http://old-releases.ubuntu.com/releases/18.10/ubuntu-18.10-server-amd64.iso",
       "iso_checksum": "cf9250781dadd919f23c9d9612212cad653e35fccc2fbcf6853f67ad09e067ba",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
