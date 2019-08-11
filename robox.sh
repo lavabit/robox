@@ -417,6 +417,8 @@ function box() {
       [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-virtualbox.json
 
   fi
+
+  return 0
 }
 
 function links() {
