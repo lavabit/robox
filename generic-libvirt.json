@@ -1331,7 +1331,7 @@
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
-                "scripts/common/localtime.sh",
+        "scripts/common/localtime.sh",
         "scripts/common/zerodisk.sh",
         "scripts/common/lockout.sh"
       ],
