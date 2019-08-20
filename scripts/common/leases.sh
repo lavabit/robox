@@ -13,6 +13,6 @@ if [ -d /var/lib/dhclient/ ]; then
 fi
 
 if [ -d /var/lib/dhcp/ ]; then
-  find /var/lib/dhclient/ -name "*.lease" -or -name "*.leases"
-  find /var/lib/dhclient/ -name "*.lease" -or -name "*.leases" -exec rm --force {} \;
+  find /var/lib/dhcp/ -name "*.lease" -or -name "*.leases"
+  find /var/lib/dhcp/ -name "*.lease" -or -name "*.leases" -exec rm --force {} \;
 fi
