@@ -8,7 +8,7 @@
       "disk_size": 1,
       "boot_wait": "5s",
       "iso_url": "https://mirrors.kernel.org/oracle/OL7/u6/x86_64/OracleLinux-R7-U6-Server-x86_64-dvd.iso",
-      "iso_checksum": "a3156e9dc53ace74b81f6e37f284b74498057efd02babebd88aa2a51cc44d7e7",
+      "iso_checksum": "507b9155a4fddd8b466f5f47a87c5b4daf6f14a676037cdcaf9c1cebf7f40dd7",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
