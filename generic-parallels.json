@@ -10,7 +10,7 @@
         "scripts/oracle7/yum.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-oracle7-parallels"
@@ -31,7 +31,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-oracle7-parallels"
@@ -51,7 +51,7 @@
         "scripts/opensuse42/postfix.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-opensuse42-parallels"
@@ -64,7 +64,7 @@
         "scripts/alpine35/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine35-parallels"
@@ -86,7 +86,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine35-parallels"
@@ -99,7 +99,7 @@
         "scripts/alpine36/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine36-parallels"
@@ -121,7 +121,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine36-parallels"
@@ -134,7 +134,7 @@
         "scripts/alpine37/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine37-parallels"
@@ -156,7 +156,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine37-parallels"
@@ -169,7 +169,7 @@
         "scripts/alpine38/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine38-parallels"
@@ -191,7 +191,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine38-parallels"
@@ -204,7 +204,7 @@
         "scripts/centos6/network.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-centos6-parallels"
@@ -228,7 +228,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-centos6-parallels"
@@ -243,7 +243,7 @@
         "scripts/centos7/reboot.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-centos7-parallels"
@@ -268,7 +268,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-centos7-parallels"
@@ -283,7 +283,7 @@
         "scripts/rhel7/reboot.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel7-parallels"
@@ -308,7 +308,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel7-parallels"
@@ -320,7 +320,7 @@
         "scripts/gentoo/emerge.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-gentoo-parallels"
@@ -336,7 +336,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-gentoo-parallels"
@@ -347,7 +347,7 @@
         "scripts/arch/pacman.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-arch-parallels"
@@ -364,7 +364,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-arch-parallels"
@@ -376,7 +376,7 @@
         "scripts/debian8/network.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian8-parallels"
@@ -396,7 +396,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian8-parallels"
@@ -408,7 +408,7 @@
         "scripts/debian9/network.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian9-parallels"
@@ -428,7 +428,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian9-parallels"
@@ -440,7 +440,7 @@
         "scripts/fedora25/fixdns.sh",
         "scripts/fedora25/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora25-parallels"
@@ -452,7 +452,7 @@
         "scripts/fedora25/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora25-parallels"
@@ -471,7 +471,7 @@
         "scripts/fedora25/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora25-parallels"
@@ -483,7 +483,7 @@
         "scripts/fedora26/fixdns.sh",
         "scripts/fedora26/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora26-parallels"
@@ -495,7 +495,7 @@
         "scripts/fedora26/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora26-parallels"
@@ -514,7 +514,7 @@
         "scripts/fedora26/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora26-parallels"
@@ -526,7 +526,7 @@
         "scripts/fedora27/fixdns.sh",
         "scripts/fedora27/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora27-parallels"
@@ -538,7 +538,7 @@
         "scripts/fedora27/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora27-parallels"
@@ -557,7 +557,7 @@
         "scripts/fedora27/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora27-parallels"
@@ -569,7 +569,7 @@
         "scripts/fedora28/fixdns.sh",
         "scripts/fedora28/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora28-parallels"
@@ -581,7 +581,7 @@
         "scripts/fedora28/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora28-parallels"
@@ -600,7 +600,7 @@
         "scripts/fedora28/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora28-parallels"
@@ -612,7 +612,7 @@
         "scripts/fedora29/fixdns.sh",
         "scripts/fedora29/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora29-parallels"
@@ -624,7 +624,7 @@
         "scripts/fedora29/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora29-parallels"
@@ -643,7 +643,7 @@
         "scripts/fedora29/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora29-parallels"
@@ -664,7 +664,7 @@
         "scripts/freebsd11/cleanup.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -676,7 +676,7 @@
         "scripts/openbsd6/pkg.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/bin/sh {{ .Path }}",
       "only": [
@@ -696,7 +696,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -709,7 +709,7 @@
         "scripts/ubuntu1604/network.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1604-parallels"
@@ -729,7 +729,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1604-parallels"
@@ -741,7 +741,7 @@
         "scripts/ubuntu1610/network.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1610-parallels"
@@ -761,7 +761,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1610-parallels"
@@ -773,7 +773,7 @@
         "scripts/ubuntu1704/network.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1704-parallels"
@@ -793,7 +793,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1704-parallels"
@@ -805,7 +805,7 @@
         "scripts/ubuntu1710/network.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1710-parallels"
@@ -825,7 +825,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1710-parallels"
@@ -837,7 +837,7 @@
         "scripts/ubuntu1804/network.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1804-parallels"
@@ -857,7 +857,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1804-parallels"
@@ -869,7 +869,7 @@
         "scripts/ubuntu1810/network.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1810-parallels"
@@ -889,7 +889,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1810-parallels"
@@ -910,7 +910,7 @@
         "scripts/freebsd12/cleanup.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -926,7 +926,7 @@
         "scripts/rhel6/reboot.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel6-parallels"
@@ -951,7 +951,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel6-parallels"
@@ -966,7 +966,7 @@
         "scripts/rhel8/reboot.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel8-parallels"
@@ -991,7 +991,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel8-parallels"
@@ -1012,7 +1012,7 @@
         "scripts/hardenedbsd11/cleanup.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -1034,7 +1034,7 @@
         "scripts/dragonflybsd5/cleanup.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -1046,7 +1046,7 @@
         "scripts/netbsd8/pkg.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/bin/sh {{ .Path }}",
       "only": [
@@ -1066,7 +1066,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "{{ .Vars }} bash {{ .Path }}",
       "only": [
@@ -1088,7 +1088,7 @@
         "scripts/hardenedbsd12/cleanup.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -1102,7 +1102,7 @@
         "scripts/alpine39/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine39-parallels"
@@ -1124,7 +1124,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine39-parallels"
@@ -1136,7 +1136,7 @@
         "scripts/debian10/network.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian10-parallels"
@@ -1156,7 +1156,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian10-parallels"
@@ -1168,7 +1168,7 @@
         "scripts/ubuntu1904/network.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1904-parallels"
@@ -1188,7 +1188,7 @@
       ],
       "type": "shell",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1904-parallels"
@@ -1200,7 +1200,7 @@
         "scripts/fedora30/fixdns.sh",
         "scripts/fedora30/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora30-parallels"
@@ -1212,7 +1212,7 @@
         "scripts/fedora30/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora30-parallels"
@@ -1231,7 +1231,7 @@
         "scripts/fedora30/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora30-parallels"
@@ -1244,7 +1244,7 @@
         "scripts/oracle8/yum.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-oracle8-parallels"
@@ -1265,7 +1265,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-oracle8-parallels"
@@ -1278,7 +1278,7 @@
         "scripts/alpine310/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine310-parallels"
@@ -1300,7 +1300,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine310-parallels"
@@ -1320,7 +1320,7 @@
         "scripts/opensuse15/postfix.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-opensuse15-parallels"
@@ -1337,7 +1337,7 @@
         "scripts/common/lockout.sh"
       ],
       "type": "shell",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true"
     }
   ],
