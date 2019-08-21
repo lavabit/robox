@@ -30,5 +30,5 @@ printf "\n\n\n\n" 1>&2
 # Now that the system is running on the updated kernel, we can remove the
 # old kernel(s) from the system.
 if [[ `rpm -q kernel | wc -l` != 1 ]]; then
-  package-cleanup --assumeyes --oldkernels --count=1
+  package-cleanup --assumeyes --oldkernels --cleandupes --count=1
 fi
