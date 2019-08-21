@@ -3278,7 +3278,7 @@
         "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine39.vagrant.cfg<enter><wait>",
         "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
         "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine39.vagrant.cfg ; ",
-        "mount /dev/sda2 /mnt && ",
+        "setup-ntp -c openntpd ; mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
@@ -3559,7 +3559,7 @@
         "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine310.vagrant.cfg<enter><wait>",
         "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
         "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine310.vagrant.cfg ; ",
-        "mount /dev/sda2 /mnt && ",
+        "setup-ntp -c openntpd ; mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
