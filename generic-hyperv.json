@@ -2711,7 +2711,7 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt setup-ntp -c openntpd && ", 
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
         "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],
@@ -2909,7 +2909,7 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt setup-ntp -c openntpd && ", 
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
         "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],

@@ -2961,7 +2961,7 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt setup-ntp -c openntpd && ", 
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
@@ -3198,7 +3198,7 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt setup-ntp -c openntpd && ", 
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
