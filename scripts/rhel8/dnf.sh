@@ -48,7 +48,7 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 # sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/mirrors.kernel.org\/fedora-epel\//g" /etc/yum.repos.d/epel.repo
 
 # Install the basic packages we'd expect to find.
-dnf --assumeyes install sudo dmidecode yum-utils bash-completion man man-pages vim-enhanced sysstat bind-utils wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive info autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc
+dnf --assumeyes install sudo dmidecode dnf-utils bash-completion man man-pages vim-enhanced sysstat bind-utils wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive info autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc
 
 # For some reason the beta thinks this package is installed, when in fact it's missing.
 dnf --assumeyes reinstall libunistring

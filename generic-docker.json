@@ -133,7 +133,7 @@
           "type": "shell",
           "scripts": [
             "scripts/rhel8/network.sh",
-            "scripts/rhel8/yum.sh",
+            "scripts/rhel8/dnf.sh",
             "scripts/rhel8/base.sh",
             "scripts/rhel8/reboot.sh"
           ],
@@ -193,7 +193,7 @@
           "type": "shell",
           "scripts": [
             "scripts/oracle8/network.sh",
-            "scripts/oracle8/yum.sh"
+            "scripts/oracle8/dnf.sh"
           ],
           "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
           "start_retry_timeout": "15m",
