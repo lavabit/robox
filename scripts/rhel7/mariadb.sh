@@ -3,6 +3,9 @@
 # Install MariaDB
 yum install --assumeyes mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL
 
+# OpenSSL command line tool is used to generate a passowrd below.
+yum install --assumeyes openssl
+
 # Change the default temporary table directory or else the schema reset will fail when it creates a temp table.
 printf "\n\n[server]\ntmpdir=/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
 chcon system_u:object_r:mysqld_etc_t:s0 /etc/my.cnf.d/server-tmpdir.cnf
