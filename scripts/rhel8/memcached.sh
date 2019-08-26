@@ -5,7 +5,7 @@ if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
 fi
 
 # Install memcached.
-yum install --assumeyes libevent memcached
+dnf install --assumeyes libevent memcached
 
 # Ensure memcached doesn't try to use IPv6.
 if [ -f /etc/sysconfig/memcached ]; then

@@ -68,6 +68,8 @@
             "scripts": [
                 "scripts/common/keys.sh",
                 "scripts/common/machine.sh",
+                "scripts/common/leases.sh",
+                "scripts/common/localtime.sh",
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],

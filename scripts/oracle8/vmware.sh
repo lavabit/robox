@@ -16,7 +16,7 @@ fi
 # Install the VMWare Tools.
 printf "Installing the VMWare Tools.\n"
 
-yum --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
+dnf --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
 systemctl enable vmtoolsd
 systemctl start vmtoolsd
 

@@ -73,6 +73,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine35/hostname.sh",
         "scripts/alpine35/lsb.sh",
         "scripts/alpine35/floppy.sh",
         "scripts/alpine35/vagrant.sh",
@@ -83,7 +84,7 @@
         "scripts/alpine35/qemu.sh",
         "scripts/alpine35/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -107,6 +108,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine36/hostname.sh",
         "scripts/alpine36/lsb.sh",
         "scripts/alpine36/floppy.sh",
         "scripts/alpine36/vagrant.sh",
@@ -117,7 +119,7 @@
         "scripts/alpine36/qemu.sh",
         "scripts/alpine36/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -141,6 +143,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine37/hostname.sh",
         "scripts/alpine37/lsb.sh",
         "scripts/alpine37/floppy.sh",
         "scripts/alpine37/vagrant.sh",
@@ -151,7 +154,7 @@
         "scripts/alpine37/qemu.sh",
         "scripts/alpine37/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -175,6 +178,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine38/hostname.sh",
         "scripts/alpine38/lsb.sh",
         "scripts/alpine38/floppy.sh",
         "scripts/alpine38/vagrant.sh",
@@ -185,7 +189,7 @@
         "scripts/alpine38/qemu.sh",
         "scripts/alpine38/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -957,7 +961,7 @@
       "type": "shell",
       "scripts": [
         "scripts/rhel8/network.sh",
-        "scripts/rhel8/yum.sh",
+        "scripts/rhel8/dnf.sh",
         "scripts/rhel8/base.sh",
         "scripts/rhel8/reboot.sh"
       ],
@@ -1107,6 +1111,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine39/hostname.sh",
         "scripts/alpine39/lsb.sh",
         "scripts/alpine39/floppy.sh",
         "scripts/alpine39/vagrant.sh",
@@ -1117,7 +1122,7 @@
         "scripts/alpine39/qemu.sh",
         "scripts/alpine39/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1236,7 +1241,7 @@
       "type": "shell",
       "scripts": [
         "scripts/oracle8/network.sh",
-        "scripts/oracle8/yum.sh"
+        "scripts/oracle8/dnf.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
@@ -1282,6 +1287,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/alpine310/hostname.sh",
         "scripts/alpine310/lsb.sh",
         "scripts/alpine310/floppy.sh",
         "scripts/alpine310/vagrant.sh",
@@ -1292,7 +1298,7 @@
         "scripts/alpine310/qemu.sh",
         "scripts/alpine310/cache.sh"
       ],
-      "execute_command": "/bin/bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1325,6 +1331,8 @@
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
+        "scripts/common/leases.sh",
+        "scripts/common/localtime.sh",
         "scripts/common/zerodisk.sh",
         "scripts/common/lockout.sh"
       ],
@@ -1362,7 +1370,7 @@
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://mirrors.kernel.org/oracle/OL7/u6/x86_64/OracleLinux-R7-U6-Server-x86_64-dvd.iso",
-      "iso_checksum": "a3156e9dc53ace74b81f6e37f284b74498057efd02babebd88aa2a51cc44d7e7",
+      "iso_checksum": "507b9155a4fddd8b466f5f47a87c5b4daf6f14a676037cdcaf9c1cebf7f40dd7",
       "iso_checksum_type": "sha256",
       "skip_compaction": false,
       "ssh_username": "root",
@@ -1732,8 +1740,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso",
-      "iso_checksum": "60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c",
+      "iso_url": "https://archive.org/download/rhel-server-7.7-x86_64-dvd/rhel-server-7.7-x86_64-dvd.iso",
+      "iso_checksum": "88b42e934c24af65e78e09f0993e4dded128d74ec0af30b89b3cdc02ec48f028",
       "iso_checksum_type": "sha256",
       "skip_compaction": false,
       "ssh_username": "root",
@@ -1773,8 +1781,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2019.07.01-x86_64.iso",
-      "iso_checksum": "4ab6a48f6baf63524733d851f63f78944fff6448aa3d2e780316eb2263212e1f",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2019.08.01-x86_64.iso",
+      "iso_checksum": "e3d9cea98c03996ee3ce5d2d995aed495eae77c670721bb62ad25530fa175d1d",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2315,8 +2323,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04.2/release/ubuntu-18.04.2-server-amd64.iso",
-      "iso_checksum": "a2cb36dc010d98ad9253ea5ad5a07fd6b409e3412c48f1860536970b073c98f5",
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04.3/release/ubuntu-18.04.3-server-amd64.iso",
+      "iso_checksum": "7d8e0055d663bffa27c1718685085626cb59346e7626ba3d3f476322271f573e",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2373,7 +2381,7 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://mirror.leaseweb.net/ubuntu-cdimage/releases/18.10/release/ubuntu-18.10-server-amd64.iso",
+      "iso_url": "http://old-releases.ubuntu.com/releases/18.10/ubuntu-18.10-server-amd64.iso",
       "iso_checksum": "cf9250781dadd919f23c9d9612212cad653e35fccc2fbcf6853f67ad09e067ba",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -2421,8 +2429,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190707T214502Z.iso",
-      "iso_checksum": "bc17e48caf749f0740280b55f8e82460a377e87c8fd639166fc20403fa8b2077",
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190821T214502Z.iso",
+      "iso_checksum": "ebda9e6a7e4406c8c41852edf22f7f277155abd18ce86ced730dfabf38dd1b2c",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2473,8 +2481,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.2/FreeBSD-11.2-RELEASE-amd64-disc1.iso",
-      "iso_checksum": "710d237907f1753dbfbecb1186e401d9635156eeef6914f24f632f3219e59d3b",
+      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.3/FreeBSD-11.3-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "d268db365e26305ec3d51b29211caad903749c33a4a8f2cf661d671f8e0ba0b0",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2515,8 +2523,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.4/amd64/cd64.iso",
-      "iso_checksum": "1a280cd45ea5fe8d818b61f9d8702c58d5edeff9aee1575f7445b505f45a8c77",
+      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.5/amd64/cd65.iso",
+      "iso_checksum": "c0ed31c5f50de4cc80bed01e6080beab96df4ee50a5ad14be88faf40a20c43ed",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2696,7 +2704,7 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://installer.hardenedbsd.org/hardened_11_stable_master-LAST/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
+      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
       "iso_checksum": "8b2c90dc41ec68b561028af885eecb66bfd36223970d1c594923d1d54bf83467",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
@@ -2760,8 +2768,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.6.1_REL.iso",
-      "iso_checksum": "45b43aa56c19d07327e2944fe7fa82c46da0bac4b8046a82bdc1ab3080f95274",
+      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.6.2_REL.iso",
+      "iso_checksum": "3f23df003e793ceb21fbdd0aa645f32bf701ae6771a02e34f4993fc3a616e690",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2893,8 +2901,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://installer.hardenedbsd.org/hardened_12_stable_master-LAST/HardenedBSD-12-STABLE-v1200059-amd64-disc1.iso",
-      "iso_checksum": "d9172e78e5fc98c828a83d66b4ac15b378343334faaa758ea53f8321a0b691fa",
+      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
+      "iso_checksum": "029225eaf92ba8e7ed7a7395f45492d09bc9a949488ecb9a5ca54df7c9f89661",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2920,6 +2928,7 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
@@ -3126,8 +3135,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://download.oracle.com/otn-pub/otn_software/linux/OracleLinux-R8-U0-BETA-x86_64-dvd.iso",
-      "iso_checksum": "3872f95ad0b119839f01aa665d2342701fff66fefdac040b039fcb61c65b2c44",
+      "iso_url": "https://mirrors.kernel.org/oracle/OL8/u0/x86_64/OracleLinux-R8-U0-x86_64-dvd.iso",
+      "iso_checksum": "dd8bdbba910bb0e49e170503541f26a4fbbf5f6c26f37bae9f77e5d18f411d20",
       "iso_checksum_type": "sha256",
       "skip_compaction": false,
       "ssh_username": "root",
@@ -3154,6 +3163,7 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "disk_size": 32768,
@@ -3180,8 +3190,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.10/releases/x86_64/alpine-virt-3.10.0-x86_64.iso",
-      "iso_checksum": "b3d8fe65c2777edcbc30b52cde7f5ae21dff8ecda612d5fe7b10d5c23cda40c4",
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.10/releases/x86_64/alpine-virt-3.10.2-x86_64.iso",
+      "iso_checksum": "06eab9a4d3ce28ce31d413b78b6ff94285e432179b6a6cba711e6c6653667567",
       "iso_checksum_type": "sha256",
       "skip_compaction": false,
       "ssh_username": "root",

@@ -5,13 +5,13 @@ if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
   mount /dev/cdrom /media || (printf "\nFailed mount RHEL cdrom.\n"; exit 1)
 fi
 
+# This probably doesn't apply, because network updates aren't being used, but
+# were including it just in case that changes in the future. If a newer
+# kernel were installed during the system update process, this would remove
+# any duplicates/old kernel(s) from the system.
+dnf remove $( dnf repoquery --installonly --latest-limit -1 -q kernel )
+
 # Now that the system is running atop the updated kernel, we can install the
 # development files for the kernel. These files are required to compile the
 # virtualization kernel modules later in the provisioning process.
-yum --assumeyes install kernel-tools kernel-devel kernel-headers
-
-# Now that the system is running on the updated kernel, we can remove the
-# old kernel(s) from the system.
-if [[ `rpm -q kernel | wc -l` != 1 ]]; then
-  package-cleanup --assumeyes --oldkernels --count=1
-fi
+dnf --assumeyes install kernel-tools kernel-devel kernel-headers

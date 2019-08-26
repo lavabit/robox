@@ -5,7 +5,7 @@ if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
 fi
 
 # Needed to check whether we're running atop Parallels.
-yum --assumeyes install dmidecode
+dnf --assumeyes install dmidecode
 
 # Bail if we are not running atop Parallels.
 if [[ `dmidecode -s system-product-name` != "Parallels Virtual Platform" ]]; then

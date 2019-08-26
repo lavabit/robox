@@ -50,7 +50,7 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
 
   HYPERV_RPMS=`find /mnt/AppStream/Packages/ -iname "hyperv*rpm"`
 
-  yum --assumeyes install $HYPERV_RPMS
+  dnf --assumeyes install $HYPERV_RPMS
 
   systemctl enable hypervkvpd.service
   systemctl enable hypervvssd.service

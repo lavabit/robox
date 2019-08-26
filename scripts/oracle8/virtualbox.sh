@@ -30,7 +30,7 @@ error() {
 }
 
 # Needed to check whether we're running atop VirtualBox.
-yum --assumeyes install dmidecode; error
+dnf --assumeyes install dmidecode; error
 
 # The group vboxsf is needed for shared folder access.
 getent group vboxsf >/dev/null || groupadd --system vboxsf; error
@@ -48,8 +48,8 @@ printf "Installing the Virtual Box Tools.\n"
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
 # Packages required to build the guest additions.
-# yum --assumeyes install gcc make perl dkms bzip2 kernel-tools kernel-headers kernel-devel kernel-uek-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
-yum --assumeyes install gcc make perl bzip2 kernel-tools kernel-headers kernel-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
+# dnf --assumeyes install gcc make perl dkms bzip2 kernel-tools kernel-headers kernel-devel kernel-uek-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
+dnf --assumeyes install gcc make perl bzip2 kernel-tools kernel-headers kernel-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
 
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error

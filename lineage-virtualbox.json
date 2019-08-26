@@ -68,6 +68,8 @@
             "scripts": [
                 "scripts/common/keys.sh",
                 "scripts/common/machine.sh",
+                "scripts/common/leases.sh",
+                "scripts/common/localtime.sh",
                 "scripts/common/zerodisk.sh",
                 "scripts/common/lockout.sh"
             ],
@@ -133,6 +135,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         },
         {
@@ -188,6 +191,7 @@
             "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
             "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
             "guest_additions_path": "VBoxGuestAdditions.iso",
+            "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
         }
     ],
