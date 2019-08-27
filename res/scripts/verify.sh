@@ -135,6 +135,13 @@ if [ `echo "$HASH" | wc -c` != 65 ]; then
   exit 1
 fi
 
+# Private magma boxes can't be verified.
+[ "$BOX" == "magma-alpine" ] && return 0
+[ "$BOX" == "magma-arch" ] && return 0
+[ "$BOX" == "magma-freebsd" ] && return 0
+[ "$BOX" == "magma-gentoo" ] && return 0
+[ "$BOX" == "magma-openbsd" ] && return 0
+
 # org name provider version hash
 function download() {
 
