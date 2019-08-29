@@ -814,7 +814,7 @@
             "memory": 1024,
             "cpus": 4,
             "http_directory": "http",
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190825T214502Z.iso",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190828T214505Z.iso",
             "iso_checksum": "e50b2a12f98fdc8f52e8c18cf40e216e95e2ba8461c1275cabafd9e4839c4b460190825T214502Z.iso",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
