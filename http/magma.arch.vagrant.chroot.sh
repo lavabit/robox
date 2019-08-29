@@ -33,6 +33,7 @@ sed -i -e 's/^GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=5/' /etc/default/grub
 grub-install "$device"
 grub-mkconfig -o /boot/grub/grub.cfg
 
+# Detect Hyper-V and install the kernel modules.
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
 
@@ -42,42 +43,37 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 pacman -S --noconfirm git base-devel
 
-su -l vagrant -c /bin/bash <<-EOF
 cd /home/vagrant/
 
-# The PKGBUILD file seems to use an out-of-date kernel version, so it might be
-# necessary to replace it with a version that uses the currently running kernel.
-# Note the PKGBUILD files simply download the kernel sources using a v4.x directory,
-# which will probably need to be updated when the major version changes.
+KERN=`uname -r | awk -F'-' '{print $1}' | sed -e 's/\.0$//g'`
+MAJOR=`uname -r | awk -F'.' '{print $1}'`
 
-KERN=\`uname -r | awk -F'-' '{print \$1}' | sed -e 's/\.0$//g'\`
-MAJOR=\`uname -r | awk -F'.' '{print \$1}'\`
-
-# hypervvsh
-sudo git clone https://aur.archlinux.org/hypervvssd.git hypervvssd && cd hypervvssd
-sed --in-place "s/^pkgver=.*/pkgver=\$KERN/g" PKGBUILD
-sed --in-place "s/pkgver = .*/pkgver = \$KERN/g" .SRCINFO
-sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-\$KERN.tar.gz/g" .SRCINFO
-makepkg --cleanbuild --noconfirm --syncdeps --install
+# hypervvssd
+sudo git clone https://aur.archlinux.org/hypervvssd.git hypervvssd && chown -R vagrant:vagrant hypervvssd && cd hypervvssd
+sed --in-place "s/^pkgver=.*/pkgver=$KERN/g" PKGBUILD
+sed --in-place "s/pkgver = .*/pkgver = $KERN/g" .SRCINFO
+sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v[0-9]\.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v$MAJOR.x\/linux-$KERN.tar.gz/g" PKGBUILD
+sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v[0-9]\.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v$MAJOR.x\/linux-$KERN.tar.gz/g" .SRCINFO
+su --preserve-environment vagrant --command "makepkg --cleanbuild --noconfirm --syncdeps --install"
 cd /home/vagrant/ && rm -rf hypervvssd
 
 # hypervkvpd
-sudo git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd && cd hypervkvpd
-sed --in-place "s/^pkgver=.*/pkgver=\$KERN/g" PKGBUILD
-sed --in-place "s/pkgver = .*/pkgver = \$KERN/g" .SRCINFO
-sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-\$KERN.tar.gz/g" .SRCINFO
-makepkg --cleanbuild --noconfirm --syncdeps --install
+sudo git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd && chown -R vagrant:vagrant hypervkvpd && cd hypervkvpd
+sed --in-place "s/^pkgver=.*/pkgver=$KERN/g" PKGBUILD
+sed --in-place "s/pkgver = .*/pkgver = $KERN/g" .SRCINFO
+sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v[0-9]\.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v$MAJOR.x\/linux-$KERN.tar.gz/g" PKGBUILD
+sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v[0-9]\.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v$MAJOR.x\/linux-$KERN.tar.gz/g" .SRCINFO
+su --preserve-environment vagrant --command "makepkg --cleanbuild --noconfirm --syncdeps --install"
 cd /home/vagrant/ && rm -rf hypervkvpd
 
 # hypervfcopyd
-sudo git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd && cd hypervfcopyd
-sed --in-place "s/^pkgver=.*/pkgver=\$KERN/g" PKGBUILD
-sed --in-place "s/pkgver = .*/pkgver = \$KERN/g" .SRCINFO
-sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v\$MAJOR.x\/linux-\$KERN.tar.gz/g" .SRCINFO
-makepkg --cleanbuild --noconfirm --syncdeps --install
+sudo git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd && chown -R vagrant:vagrant hypervfcopyd && cd hypervfcopyd
+sed --in-place "s/^pkgver=.*/pkgver=$KERN/g" PKGBUILD
+sed --in-place "s/pkgver = .*/pkgver = $KERN/g" .SRCINFO
+sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v[0-9]\.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v$MAJOR.x\/linux-$KERN.tar.gz/g" PKGBUILD
+sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v[0-9]\.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v$MAJOR.x\/linux-$KERN.tar.gz/g" .SRCINFO
+su --preserve-environment vagrant --command "makepkg --cleanbuild --noconfirm --syncdeps --install"
 cd /home/vagrant/ && rm -rf hypervfcopyd
-
-EOF
 
 systemctl enable hypervkvpd.service
 systemctl enable hypervvssd.service
