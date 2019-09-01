@@ -70,7 +70,6 @@ pacman -S --noconfirm git base-devel
 cd /home/vagrant/
 
 KERN=`uname -r | awk -F'-' '{print $1}' | sed -e 's/\.0$//g'`
-MAJOR=`uname -r | awk -F'.' '{print $1}'`
 
 # hypervvssd
 sudo git clone https://aur.archlinux.org/hypervvssd.git hypervvssd && chown -R vagrant:vagrant hypervvssd && cd hypervvssd
