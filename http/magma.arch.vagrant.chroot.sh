@@ -75,21 +75,18 @@ MAJOR=`uname -r | awk -F'.' '{print $1}'`
 # hypervvssd
 sudo git clone https://aur.archlinux.org/hypervvssd.git hypervvssd && chown -R vagrant:vagrant hypervvssd && cd hypervvssd
 sed --in-place "s/^pkgver=.*/pkgver=$KERN/g" PKGBUILD
-sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v[0-9]\.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v$MAJOR.x\/linux-$KERN.tar.gz/g" PKGBUILD
 su --preserve-environment vagrant --command "makepkg --cleanbuild --noconfirm --syncdeps --install"
 cd /home/vagrant/ && rm -rf hypervvssd
 
 # hypervkvpd
 sudo git clone https://aur.archlinux.org/hypervkvpd.git hypervkvpd && chown -R vagrant:vagrant hypervkvpd && cd hypervkvpd
 sed --in-place "s/^pkgver=.*/pkgver=$KERN/g" PKGBUILD
-sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v[0-9]\.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v$MAJOR.x\/linux-$KERN.tar.gz/g" PKGBUILD
 su --preserve-environment vagrant --command "makepkg --cleanbuild --noconfirm --syncdeps --install"
 cd /home/vagrant/ && rm -rf hypervkvpd
 
 # hypervfcopyd
 sudo git clone https://aur.archlinux.org/hypervfcopyd.git hypervfcopyd && chown -R vagrant:vagrant hypervfcopyd && cd hypervfcopyd
 sed --in-place "s/^pkgver=.*/pkgver=$KERN/g" PKGBUILD
-sed --in-place "s/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v[0-9]\.x\/linux-.*.tar.gz/https:\/\/www.kernel.org\/pub\/linux\/kernel\/v$MAJOR.x\/linux-$KERN.tar.gz/g" PKGBUILD
 su --preserve-environment vagrant --command "makepkg --cleanbuild --noconfirm --syncdeps --install"
 cd /home/vagrant/ && rm -rf hypervfcopyd
 
