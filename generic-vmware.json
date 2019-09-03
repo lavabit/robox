@@ -2430,7 +2430,7 @@
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190901T214501Z.iso",
-      "iso_checksum": "c71bbcdf5c4ecd24c378802f6fb61f5eade3991b0e218381c699327565e1842d.iso",
+      "iso_checksum": "c71bbcdf5c4ecd24c378802f6fb61f5eade3991b0e218381c699327565e1842d",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
