@@ -135,12 +135,11 @@ if [ `echo "$HASH" | wc -c` != 65 ]; then
   exit 1
 fi
 
-# Private magma boxes can't be verified.
-[ "$BOX" == "magma-alpine" ] && return 0
-[ "$BOX" == "magma-arch" ] && return 0
-[ "$BOX" == "magma-freebsd" ] && return 0
-[ "$BOX" == "magma-gentoo" ] && return 0
-[ "$BOX" == "magma-openbsd" ] && return 0
+# Private magma boxes can't be verified. so we skip them.
+if [ "$BOX" == "magma-alpine" ] || [ "$BOX" == "magma-arch" ] || [ "$BOX" == "magma-freebsd" ] || [ "$BOX" == "magma-gentoo" ] || [ "$BOX" == "magma-openbsd" ]; then
+  printf "Box  ~  " ; tput setaf 3 ; printf "${ORG}/${BOX} ${PROVIDER} ${VERSION}\n" ; tput sgr0
+  exit 0
+fi
 
 # org name provider version hash
 function download() {
