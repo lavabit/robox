@@ -930,7 +930,8 @@ function parallels() {
         tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
       elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
         # sudo purge
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
+        # Build the box. If the first attempt fails, try building the box a second time.
+        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json || packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
         # mv output/*.box output/*.box.sha256 /Volumes/Data/robox/output
         # sleep 10
       fi
