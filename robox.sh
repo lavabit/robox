@@ -101,8 +101,32 @@ FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lav
 # A list of configs to skip during complete build operations.
 export EXCEPTIONS=""
 
-retry() {
+# If Vagrant is installed, use the newer version of curl.
+if [ -f /opt/vagrant/embedded/bin/curl ]; then
+
+  export CURL="/opt/vagrant/embedded/bin/curl"
+
+  if [ -f /opt/vagrant/embedded/lib64/libssl.so ] && [ -z LD_PRELOAD ]; then
+    export LD_PRELOAD="/opt/vagrant/embedded/lib64/libssl.so"
+  elif [ -f /opt/vagrant/embedded/lib64/libssl.so ]; then
+    export LD_PRELOAD="/opt/vagrant/embedded/lib64/libssl.so:$LD_PRELOAD"
+  fi
+
+  if [ -f /opt/vagrant/embedded/lib64/libcrypto.so ] && [ -z LD_PRELOAD ]; then
+    export LD_PRELOAD="/opt/vagrant/embedded/lib64/libcrypto.so"
+  elif [ -f /opt/vagrant/embedded/lib64/libcrypto.so ]; then
+    export LD_PRELOAD="/opt/vagrant/embedded/lib64/libcrypto.so:$LD_PRELOAD"
+  fi
+
+  export LD_LIBRARY_PATH="/opt/vagrant/embedded/bin/lib/:/opt/vagrant/embedded/lib64/"
+
+else
+  export CURL="curl"
+fi
+
+function retry() {
   local COUNT=1
+  local DELAY=1
   local RESULT=0
   while [[ "${COUNT}" -le 10 ]]; do
     [[ "${RESULT}" -ne 0 ]] && {
@@ -123,8 +147,9 @@ retry() {
   return "${RESULT}"
 }
 
-curltry() {
+function curltry() {
   local COUNT=1
+  local DELAY=1
   local RESULT=0
   while [[ "${COUNT}" -le 100 ]]; do
     RESULT=0 ; OUTPUT=`"${@}"` || RESULT="${?}"
@@ -331,6 +356,23 @@ function verify_logdir {
   elif [ ! -d logs ]; then
     mkdir logs
   fi
+}
+
+# Check whether a box has been uploaded to the cloud.
+function verify_availability() {
+
+  local RESULT=0
+
+  curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box" | grep --silent "200"
+
+  if [ $? != 0 ]; then
+    printf "Box  -  "; tput setaf 1; printf "${1}/${2} ${3}\n"; tput sgr0
+    let RESULT=1
+  else
+    printf "Box  +  "; tput setaf 2; printf "${1}/${2} ${3}\n"; tput sgr0
+  fi
+
+  return $RESULT
 }
 
 # Build the boxes and cleanup the packer cache after each run.
@@ -647,7 +689,7 @@ function public() {
           [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
-          curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+          curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
           if [ $? != 0 ]; then
             let MISSING+=1
@@ -660,7 +702,7 @@ function public() {
       fi
 
       PROVIDER="hyperv"
-      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+      curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -671,7 +713,7 @@ function public() {
       fi
 
       PROVIDER="libvirt"
-      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+      curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -683,7 +725,7 @@ function public() {
 
       PROVIDER="parallels"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes)$ ]]; then
-        curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+        curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
         if [ $? != 0 ]; then
           let MISSING+=1
@@ -695,7 +737,7 @@ function public() {
       fi
 
       PROVIDER="virtualbox"
-      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+      curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -706,7 +748,7 @@ function public() {
       fi
 
       PROVIDER="vmware_desktop"
-      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+      curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -719,6 +761,67 @@ function public() {
 
     # Get the totla number of boxes.
     let TOTAL=${FOUND}+${MISSING}
+    let FOUND=${TOTAL}-${MISSING}
+
+    # Let the user know how many boxes were missing.
+    if [ $MISSING -eq 0 ]; then
+      printf "\nAll ${TOTAL} of the boxes are available...\n\n"
+    else
+      printf "\nOf the ${TOTAL} boxes defined, ${FOUND} are publicly available, while ${MISSING} are unavailable...\n\n"
+    fi
+}
+
+function ppublic() {
+
+    FOUND=0
+    MISSING=0
+    LIST=($TAGS)
+    FILTER=($FILTERED_TAGS)
+
+    # Loop through and remove the filtered tags from the list.
+    for ((i = 0; i < ${#FILTER[@]}; ++i)); do
+      LIST=(${LIST[@]//${FILTER[$i]}})
+    done
+
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+      ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
+      BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
+
+      PROVIDER="docker"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
+        if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
+          [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
+          [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
+            O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+        fi
+      fi
+
+      PROVIDER="hyperv"
+      O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+
+      PROVIDER="libvirt"
+      O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+
+      PROVIDER="parallels"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes)$ ]]; then
+        O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+      fi
+
+      PROVIDER="virtualbox"
+      O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+
+      PROVIDER="vmware_desktop"
+      O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+
+    done
+
+    export -f curltry ; export -f verify_availability ; export CURL ;
+    # parallel --jobs 16 --keep-order --xapply verify_availability {1} {2} {3} {4} ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
+    parallel --jobs 4 --keep-order --xapply verify_availability {1} {2} {3} {4} '||' let MISSING+=1 ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
+    # Get the totla number of boxes.
+    let TOTAL=${#B[@]}
     let FOUND=${TOTAL}-${MISSING}
 
     # Let the user know how many boxes were missing.
@@ -997,6 +1100,7 @@ elif [[ $1 == "sums" ]]; then sums
 elif [[ $1 == "local" ]]; then localized
 elif [[ $1 == "missing" ]]; then missing
 elif [[ $1 == "public" ]]; then public
+elif [[ $1 == "ppublic" ]]; then ppublic
 elif [[ $1 == "available" ]]; then available
 
 # The group builders.
