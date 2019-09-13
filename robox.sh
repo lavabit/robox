@@ -6,7 +6,7 @@
 # Description: Used to build various virtual machines using packer.
 
 # Version Information
-export VERSION="1.9.30"
+export VERSION="1.9.32"
 export AGENT="Vagrant/2.2.5 (+https://www.vagrantup.com; ruby2.4.6)"
 
 # Limit the number of cpus packer will use.
@@ -100,6 +100,13 @@ FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lav
 
 # A list of configs to skip during complete build operations.
 export EXCEPTIONS=""
+
+# Detect Windows subsystem for Linux.
+if [ -z $OS ]; then
+  if [[ "`uname -r`" =~ -Microsoft$ ]]; then
+    export OS="Windows_NT"
+  fi
+fi
 
 # If Vagrant is installed, use the newer version of curl.
 if [ -f /opt/vagrant/embedded/bin/curl ]; then
@@ -256,7 +263,12 @@ function isos {
 function cache {
 
   unset PACKER_LOG
-  packer build -on-error=cleanup -color=false -parallel=false -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+
+  if [[ $OS == "Windows_NT" ]]; then
+    packer.exe build -on-error=cleanup -color=false -parallel=false -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+  else
+    packer build -on-error=cleanup -color=false -parallel=false -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+  fi
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\nDistro disc image download aborted...\n\n"; tput sgr0
@@ -340,7 +352,13 @@ function verify_local {
 
 # Validate the templates before building.
 function verify_json() {
-  packer validate $1.json
+
+  if [[ $OS == "Windows_NT" ]]; then
+    packer.exe validate $1.json
+  else
+    packer validate $1.json
+  fi
+
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\nthe $1 packer template failed to validate...\n\n"; tput sgr0
     for i in 1 2 3; do printf "\a"; sleep 1; done
@@ -391,7 +409,11 @@ function build() {
     fi
   done
 
-  packer build -on-error=cleanup -parallel=false -except="${EXCEPTIONS}" $1.json
+  if [[ $OS == "Windows_NT" ]]; then
+    packer.exe build -on-error=cleanup -parallel=false -except="${EXCEPTIONS}" $1.json
+  else
+    packer build -on-error=cleanup -parallel=false -except="${EXCEPTIONS}" $1.json
+  fi
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
@@ -409,13 +431,13 @@ function box() {
   if [[ $OS == "Windows_NT" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/magma-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 magma-hyperv.json
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=cleanup -parallel=false -only=$1 magma-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/generic-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-hyperv.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=cleanup -parallel=false -only=$1 generic-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/lineage-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/developer-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-hyperv.json
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=cleanup -parallel=false -only=$1 developer-hyperv.json
 
   elif [[ `uname` == "Darwin" ]]; then
 
