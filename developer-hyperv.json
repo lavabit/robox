@@ -9,7 +9,7 @@
                 "scripts/centos6/base.sh",
                 "scripts/centos6/network.sh"
             ],
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-developer-hyperv"
@@ -34,7 +34,7 @@
                 "scripts/centos6/cleanup.sh"
             ],
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-developer-hyperv"
@@ -51,7 +51,7 @@
                 "scripts/common/lockout.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true"
         }
     ],
@@ -76,7 +76,7 @@
             "ssh_username": "root",
             "ssh_password": "magma",
             "ssh_port": 22,
-            "ssh_timeout": "3600s",
+            "ssh_timeout": "9800s",
             "shutdown_command": "sudo -S shutdown -P now",
             "generation": 1,
             "headless": true,
