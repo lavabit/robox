@@ -9,7 +9,7 @@
                 "scripts/ubuntu1604/network.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "lineage-hyperv",
@@ -32,7 +32,7 @@
             ],
             "type": "shell",
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "lineage-hyperv",
@@ -56,7 +56,7 @@
                 "scripts/ubuntu1604/lineage.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "lineage-hyperv",
@@ -74,7 +74,7 @@
                 "scripts/common/lockout.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "except": [
 
@@ -116,7 +116,7 @@
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_timeout": "3600s",
+            "ssh_timeout": "7200s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "generation": 1,
             "headless": true,
@@ -162,7 +162,7 @@
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_timeout": "3600s",
+            "ssh_timeout": "7200s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "generation": 1,
             "headless": true,
