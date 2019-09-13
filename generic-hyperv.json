@@ -10,7 +10,7 @@
         "scripts/oracle7/yum.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-oracle7-hyperv"
@@ -31,7 +31,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-oracle7-hyperv"
@@ -51,7 +51,7 @@
         "scripts/opensuse42/postfix.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-opensuse42-hyperv"
@@ -64,7 +64,7 @@
         "scripts/alpine35/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine35-hyperv"
@@ -86,7 +86,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine35-hyperv"
@@ -99,7 +99,7 @@
         "scripts/alpine36/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine36-hyperv"
@@ -121,7 +121,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine36-hyperv"
@@ -134,7 +134,7 @@
         "scripts/alpine37/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine37-hyperv"
@@ -156,7 +156,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine37-hyperv"
@@ -169,7 +169,7 @@
         "scripts/alpine38/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine38-hyperv"
@@ -191,7 +191,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine38-hyperv"
@@ -204,7 +204,7 @@
         "scripts/centos6/network.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-centos6-hyperv"
@@ -228,7 +228,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-centos6-hyperv"
@@ -243,7 +243,7 @@
         "scripts/centos7/reboot.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-centos7-hyperv"
@@ -268,7 +268,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-centos7-hyperv"
@@ -283,7 +283,7 @@
         "scripts/rhel7/reboot.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel7-hyperv"
@@ -308,7 +308,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel7-hyperv"
@@ -320,7 +320,7 @@
         "scripts/gentoo/network.sh",
         "scripts/gentoo/emerge.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-gentoo-hyperv"
@@ -336,7 +336,7 @@
         "scripts/gentoo/vagrant.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-gentoo-hyperv"
@@ -347,7 +347,7 @@
       "scripts": [
         "scripts/arch/pacman.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-arch-hyperv"
@@ -364,7 +364,7 @@
         "scripts/arch/cleanup.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-arch-hyperv"
@@ -376,7 +376,7 @@
         "scripts/debian8/apt.sh",
         "scripts/debian8/network.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian8-hyperv"
@@ -396,7 +396,7 @@
         "scripts/debian8/qemu.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian8-hyperv"
@@ -408,7 +408,7 @@
         "scripts/debian9/apt.sh",
         "scripts/debian9/network.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian9-hyperv"
@@ -428,7 +428,7 @@
         "scripts/debian9/qemu.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian9-hyperv"
@@ -440,7 +440,7 @@
         "scripts/fedora25/fixdns.sh",
         "scripts/fedora25/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora25-hyperv"
@@ -452,7 +452,7 @@
         "scripts/fedora25/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora25-hyperv"
@@ -471,7 +471,7 @@
         "scripts/fedora25/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora25-hyperv"
@@ -483,7 +483,7 @@
         "scripts/fedora26/fixdns.sh",
         "scripts/fedora26/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora26-hyperv"
@@ -495,7 +495,7 @@
         "scripts/fedora26/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora26-hyperv"
@@ -514,7 +514,7 @@
         "scripts/fedora26/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora26-hyperv"
@@ -526,7 +526,7 @@
         "scripts/fedora27/fixdns.sh",
         "scripts/fedora27/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora27-hyperv"
@@ -538,7 +538,7 @@
         "scripts/fedora27/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora27-hyperv"
@@ -557,7 +557,7 @@
         "scripts/fedora27/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora27-hyperv"
@@ -569,7 +569,7 @@
         "scripts/fedora28/fixdns.sh",
         "scripts/fedora28/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora28-hyperv"
@@ -581,7 +581,7 @@
         "scripts/fedora28/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora28-hyperv"
@@ -600,7 +600,7 @@
         "scripts/fedora28/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora28-hyperv"
@@ -612,7 +612,7 @@
         "scripts/fedora29/fixdns.sh",
         "scripts/fedora29/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora29-hyperv"
@@ -624,7 +624,7 @@
         "scripts/fedora29/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora29-hyperv"
@@ -643,7 +643,7 @@
         "scripts/fedora29/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora29-hyperv"
@@ -664,7 +664,7 @@
         "scripts/freebsd11/qemu.sh",
         "scripts/freebsd11/cleanup.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -676,7 +676,7 @@
       "scripts": [
         "scripts/openbsd6/pkg.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/bin/sh {{ .Path }}",
       "only": [
@@ -696,7 +696,7 @@
         "scripts/openbsd6/qemu.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -709,7 +709,7 @@
         "scripts/ubuntu1604/apt.sh",
         "scripts/ubuntu1604/network.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1604-hyperv"
@@ -729,7 +729,7 @@
         "scripts/ubuntu1604/cleanup.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1604-hyperv"
@@ -741,7 +741,7 @@
         "scripts/ubuntu1610/apt.sh",
         "scripts/ubuntu1610/network.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1610-hyperv"
@@ -761,7 +761,7 @@
         "scripts/ubuntu1610/cleanup.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1610-hyperv"
@@ -773,7 +773,7 @@
         "scripts/ubuntu1704/apt.sh",
         "scripts/ubuntu1704/network.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1704-hyperv"
@@ -793,7 +793,7 @@
         "scripts/ubuntu1704/cleanup.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1704-hyperv"
@@ -805,7 +805,7 @@
         "scripts/ubuntu1710/apt.sh",
         "scripts/ubuntu1710/network.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1710-hyperv"
@@ -825,7 +825,7 @@
         "scripts/ubuntu1710/cleanup.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1710-hyperv"
@@ -837,7 +837,7 @@
         "scripts/ubuntu1804/apt.sh",
         "scripts/ubuntu1804/network.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1804-hyperv"
@@ -857,7 +857,7 @@
         "scripts/ubuntu1804/cleanup.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1804-hyperv"
@@ -869,7 +869,7 @@
         "scripts/ubuntu1810/apt.sh",
         "scripts/ubuntu1810/network.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1810-hyperv"
@@ -889,7 +889,7 @@
         "scripts/ubuntu1810/cleanup.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1810-hyperv"
@@ -910,7 +910,7 @@
         "scripts/freebsd12/qemu.sh",
         "scripts/freebsd12/cleanup.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -926,7 +926,7 @@
         "scripts/rhel6/reboot.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel6-hyperv"
@@ -951,7 +951,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel6-hyperv"
@@ -966,7 +966,7 @@
         "scripts/rhel8/reboot.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel8-hyperv"
@@ -991,7 +991,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-rhel8-hyperv"
@@ -1012,7 +1012,7 @@
         "scripts/hardenedbsd11/qemu.sh",
         "scripts/hardenedbsd11/cleanup.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -1034,7 +1034,7 @@
         "scripts/dragonflybsd5/qemu.sh",
         "scripts/dragonflybsd5/cleanup.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -1046,7 +1046,7 @@
       "scripts": [
         "scripts/netbsd8/pkg.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/bin/sh {{ .Path }}",
       "only": [
@@ -1066,7 +1066,7 @@
         "scripts/netbsd8/qemu.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "{{ .Vars }} bash {{ .Path }}",
       "only": [
@@ -1088,7 +1088,7 @@
         "scripts/hardenedbsd12/qemu.sh",
         "scripts/hardenedbsd12/cleanup.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "execute_command": "/usr/local/bin/bash {{ .Path }}",
       "only": [
@@ -1102,7 +1102,7 @@
         "scripts/alpine39/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine39-hyperv"
@@ -1124,7 +1124,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine39-hyperv"
@@ -1136,7 +1136,7 @@
         "scripts/debian10/apt.sh",
         "scripts/debian10/network.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian10-hyperv"
@@ -1156,7 +1156,7 @@
         "scripts/debian10/qemu.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-debian10-hyperv"
@@ -1168,7 +1168,7 @@
         "scripts/ubuntu1904/apt.sh",
         "scripts/ubuntu1904/network.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1904-hyperv"
@@ -1188,7 +1188,7 @@
         "scripts/ubuntu1904/cleanup.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-ubuntu1904-hyperv"
@@ -1200,7 +1200,7 @@
         "scripts/fedora30/fixdns.sh",
         "scripts/fedora30/dnf.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora30-hyperv"
@@ -1212,7 +1212,7 @@
         "scripts/fedora30/base.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora30-hyperv"
@@ -1231,7 +1231,7 @@
         "scripts/fedora30/tuning.sh"
       ],
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-fedora30-hyperv"
@@ -1244,7 +1244,7 @@
         "scripts/oracle8/dnf.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-oracle8-hyperv"
@@ -1265,7 +1265,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-oracle8-hyperv"
@@ -1278,7 +1278,7 @@
         "scripts/alpine310/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine310-hyperv"
@@ -1300,7 +1300,7 @@
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-alpine310-hyperv"
@@ -1320,7 +1320,7 @@
         "scripts/opensuse15/postfix.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
         "generic-opensuse15-hyperv"
@@ -1337,7 +1337,7 @@
         "scripts/common/zerodisk.sh",
         "scripts/common/lockout.sh"
       ],
-      "start_retry_timeout": "15m",
+      "start_retry_timeout": "45m",
       "expect_disconnect": "true"
     }
   ],
@@ -1362,7 +1362,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1397,7 +1397,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
       "generation": 1,
       "headless": true,
@@ -1439,7 +1439,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "/sbin/poweroff",
       "generation": 1,
       "headless": true,
@@ -1481,7 +1481,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "/sbin/poweroff",
       "generation": 1,
       "headless": true,
@@ -1523,7 +1523,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "/sbin/poweroff",
       "generation": 1,
       "headless": true,
@@ -1565,7 +1565,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "/sbin/poweroff",
       "generation": 1,
       "headless": true,
@@ -1597,7 +1597,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1629,7 +1629,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1661,7 +1661,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1695,7 +1695,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "7200s",
+      "ssh_timeout": "9800s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1731,7 +1731,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1767,7 +1767,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1803,7 +1803,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1839,7 +1839,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1875,7 +1875,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1910,7 +1910,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1945,7 +1945,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -1991,7 +1991,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2029,7 +2029,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2067,7 +2067,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2105,7 +2105,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2157,7 +2157,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2209,7 +2209,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2248,7 +2248,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "7200s",
+      "ssh_timeout": "9800s",
       "shutdown_command": "shutdown -hP now",
       "generation": 1,
       "headless": true,
@@ -2294,7 +2294,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "shutdown -p now",
       "generation": 1,
       "headless": true,
@@ -2330,7 +2330,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "shutdown -h -p now",
       "generation": 1,
       "headless": true,
@@ -2376,7 +2376,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "shutdown -p now",
       "generation": 1,
       "headless": true,
@@ -2408,7 +2408,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2440,7 +2440,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2486,7 +2486,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "shutdown -p now",
       "generation": 1,
       "headless": true,
@@ -2545,7 +2545,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "ssh_host": "192.168.1.140",
       "mac_address": "00155d1d3d9e",
       "shutdown_command": "shutdown -p now",
@@ -2682,7 +2682,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "shutdown -p now",
       "generation": 1,
       "headless": true,
@@ -2711,7 +2711,7 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
         "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],
@@ -2725,7 +2725,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "/sbin/poweroff",
       "generation": 1,
       "headless": true,
@@ -2760,7 +2760,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2812,7 +2812,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2848,7 +2848,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2880,7 +2880,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
@@ -2909,7 +2909,7 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
         "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],
@@ -2923,7 +2923,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "/sbin/poweroff",
       "generation": 1,
       "headless": true,
@@ -2958,7 +2958,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
       "generation": 1,
       "headless": true,

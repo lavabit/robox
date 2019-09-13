@@ -10,7 +10,7 @@
                 "scripts/alpine36/apk.sh"
             ],
             "execute_command": "/bin/sh '{{.Path}}'",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-alpine36-hyperv"
@@ -39,7 +39,7 @@
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-alpine36-hyperv"
@@ -52,7 +52,7 @@
                 "scripts/centos6/network.sh"
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-centos6-hyperv"
@@ -78,7 +78,7 @@
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-centos6-hyperv"
@@ -94,7 +94,7 @@
                 "scripts/centos7/reboot.sh"
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-centos7-hyperv"
@@ -123,7 +123,7 @@
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-centos7-hyperv"
@@ -135,7 +135,7 @@
                 "scripts/gentoo/emerge.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-gentoo-hyperv"
@@ -152,7 +152,7 @@
             ],
             "type": "shell",
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-gentoo-hyperv"
@@ -163,7 +163,7 @@
                 "scripts/arch/pacman.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-arch-hyperv"
@@ -185,7 +185,7 @@
             ],
             "type": "shell",
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-arch-hyperv"
@@ -197,7 +197,7 @@
                 "scripts/debian8/network.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-debian8-hyperv"
@@ -222,7 +222,7 @@
             ],
             "type": "shell",
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-debian8-hyperv"
@@ -234,7 +234,7 @@
                 "scripts/fedora27/fixdns.sh",
                 "scripts/fedora27/dnf.sh"
             ],
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-fedora27-hyperv"
@@ -246,7 +246,7 @@
                 "scripts/fedora27/base.sh"
             ],
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-fedora27-hyperv"
@@ -268,7 +268,7 @@
                 "scripts/fedora27/tuning.sh"
             ],
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-fedora27-hyperv"
@@ -290,7 +290,7 @@
                 "scripts/freebsd11/cleanup.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "execute_command": "/usr/local/bin/bash {{ .Path }}",
             "only": [
@@ -302,7 +302,7 @@
                 "scripts/openbsd6/pkg.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "execute_command": "/bin/sh {{ .Path }}",
             "only": [
@@ -323,7 +323,7 @@
             ],
             "type": "shell",
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "execute_command": "/usr/local/bin/bash {{ .Path }}",
             "only": [
@@ -336,7 +336,7 @@
                 "scripts/ubuntu1604/network.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-ubuntu1604-hyperv"
@@ -361,7 +361,7 @@
             ],
             "type": "shell",
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-ubuntu1604-hyperv"
@@ -373,7 +373,7 @@
                 "scripts/ubuntu1610/network.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-ubuntu1610-hyperv"
@@ -398,7 +398,7 @@
             ],
             "type": "shell",
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-ubuntu1610-hyperv"
@@ -410,7 +410,7 @@
                 "scripts/ubuntu1704/network.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-ubuntu1704-hyperv"
@@ -435,7 +435,7 @@
             ],
             "type": "shell",
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-ubuntu1704-hyperv"
@@ -452,7 +452,7 @@
                 "scripts/common/lockout.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true"
         }
     ],
