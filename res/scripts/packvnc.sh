@@ -10,12 +10,18 @@ for p in $PORT; do
   vinagre --vnc-scale vnc://127.0.0.1:$p &> /dev/null &
 done
 
-# Sudo is also needed to find the virtualbox ports.
-PORT=`sudo netstat -pnl 2>&1 | grep tcp | grep "VBoxHeadless" | awk -F':' '{print $2}' | awk -F' ' '{print $1}' | grep -E "^11"`
+# # Sudo is also needed to find the virtualbox ports.
+# PORT=`sudo netstat -pnl 2>&1 | grep tcp | grep "VBoxHeadless" | awk -F':' '{print $2}' | awk -F' ' '{print $1}' | grep -E "^11"`
+#
+# for p in $PORT; do
+#   rpm -q vinagre &> /dev/null || (printf "\n\nAn RDP port was detected, but Vinagre doesn't appear to be available.\n\n" && exit 1)
+#   vinagre --vnc-scale rdp://127.0.0.1:$p &> /dev/null &
+# done
 
-for p in $PORT; do
-  rpm -q vinagre &> /dev/null || (printf "\n\nAn RDP port was detected, but Vinagre doesn't appear to be available.\n\n" && exit 1)
-  vinagre --vnc-scale rdp://127.0.0.1:$p &> /dev/null &
+VMS=`vboxmanage list vms | awk -F' ' '{print $1}' | awk -F'"' '{print $2}'`
+
+for vm in $VMS; do
+  VirtualBox --startvm $vm --no-startvm-errormsgbox --separate &> /dev/null &
 done
 
 exit 0
