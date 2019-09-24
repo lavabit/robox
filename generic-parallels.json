@@ -3691,7 +3691,7 @@
       "guest_os_type": "opensuse",
       "http_directory": "http",
       "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.1/iso/openSUSE-Leap-15.1-NET-x86_64.iso",
-      "iso_checksum": "c661a385f53861213e59abeb6d62d468c40359de1ac8e1c3703fd571965436cf",
+      "iso_checksum": "609d0ad527ab13681b44e28326cd7941e87adfe8d522e2b31d0d7c71e9d92992",
       "iso_checksum_type": "sha256",
       "skip_compaction": false,
       "ssh_username": "root",
