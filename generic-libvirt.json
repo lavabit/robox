@@ -1327,6 +1327,46 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/centos8/network.sh",
+        "scripts/centos8/yum.sh",
+        "scripts/centos8/base.sh",
+        "scripts/centos8/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos8-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/centos8/kernel.sh",
+        "scripts/centos8/floppy.sh",
+        "scripts/centos8/virtualbox.sh",
+        "scripts/centos8/parallels.sh",
+        "scripts/centos8/vmware.sh",
+        "scripts/centos8/qemu.sh",
+        "scripts/centos8/vagrant.sh",
+        "scripts/centos8/tuning.sh",
+        "scripts/centos8/sshd.sh",
+        "scripts/centos8/randomness.sh",
+        "scripts/centos8/updatedb.sh",
+        "scripts/centos8/cleanup.sh",
+        "scripts/centos8/unyum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos8-libvirt"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -2864,7 +2904,7 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
@@ -3086,7 +3126,7 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
@@ -3154,6 +3194,43 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-centos8-libvirt",
+      "vm_name": "generic-centos8-libvirt",
+      "output_directory": "output/generic-centos8-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "qemuargs": [
+        [
+          "-drive",
+          "if=none,file=output/generic-centos8-libvirt/generic-centos8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirror.hackingand.coffee/centos/8.0.1905/isos/x86_64/CentOS-8-x86_64-1905-boot.iso",
+      "iso_checksum": "a7993a0d4b7fef2433e0d4f53530b63c715d3aadbe91f152ee5c3621139a2cbc",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     }
   ],
   "post-processors": [

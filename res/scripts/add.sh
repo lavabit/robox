@@ -125,21 +125,21 @@ else
   export VERSION="1.0.0"
 
   # We only validate these files, two at a time, because the packer validation process spwans 350+ processes.
-  packer validate $BASE/packer-cache.new.json &> /dev/null &
+  packer validate packer-cache.new.json &> /dev/null &
   P1=$!
-  packer validate $BASE/generic-hyperv.new.json &> /dev/null &
+  packer validate generic-hyperv.new.json &> /dev/null &
   P2=$!
   wait $P1 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
   wait $P2 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
-  packer validate $BASE/generic-vmware.new.json &> /dev/null &
+  packer validate generic-vmware.new.json &> /dev/null &
   P1=$!
-  packer validate $BASE/generic-libvirt.new.json &> /dev/null &
+  packer validate generic-libvirt.new.json &> /dev/null &
   P2=$!
   wait $P1 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
   wait $P2 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
-  packer validate $BASE/generic-parallels.new.json &> /dev/null &
+  packer validate generic-parallels.new.json &> /dev/null &
   P1=$!
-  packer validate $BASE/generic-virtualbox.new.json &> /dev/null &
+  packer validate generic-virtualbox.new.json &> /dev/null &
   P2=$!
   wait $P1 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
   wait $P2 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)

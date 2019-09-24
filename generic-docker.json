@@ -66,6 +66,37 @@
             ]
         },
         {
+            "type": "shell",
+            "scripts": [
+                "scripts/centos8/network.sh",
+                "scripts/centos8/yum.sh",
+                "scripts/centos8/base.sh",
+                "scripts/centos8/reboot.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-centos8-docker"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/centos8/floppy.sh",
+                "scripts/centos8/cleanup.sh",
+                "scripts/centos8/unyum.sh",
+                "scripts/centos8/dockerize.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-centos8-docker"
+            ]
+        },
+        {
           "type": "shell",
           "scripts": [
             "scripts/rhel6/network.sh",
@@ -278,6 +309,36 @@
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso",
             "iso_checksum": "9a2c47d97b9975452f7d582264e9fc16d108ed8252ac6816239a3b58cef5c53d",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "3600s",
+            "shutdown_command": "shutdown -h now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-centos8-docker",
+            "vm_name": "generic-centos8-docker",
+            "output_directory": "output/generic-centos8-docker",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.docker.ks<enter><wait>"
+            ],
+            "format": "raw",
+            "disk_size": 32770,
+            "disk_interface": "virtio-scsi",
+            "disk_compression": true,
+            "disk_discard": "unmap",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirror.hackingand.coffee/centos/8.0.1905/isos/x86_64/CentOS-8-x86_64-1905-boot.iso",
+            "iso_checksum": "a7993a0d4b7fef2433e0d4f53530b63c715d3aadbe91f152ee5c3621139a2cbc",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "locked",
