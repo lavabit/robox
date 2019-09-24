@@ -14,7 +14,10 @@ lang en_US
 zerombr
 clearpart --all --initlabel
 part / --size 32768 --fstype ext4
-repo --name=BaseOS --baseurl=https://mirror.hackingand.coffee/centos/8.0.1905/BaseOS/x86_64/os/
+
+repo --name=BaseOS
+url --url=http://mirror.centos.org/centos-8/8.0.1905/BaseOS/x86_64/os/
+
 # Package setup
 %packages --instLangs=en
 @core

@@ -23,7 +23,10 @@ rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
 
 reboot --eject
-repo --name=BaseOS --baseurl=https://mirror.hackingand.coffee/centos/8.0.1905/BaseOS/x86_64/os/
+
+repo --name=BaseOS
+url --url=http://mirror.centos.org/centos-8/8.0.1905/BaseOS/x86_64/os/
+
 %packages --instLangs=en
 @core
 authconfig
