@@ -27,7 +27,7 @@ retry() {
 }
 
 # Configure tuned
-retry yum --assumeyes install tuned
+retry dnf --assumeyes install tuned
 systemctl enable tuned
 systemctl start tuned
 

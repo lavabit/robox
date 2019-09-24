@@ -42,4 +42,4 @@ fi
 # Install the QEMU using Yum.
 printf "Installing the QEMU Tools.\n"
 
-retry yum --quiet --assumeyes install qemu-guest-agent; error
+retry dnf --quiet --assumeyes install qemu-guest-agent; error

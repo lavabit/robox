@@ -35,22 +35,22 @@ error() {
 }
 
 # Install the the EPEL repository.
-retry yum --assumeyes --enablerepo=extras install epel-release; error
+retry dnf --assumeyes --enablerepo=extras install epel-release; error
 
 # Packages needed beyond a minimal install to build and run magma.
-retry yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel; error
+retry dnf --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel; error
 
 # Grab the required packages from the EPEL repo.
-retry yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
+retry dnf --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
 
 # Boosts the available entropy which allows magma to start faster.
-retry yum --quiet --assumeyes install haveged; error
+retry dnf --quiet --assumeyes install haveged; error
 
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
-retry yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
+retry dnf --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
 
 # These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
-retry yum --quiet --assumeyes install python-crypto python-cryptography
+retry dnf --quiet --assumeyes install python-crypto python-cryptography
 
 # Create the clamav user to avoid spurious errors.
 useradd clamav

@@ -30,7 +30,7 @@ retry() {
 # inside a virtual machines, but be careful, it doesn't end up running
 # on systems which aren't virtualized. The patch command is included
 # to ensure its use below doesn't cause an error.
-retry yum --assumeyes install haveged patch
+retry dnf --assumeyes install haveged patch
 
 # Enable and start the daemons.
 systemctl enable haveged

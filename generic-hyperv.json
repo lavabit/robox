@@ -987,7 +987,7 @@
         "scripts/rhel8/randomness.sh",
         "scripts/rhel8/updatedb.sh",
         "scripts/rhel8/cleanup.sh",
-        "scripts/rhel8/unyum.sh"
+        "scripts/rhel8/undnf.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
@@ -1330,7 +1330,7 @@
       "type": "shell",
       "scripts": [
         "scripts/centos8/network.sh",
-        "scripts/centos8/yum.sh",
+        "scripts/centos8/dnf.sh",
         "scripts/centos8/base.sh",
         "scripts/centos8/reboot.sh"
       ],
@@ -1356,7 +1356,7 @@
         "scripts/centos8/randomness.sh",
         "scripts/centos8/updatedb.sh",
         "scripts/centos8/cleanup.sh",
-        "scripts/centos8/unyum.sh"
+        "scripts/centos8/undnf.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",

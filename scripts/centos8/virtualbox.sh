@@ -66,7 +66,7 @@ printf "Installing the Virtual Box Tools.\n"
 # Read in the version number.
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
-retry yum --quiet --assumeyes install bzip2; error
+retry dnf --quiet --assumeyes install bzip2; error
 
 # The group vboxsf is needed for shared folder access.
 getent group vboxsf >/dev/null || groupadd --system vboxsf; error

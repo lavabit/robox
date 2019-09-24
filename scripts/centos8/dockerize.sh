@@ -2,7 +2,7 @@
 
 # Cleanup.
 rpm -Va --nofiles --nodigest
-yum clean all
+dnf clean all
 
 # Stop services to avoid tarring sockets.
 systemctl stop abrt
@@ -11,9 +11,9 @@ systemctl stop mariadb
 systemctl stop postfix
 
 awk '(NF==0&&!done){print "override_install_langs='$LANG'\ntsflags=nodocs";done=1}{print}' \
-    < /etc/yum.conf > /etc/yum.conf.new
-mv /etc/yum.conf.new /etc/yum.conf
-echo 'container' > /etc/yum/vars/infra
+    < /etc/dnf.conf > /etc/dnf.conf.new
+mv /etc/dnf.conf.new /etc/dnf.conf
+echo 'container' > /etc/dnf/vars/infra
 
 rm -f /usr/lib/locale/locale-archive
 
@@ -28,7 +28,7 @@ printf "if [ \"\$PS1\" ]; then\n  cd \$HOME\nfi\n" > /etc/profile.d/home.sh
 # Setup the locale, and arrogantly assume everyone lives in the US.
 localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
 
-rm -rf /var/cache/yum/*
+rm -rf /var/cache/dnf/*
 rm -f /tmp/ks-script*
 rm -rf /var/log/*
 rm -rf /tmp/*
@@ -66,7 +66,7 @@ find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type s -print >> /tmp/excludes
 find /var/log/ -type f -print >> /tmp/excludes
 find /lib/modules/ -mindepth 1 -print >> /tmp/excludes
 find /usr/src/kernels/ -mindepth 1 -print >> /tmp/excludes
-find /var/lib/yum/yumdb/ -mindepth 1 -print >> /tmp/excludes
+find /var/lib/dnf/dnfdb/ -mindepth 1 -print >> /tmp/excludes
 find /etc/sysconfig/network-scripts/ -name "ifcfg-*" -print >> /tmp/excludes
 find /tmp -type f -or -type d -print | grep --invert-match --extended-regexp "^/tmp/$|^/tmp$" >> /tmp/excludes
 

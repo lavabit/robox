@@ -69,7 +69,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/centos8/network.sh",
-                "scripts/centos8/yum.sh",
+                "scripts/centos8/dnf.sh",
                 "scripts/centos8/base.sh",
                 "scripts/centos8/reboot.sh"
             ],
@@ -85,7 +85,7 @@
             "scripts": [
                 "scripts/centos8/floppy.sh",
                 "scripts/centos8/cleanup.sh",
-                "scripts/centos8/unyum.sh",
+                "scripts/centos8/undnf.sh",
                 "scripts/centos8/dockerize.sh"
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
@@ -181,7 +181,7 @@
             "scripts/rhel8/floppy.sh",
             "scripts/rhel8/updatedb.sh",
             "scripts/rhel8/cleanup.sh",
-            "scripts/rhel8/unyum.sh",
+            "scripts/rhel8/undnf.sh",
             "scripts/rhel8/dockerize.sh"
           ],
           "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",

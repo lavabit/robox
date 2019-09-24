@@ -12,7 +12,7 @@ else
   printf "\n127.0.0.1 magma.builder\n\n" >> /etc/hosts
 fi
 
-# Disable IPv6 or yum will resolve mirror names to IPv6 address and then fail to connect with them.
+# Disable IPv6 or dnf will resolve mirror names to IPv6 address and then fail to connect with them.
 sysctl net.ipv6.conf.all.disable_ipv6=1
 
 # Disable IPv6 and the iptables module used to firewall IPv6.

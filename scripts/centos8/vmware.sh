@@ -42,7 +42,7 @@ fi
 # Install the VMWare Tools.
 printf "Installing the VMWare Tools.\n"
 
-retry yum --quiet --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
+retry dnf --quiet --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
 systemctl enable vmtoolsd
 systemctl start vmtoolsd
 

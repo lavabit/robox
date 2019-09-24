@@ -27,7 +27,7 @@ retry() {
 }
 
 # Needed to check whether we're running atop Parallels.
-retry yum --assumeyes install dmidecode
+retry dnf --assumeyes install dmidecode
 
 # Bail if we are not running atop Parallels.
 if [[ `dmidecode -s system-product-name` != "Parallels Virtual Platform" ]]; then

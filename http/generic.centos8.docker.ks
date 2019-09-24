@@ -20,7 +20,7 @@ part / --size 32768 --fstype ext4
 @core
 coreutils
 bash
-yum
+dnf
 vim-minimal
 centos-release
 less

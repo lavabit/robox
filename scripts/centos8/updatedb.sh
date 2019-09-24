@@ -26,7 +26,7 @@ retry() {
   return "${RESULT}"
 }
 
-retry yum --assumeyes install mlocate
+retry dnf --assumeyes install mlocate
 
 # Update the locate database.
 cp /etc/cron.daily/mlocate /etc/cron.hourly/mlocate && /etc/cron.daily/mlocate

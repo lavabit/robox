@@ -27,7 +27,7 @@ retry() {
 }
 
 # Install memcached.
-retry yum install --assumeyes libevent memcached
+retry dnf install --assumeyes libevent memcached
 
 # Ensure memcached doesn't try to use IPv6.
 if [ -f /etc/sysconfig/memcached ]; then
