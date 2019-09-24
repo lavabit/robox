@@ -32,8 +32,20 @@ printf "\nretries=128\ndeltarpm=0\nmetadata_expire=0\nmirrorlist_expire=0\n" >> 
 # CentOS Repo Setup
 sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Base.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Base.repo
-sed -i -e "s/http:\/\/mirror.centos.org\/centos\//https:\/\/mirrors.edge.kernel.org\/centos\//g" /etc/yum.repos.d/CentOS-Base.repo
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-8
+
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-AppStream.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-AppStream.repo
+
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-PowerTools.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-PowerTools.repo
+
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Extras.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Extras.repo
+
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-centosplus.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-centosplus.repo
+
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
 # Disable the physical media repos, along with fasttrack repos.
 sed --in-place "s/^/# /g" /etc/yum.repos.d/CentOS-Media.repo

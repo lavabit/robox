@@ -7,7 +7,7 @@ selinux --enforcing
 firewall --disabled
 network --bootproto=dhcp --device=link --activate --onboot=on --noipv6 --hostname=centos8.localdomain
 reboot
-bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check"
+bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 no_timer_check"
 lang en_US
 
 # Disk setup
