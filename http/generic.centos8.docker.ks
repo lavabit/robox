@@ -3,6 +3,12 @@ install
 keyboard us
 rootpw locked
 timezone US/Pacific
+
+text
+skipx
+
+firstboot --disabled
+
 selinux --enforcing
 firewall --disabled
 network --bootproto=dhcp --device=link --activate --onboot=on --noipv6 --hostname=centos8.localdomain
@@ -21,24 +27,8 @@ url --url=http://mirror.centos.org/centos-8/8.0.1905/BaseOS/x86_64/os/
 # Package setup
 %packages --instLangs=en
 @core
-coreutils
-bash
-dnf
-vim-minimal
-centos-release
-less
--os-prober
--gettext*
--bind-license
--freetype
-iputils
-iproute
-systemd
-rootfiles
--libteam
--teamd
-tar
-passwd
+authconfig
+sudo
 %end
 
 %post
