@@ -16,7 +16,7 @@ clearpart --all --initlabel
 part / --size 32768 --fstype ext4
 
 # Package setup
-%packages --instLangs=en --nobase
+%packages --instLangs=en
 @core
 coreutils
 bash

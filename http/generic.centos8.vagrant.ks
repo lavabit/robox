@@ -24,7 +24,7 @@ authconfig --enableshadow --passalgo=sha512
 
 reboot --eject
 
-%packages --instLangs=en --nobase
+%packages --instLangs=en
 @core
 authconfig
 sudo
