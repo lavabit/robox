@@ -53,5 +53,5 @@ dnf --assumeyes install sudo dmidecode dnf-utils bash-completion man man-pages v
 # For some reason the beta thinks this package is installed, when in fact it's missing.
 dnf --assumeyes reinstall libunistring
 
-# Whois is missing from the beta.
+# Whois is missing from the repo.
 # jwhois
