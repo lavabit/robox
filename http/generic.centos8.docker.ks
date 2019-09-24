@@ -27,10 +27,6 @@ dnf
 vim-minimal
 centos-release
 less
-# Microcode updates don't work in a VM
--microcode_ctl
-# Firmware packages aren't needed in a VM
--*firmware
 -os-prober
 -gettext*
 -bind-license

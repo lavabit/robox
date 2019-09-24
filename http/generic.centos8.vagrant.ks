@@ -31,10 +31,6 @@ url --url=http://mirror.centos.org/centos-8/8.0.1905/BaseOS/x86_64/os/
 @core
 authconfig
 sudo
-# Microcode updates don't work in a VM
--microcode_ctl
-# Firmware packages aren't needed in a VM
--*firmware
 %end
 
 %post
