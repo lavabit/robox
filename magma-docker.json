@@ -325,7 +325,7 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz.sha256",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
                 "keep_input_artifact": true
             }
         ],
