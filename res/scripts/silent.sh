@@ -211,7 +211,6 @@ if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "null" ]; then
 fi
 
 retry ${CURL} --tlsv1.2 \
-  --silent  \
   --output "/dev/null" \
   --show-error \
   --request PUT \

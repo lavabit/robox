@@ -1,4 +1,4 @@
-#!/bin/bash -eux
+ #!/bin/bash -eux
 
 retry() {
   local COUNT=1
@@ -62,8 +62,7 @@ retry dnf --quiet --assumeyes --enablerepo=extras install epel-release
 
 sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
-# sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/mirrors.edge.kernel.org\/fedora-epel\//g" /etc/yum.repos.d/epel.repo
-sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/mirrors.kernel.org\/fedora-epel\//g" /etc/yum.repos.d/epel.repo
+
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
 
 # Disable the testing repos.
@@ -81,4 +80,8 @@ retry dnf --assumeyes install sudo dmidecode dnf-utils bash-completion man man-p
 
 if [ -f /etc/yum.repos.d/CentOS-Vault.repo.rpmnew ]; then
   rm --force /etc/yum.repos.d/CentOS-Vault.repo.rpmnew
+fi
+
+if [ -f /etc/yum.repos.d/CentOS-Media.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/CentOS-Media.repo.rpmnew
 fi

@@ -22,7 +22,7 @@ clearpart --all --initlabel
 part / --size 32768 --fstype ext4
 
 repo --name=BaseOS
-url --url=http://mirror.centos.org/centos-8/8.0.1905/BaseOS/x86_64/os/
+url --url=https://mirrors.edge.kernel.org/centos/8.0.1905/BaseOS/x86_64/os/
 
 # Package setup
 %packages --instLangs=en

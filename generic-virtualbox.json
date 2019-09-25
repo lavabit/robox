@@ -3341,7 +3341,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirror.hackingand.coffee/centos/8.0.1905/isos/x86_64/CentOS-8-x86_64-1905-boot.iso",
+      "iso_url": "https://mirrors.edge.kernel.org/centos/8.0.1905/isos/x86_64/CentOS-8-x86_64-1905-boot.iso",
       "iso_checksum": "a7993a0d4b7fef2433e0d4f53530b63c715d3aadbe91f152ee5c3621139a2cbc",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
