@@ -1,7 +1,10 @@
+
 {
     "variables": {
         "box_version": "{{env `VERSION`}}",
+        "docker-user": "{{env `QUAY_USER`}}",
         "docker-user": "{{env `DOCKER_USER`}}",
+        "docker-password": "{{env `QUAY_PASSWORD`}}",
         "docker-password": "{{env `DOCKER_PASSWORD`}}"
     },
     "provisioners": [
@@ -541,8 +544,9 @@
                   "BOX={{split build_name \"-\" 1}}"
                 ],
                 "inline": [
-                  "[ `docker images roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet roboxes/$BOX`",
-                  "[ `docker images generic/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet generic/$BOX`",
+                  "[ `docker images quay.io/generic/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/generic/$BOX`",
+                  "[ `docker images quay.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/roboxes/$BOX`",
+                  "[ `docker images docker.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet docker.io/roboxes/$BOX`",
                   "rm --recursive --force output/$NAME",
                   "exit 0"
                 ]
@@ -598,6 +602,16 @@
         ],
         [
             {
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
+            {
                 "type": "artifice",
                 "keep_input_artifact": true,
                 "files": [
@@ -608,7 +622,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "roboxes/{{split build_name \"-\" 1}}",
+                "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -617,64 +631,21 @@
             {
                 "type": "docker-push",
                 "login": "false",
-                "login_username": "{{user `docker_username`}}",
-                "login_password": "{{user `docker_password`}}"
-            },
-            {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": true,
-                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
-                "include": [
-                    "tpl/generic/info.json"
-                ]
-            },
-            {
-                "type": "checksum",
-                "checksum_types": [
-                    "sha256"
-                ],
-                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
             }
         ],
         [
             {
-                "type": "artifice",
-                "keep_input_artifact": true,
-                "files": [
-                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
-                ]
-            },
-            {
-                "type": "docker-import",
-                "keep_input_artifact": true,
-                "tag": "{{user `box_version`}}",
-                "repository": "roboxes/{{split build_name \"-\" 1}}",
-                "changes": [
-                  "CMD [\"/bin/bash\"]",
-                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-                ]
-            },
-            {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": true,
-                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
-                "include": [
-                    "tpl/generic/info.json"
-                ]
-            },
-            {
-                "type": "checksum",
-                "checksum_types": [
-                    "sha256"
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
                 ],
-                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
-            }
-        ],
-        [
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
             {
                 "type": "artifice",
                 "keep_input_artifact": true,
@@ -686,7 +657,147 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "latest",
-                "repository": "roboxes/{{split build_name \"-\" 1}}",
+                "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `docker_username`}}",
+                "login_password": "{{user `docker_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""

@@ -30,13 +30,14 @@ if [ ! -f $BASE/.credentialsrc ]; then
 cat << EOF > $BASE/.credentialsrc
 #!/bin/bash
 export GOMAXPROCS="2"
+export QUAY_USER="LOGIN"
+export QUAY_PASSWORD="PASSWORD"
 export DOCKER_USER="LOGIN"
-export DOCKER_EMAIL="EMAIL"
 export DOCKER_PASSWORD="PASSWORD"
 export VMWARE_WORKSTATION="SERIAL"
 export VAGRANT_CLOUD_TOKEN="TOKEN"
 
-# Overrides the Repo Box Version
+# Overrides the repo version with a default value.
 VERSION="1.0.0"
 EOF
 tput setaf 1; printf "\n\nCredentials file was missing. Stub file created.\n\n\n"; tput sgr0
@@ -177,12 +178,14 @@ function start() {
 
   # Start the required services.
   # sudo systemctl restart vmtoolsd.service
-  sudo systemctl restart vboxdrv.service
-  sudo systemctl restart libvirtd.service
-  sudo systemctl restart docker-latest.service
-  sudo systemctl restart vmware.service
-  sudo systemctl restart vmware-USBArbitrator.service
-  sudo systemctl restart vmware-workstation-server.service
+  if [ -f /usr/lib/systemd/system/vboxdrv.service ]; then sudo systemctl restart vboxdrv.service ; fi
+  if [ -f /usr/lib/systemd/system/libvirtd.service ]; then sudo systemctl restart libvirtd.service ; fi
+  if [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ;
+  elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
+
+  if [ -f /etc/init.d/vmware ]; then sudo /etc/init.d/vmware start ; fi
+  if [ -f /etc/init.d/vmware-USBArbitrator ]; then sudo /etc/init.d/vmware-USBArbitrator start ; fi
+  if [ -f /etc/init.d/vmware-workstation-server ]; then sudo /etc/init.d/vmware-workstation-server start ; fi
 
   # Confirm the VMware modules loaded.
   if [ -f /usr/bin/vmware-modconfig ]; then
@@ -881,30 +884,74 @@ function cleanup() {
 }
 
 function docker-login() {
-  RUNNING=`docker info 2>&1 | grep --count --extended-regexp "^Username:"`
 
-  if [ $RUNNING == 0 ]; then
-    docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-    if [[ $? != 0 ]]; then
-      tput setaf 1; tput bold; printf "\n\nThe docker login credentials failed.\n\n"; tput sgr0
-      exit 1
+  # If jq is installed, we can use it to determine whether a login is required. Otherwise we rely on the more primitive login logic.
+  if [ -f /usr/bin/jq ] || [ -f /usr/local/bin/jq ]; then
+    if [[ `jq "[ .auths.\"quay.io\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+      docker login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe quay.io login credentials failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
+    fi
+    if [[ `jq "[ .auths.\"docker.io\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]] || [[ `jq "[ .auths.\"https://index.docker.io/v1/\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+      docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe docker.io login credentials failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
     fi
   else
-    tput setaf 3; tput bold; printf "\nSkipping docker login because the daemon is already authenticated.\n\n"; tput sgr0
+    RUNNING=`docker info 2>&1 | grep --count --extended-regexp "^Username:"`
+
+    if [ $RUNNING == 0 ]; then
+
+      docker login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe quay.io login credentials failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
+
+      docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe docker.io login credentials failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
+    else
+      tput setaf 3; tput bold; printf "\nSkipping registry login because the daemon is already authenticated.\n\n"; tput sgr0
+    fi
+
   fi
+
 }
 
 function docker-logout() {
   RUNNING=`ps -ef | grep --invert grep | grep --count --extended-regexp "packer build.*generic-docker.json|packer build.*magma-docker.json"`
 
   if [ $RUNNING == 0 ]; then
-    docker logout
+    docker logout quay.io && docker logout docker.io && docker logout https://index.docker.io/v1/
     if [[ $? != 0 ]]; then
-      tput setaf 1; tput bold; printf "\n\nThe docker logout command failed.\n\n"; tput sgr0
+      tput setaf 1; tput bold; printf "\n\nThe registry logout command failed.\n\n"; tput sgr0
       exit 1
     fi
   else
-    tput setaf 3; tput bold; printf "\nSkipping docker logout because builds are still running.\n\n"; tput sgr0
+    tput setaf 3; tput bold; printf "\nSkipping registry logout because builds are still running.\n\n"; tput sgr0
   fi
 }
 
