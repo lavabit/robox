@@ -26,6 +26,13 @@ retry() {
   return "${RESULT}"
 }
 
+# Force the pacman keyring to reinitialize.
+rm -rf /etc/pacman.d/gnupg/
+
+# Setup the pacman keyring.
+pacman-key --init
+retry pacman-key --populate archlinux
+
 # Update the package database.
 retry pacman --sync --noconfirm --refresh
 
@@ -33,10 +40,13 @@ retry pacman --sync --noconfirm --refresh
 retry pacman --sync --noconfirm --refresh --sysupgrade
 
 # Useful tools.
-retry pacman --sync --noconfirm --refresh vim curl wget sysstat lsof psmisc man-db mlocate net-tools lm_sensors vim-runtime
+retry pacman --sync --noconfirm --refresh vim curl wget sysstat lsof psmisc man-db mlocate net-tools haveged lm_sensors vim-runtime bash-completion
 
 # Start the services we just added so the system will track its own performance.
 systemctl enable sysstat.service && systemctl start sysstat.service
+
+# Enable the entropy daemon.
+systemctl enable haveged
 
 # Ensure the daily update timers are enabled.
 systemctl enable man-db.timer

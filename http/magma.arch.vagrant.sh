@@ -10,8 +10,6 @@ else
 fi
 export device
 
-# memory_size_in_kilobytes=$(free | awk '/^Mem:/ { print $2 }')
-# swap_size_in_kilobytes=$((memory_size_in_kilobytes * 2))
 sfdisk "$device" <<EOF
 label: dos
 size=4096MiB,                      type=82
@@ -27,9 +25,10 @@ printf "Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /etc
 
 curl -fsS https://www.archlinux.org/mirrorlist/?country=all > /tmp/mirrolist
 grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 5 | sed 's/^#//' >>  /etc/pacman.d/mirrorlist
-pacstrap /mnt base grub bash sudo openssh
+pacstrap /mnt base grub bash sudo linux linux-firmware mkinitcpio openssh
 
 swapon "${device}1"
 genfstab -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash
+[ -f /mnt/etc/fstab.pacnew ] && rm -f /mnt/etc/fstab.pacnew
 swapoff "${device}1"
