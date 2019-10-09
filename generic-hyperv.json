@@ -1736,7 +1736,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_timeout": "9800s",
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "shutdown_command": "systemctl poweroff",
       "generation": 1,
       "headless": true,
       "communicator": "ssh",
