@@ -2,6 +2,7 @@
 
 retry() {
   local COUNT=1
+  local DELAY=0
   local RESULT=0
   while [[ "${COUNT}" -le 10 ]]; do
     [[ "${RESULT}" -ne 0 ]] && {
@@ -25,13 +26,6 @@ retry() {
 
   return "${RESULT}"
 }
-
-# Force the pacman keyring to reinitialize.
-rm -rf /etc/pacman.d/gnupg/
-
-# Setup the pacman keyring.
-pacman-key --init
-retry pacman-key --populate archlinux
 
 # Update the package database.
 retry pacman --sync --noconfirm --refresh
