@@ -22,17 +22,20 @@ sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
 mkdir -p /etc/systemd/network
 ln -sf /dev/null /etc/systemd/network/99-default.link
-cat <<EOF > /etc/systemd/network/eth0.network
-[Match]
-Name=eth0
-
-[Network]
-DHCP=ipv4
-EOF
+# cat <<EOF > /etc/systemd/network/eth0.network
+# [Match]
+# Name=eth0
+#
+# [Network]
+# DHCP=ipv4
+# EOF
 
 systemctl enable sshd
-systemctl enable systemd-networkd
-systemctl enable systemd-resolved
+systemctl enable dhcpd4.service
+systemctl enable dhcpd6.service
+
+# systemctl enable systemd-networkd
+# systemctl enable systemd-resolved
 
 # Ensure the network is always eth0.
 sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0 biosdevname=0 elevator=noop vga=792"/g' /etc/default/grub
