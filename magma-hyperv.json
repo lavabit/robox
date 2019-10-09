@@ -589,7 +589,7 @@
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_timeout": "7200s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "shutdown_command": "systemctl poweroff",
             "generation": 1,
             "headless": true,
             "communicator": "ssh",
@@ -1006,7 +1006,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-default.rb",
-                "output": "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box",
+                "output": "output/{{ replace_all \"-centos6\" \"\" build_name }}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lavabit/info.json"
                 ],
@@ -1020,7 +1020,7 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box.sha256",
+                "output": "output/{{ replace_all \"-centos6\" \"\" build_name }}-{{user `box_version`}}.box.sha256",
                 "only": [
                     "magma-centos6-hyperv"
                 ]
@@ -1032,7 +1032,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-default.rb",
-                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box",
+                "output": "output/{{ replace_all \"centos6\" \"centos\" build_name }}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lavabit/info.json"
                 ],
@@ -1046,7 +1046,7 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box.sha256",
+                "output": "output/{{ replace_all \"centos6\" \"centos\" build_name }}-{{user `box_version`}}.box.sha256",
                 "only": [
                     "magma-centos6-hyperv"
                 ]
@@ -1058,7 +1058,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-default.rb",
-                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box",
+                "output": "output/{{ replace_all \"ubuntu1604\" \"ubuntu\" build_name }}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lavabit/info.json"
                 ],
@@ -1072,7 +1072,7 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box.sha256",
+                "output": "output/{{ replace_all \"ubuntu1604\" \"ubuntu\" build_name }}-{{user `box_version`}}.box.sha256",
                 "only": [
                     "magma-ubuntu1604-hyperv"
                 ]

@@ -2,6 +2,7 @@
 
 retry() {
   local COUNT=1
+  local DELAY=0
   local RESULT=0
   while [[ "${COUNT}" -le 10 ]]; do
     [[ "${RESULT}" -ne 0 ]] && {
@@ -33,10 +34,13 @@ retry pacman --sync --noconfirm --refresh
 retry pacman --sync --noconfirm --refresh --sysupgrade
 
 # Useful tools.
-retry pacman --sync --noconfirm --refresh vim curl wget sysstat lsof psmisc man-db mlocate net-tools lm_sensors vim-runtime
+retry pacman --sync --noconfirm --refresh vim curl wget sysstat lsof psmisc man-db mlocate net-tools haveged lm_sensors vim-runtime bash-completion
 
 # Start the services we just added so the system will track its own performance.
 systemctl enable sysstat.service && systemctl start sysstat.service
+
+# Enable the entropy daemon.
+systemctl enable haveged
 
 # Ensure the daily update timers are enabled.
 systemctl enable man-db.timer

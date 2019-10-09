@@ -216,7 +216,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/lineageos.rb",
-                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box",
+                "output": "output/{{ replace_all \"lineage\" \"lineageos\" build_name }}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lineage/info.json"
                 ]
@@ -227,7 +227,7 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box.sha256"
+                "output": "output/{{ replace_all \"lineage\" \"lineageos\" build_name }}-{{user `box_version`}}.box.sha256"
             }
         ]
     ]

@@ -1913,7 +1913,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "9800s",
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "shutdown_command": "systemctl poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
       "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",

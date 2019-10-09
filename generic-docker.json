@@ -773,6 +773,23 @@
                 "login": "false",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/roboxes/info.json"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
             }
         ],
         [
@@ -808,6 +825,23 @@
                 "login": "false",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/generic/info.json"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
             }
         ]
     ]
