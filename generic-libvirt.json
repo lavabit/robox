@@ -1763,6 +1763,8 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "30s",
       "boot_command": [
+        "<tab><spacebar>",
+        "net.ifnames=0 biosdevname=0",
         "<enter><wait10><wait10><wait10><wait10>",
         "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.vagrant{,.chroot}.sh'<enter><wait>",
         "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"

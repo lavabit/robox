@@ -30,15 +30,24 @@ Name=eth0
 DHCP=ipv4
 EOF
 
+sed -i -e "s/#DNS=.*/DNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
 sed -i -e "s/#FallbackDNS=.*/FallbackDNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
 sed -i -e "s/#Domains=.*/Domains=/g" /etc/systemd/resolved.conf
 sed -i -e "s/#DNSSEC=.*/DNSSEC=yes/g" /etc/systemd/resolved.conf
 sed -i -e "s/#Cache=.*/Cache=yes/g" /etc/systemd/resolved.conf
 sed -i -e "s/#DNSStubListener=.*/DNSStubListener=yes/g" /etc/systemd/resolved.conf
 
+cat <<-EOF > /etc/resolv.conf
+nameserver 4.2.2.1
+nameserver 4.2.2.2
+nameserver 208.67.220.220
+EOF
+
 systemctl enable sshd
-systemctl enable systemd-networkd
-systemctl enable systemd-resolved
+systemctl enable dhcpcd.service
+
+# systemctl enable systemd-networkd
+# systemctl enable systemd-resolved
 
 # Ensure the network is always eth0.
 sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0 biosdevname=0 elevator=noop vga=792"/g' /etc/default/grub
