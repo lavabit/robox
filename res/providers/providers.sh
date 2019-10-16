@@ -92,14 +92,14 @@ function provide-virtmanager() {
 
 function provide-vmware() {
 
-  if [ ! -f $BASE/VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle ]; then
+  if [ ! -f $BASE/VMware-Workstation-Full-15.5.0-14665864.x86_64.bundle ]; then
       tput setaf 1; printf "\nError. The VMware install bundle is missing.\n\n"; tput sgr0
       exit 2
   fi
 
   # VMware Workstation Install
-  chmod +x VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle
-  bash VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle --console \
+  chmod +x VMware-Workstation-Full-15.5.0-14665864.x86_64.bundle
+  bash VMware-Workstation-Full-15.5.0-14665864.x86_64.bundle --console \
     --required --eulas-agreed --set-setting vmware-workstation serialNumber "${VMWARE_WORKSTATION}"
 
   # Disable VMWare Automatic Startup
