@@ -1,6 +1,6 @@
 [virtualbox]
 name=Oracle Linux / RHEL / CentOS-$releasever / $basearch - VirtualBox
-baseurl=http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch
+baseurl=https://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch
 enabled=0
 gpgcheck=1
 repo_gpgcheck=1

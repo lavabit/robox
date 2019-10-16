@@ -133,7 +133,7 @@ function provide-vbox() {
     # Determine the download URL.
     VBOXVER=`VBoxManage --version | awk -F'r' '{print $1}'`
     VBOXEXT="Oracle_VM_VirtualBox_Extension_Pack-${VBOXVER}.vbox-extpack"
-    VBOXEXTURL="http://download.virtualbox.org/virtualbox/${VBOXVER}/${VBOXEXT}"
+    VBOXEXTURL="https://download.virtualbox.org/virtualbox/${VBOXVER}/${VBOXEXT}"
 
     # Download the extension pack.
     curl "${VBOXEXTURL}" > "${VBOXEXT}"
