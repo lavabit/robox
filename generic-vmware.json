@@ -1396,7 +1396,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1437,7 +1440,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1485,6 +1491,7 @@
       "cpus": 2,
       "memory": 2048,
       "vmx_data": {
+        "virtualHW.version": "12",
         "softpoweroff": "FALSE",
         "powertype.poweroff": "hard",
         "powertype.poweron": "hard",
@@ -1492,6 +1499,7 @@
         "powertype.suspend": "hard"
       },
       "vmx_data_post": {
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1504,8 +1512,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-vanilla-3.5.3-x86_64.iso",
-      "iso_checksum": "3cca39f256f6a11d89a1c89a54982e9806d3df0fd785dc66ff26d3c670c3d648",
+      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-virt-3.5.3-x86_64.iso",
+      "iso_checksum": "580bc6379e4b246d24b5e32d2637319a60ac953279b3e0df523222ef561bf2f5",
       "iso_checksum_type": "sha256",
       "skip_compaction": false,
       "ssh_username": "root",
@@ -1539,6 +1547,7 @@
       "cpus": 2,
       "memory": 2048,
       "vmx_data": {
+        "virtualHW.version": "12",
         "softpoweroff": "FALSE",
         "powertype.poweroff": "hard",
         "powertype.poweron": "hard",
@@ -1546,6 +1555,7 @@
         "powertype.suspend": "hard"
       },
       "vmx_data_post": {
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1593,6 +1603,7 @@
       "cpus": 2,
       "memory": 2048,
       "vmx_data": {
+        "virtualHW.version": "12",
         "softpoweroff": "FALSE",
         "powertype.poweroff": "hard",
         "powertype.poweron": "hard",
@@ -1600,6 +1611,7 @@
         "powertype.suspend": "hard"
       },
       "vmx_data_post": {
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1647,6 +1659,7 @@
       "cpus": 2,
       "memory": 2048,
       "vmx_data": {
+        "virtualHW.version": "12",
         "softpoweroff": "FALSE",
         "powertype.poweroff": "hard",
         "powertype.poweron": "hard",
@@ -1654,6 +1667,7 @@
         "powertype.suspend": "hard"
       },
       "vmx_data_post": {
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1691,7 +1705,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1729,7 +1746,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1767,7 +1787,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1809,7 +1832,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1851,7 +1877,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1893,7 +1922,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1935,7 +1967,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -1977,7 +2012,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2019,7 +2057,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2060,7 +2101,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2101,7 +2145,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2155,7 +2202,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2201,7 +2251,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2247,7 +2300,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2293,7 +2349,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2351,7 +2410,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2409,7 +2471,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2455,9 +2520,11 @@
       "cpus": 4,
       "memory": 2048,
       "vmx_data": {
+        "virtualHW.version": "12",
         "vmci0.present": "TRUE"
       },
       "vmx_data_post": {
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2509,7 +2576,11 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
       "vmx_data_post": {
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2551,7 +2622,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2603,7 +2677,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2641,7 +2718,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2680,7 +2760,10 @@
       "disk_adapter_type": "sata",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2732,7 +2815,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2796,7 +2882,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2877,7 +2966,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2929,7 +3021,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -2978,6 +3073,7 @@
       "cpus": 2,
       "memory": 2048,
       "vmx_data": {
+        "virtualHW.version": "12",
         "softpoweroff": "FALSE",
         "powertype.poweroff": "hard",
         "powertype.poweron": "hard",
@@ -2985,6 +3081,7 @@
         "powertype.suspend": "hard"
       },
       "vmx_data_post": {
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -3025,7 +3122,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -3083,7 +3183,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -3125,7 +3228,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -3164,7 +3270,10 @@
       "disk_adapter_type": "sata",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -3213,6 +3322,7 @@
       "cpus": 2,
       "memory": 2048,
       "vmx_data": {
+        "virtualHW.version": "12",
         "softpoweroff": "FALSE",
         "powertype.poweroff": "hard",
         "powertype.poweron": "hard",
@@ -3220,6 +3330,7 @@
         "powertype.suspend": "hard"
       },
       "vmx_data_post": {
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -3260,7 +3371,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
@@ -3298,7 +3412,10 @@
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
-      "vmx_data_post": {
+      "vmx_data": {
+        "virtualHW.version": "12",
+      },
+        "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
