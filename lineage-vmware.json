@@ -112,9 +112,7 @@
             "disk_type_id": "0",
             "cpus": 4,
             "memory": 2048,
-            "vmx_data": {
-              "virtualHW.version": "12"
-            },
+            "version": "12",
             "vmx_data_post": {
               "virtualHW.version": "12",
               "cleanShutdown": "TRUE",
@@ -170,9 +168,7 @@
             "disk_type_id": "0",
             "cpus": 4,
             "memory": 2048,
-            "vmx_data": {
-              "virtualHW.version": "12"
-            },
+            "version": "12",
             "vmx_data_post": {
               "virtualHW.version": "12",
               "cleanShutdown": "TRUE",
