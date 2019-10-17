@@ -113,7 +113,7 @@
             "cpus": 4,
             "memory": 2048,
             "vmx_data": {
-              "virtualHW.version": "12",
+              "virtualHW.version": "12"
             },
             "vmx_data_post": {
               "virtualHW.version": "12",
@@ -171,7 +171,7 @@
             "cpus": 4,
             "memory": 2048,
             "vmx_data": {
-              "virtualHW.version": "12",
+              "virtualHW.version": "12"
             },
             "vmx_data_post": {
               "virtualHW.version": "12",
