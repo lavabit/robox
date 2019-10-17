@@ -1399,6 +1399,7 @@
       "vmx_data": {
         "virtualHW.version": "12",
       },
+      {
         "virtualHW.version": "12",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
