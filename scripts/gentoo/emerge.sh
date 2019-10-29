@@ -27,8 +27,9 @@ printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
 
 # Configure the lm_sensors.conf file.
 /usr/sbin/sensors-detect --auto
+
+# Enable/apply configuration file updates.
 etc-update --automode -5
-/etc/init.d/modules-load restart
 
 # Start the syslog service.
 rc-update add rsyslog default && rc-service rsyslog start
@@ -36,8 +37,8 @@ rc-update add rsyslog default && rc-service rsyslog start
 # Start the services we just added so the system will track its own performance.
 rc-update add sysstat default && rc-service sysstat start
 
-# This will ensure sensors get initialized during the boot process.
-rc-update add lm_sensors default && rc-service lm_sensors start
+# If the sensors service starts properly, we add it to the default runlevel so it gets initialized during the boot process.
+(rc-service lm_sensors start && rc-update add lm_sensors default) || rc-update delete lm_sensors default
 
 # Create an initial mlocate database.
 updatedb
