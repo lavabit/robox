@@ -902,7 +902,7 @@
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
             "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20191020T214501Z.iso",
-            "iso_checksum": "2da82ccf6622e7c2b902b76f771b06689a23aa4b8e049743b2fe06225b79e940",
+            "iso_checksum": "f4c306773f08e9349883227888d306c03acf1d0de98e6997871c63264983a132",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
