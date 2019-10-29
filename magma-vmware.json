@@ -878,7 +878,9 @@
             "boot_command": [
                 "gentoo-nofb<enter>",
                 "<wait10><enter>",
-                "<wait10><wait10><wait10><wait10>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
                 "passwd root<enter><wait>",
                 "vagrant<enter><wait>",
                 "vagrant<enter><wait>",
