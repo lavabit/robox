@@ -14,7 +14,7 @@ printf "baseurl=file:///media/\n" >> /etc/yum.repos.d/media.repo
 rpm --import /media/RPM-GPG-KEY-redhat-release
 
 # Setup the EPEL repo.
-base64 --decode > epel-release-6.8.noarch.rpm <<-EOF
+base64 --decode > epel-release-6-8.noarch.rpm <<-EOF
 7avu2wMAAAAA/2VwZWwtcmVsZWFzZS02LTgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAABAAUAAAAAAAAAAAAAAAAAAAAAjq3oAQAAAAAAAAAHAAAEhAAA
 AD4AAAAHAAAEdAAAABAAAAEMAAAABwAAAAAAAAIYAAABDQAAAAYAAAIYAAAAAQAAA+gAAAAEAAAC
@@ -274,10 +274,10 @@ AAAKWVo=
 EOF
 
 # Install the EPEL release RPM.
-yum --assumeyes install epel-release-6.8.noarch.rpm
+yum --assumeyes install epel-release-6-8.noarch.rpm
 
 # Delete the RPM file.
-rm --force epel-release-6.8.noarch.rpm
+rm --force epel-release-6-8.noarch.rpm
 
 # Setup the EPEL release signing key.
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
