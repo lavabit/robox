@@ -658,6 +658,22 @@
     },
     {
       "type": "vmware-iso",
+      "name": "ubuntu1910",
+      "output_directory": "output/ubuntu1910",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/19.10/release/ubuntu-19.10-server-amd64.iso",
+      "iso_checksum": "921fd8b271c04aa86a321cc35b40e677f9b85f7903bf2204efb2389b0f0a64c1",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+    {
+      "type": "vmware-iso",
       "name": "openbsd6",
       "output_directory": "output/openbsd6",
       "headless": true,
