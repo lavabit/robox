@@ -1367,6 +1367,49 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora31/fixdns.sh",
+        "scripts/fedora31/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora31-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora31/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora31-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora31/kernel.sh",
+        "scripts/fedora31/vga.sh",
+        "scripts/fedora31/virtualbox.sh",
+        "scripts/fedora31/parallels.sh",
+        "scripts/fedora31/vmware.sh",
+        "scripts/fedora31/qemu.sh",
+        "scripts/fedora31/vagrant.sh",
+        "scripts/fedora31/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora31-libvirt"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -3229,6 +3272,47 @@
       "headless": true,
       "iso_url": "https://mirrors.edge.kernel.org/centos/8.0.1905/isos/x86_64/CentOS-8-x86_64-1905-boot.iso",
       "iso_checksum": "a7993a0d4b7fef2433e0d4f53530b63c715d3aadbe91f152ee5c3621139a2cbc",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-fedora31-libvirt",
+      "vm_name": "generic-fedora31-libvirt",
+      "output_directory": "output/generic-fedora31-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora31.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 32768,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "qemuargs": [
+        [
+          "-drive",
+          "if=none,file=output/generic-fedora31-libvirt/generic-fedora31-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Server/x86_64/iso/Fedora-Server-netinst-x86_64-31-1.9.iso",
+      "iso_checksum": "5be8debd3e8fb4e86b9fbf67c7eb66ea598d2b7ad0c7ba8d505ce88067b43444",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",

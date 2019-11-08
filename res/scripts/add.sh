@@ -114,12 +114,12 @@ rename "http/generic.${1}" "http/generic.${2}" http/generic.${1}.* && git checko
 find "http/" -name "generic.${2}*" -type f -exec sed --in-place "s/$1/$2/g" {} \;
 
 # Credentials and tokens.
-if [ ! -f $BASE/.credentialsrc ]; then
+if [ ! -f .credentialsrc ]; then
 tput setaf 1; printf "\n\nThe credentials file is missing, so the validation is being skipped.\n\n\n"; tput sgr0
 else
 
   # Import the credentials.
-  source $BASE/.credentialsrc
+  source .credentialsrc
 
   # We need to specify a version, but since we aren't building at this point, any value should work.
   export VERSION="1.0.0"
