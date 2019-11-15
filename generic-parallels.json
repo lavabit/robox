@@ -2963,6 +2963,12 @@
           "{{.Name}}",
           "--faster-vm",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--efi-boot",
+          "on"
         ]
       ],
       "hard_drive_interface": "ide",
