@@ -547,7 +547,7 @@
             "memory": 1024,
             "cpus": 4,
             "http_directory": "http",
-            "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
+            "iso_url": "https://sjc.edge.kernel.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
             "iso_checksum": "b5936e27487e605ea3cbf040d444505ea7fd735021258d7b119faaa9b4b5b083",
             "iso_checksum_type": "sha256",
             "communicator": "ssh",
