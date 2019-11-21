@@ -2788,6 +2788,8 @@
         ]
       ],
       "guest_os_type": "RedHat_64",
+      "hard_drive_interface": "sata",
+      "sata_port_count": 6,
       "http_directory": "http",
       "headless": true,
       "vrdp_bind_address": "127.0.0.1",
@@ -2796,6 +2798,7 @@
       "iso_url": "https://archive.org/download/rhel-8.1-x86_64-dvd/rhel-8.1-x86_64-dvd.iso",
       "iso_checksum": "2323ad44d75df1a1e83048a34e196ddfedcd6c0f6c49ea59bf08095e3bb9ef65",
       "iso_checksum_type": "sha256",
+      "iso_interface": "sata",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
