@@ -20,7 +20,7 @@ Vagrant.configure(2) do |config|
   # SHELL
 
   # Adding a second CPU and increasing the RAM to 2048MB will speed
-  # things up considerably should you decide to do anythinc with this box.
+  # things up considerably should you decide to do anything with this box.
   config.vm.provider :hyperv do |v, override|
     v.maxmemory = 2048
     v.memory = 2048
@@ -46,6 +46,8 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--memory", 2048]
     v.customize ["modifyvm", :id, "--vram", 256]
     v.customize ["modifyvm", :id, "--cpus", 2]
+    # packer creates an IDE controller which isn't used.
+    v.customize ["storagectl", :id, "--name", "IDE Controller", "--remove"]
     v.gui = false
   end
 
