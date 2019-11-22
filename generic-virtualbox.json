@@ -2785,6 +2785,13 @@
           "{{.Name}}",
           "--vram",
           "64"
+        ],
+        [
+          "storagectl",
+          "{{.Name}}",
+          "--name",
+          "IDE Controller",
+          "--remove"
         ]
       ],
       "guest_os_type": "RedHat_64",
