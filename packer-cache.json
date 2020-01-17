@@ -674,6 +674,22 @@
     },
     {
       "type": "vmware-iso",
+      "name": "alpine311",
+      "output_directory": "output/alpine311",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.11/releases/x86_64/alpine-virt-3.11.3-x86_64.iso",
+      "iso_checksum": "bf82e95b3fa0a4e35391202b60631bb687c935688bc09d4452159d92bf3d0172",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+    {
+      "type": "vmware-iso",
       "name": "openbsd6",
       "output_directory": "output/openbsd6",
       "headless": true,
