@@ -4,8 +4,6 @@
 Vagrant.configure(2) do |config|
 
   config.vm.boot_timeout = 1800
-  # config.vm.box = "roboxes/bazinga"
-  # config.vm.hostname = "bazinga.roboxes"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.box_check_update = true
