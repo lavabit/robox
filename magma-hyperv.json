@@ -9,7 +9,7 @@
                 "scripts/alpine36/network.sh",
                 "scripts/alpine36/apk.sh"
             ],
-            "execute_command": "/bin/sh '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/sh '{{.Path}}'",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -292,7 +292,7 @@
             "type": "shell",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
-            "execute_command": "/usr/local/bin/bash {{ .Path }}",
+            "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
                 "magma-freebsd11-hyperv"
             ]
@@ -304,7 +304,7 @@
             "type": "shell",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
-            "execute_command": "/bin/sh {{ .Path }}",
+            "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
             "only": [
                 "magma-openbsd6-hyperv"
             ]
@@ -325,7 +325,7 @@
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
-            "execute_command": "/usr/local/bin/bash {{ .Path }}",
+            "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
                 "magma-openbsd6-hyperv"
             ]
