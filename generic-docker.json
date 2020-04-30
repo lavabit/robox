@@ -2,9 +2,9 @@
 {
     "variables": {
         "box_version": "{{env `VERSION`}}",
-        "docker-user": "{{env `QUAY_USER`}}",
+        "quay-user": "{{env `QUAY_USER`}}",
         "docker-user": "{{env `DOCKER_USER`}}",
-        "docker-password": "{{env `QUAY_PASSWORD`}}",
+        "quay-password": "{{env `QUAY_PASSWORD`}}",
         "docker-password": "{{env `DOCKER_PASSWORD`}}"
     },
     "provisioners": [
