@@ -9,7 +9,7 @@
                 "scripts/alpine36/network.sh",
                 "scripts/alpine36/apk.sh"
             ],
-            "execute_command": "/bin/sh '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/sh '{{.Path}}'",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -292,7 +292,7 @@
             "type": "shell",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
-            "execute_command": "/usr/local/bin/bash {{ .Path }}",
+            "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
                 "magma-freebsd11-hyperv"
             ]
@@ -304,7 +304,7 @@
             "type": "shell",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
-            "execute_command": "/bin/sh {{ .Path }}",
+            "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
             "only": [
                 "magma-openbsd6-hyperv"
             ]
@@ -325,7 +325,7 @@
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
-            "execute_command": "/usr/local/bin/bash {{ .Path }}",
+            "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
                 "magma-openbsd6-hyperv"
             ]
@@ -504,8 +504,8 @@
             "memory": 1024,
             "cpus": 4,
             "http_directory": "http",
-            "iso_url": "https://mirrors.edge.kernel.org/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso",
-            "iso_checksum": "9a2c47d97b9975452f7d582264e9fc16d108ed8252ac6816239a3b58cef5c53d",
+            "iso_url": "https://mirrors.edge.kernel.org/centos/7.8.2003/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso",
+            "iso_checksum": "659691c28a0e672558b003d223f83938f254b39875ee7559d1a4a14c79173193",
             "iso_checksum_type": "sha256",
             "communicator": "ssh",
             "ssh_username": "root",
@@ -584,8 +584,8 @@
             "memory": 1024,
             "cpus": 4,
             "http_directory": "http",
-            "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2019.11.01-x86_64.iso",
-            "iso_checksum": "dcb5853f66fb2513722f84f8f0d14b650ed64d2b7d2fe1b9637d374e4d14cbf7",
+            "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2020.04.01-x86_64.iso",
+            "iso_checksum": "836ff1a2d4226452d0ab4610d947c0db3e981abd4ee831c4c785a830c8893005",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -818,8 +818,8 @@
             "memory": 1024,
             "cpus": 4,
             "http_directory": "http",
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20191124T214502Z.iso",
-            "iso_checksum": "ba551bd1735c10270805cab8c8d2e89a3bc127dc5f6abb9754c0a9689b79a8ee",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20200419T214502Z.iso",
+            "iso_checksum": "7679cad9b3ac2ff700a17b45e0b4e0925cd9d619510291773fcef264b17d134c",
             "iso_checksum_type": "sha256",
             "ssh_username": "root",
             "ssh_password": "vagrant",
