@@ -50,7 +50,6 @@ Vagrant.configure(2) do |config|
   ["vmware_fusion", "vmware_workstation", "vmware_desktop"].each do |provider|
     config.vm.provider provider do |v, override|
       v.whitelist_verified = true
-      v.ssh_info_public = true
       v.gui = false
       v.vmx["cpuid.coresPerSocket"] = "1"
       v.vmx["memsize"] = "2048"
