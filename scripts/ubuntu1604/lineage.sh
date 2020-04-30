@@ -33,6 +33,13 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
+# Configure Python 3.6 as the default interpreter.
+retry apt-get --assume-yes install python3.6
+
+# Use an alias to force the use of Python 3 over the system default.
+printf "\nalias python='/usr/bin/python3'\n" >> $HOME/.bashrc
+printf "\nalias python='/usr/bin/python3'\n" >> $HOME/.bash_aliases
+
 # Install developer tools.
 retry apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pciutils usbutils
 
