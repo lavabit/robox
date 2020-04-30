@@ -73,4 +73,4 @@ Bitcoin
 Bitcoin Cash
 qqxyedtn68jg84w4mkd3vsw2nu6pgkydnudza0ed0m
 
-[Robxes](https://roboxes.org) is maintained by Ladar Levison, with infrastructure provided by [Hacking and Coffee LLC](https://hackingand.coffee), and [Lavabit LLC](https://lavabit.com).
+[Roboxes](https://roboxes.org) is maintained by Ladar Levison, with infrastructure provided by [Hacking and Coffee LLC](https://hackingand.coffee), and [Lavabit LLC](https://lavabit.com).
