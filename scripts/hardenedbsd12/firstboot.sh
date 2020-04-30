@@ -33,8 +33,8 @@ export ASSUME_ALWAYS_YES=yes
 
 retry pkg-static install -y firstboot-pkgs firstboot-growfs
 
-sysrc firstboot-growfs=YES
-sysrc firstboot_pkgs=YES
+sysrc firstboot_growfs_enable=YES
+sysrc firstboot_pkgs_enable=YES
 
 # Tell the system the next boot will be the first boot.
 touch /firstboot
