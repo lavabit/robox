@@ -1442,6 +1442,41 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine311/network.sh",
+        "scripts/alpine311/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine311-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine311/hostname.sh",
+        "scripts/alpine311/lsb.sh",
+        "scripts/alpine311/floppy.sh",
+        "scripts/alpine311/vagrant.sh",
+        "scripts/alpine311/sshd.sh",
+        "scripts/alpine311/virtualbox.sh",
+        "scripts/alpine311/parallels.sh",
+        "scripts/alpine311/vmware.sh",
+        "scripts/alpine311/qemu.sh",
+        "scripts/alpine311/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine311-parallels"
+      ]
+    },
+    {
       "scripts": [
         "scripts/ubuntu2004/apt.sh",
         "scripts/ubuntu2004/network.sh"
@@ -2015,8 +2050,8 @@
       "guest_os_type": "linux",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2019.12.01-x86_64.iso",
-      "iso_checksum": "f0dd37a7ed92ac0bc07ce0bd0543c1eb49b2fbd2f2627c661d3b575acba1483a",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2020.02.01-x86_64.iso",
+      "iso_checksum": "5ff5ac28624865932fd09577314175d5180a1a7666b726f8bcda67b78cbc9b40",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2384,8 +2419,8 @@
       "guest_os_type": "debian",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.11.0/amd64/iso-cd/debian-9.11.0-amd64-netinst.iso",
-      "iso_checksum": "9ae83aa5a732151ef2dc84538d1d4ffd6374df47cc01681da6348f9ec5a45bd4",
+      "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.12.0/amd64/iso-cd/debian-9.12.0-amd64-netinst.iso",
+      "iso_checksum": "3c47f64693435b0b42b6ef59624edbffa7c4004317d9f9a3f04ecb6a4e30f191",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2816,8 +2851,8 @@
       "guest_os_type": "linux",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20191204T214502Z.iso",
-      "iso_checksum": "54208d70a0e04205e8da019517d14c00fd421bac3783b5ff7eb639ecc7967f87",
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/20200209T214502Z/install-amd64-minimal-20200209T214502Z.iso",
+      "iso_checksum": "dc287a5ec6aee8429c1121064e67eb86c459d28c84c8de7a7bc35ef2d94b7732",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -3526,8 +3561,8 @@
       "guest_os_type": "debian",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://gensho.ftp.acc.umu.se/debian-cd/current/amd64/iso-cd/debian-10.2.0-amd64-netinst.iso",
-      "iso_checksum": "e43fef979352df15056ac512ad96a07b515cb8789bf0bfd86f99ed0404f885f5",
+      "iso_url": "https://gensho.ftp.acc.umu.se/debian-cd/current/amd64/iso-cd/debian-10.3.0-amd64-netinst.iso",
+      "iso_checksum": "6a901b5abe43d88b39d627e1339d15507cc38f980036b928f835e0f0e957d3d8",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -3856,8 +3891,8 @@
       "hard_drive_interface": "ide",
       "guest_os_type": "centos",
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/centos/8.0.1905/isos/x86_64/CentOS-8-x86_64-1905-boot.iso",
-      "iso_checksum": "a7993a0d4b7fef2433e0d4f53530b63c715d3aadbe91f152ee5c3621139a2cbc",
+      "iso_url": "https://mirrors.edge.kernel.org/centos/8.1.1911/isos/x86_64/CentOS-8.1.1911-x86_64-boot.iso",
+      "iso_checksum": "7fea13202bf2f26989df4175aace8fdc16e1137f7961c33512cbfad844008948",
       "iso_checksum_type": "sha256",
       "skip_compaction": false,
       "ssh_username": "root",
@@ -3987,6 +4022,65 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-alpine311-parallels",
+      "vm_name": "generic-alpine311-parallels",
+      "output_directory": "output/generic-alpine311-parallels",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine311.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine311.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 1024,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "linux",
+      "http_directory": "http",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.11/releases/x86_64/alpine-virt-3.11.3-x86_64.iso",
+      "iso_checksum": "bf82e95b3fa0a4e35391202b60631bb687c935688bc09d4452159d92bf3d0172",
+      "iso_checksum_type": "sha256",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "7200s",
+      "shutdown_command": "/sbin/poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
       "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
