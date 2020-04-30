@@ -3281,7 +3281,7 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/19.04/release/ubuntu-19.04-server-amd64.iso",
+      "iso_url": "http://old-releases.ubuntu.com/releases/19.04/ubuntu-19.04-server-amd64.iso",
       "iso_checksum": "7e8a0d07522f591dfee9bc9fcd7c05466763161e6cb0117906655bce1750b2fa",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
