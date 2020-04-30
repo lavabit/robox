@@ -1479,6 +1479,38 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/ubuntu2004/apt.sh",
+        "scripts/ubuntu2004/network.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2004-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/ubuntu2004/floppy.sh",
+        "scripts/ubuntu2004/vagrant.sh",
+        "scripts/ubuntu2004/motd.sh",
+        "scripts/ubuntu2004/fixtty.sh",
+        "scripts/ubuntu2004/virtualbox.sh",
+        "scripts/ubuntu2004/parallels.sh",
+        "scripts/ubuntu2004/vmware.sh",
+        "scripts/ubuntu2004/qemu.sh",
+        "scripts/ubuntu2004/cleanup.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2004-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -3277,6 +3309,58 @@
       "ssh_port": 22,
       "ssh_timeout": "7200s",
       "shutdown_command": "/sbin/poweroff",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": false,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-ubuntu2004-hyperv",
+      "vm_name": "generic-ubuntu2004-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-ubuntu2004-hyperv",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<esc><f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "console-setup/ask_detect=false ",
+        "debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2004.vagrant.cfg<wait> ",
+        " --- <enter>"
+      ],
+      "disk_size": 32768,
+      "memory": 1024,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/ubuntu-20.04-legacy-server-amd64.iso",
+      "iso_checksum": "36f15879bd9dfd061cd588620a164a82972663fdd148cce1f70d57d314c21b73",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
       "communicator": "ssh",
