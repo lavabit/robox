@@ -67,3 +67,6 @@ rm -rf /root/linux.iso; error
 
 # Autostart the haveged daemon.
 #systemctl enable haveged.service
+
+# Fix the SSH NAT issue on VMWare systems.
+printf "\nIPQoS lowdelay throughput\n" >> /etc/ssh/sshd_config

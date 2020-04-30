@@ -126,3 +126,6 @@ rc-update add haveged default && rc-service haveged start
 
 # When we're done delete the tools ISO.
 rm -rf /root/linux.iso
+
+# Fix the SSH NAT issue on VMWare systems.
+printf "\nIPQoS lowdelay throughput\n" >> /etc/ssh/sshd_config

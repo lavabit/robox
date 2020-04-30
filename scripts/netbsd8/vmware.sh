@@ -41,3 +41,6 @@ if [[ `/usr/pkg/sbin/dmidecode -s system-product-name` != "VMware Virtual Platfo
 fi
 
 rm -f /root/freebsd.iso
+
+# Fix the SSH NAT issue on VMWare systems.
+printf "\nIPQoS lowdelay throughput\n" >> /etc/ssh/sshd_config
