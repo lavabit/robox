@@ -1442,6 +1442,41 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine311/network.sh",
+        "scripts/alpine311/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine311-vmware"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine311/hostname.sh",
+        "scripts/alpine311/lsb.sh",
+        "scripts/alpine311/floppy.sh",
+        "scripts/alpine311/vagrant.sh",
+        "scripts/alpine311/sshd.sh",
+        "scripts/alpine311/virtualbox.sh",
+        "scripts/alpine311/parallels.sh",
+        "scripts/alpine311/vmware.sh",
+        "scripts/alpine311/qemu.sh",
+        "scripts/alpine311/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine311-vmware"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -3583,6 +3618,63 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-alpine311-vmware",
+      "vm_name": "generic-alpine311-vmware",
+      "vmdk_name": "generic-alpine311-vmware",
+      "output_directory": "output/generic-alpine311-vmware",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine311.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine311.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "disk_size": 32768,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data": {
+        "softpoweroff": "FALSE",
+        "powertype.poweroff": "hard",
+        "powertype.poweron": "hard",
+        "powertype.reset": "hard",
+        "powertype.suspend": "hard"
+      },
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "otherlinux-64",
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.11/releases/x86_64/alpine-virt-3.11.3-x86_64.iso",
+      "iso_checksum": "bf82e95b3fa0a4e35391202b60631bb687c935688bc09d4452159d92bf3d0172",
+      "iso_checksum_type": "sha256",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
       "tools_upload_flavor": "linux"
     }
   ],
