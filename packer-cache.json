@@ -306,6 +306,22 @@
     },
     {
       "type": "vmware-iso",
+      "name": "debian9",
+      "output_directory": "output/debian9",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.12.0/i386/iso-cd/debian-9.12.0-i386-netinst.iso",
+      "iso_checksum": "7b5f1480c45bb7e70ddac7daf0b23f7ae5b97b4b12c6e835b285460f41a50572",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+    {
+      "type": "vmware-iso",
       "name": "ubuntu1604",
       "output_directory": "output/ubuntu1604",
       "headless": true,
