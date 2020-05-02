@@ -306,8 +306,8 @@
     },
     {
       "type": "vmware-iso",
-      "name": "debian9",
-      "output_directory": "output/debian9",
+      "name": "debian9-x32",
+      "output_directory": "output/debian9-x32",
       "headless": true,
       "disk_size": 1,
       "boot_wait": "5s",
