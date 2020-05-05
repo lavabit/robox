@@ -3633,10 +3633,9 @@
       "boot_wait": "20s",
       "boot_command": [
         "<tab> ",
-        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora32.vagrant.ks ",
-        "biosdevname=0 ",
-        "net.ifnames=0 ",
-        "<enter>"
+        "<wait>text net.ifnames=0 ",
+        "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora32.vagrant.ks ",
+        "<wait><enter>"
       ],
       "format": "qcow2",
       "disk_size": 32768,
