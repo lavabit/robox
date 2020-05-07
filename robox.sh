@@ -7,7 +7,7 @@
 
 # Version Information
 export VERSION="3.0.2"
-export AGENT="Vagrant/2.2.5 (+https://www.vagrantup.com; ruby2.4.6)"
+export AGENT="Vagrant/2.2.9 (+https://www.vagrantup.com; ruby2.6.6)"
 
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"

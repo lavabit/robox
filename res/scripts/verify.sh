@@ -57,7 +57,7 @@ if [ ! -f /usr/bin/sha256sum ]; then
   exit 1
 fi
 
-AGENT="Vagrant/2.2.5 (+https://www.vagrantup.com; ruby2.4.6)"
+AGENT="Vagrant/2.2.9 (+https://www.vagrantup.com; ruby2.6.6)"
 
 FILENAME=`basename "$1"`
 FILEPATH=`realpath "$1"`
@@ -151,7 +151,7 @@ function download() {
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
 
-    # Retryfailed downloads, just in case the error was ephemeral.
+    # Retry failed downloads, just in case the error was ephemeral.
     HASH=`curl --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box | sha256sum`
 
     echo "$HASH" | grep --silent "$5"
