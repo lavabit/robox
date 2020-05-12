@@ -101,7 +101,7 @@ if [ "$PROVIDER" == "vmware" ]; then
   PROVIDER="vmware_desktop"
 fi
 
-# Read the hash in the checksum file.
+# Read the hash in from the checksum file.
 HASH="`awk -F' ' '{print $1}' $FILEPATH`"
 
 # Verify the values were all parsed properly.

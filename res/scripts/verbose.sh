@@ -110,6 +110,25 @@ if [ "$PROVIDER" == "vmware" ]; then
   PROVIDER="vmware_desktop"
 fi
 
+# Modify the org/box for 32 bit variants.
+if [[ "$BOX" =~ ^.*-x32$ ]]; then
+  ORG="${ORG}-x32"
+  BOX="`echo $BOX | sed s/-x32//g`"
+fi
+
+# Find the box checksum.
+if [ -f $FILEPATH.sha256 ]; then
+
+  # Read the hash in from the checksum file.
+  HASH="`awk -F' ' '{print $1}' $FILEPATH.sha256`"
+
+else
+
+  # Generate the hash using the box file.
+  HASH="`sha256sum $FILEPATH | awk -F' ' '{print $1}'`"
+
+fi
+
 # Verify the values were all parsed properly.
 if [ "$ORG" == "" ]; then
   tput setaf 1; printf "\n\nThe organization couldn't be parsed from the file name.\n\n\n"; tput sgr0
@@ -128,6 +147,11 @@ fi
 
 if [ "$VERSION" == "" ]; then
   tput setaf 1; printf "\n\nThe version couldn't be parsed from the file name.\n\n\n"; tput sgr0
+  exit 1
+fi
+
+if [ "$HASH" == "" ]; then
+  tput setaf 1; printf "\n\nThe hash couldn't be calculated properly.\n\n\n"; tput sgr0
   exit 1
 fi
 
@@ -201,7 +225,7 @@ tput setaf 5; printf "Create the provider.\n"; tput sgr0
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/providers \
-  --data "{ \"provider\": { \"name\": \"$PROVIDER\" } }" \
+  --data "{ \"provider\": { \"name\": \"$PROVIDER\", \"checksum\": \"$HASH\", \"checksum_type\": \"SHA256\" } }" \
   | jq --color-output) || (tput setaf 1; printf "Unable to create the box provider. { $ORG $BOX $PROVIDER $VERSION }\n"; tput sgr0; exit)
 
 printf "\n\n"
@@ -238,18 +262,16 @@ printf " Done.\n\n"
 
 tput setaf 5; printf "Perform the box upload.\n"; tput sgr0
 retry ${CURL} --tlsv1.2 \
-`# --silent ` \
-`# --output "/dev/null"` \
+  --output '/dev/null' \
   --show-error \
   --request PUT \
   --max-time 7200 \
   --expect100-timeout 7200 \
   --header "Connection: keep-alive" \
-  --write-out "FILE: $FILENAME\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n\n" \
   --upload-file "$FILEPATH" "$UPLOAD_PATH"
 
 # Give the upload time to propagate.
-sleep 10
+sleep 5
 
 tput setaf 5; printf "Version status.\n"; tput sgr0
 ${CURL} \
