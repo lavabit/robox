@@ -101,6 +101,12 @@ if [ "$PROVIDER" == "vmware" ]; then
   PROVIDER="vmware_desktop"
 fi
 
+# Modify the org/box for 32 bit variants.
+if [[ "$BOX" =~ ^.*-x32$ ]]; then
+  ORG="${ORG}-x32"
+  BOX="`echo $BOX | sed s/-x32//g`"
+fi
+
 # Read the hash in from the checksum file.
 HASH="`awk -F' ' '{print $1}' $FILEPATH`"
 
