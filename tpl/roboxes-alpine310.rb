@@ -26,6 +26,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :libvirt do |v, override|
+    v.disk_bus = "virtio"
     v.cpus = 2
     v.memory = 2048
     v.driver = "kvm"

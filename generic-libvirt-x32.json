@@ -56,7 +56,7 @@
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
