@@ -738,6 +738,22 @@
     },
     {
       "type": "vmware-iso",
+      "name": "netbsd9",
+      "output_directory": "output/netbsd9",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/9.0/NetBSD-9.0-amd64.iso",
+      "iso_checksum": "f923b054df5c2cb92b54fbb5d0b908f4f19c330341ec396e51cad5fc9e805828",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+    {
+      "type": "vmware-iso",
       "name": "openbsd6",
       "output_directory": "output/openbsd6",
       "headless": true,

@@ -1553,6 +1553,38 @@
     },
     {
       "scripts": [
+        "scripts/netbsd9/pkg.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
+      "only": [
+        "generic-netbsd9-vmware"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/netbsd9/hostname.sh",
+        "scripts/netbsd9/motd.sh",
+        "scripts/netbsd9/vagrant.sh",
+        "scripts/netbsd9/profile.sh",
+        "scripts/netbsd9/virtualbox.sh",
+        "scripts/netbsd9/parallels.sh",
+        "scripts/netbsd9/vmware.sh",
+        "scripts/netbsd9/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{ .Vars }} bash {{ .Path }}",
+      "only": [
+        "generic-netbsd9-vmware"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -3854,6 +3886,86 @@
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-netbsd9-vmware",
+      "vm_name": "generic-netbsd9-vmware",
+      "vmdk_name": "generic-netbsd9-vmware",
+      "output_directory": "output/generic-netbsd9-vmware",
+      "boot_wait": "40s",
+      "boot_command": [
+        "<enter><wait10>",
+        "<enter><wait10>",
+        "e<enter><wait10>",
+        "<enter><wait10>",
+        "IF=`ifconfig | head -1 | awk -F':' '{print $1}'`<enter><wait10>",
+        "/sbin/dhcpcd -d -n $IF<enter><wait10>",
+        "ftp -o /tmp/install-script.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.netbsd9.install.sh<enter><wait10>",
+        "TERM=wsvt25 /usr/sbin/sysinst && sh /tmp/install-script.sh && reboot<enter><wait10>",
+        "a<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "b<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "b<wait><enter><wait10>",
+        "x<wait><enter><wait10>",
+        "b<wait><enter><wait30>",
+        "a<wait><enter><wait10>",
+        "b<wait><enter><wait30>",
+        "a<wait><enter><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait><enter><wait10>",
+        "d<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "vagrant<enter><wait10>",
+        "vagrant<enter><wait10>",
+        "vagrant<enter><wait10>",
+        "g<wait><enter><wait10>",
+        "x<wait><enter><wait10>",
+        "<wait><enter><wait10>",
+        "x<wait><enter><wait10>"
+      ],
+      "disk_size": 32768,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "freeBSD-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/9.0/NetBSD-9.0-amd64.iso",
+      "iso_checksum": "f923b054df5c2cb92b54fbb5d0b908f4f19c330341ec396e51cad5fc9e805828",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "/sbin/shutdown -h -p now",
+      "tools_upload_flavor": "freebsd"
     }
   ],
   "post-processors": [
