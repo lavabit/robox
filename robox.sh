@@ -6,7 +6,7 @@
 # Description: Used to build various virtual machines using packer.
 
 # Version Information
-export VERSION="3.0.4"
+export VERSION="3.0.6"
 export AGENT="Vagrant/2.2.9 (+https://www.vagrantup.com; ruby2.6.6)"
 
 # Limit the number of cpus packer will use.
@@ -1119,7 +1119,7 @@ function parallels() {
       if [[ `df -m . | tail -1 |  awk -F' ' '{print $4}'` -lt 8192 ]]; then
         tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
       elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
-        # sudo purge
+        sleep 10 ; sudo sync ; sleep 10 ; sudo purge ; sleep 10 ; 
         # Build the box. If the first attempt fails, try building the box a second time.
         packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json || packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
         # mv output/*.box output/*.box.sha256 /Volumes/Data/robox/output
