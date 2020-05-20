@@ -44,6 +44,9 @@ fi
 # Update the package database.
 /usr/pkg/bin/updatedb
 
+# Alter permissions on the locate database to allow normal user access.
+chmod o+r /var/lib/slocate/slocate.db
+
 # Auto update the database.
 printf "\n16 * * * * /usr/pkg/bin/updatedb\n" >> /var/cron/tabs/root
 
