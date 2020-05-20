@@ -3,7 +3,7 @@
 set -x
 
 # Ensure the pkg utilities are in the path.
-export PATH="/usr/sbin/:/usr/pkg/bin/:$PATH"
+export PATH="/sbin/:/bin/:/usr/sbin/:/usr/bin/:/usr/pkg/bin/:/usr/local/bin:$PATH"
 
 # Dictate the package repository.
 export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.0/All"
@@ -60,7 +60,7 @@ fi
 EOF
 
 # Make the path, and package repo variables persistent.
-echo 'export PATH="/usr/sbin/:/usr/pkg/bin/:$PATH"' >> /etc/profile
+echo 'export PATH="/sbin/:/bin/:/usr/sbin/:/usr/bin/:/usr/pkg/bin/:/usr/local/bin:$PATH"' >> /etc/profile
 echo 'export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.0/All"' >> /etc/profile
 
 # Load the bash helpers.

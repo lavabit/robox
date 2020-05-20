@@ -3181,7 +3181,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
-      "shutdown_command": "/sbin/shutdown -h -p now",
+      "shutdown_command": "/sbin/poweroff",
       "tools_upload_flavor": "freebsd"
     },
     {
@@ -3964,7 +3964,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
-      "shutdown_command": "/sbin/shutdown -p now",
+      "shutdown_command": "/sbin/poweroff",
       "tools_upload_flavor": "freebsd"
     }
   ],
