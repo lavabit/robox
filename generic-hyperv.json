@@ -3544,7 +3544,7 @@
       "ssh_timeout": "4800s",
       "ssh_host": "192.168.1.150",
       "mac_address": "00155d1d3d9b",
-      "shutdown_command": "/sbin/shutdown -h -p now",
+      "shutdown_command": "/sbin/shutdown -p now",
       "generation": 1,
       "headless": true,
       "communicator": "ssh",
