@@ -79,6 +79,7 @@
             "ssh_timeout": "9800s",
             "shutdown_command": "sudo -S shutdown -P now",
             "generation": 1,
+      "mac_address": "9c0a914daaaa",
             "headless": true,
             "communicator": "ssh",
             "skip_compaction": false,
