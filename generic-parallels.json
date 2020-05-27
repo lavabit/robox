@@ -4329,7 +4329,10 @@
         "g<wait><enter><wait10>",
         "x<wait><enter><wait10>",
         "<wait><enter><wait10>",
-        "x<wait><enter><wait10>"
+        "x<wait><enter><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "reboot<enter>"
       ],
       "disk_size": 32768,
       "cpus": 2,
@@ -4365,7 +4368,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "4800s",
-      "shutdown_command": "/sbin/poweroff",
+      "shutdown_command": "/sbin/shutdown -h -p now",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
       "parallels_tools_guest_path": "/root/parallels-tools-other.iso",
