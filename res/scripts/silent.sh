@@ -155,6 +155,11 @@ if [ "$HASH" == "" ]; then
   exit 1
 fi
 
+if [ `echo "$HASH" | wc -c` != 65 ]; then
+  tput setaf 1; printf "\n\nThe hash couldn't be calculated properly.\n\n\n"; tput sgr0
+  exit 1
+fi
+
 retry() {
   local COUNT=1
   local RESULT=0

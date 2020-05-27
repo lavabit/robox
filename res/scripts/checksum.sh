@@ -190,10 +190,29 @@ function download() {
 
 function checksum() {
 
-    local COUNT=1
-    local DELAY=1
-    local RESULT=0
+  local COUNT=1
+  local DELAY=1
+  local RESULT=0
 
+  while [[ "${COUNT}" -le 100 ]]; do
+    RESULT=0
+    DATA=`curl --fail --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://app.vagrantup.com/api/v1/box/$1/$2/version/$4`
+    RESULT="${?}"
+    if [[ $RESULT == 0 ]]; then
+      break
+    fi
+    COUNT="$((COUNT + 1))"
+    DELAY="$((DELAY + 1))"
+    sleep $DELAY
+  done
+
+  CHECKSUM=`echo $DATA | jq -e -r ".providers[] | select( .name | contains(\"$3\")) | .checksum"`
+  echo "$CHECKSUM" | grep --silent "$5"
+
+  # The grep return code tells us whether it found a match in the header or not.
+  if [ $? != 0 ]; then
+
+    # Retry failed downloads, just in case the error was ephemeral.
     while [[ "${COUNT}" -le 100 ]]; do
       RESULT=0
       DATA=`curl --fail --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://app.vagrantup.com/api/v1/box/$1/$2/version/$4`
@@ -209,30 +228,14 @@ function checksum() {
     CHECKSUM=`echo $DATA | jq -e -r ".providers[] | select( .name | contains(\"$3\")) | .checksum"`
     echo "$CHECKSUM" | grep --silent "$5"
 
-    # The grep return code tells us whether it found a match in the header or not.
-    if [ $? != 0 ]; then
-
-      # Retry failed downloads, just in case the error was ephemeral.
-      while [[ "${COUNT}" -le 100 ]]; do
-        RESULT=0
-        DATA=`curl --fail --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://app.vagrantup.com/api/v1/box/$1/$2/version/$4`
-        RESULT="${?}"
-        if [[ $RESULT == 0 ]]; then
-          break
-        fi
-        COUNT="$((COUNT + 1))"
-        DELAY="$((DELAY + 1))"
-        sleep $DELAY
-      done
-
-      CHECKSUM=`echo $DATA | jq -e -r ".providers[] | select( .name | contains(\"$3\")) | .checksum"`
-      echo "$CHECKSUM" | grep --silent "$5"
-
     if [ $? != 0 ]; then
       printf "Box  -  "; tput setaf 1; printf "${ORG}/${BOX} ${PROVIDER} ${VERSION}\n"; tput sgr0
-      exit 1
+    else
+      printf "Box  +  "; tput setaf 2; printf "${ORG}/${BOX} ${PROVIDER} ${VERSION}\n"; tput sgr0
     fi
 
+  else
+    printf "Box  +  "; tput setaf 2; printf "${ORG}/${BOX} ${PROVIDER} ${VERSION}\n"; tput sgr0
   fi
 
   return 0
@@ -240,4 +243,3 @@ function checksum() {
 }
 
 checksum $ORG $BOX $PROVIDER $VERSION $HASH
-download $ORG $BOX $PROVIDER $VERSION $HASH
