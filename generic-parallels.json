@@ -4369,7 +4369,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "4800s",
-      "shutdown_command": "su vagrant -c '/sbin/shutdown -h -p now'",
+      "shutdown_command": "bash /etc/rc.shutdown ; sync ; /sbin/poweroff -n -q",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
       "parallels_tools_guest_path": "/root/parallels-tools-other.iso",

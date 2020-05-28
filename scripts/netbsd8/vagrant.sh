@@ -64,5 +64,17 @@ EOF
 chmod 0600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant:vagrant /home/vagrant/.ssh
 
+# Create an empty bashrc file.
+touch /home/vagrant/.bashrc
+
+# Add logic to the shrc file that will read the bashrc if the shell is bash.
+cat <<-EOF >> /home/vagrant/.shrc
+
+if [ "\$SHELL" == "/usr/pkg/bin/bash" ] && [ -f \$HOME/.bashrc ]; then
+	source \$HOME/.bashrc
+fi
+
+EOF
+
 # Mark the vagrant box build time.
 date > /etc/vagrant_box_build_time
