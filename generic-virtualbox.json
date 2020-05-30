@@ -1585,6 +1585,41 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine312/network.sh",
+        "scripts/alpine312/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine312-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine312/hostname.sh",
+        "scripts/alpine312/lsb.sh",
+        "scripts/alpine312/floppy.sh",
+        "scripts/alpine312/vagrant.sh",
+        "scripts/alpine312/sshd.sh",
+        "scripts/alpine312/virtualbox.sh",
+        "scripts/alpine312/parallels.sh",
+        "scripts/alpine312/vmware.sh",
+        "scripts/alpine312/qemu.sh",
+        "scripts/alpine312/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine312-virtualbox"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -3902,6 +3937,56 @@
       "vrdp_port_max": 12000,
       "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/9.0/NetBSD-9.0-amd64.iso",
       "iso_checksum": "f923b054df5c2cb92b54fbb5d0b908f4f19c330341ec396e51cad5fc9e805828",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.42/VBoxGuestAdditions_5.2.42.iso",
+      "guest_additions_sha256": "ff784417295e48e3cee80a596faf05e3b0976e1b94d3b88427939912b0c1fc45",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-alpine312-virtualbox",
+      "vm_name": "generic-alpine312-virtualbox",
+      "output_directory": "output/generic-alpine312-virtualbox",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine312.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine312.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Linux_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.12/releases/x86_64/alpine-virt-3.12.0-x86_64.iso",
+      "iso_checksum": "fe694a34c0e2d30b9e5dea7e2c1a3892c1f14cb474b69cc5c557a52970071da5",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
