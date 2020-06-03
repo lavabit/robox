@@ -79,6 +79,9 @@ getent passwd vboxadd >/dev/null || useradd --system --gid bin --home-dir /var/r
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
 
+# Remove the vboxguest kernel module, otherwise the vboxsf module won't be installed properly.
+rmmod vboxguest
+
 # For some reason the vboxsf module fails the first time, but installs
 # successfully if we run the installer a second time.
 sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11 || sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; error

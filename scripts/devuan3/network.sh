@@ -67,4 +67,4 @@ printf "pre-up sleep 2\n" >> /etc/network/interfaces
 printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /etc/resolv.conf
 
 # Reboot onto the new kernel (if applicable).
-$(shutdown -r +1) &
+/sbin/reboot
