@@ -26,7 +26,6 @@ retry() {
   return "${RESULT}"
 }
 
-
 error() {
   if [ $? -ne 0 ]; then
     printf "\n\nThe VirtualBox install failed...\n\n"
@@ -90,7 +89,7 @@ rm -rf /root/VBoxVersion.txt; error
 rm -rf /root/VBoxGuestAdditions.iso; error
 
 # Boosts the available entropy which allows magma to start faster.
-retry apt-get --assume-yes install haveged; error
+retry apt-get --assume-yes install haveged
 
 # Autostart the haveged daemon.
-systemctl enable haveged.service
+update-rc.d haveged enable

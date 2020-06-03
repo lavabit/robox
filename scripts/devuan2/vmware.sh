@@ -48,8 +48,8 @@ export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
 retry apt-get --assume-yes install open-vm-tools ethtool libdumbnet1 zerofree
-systemctl enable open-vm-tools.service
-systemctl start open-vm-tools.service
+update-rc.d open-vm-tools enable
+service open-vm-tools start
 
 #mkdir -p /mnt/vmware; error
 #mount -o loop /root/linux.iso /mnt/vmware; error
@@ -65,3 +65,9 @@ rm -rf /root/linux.iso; error
 
 # Fix the SSH NAT issue on VMWare systems.
 printf "\nIPQoS lowdelay throughput\n" >> /etc/ssh/sshd_config
+
+# Boosts the available entropy which allows magma to start faster.
+retry apt-get --assume-yes install haveged
+
+# Autostart the haveged daemon.
+update-rc.d haveged enable

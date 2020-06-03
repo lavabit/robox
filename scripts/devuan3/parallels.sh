@@ -49,3 +49,9 @@ rmdir /mnt/parallels/
 # Cleanup the guest additions.
 rm --force /root/parallels-tools-linux.iso
 rm --force /root/parallels-tools-version.txt
+
+# Boosts the available entropy which allows magma to start faster.
+retry apt-get --assume-yes install haveged
+
+# Autostart the haveged daemon.
+update-rc.d haveged enable

@@ -48,3 +48,9 @@ export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
 retry apt-get --assume-yes install qemu-guest-agent; error
+
+# Boosts the available entropy which allows magma to start faster.
+retry apt-get --assume-yes install haveged
+
+# Autostart the haveged daemon.
+update-rc.d haveged enable
