@@ -1621,6 +1621,96 @@
     },
     {
       "scripts": [
+        "scripts/devuan1/apt.sh",
+        "scripts/devuan1/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan1-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan1/floppy.sh",
+        "scripts/devuan1/vagrant.sh",
+        "scripts/devuan1/motd.sh",
+        "scripts/devuan1/virtualbox.sh",
+        "scripts/devuan1/parallels.sh",
+        "scripts/devuan1/vmware.sh",
+        "scripts/devuan1/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan1-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan2/apt.sh",
+        "scripts/devuan2/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan2-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan2/floppy.sh",
+        "scripts/devuan2/vagrant.sh",
+        "scripts/devuan2/motd.sh",
+        "scripts/devuan2/virtualbox.sh",
+        "scripts/devuan2/parallels.sh",
+        "scripts/devuan2/vmware.sh",
+        "scripts/devuan2/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan2-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan3/apt.sh",
+        "scripts/devuan3/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan3-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan3/floppy.sh",
+        "scripts/devuan3/vagrant.sh",
+        "scripts/devuan3/motd.sh",
+        "scripts/devuan3/virtualbox.sh",
+        "scripts/devuan3/parallels.sh",
+        "scripts/devuan3/vmware.sh",
+        "scripts/devuan3/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan3-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -3993,6 +4083,135 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.42/VBoxGuestAdditions_5.2.42.iso",
+      "guest_additions_sha256": "ff784417295e48e3cee80a596faf05e3b0976e1b94d3b88427939912b0c1fc45",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-devuan1-virtualbox",
+      "vm_name": "generic-devuan1-virtualbox",
+      "output_directory": "output/generic-devuan1-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan1.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Debian_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_jessie/installer-iso/devuan_jessie_1.0.0_amd64_NETINST.iso",
+      "iso_checksum": "70c6abe544ec59b0d0882c666ca0377be1b6c218655dac1f61b2c7e88c9b3d9f",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.42/VBoxGuestAdditions_5.2.42.iso",
+      "guest_additions_sha256": "ff784417295e48e3cee80a596faf05e3b0976e1b94d3b88427939912b0c1fc45",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-devuan2-virtualbox",
+      "vm_name": "generic-devuan2-virtualbox",
+      "output_directory": "output/generic-devuan2-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan2.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Debian_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_ascii/installer-iso/devuan_ascii_2.1_amd64_netinst.iso",
+      "iso_checksum": "9aa6de460fb944ddfec8c79306974a522be166e4d296e9673f083f9e1cc6c56c",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.42/VBoxGuestAdditions_5.2.42.iso",
+      "guest_additions_sha256": "ff784417295e48e3cee80a596faf05e3b0976e1b94d3b88427939912b0c1fc45",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-devuan3-virtualbox",
+      "vm_name": "generic-devuan3-virtualbox",
+      "output_directory": "output/generic-devuan3-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan3.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Debian_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_beowulf/installer-iso/devuan_beowulf_3.0.0_amd64-netinstall.iso",
+      "iso_checksum": "5844e45dc6421c25dfc9fb25df9d57af8fadf12a97a2a4e0ae1931c4c3217523",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
       "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.42/VBoxGuestAdditions_5.2.42.iso",
       "guest_additions_sha256": "ff784417295e48e3cee80a596faf05e3b0976e1b94d3b88427939912b0c1fc45",
       "guest_additions_path": "VBoxGuestAdditions.iso",

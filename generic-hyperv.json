@@ -1620,6 +1620,96 @@
       ]
     },
     {
+      "scripts": [
+        "scripts/devuan1/apt.sh",
+        "scripts/devuan1/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan1-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan1/floppy.sh",
+        "scripts/devuan1/vagrant.sh",
+        "scripts/devuan1/motd.sh",
+        "scripts/devuan1/virtualbox.sh",
+        "scripts/devuan1/parallels.sh",
+        "scripts/devuan1/vmware.sh",
+        "scripts/devuan1/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan1-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan2/apt.sh",
+        "scripts/devuan2/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan2-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan2/floppy.sh",
+        "scripts/devuan2/vagrant.sh",
+        "scripts/devuan2/motd.sh",
+        "scripts/devuan2/virtualbox.sh",
+        "scripts/devuan2/parallels.sh",
+        "scripts/devuan2/vmware.sh",
+        "scripts/devuan2/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan2-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan3/apt.sh",
+        "scripts/devuan3/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan3-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan3/floppy.sh",
+        "scripts/devuan3/vagrant.sh",
+        "scripts/devuan3/motd.sh",
+        "scripts/devuan3/virtualbox.sh",
+        "scripts/devuan3/parallels.sh",
+        "scripts/devuan3/vmware.sh",
+        "scripts/devuan3/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan3-hyperv"
+      ]
+    },
+    {
       "type": "shell",
       "scripts": [
         "scripts/common/motd.sh",
@@ -3669,6 +3759,114 @@
       "ssh_port": 22,
       "ssh_timeout": "7200s",
       "shutdown_command": "/sbin/poweroff",
+      "generation": 1,
+      "mac_address": "9c0a914daaaa",
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": false,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-devuan1-hyperv",
+      "vm_name": "generic-devuan1-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-devuan1-hyperv",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan1.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 32768,
+      "memory": 1024,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_jessie/installer-iso/devuan_jessie_1.0.0_amd64_NETINST.iso",
+      "iso_checksum": "70c6abe544ec59b0d0882c666ca0377be1b6c218655dac1f61b2c7e88c9b3d9f",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
+      "generation": 1,
+      "mac_address": "9c0a914daaaa",
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": false,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-devuan2-hyperv",
+      "vm_name": "generic-devuan2-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-devuan2-hyperv",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan2.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 32768,
+      "memory": 1024,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_ascii/installer-iso/devuan_ascii_2.1_amd64_netinst.iso",
+      "iso_checksum": "9aa6de460fb944ddfec8c79306974a522be166e4d296e9673f083f9e1cc6c56c",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
+      "generation": 1,
+      "mac_address": "9c0a914daaaa",
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": false,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-devuan3-hyperv",
+      "vm_name": "generic-devuan3-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-devuan3-hyperv",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan3.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 32768,
+      "memory": 1024,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_beowulf/installer-iso/devuan_beowulf_3.0.0_amd64-netinstall.iso",
+      "iso_checksum": "5844e45dc6421c25dfc9fb25df9d57af8fadf12a97a2a4e0ae1931c4c3217523",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
       "generation": 1,
       "mac_address": "9c0a914daaaa",
       "headless": true,
