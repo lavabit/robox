@@ -40,7 +40,7 @@ printf "\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
 # Set the hostname, and then ensure it will resolve properly.
 if [[ "$PACKER_BUILD_NAME" =~ ^generic-devuan3-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
   printf "devuan3.localdomain\n" > /etc/hostname
-  printf "\n127.0.0.1 devuan1.localdomain\n\n" >> /etc/hosts
+  printf "\n127.0.0.1 devuan3.localdomain\n\n" >> /etc/hosts
 else
   printf "magma.builder\n" > /etc/hostname
   printf "\n127.0.0.1 magma.builder\n\n" >> /etc/hosts

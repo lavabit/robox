@@ -85,3 +85,6 @@ retry apt-get --assume-yes install python-crypto python-cryptography; error
 
 # Boosts the available entropy which allows magma to start faster.
 retry apt-get --assume-yes install haveged; error
+
+# Populate the mlocate database during boot.
+printf "@reboot root command bash -c '/etc/cron.daily/mlocate'\n" > /etc/cron.d/mlocate
