@@ -286,7 +286,7 @@ function iso() {
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
     SHA=`curl --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
-    if [ $? != 0 ] || [ "$ERROR" != "0" ] || [ "$SHA" == "" ]; then
+    if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
         return 1
     fi
