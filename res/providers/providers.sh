@@ -103,13 +103,13 @@ function provide-vmware() {
   fi
 
   # Acquire the install bundle.
-  if [ ! -f "$BASE/VMware-Workstation-Full-15.5.2-15785246.x86_64.bundle" ]; then
-    curl --location --output "$BASE/VMware-Workstation-Full-15.5.2-15785246.x86_64.bundle" \
-     "https://archive.org/download/vmware-workstation-full-15.5.2-15785246.x-86-64/VMware-Workstation-Full-15.5.2-15785246.x86_64.bundle"
+  if [ ! -f "$BASE/VMware-Workstation-Full-15.5.5-16285975.x86_64.bundle" ]; then
+    curl --location --output "$BASE/VMware-Workstation-Full-15.5.5-16285975.x86_64.bundle" \
+     "https://archive.org/download/vmware-workstation-full-15.5.5-16285975.x-86-64/VMware-Workstation-Full-15.5.5-16285975.x86_64.bundle"
   fi
 
   # Verify the installer bundle.
-  (printf "d3a1358dad46ba0d52f25b5b721b6fa7a9f57b47eb82e972607e53e3c6733967  VMware-Workstation-Full-15.5.2-15785246.x86_64.bundle\n" | sha256sum -c) || \
+  (printf "b8a93f503f7eec3ea553379af2807a856141063d1e5da6222184a05565ab8200  VMware-Workstation-Full-15.5.5-16285975.x86_64.bundle\n" | sha256sum -c) || \
     (tput setaf 1 ; printf "\nError downloading the install bundle.\n\n" ; tput sgr0 ; exit 2)
 
   # Acquire the FreeBSD / Darwin / Solaris guest tools.
@@ -123,8 +123,8 @@ function provide-vmware() {
     (tput setaf 1 ; printf "\nError downloading the alternative operating system guest additions.\n\n" ; tput sgr0 ; exit 2)
 
   # VMware Workstation Install
-  chmod +x "$BASE/VMware-Workstation-Full-15.5.2-15785246.x86_64.bundle"
-  bash "$BASE/VMware-Workstation-Full-15.5.2-15785246.x86_64.bundle" --console \
+  chmod +x "$BASE/VMware-Workstation-Full-15.5.5-16285975.x86_64.bundle"
+  bash "$BASE/VMware-Workstation-Full-15.5.5-16285975.x86_64.bundle" --console \
     --required --eulas-agreed --set-setting vmware-workstation serialNumber "${VMWARE_WORKSTATION}"
 
   # Install the alternative operating system ISOs.
@@ -158,7 +158,7 @@ function provide-vmware() {
   fi
 
   rm --force "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz"
-  rm --force "$BASE/VMware-Workstation-Full-15.5.2-15785246.x86_64.bundle"
+  rm --force "$BASE/VMware-Workstation-Full-15.5.5-16285975.x86_64.bundle"
 }
 
 function provide-vbox() {

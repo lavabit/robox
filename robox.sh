@@ -237,7 +237,7 @@ function print_iso() {
 }
 
 # Print the current URL and SHA hash for install discs which are updated frequently.
-function isos {
+function isos() {
 
   # Find the Gentoo URL.
   URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
@@ -261,6 +261,81 @@ function isos {
 
   export -f print_iso
   parallel -j 16 --xapply print_iso {1} {2} ::: "${N[@]}" ::: "${U[@]}"
+
+}
+
+function iso() {
+
+  if [ "$1" == "gentoo" ]; then
+
+    # Find the existing Arch URL and hash values.
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo\")) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo\")) | .iso_checksum" 2>/dev/null`
+
+    # Find the Gentoo URL.
+    URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
+    ISO=`curl --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
+    if [ $? != 0 ] || [ "$ISO" == "" ]; then
+      tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
+      return 1
+    fi
+
+    # Calculate the new URL.
+    URL="${URL}${ISO}"
+
+    # Download the ISO file and calculate the new hash value.
+    set -o pipefail
+    SHA=`curl --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    if [ $? != 0 ] || [ "$ERROR" != "0" ] || [ "$SHA" == "" ]; then
+        tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
+        return 1
+    fi
+    set +o pipefail
+
+    # Escape the URL strings.
+    URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
+    ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
+
+    # Replace the existing ISO and hash values with the update values.
+    sed --in-place "s/$ISO_URL/$URL/g" $FILES
+    sed --in-place "s/$ISO_CHECKSUM/$SHA/g" $FILES
+
+
+  elif [ "$1" == "arch" ]; then
+
+    # Find the existing Arch URL and hash values.
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"arch\")) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"arch\")) | .iso_checksum" 2>/dev/null`
+
+    # Find the Arch URL.
+    URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
+    ISO=`curl --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
+    if [ $? != 0 ] || [ "$ISO" == "" ]; then
+      tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
+      return 1
+    fi
+
+    # Calculate the new URL.
+    URL="${URL}${ISO}"
+
+    # Download the ISO file and calculate the new hash value.
+    set -o pipefail
+    SHA=`curl --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    if [ $? != 0 ] || [ "$SHA" == "" ]; then
+        tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
+        return 1
+    fi
+    set +o pipefail
+
+    # Escape the URL strings.
+    URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
+    ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
+
+    # Replace the existing ISO and hash values with the update values.
+    sed --in-place "s/$ISO_URL/$URL/g" $FILES
+    sed --in-place "s/$ISO_CHECKSUM/$SHA/g" $FILES
+
+  fi
 
 }
 
@@ -867,6 +942,39 @@ function ppublic() {
     fi
 }
 
+function grab() {
+
+  URL=`curl --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
+    | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | .download_url ][0]" 2>/dev/null`
+  if [ "$URL" == "" ]; then
+    printf "\nA copy of " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " using the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " couldn't be found.\n\n"
+    return 0
+  fi
+
+  CHECKSUM=`curl --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
+    | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | .checksum ][0]" 2>/dev/null`
+
+  if [ ! -d "$BASE/output/" ]; then
+    mkdir "$BASE/output/"
+  fi
+
+  curl --fail --location --user-agent "${AGENT}" --output "$BASE/output/$1-$2-$3-$VERSION.box" "$URL"
+  if [ "$?" == 0 ]; then
+    ( cd output ; printf "$CHECKSUM\t$1-$2-$3-$VERSION.box" | sha256sum --check --status )
+    if [ "$?" != 0 ]; then
+      rm --force "$BASE/output/$1-$2-$3-$VERSION.box"
+      printf "\nThe hash check for " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " with the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " failed.\n\n"
+      return 0
+    fi
+    ( cd output ; sha256sum "$1-$2-$3-$VERSION.box" ) > "$BASE/output/$1-$2-$3-$VERSION.box.sha256"
+  else
+    rm --force "$BASE/output/$1-$2-$3-$VERSION.box"
+    printf "\nDownloading " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " with the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " failed.\n\n"
+    return 0
+  fi
+
+}
+
 function localized() {
 
   MSUMS=(`echo $MEDIASUMS | sed "s/|/ /g"`)
@@ -1121,11 +1229,13 @@ function parallels() {
       elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
         sudo sync ; sudo purge ;
         # Build the box. If the first attempt fails, try building the box a second time.
-        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json \
-          || (sleep 120 ; sudo sync ; sudo purge ; packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json)
-        # mv output/*.box output/*.box.sha256 /Volumes/Data/robox/output
-        sudo sync ; sudo purge ; sleep 10 ; sudo sync ; sudo purge ; sleep 120 ;
-        # bash ram.sh
+        if [ ! -f "$BASE/output/${LIST[$i]}-$VERSION.box" ] && [ ! -f "/Volumes/USB20FD/${LIST[$i]}-$VERSION.box" ]; then
+          packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json \
+            || (sleep 120 ; sudo sync ; sudo purge ; packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json)
+          if [ -d /Volumes/USB20FD/ ]; then mv output/*.box output/*.box.sha256 /Volumes/USB20FD/ ; fi
+          sudo sync ; sudo purge ; sleep 10 ; sudo sync ; sudo purge ; sleep 120 ;
+          if [ -f ram.sh ]; then bash ram.sh ; fi
+        fi
       fi
     done
 
@@ -1191,6 +1301,10 @@ elif [[ $1 == "missing" ]]; then missing
 elif [[ $1 == "public" ]]; then public
 elif [[ $1 == "ppublic" ]]; then ppublic
 elif [[ $1 == "available" ]]; then available
+
+# Grab and update files automatically.
+elif [[ $1 == "iso" ]]; then iso $2
+elif [[ $1 == "grab" ]]; then grab $2 $3 $4
 
 # The group builders.
 elif [[ $1 == "magma" ]]; then magma
