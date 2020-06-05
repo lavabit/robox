@@ -19,18 +19,15 @@ The templates in this repo require a current version of packer, (1.3.4+) and in 
 
 ## Pending Tasks
 
-Add retry function to scripts and wrap yum/apt/apk/pacman/etc (prototype in silent.sh already)  
 Automatically retry failed box builds  
-Generate docker variants for the RHEL/Oracle/Ubuntu/Debian/Alpine configurations  
+Generate docker variants for the Ubuntu/Debian/Alpine configurations  
 Add upload/delete/release functions to robox.sh  
 Add vagrant user password randomization logic to the bundled Vagrantfiles  
 Add init based test, and SSH command test to the box test and check script  
-Ad `IPQoS lowdelay throughput` to the relevant configs to solve the [OpenSSH bug](https://github.com/hashicorp/vagrant/issues/10730)
-
 
 ## Pending Additions
 
-[Devuan 1.0/2.0](https://devuan.org/)  
+Submit a pull request with your favorite distro.
 
 ## Operating System Requests
 
@@ -49,8 +46,6 @@ Manjaro
 Mint  
 OpenSolaris  
 OpenSUSE Leap v15 (already building v42.3)  
-Oracle v6 (already building v7)  
-Scientific Linux v6/v7  
 Slackware  
 
 MacOS  
