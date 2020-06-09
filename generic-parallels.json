@@ -1747,6 +1747,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -1795,6 +1807,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -1863,6 +1887,12 @@
         [
           "set",
           "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "off"
         ],
@@ -1917,6 +1947,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -1979,6 +2021,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -2037,6 +2091,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -2082,6 +2148,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -2135,6 +2213,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -2180,6 +2270,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -2237,6 +2339,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -2286,6 +2400,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -2343,6 +2469,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -2392,6 +2530,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -2449,6 +2599,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -2498,6 +2660,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -2554,6 +2728,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -2602,6 +2788,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -2671,6 +2869,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -2724,6 +2934,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -2785,6 +3007,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -2838,6 +3072,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -2911,6 +3157,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -2980,6 +3238,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -3034,6 +3304,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -3101,6 +3383,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -3156,6 +3450,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -3223,6 +3529,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -3278,6 +3596,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -3323,6 +3653,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -3386,6 +3728,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -3462,6 +3816,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -3568,6 +3934,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -3627,6 +4005,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -3696,6 +4086,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -3744,6 +4146,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -3817,6 +4231,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -3870,6 +4296,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -3915,6 +4353,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -3978,6 +4428,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -4026,6 +4488,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -4079,6 +4553,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -4128,6 +4614,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -4201,6 +4699,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -4256,6 +4766,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -4329,6 +4851,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -4377,6 +4911,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -4473,6 +5019,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -4532,6 +5090,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -4580,6 +5150,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
@@ -4636,6 +5218,18 @@
         [
           "set",
           "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
           "--pmu-virt",
           "on"
         ],
@@ -4684,6 +5278,18 @@
           "{{.Name}}",
           "--adaptive-hypervisor",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
         ],
         [
           "set",
