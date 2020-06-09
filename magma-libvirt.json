@@ -589,6 +589,8 @@
                 "net.ifnames=0 biosdevname=0",
                 "<enter><wait10><wait10><wait10><wait10>",
                 "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.arch.vagrant{,.chroot}.sh'<enter><wait>",
+                "sed -i 's/[#]\\?DNSSEC=.*/DNSSEC=false/g' /etc/systemd/resolved.conf<enter><wait>",
+                "systemctl restart systemd-resolved<enter><wait>",
                 "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "format": "qcow2",

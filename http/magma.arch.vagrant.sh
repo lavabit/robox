@@ -23,8 +23,8 @@ mount "${device}2" /mnt
 # website goes offline.
 printf "Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" > /etc/pacman.d/mirrorlist
 
-curl -fsS https://www.archlinux.org/mirrorlist/?country=all > /tmp/mirrolist
-grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 5 | sed 's/^#//' >>  /etc/pacman.d/mirrorlist
+curl -fsS "https://www.archlinux.org/mirrorlist/?country=all" > /tmp/mirrolist
+grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 5 | sed 's/^#//' >> /etc/pacman.d/mirrorlist
 pacstrap /mnt base grub bash sudo linux dhcpcd mkinitcpio openssh
 
 swapon "${device}1"
