@@ -28,7 +28,7 @@ grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 5 | sed 's/^#/
 pacstrap /mnt base grub bash sudo linux dhcpcd mkinitcpio openssh
 
 swapon "${device}1"
-genfstab -p /mnt >> /mnt/etc/fstab
+genfstab -U -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash
 [ -f /mnt/etc/fstab.pacnew ] && rm -f /mnt/etc/fstab.pacnew
 swapoff "${device}1"
