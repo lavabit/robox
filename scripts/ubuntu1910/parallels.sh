@@ -34,12 +34,16 @@ retry() {
 # Needed to check whether we're running atop Parallels.
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
+
 retry apt-get --assume-yes install dmidecode
 
 # Bail if we are not running atop Parallels.
 if [[ `dmidecode -s system-product-name` != "Parallels Virtual Platform" ]]; then
     exit 0
 fi
+
+# Flex is required, but doesn't get automatically installed by the Parallels installer.
+retry apt-get --assume-yes install flex
 
 # Read in the version number.
 PARALLELSVERSION=`cat /root/parallels-tools-version.txt`

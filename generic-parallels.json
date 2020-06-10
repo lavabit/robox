@@ -2294,6 +2294,12 @@
           "{{.Name}}",
           "--faster-vm",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--shf-host-defined",
+          "off"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -3636,6 +3642,12 @@
           "{{.Name}}",
           "--faster-vm",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--shf-host-defined",
+          "off"
         ]
       ],
       "hard_drive_interface": "ide",
@@ -3697,6 +3709,12 @@
           "{{.Name}}",
           "--faster-vm",
           "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--shf-host-defined",
+          "off"
         ]
       ],
       "hard_drive_interface": "ide",
