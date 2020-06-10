@@ -29,6 +29,7 @@ retry() {
 # Needed to check whether we're running atop Parallels.
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
+
 retry apt-get --assume-yes install dmidecode
 
 # Bail if we are not running atop Parallels.
