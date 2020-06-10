@@ -43,7 +43,7 @@ if [[ `dmidecode -s system-product-name` != "Parallels Virtual Platform" ]]; the
 fi
 
 # Flex is required, but doesn't get automatically installed by the Parallels installer.
-retry apt-get --assume-yes install flex
+retry apt-get --assume-yes install flex bison
 
 # Read in the version number.
 PARALLELSVERSION=`cat /root/parallels-tools-version.txt`
