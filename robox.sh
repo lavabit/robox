@@ -522,50 +522,58 @@ function box() {
       export PACKER_LOG_PATH="$BASE/logs/developer-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-hyperv.json
 
-  elif [[ `uname` == "Darwin" ]]; then
+  fi
+
+  if [[ `uname` == "Darwin" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/generic-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*parallels.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-parallels.json
 
-  else
+  fi
+
+  if [[ `uname` == "Linux" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/magma-docker-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 magma-docker.json; docker-logout)
-      export PACKER_LOG_PATH="$BASE/logs/magma-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 magma-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 magma-libvirt.json
-      export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 magma-virtualbox.json
 
       export PACKER_LOG_PATH="$BASE/logs/generic-docker-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-docker.json; docker-logout)
-      export PACKER_LOG_PATH="$BASE/logs/generic-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x32-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*x32-libvirt.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-libvirt-x32.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-libvirt.json
-      export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-virtualbox.json
 
       export PACKER_LOG_PATH="$BASE/logs/developer-ova-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-ova.json
-      export PACKER_LOG_PATH="$BASE/logs/developer-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-libvirt.json
-      export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-virtualbox.json
 
-      export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-vmware.json
       export PACKER_LOG_PATH="$BASE/logs/lineage-libvirt-log-${TIMESTAMP}.txt"
       [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-libvirt.json
-      export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-virtualbox.json
 
   fi
+
+  export PACKER_LOG_PATH="$BASE/logs/magma-vmware-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 magma-vmware.json
+  export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 magma-virtualbox.json
+
+  export PACKER_LOG_PATH="$BASE/logs/generic-vmware-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-vmware.json
+  export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-virtualbox.json
+
+  export PACKER_LOG_PATH="$BASE/logs/developer-vmware-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-vmware.json
+  export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-virtualbox.json
+
+  export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-vmware.json
+  export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-virtualbox.json
 
   return 0
 }
