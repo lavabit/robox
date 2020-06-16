@@ -97,7 +97,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
             "disk_compression": true,
             "disk_discard": "unmap",
@@ -127,7 +127,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
             "disk_compression": true,
             "disk_discard": "unmap",
@@ -157,7 +157,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
             "disk_compression": true,
             "disk_discard": "unmap",
@@ -187,7 +187,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
             "disk_compression": true,
             "disk_discard": "unmap",

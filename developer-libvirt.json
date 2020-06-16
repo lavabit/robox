@@ -68,7 +68,7 @@
                 "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
             ],
             "format": "qcow2",
-            "disk_size": 131072,
+            "disk_size": "131072",
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,

@@ -62,7 +62,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
