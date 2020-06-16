@@ -434,6 +434,8 @@ function verify_json() {
 
   unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
 
+  printf "\n\nVerifying $1.json...\n\n";
+
   if [[ $OS == "Windows_NT" ]]; then
     packer.exe validate $1.json
   else
@@ -441,7 +443,7 @@ function verify_json() {
   fi
 
   if [[ $? != 0 ]]; then
-    tput setaf 1; tput bold; printf "\n\nthe $1 packer template failed to validate...\n\n"; tput sgr0
+    tput setaf 1; tput bold; printf "\nthe $1 packer template failed to validate...\n\n"; tput sgr0
     for i in 1 2 3; do printf "\a"; sleep 1; done
     exit 1
   fi
