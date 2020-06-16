@@ -90,7 +90,7 @@
             "ssh_username": "root",
             "ssh_password": "magma",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "sudo -S shutdown -P now"
         }
     ],
