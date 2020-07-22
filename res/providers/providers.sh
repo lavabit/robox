@@ -159,6 +159,9 @@ function provide-vmware() {
 
   rm --force "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz"
   rm --force "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle"
+
+  # Install the dependencies.
+  yum --assumeyes install pcsc-lite-libs
 }
 
 function provide-vbox() {
