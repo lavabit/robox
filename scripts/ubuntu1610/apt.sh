@@ -26,9 +26,6 @@ retry() {
   return "${RESULT}"
 }
 
-# Use the Lavabit mirror.
-sed -i -e "s/http:\/\/old-releases.ubuntu.com/https:\/\/mirrors.lavabit.com/g" /etc/apt/sources.list
-
 # To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
