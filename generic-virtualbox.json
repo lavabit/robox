@@ -2833,8 +2833,8 @@
         "bash generic.gentoo.vagrant.sh<enter>"
       ],
       "disk_size": 32768,
-      "cpus": 4,
-      "memory": 2048,
+      "cpus": 8,
+      "memory": 8192,
       "vboxmanage": [
         [
           "modifyvm",
