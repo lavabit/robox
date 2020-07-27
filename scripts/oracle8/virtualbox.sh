@@ -1,4 +1,29 @@
 #!/bin/bash -eux
+retry() {
+  local COUNT=1
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
 
 error() {
   if [ $? -ne 0 ]; then
@@ -49,7 +74,7 @@ VBOXVERSION=`cat /root/VBoxVersion.txt`
 
 # Packages required to build the guest additions.
 # dnf --assumeyes install gcc make perl dkms bzip2 kernel-tools kernel-headers kernel-devel kernel-uek-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
-dnf --assumeyes install gcc make perl bzip2 kernel-tools kernel-headers kernel-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
+retry dnf --assumeyes install gcc make perl bzip2 kernel-tools kernel-headers kernel-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
 
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
