@@ -5,7 +5,7 @@
 # virtualization kernel modules later in the provisioning process.
 yum --assumeyes install kernel-tools kernel-devel kernel-headers
 
-# Remove the duplicate UEK firmware packatges first.
+# Remove the duplicate UEK firmware packages first.
 PACKAGES=`rpm --query --last kernel-uek-firmware | awk -F' ' '{print $1}' | tail --lines=+2`
 if [ ! -z $PACKAGES ]; then
   rpm --erase $PACKAGES
