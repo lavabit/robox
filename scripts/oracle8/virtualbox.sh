@@ -74,7 +74,7 @@ VBOXVERSION=`cat /root/VBoxVersion.txt`
 
 # Packages required to build the guest additions.
 # dnf --assumeyes install gcc make perl dkms bzip2 kernel-tools kernel-headers kernel-devel kernel-uek-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
-retry dnf --assumeyes install gcc make perl bzip2 kernel-tools kernel-headers kernel-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
+retry dnf --assumeyes install curl gcc make perl bzip2 kernel-tools kernel-headers kernel-devel kernel-uek-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
 
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
