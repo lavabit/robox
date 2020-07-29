@@ -42,44 +42,34 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 
 # Update the base install first.
 retry dnf upgrade --assumeyes; error
-systemctl restart NetworkManager
 
 # Needed to retrieve source code, and other misc system tools.
 retry dnf install --assumeyes vim git wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils psmisc; error
-systemctl restart NetworkManager
 
 # Packages needed beyond a minimal install to build and run magma.
 retry dnf install --assumeyes valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive deltarpm net-tools; error
-systemctl restart NetworkManager
 
 # Grab the required packages from the EPEL repo.
 retry dnf install --assumeyes libbsd libbsd-devel inotify-tools; error
-systemctl restart NetworkManager
 
 # Boosts the available entropy which allows magma to start faster.
 retry dnf install --assumeyes haveged; error
-systemctl restart NetworkManager
 
 # The daemon services magma relies upon.
 retry dnf install --assumeyes libevent memcached; error
-systemctl restart NetworkManager
 
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
 retry dnf install --assumeyes wget git rsync perl-Git perl-Error; error
-systemctl restart NetworkManager
 
 # These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
 retry dnf install --assumeyes python-crypto python-cryptography
-systemctl restart NetworkManager
 
 # Packages used during the provisioning process and then removed during the cleanup stage.
 retry dnf install --assumeyes sudo dmidecode; error
-systemctl restart NetworkManager
 
 # Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays
 # often interupt the the provisioning process.
 retry dnf upgrade --assumeyes; error
-systemctl restart NetworkManager
 
 # Reboot onto the new kernel (if applicable).
 shutdown --reboot --no-wall +1
