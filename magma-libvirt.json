@@ -477,7 +477,7 @@
                 "umount /mnt && reboot<enter>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,
@@ -514,7 +514,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,
@@ -551,7 +551,7 @@
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,
@@ -594,7 +594,7 @@
                 "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,
@@ -635,7 +635,7 @@
                 "<enter>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,
@@ -684,7 +684,7 @@
                 "<enter>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,
@@ -737,7 +737,7 @@
                 "<enter>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,
@@ -782,7 +782,7 @@
                 "<enter>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,
@@ -827,7 +827,7 @@
                 "<enter>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,
@@ -873,7 +873,7 @@
                 "bash magma.gentoo.vagrant.sh<enter>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,
@@ -924,7 +924,7 @@
                 "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,
@@ -965,7 +965,7 @@
                 "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "format": "qcow2",
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_discard": "unmap",
             "disk_cache": "unsafe",
             "disk_compression": true,

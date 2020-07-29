@@ -1735,7 +1735,7 @@
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -1778,7 +1778,7 @@
         "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
         "<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -1827,7 +1827,7 @@
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -1883,7 +1883,7 @@
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -1939,7 +1939,7 @@
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -1995,7 +1995,7 @@
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2042,7 +2042,7 @@
       "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2082,7 +2082,7 @@
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2122,7 +2122,7 @@
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2168,7 +2168,7 @@
         "systemctl restart systemd-resolved<enter><wait>",
         "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2212,7 +2212,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2256,7 +2256,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2300,7 +2300,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2344,7 +2344,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2388,7 +2388,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2440,7 +2440,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian8.vagrant.cfg ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2492,7 +2492,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian9.vagrant.cfg ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2548,7 +2548,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1604.vagrant.cfg<wait> ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2596,7 +2596,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1610.vagrant.cfg<wait> ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2644,7 +2644,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1704.vagrant.cfg<wait> ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2692,7 +2692,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1710.vagrant.cfg<wait> ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2752,7 +2752,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1804.vagrant.cfg<wait> ",
         " --- <enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2812,7 +2812,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1810.vagrant.cfg<wait> ",
         " --- <enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2861,7 +2861,7 @@
         "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
         "bash generic.gentoo.vagrant.sh<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 8,
       "memory": 8192,
@@ -2918,7 +2918,7 @@
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd11.vagrant.cfg<enter><wait5>",
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -2962,7 +2962,7 @@
         "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.chroot.sh<enter><wait>",
         "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3016,7 +3016,7 @@
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd12.vagrant.cfg<enter><wait5>",
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3056,7 +3056,7 @@
       "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3096,7 +3096,7 @@
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "disk_adapter_type": "sata",
       "cpus": 2,
@@ -3151,7 +3151,7 @@
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd11.vagrant.cfg<enter><wait5>",
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3218,7 +3218,7 @@
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd5.vagrant.cfg<enter><wait10>",
         "sh /tmp/installerconfig && reboot<enter><wait10>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3301,7 +3301,7 @@
         "<wait><enter><wait10>",
         "x<wait><enter><wait10>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3355,7 +3355,7 @@
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait5>",
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3405,7 +3405,7 @@
         "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3464,7 +3464,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian10.vagrant.cfg ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3524,7 +3524,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1904.vagrant.cfg<wait> ",
         " --- <enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3568,7 +3568,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3608,7 +3608,7 @@
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "disk_adapter_type": "sata",
       "cpus": 2,
@@ -3659,7 +3659,7 @@
         "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3709,7 +3709,7 @@
         "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse15.vagrant.cfg<wait>",
         "<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3749,7 +3749,7 @@
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3793,7 +3793,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3853,7 +3853,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1910.vagrant.cfg<wait> ",
         " --- <enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3903,7 +3903,7 @@
         "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -3970,7 +3970,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2004.vagrant.cfg<wait> ",
         " --- <enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -4013,7 +4013,7 @@
         "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora32.vagrant.ks ",
         "<wait><enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -4093,7 +4093,7 @@
         "<wait><enter><wait10>",
         "x<wait><enter><wait10>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -4143,7 +4143,7 @@
         "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -4202,7 +4202,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan1.vagrant.cfg ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -4254,7 +4254,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan2.vagrant.cfg ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,
@@ -4306,7 +4306,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan3.vagrant.cfg ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_type_id": "0",
       "cpus": 2,
       "memory": 2048,

@@ -1737,7 +1737,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -1777,7 +1777,7 @@
         "<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -1823,7 +1823,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -1869,7 +1869,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -1915,7 +1915,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -1961,7 +1961,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -1998,7 +1998,7 @@
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2035,7 +2035,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2072,7 +2072,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2115,7 +2115,7 @@
         "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2156,7 +2156,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2197,7 +2197,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2238,7 +2238,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2279,7 +2279,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2320,7 +2320,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2369,7 +2369,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2418,7 +2418,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2471,7 +2471,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2516,7 +2516,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2561,7 +2561,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2606,7 +2606,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2663,7 +2663,7 @@
         " --- <enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2720,7 +2720,7 @@
         " --- <enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2766,7 +2766,7 @@
         "bash generic.gentoo.vagrant.sh<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2817,7 +2817,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2858,7 +2858,7 @@
         "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2909,7 +2909,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2946,7 +2946,7 @@
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2983,7 +2983,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3034,7 +3034,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3098,7 +3098,7 @@
         "sh /tmp/installerconfig && reboot<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3178,7 +3178,7 @@
         "x<wait><enter><wait10>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3229,7 +3229,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3276,7 +3276,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3325,7 +3325,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3382,7 +3382,7 @@
         " --- <enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3423,7 +3423,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3460,7 +3460,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3507,7 +3507,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3547,7 +3547,7 @@
         "<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3584,7 +3584,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3625,7 +3625,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3682,7 +3682,7 @@
         " --- <enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3729,7 +3729,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3786,7 +3786,7 @@
         " --- <enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3826,7 +3826,7 @@
         "<wait><enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3903,7 +3903,7 @@
         "x<wait><enter><wait10>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3950,7 +3950,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3999,7 +3999,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -4048,7 +4048,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -4097,7 +4097,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 32768,
+      "disk_size": 131072,
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,

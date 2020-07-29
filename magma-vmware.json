@@ -475,7 +475,7 @@
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
                 "umount /mnt && reboot<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 2,
             "memory": 2048,
@@ -515,7 +515,7 @@
             "boot_command": [
                 "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 2,
             "memory": 2048,
@@ -555,7 +555,7 @@
             "boot_command": [
                 "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 2,
             "memory": 2048,
@@ -601,7 +601,7 @@
                 "systemctl restart systemd-resolved<enter><wait>",
                 "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 2,
             "memory": 2048,
@@ -645,7 +645,7 @@
                 "net.ifnames=0 ",
                 "<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 2,
             "memory": 2048,
@@ -697,7 +697,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian8.vagrant.cfg ",
                 "<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 2,
             "memory": 2048,
@@ -753,7 +753,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg<wait> ",
                 "<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 2,
             "memory": 2048,
@@ -801,7 +801,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1610.vagrant.cfg<wait> ",
                 "<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 2,
             "memory": 2048,
@@ -849,7 +849,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1704.vagrant.cfg<wait> ",
                 "<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 2,
             "memory": 2048,
@@ -898,7 +898,7 @@
                 "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
                 "bash magma.gentoo.vagrant.sh<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 8,
             "memory": 8192,
@@ -955,7 +955,7 @@
                 "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait5>",
                 "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 2,
             "memory": 2048,
@@ -999,7 +999,7 @@
                 "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
                 "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "disk_type_id": "0",
             "cpus": 2,
             "memory": 2048,
