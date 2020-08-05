@@ -259,7 +259,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma",
+                "repository": "docker.io/lavabit/magma",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -272,7 +272,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma-centos",
+                "repository": "docker.io/lavabit/magma-centos",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -285,7 +285,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma-centos6",
+                "repository": "docker.io/lavabit/magma-centos6",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -298,7 +298,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma-centos7",
+                "repository": "docker.io/lavabit/magma-centos7",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -343,7 +343,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "latest",
-                "repository": "lavabit/magma",
+                "repository": "docker.io/lavabit/magma",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -356,7 +356,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "latest",
-                "repository": "lavabit/magma-centos",
+                "repository": "docker.io/lavabit/magma-centos",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -369,7 +369,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "latest",
-                "repository": "lavabit/magma-centos6",
+                "repository": "docker.io/lavabit/magma-centos6",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -382,7 +382,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "latest",
-                "repository": "lavabit/magma-centos7",
+                "repository": "docker.io/lavabit/magma-centos7",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -396,6 +396,140 @@
                 "login": "false",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/lavabit/magma",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/lavabit/magma-centos",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/lavabit/magma-centos6",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos6-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/lavabit/magma-centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos7-docker"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/lavabit/magma",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/lavabit/magma-centos",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/lavabit/magma-centos6",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos6-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/lavabit/magma-centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos7-docker"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
             }
         ]
     ]
