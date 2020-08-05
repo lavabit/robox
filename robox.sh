@@ -1230,6 +1230,11 @@ function parallels() {
 
     # verify_json generic-parallels
 
+    # Keep the system awake so it can finish building the boxes.
+    if [ -f /usr/bin/caffeinate ]; then
+      /usr/bin/caffeinate -w $$ &
+    fi
+
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       # Ensure there is enough disk space.
       if [[ `df -m . | tail -1 |  awk -F' ' '{print $4}'` -lt 8192 ]]; then
