@@ -70,4 +70,4 @@ echo 'export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.
 echo 'source /usr/pkg/share/bash-completion/bash_completion' >> /etc/profile
 
 # Reboot so everything initializes properly.
-/sbin/shutdown -r +1 &
+bash -c '/sbin/shutdown -r +1' &
