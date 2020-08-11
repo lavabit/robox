@@ -468,7 +468,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
@@ -501,7 +501,7 @@
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
             "iso_url": "https://mirrors.edge.kernel.org/centos/7.8.2003/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso",
@@ -544,7 +544,7 @@
                 "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
             "iso_url": "https://sjc.edge.kernel.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
@@ -583,7 +583,7 @@
                 "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
             "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2020.08.01-x86_64.iso",
@@ -619,7 +619,7 @@
                 "<enter>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
             "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
@@ -663,7 +663,7 @@
                 "<enter>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
             "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
@@ -709,7 +709,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.6/ubuntu-16.04.6-server-amd64.iso",
@@ -747,7 +747,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1610.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
             "iso_url": "http://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
@@ -785,7 +785,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1704.vagrant.cfg --- <wait><enter>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
             "iso_url": "http://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
@@ -872,7 +872,7 @@
                 "bsdinstall script /tmp/installerconfig && reboot<wait><enter>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
             "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.4/FreeBSD-11.4-RELEASE-amd64-disc1.iso",
@@ -908,7 +908,7 @@
                 "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
             "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.7/amd64/cd67.iso",

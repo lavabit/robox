@@ -1736,7 +1736,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://mirrors.kernel.org/oracle/OL7/u8/x86_64/OracleLinux-R7-U8-Server-x86_64-dvd.iso",
@@ -1772,7 +1772,7 @@
         "<enter><wait>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64.iso",
@@ -1814,7 +1814,7 @@
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.5/releases/x86_64/alpine-vanilla-3.5.3-x86_64.iso",
@@ -1856,7 +1856,7 @@
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
@@ -1898,7 +1898,7 @@
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.7/releases/x86_64/alpine-virt-3.7.3-x86_64.iso",
@@ -1940,7 +1940,7 @@
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.8/releases/x86_64/alpine-virt-3.8.5-x86_64.iso",
@@ -1972,7 +1972,7 @@
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
@@ -2004,7 +2004,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://mirrors.edge.kernel.org/centos/7.8.2003/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso",
@@ -2036,7 +2036,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://archive.org/download/rhel-server-7.8-x86_64-dvd/rhel-server-7.8-x86_64-dvd.iso",
@@ -2074,7 +2074,7 @@
         "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2020.08.01-x86_64.iso",
@@ -2110,7 +2110,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/25/Server/x86_64/iso/Fedora-Server-netinst-x86_64-25-1.3.iso",
@@ -2146,7 +2146,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/26/Server/x86_64/iso/Fedora-Server-netinst-x86_64-26-1.5.iso",
@@ -2182,7 +2182,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
@@ -2218,7 +2218,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Server/x86_64/iso/Fedora-Server-netinst-x86_64-28-1.1.iso",
@@ -2254,7 +2254,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Server/x86_64/iso/Fedora-Server-netinst-x86_64-29-1.2.iso",
@@ -2298,7 +2298,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
@@ -2342,7 +2342,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.13.0/amd64/iso-cd/debian-9.13.0-amd64-netinst.iso",
@@ -2388,7 +2388,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1604.vagrant.cfg --- <wait><enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.6/ubuntu-16.04.6-server-amd64.iso",
@@ -2426,7 +2426,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1610.vagrant.cfg --- <wait><enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "http://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
@@ -2464,7 +2464,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1704.vagrant.cfg --- <wait><enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "http://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
@@ -2502,7 +2502,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1710.vagrant.cfg --- <wait><enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "http://old-releases.ubuntu.com/releases/17.10/ubuntu-17.10.1-server-amd64.iso",
@@ -2554,7 +2554,7 @@
         " --- <enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04.4/release/ubuntu-18.04.4-server-amd64.iso",
@@ -2606,7 +2606,7 @@
         " --- <enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "http://old-releases.ubuntu.com/releases/18.10/ubuntu-18.10-server-amd64.iso",
@@ -2693,7 +2693,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.4/FreeBSD-11.4-RELEASE-amd64-disc1.iso",
@@ -2729,7 +2729,7 @@
         "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.7/amd64/cd67.iso",
@@ -2775,7 +2775,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<wait><enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/12.1/FreeBSD-12.1-RELEASE-amd64-disc1.iso",
@@ -2807,7 +2807,7 @@
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
@@ -2839,7 +2839,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://archive.org/download/rhel-8.2-x86_64-dvd/rhel-8.2-x86_64-dvd.iso",
@@ -2885,7 +2885,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<wait><enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
@@ -2944,7 +2944,7 @@
         "sh /tmp/installerconfig && reboot<wait><enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://archive.org/download/dfly-x86_64-5.6.3_REL/dfly-x86_64-5.6.3_REL.iso",
@@ -3014,7 +3014,7 @@
         "x<wait><enter><wait30>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/8.2/NetBSD-8.2-amd64.iso",
@@ -3063,7 +3063,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<wait><enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
@@ -3106,7 +3106,7 @@
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.9/releases/x86_64/alpine-virt-3.9.6-x86_64.iso",
@@ -3150,7 +3150,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://gensho.ftp.acc.umu.se/debian-cd/current/amd64/iso-cd/debian-10.5.0-amd64-netinst.iso",
@@ -3202,7 +3202,7 @@
         " --- <enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "http://old-releases.ubuntu.com/releases/19.04/ubuntu-19.04-server-amd64.iso",
@@ -3238,7 +3238,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
@@ -3270,7 +3270,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://mirrors.kernel.org/oracle/OL8/u2/x86_64/OracleLinux-R8-U2-x86_64-dvd.iso",
@@ -3313,7 +3313,7 @@
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.10/releases/x86_64/alpine-virt-3.10.5-x86_64.iso",
@@ -3348,7 +3348,7 @@
         "<enter><wait>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.2/iso/openSUSE-Leap-15.2-NET-x86_64.iso",
@@ -3380,7 +3380,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://mirrors.edge.kernel.org/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-boot.iso",
@@ -3416,7 +3416,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Server/x86_64/iso/Fedora-Server-netinst-x86_64-31-1.9.iso",
@@ -3468,7 +3468,7 @@
         " --- <enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/19.10/release/ubuntu-19.10-server-amd64.iso",
@@ -3511,7 +3511,7 @@
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.11/releases/x86_64/alpine-virt-3.11.6-x86_64.iso",
@@ -3563,7 +3563,7 @@
         " --- <enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04.1/release/ubuntu-20.04.1-legacy-server-amd64.iso",
@@ -3598,7 +3598,7 @@
         "<wait><enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/iso/Fedora-Server-netinst-x86_64-32-1.6.iso",
@@ -3662,7 +3662,7 @@
         "x<wait><enter><wait30>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/9.0/NetBSD-9.0-amd64.iso",
@@ -3708,7 +3708,7 @@
         "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.12/releases/x86_64/alpine-virt-3.12.0-x86_64.iso",
@@ -3752,7 +3752,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://mirror.leaseweb.com/devuan/devuan_jessie/installer-iso/devuan_jessie_1.0.0_amd64_NETINST.iso",
@@ -3796,7 +3796,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://mirror.leaseweb.com/devuan/devuan_ascii/installer-iso/devuan_ascii_2.1_amd64_netinst.iso",
@@ -3840,7 +3840,7 @@
         "<enter>"
       ],
       "disk_size": 131072,
-      "memory": 1024,
+      "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
       "iso_url": "https://mirror.leaseweb.com/devuan/devuan_beowulf/installer-iso/devuan_beowulf_3.0.0_amd64-netinstall.iso",
