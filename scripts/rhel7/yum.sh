@@ -299,5 +299,15 @@ sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/mirrors.kernel.org\/fedora-epel\//g" /etc/yum.repos.d/epel.repo
 
+# Disable the subscription manager plugin.
+if [ -f /etc/yum/pluginconf.d/subscription-manager.conf ]; then
+  sed --in-place "s/^enabled=.*/enabled=0/g" /etc/yum/pluginconf.d/subscription-manager.conf
+fi
+
+# And disable the subscription maangber via the alternate dnf config file.
+if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
+  sed --in-place "s/^enabled=.*/enabled=0/g" /etc/dnf/plugins/subscription-manager.conf
+fi
+
 # Install the basic packages we'd expect to find.
 yum --assumeyes install  sudo dmidecode yum-utils bash-completion man man-pages vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc

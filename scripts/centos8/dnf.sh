@@ -29,6 +29,16 @@ retry() {
 # Tell dnf to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
 printf "\nretries=128\ndeltarpm=0\nmetadata_expire=0\nmirrorlist_expire=0\n" >> /etc/dnf.conf
 
+# Disable the subscription manager plugin.
+if [ -f /etc/yum/pluginconf.d/subscription-manager.conf ]; then
+  sed --in-place "s/^enabled=.*/enabled=0/g" /etc/yum/pluginconf.d/subscription-manager.conf
+fi
+
+# And disable the subscription maangber via the alternate dnf config file.
+if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
+  sed --in-place "s/^enabled=.*/enabled=0/g" /etc/dnf/plugins/subscription-manager.conf
+fi
+
 # CentOS Repo Setup
 sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Base.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Base.repo

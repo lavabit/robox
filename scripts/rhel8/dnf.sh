@@ -436,6 +436,16 @@ sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-testing.repo
 sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-playground.repo
 sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-playground.repo
 
+# Disable the subscription manager plugin.
+if [ -f /etc/yum/pluginconf.d/subscription-manager.conf ]; then
+  sed --in-place "s/^enabled=.*/enabled=0/g" /etc/yum/pluginconf.d/subscription-manager.conf
+fi
+
+# And disable the subscription maangber via the alternate dnf config file.
+if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
+  sed --in-place "s/^enabled=.*/enabled=0/g" /etc/dnf/plugins/subscription-manager.conf
+fi
+
 # Install the basic packages we'd expect to find.
 dnf --assumeyes install sudo dmidecode dnf-utils bash-completion man man-pages vim-enhanced sysstat bind-utils wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive info autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc whois python36
 
