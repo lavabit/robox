@@ -93,7 +93,7 @@ cd `find * -maxdepth 0 -type d`
 # Recompile git using OpenSSL instead of gnutls.
 sed -i -e "s|libcurl4-gnutls-dev|libcurl4-openssl-dev|g" debian/control
 sed -i -e "/TEST[ ]*=test/d" debian/rules
-dpkg-buildpackage --jobs=4 -rfakeroot -b
+dpkg-buildpackage -J4 -rfakeroot -b
 
 # Insall the new version.
 dpkg -i `find ../* -type f -name *amd64.deb`
