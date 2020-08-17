@@ -124,7 +124,7 @@ function provide-vmware() {
 
   # VMware Workstation Install
   chmod +x "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle"
-  bash "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle" --console \
+  printf "yes\n" | bash "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle" --console \
     --required --eulas-agreed --set-setting vmware-workstation serialNumber "${VMWARE_WORKSTATION}"
 
   # Install the alternative operating system ISOs.
