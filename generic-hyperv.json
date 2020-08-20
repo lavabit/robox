@@ -3602,7 +3602,7 @@
       "boot_wait": "20s",
       "boot_command": [
         "<tab> ",
-        "<wait>text net.ifnames=0 scsi_mod.use_blk_mq=1 elevator=mq-deadlines ",
+        "<wait>text net.ifnames=0 ",
         "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora32.vagrant.ks ",
         "<wait><enter>"
       ],
