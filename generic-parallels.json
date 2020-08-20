@@ -4181,7 +4181,7 @@
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "auto ",
+        "/install.amd/vmlinuz auto=true priority=critical vga=788 initrd=/install.amd/gtk/initrd.gz --- quiet ",
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian10.vagrant.cfg ",
         "<enter>"
       ],
