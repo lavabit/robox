@@ -3874,7 +3874,7 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/19.10/release/ubuntu-19.10-server-amd64.iso",
+      "iso_url": "https://archive.org/download/ubuntu-19.10-server-amd64/ubuntu-19.10-server-amd64.iso",
       "iso_checksum": "921fd8b271c04aa86a321cc35b40e677f9b85f7903bf2204efb2389b0f0a64c1",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
