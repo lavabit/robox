@@ -1736,7 +1736,7 @@
       ],
       "disk_size": 32768,
       "cpus": 1,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -1779,7 +1779,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -1800,7 +1800,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -1843,7 +1843,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -1870,7 +1870,7 @@
       ],
       "disk_size": 32768,
       "cpus": 1,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -1913,7 +1913,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -1940,7 +1940,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -1983,7 +1983,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2010,7 +2010,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2053,7 +2053,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2080,7 +2080,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2123,7 +2123,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2141,7 +2141,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2184,7 +2184,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2202,7 +2202,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2245,7 +2245,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2263,7 +2263,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2312,7 +2312,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2336,7 +2336,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2379,7 +2379,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "9800s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "systemctl poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2401,7 +2401,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2444,7 +2444,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2466,7 +2466,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2509,7 +2509,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2531,7 +2531,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2574,7 +2574,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2596,7 +2596,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2639,7 +2639,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2661,7 +2661,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2704,7 +2704,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2734,7 +2734,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2777,7 +2777,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2807,7 +2807,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2850,7 +2850,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2884,7 +2884,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2927,7 +2927,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -2953,7 +2953,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -2996,7 +2996,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -3022,7 +3022,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -3065,7 +3065,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -3091,7 +3091,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -3134,7 +3134,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -3172,7 +3172,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -3215,7 +3215,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -3253,7 +3253,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -3296,7 +3296,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -3323,7 +3323,7 @@
       ],
       "disk_size": 32768,
       "cpus": 4,
-      "memory": 1024,
+      "memory": 4096,
       "prlctl": [
         [
           "set",
@@ -3366,7 +3366,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "21600s",
+      "ssh_wait_timeout": "7200s",
       "shutdown_command": "shutdown -hP now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -3398,7 +3398,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -3447,7 +3447,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
@@ -3469,7 +3469,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -3512,7 +3512,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "shutdown -h -p now",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
@@ -3544,7 +3544,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -3593,7 +3593,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
@@ -3611,7 +3611,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -3660,7 +3660,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -3678,7 +3678,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -3727,7 +3727,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -3759,7 +3759,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -3802,7 +3802,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
@@ -3847,7 +3847,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -3890,7 +3890,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
@@ -3962,7 +3962,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4005,7 +4005,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "4800s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
@@ -4037,7 +4037,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4086,7 +4086,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
@@ -4114,7 +4114,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4157,7 +4157,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4187,7 +4187,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4230,7 +4230,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4268,7 +4268,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4311,7 +4311,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4333,7 +4333,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4376,7 +4376,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4394,7 +4394,7 @@
       ],
       "disk_size": 32768,
       "cpus": 1,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4437,7 +4437,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4465,7 +4465,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4508,7 +4508,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4529,7 +4529,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4572,7 +4572,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4590,7 +4590,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4633,7 +4633,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4655,7 +4655,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4698,7 +4698,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4736,7 +4736,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4779,7 +4779,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4807,7 +4807,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4850,7 +4850,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4888,7 +4888,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4931,7 +4931,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -4952,7 +4952,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -4995,7 +4995,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -5057,7 +5057,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -5100,7 +5100,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "4800s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "bash /etc/rc.shutdown ; sync ; /sbin/poweroff -n -q",
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
@@ -5128,7 +5128,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -5171,7 +5171,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -5201,7 +5201,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -5244,7 +5244,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -5274,7 +5274,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -5317,7 +5317,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
@@ -5347,7 +5347,7 @@
       ],
       "disk_size": 32768,
       "cpus": 2,
-      "memory": 1024,
+      "memory": 2048,
       "prlctl": [
         [
           "set",
@@ -5390,7 +5390,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",

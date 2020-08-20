@@ -1240,14 +1240,10 @@ function parallels() {
       if [[ `df -m . | tail -1 |  awk -F' ' '{print $4}'` -lt 8192 ]]; then
         tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
       elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
-        sudo sync ; sudo purge ;
         # Build the box. If the first attempt fails, try building the box a second time.
-        if [ ! -f "$BASE/output/${LIST[$i]}-$VERSION.box" ] && [ ! -f "/Volumes/USB20FD/${LIST[$i]}-$VERSION.box" ]; then
+        if [ ! -f "$BASE/output/${LIST[$i]}-$VERSION.box" ]; then
           packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json \
-            || (sleep 120 ; sudo sync ; sudo purge ; packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json)
-          if [ -d /Volumes/USB20FD/ ]; then mv output/*.box output/*.box.sha256 /Volumes/USB20FD/ ; fi
-          sudo sync ; sudo purge ; sleep 10 ; sudo sync ; sudo purge ; sleep 120 ;
-          if [ -f ram.sh ]; then bash ram.sh ; fi
+            || (packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json)
         fi
       fi
     done
