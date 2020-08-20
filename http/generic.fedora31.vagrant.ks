@@ -46,4 +46,9 @@ fi
 sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 
+cat <<-EOF > /etc/udev/rules.d/60-scheduler.rules
+# Set the default scheduler for various device types and avoid the buggy bfq scheduler.
+ACTION=="add|change", KERNEL=="sd[a-z]|sg[a-z]|vd[a-z]|hd[a-z]|xvd[a-z]|dm-*|mmcblk[0-9]*|nvme[0-9]*", ATTR{queue/scheduler}="mq-deadline"
+EOF
+
 %end
