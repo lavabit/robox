@@ -974,7 +974,7 @@ function grab() {
       printf "\nThe hash check for " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " with the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " failed.\n\n"
       return 0
     fi
-    ( cd output ; sha256sum "$1-$2-$3-$VERSION.box" ) > "$BASE/output/$1-$2-$3-$VERSION.box.sha256"
+    ( cd output ; sha256sum "$1-$2-$3-$VERSION.box" | sed -E "s/(.{64})  (.*)/\1\t\2/g" ) > "$BASE/output/$1-$2-$3-$VERSION.box.sha256"
   else
     rm --force "$BASE/output/$1-$2-$3-$VERSION.box"
     printf "\nDownloading " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " with the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " failed.\n\n"
