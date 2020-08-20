@@ -13,7 +13,7 @@ firewall --enabled --service=ssh
 authconfig --enableshadow --passalgo=sha512
 network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora32.localdomain
 # bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=normal nomodeset text"
-bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=792 nomodeset text"
+bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 scsi_mod.use_blk_mq=1 elevator=mq-deadlines no_timer_check vga=792 nomodeset text"
 
 # When this release is no longer available from mirrors, enable the archive url.
 url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/os/
