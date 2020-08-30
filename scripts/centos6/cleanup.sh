@@ -15,7 +15,7 @@ yum --quiet --assumeyes clean all
 rm --force --recursive /root/.cache/
 
 # Remove the installation logs.
-rm --force /root/anaconda-ks.cfg /root/install.log /root/install.log.syslog
+rm --force /root/anaconda-ks.cfg /root/original-ks.cfg /root/install.log /root/install.log.syslog
 
 # Clear the command history.
 export HISTSIZE=0

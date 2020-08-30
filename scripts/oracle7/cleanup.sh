@@ -12,7 +12,7 @@ printf "Remove packages only required for provisioning purposes and then dump th
 yum --quiet --assumeyes clean all
 
 # Remove the installation logs.
-rm --force /root/anaconda-ks.cfg /root/install.log /root/install.log.syslog /var/log/yum.log /var/log/anaconda*
+rm --force /root/anaconda-ks.cfg /root/original-ks.cfg /root/install.log /root/install.log.syslog /var/log/yum.log /var/log/anaconda*
 
 # Clear the random seed.
 rm -f /var/lib/systemd/random-seed

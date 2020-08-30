@@ -19,7 +19,7 @@ yum --quiet --assumeyes clean all
 rm --force --recursive /root/.cache/
 
 # Remove the installation logs.
-rm --force /root/anaconda-ks.cfg /root/install.log /root/install.log.syslog
+rm --force /root/anaconda-ks.cfg /root/original-ks.cfg /root/install.log /root/install.log.syslog
 
 # Remove the anaconda install logs.
 rm --force /var/log/anaconda.ifcfg.log /var/log/anaconda.log /var/log/anaconda.program.log /var/log/anaconda.storage.log /var/log/anaconda.syslog /var/log/anaconda.yum.log
