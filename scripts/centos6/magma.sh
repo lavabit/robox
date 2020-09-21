@@ -140,7 +140,7 @@ if [ -d magma-develop ]; then
 fi
 
 # Clone the magma repository off Github.
-git clone git@github.com:lavabit/magma.git magma-develop; error
+git clone git://github.com/lavabit/magma.git magma-develop; error
 cd magma-develop; error
 
 # Setup the bin links, just in case we need to troubleshoot things manually.
