@@ -57,7 +57,7 @@ sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-centosplus.repo
 
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
-# Disable the physical media repos, along with fasttrack repos.
+# Disable the physical media repos, along with the fasttrack and devel repos.
 sed --in-place "s/^/# /g" /etc/yum.repos.d/CentOS-Media.repo
 sed --in-place "s/# #/##/g" /etc/yum.repos.d/CentOS-Media.repo
 sed --in-place "s/^/# /g" /etc/yum.repos.d/CentOS-Vault.repo
@@ -66,6 +66,8 @@ sed --in-place "s/^/# /g" /etc/yum.repos.d/CentOS-CR.repo
 sed --in-place "s/# #/##/g" /etc/yum.repos.d/CentOS-CR.repo
 sed --in-place "s/^/# /g" /etc/yum.repos.d/CentOS-fasttrack.repo
 sed --in-place "s/# #/##/g" /etc/yum.repos.d/CentOS-fasttrack.repo
+sed --in-place "s/^/# /g" /etc/yum.repos.d/CentOS-Devel.repo
+sed --in-place "s/# #/##/g" /etc/yum.repos.d/CentOS-Devel.repo
 
 # EPEL Repo Setup
 retry dnf --quiet --assumeyes --enablerepo=extras install epel-release
