@@ -80,6 +80,8 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
 # Disable the testing repo.
 sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-testing.repo
 sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-testing.repo
+sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-testing-modular.repo
+sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-testing-modular.repo
 
 # Disable the playground repo.
 sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-playground.repo
