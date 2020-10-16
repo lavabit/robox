@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # The unprivileged user that will be running packer/using the boxes.
-export HUMAN="`whoami`"
+export HUMAN="`set -eu ; ((logname || echo $LOGNAME) || echo $SUDO_USER) || echo $USER`"
 
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
