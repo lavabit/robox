@@ -67,7 +67,7 @@ printf "pre-up sleep 2\n" >> /etc/network/interfaces
 printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /etc/resolv.conf
 
 # Reboot onto the new kernel (if applicable).
-service networking restart
+sed -i -e '/gethostname/d'   /etc/dhcp/dhclient.conf
 (sleep 30 ; /sbin/reboot) &
 echo "Rebooting in thirty seconds..."
 exit 0
