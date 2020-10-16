@@ -4781,6 +4781,9 @@ sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 rc-update add sshd default
 
+# Disable the possword checks so we can use the defautl password.
+sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf
+
 echo 'Configuring Users'
 useradd vagrant
 echo 'root:vagrant' | chpasswd
