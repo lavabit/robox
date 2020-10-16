@@ -18,6 +18,11 @@ EOF
 chmod 0440 /etc/polkit-1/rules.d/49-vagrant.rules
 fi
 
+# Allow us to continue using the default password by tweaking the security rules.
+if [ -f /etc/security/passwdqc.conf ]; then
+  sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf
+fi
+
 printf "vagrant\nvagrant\n" | passwd vagrant
 sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 printf "vagrant        ALL=(ALL)       NOPASSWD: ALL\n" > /etc/sudoers.d/vagrant
