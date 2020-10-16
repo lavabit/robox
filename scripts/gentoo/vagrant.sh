@@ -20,7 +20,10 @@ fi
 
 # Allow us to continue using the default password by tweaking the security rules.
 if [ -f /etc/security/passwdqc.conf ]; then
-  sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf
+#  sed -i 's/match=.*/match=0/g' /etc/security/passwdqc.conf
+#  sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf
+  sed -i 's/enforce=.*/enforce=users/g' /etc/security/passwdqc.conf
+#  sed -i 's/similar=.*/similar=permit/g' /etc/security/passwdqc.conf
 fi
 
 printf "vagrant\nvagrant\n" | passwd vagrant
