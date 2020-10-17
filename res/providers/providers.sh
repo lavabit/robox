@@ -153,6 +153,8 @@ function provide-vmware() {
 
   # Setup the Virtual Interfaces as Trusted
   if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --zone=trusted --add-interface=vmnet1
+    firewall-cmd --zone=trusted --add-interface=vmnet8
     firewall-cmd --permanent --zone=trusted --add-interface=vmnet1
     firewall-cmd --permanent --zone=trusted --add-interface=vmnet8
   fi
@@ -211,7 +213,11 @@ function provide-vbox() {
 
   # Setup the Virtual Interfaces as Trusted
   if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --zone=trusted --add-interface=vibr0
+    firewall-cmd --zone=trusted --add-interface=vibr1
     firewall-cmd --permanent --zone=trusted --add-interface=vibr0
+    firewall-cmd --permanent --zone=trusted --add-interface=vibr1
+
   fi
 
   # Fix a permission issue to avoid spurious error messages in the system log.
@@ -257,6 +263,7 @@ function provide-docker() {
 
   # Setup the Virtual Interfaces as Trusted
   if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --zone=trusted --add-interface=docker0
     firewall-cmd --permanent --zone=trusted --add-interface=docker0
   fi
 }
