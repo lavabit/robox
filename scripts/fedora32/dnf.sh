@@ -41,7 +41,7 @@ if [ -f /etc/yum/pluginconf.d/subscription-manager.conf ]; then
   sed --in-place "s/^enabled=.*/enabled=0/g" /etc/yum/pluginconf.d/subscription-manager.conf
 fi
 
-# And disable the subscription maangber via the alternate dnf config file.
+# And disable the subscription manager via the alternate dnf config file.
 if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
   sed --in-place "s/^enabled=.*/enabled=0/g" /etc/dnf/plugins/subscription-manager.conf
 fi
