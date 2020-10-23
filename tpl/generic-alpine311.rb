@@ -33,7 +33,7 @@ Vagrant.configure(2) do |config|
     v.driver = "kvm"
     v.video_vram = 256
     v.disk_bus = "virtio"
-    if Vagrant::VERSION < '2.2.6' && !Vagrant.has_plugin?("vagrant-alpine")
+    if Vagrant.version?("< 2.2.6") && !Vagrant.has_plugin?("vagrant-alpine")
       override.trigger.before :up do |t|
         t.warn = "Setting OS type to 'ALT Linux' as a workaround, which might break guest OS specific features.\nPlease upgrade to Vagrant 2.2.6 or (if Vagrant can't be upgraded) install the 'vagrant-alpine' plugin if issues arise."
       end
