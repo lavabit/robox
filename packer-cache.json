@@ -722,6 +722,22 @@
     },
     {
       "type": "vmware-iso",
+      "name": "ubuntu2010",
+      "output_directory": "output/ubuntu2010",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "https://releases.ubuntu.com/20.10/ubuntu-20.10-live-server-amd64.iso",
+      "iso_checksum": "defdc1ad3af7b661fe2b4ee861fb6fdb5f52039389ef56da6efc05e6adfe3d45",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+    {
+      "type": "vmware-iso",
       "name": "fedora32",
       "output_directory": "output/fedora32",
       "headless": true,

@@ -1510,6 +1510,38 @@
       ]
     },
     {
+      "scripts": [
+        "scripts/ubuntu2010/apt.sh",
+        "scripts/ubuntu2010/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2010-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2010/floppy.sh",
+        "scripts/ubuntu2010/vagrant.sh",
+        "scripts/ubuntu2010/motd.sh",
+        "scripts/ubuntu2010/fixtty.sh",
+        "scripts/ubuntu2010/virtualbox.sh",
+        "scripts/ubuntu2010/parallels.sh",
+        "scripts/ubuntu2010/vmware.sh",
+        "scripts/ubuntu2010/qemu.sh",
+        "scripts/ubuntu2010/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2010-virtualbox"
+      ]
+    },
+    {
       "type": "shell",
       "scripts": [
         "scripts/fedora32/fixdns.sh",
@@ -3947,6 +3979,66 @@
       "vrdp_port_max": 12000,
       "iso_url": "http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04.1/release/ubuntu-20.04.1-legacy-server-amd64.iso",
       "iso_checksum": "f11bda2f2caed8f420802b59f382c25160b114ccc665dbac9c5046e7fceaced2",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-ubuntu2010-virtualbox",
+      "vm_name": "generic-ubuntu2010-virtualbox",
+      "output_directory": "output/generic-ubuntu2010-virtualbox",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<esc><f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "console-setup/ask_detect=false ",
+        "debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2010.vagrant.cfg<wait> ",
+        " --- <enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://releases.ubuntu.com/20.10/ubuntu-20.10-live-server-amd64.iso",
+      "iso_checksum": "defdc1ad3af7b661fe2b4ee861fb6fdb5f52039389ef56da6efc05e6adfe3d45",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",

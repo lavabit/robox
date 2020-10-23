@@ -1510,6 +1510,38 @@
       ]
     },
     {
+      "scripts": [
+        "scripts/ubuntu2010/apt.sh",
+        "scripts/ubuntu2010/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2010-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2010/floppy.sh",
+        "scripts/ubuntu2010/vagrant.sh",
+        "scripts/ubuntu2010/motd.sh",
+        "scripts/ubuntu2010/fixtty.sh",
+        "scripts/ubuntu2010/virtualbox.sh",
+        "scripts/ubuntu2010/parallels.sh",
+        "scripts/ubuntu2010/vmware.sh",
+        "scripts/ubuntu2010/qemu.sh",
+        "scripts/ubuntu2010/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2010-libvirt"
+      ]
+    },
+    {
       "type": "shell",
       "scripts": [
         "scripts/fedora32/fixdns.sh",
@@ -3817,6 +3849,63 @@
       "headless": true,
       "iso_url": "http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04.1/release/ubuntu-20.04.1-legacy-server-amd64.iso",
       "iso_checksum": "f11bda2f2caed8f420802b59f382c25160b114ccc665dbac9c5046e7fceaced2",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-ubuntu2010-libvirt",
+      "vm_name": "generic-ubuntu2010-libvirt",
+      "output_directory": "output/generic-ubuntu2010-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<esc><f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "console-setup/ask_detect=false ",
+        "debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2010.vagrant.cfg<wait> ",
+        " --- <enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": 131072,
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "qemuargs": [
+        [
+          "-drive",
+          "if=none,file=output/generic-ubuntu2010-libvirt/generic-ubuntu2010-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
+        ]
+      ],
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://releases.ubuntu.com/20.10/ubuntu-20.10-live-server-amd64.iso",
+      "iso_checksum": "defdc1ad3af7b661fe2b4ee861fb6fdb5f52039389ef56da6efc05e6adfe3d45",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "vagrant",
