@@ -6,7 +6,7 @@
 export PATH="/usr/sbin/:/usr/pkg/bin/:$PATH"
 
 # Dictate the package repository.
-export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.0/All"
+export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.1/All"
 
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
