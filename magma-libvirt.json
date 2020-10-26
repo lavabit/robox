@@ -583,7 +583,6 @@
             "output_directory": "output/magma-arch-libvirt",
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
-            "boot_wait": "30s",
             "boot_wait": "1s",
             "boot_command": [
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
