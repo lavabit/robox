@@ -834,6 +834,22 @@
     },
     {
       "type": "vmware-iso",
+      "name": "fedora33",
+      "output_directory": "output/fedora33",
+      "headless": true,
+      "disk_size": 1,
+      "boot_wait": "5s",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/33/Server/x86_64/iso/Fedora-Server-netinst-x86_64-33-1.2.iso",
+      "iso_checksum": "1f1f018e78f0cc23d08db0c85952344ea5c200e67b672da5b07507c066a52ccf",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10s",
+      "shutdown_command": "poweroff"
+    },
+    {
+      "type": "vmware-iso",
       "name": "openbsd6",
       "output_directory": "output/openbsd6",
       "headless": true,
