@@ -36,3 +36,7 @@ chown -R vagrant:vagrant /home/vagrant/.ssh
 
 # Mark the vagrant box build time.
 date --utc > /etc/vagrant_box_build_time
+
+# Ensures maximum compatibility with legacy systems (64-bit security).
+# https://github.com/hashicorp/vagrant/issues/11783#issuecomment-702100872
+update-crypto-policies --set LEGACY
