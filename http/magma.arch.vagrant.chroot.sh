@@ -44,9 +44,9 @@ nameserver 208.67.220.220
 EOF
 
 systemctl enable sshd
-systemctl enable dhcpcd.service
+systemctl enable dhcpcd
+systemctl enable systemd-networkd
 
-# systemctl enable systemd-networkd
 # systemctl enable systemd-resolved
 
 # Ensure the network is always eth0.
