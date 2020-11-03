@@ -46,8 +46,7 @@ EOF
 systemctl enable sshd
 systemctl enable dhcpcd
 systemctl enable systemd-networkd
-
-# systemctl enable systemd-resolved
+systemctl enable systemd-resolved
 
 # Ensure the network is always eth0.
 sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0 biosdevname=0 elevator=noop vga=792"/g' /etc/default/grub
