@@ -97,7 +97,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
             "disk_compression": true,
             "disk_discard": "unmap",
@@ -111,7 +111,7 @@
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -126,7 +126,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
             "disk_compression": true,
             "disk_discard": "unmap",
@@ -140,7 +140,7 @@
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -155,7 +155,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
             "disk_compression": true,
             "disk_discard": "unmap",
@@ -169,7 +169,7 @@
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -184,7 +184,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
             "disk_compression": true,
             "disk_discard": "unmap",
@@ -198,7 +198,7 @@
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         }
     ],

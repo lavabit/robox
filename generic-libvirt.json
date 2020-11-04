@@ -1812,7 +1812,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -1833,7 +1833,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -1851,7 +1851,7 @@
         "<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -1872,7 +1872,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
     },
     {
@@ -1896,7 +1896,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -1917,7 +1917,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff"
     },
     {
@@ -1941,7 +1941,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -1962,7 +1962,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff"
     },
     {
@@ -1986,7 +1986,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2007,7 +2007,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff"
     },
     {
@@ -2031,7 +2031,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2052,7 +2052,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff"
     },
     {
@@ -2067,7 +2067,7 @@
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2088,7 +2088,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2103,7 +2103,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2124,7 +2124,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2139,7 +2139,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2160,7 +2160,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2193,7 +2193,7 @@
         "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2214,7 +2214,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "systemctl poweroff"
     },
     {
@@ -2233,7 +2233,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2254,7 +2254,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2273,7 +2273,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2294,7 +2294,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2313,7 +2313,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2334,7 +2334,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2353,7 +2353,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2374,7 +2374,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2393,7 +2393,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2414,7 +2414,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2441,7 +2441,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2462,7 +2462,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2489,7 +2489,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2510,7 +2510,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2541,7 +2541,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2562,7 +2562,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2585,7 +2585,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2606,7 +2606,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2629,7 +2629,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2650,7 +2650,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2673,7 +2673,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2694,7 +2694,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2729,7 +2729,7 @@
         " --- <enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2750,7 +2750,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2785,7 +2785,7 @@
         " --- <enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2806,7 +2806,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -2831,7 +2831,7 @@
         "bash generic.gentoo.vagrant.sh<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2852,7 +2852,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "shutdown -hP now"
     },
     {
@@ -2881,7 +2881,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2902,7 +2902,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -p now"
     },
     {
@@ -2921,7 +2921,7 @@
         "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2942,7 +2942,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -h -p now"
     },
     {
@@ -2971,7 +2971,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -2992,7 +2992,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -p now"
     },
     {
@@ -3007,7 +3007,7 @@
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3028,7 +3028,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -3043,7 +3043,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3064,7 +3064,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -3093,7 +3093,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3114,7 +3114,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -p now"
     },
     {
@@ -3156,7 +3156,7 @@
         "sh /tmp/installerconfig && reboot<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3177,7 +3177,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -p now"
     },
     {
@@ -3236,7 +3236,7 @@
         "x<wait><enter><wait10>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3257,7 +3257,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff"
     },
     {
@@ -3286,7 +3286,7 @@
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3307,7 +3307,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -p now"
     },
     {
@@ -3332,7 +3332,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3353,7 +3353,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff"
     },
     {
@@ -3380,7 +3380,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3401,7 +3401,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -3436,7 +3436,7 @@
         " --- <enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3457,7 +3457,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -3476,7 +3476,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3497,7 +3497,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -3512,7 +3512,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3533,7 +3533,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -3558,7 +3558,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3579,7 +3579,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff"
     },
     {
@@ -3597,7 +3597,7 @@
         "<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3618,7 +3618,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
     },
     {
@@ -3633,7 +3633,7 @@
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.vagrant.ks<enter><wait>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3654,7 +3654,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -3673,7 +3673,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3694,7 +3694,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -3729,7 +3729,7 @@
         " --- <enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3750,7 +3750,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -3775,7 +3775,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3796,7 +3796,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff"
     },
     {
@@ -3831,7 +3831,7 @@
         " --- <enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3852,7 +3852,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -3870,7 +3870,7 @@
         "<wait><enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3891,7 +3891,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -3947,7 +3947,7 @@
         "x<wait><enter><wait10>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -3968,7 +3968,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff"
     },
     {
@@ -3993,7 +3993,7 @@
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -4014,7 +4014,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff"
     },
     {
@@ -4041,7 +4041,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -4062,7 +4062,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now"
     },
     {
@@ -4089,7 +4089,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -4110,7 +4110,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now"
     },
     {
@@ -4137,7 +4137,7 @@
         "<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -4158,7 +4158,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now"
     },
     {
@@ -4188,7 +4188,7 @@
         "boot<enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -4209,7 +4209,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "ssh_handshake_attempts": "10000",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
@@ -4228,7 +4228,7 @@
         "<wait><enter>"
       ],
       "format": "qcow2",
-      "disk_size": 131072,
+      "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_cache": "unsafe",
       "disk_compression": true,
@@ -4249,7 +4249,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     }
   ],

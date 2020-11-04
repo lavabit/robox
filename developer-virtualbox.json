@@ -87,7 +87,7 @@
             "ssh_username": "root",
             "ssh_password": "magma",
             "ssh_port": 22,
-            "ssh_wait_timeout": "7200s",
+            "ssh_timeout": "7200s",
             "shutdown_command": "sudo -S shutdown -P now",
             "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
             "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",

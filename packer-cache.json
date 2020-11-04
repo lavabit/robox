@@ -12,7 +12,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -27,7 +27,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -42,7 +42,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -57,7 +57,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -72,7 +72,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -87,7 +87,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -102,7 +102,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -117,7 +117,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -132,7 +132,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -147,7 +147,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -162,7 +162,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -177,7 +177,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -192,7 +192,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -207,7 +207,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -222,7 +222,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -237,7 +237,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -252,7 +252,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -267,7 +267,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -282,7 +282,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -297,7 +297,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -312,7 +312,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -327,7 +327,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -342,7 +342,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -357,7 +357,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -372,7 +372,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -387,7 +387,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -402,7 +402,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -417,7 +417,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -432,7 +432,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -447,7 +447,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -462,7 +462,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -477,7 +477,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -492,7 +492,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -507,7 +507,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -522,7 +522,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -537,7 +537,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -552,7 +552,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -567,7 +567,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -582,7 +582,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -597,7 +597,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -612,7 +612,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -627,7 +627,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -642,7 +642,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -657,7 +657,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -672,7 +672,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -687,7 +687,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -702,7 +702,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -717,7 +717,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -732,7 +732,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -747,7 +747,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -762,7 +762,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -777,7 +777,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -792,7 +792,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     },
     {
@@ -807,7 +807,7 @@
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10s",
+      "ssh_timeout": "10s",
       "shutdown_command": "poweroff"
     }
   ]

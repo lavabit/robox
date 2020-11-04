@@ -270,7 +270,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
             "disk_compression": true,
             "disk_discard": "unmap",
@@ -284,7 +284,7 @@
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -299,7 +299,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
             "disk_compression": true,
             "disk_discard": "unmap",
@@ -313,7 +313,7 @@
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -328,7 +328,7 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
             "disk_compression": true,
             "disk_discard": "unmap",
@@ -342,7 +342,7 @@
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -357,7 +357,7 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.docker.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
           "disk_cache": "unsafe",
           "disk_compression": true,
@@ -378,7 +378,7 @@
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
         },
         {
@@ -393,7 +393,7 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.docker.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
           "disk_cache": "unsafe",
           "disk_compression": true,
@@ -414,7 +414,7 @@
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
         },
         {
@@ -429,7 +429,7 @@
             "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
           "disk_cache": "unsafe",
           "disk_compression": true,
@@ -450,7 +450,7 @@
           "ssh_username": "root",
           "ssh_password": "vagrant",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         },
         {
@@ -465,7 +465,7 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
           "disk_cache": "unsafe",
           "disk_compression": true,
@@ -486,7 +486,7 @@
           "ssh_username": "root",
           "ssh_password": "vagrant",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         },
         {
@@ -501,7 +501,7 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
           "disk_cache": "unsafe",
           "disk_compression": true,
@@ -522,7 +522,7 @@
           "ssh_username": "root",
           "ssh_password": "vagrant",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         }
     ],
