@@ -72,7 +72,7 @@ DYNAMICURLS="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-
 
 # Collect the list of ISO urls.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -Ev "$DYNAMICURLS" | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -Ev "iso_checksum_type|iso_checksum_url" | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | awk -F'"' '{print $4}' | awk -F':' '{print $2}'`)
 UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}' | sort | uniq`)
 
 # Collect the list of box names.
@@ -298,7 +298,7 @@ function iso() {
 
     # Replace the existing ISO and hash values with the update values.
     sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/$SHA/g" $FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
 
 
   elif [ "$1" == "arch" ]; then
@@ -333,7 +333,7 @@ function iso() {
 
     # Replace the existing ISO and hash values with the update values.
     sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/$SHA/g" $FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
 
   fi
 
