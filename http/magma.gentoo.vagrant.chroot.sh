@@ -25,8 +25,9 @@ GRUB_PLATFORMS="emu efi-32 efi-64 pc"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
-SYMLINK_LIB="no"
 EOF
+
+# SYMLINK_LIB="yes"
 
 echo 'Configuring Locale'
 cat <<-EOF > /etc/env.d/02locale
@@ -49,10 +50,13 @@ mkdir -p "/etc/portage/package.accept_keywords"
 mkdir -p "/etc/portage/package.mask"
 mkdir -p "/etc/portage/package.unmask"
 
+echo 'Setting Portage Profile'
+eselect profile set default/linux/amd64/17.1/no-multilib
+
 echo 'Emerging Dependencies'
-cd /usr/portage
-profile="`grep stable profiles/profiles.desc | grep no-multilib | grep amd64 | awk -F' ' '{print \$2}' | grep -E 'no-multilib\$' | head -1`"
-rm -f /etc/portage/make.profile && ln -s /usr/portage/profiles/$profile /etc/portage/make.profile
+# cd /usr/portage
+# profile="`grep stable profiles/profiles.desc | grep no-multilib | grep amd64 | awk -F' ' '{print \$2}' | grep -E 'no-multilib\$' | head -1`"
+# rm -f /etc/portage/make.profile && ln -s /usr/portage/profiles/$profile /etc/portage/make.profile
 emerge sys-kernel/gentoo-sources sys-boot/grub app-editors/vim app-admin/sudo sys-apps/netplug sys-apps/dmidecode
 
 # If necessary, include the Hyper-V modules in the initramfs and then load them at boot.
