@@ -31,9 +31,7 @@ EOF
 echo 'Configuring Locale'
 cat <<-EOF > /etc/env.d/02locale
 LANG="en_US.UTF-8"
-LANG_ALL="en_US.utf8"
-LANGUAGE="en_US.utf8"
-LC_COLLATE="C"
+LC_COLLATE="POSIX"
 EOF
 
 echo 'Rebuilding the System Locales'
