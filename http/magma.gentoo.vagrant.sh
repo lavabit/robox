@@ -1,5 +1,8 @@
 #!/bin/bash -xe
 
+echo 'Syncing the System Clock'
+ntpdate 0.us.pool.ntp.org 1.us.pool.ntp.org 2.us.pool.ntp.org
+
 echo 'Preparing Filesystem to Install Gentoo'
 
 echo 'Partitioning Filesystems'
