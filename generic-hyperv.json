@@ -1728,6 +1728,7 @@
         "scripts/ubuntu2010/vagrant.sh",
         "scripts/ubuntu2010/motd.sh",
         "scripts/ubuntu2010/fixtty.sh",
+        "scripts/ubuntu2010/fixkvp.sh",
         "scripts/ubuntu2010/virtualbox.sh",
         "scripts/ubuntu2010/parallels.sh",
         "scripts/ubuntu2010/vmware.sh",
