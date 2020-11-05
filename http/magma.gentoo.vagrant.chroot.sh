@@ -25,7 +25,7 @@ GRUB_PLATFORMS="emu efi-32 efi-64 pc"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
-SYMLINK_LIB="yes"
+SYMLINK_LIB="no"
 EOF
 
 echo 'Configuring Locale'
@@ -35,6 +35,9 @@ LANG_ALL="en_US.utf8"
 LANGUAGE="en_US.utf8"
 LC_COLLATE="C"
 EOF
+
+echo 'Rebuilding the System Locales'
+locale-gen -A -u -j 8
 
 echo 'Configuring Timezone'
 ln -snf /usr/share/zoneinfo/US/Pacific /etc/localtime
