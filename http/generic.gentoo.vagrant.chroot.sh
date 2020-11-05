@@ -25,9 +25,8 @@ GRUB_PLATFORMS="emu efi-32 efi-64 pc"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
+SYMLINK_LIB="no"
 EOF
-
-# SYMLINK_LIB="yes"
 
 echo 'Configuring Locale'
 cat <<-EOF > /etc/env.d/02locale

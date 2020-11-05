@@ -1,7 +1,7 @@
 #!/bin/bash -ux
 
 # Update the package database.
-emerge --sync
+emerge --sync || (rm --recursive --force /usr/portage/ ; mkdir /usr/portage/ ; emerge-webrsync )
 
 # Update the system packages.
 emerge --update --deep --newuse --with-bdeps=y @system @world
