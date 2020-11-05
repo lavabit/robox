@@ -36,7 +36,7 @@ LC_COLLATE="POSIX"
 EOF
 
 echo 'Rebuilding the System Locales'
-locale-gen -A -u -j 8
+locale-gen -A -u -j 16
 
 echo 'Configuring Timezone'
 ln -snf /usr/share/zoneinfo/US/Pacific /etc/localtime
