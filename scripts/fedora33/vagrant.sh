@@ -37,6 +37,12 @@ chown -R vagrant:vagrant /home/vagrant/.ssh
 # Mark the vagrant box build time.
 date --utc > /etc/vagrant_box_build_time
 
-# Ensures maximum compatibility with legacy systems (64-bit security).
-# https://github.com/hashicorp/vagrant/issues/11783#issuecomment-702100872
-update-crypto-policies --set LEGACY
+cat <<-EOF > /etc/ssh/sshd_config.d/10-vagrant-insecure-rsa-key.conf
+# For now the vagrant insecure key is an rsa key
+# https://github.com/hashicorp/vagrant/issues/11783
+PubkeyAcceptedKeyTypes=+ssh-rsa
+EOF
+
+chcon system_u:object_r:etc_t:s0 /etc/ssh/sshd_config.d/10-vagrant-insecure-rsa-key.conf
+chmod 600 /etc/ssh/sshd_config.d/10-vagrant-insecure-rsa-key.conf
+
