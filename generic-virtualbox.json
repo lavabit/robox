@@ -720,6 +720,7 @@
       "scripts": [
         "scripts/ubuntu1604/floppy.sh",
         "scripts/ubuntu1604/vagrant.sh",
+        "scripts/ubuntu1604/profile.sh",
         "scripts/ubuntu1604/motd.sh",
         "scripts/ubuntu1604/fixtty.sh",
         "scripts/ubuntu1604/virtualbox.sh",
@@ -752,6 +753,7 @@
       "scripts": [
         "scripts/ubuntu1610/floppy.sh",
         "scripts/ubuntu1610/vagrant.sh",
+        "scripts/ubuntu1610/profile.sh",
         "scripts/ubuntu1610/motd.sh",
         "scripts/ubuntu1610/fixtty.sh",
         "scripts/ubuntu1610/virtualbox.sh",
@@ -784,6 +786,7 @@
       "scripts": [
         "scripts/ubuntu1704/floppy.sh",
         "scripts/ubuntu1704/vagrant.sh",
+        "scripts/ubuntu1704/profile.sh",
         "scripts/ubuntu1704/motd.sh",
         "scripts/ubuntu1704/fixtty.sh",
         "scripts/ubuntu1704/virtualbox.sh",
@@ -816,6 +819,7 @@
       "scripts": [
         "scripts/ubuntu1710/floppy.sh",
         "scripts/ubuntu1710/vagrant.sh",
+        "scripts/ubuntu1710/profile.sh",
         "scripts/ubuntu1710/motd.sh",
         "scripts/ubuntu1710/fixtty.sh",
         "scripts/ubuntu1710/virtualbox.sh",
@@ -848,6 +852,7 @@
       "scripts": [
         "scripts/ubuntu1804/floppy.sh",
         "scripts/ubuntu1804/vagrant.sh",
+        "scripts/ubuntu1804/profile.sh",
         "scripts/ubuntu1804/motd.sh",
         "scripts/ubuntu1804/fixtty.sh",
         "scripts/ubuntu1804/virtualbox.sh",
@@ -880,6 +885,7 @@
       "scripts": [
         "scripts/ubuntu1810/floppy.sh",
         "scripts/ubuntu1810/vagrant.sh",
+        "scripts/ubuntu1810/profile.sh",
         "scripts/ubuntu1810/motd.sh",
         "scripts/ubuntu1810/fixtty.sh",
         "scripts/ubuntu1810/virtualbox.sh",
@@ -1179,6 +1185,7 @@
       "scripts": [
         "scripts/ubuntu1904/floppy.sh",
         "scripts/ubuntu1904/vagrant.sh",
+        "scripts/ubuntu1904/profile.sh",
         "scripts/ubuntu1904/motd.sh",
         "scripts/ubuntu1904/fixtty.sh",
         "scripts/ubuntu1904/virtualbox.sh",
@@ -1426,6 +1433,7 @@
       "scripts": [
         "scripts/ubuntu1910/floppy.sh",
         "scripts/ubuntu1910/vagrant.sh",
+        "scripts/ubuntu1910/profile.sh",
         "scripts/ubuntu1910/motd.sh",
         "scripts/ubuntu1910/fixtty.sh",
         "scripts/ubuntu1910/virtualbox.sh",
@@ -1493,6 +1501,7 @@
       "scripts": [
         "scripts/ubuntu2004/floppy.sh",
         "scripts/ubuntu2004/vagrant.sh",
+        "scripts/ubuntu2004/profile.sh",
         "scripts/ubuntu2004/motd.sh",
         "scripts/ubuntu2004/fixtty.sh",
         "scripts/ubuntu2004/virtualbox.sh",
@@ -1725,6 +1734,7 @@
       "scripts": [
         "scripts/ubuntu2010/floppy.sh",
         "scripts/ubuntu2010/vagrant.sh",
+        "scripts/ubuntu2010/profile.sh",
         "scripts/ubuntu2010/motd.sh",
         "scripts/ubuntu2010/fixtty.sh",
         "scripts/ubuntu2010/fixkvp.sh",
