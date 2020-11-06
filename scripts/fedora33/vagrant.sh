@@ -14,7 +14,8 @@ polkit.addRule(function(action, subject) {
     }
 });
 EOF
-chmod 0440 /etc/polkit-1/rules.d/49-vagrant.rules
+semanage fcontext -a -t etc_t /etc/polkit-1/rules.d/49-vagrant.rules
+chmod 0640 /etc/polkit-1/rules.d/49-vagrant.rules
 fi
 
 printf "vagrant\nvagrant\n" | passwd vagrant
@@ -42,7 +43,5 @@ cat <<-EOF > /etc/ssh/sshd_config.d/10-vagrant-insecure-rsa-key.conf
 # https://github.com/hashicorp/vagrant/issues/11783
 PubkeyAcceptedKeyTypes=+ssh-rsa
 EOF
-
-chcon system_u:object_r:etc_t:s0 /etc/ssh/sshd_config.d/10-vagrant-insecure-rsa-key.conf
-chmod 600 /etc/ssh/sshd_config.d/10-vagrant-insecure-rsa-key.conf
-
+semanage fcontext -a -t etc_t /etc/ssh/sshd_config.d/10-vagrant-insecure-rsa-key.conf
+chmod 0600 /etc/ssh/sshd_config.d/10-vagrant-insecure-rsa-key.conf
