@@ -465,10 +465,12 @@ function verify_availability() {
   curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box" | grep --silent "200"
 
   if [ $? != 0 ]; then
-    printf "Box  -  "; tput setaf 1; printf "${1}/${2} ${3}\n"; tput sgr0
+    #printf "Box  -  "; tput setaf 1; printf "${1}/${2} ${3}\n"; tput sgr0
+    printf "%sBox  -   %s${1}/${2} ${3}%s \n%s" "`tput sgr0`" "`tput setaf 1`" "`tput sgr0`" "`tput sgr0`"
     let RESULT=1
   else
-    printf "Box  +  "; tput setaf 2; printf "${1}/${2} ${3}\n"; tput sgr0
+    #printf "Box  +  "; tput setaf 2; printf "${1}/${2} ${3}\n"; tput sgr0
+    printf "%sBox  +   %s${1}/${2} ${3}%s \n%s" "`tput sgr0`" "`tput setaf 2`" "`tput sgr0`" "`tput sgr0`"
   fi
 
   return $RESULT
@@ -937,7 +939,7 @@ function ppublic() {
 
     export -f curltry ; export -f verify_availability ; export CURL ;
     # parallel --jobs 16 --keep-order --xapply verify_availability {1} {2} {3} {4} ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
-    parallel --jobs 4 --keep-order --xapply verify_availability {1} {2} {3} {4} '||' let MISSING+=1 ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
+    parallel --jobs 4 --keep-order --line-buffer --xapply verify_availability {1} {2} {3} {4} '||' let MISSING+=1 ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
     # Get the totla number of boxes.
     let TOTAL=${#B[@]}
     let FOUND=${TOTAL}-${MISSING}
