@@ -34,8 +34,12 @@ LANG="en_US.UTF-8"
 LC_COLLATE="POSIX"
 EOF
 
+cat <<-EOF > /etc/locale.gen
+en_US.UTF-8 UTF-8
+EOF
+
 echo 'Rebuilding the System Locales'
-locale-gen -A -u -j 16
+locale-gen -A -j 16
 
 echo 'Configuring Timezone'
 ln -snf /usr/share/zoneinfo/US/Pacific /etc/localtime
