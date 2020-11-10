@@ -113,18 +113,14 @@
             "format": "qcow2",
             "disk_size": "196608",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 4,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/lineage-libvirt/lineage-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",
@@ -165,18 +161,14 @@
             "format": "qcow2",
             "disk_size": "196608",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 4,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/lineage-nash-libvirt/lineage-nash-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",

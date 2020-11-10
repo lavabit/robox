@@ -482,18 +482,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-alpine36-libvirt/magma-alpine36-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://sjc.edge.kernel.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
@@ -518,18 +514,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-centos6-libvirt/magma-centos6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
@@ -554,18 +546,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-centos7-libvirt/magma-centos7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/7.8.2003/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso",
@@ -608,18 +596,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-arch-libvirt/magma-arch-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2020.11.01-x86_64.iso",
@@ -648,18 +632,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-fedora27-libvirt/magma-fedora27-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
@@ -696,18 +676,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-debian8-libvirt/magma-debian8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
@@ -748,18 +724,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-ubuntu1604-libvirt/magma-ubuntu1604-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",
@@ -792,18 +764,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-ubuntu1610-libvirt/magma-ubuntu1610-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "http://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
@@ -836,18 +804,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-ubuntu1704-libvirt/magma-ubuntu1704-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "http://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
@@ -882,18 +846,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 8,
             "memory": 8192,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-gentoo-libvirt/magma-gentoo-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20201108T214504Z.iso",
@@ -932,18 +892,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-freebsd11-libvirt/magma-freebsd11-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.4/FreeBSD-11.4-RELEASE-amd64-disc1.iso",
@@ -972,18 +928,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-openbsd6-libvirt/magma-openbsd6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.8/amd64/cd68.iso",

@@ -1825,18 +1825,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-oracle7-libvirt/generic-oracle7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.kernel.org/oracle/OL7/u8/x86_64/OracleLinux-R7-U8-Server-x86_64-dvd.iso",
@@ -1864,18 +1860,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-opensuse42-libvirt/generic-opensuse42-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64.iso",
@@ -1909,18 +1901,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-alpine35-libvirt/generic-alpine35-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.5/releases/x86_64/alpine-virt-3.5.3-x86_64.iso",
@@ -1954,18 +1942,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-alpine36-libvirt/generic-alpine36-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
@@ -1999,18 +1983,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-alpine37-libvirt/generic-alpine37-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.7/releases/x86_64/alpine-virt-3.7.3-x86_64.iso",
@@ -2044,18 +2024,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-alpine38-libvirt/generic-alpine38-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.8/releases/x86_64/alpine-virt-3.8.5-x86_64.iso",
@@ -2080,18 +2056,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-centos6-libvirt/generic-centos6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
@@ -2116,18 +2088,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-centos7-libvirt/generic-centos7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.edge.kernel.org/centos/7.8.2003/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso",
@@ -2152,18 +2120,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-rhel7-libvirt/generic-rhel7-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://archive.org/download/rhel-server-7.8-x86_64-dvd/rhel-server-7.8-x86_64-dvd.iso",
@@ -2206,18 +2170,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-arch-libvirt/generic-arch-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2020.11.01-x86_64.iso",
@@ -2246,18 +2206,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-fedora25-libvirt/generic-fedora25-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/25/Server/x86_64/iso/Fedora-Server-netinst-x86_64-25-1.3.iso",
@@ -2286,18 +2242,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-fedora26-libvirt/generic-fedora26-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/26/Server/x86_64/iso/Fedora-Server-netinst-x86_64-26-1.5.iso",
@@ -2326,18 +2278,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-fedora27-libvirt/generic-fedora27-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
@@ -2366,18 +2314,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-fedora28-libvirt/generic-fedora28-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Server/x86_64/iso/Fedora-Server-netinst-x86_64-28-1.1.iso",
@@ -2406,18 +2350,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-fedora29-libvirt/generic-fedora29-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Server/x86_64/iso/Fedora-Server-netinst-x86_64-29-1.2.iso",
@@ -2454,18 +2394,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-debian8-libvirt/generic-debian8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
@@ -2502,18 +2438,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-debian9-libvirt/generic-debian9-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.13.0/amd64/iso-cd/debian-9.13.0-amd64-netinst.iso",
@@ -2554,18 +2486,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-ubuntu1604-libvirt/generic-ubuntu1604-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",
@@ -2598,18 +2526,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-ubuntu1610-libvirt/generic-ubuntu1610-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "http://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
@@ -2642,18 +2566,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-ubuntu1704-libvirt/generic-ubuntu1704-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "http://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
@@ -2686,18 +2606,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-ubuntu1710-libvirt/generic-ubuntu1710-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "http://old-releases.ubuntu.com/releases/17.10/ubuntu-17.10.1-server-amd64.iso",
@@ -2742,18 +2658,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-ubuntu1804-libvirt/generic-ubuntu1804-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04.5/release/ubuntu-18.04.5-server-amd64.iso",
@@ -2798,18 +2710,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-ubuntu1810-libvirt/generic-ubuntu1810-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "http://old-releases.ubuntu.com/releases/18.10/ubuntu-18.10-server-amd64.iso",
@@ -2844,18 +2752,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 8,
       "memory": 8192,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-gentoo-libvirt/generic-gentoo-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20201108T214504Z.iso",
@@ -2894,18 +2798,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-freebsd11-libvirt/generic-freebsd11-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.4/FreeBSD-11.4-RELEASE-amd64-disc1.iso",
@@ -2934,18 +2834,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-openbsd6-libvirt/generic-openbsd6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.8/amd64/cd68.iso",
@@ -2984,18 +2880,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-freebsd12-libvirt/generic-freebsd12-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/12.2/FreeBSD-12.2-RELEASE-amd64-disc1.iso",
@@ -3020,18 +2912,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-rhel6-libvirt/generic-rhel6-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
@@ -3056,18 +2944,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-rhel8-libvirt/generic-rhel8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://archive.org/download/rhel-8.2-x86_64-dvd/rhel-8.2-x86_64-dvd.iso",
@@ -3106,18 +2990,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-hardenedbsd11-libvirt/generic-hardenedbsd11-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
@@ -3169,18 +3049,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-dragonflybsd5-libvirt/generic-dragonflybsd5-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.8.3_REL.iso",
@@ -3249,18 +3125,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-netbsd8-libvirt/generic-netbsd8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/8.2/NetBSD-8.2-amd64.iso",
@@ -3299,18 +3171,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-hardenedbsd12-libvirt/generic-hardenedbsd12-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
@@ -3345,18 +3213,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-alpine39-libvirt/generic-alpine39-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.9/releases/x86_64/alpine-virt-3.9.6-x86_64.iso",
@@ -3393,18 +3257,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-debian10-libvirt/generic-debian10-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://gensho.ftp.acc.umu.se/debian-cd/current/amd64/iso-cd/debian-10.6.0-amd64-netinst.iso",
@@ -3449,18 +3309,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-ubuntu1904-libvirt/generic-ubuntu1904-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "http://old-releases.ubuntu.com/releases/19.04/ubuntu-19.04-server-amd64.iso",
@@ -3489,18 +3345,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-fedora30-libvirt/generic-fedora30-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
@@ -3525,18 +3377,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-oracle8-libvirt/generic-oracle8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.kernel.org/oracle/OL8/u2/x86_64/OracleLinux-R8-U2-x86_64-dvd.iso",
@@ -3571,18 +3419,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-alpine310-libvirt/generic-alpine310-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.10/releases/x86_64/alpine-virt-3.10.5-x86_64.iso",
@@ -3610,18 +3454,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-opensuse15-libvirt/generic-opensuse15-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.2/iso/openSUSE-Leap-15.2-NET-x86_64.iso",
@@ -3646,18 +3486,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-centos8-libvirt/generic-centos8-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.edge.kernel.org/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-boot.iso",
@@ -3686,18 +3522,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-fedora31-libvirt/generic-fedora31-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Server/x86_64/iso/Fedora-Server-netinst-x86_64-31-1.9.iso",
@@ -3742,18 +3574,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-ubuntu1910-libvirt/generic-ubuntu1910-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://archive.org/download/ubuntu-19.10-server-amd64/ubuntu-19.10-server-amd64.iso",
@@ -3788,18 +3616,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-alpine311-libvirt/generic-alpine311-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.11/releases/x86_64/alpine-virt-3.11.6-x86_64.iso",
@@ -3844,18 +3668,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-ubuntu2004-libvirt/generic-ubuntu2004-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04.1/release/ubuntu-20.04.1-legacy-server-amd64.iso",
@@ -3883,18 +3703,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-fedora32-libvirt/generic-fedora32-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/iso/Fedora-Server-netinst-x86_64-32-1.6.iso",
@@ -3960,18 +3776,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-netbsd9-libvirt/generic-netbsd9-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/9.1/NetBSD-9.1-amd64.iso",
@@ -4006,18 +3818,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-alpine312-libvirt/generic-alpine312-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.12/releases/x86_64/alpine-virt-3.12.1-x86_64.iso",
@@ -4054,18 +3862,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-devuan1-libvirt/generic-devuan1-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirror.leaseweb.com/devuan/devuan_jessie/installer-iso/devuan_jessie_1.0.0_amd64_NETINST.iso",
@@ -4102,18 +3906,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-devuan2-libvirt/generic-devuan2-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirror.leaseweb.com/devuan/devuan_ascii/installer-iso/devuan_ascii_2.1_amd64_netinst.iso",
@@ -4150,18 +3950,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-devuan3-libvirt/generic-devuan3-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirror.leaseweb.com/devuan/devuan_beowulf/installer-iso/devuan_beowulf_3.0.0_amd64-netinstall.iso",
@@ -4201,18 +3997,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-ubuntu2010-libvirt/generic-ubuntu2010-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.kernel.org/ubuntu-releases/20.10/ubuntu-20.10-live-server-amd64.iso",
@@ -4241,18 +4033,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-fedora33-libvirt/generic-fedora33-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/33/Server/x86_64/iso/Fedora-Server-netinst-x86_64-33-1.2.iso",

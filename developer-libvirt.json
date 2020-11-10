@@ -70,18 +70,14 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 4,
             "memory": 4096,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-developer-libvirt/magma-developer-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",

@@ -64,18 +64,14 @@
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
       "disk_cache": "unsafe",
+      "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
-      "qemuargs": [
-        [
-          "-drive",
-          "if=none,file=output/generic-debian9-x32-libvirt/generic-debian9-x32-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-        ]
-      ],
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.13.0/i386/iso-cd/debian-9.13.0-i386-netinst.iso",

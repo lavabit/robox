@@ -272,8 +272,10 @@
             "format": "raw",
             "disk_size": "32770",
             "disk_interface": "virtio-scsi",
-            "disk_compression": true,
+            "disk_image": false,
+          "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
@@ -301,8 +303,10 @@
             "format": "raw",
             "disk_size": "32770",
             "disk_interface": "virtio-scsi",
-            "disk_compression": true,
+            "disk_image": false,
+          "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
@@ -330,8 +334,10 @@
             "format": "raw",
             "disk_size": "32770",
             "disk_interface": "virtio-scsi",
-            "disk_compression": true,
+            "disk_image": false,
+          "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
@@ -359,18 +365,14 @@
           "format": "qcow2",
           "disk_size": "32768",
           "disk_discard": "unmap",
+          "disk_detect_zeroes": "unmap",
           "disk_cache": "unsafe",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-oracle7-docker/generic-oracle7-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
           "iso_url": "https://mirrors.kernel.org/oracle/OL7/u8/x86_64/OracleLinux-R7-U8-Server-x86_64-dvd.iso",
@@ -395,18 +397,13 @@
           "format": "qcow2",
           "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-oracle8-docker/generic-oracle8-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
           "iso_url": "https://mirrors.kernel.org/oracle/OL8/u2/x86_64/OracleLinux-R8-U2-x86_64-dvd.iso",
@@ -431,18 +428,13 @@
           "format": "qcow2",
           "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-rhel6-docker/generic-rhel6-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
           "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
@@ -467,18 +459,13 @@
           "format": "qcow2",
           "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-rhel7-docker/generic-rhel7-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
           "iso_urls": "https://archive.org/download/rhel-server-7.8-x86_64-dvd/rhel-server-7.8-x86_64-dvd.iso",
@@ -503,18 +490,13 @@
           "format": "qcow2",
           "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-rhel8-docker/generic-rhel8-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
           "iso_urls": "https://archive.org/download/rhel-8.2-x86_64-dvd/rhel-8.2-x86_64-dvd.iso",
