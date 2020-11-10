@@ -26,6 +26,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :libvirt do |v, override|
+    v.channel :type => 'spicevmc', :target_name => 'com.qemu.guest_agent.0', :target_type => 'virtio'
     v.disk_bus = "virtio"
     v.driver = "kvm"
     v.video_vram = 256
