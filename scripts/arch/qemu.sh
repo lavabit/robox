@@ -36,5 +36,5 @@ fi
 
 retry pacman --sync --noconfirm --refresh linux-headers qemu-guest-agent
 
-systemctl enable qemu-ga.service
-systemctl start qemu-ga.service
+systemctl enable qemu-guest-agent.service
+systemctl start qemu-guest-agent.service
