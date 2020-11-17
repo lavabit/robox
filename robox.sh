@@ -72,7 +72,7 @@ DYNAMICURLS="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-
 
 # Collect the list of ISO urls.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -Ev "$DYNAMICURLS" | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | awk -F'"' '{print $4}' | awk -F':' '{print $2}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | awk -F'"' '{print $4}' | sed "s/^sha256://g"`)
 UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}' | sort | uniq`)
 
 # Collect the list of box names.
