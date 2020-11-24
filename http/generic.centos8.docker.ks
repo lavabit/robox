@@ -19,7 +19,7 @@ lang en_US
 # Disk setup
 zerombr
 clearpart --all --initlabel
-part / --size 32768 --fstype ext4
+autopart --nohome
 
 repo --name=BaseOS
 url --url=https://mirrors.edge.kernel.org/centos/8.2.2004/BaseOS/x86_64/os/

@@ -7,7 +7,7 @@ timezone US/Pacific
 rootpw --plaintext vagrant
 user --name=vagrant --password=vagrant --plaintext
 zerombr
-autopart --type=plain --nohome
+autopart --nohome
 clearpart --all --initlabel
 firewall --enabled --service=ssh
 authconfig --enableshadow --passalgo=sha512

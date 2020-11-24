@@ -13,7 +13,7 @@ lang en_US
 # Disk setup
 zerombr
 clearpart --all --initlabel
-part / --size 32768 --fstype ext4
+autopart --nohome
 
 # Package setup
 %packages --instLangs=en --nobase

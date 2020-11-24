@@ -16,8 +16,9 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=magma.builder
 
 zerombr
 clearpart --all --initlabel
+autopart --nohome
+
 bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check"
-autopart
 
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
