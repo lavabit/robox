@@ -15,7 +15,7 @@ bootloader --location=partition
 # Disk setup
 zerombr
 clearpart --all --initlabel
-autopart --nohome
+autopart
 
 %packages --nobase
 @core

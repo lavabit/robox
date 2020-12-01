@@ -15,7 +15,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=magma.local
 zerombr
 clearpart --all --initlabel
 bootloader --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=792"
-autopart --nohome
+autopart
 rootpw magma
 authconfig --enableshadow --passalgo=sha512
 reboot --eject
