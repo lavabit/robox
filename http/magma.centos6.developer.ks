@@ -1,8 +1,8 @@
 install
 url --url=https://mirrors.kernel.org/centos/6/os/x86_64/
 repo --name=debug --baseurl=http://debuginfo.centos.org/6/x86_64/
-repo --name=extras --baseurl=https://mirrors.kernel.org/centos/6/extras/x86_64/
-repo --name=updates --baseurl=https://mirrors.kernel.org/centos/6/updates/x86_64/
+repo --name=extras --baseurl=https://vault.centos.org/6.10/extras/x86_64/
+repo --name=updates --baseurl=https://vault.centos.org/6.10/updates/x86_64/
 repo --name=epel --baseurl=https://mirrors.kernel.org/fedora-epel/6/x86_64/
 repo --name=epel-debuginfo --baseurl=https://mirrors.kernel.org/fedora-epel/6/SRPMS/
 lang en_US.UTF-8
