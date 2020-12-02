@@ -6,6 +6,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/network.sh"
             ],
