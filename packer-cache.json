@@ -423,7 +423,7 @@
     {
       "name": "fedora31",
       "output_directory": "output/fedora31",
-      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Server/x86_64/iso/Fedora-Server-netinst-x86_64-31-1.9.iso",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/Server/x86_64/iso/Fedora-Server-netinst-x86_64-31-1.9.iso",
       "iso_checksum": "sha256:5be8debd3e8fb4e86b9fbf67c7eb66ea598d2b7ad0c7ba8d505ce88067b43444",
       "boot_wait": "5s",
       "disk_size": 1,
