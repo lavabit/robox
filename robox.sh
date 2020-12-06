@@ -586,10 +586,12 @@ function links() {
 
   for ((i = 0; i < ${#MURLS[@]}; ++i)); do
     (verify_url "${MURLS[$i]}") &
+    sleep 0.1 &> /dev/null || echo "" &> /dev/null
   done
 
   for ((i = 0; i < ${#UNIQURLS[@]}; ++i)); do
-      (verify_url "${UNIQURLS[$i]}") &
+    (verify_url "${UNIQURLS[$i]}") &
+    sleep 0.1 &> /dev/null || echo "" &> /dev/null
   done
 
   # Wait until the children done working.
