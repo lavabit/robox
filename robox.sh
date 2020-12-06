@@ -501,6 +501,18 @@ function build() {
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
+
+    # Auto retry any boxes that failed.
+    which jq &> /dev/null
+    if [[ $? == 0 ]]; then
+      LIST=(`cat $1.json | jq -r " .builders | .[] |  .name " | sort`)
+      for ((i = 0; i < ${#LIST[@]}; ++i)); do
+        if [ ! -f "$BASE/output/${LIST[$i]}-$VERSION.box" ]; then
+          packer build -parallel-builds=$PACKERMAXPROCS -only="${LIST[$i]}" -except="${EXCEPTIONS}" $1.json
+        fi
+      done
+    fi
+
     for i in 1 2 3; do printf "\a"; sleep 1; done
   fi
 }
