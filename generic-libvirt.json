@@ -1851,7 +1851,7 @@
       "output_directory": "output/generic-opensuse42-libvirt",
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "60s",
+      "boot_wait": "20s",
       "boot_command": [
         "<esc><enter><wait>",
         "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
@@ -3445,7 +3445,7 @@
       "output_directory": "output/generic-opensuse15-libvirt",
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "60s",
+      "boot_wait": "20s",
       "boot_command": [
         "<esc><enter><wait>",
         "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.2/repo/oss/ lang=en_US  textmode=1 <wait>",
