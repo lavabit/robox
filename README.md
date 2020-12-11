@@ -19,7 +19,6 @@ The templates in this repo require a current version of packer, (1.3.4+) and in 
 
 ## Pending Tasks
 
-Automatically retry failed box builds  
 Generate docker variants for the Ubuntu/Debian/Alpine configurations  
 Add upload/delete/release functions to robox.sh  
 Add vagrant user password randomization logic to the bundled Vagrantfiles  
@@ -30,6 +29,12 @@ Add init based test, and SSH command test to the box test and check script
 Submit a pull request with your favorite distro.
 
 ## Operating System Requests
+
+The following variants of existing builds have been requested, and will be added at a future date, when time allows (or someone submits a pull request).
+
+[CentOS Stream](https://software.opensuse.org/distributions/tumbleweed)
+[Fedora Rawhide](https://fedoraproject.org/wiki/Releases/Rawhide)
+[OpenSUSE Tumbleweed](https://www.centos.org/centos-stream/)
 
 The following operating systems have been requested by a member of the robox community, but require a volunteer, so they can be incorporated into the robox workflow.
 
