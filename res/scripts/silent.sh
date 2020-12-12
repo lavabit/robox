@@ -249,3 +249,9 @@ retry ${CURL} --tlsv1.2 \
   --header "Connection: keep-alive" \
   --write-out "FILE: $FILENAME\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n\n" \
   --upload-file "$FILEPATH" "$UPLOAD_PATH"
+
+
+# # Add a short pause, with the duration determined by the size of the file uploaded. 
+# PAUSE="`du -b $FILEPATH | awk -F' ' '{print $1}'`"
+# bash -c "usleep $(($PAUSE/20))"
+
