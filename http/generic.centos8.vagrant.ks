@@ -1,5 +1,5 @@
 install
-cdrom
+url --url=https://mirrors.edge.kernel.org/centos/8.3.2011/BaseOS/x86_64/os/
 
 lang en_US.UTF-8
 keyboard us
@@ -23,9 +23,6 @@ rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
 
 reboot --eject
-
-repo --name=BaseOS
-url --url=https://mirrors.edge.kernel.org/centos/8.3.2011/BaseOS/x86_64/os/
 
 %packages --instLangs=en
 @core
