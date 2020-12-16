@@ -26,9 +26,6 @@ retry() {
   return "${RESULT}"
 }
 
-# Use the Lavabit mirror.
-sed -i -e "s/http:\/\/old-releases.ubuntu.com/https:\/\/mirrors.lavabit.com/g" /etc/apt/sources.list
-
 # To allow for autmated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
@@ -75,3 +72,6 @@ systemctl enable sysstat.service && systemctl start sysstat.service
 
 # Setup vim as the default editor.
 printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
+
+# Populate the mlocate database during boot.
+printf "@reboot root command bash -c '/etc/cron.daily/mlocate'\n" > /etc/cron.d/mlocate

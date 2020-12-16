@@ -17,9 +17,7 @@ authconfig --enableshadow --passalgo=sha512
 # resolution of 1024x768.
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=792"
 
-# When this release is no longer available from mirrors, enable the archive url.
-url --url=https://mirrors.kernel.org/fedora/releases/28/Everything/x86_64/os/
-# url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Everything/x86_64/os/
+url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Everything/x86_64/os/
 
 %packages
 @core

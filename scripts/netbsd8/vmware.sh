@@ -30,7 +30,7 @@ retry() {
 export PATH="/usr/sbin/:/usr/pkg/bin/:$PATH"
 
 # Dictate the package repository.
-export PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0/All"
+export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0_2020Q3/All"
 
 # Ensure dmideocode is available.
 retry pkg_add dmidecode
@@ -41,3 +41,6 @@ if [[ `/usr/pkg/sbin/dmidecode -s system-product-name` != "VMware Virtual Platfo
 fi
 
 rm -f /root/freebsd.iso
+
+# Fix the SSH NAT issue on VMWare systems.
+printf "\nIPQoS lowdelay throughput\n" >> /etc/ssh/sshd_config

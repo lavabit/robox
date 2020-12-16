@@ -30,7 +30,7 @@ retry() {
 export PATH="/usr/sbin/:/usr/pkg/bin/:$PATH"
 
 # Dictate the package repository.
-export PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0/All"
+export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0_2020Q3/All"
 
 # Sudo should already be installed, but just in case.
 retry pkg_add sudo
@@ -63,6 +63,18 @@ EOF
 # Ensure the permissions are set correct to avoid OpenSSH complaints.
 chmod 0600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant:vagrant /home/vagrant/.ssh
+
+# Create an empty bashrc file.
+touch /home/vagrant/.bashrc
+
+# Add logic to the shrc file that will read the bashrc if the shell is bash.
+cat <<-EOF >> /home/vagrant/.shrc
+
+if [ "\$SHELL" == "/usr/pkg/bin/bash" ] && [ -f \$HOME/.bashrc ]; then
+	source \$HOME/.bashrc
+fi
+
+EOF
 
 # Mark the vagrant box build time.
 date > /etc/vagrant_box_build_time

@@ -57,17 +57,25 @@ if [ ! -f /usr/bin/sha256sum ]; then
   exit 1
 fi
 
-AGENT="Vagrant/2.2.5 (+https://www.vagrantup.com; ruby2.4.6)"
+AGENT="Vagrant/2.2.9 (+https://www.vagrantup.com; ruby2.6.6)"
 
 FILENAME=`basename "$1"`
 FILEPATH=`realpath "$1"`
 
-(echo "$FILENAME" | grep --silent -E "\.sha256\$") || (tput setaf 1; printf "\n\nThe file does not have a proper extension.\n\n\n";  tput sgr0; exit 1)
-
-ORG=`echo "$FILENAME" | sed "s/\([a-z]*\)[\-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box.sha256/\1/g"`
-BOX=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box.sha256/\2/g"`
-PROVIDER=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box.sha256/\3/g"`
-VERSION=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box.sha256/\4/g"`
+if [[ "$FILENAME" =~ ^.*\.box$ ]]; then
+  ORG=`echo "$FILENAME" | sed "s/\([a-z]*\)[\-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\1/g"`
+  BOX=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\2/g"`
+  PROVIDER=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\3/g"`
+  VERSION=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\4/g"`
+elif [[ "$FILENAME" =~ ^.*\.box\.sha256$ ]]; then
+  ORG=`echo "$FILENAME" | sed "s/\([a-z]*\)[\-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box.sha256/\1/g"`
+  BOX=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box.sha256/\2/g"`
+  PROVIDER=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box.sha256/\3/g"`
+  VERSION=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box.sha256/\4/g"`
+else
+  tput setaf 1; printf "\n\nThe file does not have a proper extension.\n\n\n";  tput sgr0;
+  exit 1
+fi
 
 # Handle the Lavabit boxes.
 if [ "$ORG" == "magma" ]; then
@@ -101,8 +109,19 @@ if [ "$PROVIDER" == "vmware" ]; then
   PROVIDER="vmware_desktop"
 fi
 
-# Read the hash in the checksum file.
-HASH="`awk -F' ' '{print $1}' $FILEPATH`"
+# Modify the org/box for 32 bit variants.
+if [[ "$BOX" =~ ^.*-x32$ ]]; then
+  ORG="${ORG}-x32"
+  BOX="`echo $BOX | sed s/-x32//g`"
+fi
+
+if [[ "$FILENAME" =~ ^.*\.box$ ]]; then
+  # Calculate the hash using the box file.
+  HASH="`sha256sum $FILEPATH | awk -F' ' '{print $1}'`"
+else
+  # Read the hash in from the checksum file
+  HASH="`awk -F' ' '{print $1}' $FILEPATH`"
+fi
 
 # Verify the values were all parsed properly.
 if [ "$ORG" == "" ]; then
@@ -135,6 +154,12 @@ if [ `echo "$HASH" | wc -c` != 65 ]; then
   exit 1
 fi
 
+# Private magma boxes can't be verified. so we skip them.
+if [ "$BOX" == "magma-alpine" ] || [ "$BOX" == "magma-arch" ] || [ "$BOX" == "magma-freebsd" ] || [ "$BOX" == "magma-gentoo" ] || [ "$BOX" == "magma-openbsd" ]; then
+  printf "Box  ~  " ; tput setaf 3 ; printf "${ORG}/${BOX} ${PROVIDER} ${VERSION}\n" ; tput sgr0
+  exit 0
+fi
+
 # org name provider version hash
 function download() {
 
@@ -145,7 +170,7 @@ function download() {
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
 
-    # Retryfailed downloads, just in case the error was ephemeral.
+    # Retry failed downloads, just in case the error was ephemeral.
     HASH=`curl --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box | sha256sum`
 
     echo "$HASH" | grep --silent "$5"
@@ -163,4 +188,56 @@ function download() {
   return 0
 }
 
+function checksum() {
+
+    local COUNT=1
+    local DELAY=1
+    local RESULT=0
+
+    while [[ "${COUNT}" -le 100 ]]; do
+      RESULT=0
+      DATA=`curl --fail --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://app.vagrantup.com/api/v1/box/$1/$2/version/$4`
+      RESULT="${?}"
+      if [[ $RESULT == 0 ]]; then
+        break
+      fi
+      COUNT="$((COUNT + 1))"
+      DELAY="$((DELAY + 1))"
+      sleep $DELAY
+    done
+
+    CHECKSUM=`echo $DATA | jq -e -r ".providers[] | select( .name | contains(\"$3\")) | .checksum"`
+    echo "$CHECKSUM" | grep --silent "$5"
+
+    # The grep return code tells us whether it found a match in the header or not.
+    if [ $? != 0 ]; then
+
+      # Retry failed downloads, just in case the error was ephemeral.
+      while [[ "${COUNT}" -le 100 ]]; do
+        RESULT=0
+        DATA=`curl --fail --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://app.vagrantup.com/api/v1/box/$1/$2/version/$4`
+        RESULT="${?}"
+        if [[ $RESULT == 0 ]]; then
+          break
+        fi
+        COUNT="$((COUNT + 1))"
+        DELAY="$((DELAY + 1))"
+        sleep $DELAY
+      done
+
+      CHECKSUM=`echo $DATA | jq -e -r ".providers[] | select( .name | contains(\"$3\")) | .checksum"`
+      echo "$CHECKSUM" | grep --silent "$5"
+
+    if [ $? != 0 ]; then
+      printf "Box  -  "; tput setaf 1; printf "${ORG}/${BOX} ${PROVIDER} ${VERSION}\n"; tput sgr0
+      exit 1
+    fi
+
+  fi
+
+  return 0
+
+}
+
+checksum $ORG $BOX $PROVIDER $VERSION $HASH
 download $ORG $BOX $PROVIDER $VERSION $HASH

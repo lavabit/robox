@@ -19,21 +19,27 @@ MAKEOPTS="-j8"
 EMERGE_DEFAULT_OPTS="-j8 --with-bdeps=y --quiet-build=y --complete-graph"
 FEATURES="\${FEATURES} parallel-fetch"
 USE="nls alsa usb unicode openssl"
-USE_PYTHON="3.6 2.7"
-PYTHON_TARGETS="python3_6 python2_7"
+USE_PYTHON="3.7 2.7"
+PYTHON_TARGETS="python3_7 python2_7"
 GRUB_PLATFORMS="emu efi-32 efi-64 pc"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
+SYMLINK_LIB="no"
 EOF
 
 echo 'Configuring Locale'
 cat <<-EOF > /etc/env.d/02locale
 LANG="en_US.UTF-8"
-LANG_ALL="en_US.utf8"
-LANGUAGE="en_US.utf8"
-LC_COLLATE="C"
+LC_COLLATE="POSIX"
 EOF
+
+cat <<-EOF > /etc/locale.gen
+en_US.UTF-8 UTF-8
+EOF
+
+echo 'Rebuilding the System Locales'
+locale-gen -A -j 16
 
 echo 'Configuring Timezone'
 ln -snf /usr/share/zoneinfo/US/Pacific /etc/localtime
@@ -47,10 +53,13 @@ mkdir -p "/etc/portage/package.accept_keywords"
 mkdir -p "/etc/portage/package.mask"
 mkdir -p "/etc/portage/package.unmask"
 
+echo 'Setting Portage Profile'
+eselect profile set default/linux/amd64/17.1/no-multilib
+
 echo 'Emerging Dependencies'
-cd /usr/portage
-profile="`grep stable profiles/profiles.desc | grep no-multilib | grep amd64 | awk -F' ' '{print \$2}' | grep -E 'no-multilib\$' | tail -1`"
-rm -f /etc/portage/make.profile && ln -s /usr/portage/profiles/$profile /etc/portage/make.profile
+# cd /usr/portage
+# profile="`grep stable profiles/profiles.desc | grep no-multilib | grep amd64 | awk -F' ' '{print \$2}' | grep -E 'no-multilib\$' | head -1`"
+# rm -f /etc/portage/make.profile && ln -s /usr/portage/profiles/$profile /etc/portage/make.profile
 emerge sys-kernel/gentoo-sources sys-boot/grub app-editors/vim app-admin/sudo sys-apps/netplug sys-apps/dmidecode
 
 # If necessary, include the Hyper-V modules in the initramfs and then load them at boot.
@@ -441,7 +450,7 @@ CONFIG_BLK_DEV_BSGLIB=y
 # CONFIG_BLK_CMDLINE_PARSER is not set
 # CONFIG_BLK_WBT is not set
 CONFIG_BLK_DEBUG_FS=y
-# CONFIG_BLK_SED_OPAL is not set
+CONFIG_BLK_SED_OPAL=y
 
 #
 # Partition Types
@@ -1556,7 +1565,7 @@ CONFIG_SCSI_EATA_MAX_TAGS=16
 CONFIG_SCSI_INITIO=y
 # CONFIG_SCSI_INIA100 is not set
 # CONFIG_SCSI_STEX is not set
-CONFIG_SCSI_SYM53C8XX_2=m
+CONFIG_SCSI_SYM53C8XX_2=y
 CONFIG_SCSI_SYM53C8XX_DMA_ADDRESSING_MODE=1
 CONFIG_SCSI_SYM53C8XX_DEFAULT_TAGS=16
 CONFIG_SCSI_SYM53C8XX_MAX_TAGS=64
@@ -1738,7 +1747,7 @@ CONFIG_DUMMY=y
 # CONFIG_NET_TEAM is not set
 CONFIG_MACVLAN=y
 CONFIG_IPVLAN=y
-# CONFIG_VXLAN is not set
+CONFIG_VXLAN=y
 # CONFIG_MACSEC is not set
 CONFIG_NETCONSOLE=y
 # CONFIG_NETCONSOLE_DYNAMIC is not set
@@ -4011,6 +4020,7 @@ CONFIG_EFI_RUNTIME_WRAPPERS=y
 #
 CONFIG_DCACHE_WORD_ACCESS=y
 CONFIG_FS_IOMAP=y
+CONFIG_AUFS_FS=y
 CONFIG_EXT2_FS=y
 # CONFIG_EXT2_FS_XATTR is not set
 CONFIG_EXT3_FS=y
@@ -4035,7 +4045,8 @@ CONFIG_XFS_FS=y
 # CONFIG_XFS_DEBUG is not set
 # CONFIG_GFS2_FS is not set
 # CONFIG_OCFS2_FS is not set
-# CONFIG_BTRFS_FS is not set
+CONFIG_BTRFS_FS=y
+CONFIG_BTRFS_FS_POSIX_ACL=y
 # CONFIG_NILFS2_FS is not set
 # CONFIG_F2FS_FS is not set
 # CONFIG_FS_DAX is not set
@@ -4755,7 +4766,7 @@ CONFIG_SBITMAP=y
 EOF
 
 make olddefconfig
-make --jobs=4
+make --jobs=8
 make install
 make modules_install
 
@@ -4778,6 +4789,9 @@ echo 'Configuration SSH'
 sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 rc-update add sshd default
+
+# Disable the possword checks so we can use the defautl password.
+sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf
 
 echo 'Configuring Users'
 useradd vagrant

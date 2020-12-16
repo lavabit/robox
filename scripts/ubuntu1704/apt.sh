@@ -134,3 +134,6 @@ systemctl enable sysstat.service && systemctl start sysstat.service
 
 # Setup vim as the default editor.
 printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
+
+# Populate the mlocate database during boot.
+printf "@reboot root command bash -c '/etc/cron.daily/mlocate'\n" > /etc/cron.d/mlocate

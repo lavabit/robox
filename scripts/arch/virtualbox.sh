@@ -2,6 +2,7 @@
 
 retry() {
   local COUNT=1
+  local DELAY=0
   local RESULT=0
   while [[ "${COUNT}" -le 10 ]]; do
     [[ "${RESULT}" -ne 0 ]] && {
@@ -33,7 +34,7 @@ if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
     exit 0
 fi
 
-retry pacman --sync --noconfirm --refresh virtualbox-guest-modules-arch virtualbox-guest-utils-nox
+retry pacman --sync --noconfirm --refresh virtualbox-guest-dkms virtualbox-guest-utils-nox
 
 systemctl enable vboxservice.service
 systemctl start vboxservice.service

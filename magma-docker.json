@@ -1,13 +1,16 @@
 {
     "variables": {
         "box_version": "{{env `VERSION`}}",
+        "quay-user": "{{env `QUAY_USER`}}",
         "docker-user": "{{env `DOCKER_USER`}}",
+        "quay-password": "{{env `QUAY_PASSWORD`}}",
         "docker-password": "{{env `DOCKER_PASSWORD`}}"
     },
     "provisioners": [
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/network.sh"
             ],
@@ -95,22 +98,23 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
+            "disk_image": false,
             "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",            
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+            "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -125,22 +129,23 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
+            "disk_image": false,
             "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+            "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -155,22 +160,23 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
+            "disk_image": false,
             "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+            "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -185,22 +191,23 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
+            "disk_image": false,
             "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
-            "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://mirrors.edge.kernel.org/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso",
+            "iso_checksum": "sha256:07b94e6b1a0b0260b94c83d6bb76b26bf7a310dc78d7a9c7432809fb9bc6194a",
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         }
     ],
@@ -257,7 +264,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma",
+                "repository": "docker.io/lavabit/magma",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -270,7 +277,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma-centos",
+                "repository": "docker.io/lavabit/magma-centos",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -283,7 +290,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma-centos6",
+                "repository": "docker.io/lavabit/magma-centos6",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -296,7 +303,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "lavabit/magma-centos7",
+                "repository": "docker.io/lavabit/magma-centos7",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -317,7 +324,7 @@
                 "keep_input_artifact": true,
                 "output": "output/{{build_name}}-{{user `box_version`}}.box",
                 "include": [
-                    "tpl/generic/info.json"
+                    "tpl/lavabit/info.json"
                 ]
             },
             {
@@ -325,7 +332,7 @@
                 "checksum_types": [
                     "sha256"
                 ],
-                "output": "output/{{build_name}}-{{user `box_version`}}.tar.gz.sha256",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
                 "keep_input_artifact": true
             }
         ],
@@ -341,7 +348,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "latest",
-                "repository": "lavabit/magma",
+                "repository": "docker.io/lavabit/magma",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -354,7 +361,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "latest",
-                "repository": "lavabit/magma-centos",
+                "repository": "docker.io/lavabit/magma-centos",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -367,7 +374,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "latest",
-                "repository": "lavabit/magma-centos6",
+                "repository": "docker.io/lavabit/magma-centos6",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -380,7 +387,7 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "latest",
-                "repository": "lavabit/magma-centos7",
+                "repository": "docker.io/lavabit/magma-centos7",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -394,6 +401,140 @@
                 "login": "false",
                 "login_username": "{{user `docker_username`}}",
                 "login_password": "{{user `docker_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/lavabit/magma",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/lavabit/magma-centos",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/lavabit/magma-centos6",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos6-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/lavabit/magma-centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos7-docker"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/lavabit/magma",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/lavabit/magma-centos",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/lavabit/magma-centos6",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos6-docker"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/lavabit/magma-centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "magma-centos7-docker"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
             }
         ]
     ]

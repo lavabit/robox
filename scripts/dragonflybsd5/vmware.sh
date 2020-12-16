@@ -32,3 +32,6 @@ printf "nfsclient_enable=\"YES\"\n" >> /etc/rc.conf
 
 rm -f  open-vm-tools-nox11-10.3.0.txz
 rm -f /root/freebsd.iso
+
+# Fix the SSH NAT issue on VMWare systems.
+printf "\nIPQoS lowdelay throughput\n" >> /etc/ssh/sshd_config

@@ -14,7 +14,7 @@ printf "baseurl=file:///media/\n" >> /etc/yum.repos.d/media.repo
 rpm --import /media/RPM-GPG-KEY-redhat-release
 
 # Setup the EPEL repo.
-base64 --decode > epel-release-6.8.noarch.rpm <<-EOF
+base64 --decode > epel-release-6-8.noarch.rpm <<-EOF
 7avu2wMAAAAA/2VwZWwtcmVsZWFzZS02LTgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAABAAUAAAAAAAAAAAAAAAAAAAAAjq3oAQAAAAAAAAAHAAAEhAAA
 AD4AAAAHAAAEdAAAABAAAAEMAAAABwAAAAAAAAIYAAABDQAAAAYAAAIYAAAAAQAAA+gAAAAEAAAC
@@ -274,18 +274,18 @@ AAAKWVo=
 EOF
 
 # Install the EPEL release RPM.
-yum --assumeyes install epel-release-6.8.noarch.rpm
+yum --assumeyes install epel-release-6-8.noarch.rpm
 
 # Delete the RPM file.
-rm --force epel-release-6.8.noarch.rpm
+rm --force epel-release-6-8.noarch.rpm
 
 # Setup the EPEL release signing key.
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
 
-# Update the EPEL repo to use HTTPS.
+# Update EPEL to use HTTPS and switch to archive server.
 sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
-sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/mirrors.kernel.org\/fedora-epel\//g" /etc/yum.repos.d/epel.repo
+sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/archives.fedoraproject.org\/pub\/archive\/epel\//g" /etc/yum.repos.d/epel.repo
 
 # Install the basic packages we'd expect to find.
-yum --assumeyes install  sudo dmidecode yum-utils bash-completion man man-pages vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc
+yum --assumeyes install sudo dmidecode yum-utils bash-completion man man-pages vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc

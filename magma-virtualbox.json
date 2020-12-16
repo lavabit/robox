@@ -9,7 +9,7 @@
                 "scripts/alpine36/network.sh",
                 "scripts/alpine36/apk.sh"
             ],
-            "execute_command": "/bin/sh '{{.Path}}'",
+            "execute_command": "{{.Vars}} /bin/sh '{{.Path}}'",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -48,6 +48,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/network.sh"
             ],
@@ -291,7 +292,7 @@
             "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
-            "execute_command": "/usr/local/bin/bash {{ .Path }}",
+            "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
                 "magma-freebsd11-virtualbox"
             ]
@@ -303,7 +304,7 @@
             "type": "shell",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
-            "execute_command": "/bin/sh {{ .Path }}",
+            "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
             "only": [
                 "magma-openbsd6-virtualbox"
             ]
@@ -324,7 +325,7 @@
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
-            "execute_command": "/usr/local/bin/bash {{ .Path }}",
+            "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
                 "magma-openbsd6-virtualbox"
             ]
@@ -349,6 +350,7 @@
                 "scripts/ubuntu1604/memcached.sh",
                 "scripts/ubuntu1604/floppy.sh",
                 "scripts/ubuntu1604/vagrant.sh",
+                "scripts/ubuntu1604/profile.sh",
                 "scripts/ubuntu1604/motd.sh",
                 "scripts/ubuntu1604/magma.sh",
                 "scripts/ubuntu1604/fixtty.sh",
@@ -386,6 +388,7 @@
                 "scripts/ubuntu1610/memcached.sh",
                 "scripts/ubuntu1610/floppy.sh",
                 "scripts/ubuntu1610/vagrant.sh",
+                "scripts/ubuntu1610/profile.sh",
                 "scripts/ubuntu1610/motd.sh",
                 "scripts/ubuntu1610/magma.sh",
                 "scripts/ubuntu1610/fixtty.sh",
@@ -423,6 +426,7 @@
                 "scripts/ubuntu1704/memcached.sh",
                 "scripts/ubuntu1704/floppy.sh",
                 "scripts/ubuntu1704/vagrant.sh",
+                "scripts/ubuntu1704/profile.sh",
                 "scripts/ubuntu1704/motd.sh",
                 "scripts/ubuntu1704/magma.sh",
                 "scripts/ubuntu1704/fixtty.sh",
@@ -474,7 +478,7 @@
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
                 "umount /mnt && reboot<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "cpus": 2,
             "memory": 2048,
             "vboxmanage": [
@@ -491,16 +495,15 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
-            "iso_checksum": "b5936e27487e605ea3cbf040d444505ea7fd735021258d7b119faaa9b4b5b083",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://sjc.edge.kernel.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
+            "iso_checksum": "sha256:b5936e27487e605ea3cbf040d444505ea7fd735021258d7b119faaa9b4b5b083",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "/sbin/poweroff",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-            "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
@@ -514,7 +517,7 @@
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "cpus": 2,
             "memory": 2048,
             "vboxmanage": [
@@ -531,16 +534,15 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+            "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-            "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
@@ -554,7 +556,7 @@
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "cpus": 2,
             "memory": 2048,
             "vboxmanage": [
@@ -571,16 +573,15 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
-            "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://mirrors.edge.kernel.org/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso",
+            "iso_checksum": "sha256:07b94e6b1a0b0260b94c83d6bb76b26bf7a310dc78d7a9c7432809fb9bc6194a",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-            "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
@@ -590,13 +591,29 @@
             "name": "magma-arch-virtualbox",
             "vm_name": "magma-arch-virtualbox",
             "output_directory": "output/magma-arch-virtualbox",
-            "boot_wait": "30s",
+            "boot_wait": "1s",
             "boot_command": [
-                "<enter><wait10><wait10><wait10><wait10>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<spacebar>net.ifnames=0 biosdevname=0<enter>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10>",
+                "sed -i 's/[#]\\?DNSSEC=.*/DNSSEC=false/g' /etc/systemd/resolved.conf<enter><wait>",
+                "systemctl restart systemd-resolved<enter><wait>",
+                "systemctl restart dhcpcd<enter><wait>",
                 "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.arch.vagrant{,.chroot}.sh'<enter><wait>",
                 "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "cpus": 2,
             "memory": 2048,
             "vboxmanage": [
@@ -613,16 +630,15 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2019.08.01-x86_64.iso",
-            "iso_checksum": "e3d9cea98c03996ee3ce5d2d995aed495eae77c670721bb62ad25530fa175d1d",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2020.12.01-x86_64.iso",
+            "iso_checksum": "sha256:67007bcefa2f954d8068a0506d6d472b5b6cecb1558f3e3a7d4da223b5abe8d8",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "7200s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-            "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+            "ssh_timeout": "3600s",
+            "shutdown_command": "systemctl poweroff",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
@@ -640,7 +656,7 @@
                 "net.ifnames=0 ",
                 "<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "cpus": 2,
             "memory": 2048,
             "vboxmanage": [
@@ -658,14 +674,13 @@
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
             "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
-            "iso_checksum": "2b93836c38833b26891345388ff5ddea60529b27a616b4539d432a3520d1c90b",
-            "iso_checksum_type": "sha256",
+            "iso_checksum": "sha256:2b93836c38833b26891345388ff5ddea60529b27a616b4539d432a3520d1c90b",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
             "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
@@ -676,14 +691,23 @@
             "name": "magma-debian8-virtualbox",
             "vm_name": "magma-debian8-virtualbox",
             "output_directory": "output/magma-debian8-virtualbox",
-            "boot_wait": "20s",
+            "boot_wait": "10s",
             "boot_command": [
-                "<esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
                 "auto ",
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian8.vagrant.cfg ",
                 "<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "cpus": 2,
             "memory": 2048,
             "vboxmanage": [
@@ -701,15 +725,14 @@
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
             "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
-            "iso_checksum": "ea444d6f8ac95fd51d2aedb8015c57410d1ad19b494cedec6914c17fda02733c",
-            "iso_checksum_type": "sha256",
+            "iso_checksum": "sha256:ea444d6f8ac95fd51d2aedb8015c57410d1ad19b494cedec6914c17fda02733c",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-            "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
@@ -739,7 +762,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg<wait> ",
                 "<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "cpus": 2,
             "memory": 2048,
             "vboxmanage": [
@@ -756,16 +779,15 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.6/ubuntu-16.04.6-server-amd64.iso",
-            "iso_checksum": "16afb1375372c57471ea5e29803a89a5a6bd1f6aabea2e5e34ac1ab7eb9786ac",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",
+            "iso_checksum": "sha256:b23488689e16cad7a269eb2d3a3bf725d3457ee6b0868e00c8762d3816e25848",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-            "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
@@ -787,7 +809,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1610.vagrant.cfg<wait> ",
                 "<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "cpus": 2,
             "memory": 2048,
             "vboxmanage": [
@@ -805,15 +827,14 @@
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
             "iso_url": "http://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
-            "iso_checksum": "72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
-            "iso_checksum_type": "sha256",
+            "iso_checksum": "sha256:72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-            "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
@@ -835,7 +856,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1704.vagrant.cfg<wait> ",
                 "<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "cpus": 2,
             "memory": 2048,
             "vboxmanage": [
@@ -853,15 +874,14 @@
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
             "iso_url": "http://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
-            "iso_checksum": "ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
-            "iso_checksum_type": "sha256",
+            "iso_checksum": "sha256:ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-            "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
@@ -875,16 +895,19 @@
             "boot_command": [
                 "gentoo-nofb<enter>",
                 "<wait10><enter>",
-                "<wait10><wait10><wait10><wait10>",
-                "passwd root<enter><wait>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
+                "sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf<enter><wait>",
+                "passwd root<enter><wait><wait><wait>",
                 "vagrant<enter><wait>",
                 "vagrant<enter><wait>",
                 "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
                 "bash magma.gentoo.vagrant.sh<enter>"
             ],
-            "disk_size": 32768,
-            "cpus": 4,
-            "memory": 2048,
+            "disk_size": 131072,
+            "cpus": 8,
+            "memory": 8192,
             "vboxmanage": [
                 [
                     "modifyvm",
@@ -899,16 +922,15 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190821T214502Z.iso",
-            "iso_checksum": "ebda9e6a7e4406c8c41852edf22f7f277155abd18ce86ced730dfabf38dd1b2c",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20201206T214503Z.iso",
+            "iso_checksum": "sha256:aaff90548be768648901e5965b7d3f84a67d1951f76e837ea2a4bdb06d869649",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "7200s",
+            "ssh_timeout": "7200s",
             "shutdown_command": "shutdown -hP now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-            "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
@@ -936,7 +958,7 @@
                 "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait10>",
                 "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "cpus": 2,
             "memory": 2048,
             "vboxmanage": [
@@ -953,16 +975,15 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.3/FreeBSD-11.3-RELEASE-amd64-disc1.iso",
-            "iso_checksum": "d268db365e26305ec3d51b29211caad903749c33a4a8f2cf661d671f8e0ba0b0",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.4/FreeBSD-11.4-RELEASE-amd64-disc1.iso",
+            "iso_checksum": "sha256:d76c1ded99b2c1005b1ff94cc0c811fbcd8a2d04196432009ab5f203c2146914",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -p now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-            "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
@@ -978,9 +999,9 @@
                 "dhclient em0<enter><wait5>",
                 "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait>",
                 "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
-                "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
+                "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
-            "disk_size": 32768,
+            "disk_size": 131072,
             "cpus": 2,
             "memory": 2048,
             "vboxmanage": [
@@ -997,16 +1018,15 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.5/amd64/cd65.iso",
-            "iso_checksum": "c0ed31c5f50de4cc80bed01e6080beab96df4ee50a5ad14be88faf40a20c43ed",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.8/amd64/cd68.iso",
+            "iso_checksum": "sha256:05fb374fa25461d2315349214228ee671d8bae45f16da994283a8cf9c848451c",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h -p now",
-            "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-            "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "guest_additions_mode": "upload",
             "virtualbox_version_file": "VBoxVersion.txt"
@@ -1103,7 +1123,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-default.rb",
-                "output": "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box",
+                "output": "output/{{ replace_all \"-centos6\" \"\" build_name }}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lavabit/info.json"
                 ],
@@ -1117,7 +1137,7 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{sed \"s/-centos6//\" build_name}}-{{user `box_version`}}.box.sha256",
+                "output": "output/{{ replace_all \"-centos6\" \"\" build_name }}-{{user `box_version`}}.box.sha256",
                 "only": [
                     "magma-centos6-virtualbox"
                 ]
@@ -1129,7 +1149,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-default.rb",
-                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box",
+                "output": "output/{{ replace_all \"centos6\" \"centos\" build_name }}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lavabit/info.json"
                 ],
@@ -1143,7 +1163,7 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{sed \"s/centos6/centos/\" build_name}}-{{user `box_version`}}.box.sha256",
+                "output": "output/{{ replace_all \"centos6\" \"centos\" build_name }}-{{user `box_version`}}.box.sha256",
                 "only": [
                     "magma-centos6-virtualbox"
                 ]
@@ -1155,7 +1175,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/magma-default.rb",
-                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box",
+                "output": "output/{{ replace_all \"ubuntu1604\" \"ubuntu\" build_name }}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lavabit/info.json"
                 ],
@@ -1169,7 +1189,7 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{sed \"s/ubuntu1604/ubuntu/\" build_name}}-{{user `box_version`}}.box.sha256",
+                "output": "output/{{ replace_all \"ubuntu1604\" \"ubuntu\" build_name }}-{{user `box_version`}}.box.sha256",
                 "only": [
                     "magma-ubuntu1604-virtualbox"
                 ]

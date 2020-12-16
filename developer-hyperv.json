@@ -6,10 +6,11 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/network.sh"
             ],
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-developer-hyperv"
@@ -34,7 +35,7 @@
                 "scripts/centos6/cleanup.sh"
             ],
             "pause_before": "120s",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
                 "magma-developer-hyperv"
@@ -51,7 +52,7 @@
                 "scripts/common/lockout.sh"
             ],
             "type": "shell",
-            "start_retry_timeout": "15m",
+            "start_retry_timeout": "45m",
             "expect_disconnect": "true"
         }
     ],
@@ -67,16 +68,15 @@
                 "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
             ],
             "disk_size": 131072,
-            "memory": 1024,
+            "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+            "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
             "ssh_username": "root",
             "ssh_password": "magma",
             "ssh_port": 22,
-            "ssh_timeout": "3600s",
+            "ssh_timeout": "9800s",
             "shutdown_command": "sudo -S shutdown -P now",
             "generation": 1,
             "headless": true,

@@ -22,6 +22,7 @@
                 "scripts/ubuntu1604/limits.sh",
                 "scripts/ubuntu1604/floppy.sh",
                 "scripts/ubuntu1604/vagrant.sh",
+                "scripts/ubuntu1604/profile.sh",
                 "scripts/ubuntu1604/motd.sh",
                 "scripts/ubuntu1604/fixtty.sh",
                 "scripts/ubuntu1604/virtualbox.sh",
@@ -110,29 +111,24 @@
                 "<enter>"
             ],
             "format": "qcow2",
-            "disk_size": 196608,
+            "disk_size": "196608",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 4,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/lineage-libvirt/lineage-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.6/ubuntu-16.04.6-server-amd64.iso",
-            "iso_checksum": "16afb1375372c57471ea5e29803a89a5a6bd1f6aabea2e5e34ac1ab7eb9786ac",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",
+            "iso_checksum": "sha256:b23488689e16cad7a269eb2d3a3bf725d3457ee6b0868e00c8762d3816e25848",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         },
         {
@@ -163,29 +159,24 @@
                 "<enter>"
             ],
             "format": "qcow2",
-            "disk_size": 196608,
+            "disk_size": "196608",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 4,
             "memory": 2048,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/lineage-nash-libvirt/lineage-nash-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.6/ubuntu-16.04.6-server-amd64.iso",
-            "iso_checksum": "16afb1375372c57471ea5e29803a89a5a6bd1f6aabea2e5e34ac1ab7eb9786ac",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",
+            "iso_checksum": "sha256:b23488689e16cad7a269eb2d3a3bf725d3457ee6b0868e00c8762d3816e25848",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         }
     ],
@@ -216,7 +207,7 @@
                 "compression_level": 9,
                 "keep_input_artifact": false,
                 "vagrantfile_template": "tpl/lineageos.rb",
-                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box",
+                "output": "output/{{ replace_all \"lineage\" \"lineageos\" build_name }}-{{user `box_version`}}.box",
                 "include": [
                     "tpl/lineage/info.json"
                 ]
@@ -227,7 +218,7 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/{{sed \"s/lineage/lineageos/\" build_name}}-{{user `box_version`}}.box.sha256"
+                "output": "output/{{ replace_all \"lineage\" \"lineageos\" build_name }}-{{user `box_version`}}.box.sha256"
             }
         ]
     ]

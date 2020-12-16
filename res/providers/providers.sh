@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # The unprivileged user that will be running packer/using the boxes.
-export HUMAN="`whoami`"
+export HUMAN="`set -eu ; ((logname || echo $LOGNAME) || echo $SUDO_USER) || echo $USER`"
 
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
@@ -47,6 +47,22 @@ function provide-limits() {
   chcon "system_u:object_r:etc_t:s0" /etc/security/limits.d/50-root.conf
 }
 
+function provide-lxc() {
+  # LXC install (Optional)
+  yum --assumeyes --enablerepo=epel install lxc lua-lxc lxc-libs \
+   libvirt-daemon-driver-lxc libvirt-daemon-lxc
+
+  # Disable LXC Automatic Startup
+  systemctl disable lxc.service
+}
+
+function provide-virtmanager() {
+  # Remove Viewer / Virt Manager Client Install (Optional)
+  yum --assumeyes install virt-manager virt-manager-common gvnc \
+    gtk-vnc2 spice-glib spice-gtk3  libvirt-python \
+    libvirt-glib libvirt-gconfig libvirt-gobject
+}
+
 function provide-libvirt() {
   # Repo setup.
   yum --assumeyes --enablerepo=extras install epel-release centos-release-qemu-ev
@@ -72,35 +88,63 @@ function provide-libvirt() {
   # Disable Libvirt Automatic Startup
   systemctl disable libvirtd.service
   systemctl disable libvirt-guests.service
-}
 
-function provide-lxc() {
-  # LXC install (Optional)
-  yum --assumeyes --enablerepo=epel install lxc lua-lxc lxc-libs \
-   libvirt-daemon-driver-lxc libvirt-daemon-lxc
-
-  # Disable LXC Automatic Startup
-  systemctl disable lxc.service
-}
-
-function provide-virtmanager() {
-  # Remove Viewer / Virt Manager Client Install (Optional)
-  yum --assumeyes install virt-manager virt-manager-common gvnc \
-    gtk-vnc2 spice-glib spice-gtk3  libvirt-python \
-    libvirt-glib libvirt-gconfig libvirt-gobject
+  if [ -f /usr/bin/X ]; then
+    provide-virtmanager
+  fi
 }
 
 function provide-vmware() {
 
-  if [ ! -f $BASE/VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle ]; then
-      tput setaf 1; printf "\nError. The VMware install bundle is missing.\n\n"; tput sgr0
-      exit 2
+  # Ensure the VMWare Serial is Available
+  if [ -z ${VMWARE_WORKSTATION} ]; then
+    tput setaf 1; printf "\nError. The VMware serial number is missing. Add it to the credentials file.\n\n"; tput sgr0
+    exit 2
   fi
 
+  # Acquire the install bundle.
+  if [ ! -f "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle" ]; then
+    curl --location --output "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle" \
+     "https://archive.org/download/vmware-workstation-full-15.5.6-16341506.x-86-64/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle"
+  fi
+
+  # Verify the installer bundle.
+  (printf "a62d89bfb29aefd0e3d4d60f31b3734aa7ba3adc48cbc612cfc032593d3c7593  VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle\n" | sha256sum -c) || \
+    (tput setaf 1 ; printf "\nError downloading the install bundle.\n\n" ; tput sgr0 ; exit 2)
+
+  # Acquire the FreeBSD / Darwin / Solaris guest tools.
+  if [ ! -f "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" ]; then
+    curl --location --output "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
+     "https://archive.org/download/vmwaretools10.1.15other6677369.tar/VMware-Tools-10.1.15-other-6677369.tar.gz"
+  fi
+
+  # Verify the tools bundle.
+  (printf "b0ae1ba296f6be60a49e748f0aac48b629a0612d98d2c7c5cff072b5f5bbdb2a  VMware-Tools-10.1.15-other-6677369.tar.gz\n" | sha256sum -c) || \
+    (tput setaf 1 ; printf "\nError downloading the alternative operating system guest additions.\n\n" ; tput sgr0 ; exit 2)
+
   # VMware Workstation Install
-  chmod +x VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle
-  bash VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle --console \
+  chmod +x "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle"
+  printf "yes\n" | bash "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle" --console \
     --required --eulas-agreed --set-setting vmware-workstation serialNumber "${VMWARE_WORKSTATION}"
+
+  # Install the alternative operating system ISOs.
+  tar --extract --gzip --to-stdout --file="$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
+    "VMware-Tools-10.1.15-other-6677369/vmtools/darwin.iso" > "/usr/lib/vmware/isoimages/darwin.iso"
+  chown root:root "/usr/lib/vmware/isoimages/darwin.iso"
+  chmod 644 "/usr/lib/vmware/isoimages/darwin.iso"
+  chcon unconfined_u:object_r:lib_t:s0 "/usr/lib/vmware/isoimages/darwin.iso"
+
+  tar --extract --gzip --to-stdout --file="$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
+    "VMware-Tools-10.1.15-other-6677369/vmtools/freebsd.iso" > "/usr/lib/vmware/isoimages/freebsd.iso"
+  chown root:root "/usr/lib/vmware/isoimages/freebsd.iso"
+  chmod 644 "/usr/lib/vmware/isoimages/freebsd.iso"
+  chcon unconfined_u:object_r:lib_t:s0 "/usr/lib/vmware/isoimages/freebsd.iso"
+
+  tar --extract --gzip --to-stdout --file="$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
+    "VMware-Tools-10.1.15-other-6677369/vmtools/solaris.iso" > "/usr/lib/vmware/isoimages/solaris.iso"
+  chown root:root "/usr/lib/vmware/isoimages/solaris.iso"
+  chmod 644 "/usr/lib/vmware/isoimages/solaris.iso"
+  chcon unconfined_u:object_r:lib_t:s0 "/usr/lib/vmware/isoimages/solaris.iso"
 
   # Disable VMWare Automatic Startup
   systemctl disable vmware.service
@@ -109,12 +153,21 @@ function provide-vmware() {
 
   # Setup the Virtual Interfaces as Trusted
   if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --zone=trusted --add-interface=vmnet1
+    firewall-cmd --zone=trusted --add-interface=vmnet8
     firewall-cmd --permanent --zone=trusted --add-interface=vmnet1
     firewall-cmd --permanent --zone=trusted --add-interface=vmnet8
   fi
+
+  rm --force "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz"
+  rm --force "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle"
+
+  # Install the dependencies.
+  yum --assumeyes install pcsc-lite-libs
 }
 
 function provide-vbox() {
+
   # Virtual Box Repo
   cp virtualbox.repo /etc/yum.repos.d/virtualbox.repo
   chown root:root /etc/yum.repos.d/virtualbox.repo
@@ -133,7 +186,7 @@ function provide-vbox() {
     # Determine the download URL.
     VBOXVER=`VBoxManage --version | awk -F'r' '{print $1}'`
     VBOXEXT="Oracle_VM_VirtualBox_Extension_Pack-${VBOXVER}.vbox-extpack"
-    VBOXEXTURL="http://download.virtualbox.org/virtualbox/${VBOXVER}/${VBOXEXT}"
+    VBOXEXTURL="https://download.virtualbox.org/virtualbox/${VBOXVER}/${VBOXEXT}"
 
     # Download the extension pack.
     curl "${VBOXEXTURL}" > "${VBOXEXT}"
@@ -160,7 +213,11 @@ function provide-vbox() {
 
   # Setup the Virtual Interfaces as Trusted
   if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --zone=trusted --add-interface=vibr0
+    firewall-cmd --zone=trusted --add-interface=vibr1
     firewall-cmd --permanent --zone=trusted --add-interface=vibr0
+    firewall-cmd --permanent --zone=trusted --add-interface=vibr1
+
   fi
 
   # Fix a permission issue to avoid spurious error messages in the system log.
@@ -206,6 +263,7 @@ function provide-docker() {
 
   # Setup the Virtual Interfaces as Trusted
   if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --zone=trusted --add-interface=docker0
     firewall-cmd --permanent --zone=trusted --add-interface=docker0
   fi
 }
@@ -219,7 +277,7 @@ function provide-vagrant() {
   curl --location --output "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm" "https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
 
   # Install Vagrant
-  yum --assumeyes install $BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm
+  yum --assumeyes install "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
 
   # The Libvirt Headers are Required for the Vagrant Plugin
   yum --assumeyes install libvirt-devel
@@ -228,7 +286,7 @@ function provide-vagrant() {
   vagrant plugin install vagrant-libvirt
 
   # Delete the Download
-  rm --force $BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm
+  rm --force "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
 }
 
 function provide-packer() {
@@ -254,6 +312,9 @@ function provide-packer() {
   chcon system_u:object_r:bin_t:s0 /etc/profile.d/packer.csh
   chcon system_u:object_r:bin_t:s0 /etc/profile.d/packer.sh
 
+  rm --force "$BASE/packer"
+  rm --force "$BASE/packer_${PACKER_VERSION}_linux_amd64.zip"
+
 }
 
 function provide-setup() {
@@ -275,6 +336,20 @@ function provide-setup() {
   fi
 }
 
+function all() {
+  provide-setup
+  provide-limits
+
+  provide-vbox
+  provide-docker
+  provide-vmware
+  provide-packer
+  provide-libvirt
+
+  # provide-lxc
+  provide-vagrant
+}
+
 # Verify Root Permissions
 if [[ `id --user` != 0 ]]; then
   tput setaf 1; printf "\nError. Not running with root permissions.\n\n"; tput sgr0
@@ -289,24 +364,35 @@ else
   exit 2
 fi
 
-# Ensure the VMWare Serial is Available
-if [ -z ${VMWARE_WORKSTATION} ]; then
-  tput setaf 1; printf "\nError. The VMware serial number is missing. Add it to the credentials file.\n\n"; tput sgr0
+# The setup functions.
+if [[ $1 == "setup" ]]; then provide-setup
+elif [[ $1 == "limits" ]]; then provide-limits
+
+# The install functions.
+elif [[ $1 == "lxc" ]]; then provide-lxc
+elif [[ $1 == "docker" ]]; then provide-docker
+elif [[ $1 == "vmware" ]]; then provide-vmware
+elif [[ $1 == "packer" ]]; then provide-packer
+elif [[ $1 == "libvirt" ]]; then provide-libvirt
+elif [[ $1 == "vagrant" ]]; then provide-vagrant
+elif [[ $1 == "virtualbox" ]]; then provide-vbox
+
+# The full monty.
+elif [[ $1 == "all" ]]; then all
+
+# Catchall
+else
+  echo ""
+  echo " Configuration"
+  echo $"  `basename $0` {setup|limits} or"
+  echo ""
+  echo " Installers"
+  echo $"  `basename $0` {lxc|vmware|docker|packer|vagrant|libvirt|virtualbox} or"
+  echo ""
+  echo " Global"
+  echo $"  `basename $0` {all}"
+  echo ""
+  echo " Please select a target and run this command again."
+  echo ""
   exit 2
-fi
-
-provide-setup
-provide-limits
-
-provide-vbox
-provide-docker
-provide-vmware
-provide-packer
-provide-libvirt
-
-# provide-lxc
-provide-vagrant
-
-if [ -f /usr/bin/X ]; then
-  provide-virtmanager
 fi

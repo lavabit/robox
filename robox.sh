@@ -6,11 +6,12 @@
 # Description: Used to build various virtual machines using packer.
 
 # Version Information
-export VERSION="1.9.22"
-export AGENT="Vagrant/2.2.5 (+https://www.vagrantup.com; ruby2.4.6)"
+export VERSION="3.1.16"
+export AGENT="Vagrant/2.2.9 (+https://www.vagrantup.com; ruby2.6.6)"
 
 # Limit the number of cpus packer will use.
 export GOMAXPROCS="2"
+export PACKERMAXPROCS="1"
 
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
@@ -30,13 +31,14 @@ if [ ! -f $BASE/.credentialsrc ]; then
 cat << EOF > $BASE/.credentialsrc
 #!/bin/bash
 export GOMAXPROCS="2"
+export QUAY_USER="LOGIN"
+export QUAY_PASSWORD="PASSWORD"
 export DOCKER_USER="LOGIN"
-export DOCKER_EMAIL="EMAIL"
 export DOCKER_PASSWORD="PASSWORD"
 export VMWARE_WORKSTATION="SERIAL"
 export VAGRANT_CLOUD_TOKEN="TOKEN"
 
-# Overrides the Repo Box Version
+# Overrides the repo version with a default value.
 VERSION="1.0.0"
 EOF
 tput setaf 1; printf "\n\nCredentials file was missing. Stub file created.\n\n\n"; tput sgr0
@@ -49,7 +51,7 @@ source $BASE/.credentialsrc
 # The list of packer config files.
 FILES="packer-cache.json "\
 "magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
-"generic-docker.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-parallels.json generic-virtualbox.json "\
+"generic-docker.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-libvirt-x32.json generic-parallels.json generic-virtualbox.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
 "developer-ova.json developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
@@ -70,7 +72,7 @@ DYNAMICURLS="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-
 
 # Collect the list of ISO urls.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -Ev "$DYNAMICURLS" | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | grep -Ev "iso_checksum_type|iso_checksum_url" | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | awk -F'"' '{print $4}' | sed "s/^sha256://g"`)
 UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}' | sort | uniq`)
 
 # Collect the list of box names.
@@ -88,8 +90,8 @@ BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $LINEAGEOS_BOXES"
 # Collect the list of box tags.
 MAGMA_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/debian8/debian/g" | sed "s/fedora27/fedora/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
 MAGMA_SPECIAL_TAGS="lavabit/magma lavabit/magma-centos lavabit/magma-ubuntu"
-ROBOX_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
-GENERIC_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | sort -u --field-separator=-`
+ROBOX_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/\(-hyperv\|-vmware\|-x32-libvirt\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
+GENERIC_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/\(-hyperv\|-vmware\|-x32-libvirt\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | sort -u --field-separator=-`
 LINEAGE_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineage\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
 LINEAGEOS_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineageos\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
 MAGMA_TAGS=`echo $MAGMA_SPECIAL_TAGS $MAGMA_TAGS | sed 's/ /\n/g' | sort -u --field-separator=-`
@@ -101,8 +103,39 @@ FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lav
 # A list of configs to skip during complete build operations.
 export EXCEPTIONS=""
 
-retry() {
+# Detect Windows subsystem for Linux.
+if [ -z $OS ]; then
+  if [[ "`uname -r`" =~ -Microsoft$ ]]; then
+    export OS="Windows_NT"
+  fi
+fi
+
+# If Vagrant is installed, use the newer version of curl.
+if [ -f /opt/vagrant/embedded/bin/curl ]; then
+
+  export CURL="/opt/vagrant/embedded/bin/curl"
+
+  if [ -f /opt/vagrant/embedded/lib64/libssl.so ] && [ -z LD_PRELOAD ]; then
+    export LD_PRELOAD="/opt/vagrant/embedded/lib64/libssl.so"
+  elif [ -f /opt/vagrant/embedded/lib64/libssl.so ]; then
+    export LD_PRELOAD="/opt/vagrant/embedded/lib64/libssl.so:$LD_PRELOAD"
+  fi
+
+  if [ -f /opt/vagrant/embedded/lib64/libcrypto.so ] && [ -z LD_PRELOAD ]; then
+    export LD_PRELOAD="/opt/vagrant/embedded/lib64/libcrypto.so"
+  elif [ -f /opt/vagrant/embedded/lib64/libcrypto.so ]; then
+    export LD_PRELOAD="/opt/vagrant/embedded/lib64/libcrypto.so:$LD_PRELOAD"
+  fi
+
+  export LD_LIBRARY_PATH="/opt/vagrant/embedded/bin/lib/:/opt/vagrant/embedded/lib64/"
+
+else
+  export CURL="curl"
+fi
+
+function retry() {
   local COUNT=1
+  local DELAY=1
   local RESULT=0
   while [[ "${COUNT}" -le 10 ]]; do
     [[ "${RESULT}" -ne 0 ]] && {
@@ -123,8 +156,9 @@ retry() {
   return "${RESULT}"
 }
 
-curltry() {
+function curltry() {
   local COUNT=1
+  local DELAY=1
   local RESULT=0
   while [[ "${COUNT}" -le 100 ]]; do
     RESULT=0 ; OUTPUT=`"${@}"` || RESULT="${?}"
@@ -145,12 +179,14 @@ function start() {
 
   # Start the required services.
   # sudo systemctl restart vmtoolsd.service
-  sudo systemctl restart vboxdrv.service
-  sudo systemctl restart libvirtd.service
-  sudo systemctl restart docker-latest.service
-  sudo systemctl restart vmware.service
-  sudo systemctl restart vmware-USBArbitrator.service
-  sudo systemctl restart vmware-workstation-server.service
+  if [ -f /usr/lib/systemd/system/vboxdrv.service ]; then sudo systemctl restart vboxdrv.service ; fi
+  if [ -f /usr/lib/systemd/system/libvirtd.service ]; then sudo systemctl restart libvirtd.service ; fi
+  if [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ;
+  elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
+
+  if [ -f /etc/init.d/vmware ]; then sudo /etc/init.d/vmware start ; fi
+  if [ -f /etc/init.d/vmware-USBArbitrator ]; then sudo /etc/init.d/vmware-USBArbitrator start ; fi
+  if [ -f /etc/init.d/vmware-workstation-server ]; then sudo /etc/init.d/vmware-workstation-server start ; fi
 
   # Confirm the VMware modules loaded.
   if [ -f /usr/bin/vmware-modconfig ]; then
@@ -201,7 +237,7 @@ function print_iso() {
 }
 
 # Print the current URL and SHA hash for install discs which are updated frequently.
-function isos {
+function isos() {
 
   # Find the Gentoo URL.
   URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
@@ -228,10 +264,90 @@ function isos {
 
 }
 
+function iso() {
+
+  if [ "$1" == "gentoo" ]; then
+
+    # Find the existing Arch URL and hash values.
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo\")) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo\")) | .iso_checksum" 2>/dev/null`
+
+    # Find the Gentoo URL.
+    URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
+    ISO=`curl --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
+    if [ $? != 0 ] || [ "$ISO" == "" ]; then
+      tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
+      return 1
+    fi
+
+    # Calculate the new URL.
+    URL="${URL}${ISO}"
+
+    # Download the ISO file and calculate the new hash value.
+    set -o pipefail
+    SHA=`curl --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    if [ $? != 0 ] || [ "$SHA" == "" ]; then
+        tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
+        return 1
+    fi
+    set +o pipefail
+
+    # Escape the URL strings.
+    URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
+    ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
+
+    # Replace the existing ISO and hash values with the update values.
+    sed --in-place "s/$ISO_URL/$URL/g" $FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+
+
+  elif [ "$1" == "arch" ]; then
+
+    # Find the existing Arch URL and hash values.
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"arch\")) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"arch\")) | .iso_checksum" 2>/dev/null`
+
+    # Find the Arch URL.
+    URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
+    ISO=`curl --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
+    if [ $? != 0 ] || [ "$ISO" == "" ]; then
+      tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
+      return 1
+    fi
+
+    # Calculate the new URL.
+    URL="${URL}${ISO}"
+
+    # Download the ISO file and calculate the new hash value.
+    set -o pipefail
+    SHA=`curl --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    if [ $? != 0 ] || [ "$SHA" == "" ]; then
+        tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
+        return 1
+    fi
+    set +o pipefail
+
+    # Escape the URL strings.
+    URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
+    ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
+
+    # Replace the existing ISO and hash values with the update values.
+    sed --in-place "s/$ISO_URL/$URL/g" $FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+
+  fi
+
+}
+
 function cache {
 
-  unset PACKER_LOG
-  packer build -on-error=cleanup -color=false -parallel=false -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+  unset PACKER_LOG ; unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
+
+  if [[ $OS == "Windows_NT" ]]; then
+    packer.exe build -on-error=cleanup -color=false -parallel-builds=$PACKERMAXPROCS -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+  else
+    packer build -on-error=cleanup -color=false -parallel-builds=$PACKERMAXPROCS -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+  fi
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\nDistro disc image download aborted...\n\n"; tput sgr0
@@ -245,13 +361,13 @@ function cache {
 function verify_url {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
-  curl --silent --location --head "$1" | grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+  curl --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 "$1" | grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
 
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
 
     # Wait a minute, and then try again. Many of the failures are transient network errors.
-    sleep 10; curl --silent --location --head "$1" |  grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+    sleep 10; curl --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 "$1" |  grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
 
     if [ $? != 0 ]; then
       printf "Link Failure:  $1\n"
@@ -264,7 +380,7 @@ function verify_url {
 function verify_sum {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
-  curl --silent --location --head "$1" | grep --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK"
+  curl --silent --location --head "$1" | grep --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
 
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
@@ -315,7 +431,15 @@ function verify_local {
 
 # Validate the templates before building.
 function verify_json() {
-  packer validate $1.json
+
+  unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
+
+  if [[ $OS == "Windows_NT" ]]; then
+    packer.exe validate $1.json
+  else
+    packer validate $1.json
+  fi
+
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\nthe $1 packer template failed to validate...\n\n"; tput sgr0
     for i in 1 2 3; do printf "\a"; sleep 1; done
@@ -333,12 +457,32 @@ function verify_logdir {
   fi
 }
 
+# Check whether a box has been uploaded to the cloud.
+function verify_availability() {
+
+  local RESULT=0
+
+  curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box" | grep --silent "200"
+
+  if [ $? != 0 ]; then
+    #printf "Box  -  "; tput setaf 1; printf "${1}/${2} ${3}\n"; tput sgr0
+    printf "%sBox  -   %s${1}/${2} ${3}%s \n%s" "`tput sgr0`" "`tput setaf 1`" "`tput sgr0`" "`tput sgr0`"
+    let RESULT=1
+  else
+    #printf "Box  +  "; tput setaf 2; printf "${1}/${2} ${3}\n"; tput sgr0
+    printf "%sBox  +   %s${1}/${2} ${3}%s \n%s" "`tput sgr0`" "`tput setaf 2`" "`tput sgr0`" "`tput sgr0`"
+  fi
+
+  return $RESULT
+}
+
 # Build the boxes and cleanup the packer cache after each run.
 function build() {
 
   verify_logdir
   export INCREMENT=1
   export PACKER_LOG="1"
+  unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
 
   while [ $INCREMENT != 0 ]; do
     export PACKER_LOG_PATH="$BASE/logs/$1-${INCREMENT}.txt"
@@ -349,10 +493,26 @@ function build() {
     fi
   done
 
-  packer build -on-error=cleanup -parallel=false -except="${EXCEPTIONS}" $1.json
+  if [[ $OS == "Windows_NT" ]]; then
+    packer.exe build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" $1.json
+  else
+    packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" $1.json
+  fi
 
   if [[ $? != 0 ]]; then
     tput setaf 1; tput bold; printf "\n\n$1 images failed to build properly...\n\n"; tput sgr0
+
+    # Auto retry any boxes that failed.
+    which jq &> /dev/null
+    if [[ $? == 0 ]]; then
+      LIST=(`cat $1.json | jq -r " .builders | .[] |  .name " | sort`)
+      for ((i = 0; i < ${#LIST[@]}; ++i)); do
+        if [ ! -f "$BASE/output/${LIST[$i]}-$VERSION.box" ]; then
+          packer build -parallel-builds=$PACKERMAXPROCS -only="${LIST[$i]}" -except="${EXCEPTIONS}" $1.json
+        fi
+      done
+    fi
+
     for i in 1 2 3; do printf "\a"; sleep 1; done
   fi
 }
@@ -363,60 +523,71 @@ function box() {
   verify_logdir
   export PACKER_LOG="1"
   export TIMESTAMP=`date +"%Y%m%d.%I%M"`
+  unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
 
   if [[ $OS == "Windows_NT" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/magma-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 magma-hyperv.json
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 magma-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/generic-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-hyperv.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/lineage-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-hyperv.json
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/developer-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-hyperv.json
-
-  elif [[ `uname` == "Darwin" ]]; then
-
-      export PACKER_LOG_PATH="$BASE/logs/generic-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*parallels.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-parallels.json
-
-  else
-
-      export PACKER_LOG_PATH="$BASE/logs/magma-docker-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=cleanup -parallel=false -only=$1 magma-docker.json; docker-logout)
-      export PACKER_LOG_PATH="$BASE/logs/magma-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 magma-vmware.json
-      export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 magma-libvirt.json
-      export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 magma-virtualbox.json
-
-      export PACKER_LOG_PATH="$BASE/logs/generic-docker-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=cleanup -parallel=false -only=$1 generic-docker.json; docker-logout)
-      export PACKER_LOG_PATH="$BASE/logs/generic-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-vmware.json
-      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-libvirt.json
-      export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 generic-virtualbox.json
-
-      export PACKER_LOG_PATH="$BASE/logs/developer-ova-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-ova.json
-      export PACKER_LOG_PATH="$BASE/logs/developer-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-vmware.json
-      export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-libvirt.json
-      export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 developer-virtualbox.json
-
-      export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-vmware.json
-      export PACKER_LOG_PATH="$BASE/logs/lineage-libvirt-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-libvirt.json
-      export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-log-${TIMESTAMP}.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel=false -only=$1 lineage-virtualbox.json
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-hyperv.json
 
   fi
+
+  if [[ `uname` == "Darwin" ]]; then
+
+      export PACKER_LOG_PATH="$BASE/logs/generic-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*parallels.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-parallels.json
+
+  fi
+
+  if [[ `uname` == "Linux" ]]; then
+
+      export PACKER_LOG_PATH="$BASE/logs/magma-docker-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 magma-docker.json; docker-logout)
+      export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 magma-libvirt.json
+
+      export PACKER_LOG_PATH="$BASE/logs/generic-docker-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-docker.json; docker-logout)
+      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x32-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*x32-libvirt.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-libvirt-x32.json
+      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-libvirt.json
+
+      export PACKER_LOG_PATH="$BASE/logs/developer-ova-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-ova.json
+      export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-libvirt.json
+
+      export PACKER_LOG_PATH="$BASE/logs/lineage-libvirt-log-${TIMESTAMP}.txt"
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-libvirt.json
+
+  fi
+
+  export PACKER_LOG_PATH="$BASE/logs/magma-vmware-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 magma-vmware.json
+  export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 magma-virtualbox.json
+
+  export PACKER_LOG_PATH="$BASE/logs/generic-vmware-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-vmware.json
+  export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 generic-virtualbox.json
+
+  export PACKER_LOG_PATH="$BASE/logs/developer-vmware-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-vmware.json
+  export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 developer-virtualbox.json
+
+  export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-vmware.json
+  export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-log-${TIMESTAMP}.txt"
+  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=cleanup -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-virtualbox.json
 
   return 0
 }
@@ -427,10 +598,12 @@ function links() {
 
   for ((i = 0; i < ${#MURLS[@]}; ++i)); do
     (verify_url "${MURLS[$i]}") &
+    sleep 0.1 &> /dev/null || echo "" &> /dev/null
   done
 
   for ((i = 0; i < ${#UNIQURLS[@]}; ++i)); do
-      (verify_url "${UNIQURLS[$i]}") &
+    (verify_url "${UNIQURLS[$i]}") &
+    sleep 0.1 &> /dev/null || echo "" &> /dev/null
   done
 
   # Wait until the children done working.
@@ -467,6 +640,7 @@ function validate() {
   verify_json generic-hyperv
   verify_json generic-vmware
   verify_json generic-libvirt
+  verify_json generic-libvirt-x32
   verify_json generic-parallels
   verify_json generic-virtualbox
   verify_json developer-ova
@@ -539,10 +713,12 @@ function available() {
 
       PROVIDER="docker"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
-        if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || \
+        if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
-          curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+          curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
           if [ $? != 0 ]; then
             let MISSING+=1
@@ -555,7 +731,7 @@ function available() {
       fi
 
       PROVIDER="hyperv"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -566,7 +742,7 @@ function available() {
       fi
 
       PROVIDER="libvirt"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -578,7 +754,7 @@ function available() {
 
       PROVIDER="parallels"
       if [[ "${ORGANIZATION}" == "generic" ]]; then
-        curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+        curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
         if [ $? != 0 ]; then
           let MISSING+=1
@@ -590,7 +766,7 @@ function available() {
       fi
 
       PROVIDER="virtualbox"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -601,7 +777,7 @@ function available() {
       fi
 
       PROVIDER="vmware_desktop"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/1\.1 302 Found|HTTP/2.0 302 Found"
+      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -642,12 +818,12 @@ function public() {
 
       PROVIDER="docker"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
-        if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || \
-          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+        if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
           [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
-          curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+          curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
           if [ $? != 0 ]; then
             let MISSING+=1
@@ -660,7 +836,7 @@ function public() {
       fi
 
       PROVIDER="hyperv"
-      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+      curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -671,7 +847,7 @@ function public() {
       fi
 
       PROVIDER="libvirt"
-      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+      curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -683,7 +859,7 @@ function public() {
 
       PROVIDER="parallels"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes)$ ]]; then
-        curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+        curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
         if [ $? != 0 ]; then
           let MISSING+=1
@@ -695,7 +871,7 @@ function public() {
       fi
 
       PROVIDER="virtualbox"
-      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+      curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -706,7 +882,7 @@ function public() {
       fi
 
       PROVIDER="vmware_desktop"
-      curltry curl --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
+      curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -727,6 +903,100 @@ function public() {
     else
       printf "\nOf the ${TOTAL} boxes defined, ${FOUND} are publicly available, while ${MISSING} are unavailable...\n\n"
     fi
+}
+
+function ppublic() {
+
+    FOUND=0
+    MISSING=0
+    LIST=($TAGS)
+    FILTER=($FILTERED_TAGS)
+
+    # Loop through and remove the filtered tags from the list.
+    for ((i = 0; i < ${#FILTER[@]}; ++i)); do
+      LIST=(${LIST[@]//${FILTER[$i]}})
+    done
+
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+      ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
+      BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
+
+      PROVIDER="docker"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
+        if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
+          [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
+            O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+        fi
+      fi
+
+      PROVIDER="hyperv"
+      O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+
+      PROVIDER="libvirt"
+      O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+
+      PROVIDER="parallels"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes)$ ]]; then
+        O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+      fi
+
+      PROVIDER="virtualbox"
+      O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+
+      PROVIDER="vmware_desktop"
+      O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+
+    done
+
+    export -f curltry ; export -f verify_availability ; export CURL ;
+    # parallel --jobs 16 --keep-order --xapply verify_availability {1} {2} {3} {4} ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
+    parallel --jobs 4 --keep-order --line-buffer --xapply verify_availability {1} {2} {3} {4} '||' let MISSING+=1 ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
+    # Get the totla number of boxes.
+    let TOTAL=${#B[@]}
+    let FOUND=${TOTAL}-${MISSING}
+
+    # Let the user know how many boxes were missing.
+    if [ $MISSING -eq 0 ]; then
+      printf "\nAll ${TOTAL} of the boxes are available...\n\n"
+    else
+      printf "\nOf the ${TOTAL} boxes defined, ${FOUND} are publicly available, while ${MISSING} are unavailable...\n\n"
+    fi
+}
+
+function grab() {
+
+  URL=`curl --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
+    | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | .download_url ][0]" 2>/dev/null`
+  if [ "$URL" == "" ]; then
+    printf "\nA copy of " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " using the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " couldn't be found.\n\n"
+    return 0
+  fi
+
+  CHECKSUM=`curl --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
+    | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | .checksum ][0]" 2>/dev/null`
+
+  if [ ! -d "$BASE/output/" ]; then
+    mkdir "$BASE/output/"
+  fi
+
+  curl --fail --location --user-agent "${AGENT}" --output "$BASE/output/$1-$2-$3-$VERSION.box" "$URL"
+  if [ "$?" == 0 ]; then
+    ( cd output ; printf "$CHECKSUM\t$1-$2-$3-$VERSION.box" | sha256sum --check --status )
+    if [ "$?" != 0 ]; then
+      rm --force "$BASE/output/$1-$2-$3-$VERSION.box"
+      printf "\nThe hash check for " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " with the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " failed.\n\n"
+      return 0
+    fi
+    ( cd output ; sha256sum "$1-$2-$3-$VERSION.box" | sed -E "s/(.{64})  (.*)/\1\t\2/g" ) > "$BASE/output/$1-$2-$3-$VERSION.box.sha256"
+  else
+    rm --force "$BASE/output/$1-$2-$3-$VERSION.box"
+    printf "\nDownloading " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " with the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " failed.\n\n"
+    return 0
+  fi
+
 }
 
 function localized() {
@@ -754,30 +1024,74 @@ function cleanup() {
 }
 
 function docker-login() {
-  RUNNING=`docker info 2>&1 | grep --count --extended-regexp "^Username:"`
 
-  if [ $RUNNING == 0 ]; then
-    docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-    if [[ $? != 0 ]]; then
-      tput setaf 1; tput bold; printf "\n\nThe docker login credentials failed.\n\n"; tput sgr0
-      exit 1
+  # If jq is installed, we can use it to determine whether a login is required. Otherwise we rely on the more primitive login logic.
+  if [ -f /usr/bin/jq ] || [ -f /usr/local/bin/jq ]; then
+    if [[ `jq "[ .auths.\"quay.io\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+      docker login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe quay.io login credentials failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
+    fi
+    if [[ `jq "[ .auths.\"docker.io\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]] || [[ `jq "[ .auths.\"https://index.docker.io/v1/\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+      docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe docker.io login credentials failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
     fi
   else
-    tput setaf 3; tput bold; printf "\nSkipping docker login because the daemon is already authenticated.\n\n"; tput sgr0
+    RUNNING=`docker info 2>&1 | grep --count --extended-regexp "^Username:"`
+
+    if [ $RUNNING == 0 ]; then
+
+      docker login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe quay.io login credentials failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
+
+      docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe docker.io login credentials failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
+    else
+      tput setaf 3; tput bold; printf "\nSkipping registry login because the daemon is already authenticated.\n\n"; tput sgr0
+    fi
+
   fi
+
 }
 
 function docker-logout() {
   RUNNING=`ps -ef | grep --invert grep | grep --count --extended-regexp "packer build.*generic-docker.json|packer build.*magma-docker.json"`
 
   if [ $RUNNING == 0 ]; then
-    docker logout
+    docker logout quay.io && docker logout docker.io && docker logout https://index.docker.io/v1/
     if [[ $? != 0 ]]; then
-      tput setaf 1; tput bold; printf "\n\nThe docker logout command failed.\n\n"; tput sgr0
+      tput setaf 1; tput bold; printf "\n\nThe registry logout command failed.\n\n"; tput sgr0
       exit 1
     fi
   else
-    tput setaf 3; tput bold; printf "\nSkipping docker logout because builds are still running.\n\n"; tput sgr0
+    tput setaf 3; tput bold; printf "\nSkipping registry logout because builds are still running.\n\n"; tput sgr0
   fi
 }
 
@@ -801,6 +1115,7 @@ function generic() {
   else
     build generic-vmware
     build generic-libvirt
+    build generic-libvirt-x32
     build generic-virtualbox
 
     docker-login ; build generic-docker; docker-logout
@@ -848,6 +1163,8 @@ function vmware() {
 
 function hyperv() {
 
+  unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
+
   if [[ $OS == "Windows_NT" ]]; then
 
     LIST=($BOXES)
@@ -860,36 +1177,36 @@ function hyperv() {
     # Build the generic boxes first.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^generic-[a-z]*[0-9]*-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv.json
+        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv.json
       fi
     done
 
     # Build the magma boxes second.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
+        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-[a-z]*[0-9]*-hyperv$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
+        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-developer-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv.json
+        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv.json
       fi
     done
 
     # Build the Lineage boxes fourth.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
+        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z]*[0-9]*-hyperv$ ]]; then
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
+        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
       fi
     done
 
@@ -900,17 +1217,22 @@ function hyperv() {
 
 function libvirt() {
   verify_json generic-libvirt
+  verify_json generic-libvirt-x32
   verify_json magma-libvirt
   verify_json developer-libvirt
   verify_json lineage-libvirt
 
   build generic-libvirt
+  build generic-libvirt-x32
   build magma-libvirt
   build developer-libvirt
   build lineage-libvirt
 }
 
 function parallels() {
+
+  unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
+
   if [[ `uname` == "Darwin" ]]; then
 
     # Ideally, we shouldn't need this. However the ancient Macbook Air
@@ -922,17 +1244,23 @@ function parallels() {
 
     LIST=($BOXES)
 
-    verify_json generic-parallels
+    # verify_json generic-parallels
+
+    # Keep the system awake so it can finish building the boxes.
+    if [ -f /usr/bin/caffeinate ]; then
+      /usr/bin/caffeinate -w $$ &
+    fi
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       # Ensure there is enough disk space.
       if [[ `df -m . | tail -1 |  awk -F' ' '{print $4}'` -lt 8192 ]]; then
         tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
       elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
-        # sudo purge
-        packer build -parallel=false -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json
-        # mv output/*.box output/*.box.sha256 /Volumes/Data/robox/output
-        # sleep 10
+        # Build the box. If the first attempt fails, try building the box a second time.
+        if [ ! -f "$BASE/output/${LIST[$i]}-$VERSION.box" ]; then
+          packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json \
+            || (packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-parallels.json)
+        fi
       fi
     done
 
@@ -996,7 +1324,12 @@ elif [[ $1 == "sums" ]]; then sums
 elif [[ $1 == "local" ]]; then localized
 elif [[ $1 == "missing" ]]; then missing
 elif [[ $1 == "public" ]]; then public
+elif [[ $1 == "ppublic" ]]; then ppublic
 elif [[ $1 == "available" ]]; then available
+
+# Grab and update files automatically.
+elif [[ $1 == "iso" ]]; then iso $2
+elif [[ $1 == "grab" ]]; then grab $2 $3 $4
 
 # The group builders.
 elif [[ $1 == "magma" ]]; then magma
@@ -1019,6 +1352,7 @@ elif [[ $1 == "developer-virtualbox" || $1 == "developer-virtualbox.json" ]]; th
 elif [[ $1 == "generic-vmware" || $1 == "generic-vmware.json" ]]; then build generic-vmware
 elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv.json" ]]; then build generic-hyperv
 elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt.json" ]]; then build generic-libvirt
+elif [[ $1 == "generic-libvirt-x32" || $1 == "generic-libvirt-x32.json" ]]; then build generic-libvirt-x32
 elif [[ $1 == "generic-parallels" || $1 == "generic-parallels.json" ]]; then build generic-parallels
 elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox.json" ]]; then build generic-virtualbox
 elif [[ $1 == "generic-docker" || $1 == "generic-docker.json" ]]; then verify_json generic-docker ; docker-login ; build generic-docker ; docker-logout

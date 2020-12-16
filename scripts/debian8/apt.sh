@@ -61,7 +61,7 @@ retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; er
 retry apt-get --assume-yes install vim net-tools mlocate psmisc; error
 
 # The packages needed to compile magma.
-retry apt-get --assume-yes install vim gcc g++ gawk gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
+retry apt-get --assume-yes install gcc g++ gawk gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
 
 # The memcached server.
 retry apt-get --assume-yes install memcached libevent-dev; error
@@ -80,3 +80,6 @@ retry apt-get --assume-yes install python-crypto python-cryptography; error
 
 # Boosts the available entropy which allows magma to start faster.
 retry apt-get --assume-yes install haveged; error
+
+# Populate the mlocate database during boot.
+printf "@reboot root command bash -c '/etc/cron.daily/mlocate'\n" > /etc/cron.d/mlocate

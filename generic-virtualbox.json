@@ -63,7 +63,7 @@
         "scripts/alpine35/network.sh",
         "scripts/alpine35/apk.sh"
       ],
-      "execute_command": "/bin/sh '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/sh '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -98,7 +98,7 @@
         "scripts/alpine36/network.sh",
         "scripts/alpine36/apk.sh"
       ],
-      "execute_command": "/bin/sh '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/sh '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -133,7 +133,7 @@
         "scripts/alpine37/network.sh",
         "scripts/alpine37/apk.sh"
       ],
-      "execute_command": "/bin/sh '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/sh '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -168,7 +168,7 @@
         "scripts/alpine38/network.sh",
         "scripts/alpine38/apk.sh"
       ],
-      "execute_command": "/bin/sh '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/sh '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -200,6 +200,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/centos6/yum.sh",
         "scripts/centos6/base.sh",
         "scripts/centos6/network.sh"
       ],
@@ -421,6 +422,7 @@
         "scripts/debian9/vagrant.sh",
         "scripts/debian9/motd.sh",
         "scripts/debian9/fixtty.sh",
+        "scripts/debian9/fixuuid.sh",
         "scripts/debian9/virtualbox.sh",
         "scripts/debian9/parallels.sh",
         "scripts/debian9/vmware.sh",
@@ -666,7 +668,7 @@
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
         "generic-freebsd11-virtualbox"
       ]
@@ -678,7 +680,7 @@
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "/bin/sh {{ .Path }}",
+      "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
         "generic-openbsd6-virtualbox"
       ]
@@ -698,7 +700,7 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
         "generic-openbsd6-virtualbox"
       ]
@@ -719,6 +721,7 @@
       "scripts": [
         "scripts/ubuntu1604/floppy.sh",
         "scripts/ubuntu1604/vagrant.sh",
+        "scripts/ubuntu1604/profile.sh",
         "scripts/ubuntu1604/motd.sh",
         "scripts/ubuntu1604/fixtty.sh",
         "scripts/ubuntu1604/virtualbox.sh",
@@ -751,6 +754,7 @@
       "scripts": [
         "scripts/ubuntu1610/floppy.sh",
         "scripts/ubuntu1610/vagrant.sh",
+        "scripts/ubuntu1610/profile.sh",
         "scripts/ubuntu1610/motd.sh",
         "scripts/ubuntu1610/fixtty.sh",
         "scripts/ubuntu1610/virtualbox.sh",
@@ -783,6 +787,7 @@
       "scripts": [
         "scripts/ubuntu1704/floppy.sh",
         "scripts/ubuntu1704/vagrant.sh",
+        "scripts/ubuntu1704/profile.sh",
         "scripts/ubuntu1704/motd.sh",
         "scripts/ubuntu1704/fixtty.sh",
         "scripts/ubuntu1704/virtualbox.sh",
@@ -815,6 +820,7 @@
       "scripts": [
         "scripts/ubuntu1710/floppy.sh",
         "scripts/ubuntu1710/vagrant.sh",
+        "scripts/ubuntu1710/profile.sh",
         "scripts/ubuntu1710/motd.sh",
         "scripts/ubuntu1710/fixtty.sh",
         "scripts/ubuntu1710/virtualbox.sh",
@@ -847,6 +853,7 @@
       "scripts": [
         "scripts/ubuntu1804/floppy.sh",
         "scripts/ubuntu1804/vagrant.sh",
+        "scripts/ubuntu1804/profile.sh",
         "scripts/ubuntu1804/motd.sh",
         "scripts/ubuntu1804/fixtty.sh",
         "scripts/ubuntu1804/virtualbox.sh",
@@ -879,6 +886,7 @@
       "scripts": [
         "scripts/ubuntu1810/floppy.sh",
         "scripts/ubuntu1810/vagrant.sh",
+        "scripts/ubuntu1810/profile.sh",
         "scripts/ubuntu1810/motd.sh",
         "scripts/ubuntu1810/fixtty.sh",
         "scripts/ubuntu1810/virtualbox.sh",
@@ -912,7 +920,7 @@
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
         "generic-freebsd12-virtualbox"
       ]
@@ -987,7 +995,7 @@
         "scripts/rhel8/randomness.sh",
         "scripts/rhel8/updatedb.sh",
         "scripts/rhel8/cleanup.sh",
-        "scripts/rhel8/unyum.sh"
+        "scripts/rhel8/undnf.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
@@ -1014,7 +1022,7 @@
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
         "generic-hardenedbsd11-virtualbox"
       ]
@@ -1036,7 +1044,7 @@
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
         "generic-dragonflybsd5-virtualbox"
       ]
@@ -1048,7 +1056,7 @@
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "/bin/sh {{ .Path }}",
+      "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
         "generic-netbsd8-virtualbox"
       ]
@@ -1090,7 +1098,7 @@
       "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "execute_command": "/usr/local/bin/bash {{ .Path }}",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
         "generic-hardenedbsd12-virtualbox"
       ]
@@ -1101,7 +1109,7 @@
         "scripts/alpine39/network.sh",
         "scripts/alpine39/apk.sh"
       ],
-      "execute_command": "/bin/sh '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/sh '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1178,6 +1186,7 @@
       "scripts": [
         "scripts/ubuntu1904/floppy.sh",
         "scripts/ubuntu1904/vagrant.sh",
+        "scripts/ubuntu1904/profile.sh",
         "scripts/ubuntu1904/motd.sh",
         "scripts/ubuntu1904/fixtty.sh",
         "scripts/ubuntu1904/virtualbox.sh",
@@ -1277,7 +1286,7 @@
         "scripts/alpine310/network.sh",
         "scripts/alpine310/apk.sh"
       ],
-      "execute_command": "/bin/sh '{{.Path}}'",
+      "execute_command": "{{.Vars}} /bin/sh '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1327,6 +1336,467 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/centos8/network.sh",
+        "scripts/centos8/dnf.sh",
+        "scripts/centos8/base.sh",
+        "scripts/centos8/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos8-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/centos8/kernel.sh",
+        "scripts/centos8/floppy.sh",
+        "scripts/centos8/virtualbox.sh",
+        "scripts/centos8/parallels.sh",
+        "scripts/centos8/vmware.sh",
+        "scripts/centos8/qemu.sh",
+        "scripts/centos8/vagrant.sh",
+        "scripts/centos8/tuning.sh",
+        "scripts/centos8/sshd.sh",
+        "scripts/centos8/randomness.sh",
+        "scripts/centos8/updatedb.sh",
+        "scripts/centos8/cleanup.sh",
+        "scripts/centos8/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos8-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora31/fixdns.sh",
+        "scripts/fedora31/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora31-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora31/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora31-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora31/kernel.sh",
+        "scripts/fedora31/vga.sh",
+        "scripts/fedora31/virtualbox.sh",
+        "scripts/fedora31/parallels.sh",
+        "scripts/fedora31/vmware.sh",
+        "scripts/fedora31/qemu.sh",
+        "scripts/fedora31/vagrant.sh",
+        "scripts/fedora31/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora31-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1910/apt.sh",
+        "scripts/ubuntu1910/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1910-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1910/floppy.sh",
+        "scripts/ubuntu1910/vagrant.sh",
+        "scripts/ubuntu1910/profile.sh",
+        "scripts/ubuntu1910/motd.sh",
+        "scripts/ubuntu1910/fixtty.sh",
+        "scripts/ubuntu1910/virtualbox.sh",
+        "scripts/ubuntu1910/parallels.sh",
+        "scripts/ubuntu1910/vmware.sh",
+        "scripts/ubuntu1910/qemu.sh",
+        "scripts/ubuntu1910/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu1910-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine311/network.sh",
+        "scripts/alpine311/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine311-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine311/hostname.sh",
+        "scripts/alpine311/lsb.sh",
+        "scripts/alpine311/floppy.sh",
+        "scripts/alpine311/vagrant.sh",
+        "scripts/alpine311/sshd.sh",
+        "scripts/alpine311/virtualbox.sh",
+        "scripts/alpine311/parallels.sh",
+        "scripts/alpine311/vmware.sh",
+        "scripts/alpine311/qemu.sh",
+        "scripts/alpine311/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine311-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2004/apt.sh",
+        "scripts/ubuntu2004/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2004-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2004/floppy.sh",
+        "scripts/ubuntu2004/vagrant.sh",
+        "scripts/ubuntu2004/profile.sh",
+        "scripts/ubuntu2004/motd.sh",
+        "scripts/ubuntu2004/fixtty.sh",
+        "scripts/ubuntu2004/virtualbox.sh",
+        "scripts/ubuntu2004/parallels.sh",
+        "scripts/ubuntu2004/vmware.sh",
+        "scripts/ubuntu2004/qemu.sh",
+        "scripts/ubuntu2004/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2004-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora32/fixdns.sh",
+        "scripts/fedora32/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora32-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora32/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora32-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora32/kernel.sh",
+        "scripts/fedora32/vga.sh",
+        "scripts/fedora32/virtualbox.sh",
+        "scripts/fedora32/parallels.sh",
+        "scripts/fedora32/vmware.sh",
+        "scripts/fedora32/qemu.sh",
+        "scripts/fedora32/vagrant.sh",
+        "scripts/fedora32/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora32-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/netbsd9/pkg.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
+      "only": [
+        "generic-netbsd9-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/netbsd9/hostname.sh",
+        "scripts/netbsd9/motd.sh",
+        "scripts/netbsd9/vagrant.sh",
+        "scripts/netbsd9/profile.sh",
+        "scripts/netbsd9/virtualbox.sh",
+        "scripts/netbsd9/parallels.sh",
+        "scripts/netbsd9/vmware.sh",
+        "scripts/netbsd9/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{ .Vars }} bash {{ .Path }}",
+      "only": [
+        "generic-netbsd9-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine312/network.sh",
+        "scripts/alpine312/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine312-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine312/hostname.sh",
+        "scripts/alpine312/lsb.sh",
+        "scripts/alpine312/floppy.sh",
+        "scripts/alpine312/vagrant.sh",
+        "scripts/alpine312/sshd.sh",
+        "scripts/alpine312/virtualbox.sh",
+        "scripts/alpine312/parallels.sh",
+        "scripts/alpine312/vmware.sh",
+        "scripts/alpine312/qemu.sh",
+        "scripts/alpine312/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine312-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan1/apt.sh",
+        "scripts/devuan1/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan1-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan1/floppy.sh",
+        "scripts/devuan1/vagrant.sh",
+        "scripts/devuan1/motd.sh",
+        "scripts/devuan1/virtualbox.sh",
+        "scripts/devuan1/parallels.sh",
+        "scripts/devuan1/vmware.sh",
+        "scripts/devuan1/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan1-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan2/apt.sh",
+        "scripts/devuan2/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan2-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan2/floppy.sh",
+        "scripts/devuan2/vagrant.sh",
+        "scripts/devuan2/motd.sh",
+        "scripts/devuan2/virtualbox.sh",
+        "scripts/devuan2/parallels.sh",
+        "scripts/devuan2/vmware.sh",
+        "scripts/devuan2/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan2-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan3/apt.sh",
+        "scripts/devuan3/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan3-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/devuan3/floppy.sh",
+        "scripts/devuan3/vagrant.sh",
+        "scripts/devuan3/motd.sh",
+        "scripts/devuan3/virtualbox.sh",
+        "scripts/devuan3/parallels.sh",
+        "scripts/devuan3/vmware.sh",
+        "scripts/devuan3/qemu.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-devuan3-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2010/apt.sh",
+        "scripts/ubuntu2010/network.sh"
+      ],
+      "type": "shell",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2010-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2010/floppy.sh",
+        "scripts/ubuntu2010/vagrant.sh",
+        "scripts/ubuntu2010/profile.sh",
+        "scripts/ubuntu2010/motd.sh",
+        "scripts/ubuntu2010/fixtty.sh",
+        "scripts/ubuntu2010/fixkvp.sh",
+        "scripts/ubuntu2010/virtualbox.sh",
+        "scripts/ubuntu2010/parallels.sh",
+        "scripts/ubuntu2010/vmware.sh",
+        "scripts/ubuntu2010/qemu.sh",
+        "scripts/ubuntu2010/cleanup.sh"
+      ],
+      "type": "shell",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2010-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora33/fixdns.sh",
+        "scripts/fedora33/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora33-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora33/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora33-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/fedora33/kernel.sh",
+        "scripts/fedora33/vga.sh",
+        "scripts/fedora33/virtualbox.sh",
+        "scripts/fedora33/parallels.sh",
+        "scripts/fedora33/vmware.sh",
+        "scripts/fedora33/qemu.sh",
+        "scripts/fedora33/vagrant.sh",
+        "scripts/fedora33/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora33-virtualbox"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -1351,7 +1821,7 @@
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1368,16 +1838,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.kernel.org/oracle/OL7/u6/x86_64/OracleLinux-R7-U6-Server-x86_64-dvd.iso",
-      "iso_checksum": "507b9155a4fddd8b466f5f47a87c5b4daf6f14a676037cdcaf9c1cebf7f40dd7",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://mirrors.kernel.org/oracle/OL7/u9/x86_64/OracleLinux-R7-U9-Server-x86_64-dvd.iso",
+      "iso_checksum": "sha256:dc2782bfd92b4c060cf8006fbc6e18036c27f599eebf3584a1a2ac54f008bf2f",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1394,7 +1863,7 @@
         "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
         "<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1411,16 +1880,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64.iso",
-      "iso_checksum": "d1a17116cf33a5582b83ef479d7b151b33938e60f07eebc544abf162e2aa5c12",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/iso/openSUSE-Leap-42.3-NET-x86_64.iso",
+      "iso_checksum": "sha256:d1a17116cf33a5582b83ef479d7b151b33938e60f07eebc544abf162e2aa5c12",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1443,7 +1911,7 @@
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1460,15 +1928,14 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-virt-3.5.3-x86_64.iso",
-      "iso_checksum": "580bc6379e4b246d24b5e32d2637319a60ac953279b3e0df523222ef561bf2f5",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.5/releases/x86_64/alpine-virt-3.5.3-x86_64.iso",
+      "iso_checksum": "sha256:580bc6379e4b246d24b5e32d2637319a60ac953279b3e0df523222ef561bf2f5",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.14/VBoxGuestAdditions_5.1.14.iso",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.1.14/VBoxGuestAdditions_5.1.14.iso",
       "guest_additions_sha256": "1b206b76050dccd3ed979307230f9ddea79551e1c0aba93faee77416733cdc8a",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
@@ -1492,7 +1959,7 @@
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1509,16 +1976,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
-      "iso_checksum": "b5936e27487e605ea3cbf040d444505ea7fd735021258d7b119faaa9b4b5b083",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
+      "iso_checksum": "sha256:b5936e27487e605ea3cbf040d444505ea7fd735021258d7b119faaa9b4b5b083",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1541,7 +2007,7 @@
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1558,16 +2024,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.7/releases/x86_64/alpine-virt-3.7.3-x86_64.iso",
-      "iso_checksum": "2f7a23fc31a6f67348e5614597b23ab8d9340e8a0f4368e96797b1a6c65fa6b8",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.7/releases/x86_64/alpine-virt-3.7.3-x86_64.iso",
+      "iso_checksum": "sha256:2f7a23fc31a6f67348e5614597b23ab8d9340e8a0f4368e96797b1a6c65fa6b8",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1590,7 +2055,7 @@
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1607,16 +2072,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.8/releases/x86_64/alpine-virt-3.8.4-x86_64.iso",
-      "iso_checksum": "20d20e0658b6cc361832cfb49367f0a4c33570ef1521f2e394e9164d2a9bd9df",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.8/releases/x86_64/alpine-virt-3.8.5-x86_64.iso",
+      "iso_checksum": "sha256:9c1d8222c6af31f5e1e62dc25b5f4f922a27a6b3c7f8e136febd0c66dcdb51e3",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1630,7 +2094,7 @@
       "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1647,16 +2111,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-      "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+      "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1670,7 +2133,7 @@
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1687,16 +2150,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.edge.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
-      "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://mirrors.edge.kernel.org/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso",
+      "iso_checksum": "sha256:07b94e6b1a0b0260b94c83d6bb76b26bf7a310dc78d7a9c7432809fb9bc6194a",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1710,7 +2172,7 @@
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1727,16 +2189,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://archive.org/download/rhel-server-7.7-x86_64-dvd/rhel-server-7.7-x86_64-dvd.iso",
-      "iso_checksum": "88b42e934c24af65e78e09f0993e4dded128d74ec0af30b89b3cdc02ec48f028",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://archive.org/download/rhel-server-7.9-x86_64-dvd/rhel-server-7.9-x86_64-dvd.iso",
+      "iso_checksum": "sha256:19d653ce2f04f202e79773a0cbeda82070e7527557e814ebbce658773fbe8191",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1746,13 +2207,29 @@
       "name": "generic-arch-virtualbox",
       "vm_name": "generic-arch-virtualbox",
       "output_directory": "output/generic-arch-virtualbox",
-      "boot_wait": "30s",
+      "boot_wait": "1s",
       "boot_command": [
-        "<enter><wait10><wait10><wait10><wait10>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<spacebar>net.ifnames=0 biosdevname=0<enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "sed -i 's/[#]\\?DNSSEC=.*/DNSSEC=false/g' /etc/systemd/resolved.conf<enter><wait>",
+        "systemctl restart systemd-resolved<enter><wait>",
+        "systemctl restart dhcpcd<enter><wait>",
         "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.vagrant{,.chroot}.sh'<enter><wait>",
         "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1769,16 +2246,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2019.08.01-x86_64.iso",
-      "iso_checksum": "e3d9cea98c03996ee3ce5d2d995aed495eae77c670721bb62ad25530fa175d1d",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2020.12.01-x86_64.iso",
+      "iso_checksum": "sha256:67007bcefa2f954d8068a0506d6d472b5b6cecb1558f3e3a7d4da223b5abe8d8",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "ssh_timeout": "3600s",
+      "shutdown_command": "systemctl poweroff",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1796,7 +2272,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1814,15 +2290,14 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/25/Server/x86_64/iso/Fedora-Server-netinst-x86_64-25-1.3.iso",
-      "iso_checksum": "86bc3694f4938382753d1e9536f2140a6c9c1978207766340c679a89509073c7",
-      "iso_checksum_type": "sha256",
+      "iso_checksum": "sha256:86bc3694f4938382753d1e9536f2140a6c9c1978207766340c679a89509073c7",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1840,7 +2315,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1858,15 +2333,14 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/26/Server/x86_64/iso/Fedora-Server-netinst-x86_64-26-1.5.iso",
-      "iso_checksum": "e260921ef5c7bd5ee2a7b2f2f1156af6483014c73984e4cf37f2b6690e0155e5",
-      "iso_checksum_type": "sha256",
+      "iso_checksum": "sha256:e260921ef5c7bd5ee2a7b2f2f1156af6483014c73984e4cf37f2b6690e0155e5",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1884,7 +2358,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1902,14 +2376,13 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
-      "iso_checksum": "2b93836c38833b26891345388ff5ddea60529b27a616b4539d432a3520d1c90b",
-      "iso_checksum_type": "sha256",
+      "iso_checksum": "sha256:2b93836c38833b26891345388ff5ddea60529b27a616b4539d432a3520d1c90b",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
       "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
@@ -1928,7 +2401,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1945,16 +2418,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.kernel.org/fedora/releases/28/Server/x86_64/iso/Fedora-Server-netinst-x86_64-28-1.1.iso",
-      "iso_checksum": "ea1efdc692356b3346326f82e2f468903e8da59324fdee8b10eac4fea83f23fe",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Server/x86_64/iso/Fedora-Server-netinst-x86_64-28-1.1.iso",
+      "iso_checksum": "sha256:ea1efdc692356b3346326f82e2f468903e8da59324fdee8b10eac4fea83f23fe",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -1972,7 +2444,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -1989,16 +2461,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/29/Server/x86_64/iso/Fedora-Server-netinst-x86_64-29-1.2.iso",
-      "iso_checksum": "aa7fb0e6e5b71774ebdaab0dae76bdd9246a5bc7aedc28b7f1103aaaf9750654",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Server/x86_64/iso/Fedora-Server-netinst-x86_64-29-1.2.iso",
+      "iso_checksum": "sha256:aa7fb0e6e5b71774ebdaab0dae76bdd9246a5bc7aedc28b7f1103aaaf9750654",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2008,14 +2479,23 @@
       "name": "generic-debian8-virtualbox",
       "vm_name": "generic-debian8-virtualbox",
       "output_directory": "output/generic-debian8-virtualbox",
-      "boot_wait": "20s",
+      "boot_wait": "10s",
       "boot_command": [
-        "<esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "auto ",
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian8.vagrant.cfg ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2033,15 +2513,14 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
-      "iso_checksum": "ea444d6f8ac95fd51d2aedb8015c57410d1ad19b494cedec6914c17fda02733c",
-      "iso_checksum_type": "sha256",
+      "iso_checksum": "sha256:ea444d6f8ac95fd51d2aedb8015c57410d1ad19b494cedec6914c17fda02733c",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2051,14 +2530,23 @@
       "name": "generic-debian9-virtualbox",
       "vm_name": "generic-debian9-virtualbox",
       "output_directory": "output/generic-debian9-virtualbox",
-      "boot_wait": "20s",
+      "boot_wait": "10s",
       "boot_command": [
-        "<esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "auto ",
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian9.vagrant.cfg ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2075,16 +2563,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.9.0/amd64/iso-cd/debian-9.9.0-amd64-netinst.iso",
-      "iso_checksum": "d4a22c81c76a66558fb92e690ef70a5d67c685a08216701b15746586520f6e8e",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.13.0/amd64/iso-cd/debian-9.13.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:71c7e9eb292acc880f84605b1ca2b997f25737fe0a43fc9586f61d35cd2eb43b",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2114,7 +2601,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1604.vagrant.cfg<wait> ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2131,16 +2618,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.6/ubuntu-16.04.6-server-amd64.iso",
-      "iso_checksum": "16afb1375372c57471ea5e29803a89a5a6bd1f6aabea2e5e34ac1ab7eb9786ac",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",
+      "iso_checksum": "sha256:b23488689e16cad7a269eb2d3a3bf725d3457ee6b0868e00c8762d3816e25848",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2162,7 +2648,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1610.vagrant.cfg<wait> ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2180,15 +2666,14 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "http://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
-      "iso_checksum": "72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
-      "iso_checksum_type": "sha256",
+      "iso_checksum": "sha256:72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2210,7 +2695,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1704.vagrant.cfg<wait> ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2228,15 +2713,14 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "http://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
-      "iso_checksum": "ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
-      "iso_checksum_type": "sha256",
+      "iso_checksum": "sha256:ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2258,7 +2742,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1710.vagrant.cfg<wait> ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2276,15 +2760,14 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "http://old-releases.ubuntu.com/releases/17.10/ubuntu-17.10.1-server-amd64.iso",
-      "iso_checksum": "8ff73f1b622276758475c3bd5190b382774626de5a82c50930519381f6c3a3f8",
-      "iso_checksum_type": "sha256",
+      "iso_checksum": "sha256:8ff73f1b622276758475c3bd5190b382774626de5a82c50930519381f6c3a3f8",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2318,7 +2801,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1804.vagrant.cfg<wait> ",
         " --- <enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2335,16 +2818,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04.3/release/ubuntu-18.04.3-server-amd64.iso",
-      "iso_checksum": "7d8e0055d663bffa27c1718685085626cb59346e7626ba3d3f476322271f573e",
-      "iso_checksum_type": "sha256",
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04.5/release/ubuntu-18.04.5-server-amd64.iso",
+      "iso_checksum": "sha256:8c5fc24894394035402f66f3824beb7234b757dd2b5531379cb310cedfdf0996",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2378,7 +2860,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1810.vagrant.cfg<wait> ",
         " --- <enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2396,15 +2878,14 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "http://old-releases.ubuntu.com/releases/18.10/ubuntu-18.10-server-amd64.iso",
-      "iso_checksum": "cf9250781dadd919f23c9d9612212cad653e35fccc2fbcf6853f67ad09e067ba",
-      "iso_checksum_type": "sha256",
+      "iso_checksum": "sha256:cf9250781dadd919f23c9d9612212cad653e35fccc2fbcf6853f67ad09e067ba",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2418,16 +2899,19 @@
       "boot_command": [
         "gentoo-nofb<enter>",
         "<wait10><enter>",
-        "<wait10><wait10><wait10><wait10>",
-        "passwd root<enter><wait>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
+        "sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf<enter><wait>",
+        "passwd root<enter><wait><wait><wait>",
         "vagrant<enter><wait>",
         "vagrant<enter><wait>",
         "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
         "bash generic.gentoo.vagrant.sh<enter>"
       ],
-      "disk_size": 32768,
-      "cpus": 4,
-      "memory": 2048,
+      "disk_size": 131072,
+      "cpus": 8,
+      "memory": 8192,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2442,16 +2926,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20190821T214502Z.iso",
-      "iso_checksum": "ebda9e6a7e4406c8c41852edf22f7f277155abd18ce86ced730dfabf38dd1b2c",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20201206T214503Z.iso",
+      "iso_checksum": "sha256:aaff90548be768648901e5965b7d3f84a67d1951f76e837ea2a4bdb06d869649",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "7200s",
+      "ssh_timeout": "7200s",
       "shutdown_command": "shutdown -hP now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2479,7 +2962,7 @@
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd11.vagrant.cfg<enter><wait10>",
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2496,16 +2979,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.3/FreeBSD-11.3-RELEASE-amd64-disc1.iso",
-      "iso_checksum": "d268db365e26305ec3d51b29211caad903749c33a4a8f2cf661d671f8e0ba0b0",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/11.4/FreeBSD-11.4-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "sha256:d76c1ded99b2c1005b1ff94cc0c811fbcd8a2d04196432009ab5f203c2146914",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2521,9 +3003,9 @@
         "dhclient em0<enter><wait5>",
         "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.cfg<enter><wait>",
         "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.chroot.sh<enter><wait>",
-        "/install -a -f /install.conf && chroot /mnt < /install-chroot.sh && reboot<enter>"
+        "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2540,16 +3022,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.5/amd64/cd65.iso",
-      "iso_checksum": "c0ed31c5f50de4cc80bed01e6080beab96df4ee50a5ad14be88faf40a20c43ed",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.8/amd64/cd68.iso",
+      "iso_checksum": "sha256:05fb374fa25461d2315349214228ee671d8bae45f16da994283a8cf9c848451c",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -h -p now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2577,7 +3058,7 @@
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd12.vagrant.cfg<enter><wait10>",
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2594,16 +3075,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/12.0/FreeBSD-12.0-RELEASE-amd64-disc1.iso",
-      "iso_checksum": "63abec8aeb915f1a021dd2df6c7767251f9b6e87f403b7ddf9a423446d0a5453",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/12.2/FreeBSD-12.2-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "sha256:289522e2f4e1260859505adab6d7b54ab83d19aeb147388ff7e28019984da5dc",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2617,7 +3097,7 @@
       "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2635,15 +3115,14 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
-      "iso_checksum": "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
-      "iso_checksum_type": "sha256",
+      "iso_checksum": "sha256:1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2657,7 +3136,7 @@
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2674,16 +3153,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso",
-      "iso_checksum": "005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://archive.org/download/rhel-8.3-x86_64-dvd/rhel-8.3-x86_64-dvd.iso",
+      "iso_checksum": "sha256:30fd8dff2d29a384bd97886fa826fa5be872213c81e853eae3f9d9674f720ad0",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2711,7 +3189,7 @@
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd11.vagrant.cfg<enter><wait10>",
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2729,15 +3207,14 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
-      "iso_checksum": "8b2c90dc41ec68b561028af885eecb66bfd36223970d1c594923d1d54bf83467",
-      "iso_checksum_type": "sha256",
+      "iso_checksum": "sha256:8b2c90dc41ec68b561028af885eecb66bfd36223970d1c594923d1d54bf83467",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2770,14 +3247,15 @@
         "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
         "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
         "boot -s<enter>",
-        "<wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
         "root<enter><wait5>",
         "/bin/sh<enter><wait10>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd5.vagrant.cfg<enter><wait10>",
         "sh /tmp/installerconfig && reboot<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2794,16 +3272,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.6.2_REL.iso",
-      "iso_checksum": "3f23df003e793ceb21fbdd0aa645f32bf701ae6771a02e34f4993fc3a616e690",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.8.3_REL.iso",
+      "iso_checksum": "sha256:8c169e787822ab743e0ee7ddb97c2f4181316ebcd7f7a3e82a085c30f3ea29b5",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2844,7 +3321,8 @@
         "b<wait><enter><wait10>",
         "x<wait><enter><wait10>",
         "<wait><enter><wait10>",
-        "b<wait><enter><wait30>",
+        "b<wait><enter><wait60>",
+        "<wait60><wait60><wait60>",
         "a<wait><enter><wait10>",
         "x<wait><enter><wait10>",
         "b<wait><enter><wait10>",
@@ -2870,23 +3348,22 @@
         "<wait><enter><wait10>",
         "x<wait><enter><wait10>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "guest_os_type": "NetBSD_64",
       "http_directory": "http",
       "headless": true,
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/8.0/NetBSD-8.0-amd64.iso",
-      "iso_checksum": "5978be870ed0bc0bf69e82f904b3cfb4a0806627181aa1f1bbc782c3c9fb37e1",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/8.2/NetBSD-8.2-amd64.iso",
+      "iso_checksum": "sha256:55d03c51d5b94cf7f03a29c1ee7e9f49d6b0ec4c2e1b1a2523c03956b70a1841",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
-      "shutdown_command": "/sbin/shutdown -h -p now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "ssh_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2914,7 +3391,7 @@
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait10>",
         "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2932,15 +3409,14 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
-      "iso_checksum": "029225eaf92ba8e7ed7a7395f45492d09bc9a949488ecb9a5ca54df7c9f89661",
-      "iso_checksum_type": "sha256",
+      "iso_checksum": "sha256:029225eaf92ba8e7ed7a7395f45492d09bc9a949488ecb9a5ca54df7c9f89661",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -p now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2961,10 +3437,10 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -2981,16 +3457,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.9/releases/x86_64/alpine-virt-3.9.4-x86_64.iso",
-      "iso_checksum": "4122dce1092564aa88415c21702d6cb973a7d29f91658d24316f7f0aac3a6761",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.9/releases/x86_64/alpine-virt-3.9.6-x86_64.iso",
+      "iso_checksum": "sha256:888d2245ec900351d3613d831838d1459ac29635b56bd528cd50fd643200d4cf",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -3000,14 +3475,23 @@
       "name": "generic-debian10-virtualbox",
       "vm_name": "generic-debian10-virtualbox",
       "output_directory": "output/generic-debian10-virtualbox",
-      "boot_wait": "20s",
+      "boot_wait": "10s",
       "boot_command": [
-        "<esc><wait>",
-        "auto ",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "/install.amd/vmlinuz auto=true priority=critical vga=788 initrd=/install.amd/gtk/initrd.gz --- quiet ",
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian10.vagrant.cfg ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -3024,15 +3508,14 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://gensho.ftp.acc.umu.se/debian-cd/current/amd64/iso-cd/debian-10.0.0-amd64-netinst.iso",
-      "iso_checksum": "3dbb597b7f11dbda71cda08d4c1339c1eb565e784c75409987fa2b91182d9240",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://gensho.ftp.acc.umu.se/debian-cd/current/amd64/iso-cd/debian-10.7.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:b317d87b0a3d5b568f48a92dcabfc4bc51fe58d9f67ca13b013f1b8329d1306d",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
       "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
@@ -3067,7 +3550,7 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1904.vagrant.cfg<wait> ",
         " --- <enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -3084,16 +3567,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/19.04/release/ubuntu-19.04-server-amd64.iso",
-      "iso_checksum": "7e8a0d07522f591dfee9bc9fcd7c05466763161e6cb0117906655bce1750b2fa",
-      "iso_checksum_type": "sha256",
+      "iso_url": "http://old-releases.ubuntu.com/releases/19.04/ubuntu-19.04-server-amd64.iso",
+      "iso_checksum": "sha256:7e8a0d07522f591dfee9bc9fcd7c05466763161e6cb0117906655bce1750b2fa",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -3111,7 +3593,7 @@
         "net.ifnames=0 ",
         "<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -3128,16 +3610,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
-      "iso_checksum": "5e4eac4566d8c572bfb3bcf54b7d6c82006ec3c6c882a2c9235c6d3494d7b100",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
+      "iso_checksum": "sha256:5e4eac4566d8c572bfb3bcf54b7d6c82006ec3c6c882a2c9235c6d3494d7b100",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -3151,7 +3632,7 @@
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -3168,16 +3649,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.kernel.org/oracle/OL8/u0/x86_64/OracleLinux-R8-U0-x86_64-dvd.iso",
-      "iso_checksum": "dd8bdbba910bb0e49e170503541f26a4fbbf5f6c26f37bae9f77e5d18f411d20",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://mirrors.kernel.org/oracle/OL8/u3/x86_64/OracleLinux-R8-U3-x86_64-dvd.iso",
+      "iso_checksum": "sha256:771e383adfd5406d1a360ff24822011a88cbb45b6019e2f1095758c46a406aaa",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -3198,10 +3678,10 @@
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ", 
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
         "umount /mnt/boot && umount /mnt ; reboot<enter>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -3218,16 +3698,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dl-4.alpinelinux.org/alpine/v3.10/releases/x86_64/alpine-virt-3.10.2-x86_64.iso",
-      "iso_checksum": "06eab9a4d3ce28ce31d413b78b6ff94285e432179b6a6cba711e6c6653667567",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.10/releases/x86_64/alpine-virt-3.10.5-x86_64.iso",
+      "iso_checksum": "sha256:dd3e01b9f7e0c00347cb9dd1be44673d20290d2388b316aec590faa1a5cdea9b",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -3240,11 +3719,11 @@
       "boot_wait": "20s",
       "boot_command": [
         "<esc><enter><wait>",
-        "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.1/repo/oss/ lang=en_US  textmode=1 <wait>",
+        "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.2/repo/oss/ lang=en_US  textmode=1 <wait>",
         "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse15.vagrant.cfg<wait>",
         "<enter><wait>"
       ],
-      "disk_size": 32768,
+      "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -3261,16 +3740,684 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.1/iso/openSUSE-Leap-15.1-NET-x86_64.iso",
-      "iso_checksum": "609d0ad527ab13681b44e28326cd7941e87adfe8d522e2b31d0d7c71e9d92992",
-      "iso_checksum_type": "sha256",
+      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.2/iso/openSUSE-Leap-15.2-NET-x86_64.iso",
+      "iso_checksum": "sha256:02a77812443dd3e47c36611c8837bf8d1659aea6b4d16c9db6841c564d59b7af",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "3600s",
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
-      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.2.30/VBoxGuestAdditions_5.2.30.iso",
-      "guest_additions_sha256": "dd07da975f346608b0f6843f4be4bfdf48b4610ef49a0c0e6aa689ef81c1bd69",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-centos8-virtualbox",
+      "vm_name": "generic-centos8-virtualbox",
+      "output_directory": "output/generic-centos8-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirrors.edge.kernel.org/centos/8.3.2011/isos/x86_64/CentOS-8.3.2011-x86_64-boot.iso",
+      "iso_checksum": "sha256:2b801bc5801816d0cf27fc74552cf058951c42c7b72b1fe313429b1070c3876c",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-fedora31-virtualbox",
+      "vm_name": "generic-fedora31-virtualbox",
+      "output_directory": "output/generic-fedora31-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora31.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Fedora_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/Server/x86_64/iso/Fedora-Server-netinst-x86_64-31-1.9.iso",
+      "iso_checksum": "sha256:5be8debd3e8fb4e86b9fbf67c7eb66ea598d2b7ad0c7ba8d505ce88067b43444",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-ubuntu1910-virtualbox",
+      "vm_name": "generic-ubuntu1910-virtualbox",
+      "output_directory": "output/generic-ubuntu1910-virtualbox",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<esc><f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "console-setup/ask_detect=false ",
+        "debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu1910.vagrant.cfg<wait> ",
+        " --- <enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://archive.org/download/ubuntu-19.10-server-amd64/ubuntu-19.10-server-amd64.iso",
+      "iso_checksum": "sha256:921fd8b271c04aa86a321cc35b40e677f9b85f7903bf2204efb2389b0f0a64c1",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-alpine311-virtualbox",
+      "vm_name": "generic-alpine311-virtualbox",
+      "output_directory": "output/generic-alpine311-virtualbox",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine311.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine311.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Linux_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.11/releases/x86_64/alpine-virt-3.11.6-x86_64.iso",
+      "iso_checksum": "sha256:86c511faf8232eace478760695f5dbeeb93a16003576317e16a9e3816355e6b7",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-ubuntu2004-virtualbox",
+      "vm_name": "generic-ubuntu2004-virtualbox",
+      "output_directory": "output/generic-ubuntu2004-virtualbox",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<esc><f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "console-setup/ask_detect=false ",
+        "debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2004.vagrant.cfg<wait> ",
+        " --- <enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04.1/release/ubuntu-20.04.1-legacy-server-amd64.iso",
+      "iso_checksum": "sha256:f11bda2f2caed8f420802b59f382c25160b114ccc665dbac9c5046e7fceaced2",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-fedora32-virtualbox",
+      "vm_name": "generic-fedora32-virtualbox",
+      "output_directory": "output/generic-fedora32-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "<wait>text net.ifnames=0 ",
+        "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora32.vagrant.ks ",
+        "<wait><enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Fedora_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/iso/Fedora-Server-netinst-x86_64-32-1.6.iso",
+      "iso_checksum": "sha256:7f4afd2a26c718f9f15e4bbfd9c2e8849f81036d2a82a4e81fa4a313a833da9c",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-netbsd9-virtualbox",
+      "vm_name": "generic-netbsd9-virtualbox",
+      "output_directory": "output/generic-netbsd9-virtualbox",
+      "boot_wait": "40s",
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "boot_command": [
+        "<enter><wait10>",
+        "<enter><wait10>",
+        "e<enter><wait10>",
+        "<enter><wait10>",
+        "IF=`ifconfig | head -1 | awk -F':' '{print $1}'`<enter><wait10>",
+        "/sbin/dhcpcd -d -n $IF<enter><wait10>",
+        "ftp -o /tmp/install-script.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.netbsd9.install.sh<enter><wait10>",
+        "TERM=wsvt25 /usr/sbin/sysinst && sh /tmp/install-script.sh && reboot<enter><wait10>",
+        "a<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "b<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "b<wait><enter><wait10>",
+        "x<wait><enter><wait10>",
+        "b<wait><enter><wait60>",
+        "<wait60><wait60><wait60>",
+        "a<wait><enter><wait10>",
+        "b<wait><enter><wait30>",
+        "a<wait><enter><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait><enter><wait10>",
+        "d<wait><enter><wait10>",
+        "a<wait><enter><wait10>",
+        "vagrant<enter><wait10>",
+        "vagrant<enter><wait10>",
+        "vagrant<enter><wait10>",
+        "g<wait><enter><wait10>",
+        "x<wait><enter><wait10>",
+        "<wait><enter><wait10>",
+        "x<wait><enter><wait10>"
+      ],
+      "disk_size": 131072,
+      "guest_os_type": "NetBSD_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/9.1/NetBSD-9.1-amd64.iso",
+      "iso_checksum": "sha256:de37b3071fc02d308c10df39794f1f272883243b0948223d410fdaf1bfefbd39",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-alpine312-virtualbox",
+      "vm_name": "generic-alpine312-virtualbox",
+      "output_directory": "output/generic-alpine312-virtualbox",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine312.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine312.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Linux_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.12/releases/x86_64/alpine-virt-3.12.2-x86_64.iso",
+      "iso_checksum": "sha256:146756d7c3436fd912594f3e3597c8887ce9f8e4c8e5124fc2c0305badf67ee1",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-devuan1-virtualbox",
+      "vm_name": "generic-devuan1-virtualbox",
+      "output_directory": "output/generic-devuan1-virtualbox",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan1.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Debian_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_jessie/installer-iso/devuan_jessie_1.0.0_amd64_NETINST.iso",
+      "iso_checksum": "sha256:70c6abe544ec59b0d0882c666ca0377be1b6c218655dac1f61b2c7e88c9b3d9f",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-devuan2-virtualbox",
+      "vm_name": "generic-devuan2-virtualbox",
+      "output_directory": "output/generic-devuan2-virtualbox",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan2.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Debian_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_ascii/installer-iso/devuan_ascii_2.1_amd64_netinst.iso",
+      "iso_checksum": "sha256:9aa6de460fb944ddfec8c79306974a522be166e4d296e9673f083f9e1cc6c56c",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-devuan3-virtualbox",
+      "vm_name": "generic-devuan3-virtualbox",
+      "output_directory": "output/generic-devuan3-virtualbox",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan3.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Debian_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_beowulf/installer-iso/devuan_beowulf_3.0.0_amd64-netinstall.iso",
+      "iso_checksum": "sha256:5844e45dc6421c25dfc9fb25df9d57af8fadf12a97a2a4e0ae1931c4c3217523",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-ubuntu2010-virtualbox",
+      "vm_name": "generic-ubuntu2010-virtualbox",
+      "output_directory": "output/generic-ubuntu2010-virtualbox",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "c<wait10>",
+        "set gfxpayload=keep<enter><wait10>",
+        "linux /casper/vmlinuz autoinstall quiet net.ifnames=0 biosdevname=0 ",
+        "ds=\"nocloud-net;s=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2010.vagrant.\" --- <enter><wait10>",
+        "initrd /casper/initrd<enter><wait10>",
+        "boot<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/20.10/ubuntu-20.10-live-server-amd64.iso",
+      "iso_checksum": "sha256:defdc1ad3af7b661fe2b4ee861fb6fdb5f52039389ef56da6efc05e6adfe3d45",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-fedora33-virtualbox",
+      "vm_name": "generic-fedora33-virtualbox",
+      "output_directory": "output/generic-fedora33-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "<wait>text net.ifnames=0 ",
+        "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora33.vagrant.ks ",
+        "<wait><enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Fedora_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/33/Server/x86_64/iso/Fedora-Server-netinst-x86_64-33-1.2.iso",
+      "iso_checksum": "sha256:1f1f018e78f0cc23d08db0c85952344ea5c200e67b672da5b07507c066a52ccf",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"

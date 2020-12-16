@@ -19,20 +19,22 @@ The templates in this repo require a current version of packer, (1.3.4+) and in 
 
 ## Pending Tasks
 
-Add retry function to scripts and wrap yum/apt/apk/pacman/etc (prototype in silent.sh already)  
-Automatically retry failed box builds  
-Generate docker variants for the RHEL/Oracle/Ubuntu/Debian/Alpine configurations  
+Generate docker variants for the Ubuntu/Debian/Alpine configurations  
 Add upload/delete/release functions to robox.sh  
 Add vagrant user password randomization logic to the bundled Vagrantfiles  
 Add init based test, and SSH command test to the box test and check script  
-Ad `IPQoS lowdelay throughput` to the relevant configs to solve the [OpenSSH bug](https://github.com/hashicorp/vagrant/issues/10730)
-
 
 ## Pending Additions
 
-[Devuan 1.0/2.0](https://devuan.org/)  
+Submit a pull request with your favorite distro.
 
 ## Operating System Requests
+
+The following variants of existing builds have been requested, and will be added at a future date, when time allows (or someone submits a pull request).
+
+[CentOS Stream](https://software.opensuse.org/distributions/tumbleweed)
+[Fedora Rawhide](https://fedoraproject.org/wiki/Releases/Rawhide)
+[OpenSUSE Tumbleweed](https://www.centos.org/centos-stream/)
 
 The following operating systems have been requested by a member of the robox community, but require a volunteer, so they can be incorporated into the robox workflow.
 
@@ -49,8 +51,6 @@ Manjaro
 Mint  
 OpenSolaris  
 OpenSUSE Leap v15 (already building v42.3)  
-Oracle v6 (already building v7)  
-Scientific Linux v6/v7  
 Slackware  
 
 MacOS  
@@ -73,4 +73,4 @@ Bitcoin
 Bitcoin Cash
 qqxyedtn68jg84w4mkd3vsw2nu6pgkydnudza0ed0m
 
-[Robxes](https://roboxes.org) is maintained by Ladar Levison, with infrastructure provided by [Hacking and Coffee LLC](https://hackingand.coffee), and [Lavabit LLC](https://lavabit.com).
+[Roboxes](https://roboxes.org) is maintained by Ladar Levison, with infrastructure provided by [Hacking and Coffee LLC](https://hackingand.coffee), and [Lavabit LLC](https://lavabit.com).

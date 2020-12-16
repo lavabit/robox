@@ -33,6 +33,15 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
+# Ensure Python 3.6 is installed.
+add-apt-repository --yes ppa:deadsnakes/ppa
+retry apt-get --assume-yes update
+retry apt-get --assume-yes install python3.6
+
+# Use an alias to force the use of Python 3.6 over Python 3.5.
+printf "\nalias python='/usr/bin/python3.6'\n" >> /home/vagrant/.bashrc
+printf "\nalias python='/usr/bin/python3.6'\n" >> /home/vagrant/.bash_aliases
+
 # Install developer tools.
 retry apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pciutils usbutils
 
@@ -84,7 +93,7 @@ cd `find * -maxdepth 0 -type d`
 # Recompile git using OpenSSL instead of gnutls.
 sed -i -e "s|libcurl4-gnutls-dev|libcurl4-openssl-dev|g" debian/control
 sed -i -e "/TEST[ ]*=test/d" debian/rules
-dpkg-buildpackage -rfakeroot -b
+dpkg-buildpackage -J4 -rfakeroot -b
 
 # Insall the new version.
 dpkg -i `find ../* -type f -name *amd64.deb`

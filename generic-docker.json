@@ -1,13 +1,16 @@
 {
     "variables": {
         "box_version": "{{env `VERSION`}}",
+        "quay-user": "{{env `QUAY_USER`}}",
         "docker-user": "{{env `DOCKER_USER`}}",
+        "quay-password": "{{env `QUAY_PASSWORD`}}",
         "docker-password": "{{env `DOCKER_PASSWORD`}}"
     },
     "provisioners": [
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/network.sh",
                 "scripts/centos6/vga.sh"
@@ -63,6 +66,37 @@
             "expect_disconnect": "true",
             "only": [
                 "generic-centos7-docker"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/centos8/network.sh",
+                "scripts/centos8/dnf.sh",
+                "scripts/centos8/base.sh",
+                "scripts/centos8/reboot.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-centos8-docker"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/centos8/floppy.sh",
+                "scripts/centos8/cleanup.sh",
+                "scripts/centos8/undnf.sh",
+                "scripts/centos8/dockerize.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-centos8-docker"
             ]
         },
         {
@@ -150,7 +184,7 @@
             "scripts/rhel8/floppy.sh",
             "scripts/rhel8/updatedb.sh",
             "scripts/rhel8/cleanup.sh",
-            "scripts/rhel8/unyum.sh",
+            "scripts/rhel8/undnf.sh",
             "scripts/rhel8/dockerize.sh"
           ],
           "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
@@ -237,22 +271,23 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
-            "disk_compression": true,
+            "disk_image": false,
+          "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+            "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -267,22 +302,54 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
-            "disk_compression": true,
+            "disk_image": false,
+          "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
-            "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://mirrors.edge.kernel.org/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso",
+            "iso_checksum": "sha256:07b94e6b1a0b0260b94c83d6bb76b26bf7a310dc78d7a9c7432809fb9bc6194a",
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
+            "shutdown_command": "shutdown -h now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-centos8-docker",
+            "vm_name": "generic-centos8-docker",
+            "output_directory": "output/generic-centos8-docker",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_command": [
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.docker.ks<enter><wait>"
+            ],
+            "format": "raw",
+            "disk_size": "32770",
+            "disk_interface": "virtio-scsi",
+            "disk_image": false,
+          "disk_compression": true,
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.edge.kernel.org/centos/8.3.2011/isos/x86_64/CentOS-8.3.2011-x86_64-boot.iso",
+            "iso_checksum": "sha256:2b801bc5801816d0cf27fc74552cf058951c42c7b72b1fe313429b1070c3876c",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -297,29 +364,24 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.docker.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
+          "disk_detect_zeroes": "unmap",
           "disk_cache": "unsafe",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-oracle7-docker/generic-oracle7-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://mirrors.kernel.org/oracle/OL7/u6/x86_64/OracleLinux-R7-U6-Server-x86_64-dvd.iso",
-          "iso_checksum": "507b9155a4fddd8b466f5f47a87c5b4daf6f14a676037cdcaf9c1cebf7f40dd7",
-          "iso_checksum_type": "sha256",
+          "iso_url": "https://mirrors.kernel.org/oracle/OL7/u9/x86_64/OracleLinux-R7-U9-Server-x86_64-dvd.iso",
+          "iso_checksum": "sha256:dc2782bfd92b4c060cf8006fbc6e18036c27f599eebf3584a1a2ac54f008bf2f",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
         },
         {
@@ -334,29 +396,23 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.docker.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-oracle8-docker/generic-oracle8-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://mirrors.kernel.org/oracle/OL8/u0/x86_64/OracleLinux-R8-U0-x86_64-dvd.iso",
-          "iso_checksum": "dd8bdbba910bb0e49e170503541f26a4fbbf5f6c26f37bae9f77e5d18f411d20",
-          "iso_checksum_type": "sha256",
+          "iso_url": "https://mirrors.kernel.org/oracle/OL8/u3/x86_64/OracleLinux-R8-U3-x86_64-dvd.iso",
+          "iso_checksum": "sha256:771e383adfd5406d1a360ff24822011a88cbb45b6019e2f1095758c46a406aaa",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
         },
         {
@@ -371,29 +427,23 @@
             "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-rhel6-docker/generic-rhel6-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
           "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
-          "iso_checksum": "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
-          "iso_checksum_type": "sha256",
+          "iso_checksum": "sha256:1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
           "ssh_username": "root",
           "ssh_password": "vagrant",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         },
         {
@@ -408,29 +458,23 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-rhel7-docker/generic-rhel7-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
-          "iso_urls": "https://archive.org/download/rhel-server-7.7-x86_64-dvd/rhel-server-7.7-x86_64-dvd.iso",
-          "iso_checksum": "88b42e934c24af65e78e09f0993e4dded128d74ec0af30b89b3cdc02ec48f028",
-          "iso_checksum_type": "sha256",
+          "iso_urls": "https://archive.org/download/rhel-server-7.9-x86_64-dvd/rhel-server-7.9-x86_64-dvd.iso",
+          "iso_checksum": "sha256:19d653ce2f04f202e79773a0cbeda82070e7527557e814ebbce658773fbe8191",
           "ssh_username": "root",
           "ssh_password": "vagrant",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         },
         {
@@ -445,29 +489,23 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-rhel8-docker/generic-rhel8-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
-          "iso_urls": "https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso",
-          "iso_checksum": "005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43",
-          "iso_checksum_type": "sha256",
+          "iso_urls": "https://archive.org/download/rhel-8.3-x86_64-dvd/rhel-8.3-x86_64-dvd.iso",
+          "iso_checksum": "sha256:30fd8dff2d29a384bd97886fa826fa5be872213c81e853eae3f9d9674f720ad0",
           "ssh_username": "root",
           "ssh_password": "vagrant",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         }
     ],
@@ -480,8 +518,9 @@
                   "BOX={{split build_name \"-\" 1}}"
                 ],
                 "inline": [
-                  "[ `docker images roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet roboxes/$BOX`",
-                  "[ `docker images generic/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet generic/$BOX`",
+                  "[ `docker images quay.io/generic/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/generic/$BOX`",
+                  "[ `docker images quay.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/roboxes/$BOX`",
+                  "[ `docker images docker.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet docker.io/roboxes/$BOX`",
                   "rm --recursive --force output/$NAME",
                   "exit 0"
                 ]
@@ -537,6 +576,16 @@
         ],
         [
             {
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
+            {
                 "type": "artifice",
                 "keep_input_artifact": true,
                 "files": [
@@ -547,7 +596,199 @@
                 "type": "docker-import",
                 "keep_input_artifact": true,
                 "tag": "{{user `box_version`}}",
-                "repository": "roboxes/{{split build_name \"-\" 1}}",
+                "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `docker_username`}}",
+                "login_password": "{{user `docker_password`}}"
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/roboxes/info.json"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                  "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                  "[ -f $FILENAME ] && touch $FILENAME",
+                  "exit 0"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
                   "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
@@ -575,67 +816,6 @@
                 ],
                 "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256",
                 "keep_input_artifact": true
-            }
-        ],
-        [
-            {
-                "type": "artifice",
-                "keep_input_artifact": true,
-                "files": [
-                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
-                ]
-            },
-            {
-                "type": "docker-import",
-                "keep_input_artifact": true,
-                "tag": "{{user `box_version`}}",
-                "repository": "roboxes/{{split build_name \"-\" 1}}",
-                "changes": [
-                  "CMD [\"/bin/bash\"]",
-                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-                ]
-            },
-            {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": true,
-                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box",
-                "include": [
-                    "tpl/generic/info.json"
-                ]
-            },
-            {
-                "type": "checksum",
-                "checksum_types": [
-                    "sha256"
-                ],
-                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.box.sha256",
-                "keep_input_artifact": true
-            }
-        ],
-        [
-            {
-                "type": "artifice",
-                "keep_input_artifact": true,
-                "files": [
-                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{user `box_version`}}.tar.gz"
-                ]
-            },
-            {
-                "type": "docker-import",
-                "keep_input_artifact": true,
-                "tag": "latest",
-                "repository": "roboxes/{{split build_name \"-\" 1}}",
-                "changes": [
-                  "CMD [\"/bin/bash\"]",
-                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-                ]
-            },
-            {
-                "type": "docker-push",
-                "login": "false",
-                "login_username": "{{user `docker_username`}}",
-                "login_password": "{{user `docker_password`}}"
             }
         ]
     ]

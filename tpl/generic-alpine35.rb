@@ -4,8 +4,6 @@
 Vagrant.configure(2) do |config|
 
   config.vm.boot_timeout = 1800
-  # config.vm.box = "generic/bazinga"
-  # config.vm.hostname = "bazinga.box"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.box_check_update = true
@@ -32,7 +30,13 @@ Vagrant.configure(2) do |config|
     v.memory = 2048
     v.driver = "kvm"
     v.video_vram = 256
-    override.vm.guest = :alt
+    v.disk_bus = "scsi"
+    if Vagrant.version?("< 2.2.6") && !Vagrant.has_plugin?("vagrant-alpine")
+      override.trigger.before :up do |t|
+        t.warn = "Setting OS type to 'ALT Linux' as a workaround, which might break guest OS specific features.\nPlease upgrade to Vagrant 2.2.6 or (if Vagrant can't be upgraded) install the 'vagrant-alpine' plugin if issues arise."
+      end
+      override.vm.guest = :alt
+    end
     v.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
   end
 

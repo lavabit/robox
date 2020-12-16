@@ -30,7 +30,7 @@ retry() {
 export PATH="/usr/sbin/:/usr/pkg/bin/:$PATH"
 
 # Dictate the package repository.
-export PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0/All"
+export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0_2020Q3/All"
 
 # Ensure dmideocode is available.
 retry pkg_add dmidecode

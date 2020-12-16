@@ -3,16 +3,16 @@
 set -x
 
 # Ensure the pkg utilities are in the path.
-export PATH="/usr/sbin/:/usr/pkg/bin/:$PATH"
+export PATH="/sbin/:/bin/:/usr/sbin/:/usr/bin/:/usr/pkg/bin/:/usr/pkg/sbin/:/usr/local/bin:$PATH"
 
 # Dictate the package repository.
-export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0/All"
+export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0_2020Q3/All"
 
 # Add the packages.
 pkg_add vim curl wget sudo bash pkgin slocate bash-completion
 
 # Enable the binary package repositories.
-sed -i 's,^[^#].*$,http://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/$arch/8.0/All,' /usr/pkg/etc/pkgin/repositories.conf
+sed -i 's,^[^#].*$,http://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/$arch/8.0_2020Q3/All,' /usr/pkg/etc/pkgin/repositories.conf
 
 # Link up the bash target so script headers work properly.
 if [ ! -f /bin/bash ] && [ -f /usr/pkg/bin/bash ]; then
@@ -44,6 +44,9 @@ fi
 # Update the package database.
 /usr/pkg/bin/updatedb
 
+# Alter permissions on the locate database to allow normal user access.
+chmod o+r /var/lib/slocate/slocate.db
+
 # Auto update the database.
 printf "\n16 * * * * /usr/pkg/bin/updatedb\n" >> /var/cron/tabs/root
 
@@ -60,11 +63,11 @@ fi
 EOF
 
 # Make the path, and package repo variables persistent.
-echo 'export PATH="/usr/sbin/:/usr/pkg/bin/:$PATH"' >> /etc/profile
-echo 'export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0/All"' >> /etc/profile
+echo 'export PATH="/sbin/:/bin/:/usr/sbin/:/usr/bin/:/usr/pkg/bin/:/usr/pkg/sbin/:/usr/local/bin:$PATH"' >> /etc/profile
+echo 'export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0_2020Q3/All"' >> /etc/profile
 
 # Load the bash helpers.
 echo 'source /usr/pkg/share/bash-completion/bash_completion' >> /etc/profile
 
 # Reboot so everything initializes properly.
-/sbin/shutdown -r +1 &
+bash -c '/sbin/shutdown -r +1' &

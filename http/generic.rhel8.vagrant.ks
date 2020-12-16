@@ -17,7 +17,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=rhel8.localdomain
 zerombr
 clearpart --all --initlabel
 bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 no_timer_check"
-autopart
+autopart --nohome
 
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
