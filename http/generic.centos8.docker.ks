@@ -25,10 +25,14 @@ autopart --nohome
 # url --url=https://mirrors.edge.kernel.org/centos/8.3.2011/BaseOS/x86_64/os/
 
 # Package setup
-%packages --instLangs=en
+%packages --instLangs=en_US.utf8
 @core
 authconfig
 sudo
+-fprintd-pam
+-intltool
+-iwl*-firmware
+-microcode_ctl
 %end
 
 %post

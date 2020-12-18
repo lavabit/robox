@@ -28,6 +28,10 @@ reboot --eject
 @core
 authconfig
 sudo
+-fprintd-pam
+-intltool
+-iwl*-firmware
+-microcode_ctl
 %end
 
 %post
