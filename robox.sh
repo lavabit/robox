@@ -6,7 +6,7 @@
 # Description: Used to build various virtual machines using packer.
 
 # Version Information
-export VERSION="3.1.16"
+export VERSION="3.1.18"
 export AGENT="Vagrant/2.2.9 (+https://www.vagrantup.com; ruby2.6.6)"
 
 # Limit the number of cpus packer will use.
