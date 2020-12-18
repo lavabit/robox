@@ -21,8 +21,8 @@ zerombr
 clearpart --all --initlabel
 autopart --nohome
 
-repo --name=BaseOS
-url --url=https://mirrors.edge.kernel.org/centos/8.3.2011/BaseOS/x86_64/os/
+# repo --name=BaseOS
+# url --url=https://mirrors.edge.kernel.org/centos/8.3.2011/BaseOS/x86_64/os/
 
 # Package setup
 %packages --instLangs=en
