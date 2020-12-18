@@ -40,8 +40,8 @@ if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
 fi
 
 # CentOS Repo Setup
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-Base.repo
-sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-Base.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
 
 sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-AppStream.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-AppStream.repo
@@ -95,4 +95,20 @@ fi
 
 if [ -f /etc/yum.repos.d/CentOS-Linux-Media.repo.rpmnew ]; then
   rm --force /etc/yum.repos.d/CentOS-Linux-Media.repo.rpmnew
+fi
+
+if [ -f /etc/yum.repos.d/epel-playground.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/epel-playground.repo.rpmnew
+fi
+
+if [ -f /etc/yum.repos.d/epel-testing-modular.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/epel-testing-modular.repo.rpmnew
+fi
+
+if [ -f /etc/yum.repos.d/epel-testing.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/epel-testing.repo.rpmnew
+fi
+
+if [ -f /etc/yum.repos.d/epel.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/epel.repo.rpmnew
 fi
