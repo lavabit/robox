@@ -1318,7 +1318,18 @@
     {
       "type": "shell",
       "scripts": [
-        "scripts/opensuse15/zypper.sh",
+        "scripts/opensuse15/zypper.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-opensuse15-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
         "scripts/opensuse15/virtualbox.sh",
         "scripts/opensuse15/parallels.sh",
         "scripts/opensuse15/vmware.sh",
@@ -1329,6 +1340,7 @@
         "scripts/opensuse15/postfix.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
