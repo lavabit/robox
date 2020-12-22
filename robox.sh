@@ -228,7 +228,7 @@ function start() {
 }
 
 function print_iso() {
-  SHA=`curl --silent --location "${2}" | sha256sum | awk -F' ' '{print $1}'`
+  SHA=`${CURL} --silent --location "${2}" | sha256sum | awk -F' ' '{print $1}'`
   if [ $? != 0 ]; then
       tput setaf 1; printf "\n$1 failed.\n\n"; tput sgr0; printf "${2}\n\n"
       return 1
@@ -241,13 +241,13 @@ function isos() {
 
   # Find the Gentoo URL.
   URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
-  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
+  ISO=`${CURL} --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
   URL="${URL}${ISO}"
   N=( "${N[@]}" "Gentoo" ); U=( "${U[@]}" "$URL" )
 
   # Find the Arch URL.
   URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
-  ISO=`curl --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
+  ISO=`${CURL} --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
   URL="${URL}${ISO}"
   N=( "${N[@]}" "Arch" ); U=( "${U[@]}" "$URL" )
 
@@ -274,7 +274,7 @@ function iso() {
 
     # Find the Gentoo URL.
     URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
-    ISO=`curl --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
       return 1
@@ -285,7 +285,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`curl --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
         return 1
@@ -309,7 +309,7 @@ function iso() {
 
     # Find the Arch URL.
     URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
-    ISO=`curl --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
       return 1
@@ -320,7 +320,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`curl --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
         return 1
@@ -361,13 +361,13 @@ function cache {
 function verify_url {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
-  curl --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 "$1" | grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
+  ${CURL} --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 "$1" | grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
 
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
 
     # Wait a minute, and then try again. Many of the failures are transient network errors.
-    sleep 10; curl --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 "$1" |  grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
+    sleep 10; ${CURL} --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 "$1" |  grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
 
     if [ $? != 0 ]; then
       printf "Link Failure:  $1\n"
@@ -380,7 +380,7 @@ function verify_url {
 function verify_sum {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
-  curl --silent --location --head "$1" | grep --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
+  ${CURL} --silent --location --head "$1" | grep --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
 
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
@@ -389,14 +389,14 @@ function verify_sum {
   fi
 
   # Grab the ISO and pipe the data through sha256sum, then compare the checksum value.
-  SUM=`curl --silent --location "$1" | sha256sum | tr -d '  -'`
+  SUM=`${CURL} --silent --location "$1" | sha256sum | tr -d '  -'`
   echo $SUM | grep --silent "$2"
 
   # The grep return code tells us whether we found a checksum match.
   if [ $? != 0 ]; then
 
     # Wait a minute, and then try again. Many of the failures are transient network errors.
-    SUM=`sleep 60; curl --silent --location "$1" | sha256sum | tr -d '  -'`
+    SUM=`sleep 60; ${CURL} --silent --location "$1" | sha256sum | tr -d '  -'`
     echo $SUM | grep --silent "$2"
 
     if [ $? != 0 ]; then
@@ -418,7 +418,7 @@ function verify_local {
 
   # Make sure the ISO exists, and is the proper size.
   if [ ! -f "${2}" ] || [ "`sha256sum \"${2}\" | awk -F' ' '{print \$1}'`" != "${1}" ]; then
-    curl --location --retry 16 --retry-delay 16 --max-redirs 16 --user-agent "${ISOAGENT}" --output "${2}.part" "${3}"
+    ${CURL} --location --retry 16 --retry-delay 16 --max-redirs 16 --user-agent "${ISOAGENT}" --output "${2}.part" "${3}"
     sha256sum "${2}.part" | grep --silent "${1}"
     if [ $? != 0 ]; then
       tput setaf 1; tput bold; printf "\n\nLocal ISO file could not be downloaded...\n\n"; tput sgr0
@@ -718,7 +718,7 @@ function available() {
           [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
-          curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
+          ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
           if [ $? != 0 ]; then
             let MISSING+=1
@@ -731,7 +731,7 @@ function available() {
       fi
 
       PROVIDER="hyperv"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
+      ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -742,7 +742,7 @@ function available() {
       fi
 
       PROVIDER="libvirt"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
+      ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -754,7 +754,7 @@ function available() {
 
       PROVIDER="parallels"
       if [[ "${ORGANIZATION}" == "generic" ]]; then
-        curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
+        ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
         if [ $? != 0 ]; then
           let MISSING+=1
@@ -766,7 +766,7 @@ function available() {
       fi
 
       PROVIDER="virtualbox"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
+      ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -777,7 +777,7 @@ function available() {
       fi
 
       PROVIDER="vmware_desktop"
-      curl --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
+      ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
       if [ $? != 0 ]; then
         let MISSING+=1
@@ -975,14 +975,14 @@ function grab() {
     return 0
   fi
 
-  CHECKSUM=`curl --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
+  CHECKSUM=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
     | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | .checksum ][0]" 2>/dev/null`
 
   if [ ! -d "$BASE/output/" ]; then
     mkdir "$BASE/output/"
   fi
 
-  curl --fail --location --user-agent "${AGENT}" --output "$BASE/output/$1-$2-$3-$VERSION.box" "$URL"
+  ${CURL} --fail --location --user-agent "${AGENT}" --output "$BASE/output/$1-$2-$3-$VERSION.box" "$URL"
   if [ "$?" == 0 ]; then
     ( cd output ; printf "$CHECKSUM\t$1-$2-$3-$VERSION.box" | sha256sum --check --status )
     if [ "$?" != 0 ]; then
