@@ -891,6 +891,10 @@ function public() {
         let FOUND+=1
         printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       fi
+
+      # Limit requests to ~100 per minute to avoid stalls.
+      sleep 0.6 &> /dev/null || echo "" &> /dev/null
+
     done
 
     # Get the totla number of boxes.
