@@ -50,7 +50,6 @@ The following operating systems are on my personal list, but haven't been added 
 Manjaro  
 Mint  
 OpenSolaris  
-OpenSUSE Leap v15 (already building v42.3)  
 Slackware  
 
 MacOS  
