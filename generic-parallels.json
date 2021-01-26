@@ -1809,6 +1809,41 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine313/network.sh",
+        "scripts/alpine313/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine313-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine313/hostname.sh",
+        "scripts/alpine313/lsb.sh",
+        "scripts/alpine313/floppy.sh",
+        "scripts/alpine313/vagrant.sh",
+        "scripts/alpine313/sshd.sh",
+        "scripts/alpine313/virtualbox.sh",
+        "scripts/alpine313/parallels.sh",
+        "scripts/alpine313/vmware.sh",
+        "scripts/alpine313/qemu.sh",
+        "scripts/alpine313/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine313-parallels"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -5591,6 +5626,76 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-alpine313-parallels",
+      "vm_name": "generic-alpine313-parallels",
+      "output_directory": "output/generic-alpine313-parallels",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine313.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine313.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "linux",
+      "http_directory": "http",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.0-x86_64.iso",
+      "iso_checksum": "sha256:daa45a8c12b8458296188d64e6091da79087d47a914d90a0976f6ef92fafba28",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
       "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",

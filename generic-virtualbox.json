@@ -1809,6 +1809,41 @@
       ]
     },
     {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine313/network.sh",
+        "scripts/alpine313/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine313-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/alpine313/hostname.sh",
+        "scripts/alpine313/lsb.sh",
+        "scripts/alpine313/floppy.sh",
+        "scripts/alpine313/vagrant.sh",
+        "scripts/alpine313/sshd.sh",
+        "scripts/alpine313/virtualbox.sh",
+        "scripts/alpine313/parallels.sh",
+        "scripts/alpine313/vmware.sh",
+        "scripts/alpine313/qemu.sh",
+        "scripts/alpine313/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine313-virtualbox"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -4428,6 +4463,55 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-alpine313-virtualbox",
+      "vm_name": "generic-alpine313-virtualbox",
+      "output_directory": "output/generic-alpine313-virtualbox",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine313.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine313.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Linux_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.0-x86_64.iso",
+      "iso_checksum": "sha256:daa45a8c12b8458296188d64e6091da79087d47a914d90a0976f6ef92fafba28",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
       "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
       "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
