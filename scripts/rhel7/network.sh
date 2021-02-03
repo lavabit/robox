@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Ensure a nameserver is being used that won't return an IP for non-existent domain names.
-printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n"> /etc/resolv.conf
-
 # Set the hostname, and then ensure it will resolve properly.
 if [[ "$PACKER_BUILD_NAME" =~ ^generic-rhel7-(vmware|hyperv|docker|libvirt|parallels|virtualbox)$ ]]; then
   printf "rhel7.localdomain\n" > /etc/hostname
@@ -30,13 +27,6 @@ sed -i -e "/IPV6_PEERDNS.*/d;$ a IPV6_PEERDNS=no" /etc/sysconfig/network-scripts
 sed -i -e "/IPV6_PEERROUTES.*/d;$ a IPV6_PEERROUTES=no" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "/IPV6FORWARDING.*/d;$ a IPV6FORWARDING=no" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "/IPV6_AUTOTUNNEL.*/d;$ a IPV6_AUTOTUNNEL=no" /etc/sysconfig/network-scripts/ifcfg-eth0
-
-
-# Ensure good DNS servers are being used.
-if [ -f /etc/sysconfig/network-scripts/ifcfg-eth0 ]; then
-  printf "DNS1=4.2.2.1\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-  printf "DNS2=4.2.2.2\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-fi
 
 # Make sure Udev doesn't block our network
 printf "Cleaning up udev rules.\n"

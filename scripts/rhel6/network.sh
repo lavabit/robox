@@ -5,9 +5,6 @@ if [ ! -f /media/media.repo ]; then
   mount /dev/cdrom /media; error
 fi
 
-# Ensure a nameserver is being used that won't return an IP for non-existent domain names.
-printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /etc/resolv.conf
-
 # Disable IPv6 or yum will resolve mirror names to IPv6 address and then fail to connect with them.
 sysctl net.ipv6.conf.all.disable_ipv6=1
 
@@ -56,11 +53,8 @@ sed -i -e "/IPV6_AUTOTUNNEL.*/d;$ a IPV6_AUTOTUNNEL=no" /etc/sysconfig/network-s
 
   # Ensure good DNS servers are being used, and NM will be in control.
   sed -i -e "/NM_CONTROLLED/d" /etc/sysconfig/network-scripts/ifcfg-eth0
-  printf "PEERDNS=\"no\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
   printf "NM_CONTROLLED=\"yes\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
   printf "IPV4_FAILURE_FATAL=\"no\"\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-  printf "DNS1=4.2.2.1\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-  printf "DNS2=4.2.2.2\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 fi
 
 # Depending on the kick start configuration, the NetworkManager may still
