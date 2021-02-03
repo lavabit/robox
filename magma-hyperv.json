@@ -584,7 +584,7 @@
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<spacebar>net.ifnames=0 biosdevname=0<enter>",
+                "<spacebar>net.ifnames=0 biosdevname=0 systemd.mask=sshd.service<enter>",
                 "<wait10><wait10><wait10><wait10><wait10><wait10>",
                 "sed -i 's/[#]\\?DNSSEC=.*/DNSSEC=false/g' /etc/systemd/resolved.conf<enter><wait>",
                 "systemctl restart systemd-resolved<enter><wait>",
