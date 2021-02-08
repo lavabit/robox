@@ -1793,7 +1793,8 @@
       "type": "shell",
       "scripts": [
         "scripts/fedora33/kernel.sh",
-        "scripts/fedora33/vga.sh",
+	"scripts/fedora33/vga.sh",
+	"scripts/fedora33/fixtmp.sh",	
         "scripts/fedora33/virtualbox.sh",
         "scripts/fedora33/parallels.sh",
         "scripts/fedora33/vmware.sh",
