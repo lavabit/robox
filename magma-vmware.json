@@ -232,6 +232,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/fedora27/fixdns.sh",
+                "scripts/fedora27/hostname.sh",
                 "scripts/fedora27/dnf.sh"
             ],
             "start_retry_timeout": "15m",

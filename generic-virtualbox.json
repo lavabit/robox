@@ -440,6 +440,7 @@
       "type": "shell",
       "scripts": [
         "scripts/fedora25/fixdns.sh",
+        "scripts/fedora25/hostname.sh",
         "scripts/fedora25/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -484,6 +485,7 @@
       "type": "shell",
       "scripts": [
         "scripts/fedora26/fixdns.sh",
+        "scripts/fedora26/hostname.sh",
         "scripts/fedora26/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -528,6 +530,7 @@
       "type": "shell",
       "scripts": [
         "scripts/fedora27/fixdns.sh",
+        "scripts/fedora27/hostname.sh",
         "scripts/fedora27/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -572,6 +575,7 @@
       "type": "shell",
       "scripts": [
         "scripts/fedora28/fixdns.sh",
+        "scripts/fedora28/hostname.sh",
         "scripts/fedora28/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -616,6 +620,7 @@
       "type": "shell",
       "scripts": [
         "scripts/fedora29/fixdns.sh",
+        "scripts/fedora29/hostname.sh",
         "scripts/fedora29/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -1212,6 +1217,7 @@
       "type": "shell",
       "scripts": [
         "scripts/fedora30/fixdns.sh",
+        "scripts/fedora30/hostname.sh",
         "scripts/fedora30/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -1397,6 +1403,7 @@
       "type": "shell",
       "scripts": [
         "scripts/fedora31/fixdns.sh",
+        "scripts/fedora31/hostname.sh",
         "scripts/fedora31/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -1542,6 +1549,7 @@
       "type": "shell",
       "scripts": [
         "scripts/fedora32/fixdns.sh",
+        "scripts/fedora32/hostname.sh",
         "scripts/fedora32/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -1777,6 +1785,7 @@
       "type": "shell",
       "scripts": [
         "scripts/fedora33/fixdns.sh",
+        "scripts/fedora33/hostname.sh",
         "scripts/fedora33/dnf.sh"
       ],
       "start_retry_timeout": "15m",
