@@ -65,7 +65,6 @@
             "name": "magma-developer-libvirt",
             "vm_name": "magma-developer-libvirt",
             "output_directory": "output/magma-developer-libvirt",
-            "accelerator": "kvm",
             "qemu_binary": "qemu-system-x86_64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
