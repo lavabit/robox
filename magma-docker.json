@@ -96,7 +96,7 @@
             "vm_name": "magma-docker",
             "output_directory": "output/magma-docker",
             "accelerator": "kvm",
-            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "qemu_binary": "qemu-system-x86_64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -128,7 +128,7 @@
             "vm_name": "magma-centos-docker",
             "output_directory": "output/magma-centos-docker",
             "accelerator": "kvm",
-            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "qemu_binary": "qemu-system-x86_64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -160,7 +160,7 @@
             "vm_name": "magma-centos6-docker",
             "output_directory": "output/magma-centos6-docker",
             "accelerator": "kvm",
-            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "qemu_binary": "qemu-system-x86_64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -192,7 +192,7 @@
             "vm_name": "magma-centos7-docker",
             "output_directory": "output/magma-centos7-docker",
             "accelerator": "kvm",
-            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "qemu_binary": "qemu-system-x86_64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
