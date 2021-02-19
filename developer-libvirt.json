@@ -6,6 +6,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/network.sh"
             ],
@@ -68,29 +69,24 @@
                 "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
             ],
             "format": "qcow2",
-            "disk_size": 131072,
+            "disk_size": "131072",
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
+            "disk_image": false,
             "disk_compression": true,
             "disk_interface": "virtio-scsi",
             "net_device": "virtio-net",
             "cpus": 4,
             "memory": 4096,
-            "qemuargs": [
-                [
-                    "-drive",
-                    "if=none,file=output/magma-developer-libvirt/magma-developer-libvirt,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-                ]
-            ],
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+            "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
             "ssh_username": "root",
             "ssh_password": "magma",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "sudo -S shutdown -P now"
         }
     ],

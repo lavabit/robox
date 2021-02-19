@@ -7,7 +7,7 @@ error() {
         fi
 }
 
-zypper --non-interactive install dmidecode; error
+zypper --non-interactive install --force-resolution dmidecode; error
 
 # Bail if we are not running atop QEMU.
 if [[ `dmidecode -s system-product-name` != "KVM" && `dmidecode -s system-manufacturer` != "QEMU" ]]; then
@@ -17,4 +17,4 @@ fi
 # Install the QEMU using Yum.
 printf "Installing the QEMU Tools.\n"
 
-zypper --non-interactive install qemu-guest-agent; error
+zypper --non-interactive install --force-resolution qemu-guest-agent; error

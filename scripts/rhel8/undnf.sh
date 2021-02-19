@@ -2,6 +2,11 @@
 
 (umount /dev/cdrom && eject /dev/cdrom) || printf "\nThe RHEL cdrom isn't mounted.\n"
 
+# If Parallels has mounted the user home directory, don't remove it.
+if [ -d /media/psf/Home/ ]; then
+  umount /media/psf/Home/
+fi
+
 if [ -d /media/BaseOS/ ]; then
   rm --force --recursive /media/BaseOS/
 fi

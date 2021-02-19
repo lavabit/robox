@@ -4,8 +4,6 @@
 Vagrant.configure(2) do |config|
 
   config.vm.boot_timeout = 1800
-  # config.vm.box = "generic/bazinga"
-  # config.vm.hostname = "bazinga.box"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.box_check_update = true
@@ -28,7 +26,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :libvirt do |v, override|
-    v.disk_bus = "scsi"
+    v.disk_bus = "virtio"
     v.driver = "kvm"
     v.video_vram = 256
     v.memory = 2048
@@ -51,7 +49,6 @@ Vagrant.configure(2) do |config|
 
   ["vmware_fusion", "vmware_workstation", "vmware_desktop"].each do |provider|
     config.vm.provider provider do |v, override|
-      v.ssh_info_public = true
       v.whitelist_verified = true
       v.gui = false
       v.vmx["cpuid.coresPerSocket"] = "1"

@@ -37,23 +37,8 @@ error() {
 # sure there are good ones available for the package installlation tasks below.
 printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /etc/resolv.conf
 
-# Tell yum to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
-printf "\nretries=128\nmetadata_expire=0\nmirrorlist_expire=0\n" >> /etc/yum.conf
-
-# Disable the broken repositories.
-truncate --size=0 /etc/yum.repos.d/CentOS-Media.repo /etc/yum.repos.d/CentOS-Vault.repo
-
-# Import the update key.
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6; error
-
 # Update the base install first.
 retry yum --assumeyes update; error
-
-# We'll want the EPEL repo installed.
-retry yum --assumeyes --enablerepo=extras install deltarpm epel-release; error
-
-# Import the EPEL key.
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6; error
 
 # Install the basic packages we'd expect to find.
 retry yum --assumeyes install deltarpm net-tools sudo dmidecode yum-utils man bash-completion man-pages vim-common vim-enhanced sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc; error

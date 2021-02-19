@@ -6,6 +6,7 @@
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/network.sh"
             ],
@@ -82,16 +83,15 @@
             "vrdp_bind_address": "127.0.0.1",
             "vrdp_port_min": 11000,
             "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+            "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
             "ssh_username": "root",
             "ssh_password": "magma",
             "ssh_port": 22,
-            "ssh_wait_timeout": "7200s",
+            "ssh_timeout": "7200s",
             "shutdown_command": "sudo -S shutdown -P now",
-            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.34/VBoxGuestAdditions_5.2.34.iso",
-            "guest_additions_sha256": "d1b63891abca37fd78f5c8af1764e10e5754b1eecabd1fcfe7599c29a93ba007",
+            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
             "guest_additions_path": "VBoxGuestAdditions.iso",
             "virtualbox_version_file": "VBoxVersion.txt"
         }

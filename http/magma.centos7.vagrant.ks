@@ -16,8 +16,9 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=magma.builder
 
 zerombr
 clearpart --all --initlabel
+autopart --nohome
+
 bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check"
-autopart
 
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
@@ -32,6 +33,8 @@ sudo
 -microcode_ctl
 # Firmware packages aren't needed in a VM
 -*firmware
+-fprintd-pam
+-intltool
 %end
 
 %post
@@ -47,7 +50,7 @@ chmod 0440 /etc/sudoers.d/vagrant
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
-  yum --assumeyes install hyperv-daemons
+  yum --assumeyes install hyperv-daemons cifs-utils
   systemctl enable hypervvssd.service
   systemctl enable hypervkvpd.service
 fi

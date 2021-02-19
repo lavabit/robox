@@ -17,20 +17,24 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=centos8.localdomain
 zerombr
 clearpart --all --initlabel
 bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 no_timer_check"
-autopart
+autopart --nohome
 
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
 
 reboot --eject
 
-repo --name=BaseOS
-url --url=https://mirrors.edge.kernel.org/centos/8.0.1905/BaseOS/x86_64/os/
+# repo --name=BaseOS
+# url --url=http://mirror.centos.org/centos/8.3.2011/BaseOS/x86_64/os/
 
-%packages --instLangs=en
+%packages --instLangs=en_US.utf8
 @core
-authconfig
 sudo
+authconfig
+-fprintd-pam
+-intltool
+-iwl*-firmware
+-microcode_ctl
 %end
 
 %post
@@ -46,7 +50,7 @@ chmod 0440 /etc/sudoers.d/vagrant
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
-    dnf --assumeyes install hyperv-daemons
+    dnf --assumeyes install hyperv-daemons cifs-utils
     systemctl enable hypervkvpd.service
     systemctl enable hypervvssd.service
 fi

@@ -4,8 +4,6 @@
 Vagrant.configure(2) do |config|
 
   config.vm.boot_timeout = 1800
-  # config.vm.box = "roboxes/bazinga"
-  # config.vm.hostname = "bazinga.roboxes"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.box_check_update = true
@@ -51,7 +49,6 @@ Vagrant.configure(2) do |config|
 
   ["vmware_fusion", "vmware_workstation", "vmware_desktop"].each do |provider|
     config.vm.provider provider do |v, override|
-      v.ssh_info_public = true
       v.whitelist_verified = true
       v.gui = false
       v.vmx["cpuid.coresPerSocket"] = "1"

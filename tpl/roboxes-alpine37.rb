@@ -4,8 +4,6 @@
 Vagrant.configure(2) do |config|
 
   config.vm.boot_timeout = 1800
-  # config.vm.box = "roboxes/bazinga"
-  # config.vm.hostname = "bazinga.roboxes"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.box_check_update = true
@@ -32,7 +30,8 @@ Vagrant.configure(2) do |config|
     v.memory = 2048
     v.driver = "kvm"
     v.video_vram = 256
-    if Vagrant::VERSION < '2.2.6' && !Vagrant.has_plugin?("vagrant-alpine")
+    v.disk_bus = "virtio"
+    if Vagrant.version?("< 2.2.6") && !Vagrant.has_plugin?("vagrant-alpine")
       override.trigger.before :up do |t|
         t.warn = "Setting OS type to 'ALT Linux' as a workaround, which might break guest OS specific features.\nPlease upgrade to Vagrant 2.2.6 or (if Vagrant can't be upgraded) install the 'vagrant-alpine' plugin if issues arise."
       end

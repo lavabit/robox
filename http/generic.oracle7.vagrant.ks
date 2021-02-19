@@ -17,7 +17,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=oracle7.localdomain
 zerombr
 clearpart --all --initlabel
 bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check"
-autopart
+autopart --nohome
 
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
@@ -48,7 +48,7 @@ chmod 0440 /etc/sudoers.d/vagrant
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
-  yum --assumeyes install hyperv-daemons
+  yum --assumeyes install hyperv-daemons cifs-utils
   systemctl enable hypervvssd.service
   systemctl enable hypervkvpd.service
 

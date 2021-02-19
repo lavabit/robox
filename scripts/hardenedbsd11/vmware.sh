@@ -56,3 +56,6 @@ sysrc rpc_lockd_enable="YES"
 sysrc nfs_client_enable="YES"
 
 rm -f /root/freebsd.iso
+
+# Fix the SSH NAT issue on VMWare systems.
+printf "\nIPQoS lowdelay throughput\n" >> /etc/ssh/sshd_config

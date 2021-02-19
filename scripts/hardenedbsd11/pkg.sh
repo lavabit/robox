@@ -33,7 +33,8 @@ export ASSUME_ALWAYS_YES=yes
 
 # Force the use of HTTPS for package updates.
 mkdir -p /usr/local/etc/pkg/repos/
-echo 'HardenedBSD: { url: "pkg+https://pkg.hardenedbsd.org/HardenedBSD/pkg/${ABI}" }' > /usr/local/etc/pkg/repos/HardenedBSD.conf
+#echo 'HardenedBSD: { url: "pkg+https://pkg.hardenedbsd.org/HardenedBSD/pkg/${ABI}" }' > /usr/local/etc/pkg/repos/HardenedBSD.conf
+echo 'HardenedBSD: { url: "pkg+https://pkg.freebsd.org/${ABI}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 
 retry pkg bootstrap
 retry pkg-static update --force

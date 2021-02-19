@@ -58,6 +58,16 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
 sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-testing.repo
 sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-testing.repo
 
+# Disable the subscription manager plugin.
+if [ -f /etc/yum/pluginconf.d/subscription-manager.conf ]; then
+  sed --in-place "s/^enabled=.*/enabled=0/g" /etc/yum/pluginconf.d/subscription-manager.conf
+fi
+
+# And disable the subscription maangber via the alternate dnf config file.
+if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
+  sed --in-place "s/^enabled=.*/enabled=0/g" /etc/dnf/plugins/subscription-manager.conf
+fi
+
 # Update the base install first.
 retry yum --assumeyes update
 

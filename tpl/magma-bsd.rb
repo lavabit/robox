@@ -127,7 +127,6 @@ Vagrant.configure(2) do |config|
 
   ["vmware_fusion", "vmware_workstation", "vmware_desktop"].each do |provider|
     config.vm.provider provider do |v, override|
-      v.ssh_info_public = true
       v.whitelist_verified = true
       v.functional_hgfs = false
       v.gui = false

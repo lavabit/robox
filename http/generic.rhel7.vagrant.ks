@@ -17,7 +17,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=rhel7.localdomain
 zerombr
 clearpart --all --initlabel
 bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check"
-autopart
+autopart --nohome
 
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
@@ -32,6 +32,8 @@ sudo
 -microcode_ctl
 # Firmware packages aren't needed in a VM
 -*firmware
+-fprintd-pam
+-intltool
 %end
 
 %post
@@ -60,7 +62,7 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
     printf "enabled=1\n" >> /etc/yum.repos.d/media.repo
     printf "baseurl=file:///media/\n" >> /etc/yum.repos.d/media.repo
 
-    yum --assumeyes install hyperv-daemons
+    yum --assumeyes install hyperv-daemons cifs-utils
     systemctl enable hypervkvpd.service
     systemctl enable hypervvssd.service
 

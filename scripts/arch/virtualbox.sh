@@ -34,7 +34,7 @@ if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
     exit 0
 fi
 
-retry pacman --sync --noconfirm --refresh virtualbox-guest-modules-arch virtualbox-guest-utils-nox
+retry pacman --sync --noconfirm --refresh virtualbox-guest-dkms virtualbox-guest-utils-nox
 
 systemctl enable vboxservice.service
 systemctl start vboxservice.service

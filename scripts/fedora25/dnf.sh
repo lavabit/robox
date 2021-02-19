@@ -37,6 +37,16 @@ error() {
 # Tell dnf to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
 printf "\nretries=128\ndeltarpm=false\nmetadata_expire=20\ntimeout=300\n" >> /etc/dnf/dnf.conf
 
+# Disable the subscription manager plugin.
+if [ -f /etc/yum/pluginconf.d/subscription-manager.conf ]; then
+  sed --in-place "s/^enabled=.*/enabled=0/g" /etc/yum/pluginconf.d/subscription-manager.conf
+fi
+
+# And disable the subscription maangber via the alternate dnf config file.
+if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
+  sed --in-place "s/^enabled=.*/enabled=0/g" /etc/dnf/plugins/subscription-manager.conf
+fi
+
 # Disable IPv6 or dnf will resolve mirror names to IPv6 address and then fail to connect with them.
 sysctl net.ipv6.conf.all.disable_ipv6=1
 

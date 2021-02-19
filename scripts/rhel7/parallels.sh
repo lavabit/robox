@@ -11,9 +11,14 @@ fi
 # Read in the version number.
 PARALLELSVERSION=`cat /root/parallels-tools-version.txt`
 
+echo "Installing the Parallels tools, version $PARALLELSVERSION."
+
 mkdir -p /mnt/parallels/
 mount -o loop /root/parallels-tools-linux.iso /mnt/parallels/
-# bash /mnt/parallels/install --install-unattended-with-deps
+
+/mnt/parallels/install --install-unattended-with-deps --verbose --progress \
+  || (status="$?" ; echo "Parallels tools installation failed. Error: $status" ; cat /var/log/parallels-tools-install.log ; exit $status)
+
 umount /mnt/parallels/
 rmdir /mnt/parallels/
 

@@ -8,7 +8,7 @@ error() {
   fi
 }
 
-zypper --non-interactive install dmidecode; error
+zypper --non-interactive install --force-resolution dmidecode; error
 
 # Bail if we are not running atop VirtualBox.
 if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
@@ -18,7 +18,7 @@ fi
 # Install the Virtual Box Tools from the Linux Guest Additions ISO.
 printf "Installing the Virtual Box Tools.\n"
 
-zypper --non-interactive install virtualbox-guest-tools virtualbox-guest-kmp-default; error
+zypper --non-interactive install --force-resolution virtualbox-guest-tools virtualbox-guest-kmp-default; error
 
 rm -rf /root/VBoxVersion.txt; error
 rm -rf /root/VBoxGuestAdditions.iso; error

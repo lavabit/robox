@@ -1,6 +1,6 @@
 #!/bin/bash -ux
 
-if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-2]|hardenedbsd1[1-2]|netbsd8|openbsd6|alpine3[5-9]|alpine310)-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-2]|hardenedbsd1[1-2]|openbsd6|alpine3[5-9]|alpine31[0-3])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 
   # We fill until full so don't abort on error.
   # set -ux
@@ -17,6 +17,12 @@ if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-2]|hardenedbsd1[1-2]|
     rm -f /boot/zerofill
   fi
 
+elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(netbsd[8-9])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+
+  # Whiteout root
+  dd if=/dev/zero of=/zerofill bs=1024
+  sync -f /zerofill
+  rm -f /zerofill
 
 elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(dragonflybsd5)-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 

@@ -1,16 +1,16 @@
-
 {
     "variables": {
         "box_version": "{{env `VERSION`}}",
-        "docker-user": "{{env `QUAY_USER`}}",
+        "quay-user": "{{env `QUAY_USER`}}",
         "docker-user": "{{env `DOCKER_USER`}}",
-        "docker-password": "{{env `QUAY_PASSWORD`}}",
+        "quay-password": "{{env `QUAY_PASSWORD`}}",
         "docker-password": "{{env `DOCKER_PASSWORD`}}"
     },
     "provisioners": [
         {
             "type": "shell",
             "scripts": [
+                "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
                 "scripts/centos6/network.sh",
                 "scripts/centos6/vga.sh"
@@ -271,22 +271,23 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
-            "disk_compression": true,
+            "disk_image": false,
+          "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-            "iso_checksum": "7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+            "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -301,22 +302,23 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
-            "disk_compression": true,
+            "disk_image": false,
+          "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso",
-            "iso_checksum": "9a2c47d97b9975452f7d582264e9fc16d108ed8252ac6816239a3b58cef5c53d",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://mirrors.edge.kernel.org/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso",
+            "iso_checksum": "sha256:07b94e6b1a0b0260b94c83d6bb76b26bf7a310dc78d7a9c7432809fb9bc6194a",
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -331,22 +333,23 @@
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.docker.ks<enter><wait>"
             ],
             "format": "raw",
-            "disk_size": 32770,
+            "disk_size": "32770",
             "disk_interface": "virtio-scsi",
-            "disk_compression": true,
+            "disk_image": false,
+          "disk_compression": true,
             "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
             "http_directory": "http",
             "headless": true,
-            "iso_url": "https://mirrors.edge.kernel.org/centos/8.0.1905/isos/x86_64/CentOS-8-x86_64-1905-boot.iso",
-            "iso_checksum": "a7993a0d4b7fef2433e0d4f53530b63c715d3aadbe91f152ee5c3621139a2cbc",
-            "iso_checksum_type": "sha256",
+            "iso_url": "https://mirrors.edge.kernel.org/centos/8.3.2011/isos/x86_64/CentOS-8.3.2011-x86_64-dvd1.iso",
+            "iso_checksum": "sha256:aaf9d4b3071c16dbbda01dfe06085e5d0fdac76df323e3bbe87cce4318052247",
             "ssh_username": "root",
             "ssh_password": "locked",
             "ssh_port": 22,
-            "ssh_wait_timeout": "3600s",
+            "ssh_timeout": "3600s",
             "shutdown_command": "shutdown -h now"
         },
         {
@@ -361,29 +364,24 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.docker.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
+          "disk_detect_zeroes": "unmap",
           "disk_cache": "unsafe",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-oracle7-docker/generic-oracle7-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://mirrors.kernel.org/oracle/OL7/u7/x86_64/OracleLinux-R7-U7-Server-x86_64-dvd.iso",
-          "iso_checksum": "1d06cef6a518c32c0e7adcad0a99a8efbc7516066de41118ebf49002c15ea84d",
-          "iso_checksum_type": "sha256",
+          "iso_url": "https://mirrors.kernel.org/oracle/OL7/u9/x86_64/OracleLinux-R7-U9-Server-x86_64-dvd.iso",
+          "iso_checksum": "sha256:dc2782bfd92b4c060cf8006fbc6e18036c27f599eebf3584a1a2ac54f008bf2f",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
         },
         {
@@ -398,29 +396,23 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.docker.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-oracle8-docker/generic-oracle8-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://mirrors.kernel.org/oracle/OL8/u1/x86_64/OracleLinux-R8-U1-x86_64-dvd.iso",
-          "iso_checksum": "8a8afc79c3e30209058201ff91a662b030f13951c7fa4d896f89dd356b3c6f22",
-          "iso_checksum_type": "sha256",
+          "iso_url": "https://mirrors.kernel.org/oracle/OL8/u3/x86_64/OracleLinux-R8-U3-x86_64-dvd.iso",
+          "iso_checksum": "sha256:771e383adfd5406d1a360ff24822011a88cbb45b6019e2f1095758c46a406aaa",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
         },
         {
@@ -435,29 +427,23 @@
             "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-rhel6-docker/generic-rhel6-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
           "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
-          "iso_checksum": "1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
-          "iso_checksum_type": "sha256",
+          "iso_checksum": "sha256:1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
           "ssh_username": "root",
           "ssh_password": "vagrant",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         },
         {
@@ -472,29 +458,23 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-rhel7-docker/generic-rhel7-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
-          "iso_urls": "https://archive.org/download/rhel-server-7.7-x86_64-dvd/rhel-server-7.7-x86_64-dvd.iso",
-          "iso_checksum": "88b42e934c24af65e78e09f0993e4dded128d74ec0af30b89b3cdc02ec48f028",
-          "iso_checksum_type": "sha256",
+          "iso_urls": "https://archive.org/download/rhel-server-7.9-x86_64-dvd/rhel-server-7.9-x86_64-dvd.iso",
+          "iso_checksum": "sha256:19d653ce2f04f202e79773a0cbeda82070e7527557e814ebbce658773fbe8191",
           "ssh_username": "root",
           "ssh_password": "vagrant",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         },
         {
@@ -509,29 +489,23 @@
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
           ],
           "format": "qcow2",
-          "disk_size": 32768,
+          "disk_size": "32768",
           "disk_discard": "unmap",
-          "disk_cache": "unsafe",
+          "disk_detect_zeroes": "unmap",
+          "disk_image": false,
           "disk_compression": true,
           "disk_interface": "virtio-scsi",
           "net_device": "virtio-net",
           "cpus": 2,
           "memory": 2048,
-          "qemuargs": [
-            [
-              "-drive",
-              "if=none,file=output/generic-rhel8-docker/generic-rhel8-docker,id=drive0,cache=unsafe,discard=unmap,detect-zeroes=unmap,format=qcow2"
-            ]
-          ],
           "http_directory": "http",
           "headless": true,
-          "iso_urls": "https://archive.org/download/rhel-8.1-x86_64-dvd/rhel-8.1-x86_64-dvd.iso",
-          "iso_checksum": "2323ad44d75df1a1e83048a34e196ddfedcd6c0f6c49ea59bf08095e3bb9ef65",
-          "iso_checksum_type": "sha256",
+          "iso_urls": "https://archive.org/download/rhel-8.3-x86_64-dvd/rhel-8.3-x86_64-dvd.iso",
+          "iso_checksum": "sha256:30fd8dff2d29a384bd97886fa826fa5be872213c81e853eae3f9d9674f720ad0",
           "ssh_username": "root",
           "ssh_password": "vagrant",
           "ssh_port": 22,
-          "ssh_wait_timeout": "3600s",
+          "ssh_timeout": "3600s",
           "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
         }
     ],

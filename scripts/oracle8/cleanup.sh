@@ -12,7 +12,7 @@ printf "Remove packages only required for provisioning purposes and then dump th
 dnf --quiet --assumeyes clean all
 
 # Remove the installation logs.
-rm --force /root/anaconda-ks.cfg /root/install.log /root/install.log.syslog /var/log/yum.log /var/log/dnf.log
+rm --force /root/anaconda-ks.cfg /root/original-ks.cfg /root/install.log /root/install.log.syslog /var/log/yum.log /var/log/dnf.log
 
 if [ -d /var/log/anaconda/ ]; then
   rm --force --recursive /var/log/anaconda/

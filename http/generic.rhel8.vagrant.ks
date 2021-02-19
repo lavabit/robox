@@ -17,7 +17,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=rhel8.localdomain
 zerombr
 clearpart --all --initlabel
 bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 no_timer_check"
-autopart
+autopart --nohome
 
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
@@ -28,6 +28,10 @@ reboot --eject
 @core
 authconfig
 sudo
+-fprintd-pam
+-intltool
+-iwl*-firmware
+-microcode_ctl
 %end
 
 %post
@@ -48,7 +52,7 @@ cp --recursive /mnt/BaseOS/ /media/ && cp --recursive /mnt/AppStream/ /media/
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
 
-  HYPERV_RPMS=`find /mnt/AppStream/Packages/ -iname "hyperv*rpm"`
+  HYPERV_RPMS=`find /mnt/AppStream/Packages/ -iname "hyperv*rpm" -or -iname "cifs-utils*rpm"`
 
   dnf --assumeyes install $HYPERV_RPMS
 
