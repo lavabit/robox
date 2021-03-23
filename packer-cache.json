@@ -198,7 +198,7 @@
     {
       "name": "debian8",
       "output_directory": "output/debian8",
-      "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
       "iso_checksum": "sha256:ea444d6f8ac95fd51d2aedb8015c57410d1ad19b494cedec6914c17fda02733c",
       "boot_wait": "5s",
       "disk_size": 1,
@@ -243,7 +243,7 @@
     {
       "name": "debian10",
       "output_directory": "output/debian10",
-      "iso_url": "https://gensho.ftp.acc.umu.se/debian-cd/current/amd64/iso-cd/debian-10.8.0-amd64-netinst.iso",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/10.8.0/amd64/iso-cd/debian-10.8.0-amd64-netinst.iso",
       "iso_checksum": "sha256:396553f005ad9f86a51e246b1540c60cef676f9c71b95e22b753faef59f89bee",
       "boot_wait": "5s",
       "disk_size": 1,
