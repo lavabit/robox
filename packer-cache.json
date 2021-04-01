@@ -288,7 +288,7 @@
     {
       "name": "devuan3",
       "output_directory": "output/devuan3",
-      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_beowulf/installer-iso/devuan_beowulf_3.1.1_RC_amd64_netinstall.iso",
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_beowulf/installer-iso/devuan_beowulf_3.1.1_amd64_netinstall.iso",
       "iso_checksum": "sha256:1723cbbeb1aee26a54e1370b688e7dc03921402348d2a60086c58c18cd9cf24b",
       "boot_wait": "5s",
       "disk_size": 1,
