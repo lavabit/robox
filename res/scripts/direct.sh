@@ -252,7 +252,49 @@ retry ${CURL} --tlsv1.2 \
   --header "Connection: keep-alive" \
   --write-out "FILE: $FILENAME\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n\n" \
   --upload-file "$FILEPATH" "$UPLOAD_PATH"
-  
+
+# Submit the callback five times, to reduce the number of boxes without valid download URLs. Delay 1 second between each attempt.
+sleep 1
+retry ${CURL} --tlsv1.2 \
+    --silent \
+    --output "/dev/null" \
+    --show-error \
+    --request PUT \
+    --max-time 7200 \
+    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+    "$UPLOAD_CALLBACK"
+    
+sleep 1
+retry ${CURL} --tlsv1.2 \
+    --silent \
+    --output "/dev/null" \
+    --show-error \
+    --request PUT \
+    --max-time 7200 \
+    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+    "$UPLOAD_CALLBACK"
+    
+sleep 1
+retry ${CURL} --tlsv1.2 \
+    --silent \
+    --output "/dev/null" \
+    --show-error \
+    --request PUT \
+    --max-time 7200 \
+    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+    "$UPLOAD_CALLBACK"
+    
+sleep 1
+retry ${CURL} --tlsv1.2 \
+    --silent \
+    --output "/dev/null" \
+    --show-error \
+    --request PUT \
+    --max-time 7200 \
+    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+    "$UPLOAD_CALLBACK"
+    
+sleep 1
 retry ${CURL} --tlsv1.2 \
     --silent \
     --output "/dev/null" \
