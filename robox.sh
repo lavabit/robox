@@ -623,7 +623,7 @@ function sums() {
   # done
 
   export -f verify_sum
-  parallel -j 16 --xapply verify_sum {1} {2} ":::" "${ISOURLS[@]}" ":::" "${ISOSUMS[@]}"
+  parallel -j 64 --delay 1 --xapply verify_sum {1} {2} ":::" "${ISOURLS[@]}" ":::" "${ISOSUMS[@]}"
 
   # Let the user know all of the links passed.
   # printf "\nAll ${#ISOURLS[@]} of the install media locations have been validated...\n\n"
