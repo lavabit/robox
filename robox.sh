@@ -972,7 +972,7 @@ function ppublic() {
 
 function grab() {
 
-  URL=`curl --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
+  URL=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
     | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | .download_url ][0]" 2>/dev/null`
   if [ "$URL" == "" ]; then
     printf "\nA copy of " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " using the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " couldn't be found.\n\n"

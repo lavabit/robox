@@ -1889,6 +1889,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -1931,6 +1932,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -1979,6 +1981,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2027,6 +2030,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2075,6 +2079,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2123,6 +2128,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2162,6 +2168,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2201,6 +2208,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2240,6 +2248,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2297,6 +2306,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2340,6 +2350,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2383,6 +2394,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2426,6 +2438,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2469,6 +2482,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2512,6 +2526,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2563,6 +2578,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2614,6 +2630,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2669,6 +2686,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2716,6 +2734,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2763,6 +2782,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2810,6 +2830,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2869,6 +2890,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2928,6 +2950,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -2977,6 +3000,7 @@
       "disk_size": 131072,
       "cpus": 8,
       "memory": 8192,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3030,6 +3054,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3073,6 +3098,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3126,6 +3152,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3165,6 +3192,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3204,6 +3232,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3257,6 +3286,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3323,6 +3353,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3358,6 +3389,7 @@
       "boot_wait": "40s",
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3459,6 +3491,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3508,6 +3541,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3559,6 +3593,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3618,6 +3653,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3661,6 +3697,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3700,6 +3737,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3749,6 +3787,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3791,6 +3830,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3830,6 +3870,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3873,6 +3914,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3932,6 +3974,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -3981,6 +4024,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -4040,6 +4084,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -4082,6 +4127,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -4117,6 +4163,7 @@
       "boot_wait": "40s",
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -4211,6 +4258,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -4262,6 +4310,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -4313,6 +4362,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -4364,6 +4414,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -4418,6 +4469,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -4460,6 +4512,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
@@ -4509,6 +4562,7 @@
       "disk_size": 131072,
       "cpus": 2,
       "memory": 2048,
+      "nested_virt": false,
       "vboxmanage": [
         [
           "modifyvm",
