@@ -243,6 +243,7 @@ if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "echo" ] || [ "$UPLOAD_CALLBA
 fi
 
 retry ${CURL} --tlsv1.2 \
+  --fail \
   --silent \
   --output "/dev/null" \
   --show-error \
@@ -255,7 +256,7 @@ retry ${CURL} --tlsv1.2 \
 
 # Submit the callback five times, to reduce the number of boxes without valid download URLs. Delay 1 second between each attempt.
 sleep 1
-retry ${CURL} --tlsv1.2 \
+${CURL} --tlsv1.2 \
     --silent \
     --output "/dev/null" \
     --show-error \
@@ -263,9 +264,9 @@ retry ${CURL} --tlsv1.2 \
     --max-time 7200 \
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     "$UPLOAD_CALLBACK"
-    
+
 sleep 1
-retry ${CURL} --tlsv1.2 \
+${CURL} --tlsv1.2 \
     --silent \
     --output "/dev/null" \
     --show-error \
@@ -273,9 +274,9 @@ retry ${CURL} --tlsv1.2 \
     --max-time 7200 \
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     "$UPLOAD_CALLBACK"
-    
+
 sleep 1
-retry ${CURL} --tlsv1.2 \
+${CURL} --tlsv1.2 \
     --silent \
     --output "/dev/null" \
     --show-error \
@@ -283,9 +284,9 @@ retry ${CURL} --tlsv1.2 \
     --max-time 7200 \
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     "$UPLOAD_CALLBACK"
-    
+
 sleep 1
-retry ${CURL} --tlsv1.2 \
+${CURL} --tlsv1.2 \
     --silent \
     --output "/dev/null" \
     --show-error \
@@ -293,9 +294,9 @@ retry ${CURL} --tlsv1.2 \
     --max-time 7200 \
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     "$UPLOAD_CALLBACK"
-    
+
 sleep 1
-retry ${CURL} --tlsv1.2 \
+${CURL} --tlsv1.2 \
     --silent \
     --output "/dev/null" \
     --show-error \
@@ -303,8 +304,7 @@ retry ${CURL} --tlsv1.2 \
     --max-time 7200 \
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     "$UPLOAD_CALLBACK"
-    
-# # Add a short pause, with the duration determined by the size of the file uploaded. 
+
+# # Add a short pause, with the duration determined by the size of the file uploaded.
 # PAUSE="`du -b $FILEPATH | awk -F' ' '{print $1}'`"
 # bash -c "usleep $(($PAUSE/20))"
-
