@@ -37,6 +37,13 @@ fi
 # Install the Virtual Box Tools from the Linux Guest Additions ISO.
 printf "Installing the Virtual Box Tools.\n"
 
+# Add the edge package repo.
+printf "https://sjc.edge.kernel.org/alpine/edge/main\n" >> /etc/apk/repositories
+printf "https://sjc.edge.kernel.org/alpine/edge/community\n" >> /etc/apk/repositories
+
+# Update the package list.
+retry apk update --no-cache
+
 # Install the VirtualBox kernel modules for guest services.
 retry apk add virtualbox-guest-modules-virt virtualbox-guest-additions
 
