@@ -178,7 +178,7 @@ function provide-vbox() {
   chcon system_u:object_r:cert_t:s0 /etc/pki/rpm-gpg/RPM-GPG-KEY-Oracle-Vbox
 
   # Virtual Box Install
-  yum --assumeyes --enablerepo=virtualbox install VirtualBox-5.2.x86_64
+  yum --assumeyes --enablerepo=virtualbox install VirtualBox-6.1.x86_64
 
   # Virtual Box Extensions, if X windows is installed.
   if [ -f /usr/bin/X ]; then
