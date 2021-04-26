@@ -111,7 +111,6 @@
             "disk_size": 196608,
             "cpus": 4,
             "memory": 2048,
-            "nested_virt": false,
             "vboxmanage": [
                 [
                     "modifyvm",
@@ -167,7 +166,6 @@
             "disk_size": 196608,
             "cpus": 4,
             "memory": 2048,
-            "nested_virt": false,
             "vboxmanage": [
                 [
                     "modifyvm",
