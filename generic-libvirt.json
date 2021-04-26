@@ -5,6 +5,7 @@
   "provisioners": [
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle7/network.sh",
         "scripts/oracle7/yum.sh"
@@ -18,6 +19,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle7/kernel.sh",
         "scripts/oracle7/floppy.sh",
@@ -39,6 +41,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/opensuse42/zypper.sh",
         "scripts/opensuse42/virtualbox.sh",
@@ -59,6 +62,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine35/network.sh",
         "scripts/alpine35/apk.sh"
@@ -72,6 +76,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine35/hostname.sh",
         "scripts/alpine35/lsb.sh",
@@ -94,6 +99,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine36/network.sh",
         "scripts/alpine36/apk.sh"
@@ -107,6 +113,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine36/hostname.sh",
         "scripts/alpine36/lsb.sh",
@@ -129,6 +136,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine37/network.sh",
         "scripts/alpine37/apk.sh"
@@ -142,6 +150,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine37/hostname.sh",
         "scripts/alpine37/lsb.sh",
@@ -164,6 +173,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine38/network.sh",
         "scripts/alpine38/apk.sh"
@@ -177,6 +187,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine38/hostname.sh",
         "scripts/alpine38/lsb.sh",
@@ -199,6 +210,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos6/yum.sh",
         "scripts/centos6/base.sh",
@@ -213,6 +225,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos6/kernel.sh",
         "scripts/centos6/vga.sh",
@@ -237,6 +250,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos7/network.sh",
         "scripts/centos7/yum.sh",
@@ -252,6 +266,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos7/kernel.sh",
         "scripts/centos7/floppy.sh",
@@ -277,6 +292,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel7/network.sh",
         "scripts/rhel7/yum.sh",
@@ -292,6 +308,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel7/kernel.sh",
         "scripts/rhel7/floppy.sh",
@@ -321,6 +338,7 @@
         "scripts/gentoo/emerge.sh"
       ],
       "type": "shell",
+      "timeout": "240m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -336,6 +354,7 @@
         "scripts/gentoo/vagrant.sh"
       ],
       "type": "shell",
+      "timeout": "240m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -348,6 +367,7 @@
         "scripts/arch/pacman.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -364,6 +384,7 @@
         "scripts/arch/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -377,6 +398,7 @@
         "scripts/debian8/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -396,6 +418,7 @@
         "scripts/debian8/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -409,6 +432,7 @@
         "scripts/debian9/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -429,6 +453,7 @@
         "scripts/debian9/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -438,6 +463,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora25/fixdns.sh",
         "scripts/fedora25/hostname.sh",
@@ -451,6 +477,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora25/base.sh"
       ],
@@ -463,6 +490,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora25/kernel.sh",
         "scripts/fedora25/vga.sh",
@@ -483,6 +511,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora26/fixdns.sh",
         "scripts/fedora26/hostname.sh",
@@ -496,6 +525,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora26/base.sh"
       ],
@@ -508,6 +538,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora26/kernel.sh",
         "scripts/fedora26/vga.sh",
@@ -528,6 +559,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora27/fixdns.sh",
         "scripts/fedora27/hostname.sh",
@@ -541,6 +573,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora27/base.sh"
       ],
@@ -553,6 +586,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora27/kernel.sh",
         "scripts/fedora27/vga.sh",
@@ -573,6 +607,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora28/fixdns.sh",
         "scripts/fedora28/hostname.sh",
@@ -586,6 +621,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora28/base.sh"
       ],
@@ -598,6 +634,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora28/kernel.sh",
         "scripts/fedora28/vga.sh",
@@ -618,6 +655,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora29/fixdns.sh",
         "scripts/fedora29/hostname.sh",
@@ -631,6 +669,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora29/base.sh"
       ],
@@ -643,6 +682,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora29/kernel.sh",
         "scripts/fedora29/vga.sh",
@@ -676,6 +716,7 @@
         "scripts/freebsd11/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -688,6 +729,7 @@
         "scripts/openbsd6/pkg.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
@@ -707,6 +749,7 @@
         "scripts/openbsd6/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -721,6 +764,7 @@
         "scripts/ubuntu1604/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -741,6 +785,7 @@
         "scripts/ubuntu1604/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -754,6 +799,7 @@
         "scripts/ubuntu1610/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -774,6 +820,7 @@
         "scripts/ubuntu1610/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -787,6 +834,7 @@
         "scripts/ubuntu1704/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -807,6 +855,7 @@
         "scripts/ubuntu1704/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -820,6 +869,7 @@
         "scripts/ubuntu1710/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -840,6 +890,7 @@
         "scripts/ubuntu1710/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -853,6 +904,7 @@
         "scripts/ubuntu1804/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -873,6 +925,7 @@
         "scripts/ubuntu1804/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -886,6 +939,7 @@
         "scripts/ubuntu1810/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -906,6 +960,7 @@
         "scripts/ubuntu1810/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -928,6 +983,7 @@
         "scripts/freebsd12/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -937,6 +993,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel6/network.sh",
         "scripts/rhel6/yum.sh",
@@ -952,6 +1009,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel6/kernel.sh",
         "scripts/rhel6/vga.sh",
@@ -977,6 +1035,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel8/network.sh",
         "scripts/rhel8/dnf.sh",
@@ -992,6 +1051,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel8/kernel.sh",
         "scripts/rhel8/floppy.sh",
@@ -1030,6 +1090,7 @@
         "scripts/hardenedbsd11/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -1052,6 +1113,7 @@
         "scripts/dragonflybsd5/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -1064,6 +1126,7 @@
         "scripts/netbsd8/pkg.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
@@ -1083,6 +1146,7 @@
         "scripts/netbsd8/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1106,6 +1170,7 @@
         "scripts/hardenedbsd12/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -1115,6 +1180,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine39/network.sh",
         "scripts/alpine39/apk.sh"
@@ -1128,6 +1194,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine39/hostname.sh",
         "scripts/alpine39/lsb.sh",
@@ -1154,6 +1221,7 @@
         "scripts/debian10/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1173,6 +1241,7 @@
         "scripts/debian10/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1186,6 +1255,7 @@
         "scripts/ubuntu1904/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1206,6 +1276,7 @@
         "scripts/ubuntu1904/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1215,6 +1286,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora30/fixdns.sh",
         "scripts/fedora30/hostname.sh",
@@ -1228,6 +1300,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora30/base.sh"
       ],
@@ -1240,6 +1313,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora30/kernel.sh",
         "scripts/fedora30/vga.sh",
@@ -1260,6 +1334,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle8/network.sh",
         "scripts/oracle8/dnf.sh"
@@ -1273,6 +1348,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle8/kernel.sh",
         "scripts/oracle8/floppy.sh",
@@ -1294,6 +1370,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine310/network.sh",
         "scripts/alpine310/apk.sh"
@@ -1307,6 +1384,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine310/hostname.sh",
         "scripts/alpine310/lsb.sh",
@@ -1329,6 +1407,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/opensuse15/zypper.sh"
       ],
@@ -1341,6 +1420,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/opensuse15/virtualbox.sh",
         "scripts/opensuse15/parallels.sh",
@@ -1361,6 +1441,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos8/network.sh",
         "scripts/centos8/dnf.sh",
@@ -1376,6 +1457,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos8/kernel.sh",
         "scripts/centos8/floppy.sh",
@@ -1401,6 +1483,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora31/fixdns.sh",
         "scripts/fedora31/hostname.sh",
@@ -1414,6 +1497,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora31/base.sh"
       ],
@@ -1426,6 +1510,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora31/kernel.sh",
         "scripts/fedora31/vga.sh",
@@ -1450,6 +1535,7 @@
         "scripts/ubuntu1910/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1470,6 +1556,7 @@
         "scripts/ubuntu1910/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1479,6 +1566,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine311/network.sh",
         "scripts/alpine311/apk.sh"
@@ -1492,6 +1580,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine311/hostname.sh",
         "scripts/alpine311/lsb.sh",
@@ -1518,6 +1607,7 @@
         "scripts/ubuntu2004/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1538,6 +1628,7 @@
         "scripts/ubuntu2004/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1547,6 +1638,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora32/fixdns.sh",
         "scripts/fedora32/hostname.sh",
@@ -1560,6 +1652,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora32/base.sh"
       ],
@@ -1572,6 +1665,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora32/kernel.sh",
         "scripts/fedora32/vga.sh",
@@ -1595,6 +1689,7 @@
         "scripts/netbsd9/pkg.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
@@ -1614,6 +1709,7 @@
         "scripts/netbsd9/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1624,6 +1720,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine312/network.sh",
         "scripts/alpine312/apk.sh"
@@ -1637,6 +1734,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine312/hostname.sh",
         "scripts/alpine312/lsb.sh",
@@ -1663,6 +1761,7 @@
         "scripts/devuan1/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1680,6 +1779,7 @@
         "scripts/devuan1/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1693,6 +1793,7 @@
         "scripts/devuan2/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1710,6 +1811,7 @@
         "scripts/devuan2/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1723,6 +1825,7 @@
         "scripts/devuan3/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1740,6 +1843,7 @@
         "scripts/devuan3/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1753,6 +1857,7 @@
         "scripts/ubuntu2010/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1774,6 +1879,7 @@
         "scripts/ubuntu2010/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1783,6 +1889,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora33/fixdns.sh",
         "scripts/fedora33/hostname.sh",
@@ -1796,6 +1903,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora33/base.sh"
       ],
@@ -1808,10 +1916,11 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora33/kernel.sh",
         "scripts/fedora33/vga.sh",
-        "scripts/fedora33/fixtmp.sh",	
+        "scripts/fedora33/fixtmp.sh",
         "scripts/fedora33/virtualbox.sh",
         "scripts/fedora33/parallels.sh",
         "scripts/fedora33/vmware.sh",
@@ -1828,6 +1937,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine313/network.sh",
         "scripts/alpine313/apk.sh"
@@ -1841,6 +1951,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine313/hostname.sh",
         "scripts/alpine313/lsb.sh",
@@ -1872,6 +1983,7 @@
         "scripts/common/lockout.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true"
     }

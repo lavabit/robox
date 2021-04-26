@@ -5,6 +5,7 @@
   "provisioners": [
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle7/network.sh",
         "scripts/oracle7/yum.sh"
@@ -18,6 +19,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle7/kernel.sh",
         "scripts/oracle7/floppy.sh",
@@ -39,6 +41,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/opensuse42/zypper.sh",
         "scripts/opensuse42/virtualbox.sh",
@@ -59,6 +62,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine35/network.sh",
         "scripts/alpine35/apk.sh"
@@ -72,6 +76,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine35/hostname.sh",
         "scripts/alpine35/lsb.sh",
@@ -94,6 +99,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine36/network.sh",
         "scripts/alpine36/apk.sh"
@@ -107,6 +113,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine36/hostname.sh",
         "scripts/alpine36/lsb.sh",
@@ -129,6 +136,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine37/network.sh",
         "scripts/alpine37/apk.sh"
@@ -142,6 +150,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine37/hostname.sh",
         "scripts/alpine37/lsb.sh",
@@ -164,6 +173,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine38/network.sh",
         "scripts/alpine38/apk.sh"
@@ -177,6 +187,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine38/hostname.sh",
         "scripts/alpine38/lsb.sh",
@@ -199,6 +210,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos6/yum.sh",
         "scripts/centos6/base.sh",
@@ -213,6 +225,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos6/kernel.sh",
         "scripts/centos6/vga.sh",
@@ -237,6 +250,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos7/network.sh",
         "scripts/centos7/yum.sh",
@@ -252,6 +266,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos7/kernel.sh",
         "scripts/centos7/floppy.sh",
@@ -277,6 +292,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel7/network.sh",
         "scripts/rhel7/yum.sh",
@@ -292,6 +308,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel7/kernel.sh",
         "scripts/rhel7/floppy.sh",
@@ -317,6 +334,7 @@
     },
     {
       "type": "shell",
+      "timeout": "240m",
       "scripts": [
         "scripts/gentoo/network.sh",
         "scripts/gentoo/emerge.sh"
@@ -329,6 +347,7 @@
     },
     {
       "type": "shell",
+      "timeout": "240m",
       "scripts": [
         "scripts/gentoo/virtualbox.sh",
         "scripts/gentoo/parallels.sh",
@@ -345,6 +364,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/arch/pacman.sh"
       ],
@@ -356,6 +376,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/arch/virtualbox.sh",
         "scripts/arch/parallels.sh",
@@ -373,6 +394,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/debian8/apt.sh",
         "scripts/debian8/network.sh"
@@ -385,6 +407,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/debian8/floppy.sh",
         "scripts/debian8/profile.sh",
@@ -405,6 +428,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/debian9/apt.sh",
         "scripts/debian9/network.sh"
@@ -417,6 +441,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/debian9/floppy.sh",
         "scripts/debian9/profile.sh",
@@ -438,6 +463,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora25/fixdns.sh",
         "scripts/fedora25/hostname.sh",
@@ -451,6 +477,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora25/base.sh"
       ],
@@ -463,6 +490,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora25/kernel.sh",
         "scripts/fedora25/vga.sh",
@@ -483,6 +511,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora26/fixdns.sh",
         "scripts/fedora26/hostname.sh",
@@ -496,6 +525,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora26/base.sh"
       ],
@@ -508,6 +538,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora26/kernel.sh",
         "scripts/fedora26/vga.sh",
@@ -528,6 +559,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora27/fixdns.sh",
         "scripts/fedora27/hostname.sh",
@@ -541,6 +573,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora27/base.sh"
       ],
@@ -553,6 +586,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora27/kernel.sh",
         "scripts/fedora27/vga.sh",
@@ -573,6 +607,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora28/fixdns.sh",
         "scripts/fedora28/hostname.sh",
@@ -586,6 +621,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora28/base.sh"
       ],
@@ -598,6 +634,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora28/kernel.sh",
         "scripts/fedora28/vga.sh",
@@ -618,6 +655,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora29/fixdns.sh",
         "scripts/fedora29/hostname.sh",
@@ -631,6 +669,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora29/base.sh"
       ],
@@ -643,6 +682,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora29/kernel.sh",
         "scripts/fedora29/vga.sh",
@@ -663,6 +703,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/freebsd11/pkg.sh",
         "scripts/freebsd11/hostname.sh",
@@ -685,6 +726,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/openbsd6/pkg.sh"
       ],
@@ -697,6 +739,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/openbsd6/hostname.sh",
         "scripts/openbsd6/motd.sh",
@@ -717,6 +760,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1604/apt.sh",
         "scripts/ubuntu1604/network.sh"
@@ -729,6 +773,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1604/floppy.sh",
         "scripts/ubuntu1604/vagrant.sh",
@@ -750,6 +795,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1610/apt.sh",
         "scripts/ubuntu1610/network.sh"
@@ -762,6 +808,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1610/floppy.sh",
         "scripts/ubuntu1610/vagrant.sh",
@@ -783,6 +830,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1704/apt.sh",
         "scripts/ubuntu1704/network.sh"
@@ -795,6 +843,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1704/floppy.sh",
         "scripts/ubuntu1704/vagrant.sh",
@@ -816,6 +865,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1710/apt.sh",
         "scripts/ubuntu1710/network.sh"
@@ -828,6 +878,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1710/floppy.sh",
         "scripts/ubuntu1710/vagrant.sh",
@@ -849,6 +900,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1804/apt.sh",
         "scripts/ubuntu1804/network.sh"
@@ -861,6 +913,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1804/floppy.sh",
         "scripts/ubuntu1804/vagrant.sh",
@@ -882,6 +935,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1810/apt.sh",
         "scripts/ubuntu1810/network.sh"
@@ -894,6 +948,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1810/floppy.sh",
         "scripts/ubuntu1810/vagrant.sh",
@@ -915,6 +970,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/freebsd12/pkg.sh",
         "scripts/freebsd12/hostname.sh",
@@ -937,6 +993,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel6/network.sh",
         "scripts/rhel6/yum.sh",
@@ -952,6 +1009,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel6/kernel.sh",
         "scripts/rhel6/vga.sh",
@@ -977,6 +1035,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel8/network.sh",
         "scripts/rhel8/dnf.sh",
@@ -992,6 +1051,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel8/kernel.sh",
         "scripts/rhel8/floppy.sh",
@@ -1017,6 +1077,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/hardenedbsd11/pkg.sh",
         "scripts/hardenedbsd11/hostname.sh",
@@ -1039,6 +1100,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/dragonflybsd5/pkg.sh",
         "scripts/dragonflybsd5/hostname.sh",
@@ -1061,6 +1123,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/netbsd8/pkg.sh"
       ],
@@ -1073,6 +1136,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/netbsd8/hostname.sh",
         "scripts/netbsd8/motd.sh",
@@ -1093,6 +1157,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/hardenedbsd12/pkg.sh",
         "scripts/hardenedbsd12/hostname.sh",
@@ -1115,6 +1180,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine39/network.sh",
         "scripts/alpine39/apk.sh"
@@ -1128,6 +1194,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine39/hostname.sh",
         "scripts/alpine39/lsb.sh",
@@ -1150,6 +1217,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/debian10/apt.sh",
         "scripts/debian10/network.sh"
@@ -1162,6 +1230,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/debian10/floppy.sh",
         "scripts/debian10/profile.sh",
@@ -1182,6 +1251,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1904/apt.sh",
         "scripts/ubuntu1904/network.sh"
@@ -1194,6 +1264,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1904/floppy.sh",
         "scripts/ubuntu1904/vagrant.sh",
@@ -1215,6 +1286,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora30/fixdns.sh",
         "scripts/fedora30/hostname.sh",
@@ -1228,6 +1300,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora30/base.sh"
       ],
@@ -1240,6 +1313,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora30/kernel.sh",
         "scripts/fedora30/vga.sh",
@@ -1260,6 +1334,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle8/network.sh",
         "scripts/oracle8/dnf.sh"
@@ -1273,6 +1348,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle8/kernel.sh",
         "scripts/oracle8/floppy.sh",
@@ -1294,6 +1370,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine310/network.sh",
         "scripts/alpine310/apk.sh"
@@ -1307,6 +1384,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine310/hostname.sh",
         "scripts/alpine310/lsb.sh",
@@ -1329,6 +1407,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/opensuse15/zypper.sh"
       ],
@@ -1341,6 +1420,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/opensuse15/virtualbox.sh",
         "scripts/opensuse15/parallels.sh",
@@ -1361,6 +1441,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos8/network.sh",
         "scripts/centos8/dnf.sh",
@@ -1376,6 +1457,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos8/kernel.sh",
         "scripts/centos8/floppy.sh",
@@ -1401,6 +1483,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora31/fixdns.sh",
         "scripts/fedora31/hostname.sh",
@@ -1414,6 +1497,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora31/base.sh"
       ],
@@ -1426,6 +1510,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora31/kernel.sh",
         "scripts/fedora31/vga.sh",
@@ -1446,6 +1531,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1910/apt.sh",
         "scripts/ubuntu1910/network.sh"
@@ -1458,6 +1544,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu1910/floppy.sh",
         "scripts/ubuntu1910/vagrant.sh",
@@ -1479,6 +1566,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine311/network.sh",
         "scripts/alpine311/apk.sh"
@@ -1492,6 +1580,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine311/hostname.sh",
         "scripts/alpine311/lsb.sh",
@@ -1514,6 +1603,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu2004/apt.sh",
         "scripts/ubuntu2004/network.sh"
@@ -1526,6 +1616,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu2004/floppy.sh",
         "scripts/ubuntu2004/vagrant.sh",
@@ -1547,6 +1638,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora32/fixdns.sh",
         "scripts/fedora32/hostname.sh",
@@ -1560,6 +1652,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora32/base.sh"
       ],
@@ -1572,6 +1665,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora32/kernel.sh",
         "scripts/fedora32/vga.sh",
@@ -1592,6 +1686,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/netbsd9/pkg.sh"
       ],
@@ -1604,6 +1699,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/netbsd9/hostname.sh",
         "scripts/netbsd9/motd.sh",
@@ -1624,6 +1720,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine312/network.sh",
         "scripts/alpine312/apk.sh"
@@ -1637,6 +1734,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine312/hostname.sh",
         "scripts/alpine312/lsb.sh",
@@ -1663,6 +1761,7 @@
         "scripts/devuan1/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1680,6 +1779,7 @@
         "scripts/devuan1/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1693,6 +1793,7 @@
         "scripts/devuan2/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1710,6 +1811,7 @@
         "scripts/devuan2/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1723,6 +1825,7 @@
         "scripts/devuan3/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1740,6 +1843,7 @@
         "scripts/devuan3/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1749,6 +1853,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu2010/apt.sh",
         "scripts/ubuntu2010/network.sh"
@@ -1761,6 +1866,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/ubuntu2010/floppy.sh",
         "scripts/ubuntu2010/vagrant.sh",
@@ -1783,6 +1889,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora33/fixdns.sh",
         "scripts/fedora33/hostname.sh",
@@ -1796,6 +1903,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora33/base.sh"
       ],
@@ -1808,6 +1916,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora33/kernel.sh",
         "scripts/fedora33/vga.sh",
@@ -1828,6 +1937,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine313/network.sh",
         "scripts/alpine313/apk.sh"
@@ -1841,6 +1951,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine313/hostname.sh",
         "scripts/alpine313/lsb.sh",
@@ -1863,6 +1974,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",

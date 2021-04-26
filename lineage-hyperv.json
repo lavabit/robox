@@ -9,6 +9,7 @@
                 "scripts/ubuntu1604/network.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -32,6 +33,7 @@
                 "scripts/ubuntu1604/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -57,6 +59,7 @@
                 "scripts/ubuntu1604/lineage.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -75,6 +78,7 @@
                 "scripts/common/lockout.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "except": [

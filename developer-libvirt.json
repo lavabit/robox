@@ -5,6 +5,7 @@
     "provisioners": [
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
@@ -18,6 +19,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/kernel.sh",
                 "scripts/centos6/vga.sh",
@@ -52,6 +54,7 @@
                 "scripts/common/lockout.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true"
         }

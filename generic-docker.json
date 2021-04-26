@@ -9,6 +9,7 @@
     "provisioners": [
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
@@ -24,6 +25,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/updatedb.sh",
                 "scripts/centos6/cleanup.sh",
@@ -39,6 +41,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos7/network.sh",
                 "scripts/centos7/yum.sh",
@@ -54,6 +57,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos7/floppy.sh",
                 "scripts/centos7/cleanup.sh",
@@ -70,6 +74,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos8/network.sh",
                 "scripts/centos8/dnf.sh",
@@ -85,6 +90,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos8/floppy.sh",
                 "scripts/centos8/cleanup.sh",
@@ -101,6 +107,7 @@
         },
         {
           "type": "shell",
+          "timeout": "120m",
           "scripts": [
             "scripts/rhel6/network.sh",
             "scripts/rhel6/yum.sh",
@@ -116,6 +123,7 @@
         },
         {
           "type": "shell",
+          "timeout": "120m",
           "scripts": [
             "scripts/rhel6/vga.sh",
             "scripts/rhel6/updatedb.sh",
@@ -133,6 +141,7 @@
         },
         {
           "type": "shell",
+          "timeout": "120m",
           "scripts": [
             "scripts/rhel7/network.sh",
             "scripts/rhel7/yum.sh",
@@ -148,6 +157,7 @@
         },
         {
           "type": "shell",
+          "timeout": "120m",
           "scripts": [
             "scripts/rhel7/floppy.sh",
             "scripts/rhel7/updatedb.sh",
@@ -165,6 +175,7 @@
         },
         {
           "type": "shell",
+          "timeout": "120m",
           "scripts": [
             "scripts/rhel8/network.sh",
             "scripts/rhel8/dnf.sh",
@@ -180,6 +191,7 @@
         },
         {
           "type": "shell",
+          "timeout": "120m",
           "scripts": [
             "scripts/rhel8/floppy.sh",
             "scripts/rhel8/updatedb.sh",
@@ -197,6 +209,7 @@
         },
         {
           "type": "shell",
+          "timeout": "120m",
           "scripts": [
             "scripts/oracle7/network.sh",
             "scripts/oracle7/yum.sh"
@@ -210,6 +223,7 @@
         },
         {
           "type": "shell",
+          "timeout": "120m",
           "scripts": [
             "scripts/oracle7/floppy.sh",
             "scripts/oracle7/cleanup.sh",
@@ -225,6 +239,7 @@
         },
         {
           "type": "shell",
+          "timeout": "120m",
           "scripts": [
             "scripts/oracle8/network.sh",
             "scripts/oracle8/dnf.sh"
@@ -238,6 +253,7 @@
         },
         {
           "type": "shell",
+          "timeout": "120m",
           "scripts": [
             "scripts/oracle8/floppy.sh",
             "scripts/oracle8/cleanup.sh",

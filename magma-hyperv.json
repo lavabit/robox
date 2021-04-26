@@ -5,6 +5,7 @@
     "provisioners": [
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/alpine36/network.sh",
                 "scripts/alpine36/apk.sh"
@@ -18,6 +19,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/alpine36/limits.sh",
                 "scripts/alpine36/mariadb.sh",
@@ -47,6 +49,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
@@ -61,6 +64,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/kernel.sh",
                 "scripts/centos6/vga.sh",
@@ -88,6 +92,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos7/network.sh",
                 "scripts/centos7/yum.sh",
@@ -103,6 +108,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos7/kernel.sh",
                 "scripts/centos7/floppy.sh",
@@ -136,6 +142,7 @@
                 "scripts/gentoo/emerge.sh"
             ],
             "type": "shell",
+            "timeout": "240m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -152,6 +159,7 @@
                 "scripts/gentoo/magma.sh"
             ],
             "type": "shell",
+            "timeout": "240m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -164,6 +172,7 @@
                 "scripts/arch/pacman.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -185,6 +194,7 @@
                 "scripts/arch/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -198,6 +208,7 @@
                 "scripts/debian8/network.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -222,6 +233,7 @@
                 "scripts/debian8/qemu.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -231,6 +243,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/fedora27/fixdns.sh",
                 "scripts/fedora27/hostname.sh",
@@ -244,6 +257,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/fedora27/base.sh"
             ],
@@ -256,6 +270,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/fedora27/kernel.sh",
                 "scripts/fedora27/vga.sh",
@@ -293,6 +308,7 @@
                 "scripts/freebsd11/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -305,6 +321,7 @@
                 "scripts/openbsd6/pkg.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
@@ -325,6 +342,7 @@
                 "scripts/openbsd6/magma.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -339,6 +357,7 @@
                 "scripts/ubuntu1604/network.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -364,6 +383,7 @@
                 "scripts/ubuntu1604/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -377,6 +397,7 @@
                 "scripts/ubuntu1610/network.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -402,6 +423,7 @@
                 "scripts/ubuntu1610/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -415,6 +437,7 @@
                 "scripts/ubuntu1704/network.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -440,6 +463,7 @@
                 "scripts/ubuntu1704/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -458,6 +482,7 @@
                 "scripts/common/lockout.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true"
         }
