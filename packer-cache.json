@@ -573,8 +573,8 @@
     {
       "name": "openbsd6",
       "output_directory": "output/openbsd6",
-      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.8/amd64/cd68.iso",
-      "iso_checksum": "sha256:05fb374fa25461d2315349214228ee671d8bae45f16da994283a8cf9c848451c",
+      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.9/amd64/cd69.iso",
+      "iso_checksum": "sha256:b391350d72a4fcab550033c830a17612cff65ebdb6de428732d9b15f780bf9c2",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
