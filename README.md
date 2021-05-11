@@ -19,6 +19,14 @@ The templates in this repo require a current version of packer, (1.3.4+) and in 
 
 ## Pending Tasks
 
+Add FreeBSD 13.0  
+Add Fedora 34  
+Add Ubuntu 21.04  
+Add Rocky 8.3 / Alma 8.3  
+
+Update VirtualBox from 5.2 to 6.1 (will require changes to the NetBSD boot command/timing)  
+Update Packer from 1.6.6 to latest (the preceding task is a prerequisite)  
+
 Generate docker variants for the Ubuntu/Debian/Alpine configurations  
 Add upload/delete/release functions to robox.sh  
 Add vagrant user password randomization logic to the bundled Vagrantfiles  
@@ -32,9 +40,9 @@ Submit a pull request with your favorite distro.
 
 The following variants of existing builds have been requested, and will be added at a future date, when time allows (or someone submits a pull request).
 
-[CentOS Stream](https://software.opensuse.org/distributions/tumbleweed)
-[Fedora Rawhide](https://fedoraproject.org/wiki/Releases/Rawhide)
-[OpenSUSE Tumbleweed](https://www.centos.org/centos-stream/)
+[CentOS Stream](https://software.opensuse.org/distributions/tumbleweed)  
+[Fedora Rawhide](https://fedoraproject.org/wiki/Releases/Rawhide)  
+[OpenSUSE Tumbleweed](https://www.centos.org/centos-stream/)  
 
 The following operating systems have been requested by a member of the robox community, but require a volunteer, so they can be incorporated into the robox workflow.
 
@@ -50,7 +58,6 @@ The following operating systems are on my personal list, but haven't been added 
 Manjaro  
 Mint  
 OpenSolaris  
-OpenSUSE Leap v15 (already building v42.3)  
 Slackware  
 
 MacOS  
@@ -73,4 +80,4 @@ Bitcoin
 Bitcoin Cash
 qqxyedtn68jg84w4mkd3vsw2nu6pgkydnudza0ed0m
 
-[Roboxes](https://roboxes.org) is maintained by Ladar Levison, with infrastructure provided by [Hacking and Coffee LLC](https://hackingand.coffee), and [Lavabit LLC](https://lavabit.com).
+[Roboxes](https://roboxes.org) is maintained by Ladar Levison, with infrastructure provided by [Lavabit LLC](https://lavabit.com).
