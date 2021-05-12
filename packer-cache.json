@@ -210,6 +210,21 @@
       "ssh_username": "root",
       "type": "vmware-iso"
     },
+     {
+      "name": "debian8-x32",
+      "output_directory": "output/debian8-x32",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/i386/iso-cd/debian-8.11.1-i386-netinst.iso",
+      "iso_checksum": "sha256:3741a984d170770f433ef694c823227298f7e8a2ff9c6486dc0b466ef9f8e710",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
     {
       "name": "debian9",
       "output_directory": "output/debian9",
