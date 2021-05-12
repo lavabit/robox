@@ -106,6 +106,9 @@ mkdir -p /etc/depmod.d; error
 # if the service fails to start below.
 sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11
 
+# Test if the vboxsf module is present
+[ -s "/lib/modules/$(uname -r)/misc/vboxsf.ko" ]; error
+
 # Restore the real ldconfig binary.
 mv /root/ldconfig.bak /sbin/ldconfig; error
 
