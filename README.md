@@ -23,6 +23,7 @@ Add FreeBSD 13.0
 Add Fedora 34  
 Add Ubuntu 21.04  
 Add Rocky 8.3 / Alma 8.3  
+Add DragonFly BSD 6.0.0
 
 Update VirtualBox from 5.2 to 6.1 (will require changes to the NetBSD boot command/timing)  
 Update Packer from 1.6.6 to latest (the preceding task is a prerequisite)  
