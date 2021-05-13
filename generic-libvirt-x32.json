@@ -37,6 +37,21 @@
       "only": [
         "generic-debian9-x32-libvirt"
       ]
+    },
+    {
+      "scripts": [
+        "scripts/common/motd.sh",
+        "scripts/common/keys.sh",
+        "scripts/common/machine.sh",
+        "scripts/common/leases.sh",
+        "scripts/common/localtime.sh",
+        "scripts/common/zerodisk.sh",
+        "scripts/common/lockout.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
     }
   ],
   "builders": [
