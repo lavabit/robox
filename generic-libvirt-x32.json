@@ -5,6 +5,40 @@
   "provisioners": [
     {
       "scripts": [
+        "scripts/debian8/apt.sh",
+        "scripts/debian8/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian8-x32-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian8/floppy.sh",
+        "scripts/debian8/profile.sh",
+        "scripts/debian8/vagrant.sh",
+        "scripts/debian8/motd.sh",
+        "scripts/debian8/fixtty.sh",
+        "scripts/debian8/virtualbox.sh",
+        "scripts/debian8/parallels.sh",
+        "scripts/debian8/vmware.sh",
+        "scripts/debian8/qemu.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian8-x32-libvirt"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/debian9/apt.sh",
         "scripts/debian9/network.sh"
       ],
@@ -55,6 +89,50 @@
     }
   ],
   "builders": [
+    {
+      "type": "qemu",
+      "name": "generic-debian8-x32-libvirt",
+      "vm_name": "generic-debian8-x32-libvirt",
+      "output_directory": "output/generic-debian8-x32-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian8.vagrant.cfg ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/i386/iso-cd/debian-8.11.1-i386-netinst.iso",
+      "iso_checksum": "sha256:3741a984d170770f433ef694c823227298f7e8a2ff9c6486dc0b466ef9f8e710",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
     {
       "type": "qemu",
       "name": "generic-debian9-x32-libvirt",
