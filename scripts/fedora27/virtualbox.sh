@@ -74,9 +74,9 @@ getent passwd vboxadd >/dev/null || useradd --system --gid bin --home-dir /var/r
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
 
-# For some reason the vboxsf module fails the first time, but installs
-# successfully if we run the installer a second time.
-sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11 || sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; error
+# Exit code 2 is not really an error here, it just means that the installer wasn't able to reload the module.
+# Since Linux has in-tree vboxguest and vboxvideo starting with kernel 4.16 we weren't able to reload it after installation.
+sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11 || [ $? -eq 2 ]; error
 ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions; error
 
 # Test if the vboxsf module is present
