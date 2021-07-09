@@ -25,7 +25,7 @@ authconfig --enableshadow --passalgo=sha512
 reboot --eject
 
 # repo --name=BaseOS
-# url --url=http://mirror.centos.org/centos/8.3.2011/BaseOS/x86_64/os/
+# url --url=http://mirror.centos.org/centos/8.4.2105/BaseOS/x86_64/os/
 
 %packages --instLangs=en_US.utf8
 @core
