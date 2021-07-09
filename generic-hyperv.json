@@ -1976,6 +1976,43 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/alpine314/network.sh",
+        "scripts/alpine314/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine314-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine314/hostname.sh",
+        "scripts/alpine314/lsb.sh",
+        "scripts/alpine314/floppy.sh",
+        "scripts/alpine314/vagrant.sh",
+        "scripts/alpine314/sshd.sh",
+        "scripts/alpine314/virtualbox.sh",
+        "scripts/alpine314/parallels.sh",
+        "scripts/alpine314/vmware.sh",
+        "scripts/alpine314/qemu.sh",
+        "scripts/alpine314/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine314-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -4211,6 +4248,48 @@
       "http_directory": "http",
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.5-x86_64.iso",
       "iso_checksum": "sha256:e6bbcab275b704bc6521781f2342fff084700b458711fdf315a5816d9885943c",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "/sbin/poweroff",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": false,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-alpine314-hyperv",
+      "vm_name": "generic-alpine314-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-alpine314-hyperv",
+      "boot_wait": "60s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine314.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine314.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
+        "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "memory": 2048,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.14/releases/x86_64/alpine-virt-3.14.0-x86_64.iso",
+      "iso_checksum": "sha256:d568c6c71bb1eee0f65cdf40088daf57032e24f1e3bd2cf8a813f80d2e9e4eab",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
