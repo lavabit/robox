@@ -66,6 +66,9 @@ export VBOXVERSION=`cat /root/VBoxVersion.txt`
 # sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11 || sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; error
 # ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions; error
 #
+# # Test if the vboxsf module is present
+# [ -s "/lib/modules/$(uname -r)/misc/vboxsf.ko" ]; error
+#
 # umount /mnt/virtualbox; error
 rm -rf /root/VBoxVersion.txt; error
 rm -rf /root/VBoxGuestAdditions.iso; error
