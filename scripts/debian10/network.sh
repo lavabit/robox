@@ -38,7 +38,7 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 printf "\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
 
 # Set the hostname, and then ensure it will resolve properly.
-if [[ "$PACKER_BUILD_NAME" =~ ^generic-debian10-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^generic-debian10-(x32-)?(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
   printf "debian10.localdomain\n" > /etc/hostname
   printf "\n127.0.0.1 debian10.localdomain\n\n" >> /etc/hosts
 else
