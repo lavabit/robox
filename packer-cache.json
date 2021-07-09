@@ -946,6 +946,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "rocky8",
+      "output_directory": "output/rocky8",
+      "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-dvd1.iso",
+      "iso_checksum": "sha256:ffe2fae67da6702d859cfb0b321561a5d616ce87a963d8a25b018c9c3d52d9a4",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "virtualbox-5-2-44",
       "output_directory": "output/virtualbox-5-2-44",
       "iso_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",

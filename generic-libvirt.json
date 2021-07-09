@@ -2046,6 +2046,48 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky8/network.sh",
+        "scripts/rocky8/dnf.sh",
+        "scripts/rocky8/base.sh",
+        "scripts/rocky8/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky8-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky8/kernel.sh",
+        "scripts/rocky8/floppy.sh",
+        "scripts/rocky8/virtualbox.sh",
+        "scripts/rocky8/parallels.sh",
+        "scripts/rocky8/vmware.sh",
+        "scripts/rocky8/qemu.sh",
+        "scripts/rocky8/vagrant.sh",
+        "scripts/rocky8/tuning.sh",
+        "scripts/rocky8/sshd.sh",
+        "scripts/rocky8/randomness.sh",
+        "scripts/rocky8/updatedb.sh",
+        "scripts/rocky8/cleanup.sh",
+        "scripts/rocky8/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky8-libvirt"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -4432,6 +4474,38 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "ssh_handshake_attempts": "10000",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-rocky8-libvirt",
+      "vm_name": "generic-rocky8-libvirt",
+      "output_directory": "output/generic-rocky8-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky8.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-dvd1.iso",
+      "iso_checksum": "sha256:ffe2fae67da6702d859cfb0b321561a5d616ce87a963d8a25b018c9c3d52d9a4",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     }
   ],

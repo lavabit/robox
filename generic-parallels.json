@@ -2046,6 +2046,48 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky8/network.sh",
+        "scripts/rocky8/dnf.sh",
+        "scripts/rocky8/base.sh",
+        "scripts/rocky8/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky8-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky8/kernel.sh",
+        "scripts/rocky8/floppy.sh",
+        "scripts/rocky8/virtualbox.sh",
+        "scripts/rocky8/parallels.sh",
+        "scripts/rocky8/vmware.sh",
+        "scripts/rocky8/qemu.sh",
+        "scripts/rocky8/vagrant.sh",
+        "scripts/rocky8/tuning.sh",
+        "scripts/rocky8/sshd.sh",
+        "scripts/rocky8/randomness.sh",
+        "scripts/rocky8/updatedb.sh",
+        "scripts/rocky8/cleanup.sh",
+        "scripts/rocky8/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky8-parallels"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -6039,6 +6081,66 @@
       "http_directory": "http",
       "iso_url": "https://mirrors.kernel.org/ubuntu-releases/21.04/ubuntu-21.04-live-server-amd64.iso",
       "iso_checksum": "sha256:e4089c47104375b59951bad6c7b3ee5d9f6d80bfac4597e43a716bb8f5c1f3b0",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-rocky8-parallels",
+      "vm_name": "generic-rocky8-parallels",
+      "output_directory": "output/generic-rocky8-parallels",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky8.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "centos",
+      "http_directory": "http",
+      "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-dvd1.iso",
+      "iso_checksum": "sha256:ffe2fae67da6702d859cfb0b321561a5d616ce87a963d8a25b018c9c3d52d9a4",
+      "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

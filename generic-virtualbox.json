@@ -2046,6 +2046,48 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky8/network.sh",
+        "scripts/rocky8/dnf.sh",
+        "scripts/rocky8/base.sh",
+        "scripts/rocky8/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky8-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky8/kernel.sh",
+        "scripts/rocky8/floppy.sh",
+        "scripts/rocky8/virtualbox.sh",
+        "scripts/rocky8/parallels.sh",
+        "scripts/rocky8/vmware.sh",
+        "scripts/rocky8/qemu.sh",
+        "scripts/rocky8/vagrant.sh",
+        "scripts/rocky8/tuning.sh",
+        "scripts/rocky8/sshd.sh",
+        "scripts/rocky8/randomness.sh",
+        "scripts/rocky8/updatedb.sh",
+        "scripts/rocky8/cleanup.sh",
+        "scripts/rocky8/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky8-virtualbox"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -4813,6 +4855,45 @@
       "vrdp_port_max": 12000,
       "iso_url": "https://mirrors.kernel.org/ubuntu-releases/21.04/ubuntu-21.04-live-server-amd64.iso",
       "iso_checksum": "sha256:e4089c47104375b59951bad6c7b3ee5d9f6d80bfac4597e43a716bb8f5c1f3b0",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-rocky8-virtualbox",
+      "vm_name": "generic-rocky8-virtualbox",
+      "output_directory": "output/generic-rocky8-virtualbox",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky8.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-dvd1.iso",
+      "iso_checksum": "sha256:ffe2fae67da6702d859cfb0b321561a5d616ce87a963d8a25b018c9c3d52d9a4",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
