@@ -976,6 +976,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "fedora34",
+      "output_directory": "output/fedora34",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/iso/Fedora-Server-netinst-x86_64-34-1.2.iso",
+      "iso_checksum": "sha256:e1a38b9faa62f793ad4561b308c31f32876cfaaee94457a7a9108aaddaeec406",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "virtualbox-5-2-44",
       "output_directory": "output/virtualbox-5-2-44",
       "iso_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",

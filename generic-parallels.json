@@ -2130,6 +2130,54 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora34/fixdns.sh",
+        "scripts/fedora34/hostname.sh",
+        "scripts/fedora34/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora34-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora34/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora34-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora34/kernel.sh",
+        "scripts/fedora34/vga.sh",
+        "scripts/fedora34/fixtmp.sh",
+        "scripts/fedora34/virtualbox.sh",
+        "scripts/fedora34/parallels.sh",
+        "scripts/fedora34/vmware.sh",
+        "scripts/fedora34/qemu.sh",
+        "scripts/fedora34/vagrant.sh",
+        "scripts/fedora34/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora34-parallels"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -6243,6 +6291,69 @@
       "iso_url": "https://ftp5.gwdg.de/pub/linux/almalinux/8.4/isos/x86_64/AlmaLinux-8.4-x86_64-dvd.iso",
       "iso_checksum": "sha256:4dd2f7c558bfa34d9a5e71d5add2c77c59fdec58076678a381d9dfd0f9583a51",
       "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-fedora34-parallels",
+      "vm_name": "generic-fedora34-parallels",
+      "output_directory": "output/generic-fedora34-parallels",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab> ",
+        "<wait>text net.ifnames=0 ",
+        "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora34.vagrant.ks ",
+        "<wait><enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "linux",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/iso/Fedora-Server-netinst-x86_64-34-1.2.iso",
+      "iso_checksum": "sha256:e1a38b9faa62f793ad4561b308c31f32876cfaaee94457a7a9108aaddaeec406",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
