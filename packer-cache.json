@@ -273,8 +273,8 @@
     {
       "name": "debian10-x32",
       "output_directory": "output/debian10-x32",
-      "iso_url": "https://cdimage.debian.org/cdimage/release/10.9.0/i386/iso-cd/debian-10.9.0-i386-netinst.iso",
-      "iso_checksum": "sha256:db92546facb722bfd3cf796f9f10db70a257d6d21126d35348d1fba13601e82a",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/10.10.0/i386/iso-cd/debian-10.10.0-i386-netinst.iso",
+      "iso_checksum": "sha256:cf824084643fb82f74d1fbec804baaf74539dadd279af2098da94254f758e5b7",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
