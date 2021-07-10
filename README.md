@@ -19,10 +19,6 @@ The templates in this repo require a current version of packer, (1.3.4+) and in 
 
 ## Pending Tasks
 
-Add FreeBSD 13.0  
-Add Fedora 34  
-Add Ubuntu 21.04  
-Add Rocky 8.3 / Alma 8.3  
 Add DragonFly BSD 6.0.0
 
 Update VirtualBox from 5.2 to 6.1 (will require changes to the NetBSD boot command/timing)  
