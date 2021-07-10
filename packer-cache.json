@@ -961,6 +961,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "alma8",
+      "output_directory": "output/alma8",
+      "iso_url": "https://ftp5.gwdg.de/pub/linux/almalinux/8.4/isos/x86_64/AlmaLinux-8.4-x86_64-dvd.iso",
+      "iso_checksum": "sha256:4dd2f7c558bfa34d9a5e71d5add2c77c59fdec58076678a381d9dfd0f9583a51",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "virtualbox-5-2-44",
       "output_directory": "output/virtualbox-5-2-44",
       "iso_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",

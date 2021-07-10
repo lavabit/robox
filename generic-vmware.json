@@ -2088,6 +2088,48 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alma8/network.sh",
+        "scripts/alma8/dnf.sh",
+        "scripts/alma8/base.sh",
+        "scripts/alma8/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma8-vmware"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alma8/kernel.sh",
+        "scripts/alma8/floppy.sh",
+        "scripts/alma8/virtualbox.sh",
+        "scripts/alma8/parallels.sh",
+        "scripts/alma8/vmware.sh",
+        "scripts/alma8/qemu.sh",
+        "scripts/alma8/vagrant.sh",
+        "scripts/alma8/tuning.sh",
+        "scripts/alma8/sshd.sh",
+        "scripts/alma8/randomness.sh",
+        "scripts/alma8/updatedb.sh",
+        "scripts/alma8/cleanup.sh",
+        "scripts/alma8/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma8-vmware"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -4972,6 +5014,45 @@
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-dvd1.iso",
       "iso_checksum": "sha256:ffe2fae67da6702d859cfb0b321561a5d616ce87a963d8a25b018c9c3d52d9a4",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-alma8-vmware",
+      "vm_name": "generic-alma8-vmware",
+      "vmdk_name": "generic-alma8-vmware",
+      "output_directory": "output/generic-alma8-vmware",
+      "boot_wait": "20s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma8.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "centos-64",
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://ftp5.gwdg.de/pub/linux/almalinux/8.4/isos/x86_64/AlmaLinux-8.4-x86_64-dvd.iso",
+      "iso_checksum": "sha256:4dd2f7c558bfa34d9a5e71d5add2c77c59fdec58076678a381d9dfd0f9583a51",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
