@@ -3853,7 +3853,7 @@
       "boot_wait": "20s",
       "boot_command": [
         "<esc><enter><wait>",
-        "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.2/repo/oss/ lang=en_US  textmode=1 <wait>",
+        "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.3/repo/oss/ lang=en_US  textmode=1 <wait>",
         "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse15.vagrant.cfg<wait>",
         "<enter><wait>"
       ],
@@ -3870,8 +3870,8 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.2/iso/openSUSE-Leap-15.2-NET-x86_64.iso",
-      "iso_checksum": "sha256:02a77812443dd3e47c36611c8837bf8d1659aea6b4d16c9db6841c564d59b7af",
+      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.3/iso/openSUSE-Leap-15.3-NET-x86_64.iso",
+      "iso_checksum": "sha256:54fb3a488e0fececf45cdaeefaccfb64437745da4b1ca444662e3aac20cf37b5",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
