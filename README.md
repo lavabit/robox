@@ -19,8 +19,6 @@ The templates in this repo require a current version of packer, (1.3.4+) and in 
 
 ## Pending Tasks
 
-Add DragonFly BSD 6.0.0
-
 Update VirtualBox from 5.2 to 6.1 (will require changes to the NetBSD boot command/timing)  
 Update Packer from 1.6.6 to latest (the preceding task is a prerequisite)  
 
