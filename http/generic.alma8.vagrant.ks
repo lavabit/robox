@@ -25,7 +25,7 @@ authconfig --enableshadow --passalgo=sha512
 reboot --eject
 
 # repo --name=BaseOS
-# url --url=https://ftp5.gwdg.de/pub/linux/rocky/8.4/BaseOS/x86_64/os/
+# url --url=https://mirrors.cogentco.com/pub/linux/almalinux/8.4/BaseOS/x86_64/os/
 
 %packages --instLangs=en_US.utf8
 @core

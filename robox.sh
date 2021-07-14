@@ -67,7 +67,7 @@ MEDIAURLS="https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-
 "|https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso"
 
 # When validating ISO checksums skip these URLS.
-DYNAMICURLS="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso|"\
+DYNAMICURLS="https://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso|"\
 "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
 
 # Collect the list of ISO urls.
@@ -252,7 +252,7 @@ function isos() {
   N=( "${N[@]}" "Arch" ); U=( "${U[@]}" "$URL" )
 
   # Ubuntu Disco
-  # URL="http://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso"
+  # URL="https://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso"
   # N=( "${N[@]}" "Disco" ); U=( "${U[@]}" "$URL" )
 
   # Debian Buster

@@ -22,7 +22,7 @@ clearpart --all --initlabel
 autopart --nohome
 
 # repo --name=BaseOS
-# url --url=https://ftp5.gwdg.de/pub/linux/rocky/8.4/BaseOS/x86_64/os/
+# url --url=https://mirrors.cogentco.com/pub/linux/rocky/8.4/BaseOS/x86_64/os/
 
 # Package setup
 %packages --instLangs=en_US.utf8
