@@ -1006,6 +1006,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "hardenedbsd13",
+      "output_directory": "output/hardenedbsd13",
+      "iso_url": "https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/build-149/disc1.iso",
+      "iso_checksum": "sha256:ee8a0ecdcb6842d01089596a4fb2d18039e2657ca62510aa19ddce15264ae3fb",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "virtualbox-5-2-44",
       "output_directory": "output/virtualbox-5-2-44",
       "iso_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",

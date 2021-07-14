@@ -2202,6 +2202,29 @@
     },
     {
       "scripts": [
+        "scripts/hardenedbsd13/pkg.sh",
+        "scripts/hardenedbsd13/hostname.sh",
+        "scripts/hardenedbsd13/kernel.sh",
+        "scripts/hardenedbsd13/firstboot.sh",
+        "scripts/hardenedbsd13/motd.sh",
+        "scripts/hardenedbsd13/vagrant.sh",
+        "scripts/hardenedbsd13/virtualbox.sh",
+        "scripts/hardenedbsd13/parallels.sh",
+        "scripts/hardenedbsd13/vmware.sh",
+        "scripts/hardenedbsd13/qemu.sh",
+        "scripts/hardenedbsd13/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd13-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -5141,6 +5164,59 @@
       "vrdp_port_max": 12000,
       "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/13.0/FreeBSD-13.0-RELEASE-amd64-disc1.iso",
       "iso_checksum": "sha256:f78d4e5f53605592863852b39fa31a12f15893dc48cacecd875f2da72fa67ae5",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-hardenedbsd13-virtualbox",
+      "vm_name": "generic-hardenedbsd13-virtualbox",
+      "output_directory": "output/generic-hardenedbsd13-virtualbox",
+      "boot_wait": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait5>",
+        "mdmfs -s 100m md2 /mnt<enter><wait5>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd13.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "FreeBSD_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/build-149/disc1.iso",
+      "iso_checksum": "sha256:ee8a0ecdcb6842d01089596a4fb2d18039e2657ca62510aa19ddce15264ae3fb",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
