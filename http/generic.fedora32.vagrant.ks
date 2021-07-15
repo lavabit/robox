@@ -1,4 +1,3 @@
-install
 text
 reboot --eject
 lang en_US.UTF-8

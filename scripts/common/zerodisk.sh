@@ -1,6 +1,6 @@
 #!/bin/bash -ux
 
-if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-3]|hardenedbsd1[1-2]|openbsd6|alpine3[5-9]|alpine31[0-4])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-3]|hardenedbsd1[1-3]|openbsd6|alpine3[5-9]|alpine31[0-4])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 
   # We fill until full so don't abort on error.
   # set -ux
@@ -24,7 +24,7 @@ elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(netbsd[8-9])-(vmware|hyperv|li
   sync -f /zerofill
   rm -f /zerofill
 
-elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(dragonflybsd5)-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(dragonflybsd[5-6])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 
   AVAIL=`df -m / | tail -1 | awk -F' ' '{print $4}'`
   let FILL=${AVAIL}-256
