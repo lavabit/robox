@@ -70,6 +70,8 @@ if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
 fi
 
 echo 'Compiling Kernel'
+# Setup the /usr/src/linux symlink so it points at the currently installed kernel tree.
+eselect kernel set 1
 cd /usr/src/linux
 cat <<-EOF > .config
 
