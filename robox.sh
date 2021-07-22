@@ -736,7 +736,7 @@ function available() {
       fi
 
       PROVIDER="hyperv"
-      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
         ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
         if [ $? != 0 ]; then
@@ -784,7 +784,7 @@ function available() {
       fi
 
       PROVIDER="vmware_desktop"
-      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
         ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
         if [ $? != 0 ]; then
@@ -845,7 +845,7 @@ function public() {
       fi
 
       PROVIDER="hyperv"
-      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
         curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
         if [ $? != 0 ]; then
@@ -893,7 +893,7 @@ function public() {
       fi
 
       PROVIDER="vmware_desktop"
-      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
         curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
 
         if [ $? != 0 ]; then
