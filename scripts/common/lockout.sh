@@ -10,6 +10,7 @@ elif  [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(dragonflybsd[5-6])-(vmware|hy
 
   LOCKPWD=`dd if=/dev/urandom count=128 status=value | md5 | awk -F' ' '{print $1}'`
   echo "$LOCKPWD" | pw mod user root -h 0
+  pwd_mkdb /etc/master.passwd
 
 elif  [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(netbsd[8-9])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 

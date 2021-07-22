@@ -3,8 +3,9 @@
 pkg-static install --yes sudo
 
 # Setup the default user password and ensure the vagrant shell is bash.
-echo 'vagrant' | pw useradd vagrant -h 0 -m
-chsh -s bash vagrant
+echo 'vagrant' | pw user add vagrant -h 0 -m
+pwd_mkdb /etc/master.passwd
+chsh -s /bin/bash vagrant
 
 cat <<EOF > /usr/local/etc/sudoers.d/vagrant
 Defaults:vagrant !requiretty

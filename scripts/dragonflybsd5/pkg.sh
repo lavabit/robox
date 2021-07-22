@@ -23,9 +23,6 @@ sed -i -e "/fortune/d" /usr/share/skel/dot.login
 sed -i -e "/fortune/d" /usr/share/skel/dot.profile
 sed -i -e "/fortune/d" /usr/share/skel/dot.profile-e
 
-sed -i -e "/fortune/d" /home/vagrant/.login
-sed -i -e "/fortune/d" /home/vagrant/.profile
-
 # Update the locate database.
 /etc/periodic/weekly/310.locate
 
