@@ -3707,6 +3707,7 @@
         "sh /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 131072,
+      "hard_drive_interface": "scsi",
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -5288,6 +5289,7 @@
         "sh /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 131072,
+      "hard_drive_interface": "scsi",
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
