@@ -8,7 +8,7 @@ if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-3]|hardenedbsd1[1-3]|
 
 elif  [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(dragonflybsd[5-6])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 
-  LOCKPWD=`dd if=/dev/urandom count=128 msgfmt=quiet | md5 | awk -F' ' '{print $1}'`
+  LOCKPWD=`dd if=/dev/urandom count=128 status=value | md5 | awk -F' ' '{print $1}'`
   echo "$LOCKPWD" | pw mod user root -h 0
 
 elif  [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(netbsd[8-9])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
