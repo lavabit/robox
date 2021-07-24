@@ -155,7 +155,7 @@
           "64"
         ]
       ],
-      "guest_os_type": "Debian_32",
+      "guest_os_type": "Debian",
       "http_directory": "http",
       "headless": true,
       "vrdp_bind_address": "127.0.0.1",
@@ -206,7 +206,7 @@
           "64"
         ]
       ],
-      "guest_os_type": "Debian_32",
+      "guest_os_type": "Debian",
       "http_directory": "http",
       "headless": true,
       "vrdp_bind_address": "127.0.0.1",
@@ -257,7 +257,7 @@
           "64"
         ]
       ],
-      "guest_os_type": "Debian_32",
+      "guest_os_type": "Debian",
       "http_directory": "http",
       "headless": true,
       "vrdp_bind_address": "127.0.0.1",
