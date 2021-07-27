@@ -27,6 +27,7 @@ reboot --eject
 %packages --instLangs=en
 @core
 authconfig
+rsync
 sudo
 -fprintd-pam
 -intltool
