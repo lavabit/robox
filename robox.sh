@@ -337,6 +337,40 @@ function iso() {
     sed --in-place "s/$ISO_URL/$URL/g" $FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
 
+  elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
+
+    # Find the existing Arch URL and hash values.
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"hardenedbsd13\")) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"hardenedbsd13\")) | .iso_checksum" 2>/dev/null`
+
+    # Find the HardenedBSD URL.
+    URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/"
+    BUILD=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]{3}/\"" | grep --extended-regexp --only-matching "build\-[0-9]{3}" | sort -r | uniq | head -1`
+    if [ $? != 0 ] || [ "$BUILD" == "" ]; then
+      tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
+      return 1
+    fi
+
+    # Calculate the new URL.
+    URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
+
+    # Download the ISO file and calculate the new hash value.
+    set -o pipefail
+    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    if [ $? != 0 ] || [ "$SHA" == "" ]; then
+        tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
+        return 1
+    fi
+    set +o pipefail
+
+    # Escape the URL strings.
+    URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
+    ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
+
+    # Replace the existing ISO and hash values with the update values.
+    sed --in-place "s/$ISO_URL/$URL/g" $FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+
   fi
 
 }
