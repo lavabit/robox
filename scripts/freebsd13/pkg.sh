@@ -7,7 +7,10 @@ export ASSUME_ALWAYS_YES=yes
 
 # Force the use of HTTPS for package updates.
 mkdir -p /usr/local/etc/pkg/repos/
-echo 'FreeBSD: { url: "pkg+https://pkg.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+
+# At the moment https is broken.
+# echo 'FreeBSD: { url: "pkg+https://pkg.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+echo 'FreeBSD: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 
 pkg bootstrap
 pkg-static update --force
