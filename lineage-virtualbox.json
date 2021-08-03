@@ -93,6 +93,7 @@
             "vm_name": "lineage-virtualbox",
             "output_directory": "output/lineage-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",
@@ -148,6 +149,7 @@
             "vm_name": "lineage-nash-virtualbox",
             "output_directory": "output/lineage-nash-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",

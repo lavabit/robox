@@ -495,6 +495,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-centos6-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
@@ -526,6 +527,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-centos7-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
@@ -557,6 +559,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-alpine36-hyperv",
             "boot_wait": "60s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait10>",
                 "root<enter><wait>",
@@ -598,6 +601,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-arch-hyperv",
             "boot_wait": "1s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -647,6 +651,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-fedora27-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> ",
                 "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora27.vagrant.ks ",
@@ -682,6 +687,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-debian8-hyperv",
             "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
                 "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -725,6 +731,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-ubuntu1604-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",
@@ -770,6 +777,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-ubuntu1610-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait>",
                 "<esc><wait>",
@@ -807,6 +815,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-ubuntu1704-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait>",
                 "<esc><wait>",
@@ -844,6 +853,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-gentoo-hyperv",
             "boot_wait": "5s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "gentoo-nofb<enter>",
                 "<wait10><enter>",
@@ -885,6 +895,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-freebsd11-hyperv",
             "boot_wait": "1s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait><esc><wait><esc><wait><esc><wait>",
                 "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -930,6 +941,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-openbsd6-hyperv",
             "boot_wait": "40s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "S<enter><wait>",
                 "dhclient hvn0<enter><wait5>",

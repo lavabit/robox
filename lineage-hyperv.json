@@ -94,6 +94,7 @@
             "temp_path": "output/",
             "output_directory": "output/lineage-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",
@@ -139,6 +140,7 @@
             "temp_path": "output/",
             "output_directory": "output/lineage-nash-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",

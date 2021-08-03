@@ -129,6 +129,7 @@
       "vm_name": "generic-debian8-x32-virtualbox",
       "output_directory": "output/generic-debian8-x32-virtualbox",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -180,6 +181,7 @@
       "vm_name": "generic-debian9-x32-virtualbox",
       "output_directory": "output/generic-debian9-x32-virtualbox",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -231,6 +233,7 @@
       "vm_name": "generic-debian10-x32-virtualbox",
       "output_directory": "output/generic-debian10-x32-virtualbox",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",

@@ -2271,6 +2271,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
       ],
@@ -2303,6 +2304,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><enter><wait>",
         "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
@@ -2338,6 +2340,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -2379,6 +2382,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -2420,6 +2424,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -2461,6 +2466,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -2502,6 +2508,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
       ],
@@ -2534,6 +2541,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
       ],
@@ -2566,6 +2574,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
       ],
@@ -2598,6 +2607,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -2648,6 +2658,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora25.vagrant.ks ",
@@ -2684,6 +2695,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora26.vagrant.ks ",
@@ -2720,6 +2732,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora27.vagrant.ks ",
@@ -2756,6 +2769,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora28.vagrant.ks ",
@@ -2792,6 +2806,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora29.vagrant.ks ",
@@ -2828,6 +2843,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -2872,6 +2888,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -2916,6 +2933,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait>",
         "<f6><esc>",
@@ -2964,6 +2982,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -3004,6 +3023,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -3044,6 +3064,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -3084,6 +3105,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -3136,6 +3158,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -3188,6 +3211,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "5s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "gentoo-nofb<enter>",
         "<wait10><enter>",
@@ -3230,6 +3254,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3276,6 +3301,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "40s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "S<enter><wait>",
         "dhclient vio0<enter><wait5>",
@@ -3312,6 +3338,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3358,6 +3385,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
       ],
@@ -3390,6 +3418,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
       ],
@@ -3422,6 +3451,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3468,6 +3498,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3527,6 +3558,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "40s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "<enter><wait10>",
@@ -3603,6 +3635,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3649,6 +3682,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -3691,6 +3725,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3735,6 +3770,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -3787,6 +3823,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora30.vagrant.ks ",
@@ -3823,6 +3860,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
       ],
@@ -3855,6 +3893,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -3897,6 +3936,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><enter><wait>",
         "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.3/repo/oss/ lang=en_US  textmode=1 <wait>",
@@ -3932,6 +3972,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.vagrant.ks<enter><wait>"
       ],
@@ -3964,6 +4005,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora31.vagrant.ks ",
@@ -4000,6 +4042,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -4052,6 +4095,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -4094,6 +4138,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -4146,6 +4191,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "<wait>text net.ifnames=0 ",
@@ -4181,6 +4227,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "40s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "<enter><wait10>",
@@ -4254,6 +4301,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -4296,6 +4344,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4340,6 +4389,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4384,6 +4434,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4428,6 +4479,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -4476,6 +4528,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "<wait>text net.ifnames=0 ",
@@ -4511,6 +4564,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -4553,6 +4607,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -4595,6 +4650,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -4643,6 +4699,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky8.vagrant.ks<enter><wait>"
       ],
@@ -4675,6 +4732,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma8.vagrant.ks<enter><wait>"
       ],
@@ -4707,6 +4765,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "<wait>text net.ifnames=0 ",
@@ -4742,6 +4801,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4788,6 +4848,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4834,6 +4895,7 @@
       "accelerator": "kvm",
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",

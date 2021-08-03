@@ -67,6 +67,7 @@
             "vmdk_name": "magma-developer-vmware",
             "output_directory": "output/magma-developer-vmware",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
             ],

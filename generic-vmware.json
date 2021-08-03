@@ -2270,6 +2270,7 @@
       "vmdk_name": "generic-oracle7-vmware",
       "output_directory": "output/generic-oracle7-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
       ],
@@ -2309,6 +2310,7 @@
       "vmdk_name": "generic-opensuse42-vmware",
       "output_directory": "output/generic-opensuse42-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><enter><wait>",
         "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
@@ -2351,6 +2353,7 @@
       "vmdk_name": "generic-alpine35-vmware",
       "output_directory": "output/generic-alpine35-vmware",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -2406,6 +2409,7 @@
       "vmdk_name": "generic-alpine36-vmware",
       "output_directory": "output/generic-alpine36-vmware",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -2461,6 +2465,7 @@
       "vmdk_name": "generic-alpine37-vmware",
       "output_directory": "output/generic-alpine37-vmware",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -2516,6 +2521,7 @@
       "vmdk_name": "generic-alpine38-vmware",
       "output_directory": "output/generic-alpine38-vmware",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -2571,6 +2577,7 @@
       "vmdk_name": "generic-centos6-vmware",
       "output_directory": "output/generic-centos6-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
       ],
@@ -2610,6 +2617,7 @@
       "vmdk_name": "generic-centos7-vmware",
       "output_directory": "output/generic-centos7-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
       ],
@@ -2649,6 +2657,7 @@
       "vmdk_name": "generic-rhel7-vmware",
       "output_directory": "output/generic-rhel7-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
       ],
@@ -2688,6 +2697,7 @@
       "vmdk_name": "generic-arch-vmware",
       "output_directory": "output/generic-arch-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -2745,6 +2755,7 @@
       "vmdk_name": "generic-fedora25-vmware",
       "output_directory": "output/generic-fedora25-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora25.vagrant.ks ",
@@ -2788,6 +2799,7 @@
       "vmdk_name": "generic-fedora26-vmware",
       "output_directory": "output/generic-fedora26-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora26.vagrant.ks ",
@@ -2831,6 +2843,7 @@
       "vmdk_name": "generic-fedora27-vmware",
       "output_directory": "output/generic-fedora27-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora27.vagrant.ks ",
@@ -2874,6 +2887,7 @@
       "vmdk_name": "generic-fedora28-vmware",
       "output_directory": "output/generic-fedora28-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora28.vagrant.ks ",
@@ -2917,6 +2931,7 @@
       "vmdk_name": "generic-fedora29-vmware",
       "output_directory": "output/generic-fedora29-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora29.vagrant.ks ",
@@ -2960,6 +2975,7 @@
       "vmdk_name": "generic-debian8-vmware",
       "output_directory": "output/generic-debian8-vmware",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3011,6 +3027,7 @@
       "vmdk_name": "generic-debian9-vmware",
       "output_directory": "output/generic-debian9-vmware",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3062,6 +3079,7 @@
       "vmdk_name": "generic-ubuntu1604-vmware",
       "output_directory": "output/generic-ubuntu1604-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait>",
         "<f6><esc>",
@@ -3117,6 +3135,7 @@
       "vmdk_name": "generic-ubuntu1610-vmware",
       "output_directory": "output/generic-ubuntu1610-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -3164,6 +3183,7 @@
       "vmdk_name": "generic-ubuntu1704-vmware",
       "output_directory": "output/generic-ubuntu1704-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -3211,6 +3231,7 @@
       "vmdk_name": "generic-ubuntu1710-vmware",
       "output_directory": "output/generic-ubuntu1710-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -3258,6 +3279,7 @@
       "vmdk_name": "generic-ubuntu1804-vmware",
       "output_directory": "output/generic-ubuntu1804-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -3317,6 +3339,7 @@
       "vmdk_name": "generic-ubuntu1810-vmware",
       "output_directory": "output/generic-ubuntu1810-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -3376,6 +3399,7 @@
       "vmdk_name": "generic-gentoo-vmware",
       "output_directory": "output/generic-gentoo-vmware",
       "boot_wait": "5s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "gentoo-nofb<enter>",
         "<wait10><enter>",
@@ -3428,6 +3452,7 @@
       "vmdk_name": "generic-freebsd11-vmware",
       "output_directory": "output/generic-freebsd11-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3481,6 +3506,7 @@
       "vmdk_name": "generic-openbsd6-vmware",
       "output_directory": "output/generic-openbsd6-vmware",
       "boot_wait": "40s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "S<enter><wait>",
         "dhclient em0<enter><wait5>",
@@ -3524,6 +3550,7 @@
       "vmdk_name": "generic-freebsd12-vmware",
       "output_directory": "output/generic-freebsd12-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3577,6 +3604,7 @@
       "vmdk_name": "generic-rhel6-vmware",
       "output_directory": "output/generic-rhel6-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
       ],
@@ -3616,6 +3644,7 @@
       "vmdk_name": "generic-rhel8-vmware",
       "output_directory": "output/generic-rhel8-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
       ],
@@ -3656,6 +3685,7 @@
       "vmdk_name": "generic-hardenedbsd11-vmware",
       "output_directory": "output/generic-hardenedbsd11-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3709,6 +3739,7 @@
       "vmdk_name": "generic-dragonflybsd5-vmware",
       "output_directory": "output/generic-dragonflybsd5-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3775,6 +3806,7 @@
       "vmdk_name": "generic-netbsd8-vmware",
       "output_directory": "output/generic-netbsd8-vmware",
       "boot_wait": "40s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "<enter><wait10>",
@@ -3858,6 +3890,7 @@
       "vmdk_name": "generic-hardenedbsd12-vmware",
       "output_directory": "output/generic-hardenedbsd12-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3911,6 +3944,7 @@
       "vmdk_name": "generic-alpine39-vmware",
       "output_directory": "output/generic-alpine39-vmware",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -3967,6 +4001,7 @@
       "vmdk_name": "generic-debian10-vmware",
       "output_directory": "output/generic-debian10-vmware",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4018,6 +4053,7 @@
       "vmdk_name": "generic-ubuntu1904-vmware",
       "output_directory": "output/generic-ubuntu1904-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -4077,6 +4113,7 @@
       "vmdk_name": "generic-fedora30-vmware",
       "output_directory": "output/generic-fedora30-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora30.vagrant.ks ",
@@ -4120,6 +4157,7 @@
       "vmdk_name": "generic-oracle8-vmware",
       "output_directory": "output/generic-oracle8-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
       ],
@@ -4160,6 +4198,7 @@
       "vmdk_name": "generic-alpine310-vmware",
       "output_directory": "output/generic-alpine310-vmware",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -4216,6 +4255,7 @@
       "vmdk_name": "generic-opensuse15-vmware",
       "output_directory": "output/generic-opensuse15-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><enter><wait>",
         "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.3/repo/oss/ lang=en_US  textmode=1 <wait>",
@@ -4258,6 +4298,7 @@
       "vmdk_name": "generic-centos8-vmware",
       "output_directory": "output/generic-centos8-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.vagrant.ks<enter><wait>"
       ],
@@ -4297,6 +4338,7 @@
       "vmdk_name": "generic-fedora31-vmware",
       "output_directory": "output/generic-fedora31-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora31.vagrant.ks ",
@@ -4340,6 +4382,7 @@
       "vmdk_name": "generic-ubuntu1910-vmware",
       "output_directory": "output/generic-ubuntu1910-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -4399,6 +4442,7 @@
       "vmdk_name": "generic-alpine311-vmware",
       "output_directory": "output/generic-alpine311-vmware",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -4455,6 +4499,7 @@
       "vmdk_name": "generic-ubuntu2004-vmware",
       "output_directory": "output/generic-ubuntu2004-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -4514,6 +4559,7 @@
       "vmdk_name": "generic-fedora32-vmware",
       "output_directory": "output/generic-fedora32-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "<wait>text net.ifnames=0 ",
@@ -4556,6 +4602,7 @@
       "vmdk_name": "generic-netbsd9-vmware",
       "output_directory": "output/generic-netbsd9-vmware",
       "boot_wait": "40s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "<enter><wait10>",
@@ -4636,6 +4683,7 @@
       "vmdk_name": "generic-alpine312-vmware",
       "output_directory": "output/generic-alpine312-vmware",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -4692,6 +4740,7 @@
       "vmdk_name": "generic-devuan1-vmware",
       "output_directory": "output/generic-devuan1-vmware",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4743,6 +4792,7 @@
       "vmdk_name": "generic-devuan2-vmware",
       "output_directory": "output/generic-devuan2-vmware",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4794,6 +4844,7 @@
       "vmdk_name": "generic-devuan3-vmware",
       "output_directory": "output/generic-devuan3-vmware",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4845,6 +4896,7 @@
       "vmdk_name": "generic-ubuntu2010-vmware",
       "output_directory": "output/generic-ubuntu2010-vmware",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -4899,6 +4951,7 @@
       "vmdk_name": "generic-fedora33-vmware",
       "output_directory": "output/generic-fedora33-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "<wait>text net.ifnames=0 ",
@@ -4941,6 +4994,7 @@
       "vmdk_name": "generic-alpine313-vmware",
       "output_directory": "output/generic-alpine313-vmware",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -4997,6 +5051,7 @@
       "vmdk_name": "generic-alpine314-vmware",
       "output_directory": "output/generic-alpine314-vmware",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -5053,6 +5108,7 @@
       "vmdk_name": "generic-ubuntu2104-vmware",
       "output_directory": "output/generic-ubuntu2104-vmware",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -5107,6 +5163,7 @@
       "vmdk_name": "generic-rocky8-vmware",
       "output_directory": "output/generic-rocky8-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky8.vagrant.ks<enter><wait>"
       ],
@@ -5146,6 +5203,7 @@
       "vmdk_name": "generic-alma8-vmware",
       "output_directory": "output/generic-alma8-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma8.vagrant.ks<enter><wait>"
       ],
@@ -5185,6 +5243,7 @@
       "vmdk_name": "generic-fedora34-vmware",
       "output_directory": "output/generic-fedora34-vmware",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "<wait>text net.ifnames=0 ",
@@ -5227,6 +5286,7 @@
       "vmdk_name": "generic-freebsd13-vmware",
       "output_directory": "output/generic-freebsd13-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -5280,6 +5340,7 @@
       "vmdk_name": "generic-hardenedbsd13-vmware",
       "output_directory": "output/generic-hardenedbsd13-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -5333,6 +5394,7 @@
       "vmdk_name": "generic-dragonflybsd6-vmware",
       "output_directory": "output/generic-dragonflybsd6-vmware",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",

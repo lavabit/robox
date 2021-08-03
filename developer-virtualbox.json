@@ -66,6 +66,7 @@
             "vm_name": "magma-developer-virtualbox",
             "output_directory": "output/magma-developer-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
             ],

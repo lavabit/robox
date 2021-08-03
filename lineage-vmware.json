@@ -94,6 +94,7 @@
             "vmdk_name": "lineage-vmware",
             "output_directory": "output/lineage-vmware",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",
@@ -149,6 +150,7 @@
             "vmdk_name": "lineage-nash-vmware",
             "output_directory": "output/lineage-nash-vmware",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",

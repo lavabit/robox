@@ -283,6 +283,7 @@
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.docker.ks<enter><wait>"
             ],
@@ -314,6 +315,7 @@
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.docker.ks<enter><wait>"
             ],
@@ -345,6 +347,7 @@
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.docker.ks<enter><wait>"
             ],
@@ -376,6 +379,7 @@
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
+          "boot_keygroup_interval": "1s",
           "boot_command": [
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.docker.ks<enter><wait>"
           ],
@@ -408,6 +412,7 @@
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
+          "boot_keygroup_interval": "1s",
           "boot_command": [
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.docker.ks<enter><wait>"
           ],
@@ -439,6 +444,7 @@
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
+          "boot_keygroup_interval": "1s",
           "boot_command": [
             "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
           ],
@@ -470,6 +476,7 @@
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
+          "boot_keygroup_interval": "1s",
           "boot_command": [
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
           ],
@@ -501,6 +508,7 @@
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
+          "boot_keygroup_interval": "1s",
           "boot_command": [
             "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
           ],

@@ -493,6 +493,7 @@
             "vm_name": "magma-alpine36-virtualbox",
             "output_directory": "output/magma-alpine36-virtualbox",
             "boot_wait": "60s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait10>",
                 "root<enter><wait>",
@@ -541,6 +542,7 @@
             "vm_name": "magma-centos6-virtualbox",
             "output_directory": "output/magma-centos6-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
@@ -580,6 +582,7 @@
             "vm_name": "magma-centos7-virtualbox",
             "output_directory": "output/magma-centos7-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
@@ -619,6 +622,7 @@
             "vm_name": "magma-arch-virtualbox",
             "output_directory": "output/magma-arch-virtualbox",
             "boot_wait": "1s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -676,6 +680,7 @@
             "vm_name": "magma-fedora27-virtualbox",
             "output_directory": "output/magma-fedora27-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> ",
                 "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora27.vagrant.ks ",
@@ -719,6 +724,7 @@
             "vm_name": "magma-debian8-virtualbox",
             "output_directory": "output/magma-debian8-virtualbox",
             "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
                 "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -770,6 +776,7 @@
             "vm_name": "magma-ubuntu1604-virtualbox",
             "output_directory": "output/magma-ubuntu1604-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",
@@ -825,6 +832,7 @@
             "vm_name": "magma-ubuntu1610-virtualbox",
             "output_directory": "output/magma-ubuntu1610-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait>",
                 "<esc><wait>",
@@ -872,6 +880,7 @@
             "vm_name": "magma-ubuntu1704-virtualbox",
             "output_directory": "output/magma-ubuntu1704-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait>",
                 "<esc><wait>",
@@ -919,6 +928,7 @@
             "vm_name": "magma-gentoo-virtualbox",
             "output_directory": "output/magma-gentoo-virtualbox",
             "boot_wait": "5s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "gentoo-nofb<enter>",
                 "<wait10><enter>",
@@ -968,6 +978,7 @@
             "vm_name": "magma-freebsd11-virtualbox",
             "output_directory": "output/magma-freebsd11-virtualbox",
             "boot_wait": "1s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait><esc><wait><esc><wait><esc><wait>",
                 "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -1021,6 +1032,7 @@
             "vm_name": "magma-openbsd6-virtualbox",
             "output_directory": "output/magma-openbsd6-virtualbox",
             "boot_wait": "40s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "S<enter><wait>",
                 "dhclient em0<enter><wait5>",

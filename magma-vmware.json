@@ -494,6 +494,7 @@
             "vmdk_name": "magma-alpine36-vmware",
             "output_directory": "output/magma-alpine36-vmware",
             "boot_wait": "60s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait10>",
                 "root<enter><wait>",
@@ -542,6 +543,7 @@
             "vmdk_name": "magma-centos6-vmware",
             "output_directory": "output/magma-centos6-vmware",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
@@ -581,6 +583,7 @@
             "vmdk_name": "magma-centos7-vmware",
             "output_directory": "output/magma-centos7-vmware",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
@@ -620,6 +623,7 @@
             "vmdk_name": "magma-arch-vmware",
             "output_directory": "output/magma-arch-vmware",
             "boot_wait": "1s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -677,6 +681,7 @@
             "vmdk_name": "magma-fedora27-vmware",
             "output_directory": "output/magma-fedora27-vmware",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> ",
                 "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora27.vagrant.ks ",
@@ -720,6 +725,7 @@
             "vmdk_name": "magma-debian8-vmware",
             "output_directory": "output/magma-debian8-vmware",
             "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
                 "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -771,6 +777,7 @@
             "vmdk_name": "magma-ubuntu1604-vmware",
             "output_directory": "output/magma-ubuntu1604-vmware",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",
@@ -826,6 +833,7 @@
             "vmdk_name": "magma-ubuntu1610-vmware",
             "output_directory": "output/magma-ubuntu1610-vmware",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait>",
                 "<esc><wait>",
@@ -873,6 +881,7 @@
             "vmdk_name": "magma-ubuntu1704-vmware",
             "output_directory": "output/magma-ubuntu1704-vmware",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait>",
                 "<esc><wait>",
@@ -920,6 +929,7 @@
             "vmdk_name": "magma-gentoo-vmware",
             "output_directory": "output/magma-gentoo-vmware",
             "boot_wait": "5s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "gentoo-nofb<enter>",
                 "<wait10><enter>",
@@ -972,6 +982,7 @@
             "vmdk_name": "magma-freebsd11-vmware",
             "output_directory": "output/magma-freebsd11-vmware",
             "boot_wait": "1s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait><esc><wait><esc><wait><esc><wait>",
                 "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -1025,6 +1036,7 @@
             "vmdk_name": "magma-openbsd6-vmware",
             "output_directory": "output/magma-openbsd6-vmware",
             "boot_wait": "40s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "S<enter><wait>",
                 "dhclient em0<enter><wait5>",
