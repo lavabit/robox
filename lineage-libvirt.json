@@ -44,17 +44,6 @@
             ]
         },
         {
-            "type": "file",
-            "direction": "upload",
-            "source": "res/blobs/system-blobs.tar.gz",
-            "destination": "/home/vagrant/system-blobs.tar.gz",
-            "only": [
-                "lineage-libvirt",
-                "lineage-nash-libvirt"
-
-            ]
-        },
-        {
             "scripts": [
                 "scripts/ubuntu1604/lineage.sh"
             ],

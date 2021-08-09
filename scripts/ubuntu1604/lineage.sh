@@ -491,8 +491,19 @@ git config --global user.name "\$NAME"
 git config --global user.email "\$EMAIL"
 git config --global color.ui false
 
-# Initialize the repo and download the source code.
+# Initialize the repo.
 repo init -u https://github.com/LineageOS/android.git -b \$BRANCH
+
+# Set up the blob source.
+mkdir -p .repo/local_manifests
+cat <<-EOF2 > .repo/local_manifests/muppets-\$VENDOR.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="TheMuppets/proprietary_vendor_\$VENDOR" path="vendor/\$VENDOR" depth="1" />
+</manifest>
+EOF2
+
+# Download the source code.
 repo --color=never sync --quiet --jobs=\${PROCESSOR_COUNT}
 
 # Setup the environment.
@@ -502,51 +513,6 @@ source build/envsetup.sh
 sed -i -e "s/-Xmx2048m/-Xmx4096m/g" \$HOME/android/lineage/build/tools/releasetools/common.py
 
 # Download and configure the environment for the device.
-breakfast \$DEVICE
-
-# # Find the latest upstream build.
-# ARCHIVE=\`curl  --location --silent https://download.lineageos.org/\$DEVICE | grep href | grep https://mirrorbits.lineageos.org/full/\$DEVICE/ | head -1 | awk -F'"' '{print \$2}'\`
-#
-# # Create a system dump directory.
-# mkdir -p \$HOME/android/system_dump/ && cd \$HOME/android/system_dump/
-#
-# # Download the archive.
-# curl --location --output lineage-archive.zip "\$ARCHIVE"
-#
-# # Extract the system blocks.
-# unzip lineage-archive.zip system.transfer.list system.new.dat
-#
-# # Clone the sdat2img tool.
-# git clone https://github.com/xpirt/sdat2img
-#
-# # Convert the system block file into an image.
-# python sdat2img/sdat2img.py system.transfer.list system.new.dat system.img
-#
-# # Mount the system image.
-# mkdir -p \$HOME/android/system/
-# sudo mount system.img \$HOME/android/system/
-
-# Change to the device directory and run the extraction script.
-# cd \$HOME/android/lineage/device/\$VENDOR/\$DEVICE
-# ./extract-files.sh \$HOME/android/system_dump/system
-#
-# # Unmount the system dump.
-# sudo umount \$HOME/android/system_dump/system
-# rm -rf \$HOME/android/system_dump/
-
-# Extract the vendor specific blobs.
-mkdir -p \$HOME/android/vendor/system/
-tar -xzv -C \$HOME/android/vendor/ -f \$HOME/system-blobs.tar.gz
-
-# Change to the device directory and run the extraction script.
-cd \$HOME/android/lineage/device/\$VENDOR/\$DEVICE
-./extract-files.sh \$HOME/android/vendor/system/
-
-# Cleanup the vendor blob files.
-rm -rf \$HOME/android/vendor/
-
-# Setup the environment.
-cd \$HOME/android/lineage/ && source build/envsetup.sh
 breakfast \$DEVICE || ( printf "\n\n\nBuild failed. (breakfast)\n\n\n"; exit 1 )
 
 # Setup the cache.
@@ -575,7 +541,6 @@ ls -alh "\$SYSIMAGE" "\$SYSIMAGESUM"
 # env > ~/env.txt
 EOF
 
-chown vagrant:vagrant /home/vagrant/system-blobs.tar.gz
 chown vagrant:vagrant /home/vagrant/lineage-build.sh
 chmod +x /home/vagrant/lineage-build.sh
 
