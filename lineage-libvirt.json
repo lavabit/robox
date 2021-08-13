@@ -105,7 +105,7 @@
                 "<enter>"
             ],
             "format": "qcow2",
-            "disk_size": "196608",
+            "disk_size": "256000",
             "disk_discard": "unmap",
             "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
@@ -154,7 +154,7 @@
                 "<enter>"
             ],
             "format": "qcow2",
-            "disk_size": "196608",
+            "disk_size": "256000",
             "disk_discard": "unmap",
             "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",
