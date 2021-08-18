@@ -228,7 +228,7 @@
     {
       "name": "debian9",
       "output_directory": "output/debian9",
-      "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.13.0/amd64/iso-cd/debian-9.13.0-amd64-netinst.iso",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/9.13.0/amd64/iso-cd/debian-9.13.0-amd64-netinst.iso",
       "iso_checksum": "sha256:71c7e9eb292acc880f84605b1ca2b997f25737fe0a43fc9586f61d35cd2eb43b",
       "boot_wait": "5s",
       "disk_size": 1,
@@ -243,7 +243,7 @@
     {
       "name": "debian9-x32",
       "output_directory": "output/debian9-x32",
-      "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.13.0/i386/iso-cd/debian-9.13.0-i386-netinst.iso",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/9.13.0/i386/iso-cd/debian-9.13.0-i386-netinst.iso",
       "iso_checksum": "sha256:27de998af87007bf5daa3030d3863d3ef801b948c29f5bbce232be4f928eedba",
       "boot_wait": "5s",
       "disk_size": 1,
@@ -258,7 +258,7 @@
     {
       "name": "debian10",
       "output_directory": "output/debian10",
-      "iso_url": "https://cdimage.debian.org/cdimage/release/10.10.0/amd64/iso-cd/debian-10.10.0-amd64-netinst.iso",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/10.10.0/amd64/iso-cd/debian-10.10.0-amd64-netinst.iso",
       "iso_checksum": "sha256:c433254a7c5b5b9e6a05f9e1379a0bd6ab3323f89b56537b684b6d1bd1f8b6ad",
       "boot_wait": "5s",
       "disk_size": 1,
@@ -273,7 +273,7 @@
     {
       "name": "debian10-x32",
       "output_directory": "output/debian10-x32",
-      "iso_url": "https://cdimage.debian.org/cdimage/release/10.10.0/i386/iso-cd/debian-10.10.0-i386-netinst.iso",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/10.10.0/i386/iso-cd/debian-10.10.0-i386-netinst.iso",
       "iso_checksum": "sha256:cf824084643fb82f74d1fbec804baaf74539dadd279af2098da94254f758e5b7",
       "boot_wait": "5s",
       "disk_size": 1,
