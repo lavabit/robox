@@ -48,7 +48,7 @@ retry apk add open-vm-tools open-vm-tools-dev
 rc-update add open-vm-tools default && rc-service open-vm-tools start
 vmware-toolbox-cmd timesync enable
 
-# Update SSHD to check the networking service, and not the net-online service.
+# Update sshd so it checks the networking service instead of the net-online service.
 sed -i -e "s/rc_need=.*/rc_need=\"networking\"/g" /etc/conf.d/sshd
 
 # Ensure the OpenVM tools don't start until after the SSH server is online.
