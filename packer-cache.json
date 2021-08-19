@@ -914,7 +914,8 @@
       "ssh_timeout": "10s",
       "ssh_username": "root",
       "type": "vmware-iso"
-    },{
+    },
+    {
       "name": "virtualbox-6-1-24",
       "output_directory": "output/virtualbox-6-1-24",
       "iso_url": "https://download.virtualbox.org/virtualbox/6.1.24/VBoxGuestAdditions_6.1.24.iso",
@@ -1039,6 +1040,36 @@
       "output_directory": "output/hardenedbsd13",
       "iso_url": "https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/build-176/disc1.iso",
       "iso_checksum": "sha256:2d558cf658c68ea6c88586816125439a8ec3fe4276605dbdde792df54523068f",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
+      "name": "debian11",
+      "output_directory": "output/debian11",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.0.0/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:ae6d563d2444665316901fe7091059ac34b8f67ba30f9159f7cef7d2fdc5bf8a",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
+      "name": "debian11-x32",
+      "output_directory": "output/debian11-x32",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.0.0/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:ae6d563d2444665316901fe7091059ac34b8f67ba30f9159f7cef7d2fdc5bf8a",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
