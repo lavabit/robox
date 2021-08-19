@@ -81,9 +81,6 @@ retry apt-get --assume-yes install git git-man liberror-perl rsync wget; error
 # Needed to run the watcher and status scripts.
 retry apt-get --assume-yes install sysstat inotify-tools; error
 
-# Needed to run the stacie script.
-retry apt-get --assume-yes install python-crypto python-cryptography; error
-
 # Boosts the available entropy which allows magma to start faster.
 retry apt-get --assume-yes install haveged; error
 
