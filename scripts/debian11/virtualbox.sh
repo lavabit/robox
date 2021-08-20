@@ -60,6 +60,13 @@ if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
     exit 0
 fi
 
+if [[ "$(uname -m)" = "i686" ]]; then
+# VirtualBox ended support for x86 with the 5.2.x line, and in Linux 5.8 an x86-specific part of the module broke.
+# Debian also removed virtualbox packages from stable versions due to the inability to cherry-pick security fixes.
+# This means that we are limited to the in-kernel VirtualBox support, which is at least enough to have shared folders.
+printf "Running on x86, skipping installation of the VirtualBox Guest Additions.\n"
+else  # Not x86
+
 # Install the Virtual Box Tools from the Linux Guest Additions ISO.
 printf "Installing the Virtual Box Tools.\n"
 
@@ -89,6 +96,9 @@ ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxG
 [ -s "/lib/modules/$(uname -r)/misc/vboxsf.ko" ]; error
 
 umount /mnt/virtualbox; error
+
+fi  # Not x86
+
 rm -rf /root/VBoxVersion.txt; error
 rm -rf /root/VBoxGuestAdditions.iso; error
 
