@@ -46,7 +46,7 @@ printf "\nalias python='/usr/bin/python3.6'\n" >> /home/vagrant/.bash_aliases
 retry apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pciutils usbutils
 
 # Install the build dependencies.
-retry apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev ninja-build
+retry apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev ninja-build ccache
 
 # Java 8 Support
 retry apt-get --assume-yes install openjdk-8-jdk openjdk-8-jdk-headless openjdk-8-jre openjdk-8-jre-headless icedtea-8-plugin
@@ -463,9 +463,8 @@ sleep 10
 
 # Setup the branch and enable the distributed cache.
 export USE_CCACHE=1
+export CCACHE_DIR="\$HOME/cache"
 export TMPDIR="\$HOME/temp"
-export ANDROID_CCACHE_SIZE="20G"
-export ANDROID_CCACHE_DIR="\$HOME/cache"
 export PROCESSOR_COUNT=`cat /proc/cpuinfo  | grep processor | wc -l`
 
 # Jack is the Java compiler used by LineageOS 14.1+, and it is memory hungry.
@@ -517,7 +516,14 @@ breakfast \$DEVICE || ( printf "\n\n\nBuild failed. (breakfast)\n\n\n"; exit 1 )
 
 # Setup the cache.
 cd \$HOME/android/lineage/
-prebuilts/misc/linux-x86/ccache/ccache -M 20G
+
+export CCACHE_EXEC="prebuilts/misc/linux-x86/ccache/ccache"
+
+if [ ! -x "\$CCACHE_EXEC" ]; then
+  export CCACHE_EXEC="\$(which ccache)"
+fi
+
+"\$CCACHE_EXEC" -M 20G
 
 # Start the build.
 croot
