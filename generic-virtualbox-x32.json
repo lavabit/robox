@@ -343,7 +343,9 @@
           "modifyvm",
           "{{.Name}}",
           "--vram",
-          "64"
+          "64",
+          "--ioapic",
+          "on"
         ]
       ],
       "guest_os_type": "Debian",
