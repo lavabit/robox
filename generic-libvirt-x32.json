@@ -108,6 +108,40 @@
     },
     {
       "scripts": [
+        "scripts/debian11/apt.sh",
+        "scripts/debian11/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian11-x32-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian11/floppy.sh",
+        "scripts/debian11/profile.sh",
+        "scripts/debian11/vagrant.sh",
+        "scripts/debian11/motd.sh",
+        "scripts/debian11/fixtty.sh",
+        "scripts/debian11/virtualbox.sh",
+        "scripts/debian11/parallels.sh",
+        "scripts/debian11/vmware.sh",
+        "scripts/debian11/qemu.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian11-x32-libvirt"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -252,6 +286,51 @@
       "headless": true,
       "iso_url": "https://cdimage.debian.org/cdimage/archive/10.10.0/i386/iso-cd/debian-10.10.0-i386-netinst.iso",
       "iso_checksum": "sha256:cf824084643fb82f74d1fbec804baaf74539dadd279af2098da94254f758e5b7",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-debian11-x32-libvirt",
+      "vm_name": "generic-debian11-x32-libvirt",
+      "output_directory": "output/generic-debian11-x32-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "/install.386/vmlinuz auto=true priority=critical vga=788 initrd=/install.386/gtk/initrd.gz --- quiet ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian11.vagrant.cfg ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.0.0/i386/iso-cd/debian-11.0.0-i386-netinst.iso",
+      "iso_checksum": "sha256:ee628b029c116b8512cf60f7f8ec897b657dd8c99a89d92bdce514c8885e1c2a",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
