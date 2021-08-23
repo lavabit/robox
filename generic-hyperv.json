@@ -3538,7 +3538,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_timeout": "7200s",
-      "ssh_host": "10.10.10.241",
+      "ssh_host": "10.10.10.243",
       "mac_address": "00155d1d3d9e",
       "shutdown_command": "shutdown -p now",
       "generation": 1,
