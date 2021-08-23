@@ -52,8 +52,12 @@ printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/20retries
 
 fi
 
-# Remove the CDROM as a media source.
-sed -i -e "/cdrom:/d" /etc/apt/sources.list
+# Setup the source list.
+# cat <<-EOF > /etc/apt/sources.list
+# deb https://ftp.debian.org/debian/ jessie main
+# deb https://security.debian.org/debian-security jessie/updates main
+# deb https://ftp.debian.org/debian/ jessie-updates main
+# EOF
 
 # Ensure the server includes any necessary updates.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error

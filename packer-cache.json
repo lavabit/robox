@@ -198,8 +198,8 @@
     {
       "name": "debian8",
       "output_directory": "output/debian8",
-      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
-      "iso_checksum": "sha256:ea444d6f8ac95fd51d2aedb8015c57410d1ad19b494cedec6914c17fda02733c",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/amd64/iso-dvd/debian-8.11.1-amd64-DVD-1.iso",
+      "iso_checksum": "sha256:a3bd67cd363b609e1340cea06a666cb476b63fc79abf4380c0475dd1b6dc8a31",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -213,8 +213,8 @@
     {
       "name": "debian8-x32",
       "output_directory": "output/debian8-x32",
-      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/i386/iso-cd/debian-8.11.1-i386-netinst.iso",
-      "iso_checksum": "sha256:3741a984d170770f433ef694c823227298f7e8a2ff9c6486dc0b466ef9f8e710",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/i386/iso-dvd/debian-8.11.1-i386-DVD-1.iso",
+      "iso_checksum": "sha256:06b6faafa5c2c74a2bbaa398589a0448ff0c2755fe9bab4c1013f40781fb4a2a",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
