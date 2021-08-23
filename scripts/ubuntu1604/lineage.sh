@@ -491,7 +491,7 @@ git config --global user.email "\$EMAIL"
 git config --global color.ui false
 
 # Initialize the repo.
-repo init -u https://github.com/LineageOS/android.git -b \$BRANCH
+repo init -u https://github.com/LineageOS/android.git -b \$BRANCH -g default,-darwin
 
 # Set up the blob source.
 mkdir -p .repo/local_manifests
