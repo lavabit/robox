@@ -503,7 +503,7 @@ cat <<-EOF2 > .repo/local_manifests/muppets-\$VENDOR.xml
 EOF2
 
 # Download the source code.
-repo --color=never sync --quiet --jobs=\${PROCESSOR_COUNT}
+repo --color=never sync --quiet --jobs=\${PROCESSOR_COUNT} -c --no-clone-bundle --no-tags
 
 # Setup the environment.
 source build/envsetup.sh
