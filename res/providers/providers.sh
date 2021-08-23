@@ -201,7 +201,10 @@ function provide-vbox() {
     rm --force "${VBOXEXT}"
   fi
 
-  # Disable Virtual Box Automatic Startup
+  # Disable update checks.
+  VBoxManage setextradata global GUI/UpdateDate never
+
+  # Disable automatic startup.
   systemctl disable vboxautostart-service.service
   systemctl disable vboxballoonctrl-service.service
   systemctl disable vboxweb-service.service
