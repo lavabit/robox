@@ -435,6 +435,7 @@ sleep 10
 # Setup the branch and enable the distributed cache.
 export USE_CCACHE=1
 export CCACHE_DIR="\$HOME/cache"
+export CCACHE_COMPRESS=1
 export TMPDIR="\$HOME/temp"
 export PROCESSOR_COUNT=`cat /proc/cpuinfo  | grep processor | wc -l`
 
