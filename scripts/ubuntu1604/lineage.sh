@@ -427,7 +427,7 @@ echo
 echo NAME=\$NAME
 echo EMAIL=\$EMAIL
 echo
-echo "Override the above environment variables in your Vagrantfile to alter the build configuration."
+echo "Override the above environment variables to alter the build configuration."
 echo
 echo
 sleep 10
@@ -535,4 +535,14 @@ chown vagrant:vagrant /home/vagrant/lineage-build.sh
 chmod +x /home/vagrant/lineage-build.sh
 
 # Customize the message of the day
-printf "\nLineage Development Environment\nTo download and compile Lineage, just execute the lineage-build.sh script.\n\n" > /etc/motd
+cat <<-EOF > /etc/motd
+Lineage Development Environment
+To download and compile Lineage, just execute the lineage-build.sh script:
+
+  # Build LineageOS 14.1 for the Motorola Photon Q
+  DEVICE=xt897 BRANCH=cm-14.1 VENDOR=motorola ./lineage-build.sh
+
+  # Build LineageOS 15.1 for the Motorola Z2 Force
+  DEVICE=nash BRANCH=lineage-15.1 VENDOR=motorola ./lineage-build.sh
+
+EOF
