@@ -525,6 +525,8 @@ fi
 
 "\$CCACHE_EXEC" -M 20G
 
+BUILDSTAMP=\`date --utc +'%Y%m%d'\`
+
 # Start the build.
 croot
 brunch \$DEVICE || ( printf "\n\n\nBuild failed. (brunch)\n\n\n"; exit 1 )
@@ -542,7 +544,6 @@ if [[ "\$VERSION_NAME" =~ "lineage-11.0" ]]; then
   VERSION_NAME="lineage-11"
 fi
 
-BUILDSTAMP=\`date --utc +'%Y%m%d'\`
 DIRIMAGE="\$HOME/android/lineage/out/target/product/\$DEVICE"
 SYSIMAGE="\$DIRIMAGE/\$VERSION_NAME-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
 SYSIMAGESUM="\$SYSIMAGE.md5sum"
