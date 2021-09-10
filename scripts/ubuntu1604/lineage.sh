@@ -72,35 +72,6 @@ update-java-alternatives -s java-1.7.0-openjdk-amd64
 # Delete the downloaded Java 7 packages.
 rm --force openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
 
-# Enable the source code repositories.
-sed -i -e "s|.*deb-src |deb-src |g" /etc/apt/sources.list
-retry apt-get --assume-yes update
-
-# Ensure the dependencies required to compile git are available.
-retry apt-get --assume-yes install build-essential fakeroot dpkg-dev
-retry apt-get --assume-yes build-dep git
-
-# The build-dep command will remove the OpenSSL version of libcurl, so we have to
-# install here instead.
-retry apt-get --assume-yes install libcurl4-openssl-dev
-
-# Download the git sourcecode.
-mkdir -p $HOME/git-openssl && cd $HOME/git-openssl
-retry apt-get source git
-dpkg-source -x `find * -type f -name *.dsc`
-cd `find * -maxdepth 0 -type d`
-
-# Recompile git using OpenSSL instead of gnutls.
-sed -i -e "s|libcurl4-gnutls-dev|libcurl4-openssl-dev|g" debian/control
-sed -i -e "/TEST[ ]*=test/d" debian/rules
-dpkg-buildpackage -J4 -rfakeroot -b
-
-# Insall the new version.
-dpkg -i `find ../* -type f -name *amd64.deb`
-
-# Cleanup the git build directory.
-cd $HOME && rm --force --recursive $HOME/git-openssl
-
 # Download the Android tools.
 retry curl  --location --output platform-tools-latest-linux.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 
