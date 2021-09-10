@@ -393,17 +393,6 @@ usermod -a -G adbusers vagrant
 chmod 644 /etc/udev/rules.d/51-android.rules
 # chcon "system_u:object_r:udev_rules_t:s0" /etc/udev/rules.d/51-android.rules
 
-if [[ "$PACKER_BUILD_NAME" =~ ^(lineage|lineageos)-nash-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
-cat <<-EOF > /home/vagrant/lineage-build.sh
-#!/bin/bash
-
-# Build Lineage for the Motorola Z2 Force by default.
-
-export DEVICE=\${DEVICE:="nash"}
-export BRANCH=\${BRANCH:="lineage-15.1"}
-export VENDOR=\${VENDOR:="motorola"}
-EOF
-else
 cat <<-EOF > /home/vagrant/lineage-build.sh
 #!/bin/bash
 
@@ -413,10 +402,7 @@ cat <<-EOF > /home/vagrant/lineage-build.sh
 export DEVICE=\${DEVICE:="xt897"}
 export BRANCH=\${BRANCH:="cm-14.1"}
 export VENDOR=\${VENDOR:="motorola"}
-EOF
-fi
 
-cat <<-EOF >> /home/vagrant/lineage-build.sh
 export NAME=\${NAME:="Ladar Levison"}
 export EMAIL=\${EMAIL:="ladar@lavabit.com"}
 
