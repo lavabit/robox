@@ -530,11 +530,22 @@ croot
 brunch \$DEVICE || ( printf "\n\n\nBuild failed. (brunch)\n\n\n"; exit 1 )
 
 # Calculate the filename.
+VERSION_NAME="\$BRANCH"
+
+# A few select branches got rebranded
+if [[ "\$VERSION_NAME" =~ "cm-(11.0|13.0|14.1)" ]]; then
+  VERSION_NAME=\${VERSION_NAME/cm-/lineage-}
+fi
+
+# 11.0 was only designated as '11'
+if [[ "\$VERSION_NAME" =~ "lineage-11.0" ]]; then
+  VERSION_NAME="lineage-11"
+fi
+
 BUILDSTAMP=\`date --utc +'%Y%m%d'\`
 DIRIMAGE="\$HOME/android/lineage/out/target/product/\$DEVICE"
-SYSIMAGE="\$DIRIMAGE/lineage-14.1-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
-SYSIMAGESUM="\$DIRIMAGE/lineage-14.1-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip.md5sum"
-#RECIMAGE="lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE-recovery.img"
+SYSIMAGE="\$DIRIMAGE/\$VERSION_NAME-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
+SYSIMAGESUM="\$SYSIMAGE.md5sum"
 
 # Verify the image checksum.
 md5sum -c "\$SYSIMAGESUM" || ( printf "\n\n\nChecksum generation failed.\n\n\n"; exit 1 )
