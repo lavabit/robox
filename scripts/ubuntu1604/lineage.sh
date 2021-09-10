@@ -548,7 +548,7 @@ SYSIMAGE="\$DIRIMAGE/\$VERSION_NAME-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
 SYSIMAGESUM="\$SYSIMAGE.md5sum"
 
 # Verify the image checksum.
-md5sum -c "\$SYSIMAGESUM" || ( printf "\n\n\nChecksum generation failed.\n\n\n"; exit 1 )
+(cd "\$DIRIMAGE" && md5sum -c "\$SYSIMAGESUM") || ( printf "\n\n\nChecksum generation failed.\n\n\n"; exit 1 )
 
 # See what the output directory holds.
 ls -alh "\$SYSIMAGE" "\$SYSIMAGESUM"
