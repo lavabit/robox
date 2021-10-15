@@ -3576,7 +3576,7 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.8.3_REL.iso",
+      "iso_url": "https://mirrors.lavabit.com/dragonflybsd/dfly-x86_64-5.8.3_REL.iso",
       "iso_checksum": "sha256:8c169e787822ab743e0ee7ddb97c2f4181316ebcd7f7a3e82a085c30f3ea29b5",
       "ssh_username": "root",
       "ssh_password": "vagrant",
