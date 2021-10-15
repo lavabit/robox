@@ -1083,8 +1083,8 @@
     {
       "name": "dragonflybsd6",
       "output_directory": "output/dragonflybsd6",
-      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.0.0_REL.iso",
-      "iso_checksum": "sha256:63e0b7c491185fea19be87bd7df6b86c76df89abe01506a76da4248b55e2faba",
+      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.0.1_REL.iso",
+      "iso_checksum": "sha256:061eda70746fff8f5e09ec180d18fada1ebc87f41664eaf69d6c7cef286c2afe",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
