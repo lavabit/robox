@@ -1035,13 +1035,13 @@
             "vm_name": "magma-openbsd6-vmware",
             "vmdk_name": "magma-openbsd6-vmware",
             "output_directory": "output/magma-openbsd6-vmware",
-            "boot_wait": "40s",
+            "boot_wait": "60s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
-                "S<enter><wait>",
-                "dhclient em0<enter><wait5>",
-                "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait>",
-                "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
+                "S<enter><wait5>",
+                "dhclient em0<enter><wait10>",
+                "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait5>",
+                "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait5>",
                 "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 131072,

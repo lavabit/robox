@@ -4114,13 +4114,13 @@
       "name": "generic-openbsd6-parallels",
       "vm_name": "generic-openbsd6-parallels",
       "output_directory": "output/generic-openbsd6-parallels",
-      "boot_wait": "40s",
+      "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "S<enter><wait>",
-        "dhclient em0<enter><wait5>",
-        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.cfg<enter><wait>",
-        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.chroot.sh<enter><wait>",
+        "S<enter><wait5>",
+        "dhclient em0<enter><wait10>",
+        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.cfg<enter><wait5>",
+        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.chroot.sh<enter><wait5>",
         "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
       ],
       "disk_size": 32768,
