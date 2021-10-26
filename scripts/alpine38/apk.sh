@@ -27,8 +27,8 @@ retry() {
 }
 
 # Configure the main repository mirrors.
-printf "https://sjc.edge.kernel.org/alpine/v3.8/main\n" > /etc/apk/repositories
-printf "https://sjc.edge.kernel.org/alpine/v3.8/community\n" >> /etc/apk/repositories
+printf "http://sjc.edge.kernel.org/alpine/v3.8/main\n" > /etc/apk/repositories
+printf "http://sjc.edge.kernel.org/alpine/v3.8/community\n" >> /etc/apk/repositories
 
 # Update the package list and then upgrade.
 retry apk update --no-cache
