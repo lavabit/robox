@@ -2282,6 +2282,40 @@
     },
     {
       "scripts": [
+        "scripts/openbsd7/pkg.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
+      "only": [
+        "generic-openbsd7-parallels"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/openbsd7/hostname.sh",
+        "scripts/openbsd7/motd.sh",
+        "scripts/openbsd7/vagrant.sh",
+        "scripts/openbsd7/profile.sh",
+        "scripts/openbsd7/virtualbox.sh",
+        "scripts/openbsd7/parallels.sh",
+        "scripts/openbsd7/vmware.sh",
+        "scripts/openbsd7/qemu.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-openbsd7-parallels"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -6847,6 +6881,71 @@
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
       "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-openbsd7-parallels",
+      "vm_name": "generic-openbsd7-parallels",
+      "output_directory": "output/generic-openbsd7-parallels",
+      "boot_wait": "40s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "S<enter><wait>",
+        "dhclient em0<enter><wait5>",
+        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd7.install.cfg<enter><wait>",
+        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd7.install.chroot.sh<enter><wait>",
+        "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "other",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/7.0/amd64/cd70.iso",
+      "iso_checksum": "sha256:3e3e21b1aa4448cffba103f954b3604c69361ca1fe9a4e15287fc7298171b11f",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -h -p now",
+      "parallels_tools_flavor": "other",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-other.iso",
       "prlctl_version_file": "/root/parallels-tools-version.txt"
     }
   ],

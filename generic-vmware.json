@@ -2282,6 +2282,40 @@
     },
     {
       "scripts": [
+        "scripts/openbsd7/pkg.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
+      "only": [
+        "generic-openbsd7-vmware"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/openbsd7/hostname.sh",
+        "scripts/openbsd7/motd.sh",
+        "scripts/openbsd7/vagrant.sh",
+        "scripts/openbsd7/profile.sh",
+        "scripts/openbsd7/virtualbox.sh",
+        "scripts/openbsd7/parallels.sh",
+        "scripts/openbsd7/vmware.sh",
+        "scripts/openbsd7/qemu.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-openbsd7-vmware"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -5539,6 +5573,50 @@
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-openbsd7-vmware",
+      "vm_name": "generic-openbsd7-vmware",
+      "vmdk_name": "generic-openbsd7-vmware",
+      "output_directory": "output/generic-openbsd7-vmware",
+      "boot_wait": "40s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "S<enter><wait>",
+        "dhclient em0<enter><wait5>",
+        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd7.install.cfg<enter><wait>",
+        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd7.install.chroot.sh<enter><wait>",
+        "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "freeBSD-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/7.0/amd64/cd70.iso",
+      "iso_checksum": "sha256:3e3e21b1aa4448cffba103f954b3604c69361ca1fe9a4e15287fc7298171b11f",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -h -p now",
+      "tools_upload_flavor": "freebsd"
     }
   ],
   "post-processors": [
