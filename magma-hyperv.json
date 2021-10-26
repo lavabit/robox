@@ -142,7 +142,7 @@
                 "scripts/gentoo/emerge.sh"
             ],
             "type": "shell",
-            "timeout": "240m",
+            "timeout": "720m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -159,7 +159,7 @@
                 "scripts/gentoo/magma.sh"
             ],
             "type": "shell",
-            "timeout": "240m",
+            "timeout": "720m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",

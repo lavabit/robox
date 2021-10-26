@@ -334,7 +334,7 @@
     },
     {
       "type": "shell",
-      "timeout": "240m",
+      "timeout": "720m",
       "scripts": [
         "scripts/gentoo/network.sh",
         "scripts/gentoo/emerge.sh"
@@ -347,7 +347,7 @@
     },
     {
       "type": "shell",
-      "timeout": "240m",
+      "timeout": "720m",
       "scripts": [
         "scripts/gentoo/virtualbox.sh",
         "scripts/gentoo/parallels.sh",
