@@ -876,7 +876,7 @@
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_timeout": "7200s",
+            "ssh_timeout": "9800s",
             "shutdown_command": "shutdown -hP now",
             "generation": 1,
             "headless": true,
