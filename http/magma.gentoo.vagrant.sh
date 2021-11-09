@@ -1124,9 +1124,9 @@ echo 'Downloading Image Overlay'
 # host="https://gentoo.osuosl.org"
 host="https://mirrors.kernel.org/gentoo"
 # host="https://mirror.yandex.ru/gentoo-distfiles/"
-tarball=$(wget -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/ -O - | grep -E -o -e "stage3-amd64-nomultilib-[0-9]{8}T[0-9]{6}Z.tar.xz" | uniq)
-wget --tries=5 --progress=dot:binary $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/$tarball || exit 1
-wget --tries=5 -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib/$tarball.DIGESTS.asc || exit 1
+tarball=$(wget -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-systemd/ -O - | grep -E -o -e "stage3-amd64-nomultilib-systemd-[0-9]{8}T[0-9]{6}Z.tar.xz" | uniq)
+wget --tries=5 --progress=dot:binary $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-systemd/$tarball || exit 1
+wget --tries=5 -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-systemd/$tarball.DIGESTS.asc || exit 1
 
 echo 'Downloading Portage'
 wget --tries=5 --progress=dot:binary $host/snapshots/portage-latest.tar.bz2 || exit 1
