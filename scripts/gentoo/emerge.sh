@@ -37,16 +37,16 @@ printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
 etc-update --automode -5
 
 # Start the syslog service.
-# rc-update add rsyslog default && rc-service rsyslog start
-systemctl enable rsyslog.service && systemctl start rsyslog.service
+rc-update add rsyslog default && rc-service rsyslog start
+# systemctl enable rsyslog.service && systemctl start rsyslog.service
 
 # Start the services we just added so the system will track its own performance.
-# rc-update add sysstat default && rc-service sysstat start
-systemctl enable sysstat.service && systemctl start sysstat.service
+rc-update add sysstat default && rc-service sysstat start
+# systemctl enable sysstat.service && systemctl start sysstat.service
 
 # If the sensors service starts properly, we add it to the default runlevel so it gets initialized during the boot process.
-# (rc-service lm_sensors start && rc-update add lm_sensors default) || rc-update delete lm_sensors default
-(systemctl enable lm_sensors.service && systemctl start lm_sensors.service) || systemctl disable lm_sensors.service
+(rc-service lm_sensors start && rc-update add lm_sensors default) || rc-update delete lm_sensors default
+# (systemctl enable lm_sensors.service && systemctl start lm_sensors.service) || systemctl disable lm_sensors.service
 
 # Create an initial mlocate database.
 updatedb

@@ -13,7 +13,7 @@ emerge --ask=n --autounmask-write=y --autounmask-continue=y app-emulation/qemu-g
 # Perform any configuration file updates.
 etc-update --automode -5
 
-# rc-update add qemu-guest-agent default
-# rc-service qemu-guest-agent start
-systemctl enable qemu-ga-systemd.service
-systemctl start qemu-ga-systemd.service
+rc-update add qemu-guest-agent default
+rc-service qemu-guest-agent start
+# systemctl enable qemu-ga-systemd.service
+# systemctl start qemu-ga-systemd.service
