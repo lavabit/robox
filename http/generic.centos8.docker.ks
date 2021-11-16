@@ -22,7 +22,7 @@ clearpart --all --initlabel
 autopart --nohome
 
 # repo --name=BaseOS
-# url --url=https://mirrors.edge.kernel.org/centos/8.4.2105/BaseOS/x86_64/os/
+# url --url=https://mirrors.edge.kernel.org/centos/8.5.2111/BaseOS/x86_64/os/
 
 # Package setup
 %packages --instLangs=en_US.utf8
