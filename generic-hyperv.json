@@ -4029,7 +4029,7 @@
       "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.3/iso/openSUSE-Leap-15.3-2-NET-x86_64-Media.iso",
+      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.3/iso/openSUSE-Leap-15.3-NET-x86_64-Current.iso",
       "iso_checksum": "sha256:40da6b6fd17f552cd5aa3526d1a5ee091a948c8890ca70d03c9f3f8caa2e0876",
       "ssh_username": "root",
       "ssh_password": "vagrant",
