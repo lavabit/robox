@@ -35,9 +35,9 @@ Submit a pull request with your favorite distro.
 
 The following variants of existing builds have been requested, and will be added at a future date, when time allows (or someone submits a pull request).
 
-[CentOS Stream](https://software.opensuse.org/distributions/tumbleweed)  
+[CentOS Stream](https://www.centos.org/centos-stream/)  
 [Fedora Rawhide](https://fedoraproject.org/wiki/Releases/Rawhide)  
-[OpenSUSE Tumbleweed](https://www.centos.org/centos-stream/)  
+[OpenSUSE Tumbleweed](https://software.opensuse.org/distributions/tumbleweed)  
 
 The following operating systems have been requested by a member of the robox community, but require a volunteer, so they can be incorporated into the robox workflow.
 
