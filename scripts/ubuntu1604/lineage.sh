@@ -423,7 +423,7 @@ export USE_CCACHE=1
 export CCACHE_DIR="\$HOME/cache"
 export CCACHE_COMPRESS=1
 export TMPDIR="\$HOME/temp"
-export PROCESSOR_COUNT=\`cat /proc/cpuinfo | grep processor | wc -l\`
+export PROCESSOR_COUNT=\$(nproc)
 
 # Jack is the Java compiler used by LineageOS 14.1+, and it is memory hungry.
 # We specify a memory limit of 8gb to avoid 'out of memory' errors.
