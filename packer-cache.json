@@ -918,8 +918,8 @@
     {
       "name": "virtualbox-6-1-24",
       "output_directory": "output/virtualbox-6-1-24",
-      "iso_url": "https://download.virtualbox.org/virtualbox/6.1.24/VBoxGuestAdditions_6.1.24.iso",
-      "iso_checksum": "57303e8b4d2e411cdd99dbc429eb32ea48998d2674264fc8dd75b89750011e59",
+      "iso_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
+      "iso_checksum": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
