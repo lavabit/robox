@@ -1316,6 +1316,7 @@
       "timeout": "120m",
       "scripts": [
         "scripts/fedora30/kernel.sh",
+        "scripts/fedora30/updatedb.sh",
         "scripts/fedora30/vga.sh",
         "scripts/fedora30/fixtmp.sh",
         "scripts/fedora30/virtualbox.sh",
@@ -1513,6 +1514,7 @@
       "timeout": "120m",
       "scripts": [
         "scripts/fedora31/kernel.sh",
+        "scripts/fedora31/updatedb.sh",
         "scripts/fedora31/vga.sh",
         "scripts/fedora31/fixtmp.sh",
         "scripts/fedora31/virtualbox.sh",
@@ -1668,6 +1670,7 @@
       "timeout": "120m",
       "scripts": [
         "scripts/fedora32/kernel.sh",
+        "scripts/fedora32/updatedb.sh",
         "scripts/fedora32/vga.sh",
         "scripts/fedora32/fixtmp.sh",
         "scripts/fedora32/virtualbox.sh",
@@ -1919,6 +1922,7 @@
       "timeout": "120m",
       "scripts": [
         "scripts/fedora33/kernel.sh",
+        "scripts/fedora33/updatedb.sh",
         "scripts/fedora33/vga.sh",
         "scripts/fedora33/fixtmp.sh",
         "scripts/fedora33/virtualbox.sh",
@@ -2161,6 +2165,7 @@
       "timeout": "120m",
       "scripts": [
         "scripts/fedora34/kernel.sh",
+        "scripts/fedora34/updatedb.sh",
         "scripts/fedora34/vga.sh",
         "scripts/fedora34/fixtmp.sh",
         "scripts/fedora34/virtualbox.sh",
@@ -2419,6 +2424,7 @@
       "timeout": "120m",
       "scripts": [
         "scripts/fedora35/kernel.sh",
+        "scripts/fedora35/updatedb.sh",
         "scripts/fedora35/vga.sh",
         "scripts/fedora35/fixtmp.sh",
         "scripts/fedora35/virtualbox.sh",
