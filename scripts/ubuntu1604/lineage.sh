@@ -507,13 +507,25 @@ fi
 
 DIRIMAGE="\$HOME/android/lineage/out/target/product/\$DEVICE"
 SYSIMAGE="\$DIRIMAGE/\$VERSION_NAME-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
-SYSIMAGESUM="\$SYSIMAGE.md5sum"
 
-# Verify the image checksum.
-(cd "\$DIRIMAGE" && md5sum -c "\$SYSIMAGESUM") || ( printf "\n\n\nChecksum generation failed.\n\n\n"; exit 1 )
+# Verify the md5sum if it exists, otherwise generate it.
+MD5IMAGESUM="\$SYSIMAGE.md5sum"
+if [ -f "\$MD5IMAGESUM" ]; then
+  (cd "\$DIRIMAGE" && md5sum -c "\$MD5IMAGESUM") || ( printf "\n\n\nThe MD5 hash failed to validate.\n\n\n"; exit 1 )
+else
+  (cd "\$DIRIMAGE" && md5sum "\$SYSIMAGESUM" > "\$MD5IMAGESUM")
+fi
+
+# Verify a sha256sum, or generate it.
+SHAIMAGESUM="\$SYSIMAGE.sha256sum"
+if [ -f "\$SHAIMAGESUM" ]; then
+  (cd "\$DIRIMAGE" && sha256sum -c "\$SHAIMAGESUM") || ( printf "\n\n\nThe SHA256 hash failed to validate.\n\n\n"; exit 1 )
+else
+  (cd "\$DIRIMAGE" && sha256sum "\$SYSIMAGESUM" > "\$SHAIMAGESUM")
+fi
 
 # See what the output directory holds.
-ls -alh "\$SYSIMAGE" "\$SYSIMAGESUM"
+ls -alh "\$SYSIMAGE" "\$MD5IMAGESUM" "\$SHAIMAGESUM"
 
 # Push the new system image to the device.
 # adb push "\$SYSIMAGE" /sdcard/
