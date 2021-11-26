@@ -15,7 +15,6 @@ logvol swap --fstype="swap" --size=2048 --name=swap --vgname=fedora
 logvol / --fstype="xfs" --percent=100 --label="root" --name=root --vgname=fedora
 
 firewall --enabled --service=ssh
-authconfig --enableshadow --passalgo=sha512
 network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora35.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
 
