@@ -1,7 +1,7 @@
 #!/bin/bash -ux
 
 # Needed to check whether we're running atop Parallels.
-zypper --non-interactive install dmidecode
+zypper --non-interactive install --force-resolution dmidecode
 
 # Bail if we are not running atop Parallels.
 if [[ `dmidecode -s system-product-name` != "Parallels Virtual Platform" ]]; then

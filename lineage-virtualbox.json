@@ -9,6 +9,7 @@
                 "scripts/ubuntu1604/network.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -32,6 +33,7 @@
                 "scripts/ubuntu1604/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
@@ -57,6 +59,7 @@
                 "scripts/ubuntu1604/lineage.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
@@ -75,6 +78,7 @@
                 "scripts/common/lockout.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "except": [
@@ -89,6 +93,7 @@
             "vm_name": "lineage-virtualbox",
             "output_directory": "output/lineage-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",
@@ -144,6 +149,7 @@
             "vm_name": "lineage-nash-virtualbox",
             "output_directory": "output/lineage-nash-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",

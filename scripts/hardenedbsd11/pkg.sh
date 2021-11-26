@@ -33,15 +33,15 @@ export ASSUME_ALWAYS_YES=yes
 
 # Force the use of HTTPS for package updates.
 mkdir -p /usr/local/etc/pkg/repos/
-#echo 'HardenedBSD: { url: "pkg+https://pkg.hardenedbsd.org/HardenedBSD/pkg/${ABI}" }' > /usr/local/etc/pkg/repos/HardenedBSD.conf
-echo 'HardenedBSD: { url: "pkg+https://pkg.freebsd.org/${ABI}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+#echo 'HardenedBSD: { url: "pkg+http://pkg.hardenedbsd.org/HardenedBSD/pkg/${ABI}" }' > /usr/local/etc/pkg/repos/HardenedBSD.conf
+echo 'HardenedBSD: { url: "pkg+http://pkg.freebsd.org/${ABI}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 
 retry pkg bootstrap
 retry pkg-static update --force
 retry pkg-static upgrade --yes --force
 
 # Generic system utils.
-retry pkg install --yes curl wget sudo bash gnuls gnugrep psmisc vim-console
+retry pkg install --yes curl wget sudo bash gnuls gnugrep psmisc vim
 
 # Since most scripts expect bash to be in the bin directory, create a symlink.
 ln -s /usr/local/bin/bash /bin/bash

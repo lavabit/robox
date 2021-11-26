@@ -43,10 +43,10 @@ nameserver 4.2.2.2
 nameserver 208.67.220.220
 EOF
 
-systemctl enable sshd
 systemctl enable dhcpcd
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
+rm --force /run/systemd/generator.early/sshd.service && systemctl enable sshd
 
 # Ensure the network is always eth0.
 sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 net.ifnames=0 biosdevname=0 elevator=noop vga=792"/g' /etc/default/grub

@@ -7,7 +7,7 @@ error() {
         fi
 }
 
-zypper --non-interactive install dmidecode; error
+zypper --non-interactive install --force-resolution dmidecode; error
 
 # Bail if we are not running inside VMWare.
 if [[ `dmidecode -s system-product-name` != "VMware Virtual Platform" ]]; then
@@ -18,7 +18,7 @@ fi
 printf "Installing the VMWare Tools.\n"
 
 
-zypper --non-interactive install open-vm-tools; error
+zypper --non-interactive install --force-resolution open-vm-tools; error
 
 systemctl enable vmtoolsd
 systemctl start vmtoolsd

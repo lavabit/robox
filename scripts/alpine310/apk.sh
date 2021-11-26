@@ -32,7 +32,7 @@ printf "https://sjc.edge.kernel.org/alpine/v3.10/community\n" >> /etc/apk/reposi
 
 # Update the package list and then upgrade.
 retry apk update --no-cache
-retry apk update upgrade
+retry apk upgrade
 
 # Install various basic system utilities.
 retry apk add vim man man-pages bash gawk wget curl sudo lsof file grep readline mdocml sysstat lm_sensors findutils sysfsutils dmidecode libmagic sqlite-libs ca-certificates ncurses-libs ncurses-terminfo ncurses-terminfo-base psmisc

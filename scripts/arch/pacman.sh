@@ -40,11 +40,7 @@ retry pacman --sync --noconfirm --refresh vim curl wget sysstat lsof psmisc man-
 systemctl enable sysstat.service && systemctl start sysstat.service
 
 # Enable the entropy daemon.
-systemctl enable haveged
-
-# Ensure the daily update timers are enabled.
-systemctl enable man-db.timer
-systemctl enable updatedb.timer
+systemctl enable haveged.service && systemctl start haveged.service
 
 # Initialize the databases.
 updatedb

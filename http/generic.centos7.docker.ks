@@ -32,6 +32,8 @@ less
 -gettext*
 -bind-license
 -freetype
+-fprintd-pam
+-intltool
 iputils
 iproute
 systemd

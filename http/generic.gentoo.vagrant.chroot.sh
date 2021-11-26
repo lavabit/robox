@@ -19,8 +19,8 @@ MAKEOPTS="-j8"
 EMERGE_DEFAULT_OPTS="-j8 --with-bdeps=y --quiet-build=y --complete-graph"
 FEATURES="\${FEATURES} parallel-fetch"
 USE="nls alsa usb unicode openssl"
-USE_PYTHON="3.7 2.7"
-PYTHON_TARGETS="python3_7 python2_7"
+USE_PYTHON="3.8 2.7"
+PYTHON_TARGETS="python3_8 python2_7"
 GRUB_PLATFORMS="emu efi-32 efi-64 pc"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
@@ -70,6 +70,8 @@ if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
 fi
 
 echo 'Compiling Kernel'
+# Setup the /usr/src/linux symlink so it points at the currently installed kernel tree.
+eselect kernel set 1
 cd /usr/src/linux
 cat <<-EOF > .config
 

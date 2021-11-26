@@ -1,0 +1,73 @@
+# Hyper-V Troubleshooting Experiments
+set hw.ata.disk_enable=1
+set kern.cam.ada.write_cache=0
+set hw.ata.ata_wc=0
+set hw.ata.wc=0
+boot -s
+
+set hint.ahci.disabled=1
+set hw.ata.wc=0
+set ahci_load=NO
+set nata_load=YES
+set natacard_load=YES
+set natadisk_load=YES
+set nataisa_load=YES
+set natapci_load=YES
+set natapicd_load=YES
+set natapifd_load=YES
+set natapist_load=YES
+set natausb_load=YES
+boot
+
+set hint.ahci.force150=1
+set hint.ahci.nofeatures=1
+set hw.ahci.msi.enable=0
+boot -v
+
+
+set hint.ata.0.disabled=1
+set hint.acpi.0.disabled=1
+set hint.ehci.0.disabled=1
+set hint.xhci.0.disabled=1
+set hw.clflush_disable=1
+set hw.ata.atapi_dma=0
+set hw.ata.ata_dma=0
+set hw.bwn.usedma=0
+set kern.cam.ada.write_cache=0
+set hw.ata.wc=0
+set hw.ata.ata_wc=0
+set ata_load=NO
+set nata_load=NO
+set natapci_load=NO
+set natadisk_load=NO
+set atapci_load=NO
+set ahci_load=NO
+set ehci_load=NO
+set xhci_LOAD=NO
+set acpi_LOAD=NO
+boot -v
+
+set hw.ata.wc=0
+set hint.atapci.0.msi=0
+set hw.ata.ata_dma_check_80pin=0
+set hw.ahci.force=1
+boot -v
+
+set hw.bwn.usedma=0
+set hw.ata.atapi_dma=0
+set hw.ata.ata_dma=0
+set hw.ata.wc=0
+boot
+
+
+set hw.bwn.usedma=0
+set hw.ata.atapi_dma=0
+set hw.ata.ata_dma=0
+set hw.ata.wc=0
+set hint.ahci.force150=1
+set hint.ahci.nofeatures=1
+set hw.ahci.msi.enable=0
+boot -v
+
+dd if=/dev/zero of=/dev/ad0 bs=8k count=16
+natacontrol cap ad0

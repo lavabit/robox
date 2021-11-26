@@ -9,6 +9,7 @@
     "provisioners": [
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
@@ -25,6 +26,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/kernel.sh",
                 "scripts/centos6/postfix.sh",
@@ -44,6 +46,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos7/network.sh",
                 "scripts/centos7/yum.sh",
@@ -59,6 +62,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos7/kernel.sh",
                 "scripts/centos7/floppy.sh",
@@ -94,6 +98,7 @@
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
@@ -103,7 +108,7 @@
             "disk_image": false,
             "disk_compression": true,
             "disk_discard": "unmap",
-            "disk_detect_zeroes": "unmap",            
+            "disk_detect_zeroes": "unmap",
             "net_device": "virtio-net",
             "cpus": 2,
             "memory": 2048,
@@ -125,6 +130,7 @@
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
@@ -156,6 +162,7 @@
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.docker.ks<enter><wait>"
             ],
@@ -187,6 +194,7 @@
             "accelerator": "kvm",
             "qemu_binary": "/usr/libexec/qemu-kvm",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.docker.ks<enter><wait>"
             ],

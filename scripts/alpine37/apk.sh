@@ -27,12 +27,12 @@ retry() {
 }
 
 # Configure the main repository mirrors.
-printf "https://sjc.edge.kernel.org/alpine/v3.7/main\n" > /etc/apk/repositories
-printf "https://sjc.edge.kernel.org/alpine/v3.7/community\n" >> /etc/apk/repositories
+printf "http://sjc.edge.kernel.org/alpine/v3.7/main\n" > /etc/apk/repositories
+printf "http://sjc.edge.kernel.org/alpine/v3.7/community\n" >> /etc/apk/repositories
 
 # Update the package list and then upgrade.
 retry apk update --no-cache
-retry apk update upgrade
+retry apk upgrade
 
 # Install various basic system utilities.
 retry apk add vim man man-pages bash gawk wget curl sudo lsof file grep readline mdocml sysstat lm_sensors findutils sysfsutils dmidecode libmagic sqlite-libs ca-certificates ncurses-libs ncurses-terminfo ncurses-terminfo-base psmisc

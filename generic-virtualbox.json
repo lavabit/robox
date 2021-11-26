@@ -5,6 +5,7 @@
   "provisioners": [
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle7/network.sh",
         "scripts/oracle7/yum.sh"
@@ -18,6 +19,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle7/kernel.sh",
         "scripts/oracle7/floppy.sh",
@@ -39,6 +41,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/opensuse42/zypper.sh",
         "scripts/opensuse42/virtualbox.sh",
@@ -59,6 +62,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine35/network.sh",
         "scripts/alpine35/apk.sh"
@@ -72,6 +76,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine35/hostname.sh",
         "scripts/alpine35/lsb.sh",
@@ -94,6 +99,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine36/network.sh",
         "scripts/alpine36/apk.sh"
@@ -107,6 +113,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine36/hostname.sh",
         "scripts/alpine36/lsb.sh",
@@ -129,6 +136,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine37/network.sh",
         "scripts/alpine37/apk.sh"
@@ -142,6 +150,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine37/hostname.sh",
         "scripts/alpine37/lsb.sh",
@@ -164,6 +173,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine38/network.sh",
         "scripts/alpine38/apk.sh"
@@ -177,6 +187,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine38/hostname.sh",
         "scripts/alpine38/lsb.sh",
@@ -199,6 +210,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos6/yum.sh",
         "scripts/centos6/base.sh",
@@ -213,6 +225,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos6/kernel.sh",
         "scripts/centos6/vga.sh",
@@ -237,6 +250,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos7/network.sh",
         "scripts/centos7/yum.sh",
@@ -252,6 +266,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos7/kernel.sh",
         "scripts/centos7/floppy.sh",
@@ -277,6 +292,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel7/network.sh",
         "scripts/rhel7/yum.sh",
@@ -292,6 +308,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel7/kernel.sh",
         "scripts/rhel7/floppy.sh",
@@ -316,11 +333,12 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "720m",
       "scripts": [
         "scripts/gentoo/network.sh",
         "scripts/gentoo/emerge.sh"
       ],
-      "type": "shell",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -328,6 +346,8 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "720m",
       "scripts": [
         "scripts/gentoo/virtualbox.sh",
         "scripts/gentoo/parallels.sh",
@@ -335,7 +355,6 @@
         "scripts/gentoo/qemu.sh",
         "scripts/gentoo/vagrant.sh"
       ],
-      "type": "shell",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -348,6 +367,7 @@
         "scripts/arch/pacman.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -364,6 +384,7 @@
         "scripts/arch/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -377,6 +398,7 @@
         "scripts/debian8/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -396,6 +418,7 @@
         "scripts/debian8/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -409,6 +432,7 @@
         "scripts/debian9/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -429,6 +453,7 @@
         "scripts/debian9/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -438,8 +463,10 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora25/fixdns.sh",
+        "scripts/fedora25/hostname.sh",
         "scripts/fedora25/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -450,6 +477,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora25/base.sh"
       ],
@@ -462,9 +490,11 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora25/kernel.sh",
         "scripts/fedora25/vga.sh",
+        "scripts/fedora25/fixtmp.sh",
         "scripts/fedora25/virtualbox.sh",
         "scripts/fedora25/parallels.sh",
         "scripts/fedora25/vmware.sh",
@@ -481,8 +511,10 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora26/fixdns.sh",
+        "scripts/fedora26/hostname.sh",
         "scripts/fedora26/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -493,6 +525,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora26/base.sh"
       ],
@@ -505,9 +538,11 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora26/kernel.sh",
         "scripts/fedora26/vga.sh",
+        "scripts/fedora26/fixtmp.sh",
         "scripts/fedora26/virtualbox.sh",
         "scripts/fedora26/parallels.sh",
         "scripts/fedora26/vmware.sh",
@@ -524,8 +559,10 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora27/fixdns.sh",
+        "scripts/fedora27/hostname.sh",
         "scripts/fedora27/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -536,6 +573,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora27/base.sh"
       ],
@@ -548,9 +586,11 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora27/kernel.sh",
         "scripts/fedora27/vga.sh",
+        "scripts/fedora27/fixtmp.sh",
         "scripts/fedora27/virtualbox.sh",
         "scripts/fedora27/parallels.sh",
         "scripts/fedora27/vmware.sh",
@@ -567,8 +607,10 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora28/fixdns.sh",
+        "scripts/fedora28/hostname.sh",
         "scripts/fedora28/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -579,6 +621,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora28/base.sh"
       ],
@@ -591,9 +634,11 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora28/kernel.sh",
         "scripts/fedora28/vga.sh",
+        "scripts/fedora28/fixtmp.sh",
         "scripts/fedora28/virtualbox.sh",
         "scripts/fedora28/parallels.sh",
         "scripts/fedora28/vmware.sh",
@@ -610,8 +655,10 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora29/fixdns.sh",
+        "scripts/fedora29/hostname.sh",
         "scripts/fedora29/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -622,6 +669,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora29/base.sh"
       ],
@@ -634,9 +682,11 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora29/kernel.sh",
         "scripts/fedora29/vga.sh",
+        "scripts/fedora29/fixtmp.sh",
         "scripts/fedora29/virtualbox.sh",
         "scripts/fedora29/parallels.sh",
         "scripts/fedora29/vmware.sh",
@@ -666,6 +716,7 @@
         "scripts/freebsd11/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -678,6 +729,7 @@
         "scripts/openbsd6/pkg.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
@@ -697,6 +749,7 @@
         "scripts/openbsd6/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -711,6 +764,7 @@
         "scripts/ubuntu1604/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -731,6 +785,7 @@
         "scripts/ubuntu1604/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -744,6 +799,7 @@
         "scripts/ubuntu1610/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -764,6 +820,7 @@
         "scripts/ubuntu1610/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -777,6 +834,7 @@
         "scripts/ubuntu1704/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -797,6 +855,7 @@
         "scripts/ubuntu1704/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -810,6 +869,7 @@
         "scripts/ubuntu1710/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -830,6 +890,7 @@
         "scripts/ubuntu1710/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -843,6 +904,7 @@
         "scripts/ubuntu1804/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -863,6 +925,7 @@
         "scripts/ubuntu1804/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -876,6 +939,7 @@
         "scripts/ubuntu1810/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -896,6 +960,7 @@
         "scripts/ubuntu1810/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -918,6 +983,7 @@
         "scripts/freebsd12/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -927,6 +993,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel6/network.sh",
         "scripts/rhel6/yum.sh",
@@ -942,6 +1009,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel6/kernel.sh",
         "scripts/rhel6/vga.sh",
@@ -967,6 +1035,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel8/network.sh",
         "scripts/rhel8/dnf.sh",
@@ -982,6 +1051,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/rhel8/kernel.sh",
         "scripts/rhel8/floppy.sh",
@@ -1020,6 +1090,7 @@
         "scripts/hardenedbsd11/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -1042,6 +1113,7 @@
         "scripts/dragonflybsd5/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -1054,6 +1126,7 @@
         "scripts/netbsd8/pkg.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
@@ -1073,6 +1146,7 @@
         "scripts/netbsd8/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1096,6 +1170,7 @@
         "scripts/hardenedbsd12/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -1105,6 +1180,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine39/network.sh",
         "scripts/alpine39/apk.sh"
@@ -1118,6 +1194,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine39/hostname.sh",
         "scripts/alpine39/lsb.sh",
@@ -1144,6 +1221,7 @@
         "scripts/debian10/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1163,6 +1241,7 @@
         "scripts/debian10/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1176,6 +1255,7 @@
         "scripts/ubuntu1904/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1196,6 +1276,7 @@
         "scripts/ubuntu1904/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1205,8 +1286,10 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora30/fixdns.sh",
+        "scripts/fedora30/hostname.sh",
         "scripts/fedora30/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -1217,6 +1300,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora30/base.sh"
       ],
@@ -1229,9 +1313,12 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora30/kernel.sh",
+        "scripts/fedora30/updatedb.sh",
         "scripts/fedora30/vga.sh",
+        "scripts/fedora30/fixtmp.sh",
         "scripts/fedora30/virtualbox.sh",
         "scripts/fedora30/parallels.sh",
         "scripts/fedora30/vmware.sh",
@@ -1248,6 +1335,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle8/network.sh",
         "scripts/oracle8/dnf.sh"
@@ -1261,6 +1349,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/oracle8/kernel.sh",
         "scripts/oracle8/floppy.sh",
@@ -1282,6 +1371,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine310/network.sh",
         "scripts/alpine310/apk.sh"
@@ -1295,6 +1385,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine310/hostname.sh",
         "scripts/alpine310/lsb.sh",
@@ -1317,16 +1408,9 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
-        "scripts/opensuse15/zypper.sh",
-        "scripts/opensuse15/virtualbox.sh",
-        "scripts/opensuse15/parallels.sh",
-        "scripts/opensuse15/vmware.sh",
-        "scripts/opensuse15/qemu.sh",
-        "scripts/opensuse15/vagrant.sh",
-        "scripts/opensuse15/network.sh",
-        "scripts/opensuse15/floppy.sh",
-        "scripts/opensuse15/postfix.sh"
+        "scripts/opensuse15/zypper.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
@@ -1337,6 +1421,28 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/opensuse15/virtualbox.sh",
+        "scripts/opensuse15/parallels.sh",
+        "scripts/opensuse15/vmware.sh",
+        "scripts/opensuse15/qemu.sh",
+        "scripts/opensuse15/vagrant.sh",
+        "scripts/opensuse15/network.sh",
+        "scripts/opensuse15/floppy.sh",
+        "scripts/opensuse15/postfix.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-opensuse15-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos8/network.sh",
         "scripts/centos8/dnf.sh",
@@ -1352,6 +1458,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/centos8/kernel.sh",
         "scripts/centos8/floppy.sh",
@@ -1377,8 +1484,10 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora31/fixdns.sh",
+        "scripts/fedora31/hostname.sh",
         "scripts/fedora31/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -1389,6 +1498,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora31/base.sh"
       ],
@@ -1401,9 +1511,12 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora31/kernel.sh",
+        "scripts/fedora31/updatedb.sh",
         "scripts/fedora31/vga.sh",
+        "scripts/fedora31/fixtmp.sh",
         "scripts/fedora31/virtualbox.sh",
         "scripts/fedora31/parallels.sh",
         "scripts/fedora31/vmware.sh",
@@ -1424,6 +1537,7 @@
         "scripts/ubuntu1910/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1444,6 +1558,7 @@
         "scripts/ubuntu1910/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1453,6 +1568,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine311/network.sh",
         "scripts/alpine311/apk.sh"
@@ -1466,6 +1582,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine311/hostname.sh",
         "scripts/alpine311/lsb.sh",
@@ -1492,6 +1609,7 @@
         "scripts/ubuntu2004/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1512,6 +1630,7 @@
         "scripts/ubuntu2004/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1521,8 +1640,10 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora32/fixdns.sh",
+        "scripts/fedora32/hostname.sh",
         "scripts/fedora32/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -1533,6 +1654,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora32/base.sh"
       ],
@@ -1545,9 +1667,12 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora32/kernel.sh",
+        "scripts/fedora32/updatedb.sh",
         "scripts/fedora32/vga.sh",
+        "scripts/fedora32/fixtmp.sh",
         "scripts/fedora32/virtualbox.sh",
         "scripts/fedora32/parallels.sh",
         "scripts/fedora32/vmware.sh",
@@ -1567,6 +1692,7 @@
         "scripts/netbsd9/pkg.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
@@ -1586,6 +1712,7 @@
         "scripts/netbsd9/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1596,6 +1723,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine312/network.sh",
         "scripts/alpine312/apk.sh"
@@ -1609,6 +1737,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/alpine312/hostname.sh",
         "scripts/alpine312/lsb.sh",
@@ -1635,6 +1764,7 @@
         "scripts/devuan1/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1652,6 +1782,7 @@
         "scripts/devuan1/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1665,6 +1796,7 @@
         "scripts/devuan2/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1682,6 +1814,7 @@
         "scripts/devuan2/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1695,6 +1828,7 @@
         "scripts/devuan3/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1712,6 +1846,7 @@
         "scripts/devuan3/qemu.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1725,6 +1860,7 @@
         "scripts/ubuntu2010/network.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
@@ -1746,6 +1882,7 @@
         "scripts/ubuntu2010/cleanup.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
@@ -1755,8 +1892,10 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora33/fixdns.sh",
+        "scripts/fedora33/hostname.sh",
         "scripts/fedora33/dnf.sh"
       ],
       "start_retry_timeout": "15m",
@@ -1767,6 +1906,7 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora33/base.sh"
       ],
@@ -1779,9 +1919,12 @@
     },
     {
       "type": "shell",
+      "timeout": "120m",
       "scripts": [
         "scripts/fedora33/kernel.sh",
+        "scripts/fedora33/updatedb.sh",
         "scripts/fedora33/vga.sh",
+        "scripts/fedora33/fixtmp.sh",
         "scripts/fedora33/virtualbox.sh",
         "scripts/fedora33/parallels.sh",
         "scripts/fedora33/vmware.sh",
@@ -1797,6 +1940,508 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine313/network.sh",
+        "scripts/alpine313/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine313-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine313/hostname.sh",
+        "scripts/alpine313/lsb.sh",
+        "scripts/alpine313/floppy.sh",
+        "scripts/alpine313/vagrant.sh",
+        "scripts/alpine313/sshd.sh",
+        "scripts/alpine313/virtualbox.sh",
+        "scripts/alpine313/parallels.sh",
+        "scripts/alpine313/vmware.sh",
+        "scripts/alpine313/qemu.sh",
+        "scripts/alpine313/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine313-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine314/network.sh",
+        "scripts/alpine314/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine314-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine314/hostname.sh",
+        "scripts/alpine314/lsb.sh",
+        "scripts/alpine314/floppy.sh",
+        "scripts/alpine314/vagrant.sh",
+        "scripts/alpine314/sshd.sh",
+        "scripts/alpine314/virtualbox.sh",
+        "scripts/alpine314/parallels.sh",
+        "scripts/alpine314/vmware.sh",
+        "scripts/alpine314/qemu.sh",
+        "scripts/alpine314/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine314-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2104/apt.sh",
+        "scripts/ubuntu2104/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2104-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2104/floppy.sh",
+        "scripts/ubuntu2104/vagrant.sh",
+        "scripts/ubuntu2104/profile.sh",
+        "scripts/ubuntu2104/motd.sh",
+        "scripts/ubuntu2104/fixtty.sh",
+        "scripts/ubuntu2104/fixkvp.sh",
+        "scripts/ubuntu2104/virtualbox.sh",
+        "scripts/ubuntu2104/parallels.sh",
+        "scripts/ubuntu2104/vmware.sh",
+        "scripts/ubuntu2104/qemu.sh",
+        "scripts/ubuntu2104/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2104-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky8/network.sh",
+        "scripts/rocky8/dnf.sh",
+        "scripts/rocky8/base.sh",
+        "scripts/rocky8/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky8-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky8/kernel.sh",
+        "scripts/rocky8/floppy.sh",
+        "scripts/rocky8/virtualbox.sh",
+        "scripts/rocky8/parallels.sh",
+        "scripts/rocky8/vmware.sh",
+        "scripts/rocky8/qemu.sh",
+        "scripts/rocky8/vagrant.sh",
+        "scripts/rocky8/tuning.sh",
+        "scripts/rocky8/sshd.sh",
+        "scripts/rocky8/randomness.sh",
+        "scripts/rocky8/updatedb.sh",
+        "scripts/rocky8/cleanup.sh",
+        "scripts/rocky8/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky8-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alma8/network.sh",
+        "scripts/alma8/dnf.sh",
+        "scripts/alma8/base.sh",
+        "scripts/alma8/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma8-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alma8/kernel.sh",
+        "scripts/alma8/floppy.sh",
+        "scripts/alma8/virtualbox.sh",
+        "scripts/alma8/parallels.sh",
+        "scripts/alma8/vmware.sh",
+        "scripts/alma8/qemu.sh",
+        "scripts/alma8/vagrant.sh",
+        "scripts/alma8/tuning.sh",
+        "scripts/alma8/sshd.sh",
+        "scripts/alma8/randomness.sh",
+        "scripts/alma8/updatedb.sh",
+        "scripts/alma8/cleanup.sh",
+        "scripts/alma8/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma8-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora34/fixdns.sh",
+        "scripts/fedora34/hostname.sh",
+        "scripts/fedora34/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora34-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora34/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora34-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora34/kernel.sh",
+        "scripts/fedora34/updatedb.sh",
+        "scripts/fedora34/vga.sh",
+        "scripts/fedora34/fixtmp.sh",
+        "scripts/fedora34/virtualbox.sh",
+        "scripts/fedora34/parallels.sh",
+        "scripts/fedora34/vmware.sh",
+        "scripts/fedora34/qemu.sh",
+        "scripts/fedora34/vagrant.sh",
+        "scripts/fedora34/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora34-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/freebsd13/pkg.sh",
+        "scripts/freebsd13/hostname.sh",
+        "scripts/freebsd13/kernel.sh",
+        "scripts/freebsd13/firstboot.sh",
+        "scripts/freebsd13/motd.sh",
+        "scripts/freebsd13/vagrant.sh",
+        "scripts/freebsd13/virtualbox.sh",
+        "scripts/freebsd13/parallels.sh",
+        "scripts/freebsd13/vmware.sh",
+        "scripts/freebsd13/qemu.sh",
+        "scripts/freebsd13/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-freebsd13-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/hardenedbsd13/pkg.sh",
+        "scripts/hardenedbsd13/hostname.sh",
+        "scripts/hardenedbsd13/kernel.sh",
+        "scripts/hardenedbsd13/firstboot.sh",
+        "scripts/hardenedbsd13/motd.sh",
+        "scripts/hardenedbsd13/vagrant.sh",
+        "scripts/hardenedbsd13/virtualbox.sh",
+        "scripts/hardenedbsd13/parallels.sh",
+        "scripts/hardenedbsd13/vmware.sh",
+        "scripts/hardenedbsd13/qemu.sh",
+        "scripts/hardenedbsd13/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd13-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/dragonflybsd6/pkg.sh",
+        "scripts/dragonflybsd6/hostname.sh",
+        "scripts/dragonflybsd6/kernel.sh",
+        "scripts/dragonflybsd6/firstboot.sh",
+        "scripts/dragonflybsd6/motd.sh",
+        "scripts/dragonflybsd6/vagrant.sh",
+        "scripts/dragonflybsd6/virtualbox.sh",
+        "scripts/dragonflybsd6/parallels.sh",
+        "scripts/dragonflybsd6/vmware.sh",
+        "scripts/dragonflybsd6/qemu.sh",
+        "scripts/dragonflybsd6/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-dragonflybsd6-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian11/apt.sh",
+        "scripts/debian11/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian11-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian11/floppy.sh",
+        "scripts/debian11/profile.sh",
+        "scripts/debian11/vagrant.sh",
+        "scripts/debian11/motd.sh",
+        "scripts/debian11/fixtty.sh",
+        "scripts/debian11/virtualbox.sh",
+        "scripts/debian11/parallels.sh",
+        "scripts/debian11/vmware.sh",
+        "scripts/debian11/qemu.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian11-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/openbsd7/pkg.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
+      "only": [
+        "generic-openbsd7-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/openbsd7/hostname.sh",
+        "scripts/openbsd7/motd.sh",
+        "scripts/openbsd7/vagrant.sh",
+        "scripts/openbsd7/profile.sh",
+        "scripts/openbsd7/virtualbox.sh",
+        "scripts/openbsd7/parallels.sh",
+        "scripts/openbsd7/vmware.sh",
+        "scripts/openbsd7/qemu.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-openbsd7-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2110/apt.sh",
+        "scripts/ubuntu2110/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2110-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2110/floppy.sh",
+        "scripts/ubuntu2110/vagrant.sh",
+        "scripts/ubuntu2110/profile.sh",
+        "scripts/ubuntu2110/motd.sh",
+        "scripts/ubuntu2110/fixtty.sh",
+        "scripts/ubuntu2110/fixkvp.sh",
+        "scripts/ubuntu2110/virtualbox.sh",
+        "scripts/ubuntu2110/parallels.sh",
+        "scripts/ubuntu2110/vmware.sh",
+        "scripts/ubuntu2110/qemu.sh",
+        "scripts/ubuntu2110/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2110-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine315/network.sh",
+        "scripts/alpine315/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine315-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine315/hostname.sh",
+        "scripts/alpine315/lsb.sh",
+        "scripts/alpine315/floppy.sh",
+        "scripts/alpine315/vagrant.sh",
+        "scripts/alpine315/sshd.sh",
+        "scripts/alpine315/virtualbox.sh",
+        "scripts/alpine315/parallels.sh",
+        "scripts/alpine315/vmware.sh",
+        "scripts/alpine315/qemu.sh",
+        "scripts/alpine315/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine315-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora35/fixdns.sh",
+        "scripts/fedora35/hostname.sh",
+        "scripts/fedora35/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora35-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora35/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora35-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora35/kernel.sh",
+        "scripts/fedora35/updatedb.sh",
+        "scripts/fedora35/vga.sh",
+        "scripts/fedora35/fixtmp.sh",
+        "scripts/fedora35/virtualbox.sh",
+        "scripts/fedora35/parallels.sh",
+        "scripts/fedora35/vmware.sh",
+        "scripts/fedora35/qemu.sh",
+        "scripts/fedora35/vagrant.sh",
+        "scripts/fedora35/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora35-virtualbox"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -1807,6 +2452,7 @@
         "scripts/common/lockout.sh"
       ],
       "type": "shell",
+      "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true"
     }
@@ -1818,6 +2464,7 @@
       "vm_name": "generic-oracle7-virtualbox",
       "output_directory": "output/generic-oracle7-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
       ],
@@ -1857,9 +2504,10 @@
       "vm_name": "generic-opensuse42-virtualbox",
       "output_directory": "output/generic-opensuse42-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><enter><wait>",
-        "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
+        "linux netsetup=dhcp install=http://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
         "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
         "<enter><wait>"
       ],
@@ -1899,6 +2547,7 @@
       "vm_name": "generic-alpine35-virtualbox",
       "output_directory": "output/generic-alpine35-virtualbox",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -1947,6 +2596,7 @@
       "vm_name": "generic-alpine36-virtualbox",
       "output_directory": "output/generic-alpine36-virtualbox",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -1995,6 +2645,7 @@
       "vm_name": "generic-alpine37-virtualbox",
       "output_directory": "output/generic-alpine37-virtualbox",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -2043,6 +2694,7 @@
       "vm_name": "generic-alpine38-virtualbox",
       "output_directory": "output/generic-alpine38-virtualbox",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -2091,6 +2743,7 @@
       "vm_name": "generic-centos6-virtualbox",
       "output_directory": "output/generic-centos6-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.vagrant.ks<enter><wait>"
       ],
@@ -2130,6 +2783,7 @@
       "vm_name": "generic-centos7-virtualbox",
       "output_directory": "output/generic-centos7-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
       ],
@@ -2169,6 +2823,7 @@
       "vm_name": "generic-rhel7-virtualbox",
       "output_directory": "output/generic-rhel7-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
       ],
@@ -2208,6 +2863,7 @@
       "vm_name": "generic-arch-virtualbox",
       "output_directory": "output/generic-arch-virtualbox",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -2221,7 +2877,7 @@
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<spacebar>net.ifnames=0 biosdevname=0<enter>",
+        "<spacebar>net.ifnames=0 biosdevname=0 systemd.mask=sshd.service<enter>",
         "<wait10><wait10><wait10><wait10><wait10><wait10>",
         "sed -i 's/[#]\\?DNSSEC=.*/DNSSEC=false/g' /etc/systemd/resolved.conf<enter><wait>",
         "systemctl restart systemd-resolved<enter><wait>",
@@ -2246,8 +2902,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2020.12.01-x86_64.iso",
-      "iso_checksum": "sha256:67007bcefa2f954d8068a0506d6d472b5b6cecb1558f3e3a7d4da223b5abe8d8",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2021.11.01-x86_64.iso",
+      "iso_checksum": "sha256:bf8da6a8c3a59b76be8652645f0a2c2845d7566fdc1724f8f7c3a2a7d90f017d",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -2265,6 +2921,7 @@
       "vm_name": "generic-fedora25-virtualbox",
       "output_directory": "output/generic-fedora25-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora25.vagrant.ks ",
@@ -2308,6 +2965,7 @@
       "vm_name": "generic-fedora26-virtualbox",
       "output_directory": "output/generic-fedora26-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora26.vagrant.ks ",
@@ -2351,6 +3009,7 @@
       "vm_name": "generic-fedora27-virtualbox",
       "output_directory": "output/generic-fedora27-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora27.vagrant.ks ",
@@ -2382,8 +3041,8 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
-      "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -2394,6 +3053,7 @@
       "vm_name": "generic-fedora28-virtualbox",
       "output_directory": "output/generic-fedora28-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora28.vagrant.ks ",
@@ -2437,6 +3097,7 @@
       "vm_name": "generic-fedora29-virtualbox",
       "output_directory": "output/generic-fedora29-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora29.vagrant.ks ",
@@ -2480,6 +3141,7 @@
       "vm_name": "generic-debian8-virtualbox",
       "output_directory": "output/generic-debian8-virtualbox",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -2512,8 +3174,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
-      "iso_checksum": "sha256:ea444d6f8ac95fd51d2aedb8015c57410d1ad19b494cedec6914c17fda02733c",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/amd64/iso-dvd/debian-8.11.1-amd64-DVD-1.iso",
+      "iso_checksum": "sha256:a3bd67cd363b609e1340cea06a666cb476b63fc79abf4380c0475dd1b6dc8a31",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -2531,6 +3193,7 @@
       "vm_name": "generic-debian9-virtualbox",
       "output_directory": "output/generic-debian9-virtualbox",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -2563,7 +3226,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://ftp.acc.umu.se/mirror/cdimage/archive/9.13.0/amd64/iso-cd/debian-9.13.0-amd64-netinst.iso",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/9.13.0/amd64/iso-cd/debian-9.13.0-amd64-netinst.iso",
       "iso_checksum": "sha256:71c7e9eb292acc880f84605b1ca2b997f25737fe0a43fc9586f61d35cd2eb43b",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2582,6 +3245,7 @@
       "vm_name": "generic-ubuntu1604-virtualbox",
       "output_directory": "output/generic-ubuntu1604-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait>",
         "<f6><esc>",
@@ -2637,6 +3301,7 @@
       "vm_name": "generic-ubuntu1610-virtualbox",
       "output_directory": "output/generic-ubuntu1610-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -2665,7 +3330,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "http://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
+      "iso_url": "https://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
       "iso_checksum": "sha256:72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2684,6 +3349,7 @@
       "vm_name": "generic-ubuntu1704-virtualbox",
       "output_directory": "output/generic-ubuntu1704-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -2712,7 +3378,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "http://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
+      "iso_url": "https://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
       "iso_checksum": "sha256:ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2731,6 +3397,7 @@
       "vm_name": "generic-ubuntu1710-virtualbox",
       "output_directory": "output/generic-ubuntu1710-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -2759,7 +3426,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "http://old-releases.ubuntu.com/releases/17.10/ubuntu-17.10.1-server-amd64.iso",
+      "iso_url": "https://old-releases.ubuntu.com/releases/17.10/ubuntu-17.10.1-server-amd64.iso",
       "iso_checksum": "sha256:8ff73f1b622276758475c3bd5190b382774626de5a82c50930519381f6c3a3f8",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2778,6 +3445,7 @@
       "vm_name": "generic-ubuntu1804-virtualbox",
       "output_directory": "output/generic-ubuntu1804-virtualbox",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -2818,8 +3486,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04.5/release/ubuntu-18.04.5-server-amd64.iso",
-      "iso_checksum": "sha256:8c5fc24894394035402f66f3824beb7234b757dd2b5531379cb310cedfdf0996",
+      "iso_url": "https://cdimage.ubuntu.com/ubuntu/releases/18.04.6/release/ubuntu-18.04.6-server-amd64.iso",
+      "iso_checksum": "sha256:f5cbb8104348f0097a8e513b10173a07dbc6684595e331cb06f93f385d0aecf6",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -2837,6 +3505,7 @@
       "vm_name": "generic-ubuntu1810-virtualbox",
       "output_directory": "output/generic-ubuntu1810-virtualbox",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -2877,7 +3546,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "http://old-releases.ubuntu.com/releases/18.10/ubuntu-18.10-server-amd64.iso",
+      "iso_url": "https://old-releases.ubuntu.com/releases/18.10/ubuntu-18.10-server-amd64.iso",
       "iso_checksum": "sha256:cf9250781dadd919f23c9d9612212cad653e35fccc2fbcf6853f67ad09e067ba",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -2896,6 +3565,7 @@
       "vm_name": "generic-gentoo-virtualbox",
       "output_directory": "output/generic-gentoo-virtualbox",
       "boot_wait": "5s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "gentoo-nofb<enter>",
         "<wait10><enter>",
@@ -2926,12 +3596,12 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20201206T214503Z.iso",
-      "iso_checksum": "sha256:aaff90548be768648901e5965b7d3f84a67d1951f76e837ea2a4bdb06d869649",
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20211121T170545Z.iso",
+      "iso_checksum": "sha256:a99480886ae35544811dba23ec1b0feaea2525c58c3f2f99303d87948c156eb9",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_timeout": "7200s",
+      "ssh_timeout": "9800s",
       "shutdown_command": "shutdown -hP now",
       "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
       "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
@@ -2945,6 +3615,7 @@
       "vm_name": "generic-freebsd11-virtualbox",
       "output_directory": "output/generic-freebsd11-virtualbox",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -2997,12 +3668,13 @@
       "name": "generic-openbsd6-virtualbox",
       "vm_name": "generic-openbsd6-virtualbox",
       "output_directory": "output/generic-openbsd6-virtualbox",
-      "boot_wait": "40s",
+      "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
-        "S<enter><wait>",
-        "dhclient em0<enter><wait5>",
-        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.cfg<enter><wait>",
-        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.chroot.sh<enter><wait>",
+        "S<enter><wait5>",
+        "dhclient em0<enter><wait10>",
+        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.cfg<enter><wait5>",
+        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd6.install.chroot.sh<enter><wait5>",
         "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
       ],
       "disk_size": 131072,
@@ -3022,8 +3694,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.8/amd64/cd68.iso",
-      "iso_checksum": "sha256:05fb374fa25461d2315349214228ee671d8bae45f16da994283a8cf9c848451c",
+      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.9/amd64/cd69.iso",
+      "iso_checksum": "sha256:b391350d72a4fcab550033c830a17612cff65ebdb6de428732d9b15f780bf9c2",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -3041,6 +3713,7 @@
       "vm_name": "generic-freebsd12-virtualbox",
       "output_directory": "output/generic-freebsd12-virtualbox",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3094,6 +3767,7 @@
       "vm_name": "generic-rhel6-virtualbox",
       "output_directory": "output/generic-rhel6-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.vagrant.ks<enter><wait>"
       ],
@@ -3133,6 +3807,7 @@
       "vm_name": "generic-rhel8-virtualbox",
       "output_directory": "output/generic-rhel8-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
       ],
@@ -3153,15 +3828,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://archive.org/download/rhel-8.3-x86_64-dvd/rhel-8.3-x86_64-dvd.iso",
-      "iso_checksum": "sha256:30fd8dff2d29a384bd97886fa826fa5be872213c81e853eae3f9d9674f720ad0",
+      "iso_url": "https://archive.org/download/rhel-8.5/rhel-8.5-x86_64-dvd.iso",
+      "iso_checksum": "sha256:1f78e705cd1d8897a05afa060f77d81ed81ac141c2465d4763c0382aa96cadd0",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
-      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
+      "guest_additions_sha256": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -3172,16 +3847,17 @@
       "vm_name": "generic-hardenedbsd11-virtualbox",
       "output_directory": "output/generic-hardenedbsd11-virtualbox",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
         "boot -s<enter>",
-        "<wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
         "/bin/sh<enter><wait10>",
         "mdmfs -s 100m md1 /tmp<enter><wait5>",
         "mdmfs -s 100m md2 /mnt<enter><wait5>",
@@ -3225,6 +3901,7 @@
       "vm_name": "generic-dragonflybsd5-virtualbox",
       "output_directory": "output/generic-dragonflybsd5-virtualbox",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3256,6 +3933,7 @@
         "sh /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 131072,
+      "hard_drive_interface": "scsi",
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -3272,7 +3950,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-5.8.3_REL.iso",
+      "iso_url": "https://mirrors.lavabit.com/dragonflybsd/dfly-x86_64-5.8.3_REL.iso",
       "iso_checksum": "sha256:8c169e787822ab743e0ee7ddb97c2f4181316ebcd7f7a3e82a085c30f3ea29b5",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -3301,6 +3979,7 @@
           "64"
         ]
       ],
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "<enter><wait10>",
@@ -3322,7 +4001,16 @@
         "x<wait><enter><wait10>",
         "<wait><enter><wait10>",
         "b<wait><enter><wait60>",
-        "<wait60><wait60><wait60>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
         "a<wait><enter><wait10>",
         "x<wait><enter><wait10>",
         "b<wait><enter><wait10>",
@@ -3374,16 +4062,17 @@
       "vm_name": "generic-hardenedbsd12-virtualbox",
       "output_directory": "output/generic-hardenedbsd12-virtualbox",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
         "boot -s<enter>",
-        "<wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
         "/bin/sh<enter><wait10>",
         "mdmfs -s 100m md1 /tmp<enter><wait5>",
         "mdmfs -s 100m md2 /mnt<enter><wait5>",
@@ -3427,6 +4116,7 @@
       "vm_name": "generic-alpine39-virtualbox",
       "output_directory": "output/generic-alpine39-virtualbox",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -3476,6 +4166,7 @@
       "vm_name": "generic-debian10-virtualbox",
       "output_directory": "output/generic-debian10-virtualbox",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -3508,15 +4199,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://gensho.ftp.acc.umu.se/debian-cd/current/amd64/iso-cd/debian-10.7.0-amd64-netinst.iso",
-      "iso_checksum": "sha256:b317d87b0a3d5b568f48a92dcabfc4bc51fe58d9f67ca13b013f1b8329d1306d",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/10.10.0/amd64/iso-cd/debian-10.10.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:c433254a7c5b5b9e6a05f9e1379a0bd6ab3323f89b56537b684b6d1bd1f8b6ad",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.1.38/VBoxGuestAdditions_5.1.38.iso",
-      "guest_additions_sha256": "0e7ee2c78ebf7cd0d3a933d51148bef04a64f64fb27ccf70d59cddf9ca1e517a",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
+      "guest_additions_sha256": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -3527,6 +4218,7 @@
       "vm_name": "generic-ubuntu1904-virtualbox",
       "output_directory": "output/generic-ubuntu1904-virtualbox",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -3567,7 +4259,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "http://old-releases.ubuntu.com/releases/19.04/ubuntu-19.04-server-amd64.iso",
+      "iso_url": "https://old-releases.ubuntu.com/releases/19.04/ubuntu-19.04-server-amd64.iso",
       "iso_checksum": "sha256:7e8a0d07522f591dfee9bc9fcd7c05466763161e6cb0117906655bce1750b2fa",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -3586,6 +4278,7 @@
       "vm_name": "generic-fedora30-virtualbox",
       "output_directory": "output/generic-fedora30-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora30.vagrant.ks ",
@@ -3629,6 +4322,7 @@
       "vm_name": "generic-oracle8-virtualbox",
       "output_directory": "output/generic-oracle8-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
       ],
@@ -3649,15 +4343,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.kernel.org/oracle/OL8/u3/x86_64/OracleLinux-R8-U3-x86_64-dvd.iso",
-      "iso_checksum": "sha256:771e383adfd5406d1a360ff24822011a88cbb45b6019e2f1095758c46a406aaa",
+      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL8/u5/x86_64/OracleLinux-R8-U5-x86_64-dvd.iso",
+      "iso_checksum": "sha256:45939e85542c19dd519aaad7c4dbe84a6fcadfaca348245f92ae4472fc7f50ac",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
-      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
+      "guest_additions_sha256": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -3668,6 +4362,7 @@
       "vm_name": "generic-alpine310-virtualbox",
       "output_directory": "output/generic-alpine310-virtualbox",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -3698,8 +4393,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.10/releases/x86_64/alpine-virt-3.10.5-x86_64.iso",
-      "iso_checksum": "sha256:dd3e01b9f7e0c00347cb9dd1be44673d20290d2388b316aec590faa1a5cdea9b",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.10/releases/x86_64/alpine-virt-3.10.9-x86_64.iso",
+      "iso_checksum": "sha256:f4e6973b61f37c445bafd99f3beecabc9a68a56b17014297b1505d35faae85fb",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -3717,9 +4412,10 @@
       "vm_name": "generic-opensuse15-virtualbox",
       "output_directory": "output/generic-opensuse15-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><enter><wait>",
-        "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.2/repo/oss/ lang=en_US  textmode=1 <wait>",
+        "linux netsetup=dhcp install=https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.3/repo/oss/ lang=en_US  textmode=1 <wait>",
         "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse15.vagrant.cfg<wait>",
         "<enter><wait>"
       ],
@@ -3740,8 +4436,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.2/iso/openSUSE-Leap-15.2-NET-x86_64.iso",
-      "iso_checksum": "sha256:02a77812443dd3e47c36611c8837bf8d1659aea6b4d16c9db6841c564d59b7af",
+      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.3/iso/openSUSE-Leap-15.3-NET-x86_64-Current.iso",
+      "iso_checksum": "sha256:40da6b6fd17f552cd5aa3526d1a5ee091a948c8890ca70d03c9f3f8caa2e0876",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -3759,6 +4455,7 @@
       "vm_name": "generic-centos8-virtualbox",
       "output_directory": "output/generic-centos8-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.vagrant.ks<enter><wait>"
       ],
@@ -3779,15 +4476,15 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.edge.kernel.org/centos/8.3.2011/isos/x86_64/CentOS-8.3.2011-x86_64-boot.iso",
-      "iso_checksum": "sha256:2b801bc5801816d0cf27fc74552cf058951c42c7b72b1fe313429b1070c3876c",
+      "iso_url": "https://mirrors.edge.kernel.org/centos/8.5.2111/isos/x86_64/CentOS-8.5.2111-x86_64-boot.iso",
+      "iso_checksum": "sha256:9602c69c52d93f51295c0199af395ca0edbe35e36506e32b8e749ce6c8f5b60a",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
-      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
+      "guest_additions_sha256": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -3798,6 +4495,7 @@
       "vm_name": "generic-fedora31-virtualbox",
       "output_directory": "output/generic-fedora31-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora31.vagrant.ks ",
@@ -3841,6 +4539,7 @@
       "vm_name": "generic-ubuntu1910-virtualbox",
       "output_directory": "output/generic-ubuntu1910-virtualbox",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -3900,6 +4599,7 @@
       "vm_name": "generic-alpine311-virtualbox",
       "output_directory": "output/generic-alpine311-virtualbox",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -3930,8 +4630,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.11/releases/x86_64/alpine-virt-3.11.6-x86_64.iso",
-      "iso_checksum": "sha256:86c511faf8232eace478760695f5dbeeb93a16003576317e16a9e3816355e6b7",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.11/releases/x86_64/alpine-virt-3.11.12-x86_64.iso",
+      "iso_checksum": "sha256:09fec48b285a1019f8ee97e30b9fa2f494ab47eec498008d6d95b52f1032ef92",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -3949,6 +4649,7 @@
       "vm_name": "generic-ubuntu2004-virtualbox",
       "output_directory": "output/generic-ubuntu2004-virtualbox",
       "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -3989,7 +4690,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04.1/release/ubuntu-20.04.1-legacy-server-amd64.iso",
+      "iso_url": "https://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/ubuntu-20.04.1-legacy-server-amd64.iso",
       "iso_checksum": "sha256:f11bda2f2caed8f420802b59f382c25160b114ccc665dbac9c5046e7fceaced2",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -4008,6 +4709,7 @@
       "vm_name": "generic-fedora32-virtualbox",
       "output_directory": "output/generic-fedora32-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "<wait>text net.ifnames=0 ",
@@ -4060,6 +4762,7 @@
           "64"
         ]
       ],
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "<enter><wait10>",
@@ -4079,7 +4782,16 @@
         "b<wait><enter><wait10>",
         "x<wait><enter><wait10>",
         "b<wait><enter><wait60>",
-        "<wait60><wait60><wait60>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
         "a<wait><enter><wait10>",
         "b<wait><enter><wait30>",
         "a<wait><enter><wait10>",
@@ -4111,8 +4823,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/9.1/NetBSD-9.1-amd64.iso",
-      "iso_checksum": "sha256:de37b3071fc02d308c10df39794f1f272883243b0948223d410fdaf1bfefbd39",
+      "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/9.2/NetBSD-9.2-amd64.iso",
+      "iso_checksum": "sha256:5f1bca14c4090122f31713dd86a926f63109dd6fb3c05f9b9b150a78acc8bc7e",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -4130,6 +4842,7 @@
       "vm_name": "generic-alpine312-virtualbox",
       "output_directory": "output/generic-alpine312-virtualbox",
       "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
@@ -4160,8 +4873,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.12/releases/x86_64/alpine-virt-3.12.2-x86_64.iso",
-      "iso_checksum": "sha256:146756d7c3436fd912594f3e3597c8887ce9f8e4c8e5124fc2c0305badf67ee1",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.12/releases/x86_64/alpine-virt-3.12.8-x86_64.iso",
+      "iso_checksum": "sha256:1cea40732a18675de9d5c8abd9f9e5716a8d9df128769441dd79624013b3d55b",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -4179,6 +4892,7 @@
       "vm_name": "generic-devuan1-virtualbox",
       "output_directory": "output/generic-devuan1-virtualbox",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4230,6 +4944,7 @@
       "vm_name": "generic-devuan2-virtualbox",
       "output_directory": "output/generic-devuan2-virtualbox",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4281,6 +4996,7 @@
       "vm_name": "generic-devuan3-virtualbox",
       "output_directory": "output/generic-devuan3-virtualbox",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -4313,8 +5029,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_beowulf/installer-iso/devuan_beowulf_3.0.0_amd64-netinstall.iso",
-      "iso_checksum": "sha256:5844e45dc6421c25dfc9fb25df9d57af8fadf12a97a2a4e0ae1931c4c3217523",
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_beowulf/installer-iso/devuan_beowulf_3.1.1_amd64_netinstall.iso",
+      "iso_checksum": "sha256:1723cbbeb1aee26a54e1370b688e7dc03921402348d2a60086c58c18cd9cf24b",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -4332,6 +5048,7 @@
       "vm_name": "generic-ubuntu2010-virtualbox",
       "output_directory": "output/generic-ubuntu2010-virtualbox",
       "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -4367,7 +5084,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/20.10/ubuntu-20.10-live-server-amd64.iso",
+      "iso_url": "https://old-releases.ubuntu.com/releases/20.10/ubuntu-20.10-live-server-amd64.iso",
       "iso_checksum": "sha256:defdc1ad3af7b661fe2b4ee861fb6fdb5f52039389ef56da6efc05e6adfe3d45",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -4386,6 +5103,7 @@
       "vm_name": "generic-fedora33-virtualbox",
       "output_directory": "output/generic-fedora33-virtualbox",
       "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
         "<wait>text net.ifnames=0 ",
@@ -4418,6 +5136,705 @@
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
       "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-alpine313-virtualbox",
+      "vm_name": "generic-alpine313-virtualbox",
+      "output_directory": "output/generic-alpine313-virtualbox",
+      "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine313.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine313.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Linux_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.6-x86_64.iso",
+      "iso_checksum": "sha256:fb3539036689816831f15cd53f9e133e71fdd31f4ca1795fe7d6f4881208f577",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-alpine314-virtualbox",
+      "vm_name": "generic-alpine314-virtualbox",
+      "output_directory": "output/generic-alpine314-virtualbox",
+      "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine314.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine314.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Linux_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.14/releases/x86_64/alpine-virt-3.14.3-x86_64.iso",
+      "iso_checksum": "sha256:4a62a5dabd61e7cb8f865d95781b9f070f32300ba784553b61efef2b65a8347b",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-ubuntu2104-virtualbox",
+      "vm_name": "generic-ubuntu2104-virtualbox",
+      "output_directory": "output/generic-ubuntu2104-virtualbox",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "c<wait10>",
+        "set gfxpayload=keep<enter><wait10>",
+        "linux /casper/vmlinuz autoinstall quiet net.ifnames=0 biosdevname=0 ",
+        "ds=\"nocloud-net;s=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2104.vagrant.\" --- <enter><wait10>",
+        "initrd /casper/initrd<enter><wait10>",
+        "boot<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/21.04/ubuntu-21.04-live-server-amd64.iso",
+      "iso_checksum": "sha256:e4089c47104375b59951bad6c7b3ee5d9f6d80bfac4597e43a716bb8f5c1f3b0",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-rocky8-virtualbox",
+      "vm_name": "generic-rocky8-virtualbox",
+      "output_directory": "output/generic-rocky8-virtualbox",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky8.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://dfw.mirror.rackspace.com/rocky/8.5/isos/x86_64/Rocky-8.5-x86_64-boot.iso",
+      "iso_checksum": "sha256:5a0dc65d1308e47b51a49e23f1030b5ee0f0ece3702483a8a6554382e893333c",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
+      "guest_additions_sha256": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-alma8-virtualbox",
+      "vm_name": "generic-alma8-virtualbox",
+      "output_directory": "output/generic-alma8-virtualbox",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma8.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://dfw.mirror.rackspace.com/almalinux/8.5/isos/x86_64/AlmaLinux-8.5-x86_64-boot.iso",
+      "iso_checksum": "sha256:65b3b4c17ce322081e2d743ee420b37b7213f4b14d2ec4f3c4f026d57aa148ec",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
+      "guest_additions_sha256": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-fedora34-virtualbox",
+      "vm_name": "generic-fedora34-virtualbox",
+      "output_directory": "output/generic-fedora34-virtualbox",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "<wait>text net.ifnames=0 ",
+        "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora34.vagrant.ks ",
+        "<wait><enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Fedora_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/iso/Fedora-Server-netinst-x86_64-34-1.2.iso",
+      "iso_checksum": "sha256:e1a38b9faa62f793ad4561b308c31f32876cfaaee94457a7a9108aaddaeec406",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
+      "guest_additions_sha256": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-freebsd13-virtualbox",
+      "vm_name": "generic-freebsd13-virtualbox",
+      "output_directory": "output/generic-freebsd13-virtualbox",
+      "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait5>",
+        "mdmfs -s 100m md2 /mnt<enter><wait5>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd13.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "FreeBSD_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/13.0/FreeBSD-13.0-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "sha256:f78d4e5f53605592863852b39fa31a12f15893dc48cacecd875f2da72fa67ae5",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-hardenedbsd13-virtualbox",
+      "vm_name": "generic-hardenedbsd13-virtualbox",
+      "output_directory": "output/generic-hardenedbsd13-virtualbox",
+      "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait5>",
+        "mdmfs -s 100m md2 /mnt<enter><wait5>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd13.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "FreeBSD_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/build-283/disc1.iso",
+      "iso_checksum": "sha256:3a27ab14ba12aa767840ba893ef3a78a42b0c4b650b1f964c1fd5dafe985e27a",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-dragonflybsd6-virtualbox",
+      "vm_name": "generic-dragonflybsd6-virtualbox",
+      "output_directory": "output/generic-dragonflybsd6-virtualbox",
+      "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "root<enter><wait5>",
+        "/bin/sh<enter><wait10>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd6.vagrant.cfg<enter><wait10>",
+        "sh /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "hard_drive_interface": "scsi",
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "FreeBSD_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.0.1_REL.iso",
+      "iso_checksum": "sha256:061eda70746fff8f5e09ec180d18fada1ebc87f41664eaf69d6c7cef286c2afe",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-debian11-virtualbox",
+      "vm_name": "generic-debian11-virtualbox",
+      "output_directory": "output/generic-debian11-virtualbox",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "/install.amd/vmlinuz auto=true priority=critical vga=788 initrd=/install.amd/gtk/initrd.gz --- quiet ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian11.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Debian_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.1.0/amd64/iso-cd/debian-11.1.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:8488abc1361590ee7a3c9b00ec059b29dfb1da40f8ba4adf293c7a30fa943eb2",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
+      "guest_additions_sha256": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-openbsd7-virtualbox",
+      "vm_name": "generic-openbsd7-virtualbox",
+      "output_directory": "output/generic-openbsd7-virtualbox",
+      "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "S<enter><wait5>",
+        "ifconfig em0 group dhcp<enter><wait5>",
+        "ifconfig em0 inet autoconf<enter><wait10>",
+        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd7.install.cfg<enter><wait5>",
+        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd7.install.chroot.sh<enter><wait5>",
+        "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "OpenBSD_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/7.0/amd64/cd70.iso",
+      "iso_checksum": "sha256:3e3e21b1aa4448cffba103f954b3604c69361ca1fe9a4e15287fc7298171b11f",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -h -p now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-ubuntu2110-virtualbox",
+      "vm_name": "generic-ubuntu2110-virtualbox",
+      "output_directory": "output/generic-ubuntu2110-virtualbox",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "c<wait10>",
+        "set gfxpayload=keep<enter><wait10>",
+        "linux /casper/vmlinuz autoinstall quiet net.ifnames=0 biosdevname=0 ",
+        "ds=\"nocloud-net;s=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2110.vagrant.\" --- <enter><wait10>",
+        "initrd /casper/initrd<enter><wait10>",
+        "boot<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/21.10/ubuntu-21.10-live-server-amd64.iso",
+      "iso_checksum": "sha256:e84f546dfc6743f24e8b1e15db9cc2d2c698ec57d9adfb852971772d1ce692d4",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-alpine315-virtualbox",
+      "vm_name": "generic-alpine315-virtualbox",
+      "output_directory": "output/generic-alpine315-virtualbox",
+      "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine315.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine315.vagrant.cfg ; ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Linux_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.15/releases/x86_64/alpine-virt-3.15.0-x86_64.iso",
+      "iso_checksum": "sha256:e97eaedb3bff39a081d1d7e67629d5c0e8fb39677d6a9dd1eaf2752e39061e02",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-fedora35-virtualbox",
+      "vm_name": "generic-fedora35-virtualbox",
+      "output_directory": "output/generic-fedora35-virtualbox",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "<wait>text net.ifnames=0 ",
+        "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora35.vagrant.ks ",
+        "<wait><enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "guest_os_type": "Fedora_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/x86_64/iso/Fedora-Server-netinst-x86_64-35-1.2.iso",
+      "iso_checksum": "sha256:dd35f955dd5a7054213a0098c6ee737ff116aa3090fc6dbfe89d424b5c3552dd",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
+      "guest_additions_sha256": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"

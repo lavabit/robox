@@ -40,20 +40,20 @@ if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
 fi
 
 # CentOS Repo Setup
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Base.repo
-sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Base.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
 
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-AppStream.repo
-sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-AppStream.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-AppStream.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-AppStream.repo
 
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-PowerTools.repo
-sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-PowerTools.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
 
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Extras.repo
-sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Extras.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
 
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-centosplus.repo
-sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-centosplus.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-Plus.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-Plus.repo
 
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
@@ -89,10 +89,26 @@ retry dnf --assumeyes update
 # Install the basic packages we'd expect to find.
 retry dnf --assumeyes install sudo dmidecode dnf-utils bash-completion man man-pages mlocate vim-enhanced bind-utils wget dos2unix unix2dos lsof tar telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc python36
 
-if [ -f /etc/yum.repos.d/CentOS-Vault.repo.rpmnew ]; then
-  rm --force /etc/yum.repos.d/CentOS-Vault.repo.rpmnew
+if [ -f /etc/yum.repos.d/CentOS-Linux-Vault.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/CentOS-Linux-Vault.repo.rpmnew
 fi
 
-if [ -f /etc/yum.repos.d/CentOS-Media.repo.rpmnew ]; then
-  rm --force /etc/yum.repos.d/CentOS-Media.repo.rpmnew
+if [ -f /etc/yum.repos.d/CentOS-Linux-Media.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/CentOS-Linux-Media.repo.rpmnew
+fi
+
+if [ -f /etc/yum.repos.d/epel-playground.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/epel-playground.repo.rpmnew
+fi
+
+if [ -f /etc/yum.repos.d/epel-testing-modular.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/epel-testing-modular.repo.rpmnew
+fi
+
+if [ -f /etc/yum.repos.d/epel-testing.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/epel-testing.repo.rpmnew
+fi
+
+if [ -f /etc/yum.repos.d/epel.repo.rpmnew ]; then
+  rm --force /etc/yum.repos.d/epel.repo.rpmnew
 fi

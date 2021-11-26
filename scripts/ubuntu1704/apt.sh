@@ -60,7 +60,7 @@ fi
 systemctl stop apt-daily.service apt-daily.timer
 systemctl stop snapd.service snapd.socket snapd.refresh.timer
 
-# Overwrite the sources.list file.
+# Overwrite the sources.list file with HTTPS sources.
 cat <<-EOF > /etc/apt/sources.list
 # deb cdrom:[Ubuntu-Server 17.04 _Zesty Zapus_ - Release amd64 (20170412)]/ zesty main restricted
 # deb cdrom:[Ubuntu-Server 17.04 _Zesty Zapus_ - Release amd64 (20170412)]/ zesty main restricted
@@ -116,18 +116,18 @@ deb http://old-releases.ubuntu.com/ubuntu zesty-backports main restricted univer
 # deb http://security.ubuntu.com/ubuntu zesty-security multiverse
 EOF
 
-# Update the package database.
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
+# Update the sources.
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update ; error
 
 # Ensure the linux-tools and linux-cloud-tools get updated with the kernel.
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic ; error
 
 # Upgrade the installed packages.
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade ; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade ; error
 
 # Needed to retrieve source code, and other misc system tools.
-retry apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils lsb-release psmisc; error
+retry apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils lsb-release psmisc ; error
 
 # Enable the sysstat collection service.
 sed -i -e "s|.*ENABLED=\".*\"|ENABLED=\"true\"|g" /etc/default/sysstat

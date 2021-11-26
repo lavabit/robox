@@ -5,6 +5,7 @@
     "provisioners": [
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
@@ -18,6 +19,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/kernel.sh",
                 "scripts/centos6/vga.sh",
@@ -52,6 +54,7 @@
                 "scripts/common/lockout.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "15m",
             "expect_disconnect": "true"
         }
@@ -63,6 +66,7 @@
             "vm_name": "magma-developer-virtualbox",
             "output_directory": "output/magma-developer-virtualbox",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.developer.ks<enter><wait>"
             ],

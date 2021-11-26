@@ -5,6 +5,7 @@
     "provisioners": [
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/alpine36/network.sh",
                 "scripts/alpine36/apk.sh"
@@ -18,6 +19,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/alpine36/limits.sh",
                 "scripts/alpine36/mariadb.sh",
@@ -47,6 +49,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/yum.sh",
                 "scripts/centos6/base.sh",
@@ -61,6 +64,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos6/kernel.sh",
                 "scripts/centos6/vga.sh",
@@ -88,6 +92,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos7/network.sh",
                 "scripts/centos7/yum.sh",
@@ -103,6 +108,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/centos7/kernel.sh",
                 "scripts/centos7/floppy.sh",
@@ -136,6 +142,7 @@
                 "scripts/gentoo/emerge.sh"
             ],
             "type": "shell",
+            "timeout": "720m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -152,6 +159,7 @@
                 "scripts/gentoo/magma.sh"
             ],
             "type": "shell",
+            "timeout": "720m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -164,6 +172,7 @@
                 "scripts/arch/pacman.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -185,6 +194,7 @@
                 "scripts/arch/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -198,6 +208,7 @@
                 "scripts/debian8/network.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -222,6 +233,7 @@
                 "scripts/debian8/qemu.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -231,8 +243,10 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/fedora27/fixdns.sh",
+                "scripts/fedora27/hostname.sh",
                 "scripts/fedora27/dnf.sh"
             ],
             "start_retry_timeout": "45m",
@@ -243,6 +257,7 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/fedora27/base.sh"
             ],
@@ -255,9 +270,11 @@
         },
         {
             "type": "shell",
+            "timeout": "120m",
             "scripts": [
                 "scripts/fedora27/kernel.sh",
                 "scripts/fedora27/vga.sh",
+                "scripts/fedora27/fixtmp.sh",
                 "scripts/fedora27/virtualbox.sh",
                 "scripts/fedora27/parallels.sh",
                 "scripts/fedora27/vmware.sh",
@@ -291,6 +308,7 @@
                 "scripts/freebsd11/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
@@ -303,6 +321,7 @@
                 "scripts/openbsd6/pkg.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
@@ -323,6 +342,7 @@
                 "scripts/openbsd6/magma.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -337,6 +357,7 @@
                 "scripts/ubuntu1604/network.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -362,6 +383,7 @@
                 "scripts/ubuntu1604/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -375,6 +397,7 @@
                 "scripts/ubuntu1610/network.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -400,6 +423,7 @@
                 "scripts/ubuntu1610/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -413,6 +437,7 @@
                 "scripts/ubuntu1704/network.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
@@ -438,6 +463,7 @@
                 "scripts/ubuntu1704/cleanup.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "pause_before": "120s",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
@@ -456,6 +482,7 @@
                 "scripts/common/lockout.sh"
             ],
             "type": "shell",
+            "timeout": "120m",
             "start_retry_timeout": "45m",
             "expect_disconnect": "true"
         }
@@ -468,6 +495,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-centos6-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
             ],
@@ -499,6 +527,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-centos7-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
             ],
@@ -530,6 +559,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-alpine36-hyperv",
             "boot_wait": "60s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait10>",
                 "root<enter><wait>",
@@ -571,6 +601,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-arch-hyperv",
             "boot_wait": "1s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -584,7 +615,7 @@
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
                 "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<spacebar>net.ifnames=0 biosdevname=0<enter>",
+                "<spacebar>net.ifnames=0 biosdevname=0 systemd.mask=sshd.service<enter>",
                 "<wait10><wait10><wait10><wait10><wait10><wait10>",
                 "sed -i 's/[#]\\?DNSSEC=.*/DNSSEC=false/g' /etc/systemd/resolved.conf<enter><wait>",
                 "systemctl restart systemd-resolved<enter><wait>",
@@ -596,8 +627,8 @@
             "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
-            "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2020.12.01-x86_64.iso",
-            "iso_checksum": "sha256:67007bcefa2f954d8068a0506d6d472b5b6cecb1558f3e3a7d4da223b5abe8d8",
+            "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2021.11.01-x86_64.iso",
+            "iso_checksum": "sha256:bf8da6a8c3a59b76be8652645f0a2c2845d7566fdc1724f8f7c3a2a7d90f017d",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
@@ -620,6 +651,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-fedora27-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> ",
                 "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora27.vagrant.ks ",
@@ -655,6 +687,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-debian8-hyperv",
             "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
                 "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -674,8 +707,8 @@
             "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
-            "iso_url": "https://gensho.ftp.acc.umu.se/mirror/cdimage/archive/8.11.1/amd64/iso-cd/debian-8.11.1-amd64-netinst.iso",
-            "iso_checksum": "sha256:ea444d6f8ac95fd51d2aedb8015c57410d1ad19b494cedec6914c17fda02733c",
+            "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/amd64/iso-dvd/debian-8.11.1-amd64-DVD-1.iso",
+            "iso_checksum": "sha256:a3bd67cd363b609e1340cea06a666cb476b63fc79abf4380c0475dd1b6dc8a31",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
@@ -698,6 +731,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-ubuntu1604-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<enter><wait>",
                 "<f6><esc>",
@@ -743,6 +777,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-ubuntu1610-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait>",
                 "<esc><wait>",
@@ -756,7 +791,7 @@
             "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
-            "iso_url": "http://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
+            "iso_url": "https://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
             "iso_checksum": "sha256:72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -780,6 +815,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-ubuntu1704-hyperv",
             "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait>",
                 "<esc><wait>",
@@ -793,7 +829,7 @@
             "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
-            "iso_url": "http://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
+            "iso_url": "https://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
             "iso_checksum": "sha256:ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
             "ssh_username": "root",
             "ssh_password": "vagrant",
@@ -817,6 +853,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-gentoo-hyperv",
             "boot_wait": "5s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "gentoo-nofb<enter>",
                 "<wait10><enter>",
@@ -834,12 +871,12 @@
             "memory": 8192,
             "cpus": 8,
             "http_directory": "http",
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20201206T214503Z.iso",
-            "iso_checksum": "sha256:aaff90548be768648901e5965b7d3f84a67d1951f76e837ea2a4bdb06d869649",
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20211121T170545Z.iso",
+            "iso_checksum": "sha256:a99480886ae35544811dba23ec1b0feaea2525c58c3f2f99303d87948c156eb9",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_timeout": "7200s",
+            "ssh_timeout": "9800s",
             "shutdown_command": "shutdown -hP now",
             "generation": 1,
             "headless": true,
@@ -858,6 +895,7 @@
             "temp_path": "output/",
             "output_directory": "output/magma-freebsd11-hyperv",
             "boot_wait": "1s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<esc><wait><esc><wait><esc><wait><esc><wait>",
                 "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -902,24 +940,25 @@
             "vm_name": "magma-openbsd6-hyperv",
             "temp_path": "output/",
             "output_directory": "output/magma-openbsd6-hyperv",
-            "boot_wait": "40s",
+            "boot_wait": "60s",
+            "boot_keygroup_interval": "1s",
             "boot_command": [
-                "S<enter><wait>",
-                "dhclient hvn0<enter><wait5>",
-                "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait>",
-                "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait>",
+                "S<enter><wait5>",
+                "dhclient hvn0<enter><wait10>",
+                "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait5>",
+                "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait5>",
                 "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
             "disk_size": 131072,
             "memory": 2048,
             "cpus": 4,
             "http_directory": "http",
-            "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.8/amd64/cd68.iso",
-            "iso_checksum": "sha256:05fb374fa25461d2315349214228ee671d8bae45f16da994283a8cf9c848451c",
+            "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.9/amd64/cd69.iso",
+            "iso_checksum": "sha256:b391350d72a4fcab550033c830a17612cff65ebdb6de428732d9b15f780bf9c2",
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
-            "ssh_timeout": "3600s",
+            "ssh_timeout": "7200s",
             "shutdown_command": "shutdown -h -p now",
             "generation": 1,
             "headless": true,

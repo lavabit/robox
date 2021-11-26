@@ -30,12 +30,12 @@ retry() {
 export PATH="/usr/sbin/:/usr/pkg/bin/:$PATH"
 
 # Dictate the package repository.
-export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.1/All"
+export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/All"
 
 # Ensure dmideocode is available.
 retry pkg_add dmidecode
 
 # Bail if we are not running atop QEMU.
-if [[ `/usr/pkg/sbin/dmidecode -s system-product-name` != "KVM" && `dmidecode -s system-manufacturer` != "QEMU" ]]; then
+if [[ `/usr/pkg/sbin/dmidecode -s system-product-name` != "KVM" && `/usr/pkg/sbin/dmidecode -s system-manufacturer` != "QEMU" ]]; then
     exit 0
 fi

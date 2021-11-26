@@ -1,4 +1,3 @@
-install
 text
 reboot --eject
 lang en_US.UTF-8
@@ -6,9 +5,15 @@ keyboard us
 timezone US/Pacific
 rootpw --plaintext vagrant
 user --name=vagrant --password=vagrant --plaintext
+
 zerombr
-autopart --type=plain --nohome
 clearpart --all --initlabel
+part /boot --fstype="xfs" --size=1024 --label=boot
+part pv.01 --fstype="lvmpv" --grow
+volgroup fedora --pesize=4096 pv.01
+logvol swap --fstype="swap" --size=2048 --name=swap --vgname=fedora
+logvol / --fstype="xfs" --percent=100 --label="root" --name=root --vgname=fedora
+
 firewall --enabled --service=ssh
 authconfig --enableshadow --passalgo=sha512
 network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora32.localdomain
@@ -23,6 +28,13 @@ url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_6
 %packages
 net-tools
 @core
+-mcelog
+-usbutils
+-microcode_ctl
+-smartmontools
+-plymouth
+-plymouth-core-libs
+-plymouth-scripts
 %end
 
 %post

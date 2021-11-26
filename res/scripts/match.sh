@@ -88,7 +88,7 @@ fi
 # org name provider version hash
 function download() {
 
-  HASH=`curl --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box | sha256sum`
+  HASH=`${CURL} --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box | sha256sum`
 
   echo "$HASH" | grep --silent "$5"
 
@@ -96,7 +96,7 @@ function download() {
   if [ $? != 0 ]; then
 
     # Retry failed downloads, just in case the error was ephemeral.
-    HASH=`curl --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box | sha256sum`
+    HASH=`${CURL} --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box | sha256sum`
 
     echo "$HASH" | grep --silent "$5"
 
@@ -119,8 +119,8 @@ RESULT=0
 
 while [[ "${COUNT}" -le 100 ]]; do
   RESULT=0
-  DATA=`curl --fail --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION`
-  # CHECKSUM=`curl --fail --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://app.vagrantup.com/api/v1/box/$1/$2/version/$4 | jq -e -r ".providers[] | select( .name | contains(\"$3\")) | .checksum"`
+  DATA=`${CURL} --fail --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION`
+  # CHECKSUM=`${CURL} --fail --silent --location --retry 10 --retry-delay 120 --max-redirs 10 --user-agent "${AGENT}" https://app.vagrantup.com/api/v1/box/$1/$2/version/$4 | jq -e -r ".providers[] | select( .name | contains(\"$3\")) | .checksum"`
   RESULT="${?}"
   if [[ $RESULT == 0 ]]; then
     break

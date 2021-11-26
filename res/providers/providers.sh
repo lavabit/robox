@@ -103,13 +103,13 @@ function provide-vmware() {
   fi
 
   # Acquire the install bundle.
-  if [ ! -f "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle" ]; then
-    curl --location --output "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle" \
-     "https://archive.org/download/vmware-workstation-full-15.5.6-16341506.x-86-64/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle"
+  if [ ! -f "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle" ]; then
+    curl --location --output "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle" \
+     "https://archive.org/download/vmware-workstation-full-15.5.7-17171714.x-86-64/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle"
   fi
 
   # Verify the installer bundle.
-  (printf "a62d89bfb29aefd0e3d4d60f31b3734aa7ba3adc48cbc612cfc032593d3c7593  VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle\n" | sha256sum -c) || \
+  (printf "ed4d4b2345595de729049ac142c4cc39b7618061873a296d36e42feb9c37ce40  VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle\n" | sha256sum -c) || \
     (tput setaf 1 ; printf "\nError downloading the install bundle.\n\n" ; tput sgr0 ; exit 2)
 
   # Acquire the FreeBSD / Darwin / Solaris guest tools.
@@ -123,8 +123,8 @@ function provide-vmware() {
     (tput setaf 1 ; printf "\nError downloading the alternative operating system guest additions.\n\n" ; tput sgr0 ; exit 2)
 
   # VMware Workstation Install
-  chmod +x "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle"
-  printf "yes\n" | bash "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle" --console \
+  chmod +x "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle"
+  printf "yes\n" | bash "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle" --console \
     --required --eulas-agreed --set-setting vmware-workstation serialNumber "${VMWARE_WORKSTATION}"
 
   # Install the alternative operating system ISOs.
@@ -160,7 +160,7 @@ function provide-vmware() {
   fi
 
   rm --force "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz"
-  rm --force "$BASE/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle"
+  rm --force "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle"
 
   # Install the dependencies.
   yum --assumeyes install pcsc-lite-libs
@@ -178,7 +178,7 @@ function provide-vbox() {
   chcon system_u:object_r:cert_t:s0 /etc/pki/rpm-gpg/RPM-GPG-KEY-Oracle-Vbox
 
   # Virtual Box Install
-  yum --assumeyes --enablerepo=virtualbox install VirtualBox-5.2.x86_64
+  yum --assumeyes --enablerepo=virtualbox install VirtualBox-6.1.x86_64
 
   # Virtual Box Extensions, if X windows is installed.
   if [ -f /usr/bin/X ]; then
@@ -201,7 +201,10 @@ function provide-vbox() {
     rm --force "${VBOXEXT}"
   fi
 
-  # Disable Virtual Box Automatic Startup
+  # Disable update checks.
+  VBoxManage setextradata global GUI/UpdateDate never
+
+  # Disable automatic startup.
   systemctl disable vboxautostart-service.service
   systemctl disable vboxballoonctrl-service.service
   systemctl disable vboxweb-service.service
