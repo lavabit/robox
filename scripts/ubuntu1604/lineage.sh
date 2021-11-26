@@ -394,7 +394,7 @@ chmod 644 /etc/udev/rules.d/51-android.rules
 # chcon "system_u:object_r:udev_rules_t:s0" /etc/udev/rules.d/51-android.rules
 
 cat <<-EOF > /home/vagrant/lineage-build.sh
-#!/bin/bash
+#!/bin/bash -e
 
 # Build Lineage for Motorol Photon Q by default - because physical keyboards eat virtual keyboards
 # for breakfast, brunch and then dinner.
