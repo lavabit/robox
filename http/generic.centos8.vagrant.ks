@@ -1,5 +1,4 @@
 install
-cdrom
 
 lang en_US.UTF-8
 keyboard us
@@ -25,7 +24,7 @@ authconfig --enableshadow --passalgo=sha512
 reboot --eject
 
 # repo --name=BaseOS
-# url --url=https://mirrors.edge.kernel.org/centos/8.5.2111/BaseOS/x86_64/os/
+url --url=https://mirrors.edge.kernel.org/centos/8.5.2111/BaseOS/x86_64/os/
 
 %packages --instLangs=en_US.utf8
 @core

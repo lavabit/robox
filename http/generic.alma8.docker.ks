@@ -1,5 +1,6 @@
 # This is a minimal Alma kickstart designed to create a dockerized environment.
 install
+
 keyboard us
 rootpw locked
 timezone US/Pacific
@@ -22,7 +23,7 @@ clearpart --all --initlabel
 autopart --nohome
 
 # repo --name=BaseOS
-# url --url=https://dfw.mirror.rackspace.com/almalinux/8.5/BaseOS/x86_64/os/
+url --url=https://dfw.mirror.rackspace.com/almalinux/8.5/BaseOS/x86_64/os/
 
 # Package setup
 %packages --instLangs=en_US.utf8
