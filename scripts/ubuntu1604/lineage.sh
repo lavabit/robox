@@ -496,7 +496,7 @@ brunch \$DEVICE || ( printf "\n\n\nBuild failed. (brunch)\n\n\n"; exit 1 )
 VERSION_NAME="\$BRANCH"
 
 # A few select branches got rebranded
-if [[ "\$VERSION_NAME" =~ "cm-(11.0|13.0|14.1)" ]]; then
+if [[ "\$VERSION_NAME" =~ ^cm-(11\.0|13\.0|14\.1)$ ]]; then
   VERSION_NAME=\${VERSION_NAME/cm-/lineage-}
 fi
 
