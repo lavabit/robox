@@ -6,7 +6,7 @@
 # Description: Used to build various virtual machines using packer.
 
 # Version Information
-[ ! -n "$VERSION" ] && export VERSION="3.5.4"
+[ ! -n "$VERSION" ] && export VERSION="3.6.0"
 export AGENT="Vagrant/2.2.18 (+https://www.vagrantup.com; ruby2.7.4)"
 
 # Limit the number of cpus packer will use.
@@ -30,16 +30,18 @@ cd $BASE
 if [ ! -f $BASE/.credentialsrc ]; then
 cat << EOF > $BASE/.credentialsrc
 #!/bin/bash
-export GOMAXPROCS="2"
-export QUAY_USER="LOGIN"
-export QUAY_PASSWORD="PASSWORD"
-export DOCKER_USER="LOGIN"
-export DOCKER_PASSWORD="PASSWORD"
-export VMWARE_WORKSTATION="SERIAL"
-export VAGRANT_CLOUD_TOKEN="TOKEN"
 
-# Overrides the repo version with a default value.
-VERSION="1.0.0"
+# Set the following to override default values.
+# export GOMAXPROCS="2"
+# export QUAY_USER="LOGIN"
+# export QUAY_PASSWORD="PASSWORD"
+# export DOCKER_USER="LOGIN"
+# export DOCKER_PASSWORD="PASSWORD"
+# export VMWARE_WORKSTATION="SERIAL"
+# export VAGRANT_CLOUD_TOKEN="TOKEN"
+
+# Overrides the repo version string with a default value.
+# VERSION="1.0.0"
 EOF
 tput setaf 1; printf "\n\nCredentials file was missing. Stub file created.\n\n\n"; tput sgr0
 sleep 5
