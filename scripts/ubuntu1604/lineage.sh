@@ -72,6 +72,9 @@ update-java-alternatives -s java-1.7.0-openjdk-amd64
 # Delete the downloaded Java 7 packages.
 rm --force openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
 
+# Reenable TLSv1 support for Java 8, since it is required for old versions of Jack.
+sed -i '/^jdk.tls.disabledAlgorithms=/s/TLSv1, TLSv1.1, //' /etc/java-8-openjdk/security/java.security
+
 # Download the Android tools.
 retry curl  --location --output platform-tools-latest-linux.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 
