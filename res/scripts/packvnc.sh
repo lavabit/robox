@@ -7,8 +7,9 @@ if [ $? == 0 ]; then
   for p in $PORT; do
     #rpm -q virt-viewer &> /dev/null || (printf "\n\nA VNC port was detected, but the Virt Viewer doesn't appear to be available.\n\n" && exit 1)
     #remote-viewer vnc://127.0.0.1:$p &> /dev/null &
-    CUT="`echo $p | cut -b '3,4' -`"
-    COUNT="`ps -ef | grep qemu-kvm | grep --extended-regexp --count \"\\-vnc 127.0.0.1:$CUT|\\-vnc 127.0.0.1:$((CUT))\"`"
+    CUT1="`echo $p | cut -b '3,4' -`"
+    CUT2="`echo $CUT1 | sed 's/^0//g'`"
+    COUNT="`ps -ef | grep qemu-kvm | grep --extended-regexp --count \"\\-vnc 127.0.0.1:$CUT1|\\-vnc 127.0.0.1:$CUT2\"`"
     if [ "$COUNT" == 1 ]; then
       rpm -q vinagre  &> /dev/null || (printf "\n\nA VNC port was detected, but Vinagre doesn't appear to be available.\n\n" && exit 1)
       vinagre --vnc-scale vnc://127.0.0.1:$p &> /dev/null &
