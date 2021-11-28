@@ -13,9 +13,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-libvirt",
-                "lineage-nash-libvirt"
-
+                "lineage-libvirt"
             ]
         },
         {
@@ -38,20 +36,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-libvirt",
-                "lineage-nash-libvirt"
-
-            ]
-        },
-        {
-            "type": "file",
-            "direction": "upload",
-            "source": "res/blobs/system-blobs.tar.gz",
-            "destination": "/home/vagrant/system-blobs.tar.gz",
-            "only": [
-                "lineage-libvirt",
-                "lineage-nash-libvirt"
-
+                "lineage-libvirt"
             ]
         },
         {
@@ -63,9 +48,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-libvirt",
-                "lineage-nash-libvirt"
-
+                "lineage-libvirt"
             ]
         },
         {
@@ -116,56 +99,7 @@
                 "<enter>"
             ],
             "format": "qcow2",
-            "disk_size": "196608",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "unmap",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 4,
-            "memory": 2048,
-            "http_directory": "http",
-            "headless": true,
-            "iso_url": "https://mirrors.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",
-            "iso_checksum": "sha256:b23488689e16cad7a269eb2d3a3bf725d3457ee6b0868e00c8762d3816e25848",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
-        },
-        {
-            "type": "qemu",
-            "name": "lineage-nash-libvirt",
-            "vm_name": "lineage-nash-libvirt",
-            "output_directory": "output/lineage-nash-libvirt",
-            "accelerator": "kvm",
-            "qemu_binary": "/usr/libexec/qemu-kvm",
-            "boot_wait": "20s",
-            "boot_keygroup_interval": "1s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "format": "qcow2",
-            "disk_size": "196608",
+            "disk_size": "256000",
             "disk_discard": "unmap",
             "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",

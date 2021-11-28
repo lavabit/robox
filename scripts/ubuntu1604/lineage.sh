@@ -46,7 +46,7 @@ printf "\nalias python='/usr/bin/python3.6'\n" >> /home/vagrant/.bash_aliases
 retry apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pciutils usbutils
 
 # Install the build dependencies.
-retry apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev ninja-build
+retry apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev ninja-build ccache
 
 # Java 8 Support
 retry apt-get --assume-yes install openjdk-8-jdk openjdk-8-jdk-headless openjdk-8-jre openjdk-8-jre-headless icedtea-8-plugin
@@ -72,34 +72,8 @@ update-java-alternatives -s java-1.7.0-openjdk-amd64
 # Delete the downloaded Java 7 packages.
 rm --force openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
 
-# Enable the source code repositories.
-sed -i -e "s|.*deb-src |deb-src |g" /etc/apt/sources.list
-retry apt-get --assume-yes update
-
-# Ensure the dependencies required to compile git are available.
-retry apt-get --assume-yes install build-essential fakeroot dpkg-dev
-retry apt-get --assume-yes build-dep git
-
-# The build-dep command will remove the OpenSSL version of libcurl, so we have to
-# install here instead.
-retry apt-get --assume-yes install libcurl4-openssl-dev
-
-# Download the git sourcecode.
-mkdir -p $HOME/git-openssl && cd $HOME/git-openssl
-retry apt-get source git
-dpkg-source -x `find * -type f -name *.dsc`
-cd `find * -maxdepth 0 -type d`
-
-# Recompile git using OpenSSL instead of gnutls.
-sed -i -e "s|libcurl4-gnutls-dev|libcurl4-openssl-dev|g" debian/control
-sed -i -e "/TEST[ ]*=test/d" debian/rules
-dpkg-buildpackage -J4 -rfakeroot -b
-
-# Insall the new version.
-dpkg -i `find ../* -type f -name *amd64.deb`
-
-# Cleanup the git build directory.
-cd $HOME && rm --force --recursive $HOME/git-openssl
+# Reenable TLSv1 support for Java 8, since it is required for old versions of Jack.
+sed -i '/^jdk.tls.disabledAlgorithms=/s/TLSv1, TLSv1.1, //' /etc/java-8-openjdk/security/java.security
 
 # Download the Android tools.
 retry curl  --location --output platform-tools-latest-linux.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
@@ -422,19 +396,8 @@ usermod -a -G adbusers vagrant
 chmod 644 /etc/udev/rules.d/51-android.rules
 # chcon "system_u:object_r:udev_rules_t:s0" /etc/udev/rules.d/51-android.rules
 
-if [[ "$PACKER_BUILD_NAME" =~ ^(lineage|lineageos)-nash-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 cat <<-EOF > /home/vagrant/lineage-build.sh
-#!/bin/bash
-
-# Build Lineage for the Motorola Z2 Force by default.
-
-export DEVICE=\${DEVICE:="nash"}
-export BRANCH=\${BRANCH:="lineage-15.1"}
-export VENDOR=\${VENDOR:="motorola"}
-EOF
-else
-cat <<-EOF > /home/vagrant/lineage-build.sh
-#!/bin/bash
+#!/bin/bash -e
 
 # Build Lineage for Motorol Photon Q by default - because physical keyboards eat virtual keyboards
 # for breakfast, brunch and then dinner.
@@ -442,10 +405,7 @@ cat <<-EOF > /home/vagrant/lineage-build.sh
 export DEVICE=\${DEVICE:="xt897"}
 export BRANCH=\${BRANCH:="cm-14.1"}
 export VENDOR=\${VENDOR:="motorola"}
-EOF
-fi
 
-cat <<-EOF >> /home/vagrant/lineage-build.sh
 export NAME=\${NAME:="Ladar Levison"}
 export EMAIL=\${EMAIL:="ladar@lavabit.com"}
 
@@ -456,17 +416,17 @@ echo
 echo NAME=\$NAME
 echo EMAIL=\$EMAIL
 echo
-echo "Override the above environment variables in your Vagrantfile to alter the build configuration."
+echo "Override the above environment variables to alter the build configuration."
 echo
 echo
 sleep 10
 
 # Setup the branch and enable the distributed cache.
 export USE_CCACHE=1
+export CCACHE_DIR="\$HOME/cache"
+export CCACHE_COMPRESS=1
 export TMPDIR="\$HOME/temp"
-export ANDROID_CCACHE_SIZE="20G"
-export ANDROID_CCACHE_DIR="\$HOME/cache"
-export PROCESSOR_COUNT=`cat /proc/cpuinfo  | grep processor | wc -l`
+export PROCESSOR_COUNT=\$(nproc)
 
 # Jack is the Java compiler used by LineageOS 14.1+, and it is memory hungry.
 # We specify a memory limit of 8gb to avoid 'out of memory' errors.
@@ -491,9 +451,20 @@ git config --global user.name "\$NAME"
 git config --global user.email "\$EMAIL"
 git config --global color.ui false
 
-# Initialize the repo and download the source code.
-repo init -u https://github.com/LineageOS/android.git -b \$BRANCH
-repo --color=never sync --quiet --jobs=\${PROCESSOR_COUNT}
+# Initialize the repo.
+repo init -u https://github.com/LineageOS/android.git -b \$BRANCH -g default,-darwin
+
+# Set up the blob source.
+mkdir -p .repo/local_manifests
+cat <<-EOF2 > .repo/local_manifests/muppets-\$VENDOR.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="TheMuppets/proprietary_vendor_\$VENDOR" path="vendor/\$VENDOR" depth="1" />
+</manifest>
+EOF2
+
+# Download the source code.
+repo --color=never sync --quiet --jobs=\${PROCESSOR_COUNT} -c --no-clone-bundle --no-tags
 
 # Setup the environment.
 source build/envsetup.sh
@@ -502,82 +473,77 @@ source build/envsetup.sh
 sed -i -e "s/-Xmx2048m/-Xmx4096m/g" \$HOME/android/lineage/build/tools/releasetools/common.py
 
 # Download and configure the environment for the device.
-breakfast \$DEVICE
-
-# # Find the latest upstream build.
-# ARCHIVE=\`curl  --location --silent https://download.lineageos.org/\$DEVICE | grep href | grep https://mirrorbits.lineageos.org/full/\$DEVICE/ | head -1 | awk -F'"' '{print \$2}'\`
-#
-# # Create a system dump directory.
-# mkdir -p \$HOME/android/system_dump/ && cd \$HOME/android/system_dump/
-#
-# # Download the archive.
-# curl --location --output lineage-archive.zip "\$ARCHIVE"
-#
-# # Extract the system blocks.
-# unzip lineage-archive.zip system.transfer.list system.new.dat
-#
-# # Clone the sdat2img tool.
-# git clone https://github.com/xpirt/sdat2img
-#
-# # Convert the system block file into an image.
-# python sdat2img/sdat2img.py system.transfer.list system.new.dat system.img
-#
-# # Mount the system image.
-# mkdir -p \$HOME/android/system/
-# sudo mount system.img \$HOME/android/system/
-
-# Change to the device directory and run the extraction script.
-# cd \$HOME/android/lineage/device/\$VENDOR/\$DEVICE
-# ./extract-files.sh \$HOME/android/system_dump/system
-#
-# # Unmount the system dump.
-# sudo umount \$HOME/android/system_dump/system
-# rm -rf \$HOME/android/system_dump/
-
-# Extract the vendor specific blobs.
-mkdir -p \$HOME/android/vendor/system/
-tar -xzv -C \$HOME/android/vendor/ -f \$HOME/system-blobs.tar.gz
-
-# Change to the device directory and run the extraction script.
-cd \$HOME/android/lineage/device/\$VENDOR/\$DEVICE
-./extract-files.sh \$HOME/android/vendor/system/
-
-# Cleanup the vendor blob files.
-rm -rf \$HOME/android/vendor/
-
-# Setup the environment.
-cd \$HOME/android/lineage/ && source build/envsetup.sh
 breakfast \$DEVICE || ( printf "\n\n\nBuild failed. (breakfast)\n\n\n"; exit 1 )
 
 # Setup the cache.
 cd \$HOME/android/lineage/
-prebuilts/misc/linux-x86/ccache/ccache -M 20G
+
+export CCACHE_EXEC="prebuilts/misc/linux-x86/ccache/ccache"
+
+if [ ! -x "\$CCACHE_EXEC" ]; then
+  export CCACHE_EXEC="\$(which ccache)"
+fi
+
+"\$CCACHE_EXEC" -M 20G
+
+BUILDSTAMP=\`date --utc +'%Y%m%d'\`
 
 # Start the build.
 croot
 brunch \$DEVICE || ( printf "\n\n\nBuild failed. (brunch)\n\n\n"; exit 1 )
 
 # Calculate the filename.
-BUILDSTAMP=\`date --utc +'%Y%m%d'\`
-DIRIMAGE="\$HOME/android/lineage/out/target/product/\$DEVICE"
-SYSIMAGE="\$DIRIMAGE/lineage-14.1-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
-SYSIMAGESUM="\$DIRIMAGE/lineage-14.1-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip.md5sum"
-#RECIMAGE="lineage-\$BUILDVERSION-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE-recovery.img"
+VERSION_NAME="\$BRANCH"
 
-# Verify the image checksum.
-md5sum -c "\$SYSIMAGESUM" || ( printf "\n\n\nChecksum generation failed.\n\n\n"; exit 1 )
+# A few select branches got rebranded
+if [[ "\$VERSION_NAME" =~ ^cm-(11\.0|13\.0|14\.1)$ ]]; then
+  VERSION_NAME=\${VERSION_NAME/cm-/lineage-}
+fi
+
+# 11.0 was only designated as '11'
+if [[ "\$VERSION_NAME" =~ "lineage-11.0" ]]; then
+  VERSION_NAME="lineage-11"
+fi
+
+DIRIMAGE="\$HOME/android/lineage/out/target/product/\$DEVICE"
+SYSIMAGE="\$DIRIMAGE/\$VERSION_NAME-\$BUILDSTAMP-UNOFFICIAL-\$DEVICE.zip"
+
+# Verify the md5sum if it exists, otherwise generate it.
+MD5IMAGESUM="\$SYSIMAGE.md5sum"
+if [ -f "\$MD5IMAGESUM" ]; then
+  (cd "\$DIRIMAGE" && md5sum -c "\$MD5IMAGESUM") || ( printf "\n\n\nThe MD5 hash failed to validate.\n\n\n"; exit 1 )
+else
+  (cd "\$DIRIMAGE" && md5sum "\$SYSIMAGE" > "\$MD5IMAGESUM")
+fi
+
+# Verify a sha256sum, or generate it.
+SHAIMAGESUM="\$SYSIMAGE.sha256sum"
+if [ -f "\$SHAIMAGESUM" ]; then
+  (cd "\$DIRIMAGE" && sha256sum -c "\$SHAIMAGESUM") || ( printf "\n\n\nThe SHA256 hash failed to validate.\n\n\n"; exit 1 )
+else
+  (cd "\$DIRIMAGE" && sha256sum "\$SYSIMAGE" > "\$SHAIMAGESUM")
+fi
 
 # See what the output directory holds.
-ls -alh "\$SYSIMAGE" "\$SYSIMAGESUM"
+ls -alh "\$SYSIMAGE" "\$MD5IMAGESUM" "\$SHAIMAGESUM"
 
 # Push the new system image to the device.
 # adb push "\$SYSIMAGE" /sdcard/
 # env > ~/env.txt
 EOF
 
-chown vagrant:vagrant /home/vagrant/system-blobs.tar.gz
 chown vagrant:vagrant /home/vagrant/lineage-build.sh
 chmod +x /home/vagrant/lineage-build.sh
 
 # Customize the message of the day
-printf "\nLineage Development Environment\nTo download and compile Lineage, just execute the lineage-build.sh script.\n\n" > /etc/motd
+cat <<-EOF > /etc/motd
+Lineage Development Environment
+To download and compile Lineage, just execute the lineage-build.sh script:
+
+  # Build LineageOS 14.1 for the Motorola Photon Q
+  DEVICE=xt897 BRANCH=cm-14.1 VENDOR=motorola ./lineage-build.sh
+
+  # Build LineageOS 15.1 for the Motorola Z2 Force
+  DEVICE=nash BRANCH=lineage-15.1 VENDOR=motorola ./lineage-build.sh
+
+EOF

@@ -19,13 +19,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.usable_port_range = 20000..30000
 
-  # The box ships with a short script that will clone the git repos and
-  # compile the code. This line will trigger that process automatically
-  # when the box is provisioned.
-  config.vm.provision "shell", run: "always", inline: <<-SHELL
-    su -l vagrant -c '/home/vagrant/lineage-build.sh'
-  SHELL
-
   # Lineage will build and run comfortably with 1 CPU and 512MB of RAM
   # but adding a second CPU and increasing the RAM to 2048MB will speed
   # things up considerably during the build process.
