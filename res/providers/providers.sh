@@ -1,4 +1,4 @@
-#!/bin/bash -eux
+#!/bin/bash 
 
 # The unprivileged user that will be running packer/using the boxes.
 export HUMAN="`set -eu ; ((logname || echo $LOGNAME) || echo $SUDO_USER) || echo $USER`"
