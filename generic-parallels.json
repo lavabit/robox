@@ -7191,12 +7191,12 @@
         "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
         "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine315.vagrant.cfg<enter><wait>",
         "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f /root/generic.alpine315.vagrant.cfg ; ",
+        "source generic.alpine315.vagrant.cfg<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | sh setup-alpine -f /root/generic.alpine315.vagrant.cfg ; ",
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
-        "umount /mnt/boot && umount /mnt ; reboot<enter>"
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
       ],
       "disk_size": 32768,
       "cpus": 2,
