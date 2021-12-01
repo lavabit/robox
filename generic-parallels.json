@@ -7192,7 +7192,7 @@
         "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine315.vagrant.cfg<enter><wait>",
         "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
         "source generic.alpine315.vagrant.cfg<enter><wait>",
-        "printf \"vagrant\\nvagrant\\ny\\n\" | sh setup-alpine -f /root/generic.alpine315.vagrant.cfg ; ",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine315.vagrant.cfg && ",
         "mount /dev/sda2 /mnt && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
