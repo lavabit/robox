@@ -57,7 +57,7 @@ if [ -d /etc/apt/apt.conf.d/ ]; then
 # Disable periodic activities of apt.
 printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
 
-# Enable retries, which should reduce the number box buld failures resulting from a temporal network problems.
+# We disable APT retries, to avoid inconsistent error handling, as it only retries some errors. Instead we let the retry function detect, and retry a given command regardless of the error.
 printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/20retries
 
 fi
