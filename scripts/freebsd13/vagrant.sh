@@ -7,6 +7,7 @@ echo 'vagrant' | pw useradd vagrant -h 0 -m
 chsh -s bash vagrant
 
 cat <<EOF > /usr/local/etc/sudoers.d/vagrant
+Defaults:vagrant !fqdn
 Defaults:vagrant !requiretty
 vagrant ALL=(ALL) NOPASSWD: ALL
 EOF

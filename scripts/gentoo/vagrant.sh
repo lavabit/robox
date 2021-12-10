@@ -27,8 +27,11 @@ if [ -f /etc/security/passwdqc.conf ]; then
 fi
 
 printf "vagrant\nvagrant\n" | passwd vagrant
-sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
-printf "vagrant        ALL=(ALL)       NOPASSWD: ALL\n" > /etc/sudoers.d/vagrant
+cat <<-EOF > /etc/sudoers.d/vagrant
+Defaults:vagrant !fqdn
+Defaults:vagrant !requiretty
+vagrant ALL=(ALL) NOPASSWD: ALL
+EOF
 chmod 0440 /etc/sudoers.d/vagrant
 
 # Create the vagrant user ssh directory.
