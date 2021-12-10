@@ -1074,7 +1074,7 @@ function docker-login() {
       docker login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe quay.io login credentials failed.\n\n"; tput sgr0
-        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
         RESPONSE=${RESPONSE,,}
         if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
           exit 1
@@ -1085,7 +1085,7 @@ function docker-login() {
       docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe docker.io login credentials failed.\n\n"; tput sgr0
-        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
         RESPONSE=${RESPONSE,,}
         if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
           exit 1
@@ -1100,7 +1100,8 @@ function docker-login() {
       docker login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe quay.io login credentials failed.\n\n"; tput sgr0
-        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
+
         RESPONSE=${RESPONSE,,}
         if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
           exit 1
@@ -1110,7 +1111,7 @@ function docker-login() {
       docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe docker.io login credentials failed.\n\n"; tput sgr0
-        read -t 30 -r -p "Would you like to conitnue? [Y/n]: " RESPONSE
+        read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
         RESPONSE=${RESPONSE,,}
         if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
           exit 1
