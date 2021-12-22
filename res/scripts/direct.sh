@@ -245,7 +245,6 @@ fi
 retry ${CURL} --tlsv1.2 \
   --fail \
   --silent \
-  --output "/dev/null" \
   --show-error \
   --request PUT \
   --max-time 7200 \

@@ -4,7 +4,7 @@ version=`grep VERSION= /etc/os-release | cut -f2 -d\" | cut -f1 -d\ `
 
 # Remove locks to avoid dependency problems.
 zypper --non-interactive removelock virtualbox-guest-tools || echo "The virtualbox-guest-tools lock removal failed."
-zypper --non-interactive removelock virtualbox-guest-kmp-default || echo "The virtualbox-guest-kmp-defaul lock removal failed."
+zypper --non-interactive removelock virtualbox-kmp-default || echo "The virtualbox-kmp-defaul lock removal failed."
 
 # Remove the default installation repository.
 zypper --non-interactive removerepo "`zypper repos 1 | head -1 | awk -F':' '{print $2}' | tr -d '[:space:]'`"
@@ -26,8 +26,8 @@ zypper --non-interactive clean --all
 # Refresh the repository metadata.
 zypper --non-interactive refresh
 
-# Update the system packages.
-zypper --non-interactive update --auto-agree-with-licenses
+# Update the system packages. This command may need to run twice, because the first attempt may only update the release package.
+zypper --non-interactive update --auto-agree-with-licenses && zypper --non-interactive update --auto-agree-with-licenses
 
 # Install the packages we'd expect to find.
 zypper --non-interactive install --force-resolution man mlocate sysstat psmisc
