@@ -31,7 +31,6 @@
                 "scripts/alpine36/vagrant.sh",
                 "scripts/alpine36/sshd.sh",
                 "scripts/alpine36/glibc.sh",
-                "scripts/alpine36/gcc.sh",
                 "scripts/alpine36/magma.sh",
                 "scripts/alpine36/virtualbox.sh",
                 "scripts/alpine36/parallels.sh",
