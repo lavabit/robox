@@ -33,7 +33,7 @@ retry() {
 
 error() {
         if [ $? -ne 0 ]; then
-                printf "\n\napt failed...\n\n";
+                printf "\n\nAPT failed... again.\n\n";
                 exit 1
         fi
 }
@@ -48,35 +48,79 @@ export DEBCONF_NONINTERACTIVE_SEEN=true
 sysctl net.ipv6.conf.all.disable_ipv6=1
 printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /etc/resolv.conf
 
-# Disable upgrades to new releases.
-sed -i -e 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades;
+# Disable upgrades to new releases, and prevent notifications from being added to motd.
+sed -i -e 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades 
 
-# If the apt configuration directory exists, we add our own config options.
+if [ -f /usr/lib/ubuntu-release-upgrader/release-upgrade-motd ]; then
+cat <<-EOF > /usr/lib/ubuntu-release-upgrader/release-upgrade-motd
+#!/bin/sh
+if [ -d /var/lib/ubuntu-release-upgrader/ ]; then
+  date +%s > /var/lib/ubuntu-release-upgrader/release-upgrade-available 
+fi
+exit 0
+EOF
+fi
+
+# Remove a confusing, and potentially conflicting sources file left by the install process.
+[ -f /etc/apt/sources.list.curtin.old ] && rm --force /etc/apt/sources.list.curtin.old 
+
+# If the APT configuration directory exists, we add our own config options.
 if [ -d /etc/apt/apt.conf.d/ ]; then
 
-# Disable periodic activities of apt.
-printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
+# Disable APT periodic so it doesn't cause problems.
+if [ -f  /etc/apt/apt.conf.d/10periodic ]; then
+  sed -i "/^APT::Periodic::Enable/d" /etc/apt/apt.conf.d/10periodic
+  sed -i "/^APT::Periodic::AutocleanInterval/d" /etc/apt/apt.conf.d/10periodic
+  sed -i "/^APT::Periodic::Unattended-Upgrade/d" /etc/apt/apt.conf.d/10periodic
+  sed -i "/^APT::Periodic::Update-Package-Lists/d" /etc/apt/apt.conf.d/10periodic
+  sed -i "/^APT::Periodic::Download-Upgradeable-Packages/d" /etc/apt/apt.conf.d/10periodic
+fi
+
+cat <<-EOF >> /etc/apt/apt.conf.d/10periodic
+
+APT::Periodic::Enable "0";
+APT::Periodic::AutocleanInterval "0";
+APT::Periodic::Unattended-Upgrade "0";
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Download-Upgradeable-Packages "0";
+
+EOF
 
 # We disable APT retries, to avoid inconsistent error handling, as it only retries some errors. Instead we let the retry function detect, and retry a given command regardless of the error.
-printf "APT::Acquire::Retries \"0\";\n" >> /etc/apt/apt.conf.d/20retries
+cat <<-EOF >> /etc/apt/apt.conf.d/20retries
+
+APT::Acquire::Retries "0";
+
+EOF
 
 fi
-# Keep the daily apt updater from deadlocking our installs.
-systemctl stop apt-daily.service apt-daily.timer
-systemctl stop snapd.service snapd.socket
+
+# Keep the daily apt updater from deadlocking our the upgrade/install commands we are about to run.
+systemctl --quiet is-active apt-daily.timer && systemctl stop apt-daily.timer
+systemctl --quiet is-active apt-daily.service && systemctl stop apt-daily.service
+systemctl --quiet is-active apt-daily-upgrade.timer && systemctl stop apt-daily-upgrade.timer
+systemctl --quiet is-active apt-daily-upgrade.service && systemctl stop apt-daily-upgrade.service
+systemctl --quiet is-active unattended-upgrades.service && systemctl stop unattended-upgrades.service
+# systemctl stop snapd.service snapd.socket
+
+# Run clean/autoclean/purge first, to ensure there aren't any ghost packages, and/or
+# cached repo data that will cause a conflict with the update/upgrade/install commands that follow.
+apt-get --assume-yes clean ; error
+apt-get --assume-yes autoclean ; error
+apt-get --assume-yes purge ; error
 
 # Update the package database.
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update ; error
 
 # Ensure the linux-tools and linux-cloud-tools get updated with the kernel.
 # retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic
 
 # Upgrade the installed packages.
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade ; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade ; error
 
 # Needed to retrieve source code, and other misc system tools.
-retry apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils lsb-release psmisc; error
+retry apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils lsb-release psmisc ; error
 
 # Enable the sysstat collection service.
 sed -i -e "s|.*ENABLED=\".*\"|ENABLED=\"true\"|g" /etc/default/sysstat

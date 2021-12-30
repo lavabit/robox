@@ -16,12 +16,10 @@ autoinstall:
   apt:
       primary:
           - arches: [default]
-            uri: https://mirrors.kernel.org/ubuntu/
-            # uri: http://us.archive.ubuntu.com/ubuntu/
+            uri: https://old-releases.ubuntu.com/ubuntu/
       security:
           - arches: [default]
-            uri: https://mirrors.kernel.org/ubuntu/
-            # uri: http://security.ubuntu.com/ubuntu/
+            uri: https://old-releases.ubuntu.com/ubuntu/
   storage:
       layout:
           name: lvm
@@ -55,7 +53,7 @@ autoinstall:
       path: /etc/systemd/network/eth0.network
       permissions: '0644'
   early-commands:
-    - systemctl stop sshd
+    - systemctl stop ssh
     - sed -i "s/#Cache=.*/Cache=yes/g" /etc/systemd/resolved.conf
     - sed -i "s/#DNS=.*/DNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
     - sed -i "s/#FallbackDNS=.*/FallbackDNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
