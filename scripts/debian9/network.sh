@@ -27,7 +27,7 @@ retry() {
 }
 
 
-# To allow for autmated installs, we disable interactive configuration steps.
+# To allow for automated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 

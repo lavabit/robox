@@ -415,7 +415,8 @@
         "scripts/debian8/virtualbox.sh",
         "scripts/debian8/parallels.sh",
         "scripts/debian8/vmware.sh",
-        "scripts/debian8/qemu.sh"
+        "scripts/debian8/qemu.sh",
+        "scripts/debian8/cleanup.sh"
       ],
       "type": "shell",
       "timeout": "120m",
@@ -450,7 +451,8 @@
         "scripts/debian9/virtualbox.sh",
         "scripts/debian9/parallels.sh",
         "scripts/debian9/vmware.sh",
-        "scripts/debian9/qemu.sh"
+        "scripts/debian9/qemu.sh",
+        "scripts/debian9/cleanup.sh"
       ],
       "type": "shell",
       "timeout": "120m",
@@ -1238,7 +1240,8 @@
         "scripts/debian10/virtualbox.sh",
         "scripts/debian10/parallels.sh",
         "scripts/debian10/vmware.sh",
-        "scripts/debian10/qemu.sh"
+        "scripts/debian10/qemu.sh",
+        "scripts/debian10/cleanup.sh"
       ],
       "type": "shell",
       "timeout": "120m",
@@ -1779,7 +1782,8 @@
         "scripts/devuan1/virtualbox.sh",
         "scripts/devuan1/parallels.sh",
         "scripts/devuan1/vmware.sh",
-        "scripts/devuan1/qemu.sh"
+        "scripts/devuan1/qemu.sh",
+        "scripts/devuan1/cleanup.sh"
       ],
       "type": "shell",
       "timeout": "120m",
@@ -1811,7 +1815,8 @@
         "scripts/devuan2/virtualbox.sh",
         "scripts/devuan2/parallels.sh",
         "scripts/devuan2/vmware.sh",
-        "scripts/devuan2/qemu.sh"
+        "scripts/devuan2/qemu.sh",
+        "scripts/devuan2/cleanup.sh"
       ],
       "type": "shell",
       "timeout": "120m",
@@ -1843,7 +1848,8 @@
         "scripts/devuan3/virtualbox.sh",
         "scripts/devuan3/parallels.sh",
         "scripts/devuan3/vmware.sh",
-        "scripts/devuan3/qemu.sh"
+        "scripts/devuan3/qemu.sh",
+        "scripts/devuan3/cleanup.sh"
       ],
       "type": "shell",
       "timeout": "120m",
@@ -2274,7 +2280,8 @@
         "scripts/debian11/virtualbox.sh",
         "scripts/debian11/parallels.sh",
         "scripts/debian11/vmware.sh",
-        "scripts/debian11/qemu.sh"
+        "scripts/debian11/qemu.sh",
+        "scripts/debian11/cleanup.sh"
       ],
       "type": "shell",
       "timeout": "120m",
@@ -2462,7 +2469,8 @@
         "scripts/devuan4/virtualbox.sh",
         "scripts/devuan4/parallels.sh",
         "scripts/devuan4/vmware.sh",
-        "scripts/devuan4/qemu.sh"
+        "scripts/devuan4/qemu.sh",
+        "scripts/devuan4/cleanup.sh"
       ],
       "type": "shell",
       "timeout": "120m",

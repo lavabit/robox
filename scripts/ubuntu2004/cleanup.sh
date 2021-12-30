@@ -7,7 +7,7 @@ error() {
   fi
 }
 
-# To allow for autmated installs, we disable interactive configuration steps.
+# To allow for automated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
@@ -18,6 +18,11 @@ systemctl stop snapd.service snapd.socket snapd.refresh.timer
 # Cleanup unused packages.
 apt-get --assume-yes autoremove; error
 apt-get --assume-yes autoclean; error
+apt-get --assume-yes purge; error
 
-# Clear the random seed.
-rm -f /var/lib/systemd/random-seed
+# Restore the system default apt retry value.
+[ -f /etc/apt/apt.conf.d/20retries ] && rm --force /etc/apt/apt.conf.d/20retries
+
+# Removethe random seed so a unique value is used the first time the box is booted.
+systemctl --quiet is-active systemd-random-seed.service && systemctl stop systemd-random-seed.service
+[ -f /var/lib/systemd/random-seed ] && rm --force /var/lib/systemd/random-seed

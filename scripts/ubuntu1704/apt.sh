@@ -33,7 +33,7 @@ error() {
         fi
 }
 
-# To allow for autmated installs, we disable interactive configuration steps.
+# To allow for automated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
@@ -53,7 +53,7 @@ if [ -d /etc/apt/apt.conf.d/ ]; then
 printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
 
 # We disable APT retries, to avoid inconsistent error handling, as it only retries some errors. Instead we let the retry function detect, and retry a given command regardless of the error.
-printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/20retries
+printf "APT::Acquire::Retries \"0\";\n" >> /etc/apt/apt.conf.d/20retries
 
 fi
 # Keep the daily apt updater from deadlocking our installs.
