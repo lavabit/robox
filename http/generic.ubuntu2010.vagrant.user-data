@@ -41,9 +41,7 @@ autoinstall:
   packages:
       - sed
       - curl
-      - sudo
       - openssh-server
-      - linux-cloud-tools-virtual
   output:
     init: "> /var/log/cloud-init.log"
     config: [ ">> /tmp/foo.out", "> /var/log/cloud-config.log" ]
@@ -77,5 +75,5 @@ autoinstall:
     - sudo chroot /target /bin/bash -c '/usr/sbin/useradd --create-home --shell /bin/bash --password vagrant vagrant'
     - sudo chroot /target /bin/bash -c 'printf "vagrant\nvagrant\n" | passwd root'
     - curtin in-target --target=/target -- update-grub
-    - truncate --size=0 /target/etc/apt/sources.list
+    - echo "deb cdrom:[Ubuntu 20.10 _Groovy Gorilla_ - Release amd64 (20201022)]/ groovy main restricted" > /target/etc/apt/sources.list
 

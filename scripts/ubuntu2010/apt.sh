@@ -61,9 +61,8 @@ exit 0
 EOF
 fi
 
-# The sources should have been truncated by the installer, but just in case we do it again.
-[ -f /etc/apt/sources.list ] && truncate --size=0 /etc/apt/sources.list
-[ ! -f /etc/apt/sources.list ] && touch /etc/apt/sources.list
+# The sources should have been trimmed down to nothing by the installer, but just in case we do it again.
+echo "deb cdrom:[Ubuntu 20.10 _Groovy Gorilla_ - Release amd64 (20201022)]/ groovy main restricted" > /etc/apt/sources.list
 
 # Remove a confusing, and potentially conflicting sources file left by the install process.
 [ -f /etc/apt/sources.list.curtin.old ] && rm --force /etc/apt/sources.list.curtin.old 
@@ -134,14 +133,14 @@ EOF
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update ; error
 
 # Ensure the linux-tools and linux-cloud-tools get updated with the kernel.
-# retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-cloud-tools-virtual
 
 # Upgrade the installed packages.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade ; error
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade ; error
 
 # Needed to retrieve source code, and other misc system tools.
-retry apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils lsb-release psmisc ; error
+retry apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sudo sysstat lsof pciutils usbutils lsb-release psmisc ; error
 
 # Enable the sysstat collection service.
 sed -i -e "s|.*ENABLED=\".*\"|ENABLED=\"true\"|g" /etc/default/sysstat
