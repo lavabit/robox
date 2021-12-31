@@ -13,13 +13,18 @@ autoinstall:
           ethernets:
               eth0:
                  dhcp4: yes
+                 dhcp6: no
   apt:
       primary:
-          - arches: [default]
+          - arches: [amd64, i386, default]
             uri: https://old-releases.ubuntu.com/ubuntu/
+            search_dns: false
+            search: []
       security:
-          - arches: [default]
+          - arches: [amd64, i386, default]
             uri: https://old-releases.ubuntu.com/ubuntu/
+            search_dns: false
+            search: []
   storage:
       layout:
           name: lvm
@@ -58,6 +63,13 @@ autoinstall:
     - sed -i "s/#DNS=.*/DNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
     - sed -i "s/#FallbackDNS=.*/FallbackDNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
     - systemctl restart systemd-resolved
+    - sed -i -e "s/us.archive.ubuntu.com/old-releases.ubuntu.com/g" /etc/apt/sources.list
+    - sed -i -e "s/archive.ubuntu.com/old-releases.ubuntu.com/g" /etc/apt/sources.list
+    - sed -i -e "s/security.ubuntu.com/old-releases.ubuntu.com/g" /etc/apt/sources.list
+    - apt-get clean
+    - apt-get autoclean
+    - apt-get purge
+    - apt-get update
   late-commands:
     - sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT=="\1 net.ifnames=0 biosdevname=0"/g' /target/etc/default/grub
     - sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=" net.ifnames/GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames/g' /target/etc/default/grub
@@ -65,3 +77,5 @@ autoinstall:
     - sudo chroot /target /bin/bash -c '/usr/sbin/useradd --create-home --shell /bin/bash --password vagrant vagrant'
     - sudo chroot /target /bin/bash -c 'printf "vagrant\nvagrant\n" | passwd root'
     - curtin in-target --target=/target -- update-grub
+    - truncate --size=0 /target/etc/apt/sources.list
+

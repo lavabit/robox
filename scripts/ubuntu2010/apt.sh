@@ -61,6 +61,10 @@ exit 0
 EOF
 fi
 
+# The sources should have been truncated by the installer, but just in case we do it again.
+[ -f /etc/apt/sources.list ] && truncate --size=0 /etc/apt/sources.list
+[ ! -f /etc/apt/sources.list ] && touch /etc/apt/sources.list
+
 # Remove a confusing, and potentially conflicting sources file left by the install process.
 [ -f /etc/apt/sources.list.curtin.old ] && rm --force /etc/apt/sources.list.curtin.old 
 
@@ -103,11 +107,28 @@ systemctl --quiet is-active apt-daily-upgrade.service && systemctl stop apt-dail
 systemctl --quiet is-active unattended-upgrades.service && systemctl stop unattended-upgrades.service
 # systemctl stop snapd.service snapd.socket
 
-# Run clean/autoclean/purge first, to ensure there aren't any ghost packages, and/or
-# cached repo data that will cause a conflict with the update/upgrade/install commands that follow.
+# Run clean/autoclean/purge/update first, this will work around problems with ghost packages, and/or
+# conflicting data in the repo index cache. After the cleanup is complete, we can proceed with the 
+# update/upgrade/install commands below.
 apt-get --assume-yes clean ; error
 apt-get --assume-yes autoclean ; error
 apt-get --assume-yes purge ; error
+apt-get --assume-yes update ; error
+
+# Write out a nice and compact sources list.
+cat <<-EOF > /etc/apt/sources.list
+
+deb https://old-releases.ubuntu.com/ubuntu/ groovy main restricted universe multiverse
+deb https://old-releases.ubuntu.com/ubuntu/ groovy-updates main restricted universe multiverse
+deb https://old-releases.ubuntu.com/ubuntu/ groovy-backports main restricted universe multiverse
+deb https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted universe multiverse
+
+# deb-src https://old-releases.ubuntu.com/ubuntu/ groovy main restricted universe multiverse
+# deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-updates main restricted universe multiverse
+# deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-backports main restricted universe multiverse
+# deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted universe multiverse
+
+EOF
 
 # Update the package database.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update ; error
