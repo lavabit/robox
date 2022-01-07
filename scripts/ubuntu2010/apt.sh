@@ -62,7 +62,8 @@ EOF
 fi
 
 # The sources should have been trimmed down to nothing by the installer, but just in case we do it again.
-echo "deb cdrom:[Ubuntu 20.10 _Groovy Gorilla_ - Release amd64 (20201022)]/ groovy main restricted" > /etc/apt/sources.list
+# echo "deb cdrom:[Ubuntu 20.10 _Groovy Gorilla_ - Release amd64 (20201022)]/ groovy main restricted" > /etc/apt/sources.list
+echo "" > /etc/apt/sources.list
 
 # Remove a confusing, and potentially conflicting sources file left by the install process.
 [ -f /etc/apt/sources.list.curtin.old ] && rm --force /etc/apt/sources.list.curtin.old 
@@ -130,7 +131,7 @@ deb https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted univ
 EOF
 
 # Update the package database.
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update ; error
+retry apt-get --assume-yes --allow-releaseinfo-change -o Dpkg::Options::="--force-confnew" update ; error
 
 # Ensure the linux-tools and linux-cloud-tools get updated with the kernel.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-cloud-tools-virtual

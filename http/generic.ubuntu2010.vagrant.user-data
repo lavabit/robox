@@ -15,16 +15,13 @@ autoinstall:
                  dhcp4: yes
                  dhcp6: no
   apt:
+      geoip: false
       primary:
-          - arches: [amd64, i386, default]
-            uri: https://old-releases.ubuntu.com/ubuntu/
-            search_dns: false
-            search: []
+        - arches: [default]
+          uri: https://old-releases.ubuntu.com/ubuntu/
       security:
-          - arches: [amd64, i386, default]
-            uri: https://old-releases.ubuntu.com/ubuntu/
-            search_dns: false
-            search: []
+        - arches: [default]
+          uri: https://old-releases.ubuntu.com/ubuntu/
   storage:
       layout:
           name: lvm
@@ -41,7 +38,9 @@ autoinstall:
   packages:
       - sed
       - curl
+      - sudo
       - openssh-server
+      - linux-cloud-tools-virtual
   output:
     init: "> /var/log/cloud-init.log"
     config: [ ">> /tmp/foo.out", "> /var/log/cloud-config.log" ]
@@ -56,24 +55,27 @@ autoinstall:
       path: /etc/systemd/network/eth0.network
       permissions: '0644'
   early-commands:
-    - systemctl stop ssh
+    - systemctl stop ssh.service
+    - systemctl stop unattended-upgrades.service
+    - systemctl stop apt-daily.timer apt-daily.service apt-daily-upgrade.timer apt-daily-upgrade.service
+    - printf "unattended-upgrades unattended-upgrades/enable_auto_updates boolean false\n" | debconf-set-selections
+    - dpkg-reconfigure -f noninteractive unattended-upgrades
+    - printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/99simplify
+    - printf "Unattended-Upgrade::InstallOnShutdown \"false\";\n" >> /etc/apt/apt.conf.d/99simplify
     - sed -i "s/#Cache=.*/Cache=yes/g" /etc/systemd/resolved.conf
     - sed -i "s/#DNS=.*/DNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
     - sed -i "s/#FallbackDNS=.*/FallbackDNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
     - systemctl restart systemd-resolved
-    - sed -i -e "s/us.archive.ubuntu.com/old-releases.ubuntu.com/g" /etc/apt/sources.list
-    - sed -i -e "s/archive.ubuntu.com/old-releases.ubuntu.com/g" /etc/apt/sources.list
-    - sed -i -e "s/security.ubuntu.com/old-releases.ubuntu.com/g" /etc/apt/sources.list
-    - apt-get clean
-    - apt-get autoclean
-    - apt-get purge
-    - apt-get update
   late-commands:
+    - echo "PermitRootLogin yes" >> /target/etc/ssh/sshd_config
+    - printf "APT::Periodic::Enable \"0\";\n" > /target/etc/apt/apt.conf.d/10periodic
+    - printf "APT::Periodic::Download-Upgradeable-Packages \"0\";\n" >> /target/etc/apt/apt.conf.d/10periodic
+    - printf "APT::Periodic::Unattended-Upgrade \"0\";\n" >> /target/etc/apt/apt.conf.d/10periodic
     - sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT=="\1 net.ifnames=0 biosdevname=0"/g' /target/etc/default/grub
     - sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=" net.ifnames/GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames/g' /target/etc/default/grub
-    - echo "PermitRootLogin yes" >> /target/etc/ssh/sshd_config
-    - sudo chroot /target /bin/bash -c '/usr/sbin/useradd --create-home --shell /bin/bash --password vagrant vagrant'
     - sudo chroot /target /bin/bash -c 'printf "vagrant\nvagrant\n" | passwd root'
     - curtin in-target --target=/target -- update-grub
-    - echo "deb cdrom:[Ubuntu 20.10 _Groovy Gorilla_ - Release amd64 (20201022)]/ groovy main restricted" > /target/etc/apt/sources.list
-
+  power_state:
+    delay: "+15"
+    mode: reboot
+    condition: True
