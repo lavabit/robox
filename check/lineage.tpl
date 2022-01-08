@@ -8,8 +8,8 @@ Vagrant.configure(2) do |config|
   config.vm.provider :libvirt do |v, override|
     v.driver = "kvm"
     v.video_vram = 256
-    v.memory = 8192
-    v.cpus = 4
+    v.memory = 24576
+    v.cpus = 10
   end
 
   config.vm.provider :virtualbox do |v, override|
