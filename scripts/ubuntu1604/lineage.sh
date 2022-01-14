@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Setup OpenJDK 1.8 as the default, which is required for the branches between 14.1 
+# and 15.1. Newer releases use the JDK release bundled with the source code. 
+#  LineageOS 18.0-18.1: OpenJDK 11 (bundled with source download)
+#  LineageOS 16.0-17.1: OpenJDK 1.9 (bundled with source download)
+#  LineageOS 14.1-15.1: OpenJDK 1.8 (use openjdk-8-jdk)
+#  LineageOS 11.0-13.0: OpenJDK 1.7 (use openjdk-7-jdk)
+
 retry() {
   local COUNT=1
   local RESULT=0
@@ -43,7 +50,7 @@ printf "\nalias python='/usr/bin/python3.6'\n" >> /home/vagrant/.bashrc
 printf "\nalias python='/usr/bin/python3.6'\n" >> /home/vagrant/.bash_aliases
 
 # Install developer tools.
-retry apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pciutils usbutils
+retry apt-get --assume-yes install vim vim-nox wget curl gnupg mlocate sysstat lsof pciutils usbutils vnstat apt-file
 
 # Install the build dependencies.
 retry apt-get --assume-yes install bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev ninja-build ccache
@@ -52,25 +59,29 @@ retry apt-get --assume-yes install bc bison build-essential curl flex g++-multil
 retry apt-get --assume-yes install openjdk-8-jdk openjdk-8-jdk-headless openjdk-8-jre openjdk-8-jre-headless icedtea-8-plugin
 
 # Java dependencies
-retry apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni libpng16-16 libsctp1
+retry apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni libpng16-16 libsctp1 libgif7
 
 # Download the OpenJDK 1.7 packages.
-retry curl --location --output openjdk-7-jre_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u121-2.6.8-2_amd64.deb
-retry curl --location  --output openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb
-retry curl --location  --output openjdk-7-jdk_7u121-2.6.8-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u121-2.6.8-2_amd64.deb
+retry curl --location  --output openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb
+retry curl --location  --output openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb
+retry curl --location  --output openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb
 retry curl --location  --output libjpeg62-turbo_1.5.1-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
 
+echo "55b4208bca9e772cd3d6e6a3f6bf3949d170e6da77e53b0ba59abb8f1658bb64  libjpeg62-turbo_1.5.1-2_amd64.deb" | sha256sum -c || exit 1
+echo "a7fa42ebfd7c12bb9de88ead6e40246e92f0437215049efa359678b07b5a513f  openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb" | sha256sum -c || exit 1
+echo "4635c358809ad2d4fc5ea965779272779a3296a10400c52130dd2b6830408ac1  openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb" | sha256sum -c || exit 1
+echo "f6ce7005eb6a4a847c63251a6ad653c58fff0766db4f38f3f13b8a053e069207  openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb" | sha256sum -c || exit 1
+
 # Install via dpkg.
-dpkg -i openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
+dpkg -i openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
 
 # Assuming the OpenJDK has dependencies... install them here.
 retry apt --assume-yes install -f
 
-# Setup OpenJDK 1.7 as the default, which is required for the 13.0 branch.
-update-java-alternatives -s java-1.7.0-openjdk-amd64
+update-java-alternatives -s java-1.8.0-openjdk-amd64
 
 # Delete the downloaded Java 7 packages.
-rm --force openjdk-7-jre_7u121-2.6.8-2_amd64.deb openjdk-7-jre-headless_7u121-2.6.8-2_amd64.deb openjdk-7-jdk_7u121-2.6.8-2_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
+rm --force openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb libjpeg62-turbo_1.5.1-2_amd64.deb
 
 # Reenable TLSv1 support for Java 8, since it is required for old versions of Jack.
 sed -i '/^jdk.tls.disabledAlgorithms=/s/TLSv1, TLSv1.1, //' /etc/java-8-openjdk/security/java.security
@@ -402,12 +413,12 @@ cat <<-EOF > /home/vagrant/lineage-build.sh
 # Build Lineage for Motorol Photon Q by default - because physical keyboards eat virtual keyboards
 # for breakfast, brunch and then dinner.
 
-export DEVICE=\${DEVICE:="xt897"}
-export BRANCH=\${BRANCH:="cm-14.1"}
-export VENDOR=\${VENDOR:="motorola"}
+export DEVICE=\${DEVICE:="pro1"}
+export BRANCH=\${BRANCH:="lineage-18.1"}
+export VENDOR=\${VENDOR:="fxtec"}
 
-export NAME=\${NAME:="Ladar Levison"}
-export EMAIL=\${EMAIL:="ladar@lavabit.com"}
+export NAME=\${NAME:="Robox Build Robot"}
+export EMAIL=\${EMAIL:="robot@lineageos.org"}
 
 echo DEVICE=\$DEVICE
 echo BRANCH=\$BRANCH
@@ -427,16 +438,19 @@ export CCACHE_DIR="\$HOME/cache"
 export CCACHE_COMPRESS=1
 export TMPDIR="\$HOME/temp"
 export PROCESSOR_COUNT=\$(nproc)
+export REPO_GROUPS=\${REPO_GROUPS:="default,-darwin"}
 
 # Jack is the Java compiler used by LineageOS 14.1+, and it is memory hungry.
 # We specify a memory limit of 8gb to avoid 'out of memory' errors.
 export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
 
-# If the environment indicates we should use Java 8 then run update alternatives to enable it.
-export EXPERIMENTAL_USE_JAVA8=\${EXPERIMENTAL_USE_JAVA8:="true"}
+# If the environment indicates we should use Java 7 then run update alternatives to enable it.
+export USE_JAVA7=\${USE_JAVA7:="false"}
 
 # If the environment indicates we should use Java 7, then we enable it.
-if [ "\$EXPERIMENTAL_USE_JAVA8" = "true" ]; then
+if [ "\$USE_JAVA7" = "true" ]; then
+  sudo update-java-alternatives -s java-1.7.0-openjdk-amd64
+else
   sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 fi
 
@@ -452,19 +466,24 @@ git config --global user.email "\$EMAIL"
 git config --global color.ui false
 
 # Initialize the repo.
-repo init -u https://github.com/LineageOS/android.git -b \$BRANCH -g default,-darwin
+repo init -u https://github.com/LineageOS/android.git -b \$BRANCH -g \${REPO_GROUPS}
 
 # Set up the blob source.
 mkdir -p .repo/local_manifests
-cat <<-EOF2 > .repo/local_manifests/muppets-\$VENDOR.xml
+if [ -f \$HOME/local_manifests.xml ]; then
+cp \$HOME/local_manifests.xml .repo/local_manifests/
+else
+cat <<-END > .repo/local_manifests/muppets-\$VENDOR.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <project name="TheMuppets/proprietary_vendor_\$VENDOR" path="vendor/\$VENDOR" depth="1" />
 </manifest>
-EOF2
+END
+fi
 
 # Download the source code.
-repo --color=never sync --quiet --jobs=\${PROCESSOR_COUNT} -c --no-clone-bundle --no-tags
+let JOBS=\${PROCESSOR_COUNT}*2
+repo --color=never sync --quiet --jobs=\${JOBS}
 
 # Setup the environment.
 source build/envsetup.sh
@@ -537,13 +556,39 @@ chmod +x /home/vagrant/lineage-build.sh
 
 # Customize the message of the day
 cat <<-EOF > /etc/motd
-Lineage Development Environment
-To download and compile Lineage, just execute the lineage-build.sh script:
+  
+  # Building LineageOS
+  # Turning craptastic into the fantastic.
+  
+  # To build LineageOS 14.1 (or newer) for any officially supported, or device  
+  # which previously had official support, simply supply the appropriate 
+  # vendor/device/branch params. Some examples follow.
+  
+  # To build LineageOS 18.1 for the Google Pixel 5a use the following.
+  env VENDOR=google DEVICE=barbet BRANCH=lineage-18.1 ./lineage-build.sh
 
-  # Build LineageOS 14.1 for the Motorola Photon Q
-  DEVICE=xt897 BRANCH=cm-14.1 VENDOR=motorola ./lineage-build.sh
+  # To build LineageOS 17.1 for the Fxtec Pro1.
+  env VENDOR=fxtec DEVICE=pro1 BRANCH=lineage-17.1 ./lineage-build.sh
+  
+  # To build LineageOS 16.0 for the Samsung Galaxy Tab S2.
+  env VENDOR=samsung DEVICE=gts210vewifi BRANCH=lineage-16.0 ./lineage-build.sh
 
-  # Build LineageOS 15.1 for the Motorola Z2 Force
-  DEVICE=nash BRANCH=lineage-15.1 VENDOR=motorola ./lineage-build.sh
+  # To build LineageOS 15.1 for the Motorola Z2 Force.
+  env VENDOR=motorola DEVICE=nash BRANCH=lineage-15.1 ./lineage-build.sh
+
+  # To build LineageOS 14.1 for the Motorola Photon Q
+  env VENDOR=motorola DEVICE=xt897 BRANCH=cm-14.1 ./lineage-build.sh
+  
+  # To build versions of LineageOS versions between 11.0 and 13.0, enable Java 7, 
+  # for LineageOS 13.0 on the Sony Xperia T, use the following.
+  env VENDOR=sony DEVICE=mint BRANCH=lineage-13.0 USE_JAVA7=true ./lineage-build.sh
+
+  # Finally, to build LineageOS for devices without official support, or to 
+  # simply override the default repository configuration, create a 
+  # local_manifests.xml file in the home directory. Doing so will disable the default 
+  # device manifest and trigger the use of the supplied custom manifest. For example, 
+  # to build LineageOS 18.1 for the Amazon Fire HD 8 (8th generation), you would 
+  # run the following. after creating an local_manifests.xml file.
+  env VENDOR=amazon DEVICE=karnak BRANCH=lineage-18.1 ./lineage-build.sh
 
 EOF
