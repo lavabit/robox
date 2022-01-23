@@ -7,7 +7,7 @@ echo 'vagrant' | pw user add vagrant -h 0 -m
 pwd_mkdb /etc/master.passwd
 chsh -s /bin/bash vagrant
 
-cat <<-EOF > /etc/sudoers.d/vagrant
+cat <<-EOF > /usr/local/etc/sudoers.d/vagrant
 Defaults:vagrant !fqdn
 Defaults:vagrant !requiretty
 vagrant ALL=(ALL) NOPASSWD: ALL
