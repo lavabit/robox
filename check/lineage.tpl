@@ -10,6 +10,7 @@ Vagrant.configure(2) do |config|
     v.video_vram = 256
     v.memory = 24576
     v.cpus = 10
+    v.storage  :bus => 'scsi', :discard => 'ignore', :detect_zeroes => 'off', :io => 'threads', :cache => 'unsafe'
   end
 
   config.vm.provider :virtualbox do |v, override|
