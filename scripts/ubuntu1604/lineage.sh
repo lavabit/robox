@@ -482,8 +482,14 @@ END
 fi
 
 # Download the source code.
+# --current-branch:  Ensure that we only fetch the needed branches from the server.
+# --no-clone-bundle: Disables use of clone.bundle, which either sends useless requests to hosts
+#                    that do not support that feature or downloads much more data than actually
+#                    needed to get a working tree.
+# --no-tags:         Ensure that we don't fetch tags that are not needed, as that will indirectly
+#                    pull in most branches again.
 let JOBS=\${PROCESSOR_COUNT}*2
-repo --color=never sync --quiet --jobs=\${JOBS}
+repo --color=never sync --quiet --jobs=\${JOBS} --current-branch --no-clone-bundle --no-tags
 
 # Setup the environment.
 source build/envsetup.sh
