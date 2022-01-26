@@ -587,7 +587,7 @@ cat <<-EOF > /etc/motd
   
   # To build versions of LineageOS versions between 11.0 and 13.0, enable Java 7, 
   # for LineageOS 13.0 on the Sony Xperia T, use the following.
-  env VENDOR=sony DEVICE=mint BRANCH=lineage-13.0 USE_JAVA7=true ./lineage-build.sh
+  env VENDOR=sony DEVICE=mint BRANCH=cm-13.0 USE_JAVA7=true ./lineage-build.sh
 
   # Finally, to build LineageOS for devices without official support, or to 
   # simply override the default repository configuration, create a 
