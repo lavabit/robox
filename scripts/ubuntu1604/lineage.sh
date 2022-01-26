@@ -418,7 +418,7 @@ export BRANCH=\${BRANCH:="lineage-18.1"}
 export VENDOR=\${VENDOR:="fxtec"}
 
 export NAME=\${NAME:="Robox Build Robot"}
-export EMAIL=\${EMAIL:="robot@lineageos.org"}
+export EMAIL=\${EMAIL:="robot@lavabit.com"}
 
 echo DEVICE=\$DEVICE
 echo BRANCH=\$BRANCH
