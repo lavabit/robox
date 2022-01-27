@@ -482,7 +482,7 @@ fi
 
 # Download the source code.
 let JOBS=\${PROCESSOR_COUNT}*2
-repo --color=never sync --quiet --jobs=\${JOBS} -c --no-tags --no-clone-bundle
+repo --color=never sync --quiet --jobs=\${JOBS} --current-branch --no-clone-bundle --no-tags
 
 # Setup the environment.
 source build/envsetup.sh
