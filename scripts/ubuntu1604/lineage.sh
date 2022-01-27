@@ -40,10 +40,32 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
-# Ensure Python 3.6 is installed.
-add-apt-repository --yes ppa:deadsnakes/ppa
-retry apt-get --assume-yes update
-retry apt-get --assume-yes install python3.6
+# Ensure Python 3.6 is installed. The ppa dropped support for Xenial, so we have
+# to download the deb files from the build system. 
+
+retry curl --location --output "python3.6_3.6.13-1+xenial2_amd64.deb" "https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa/+build/21060900/+files/python3.6_3.6.13-1+xenial2_amd64.deb"
+retry curl --location --output "python3.6-minimal_3.6.13-1+xenial2_amd64.deb" "https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa/+build/21060900/+files/python3.6-minimal_3.6.13-1+xenial2_amd64.deb"
+retry curl --location --output "libpython3.6-stdlib_3.6.13-1+xenial2_amd64.deb" "https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa/+build/21060900/+files/libpython3.6-stdlib_3.6.13-1+xenial2_amd64.deb"
+retry curl --location --output "libpython3.6-minimal_3.6.13-1+xenial2_amd64.deb" "https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa/+build/21060900/+files/libpython3.6-minimal_3.6.13-1+xenial2_amd64.deb"
+
+echo "16055c7d458f61ed7cd52276073bf40a6319c4c36143f328d382f630eccfd756  python3.6_3.6.13-1+xenial2_amd64.deb" | sha256sum -c || exit 1
+echo "0226db72e2e2b6db09c0f69eeff496fb034b9a47ebb66b4c1f0f14f73749c711  python3.6-minimal_3.6.13-1+xenial2_amd64.deb" | sha256sum -c || exit 1
+echo "2a58467b2fdfe9efe1a4cdfb62684606495061b2c08a6b20605d77458ea1e8fa  libpython3.6-stdlib_3.6.13-1+xenial2_amd64.deb" | sha256sum -c || exit 1
+echo "0430bc1033484052e20798d8caa73823fa5f99b214e2fba9634fe3fda5c82ae4  libpython3.6-minimal_3.6.13-1+xenial2_amd64.deb" | sha256sum -c || exit 1
+
+# Install via dpkg.
+dpkg -i "python3.6_3.6.13-1+xenial2_amd64.deb" "python3.6-minimal_3.6.13-1+xenial2_amd64.deb" "libpython3.6-stdlib_3.6.13-1+xenial2_amd64.deb" "libpython3.6-minimal_3.6.13-1+xenial2_amd64.deb"
+
+# Assuming the Python 3.6 has dependencies... install them here.
+retry apt --assume-yes install -f
+
+# Delete the downloaded Python 3.6 packages.
+rm --force "python3.6_3.6.13-1+xenial2_amd64.deb" "python3.6-minimal_3.6.13-1+xenial2_amd64.deb" "libpython3.6-stdlib_3.6.13-1+xenial2_amd64.deb" "libpython3.6-minimal_3.6.13-1+xenial2_amd64.deb"
+
+# The old method for install Python 3.6 using the PPA repo.
+# add-apt-repository --yes ppa:deadsnakes/ppa
+# retry apt-get --assume-yes update
+# retry apt-get --assume-yes install python3.6
 
 # Use an alias to force the use of Python 3.6 over Python 3.5.
 printf "\nalias python='/usr/bin/python3.6'\n" >> /home/vagrant/.bashrc
@@ -61,10 +83,10 @@ retry apt-get --assume-yes install openjdk-8-jdk openjdk-8-jdk-headless openjdk-
 retry apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java-jni libpng16-16 libsctp1 libgif7
 
 # Download the OpenJDK 1.7 packages.
-retry curl --location  --output openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb
-retry curl --location  --output openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb
-retry curl --location  --output openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb
-retry curl --location  --output libjpeg62-turbo_1.5.1-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
+retry curl --location --output openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb
+retry curl --location --output openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb
+retry curl --location --output openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb
+retry curl --location --output libjpeg62-turbo_1.5.1-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
 
 echo "55b4208bca9e772cd3d6e6a3f6bf3949d170e6da77e53b0ba59abb8f1658bb64  libjpeg62-turbo_1.5.1-2_amd64.deb" | sha256sum -c || exit 1
 echo "a7fa42ebfd7c12bb9de88ead6e40246e92f0437215049efa359678b07b5a513f  openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb" | sha256sum -c || exit 1
