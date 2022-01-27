@@ -35,29 +35,31 @@ elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(dragonflybsd[5-6])-(vmware|hyp
 
 else
 
-  # Whiteout root
+  # Whiteout the root partition.
   rootcount=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')
   rootcount=$(($rootcount-1))
   dd if=/dev/zero of=/zerofill bs=1K count=$rootcount || echo "dd exit code $? suppressed"
+  sync || echo "sync exit code $? suppressed"
   rm --force /zerofill
 
   # Whiteout boot if the block count is different then root, otherwise if the
-  # block counts are identical, we assume both folders are on the same parition
+  # block counts are identical, we assume both folders are on the same partition.
   bootcount=$(df --sync -kP /boot | tail -n1 | awk -F ' ' '{print $4}')
   bootcount=$(($bootcount-1))
   if [ $rootcount != $bootcount ]; then
     dd if=/dev/zero of=/boot/zerofill bs=1K count=$bootcount || echo "dd exit code $? suppressed"
+    sync || echo "sync exit code $? suppressed"
     rm --force /boot/zerofill
   fi
 
-  # If blkid is installed it to locate the swap partition
+  # If blkid is installed we use it to locate the swap partition.
   if [ -f '/sbin/blkid' ]; then
     swapuuid="`/sbin/blkid -o value -l -s UUID -t TYPE=swap`"
   else
     swapuuid=""
   fi
 
-  # Whiteout the swap partition
+  # Whiteout the swap partition.
   if [ "x${swapuuid}" != "x" ]; then
     swappart="`readlink -f /dev/disk/by-uuid/$swapuuid`"
     /sbin/swapoff "$swappart"
