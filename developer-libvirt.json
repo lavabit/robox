@@ -75,7 +75,7 @@
             "format": "qcow2",
             "disk_size": "131072",
             "disk_discard": "unmap",
-            "disk_detect_zeroes": "unmap",
+            "disk_detect_zeroes": "on",
             "disk_cache": "unsafe",
             "disk_image": false,
             "disk_compression": true,
