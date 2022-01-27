@@ -7,10 +7,13 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider :libvirt do |v, override|
     v.driver = "kvm"
-    v.video_vram = 256
+    v.cpus = 8
     v.memory = 24576
-    v.cpus = 10
-    v.storage  :bus => 'scsi', :discard => 'ignore', :detect_zeroes => 'off', :io => 'threads', :cache => 'unsafe'
+    v.video_vram = 256
+    v.disk_bus = 'scsi'
+    v.disk_device = 'sda'
+    v.cputopology :sockets => '1', :cores => '8', :threads => '1'
+    v.disk_driver :bus => 'scsi', :discard => 'ignore', :detect_zeroes => 'off', :io => 'threads', :cache => 'unsafe'
   end
 
   config.vm.provider :virtualbox do |v, override|
