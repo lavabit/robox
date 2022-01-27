@@ -11,10 +11,10 @@ chsh -s bash vagrant
 
 #Defaults:vagrant !requiretty
 
-cat <<EOF > /etc/sudoers.d/vagrant
+cat <<EOF > /usr/local/etc/sudoers.d/vagrant
 vagrant ALL=(ALL) NOPASSWD: ALL
 EOF
-chmod 0440 /etc/sudoers.d/vagrant
+chmod 0440 /usr/local/etc/sudoers.d/vagrant
 
 # Create the vagrant user ssh directory.
 mkdir -pm 700 /home/vagrant/.ssh
