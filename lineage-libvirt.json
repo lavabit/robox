@@ -99,7 +99,7 @@
                 "<enter>"
             ],
             "format": "qcow2",
-            "disk_size": "256000",
+            "disk_size": "824634",
             "disk_discard": "unmap",
             "disk_detect_zeroes": "unmap",
             "disk_cache": "unsafe",

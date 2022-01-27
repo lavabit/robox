@@ -97,7 +97,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
                 "<enter>"
             ],
-            "disk_size": 256000,
+            "disk_size": 412317,
             "disk_type_id": "0",
             "cpus": 4,
             "memory": 2048,
