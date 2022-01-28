@@ -37,10 +37,13 @@ else
 
   # Whiteout the root partition.
   rootcount=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')
-  rootcount=$(($rootcount-1))
-  dd if=/dev/zero of=/zerofill bs=1K count=$rootcount || echo "dd exit code $? suppressed"
-  sync || echo "sync exit code $? suppressed"
-  rm --force /zerofill
+  rootcount=$(($rootcount/4))
+  ( dd if=/dev/zero of=/zerofill_1 bs=1K count=$rootcount || echo "dd exit code $? suppressed" ) &
+  ( dd if=/dev/zero of=/zerofill_2 bs=1K count=$rootcount || echo "dd exit code $? suppressed" ) &
+  ( dd if=/dev/zero of=/zerofill_3 bs=1K count=$rootcount || echo "dd exit code $? suppressed" ) &
+  ( dd if=/dev/zero of=/zerofill_4 bs=1K count=$rootcount || echo "dd exit code $? suppressed" ) &
+  wait ; sync || echo "sync exit code $? suppressed"
+  rm --force /zerofill_1 /zerofill_2 /zerofill_3 /zerofill_4
 
   # Whiteout boot if the block count is different then root, otherwise if the
   # block counts are identical, we assume both folders are on the same partition.
