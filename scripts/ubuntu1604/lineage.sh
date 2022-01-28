@@ -107,6 +107,38 @@ rm --force openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb openjdk-7-jre-headless_
 # Reenable TLSv1 support for Java 8, since it is required for old versions of Jack.
 sed -i '/^jdk.tls.disabledAlgorithms=/s/TLSv1, TLSv1.1, //' /etc/java-8-openjdk/security/java.security
 
+# Enable the source code repositories.
+sed -i -e "s|.*deb-src |deb-src |g" /etc/apt/sources.list
+retry apt-get --assume-yes update
+
+# Ensure the dependencies required to compile git are available.
+retry apt-get --assume-yes install build-essential fakeroot dpkg-dev
+retry apt-get --assume-yes build-dep git
+
+# The build-dep command will remove the OpenSSL version of libcurl, so we have to
+# install here instead.
+retry apt-get --assume-yes install libcurl4-openssl-dev
+
+# Reduce the amount of output produced by the build process
+export DEB_BUILD_OPTIONS=terse 
+
+# Download the git sourcecode.
+mkdir -p $HOME/git-openssl && cd $HOME/git-openssl
+retry apt-get source git
+dpkg-source -x `find * -type f -name *.dsc`
+cd `find * -maxdepth 0 -type d`
+
+# Recompile git using OpenSSL instead of gnutls.
+sed -i -e "s|libcurl4-gnutls-dev|libcurl4-openssl-dev|g" debian/control
+sed -i -e "/TEST[ ]*=test/d" debian/rules
+dpkg-buildpackage -J4 --root-command=fakeroot --build=binary
+
+# Insall the new version.
+dpkg -i `find ../* -type f -name *amd64.deb`
+
+# Cleanup the git build directory.
+cd $HOME && rm --force --recursive $HOME/git-openssl
+
 # Download the Android tools.
 retry curl  --location --output platform-tools-latest-linux.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 
@@ -122,12 +154,6 @@ printf "PATH=/usr/local/platform-tools/:$PATH\n" > /etc/profile.d/platform-tools
 # Install the repo utility.
 retry curl  --location https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
 chmod a+x /usr/bin/repo
-
-# Setup higher resource limits.
-printf "*    soft    nofile    8192\n" >> /etc/security/limits.d/60-lineage.conf
-printf "*    hard    nofile    8192\n" >> /etc/security/limits.d/60-lineage.conf
-printf "*    soft    stack     65536\n" >> /etc/security/limits.d/60-lineage.conf
-printf "*    hard    stack     65536\n" >> /etc/security/limits.d/60-lineage.conf
 
 # Setup the android udev rules.
 cat <<-EOF | base64 --decode > /etc/udev/rules.d/51-android.rules
@@ -426,7 +452,68 @@ groupadd adbusers
 usermod -a -G adbusers root
 usermod -a -G adbusers vagrant
 chmod 644 /etc/udev/rules.d/51-android.rules
-# chcon "system_u:object_r:udev_rules_t:s0" /etc/udev/rules.d/51-android.rules
+
+# Various kernel tuning options that should speed up the Lineage build process.
+
+# Increase the pool of unique PIDs.
+printf "kernel.pid_max = 262144" >> /etc/sysctl.conf
+
+# Controls the threshold at which the system will begin swapping out process 
+# data to disk. ( default 60 )
+printf "vm.swappiness = 10" >> /etc/sysctl.conf
+
+# The percentage of memory at which the background data flusher will activate, 
+# and start flushing data to disk. ( default 10 )
+printf "vm.dirty_background_ratio = 2" >> /etc/sysctl.conf
+
+# The percentage of system memory, which if consumed by pending disk writes, 
+# will cause processes to block, and appear frozen. ( default 20 )
+printf "vm.dirty_ratio = 80" >> /etc/sysctl.conf
+
+# A higher value means the kernel will reclaim memory used to cache file system
+# meta-data more aggressively. Lower this value on systems with a large number
+# of individual files. ( default 100 )
+printf "vm.vfs_cache_pressure = 50" >> /etc/sysctl.conf
+
+# Sets the threshold used by the kernel to decide whether a process should be 
+# migrated to a different CPU core. ( default 500000 )
+printf "kernel.sched_migration_cost_ns = 5000000" >> /etc/sysctl.conf
+
+# Causes the kernel to group tasks based on TTY, which can make graphical 
+# desktops more responsive to user input. On headless servers, with long
+# running processes, this has the opposite effect, as the kernel will be less
+# likely to migrate a task to a different CPU core. ( default varies )
+printf "kernel.sched_autogroup_enabled = 0" >> /etc/sysctl.conf
+
+# Client Port Range ( default varies )
+printf "net.ipv4.ip_local_port_range = 8192 60999" >> /etc/sysctl.conf
+
+# Default Socket Receive Buffer
+printf "net.core.rmem_default = 31457280" >> /etc/sysctl.conf
+
+# Maximum Socket Receive Buffer
+printf "net.core.rmem_max = 33554432" >> /etc/sysctl.conf
+
+# Default Socket Send Buffer
+printf "net.core.wmem_default = 31457280" >> /etc/sysctl.conf
+
+# Maximum Socket Send Buffer
+printf "net.core.wmem_max = 33554432" >> /etc/sysctl.conf
+
+# Increase the maximum amount of option memory buffers
+printf "net.core.optmem_max = 25165824" >> /etc/sysctl.conf
+
+# Increase the maximum total buffer-space min/default/max (in 4k pages)
+printf "net.ipv4.tcp_mem = 786432 1048576 26777216" >> /etc/sysctl.conf
+printf "net.ipv4.udp_mem = 65536 131072 262144" >> /etc/sysctl.conf
+
+# Increase the read-buffer space min/default/max (in 4k pages)
+printf "net.ipv4.tcp_rmem = 8192 87380 33554432" >> /etc/sysctl.conf
+printf "net.ipv4.udp_rmem_min = 16384" >> /etc/sysctl.conf
+
+# Increase the write-buffer-space min/default/max (in 4k pages)
+printf "net.ipv4.tcp_wmem = 8192 65536 33554432" >> /etc/sysctl.conf
+printf "net.ipv4.udp_wmem_min = 16384" >> /etc/sysctl.conf
 
 cat <<-EOF > /home/vagrant/lineage-build.sh
 #!/bin/bash -e
