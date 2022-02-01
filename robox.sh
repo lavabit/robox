@@ -1065,6 +1065,10 @@ function localized() {
 }
 
 function cleanup() {
+  rm -rf $BASE/output/ $BASE/logs/
+}
+
+function distclean() {
   rm -rf $BASE/packer_cache/ $BASE/output/ $BASE/logs/
 }
 
@@ -1362,6 +1366,7 @@ elif [[ $1 == "cache" ]]; then cache
 elif [[ $1 == "validate" ]]; then validate
 elif [[ $1 == "build" ]]; then builder
 elif [[ $1 == "cleanup" ]]; then cleanup
+elif [[ $1 == "distclean" ]]; then distclean
 
 # The type functions.
 elif [[ $1 == "ova" ]]; then vmware
@@ -1429,7 +1434,7 @@ elif [[ $1 == "all" ]]; then all
 else
   echo ""
   echo " Stages"
-  echo $"  `basename $0` {start|validate|build|cleanup} or"
+  echo $"  `basename $0` {start|validate|build|cleanup|distclean} or"
   echo ""
   echo " Types"
   echo $"  `basename $0` {ova|vmware|hyperv|libvirt|docker|parallels|virtualbox} or"
