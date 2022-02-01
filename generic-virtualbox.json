@@ -1863,6 +1863,8 @@
     {
       "scripts": [
         "scripts/ubuntu2010/apt.sh",
+        "scripts/ubuntu2010/floppy.sh",
+        "scripts/ubuntu2010/fixkvp.sh",
         "scripts/ubuntu2010/network.sh"
       ],
       "type": "shell",
@@ -1875,12 +1877,10 @@
     },
     {
       "scripts": [
-        "scripts/ubuntu2010/floppy.sh",
         "scripts/ubuntu2010/vagrant.sh",
         "scripts/ubuntu2010/profile.sh",
         "scripts/ubuntu2010/motd.sh",
         "scripts/ubuntu2010/fixtty.sh",
-        "scripts/ubuntu2010/fixkvp.sh",
         "scripts/ubuntu2010/virtualbox.sh",
         "scripts/ubuntu2010/parallels.sh",
         "scripts/ubuntu2010/vmware.sh",
@@ -2022,6 +2022,8 @@
     {
       "scripts": [
         "scripts/ubuntu2104/apt.sh",
+        "scripts/ubuntu2104/floppy.sh",
+        "scripts/ubuntu2104/fixkvp.sh",
         "scripts/ubuntu2104/network.sh"
       ],
       "type": "shell",
@@ -2034,12 +2036,10 @@
     },
     {
       "scripts": [
-        "scripts/ubuntu2104/floppy.sh",
         "scripts/ubuntu2104/vagrant.sh",
         "scripts/ubuntu2104/profile.sh",
         "scripts/ubuntu2104/motd.sh",
         "scripts/ubuntu2104/fixtty.sh",
-        "scripts/ubuntu2104/fixkvp.sh",
         "scripts/ubuntu2104/virtualbox.sh",
         "scripts/ubuntu2104/parallels.sh",
         "scripts/ubuntu2104/vmware.sh",
@@ -2329,6 +2329,8 @@
     {
       "scripts": [
         "scripts/ubuntu2110/apt.sh",
+        "scripts/ubuntu2110/floppy.sh",
+        "scripts/ubuntu2110/fixkvp.sh",
         "scripts/ubuntu2110/network.sh"
       ],
       "type": "shell",
@@ -2341,12 +2343,10 @@
     },
     {
       "scripts": [
-        "scripts/ubuntu2110/floppy.sh",
         "scripts/ubuntu2110/vagrant.sh",
         "scripts/ubuntu2110/profile.sh",
         "scripts/ubuntu2110/motd.sh",
         "scripts/ubuntu2110/fixtty.sh",
-        "scripts/ubuntu2110/fixkvp.sh",
         "scripts/ubuntu2110/virtualbox.sh",
         "scripts/ubuntu2110/parallels.sh",
         "scripts/ubuntu2110/vmware.sh",
