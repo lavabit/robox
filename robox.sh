@@ -26,9 +26,6 @@ BASE=`pwd -P`
 popd > /dev/null
 cd $BASE
 
-# Use a fall back terminal type.
-[ ! -n "$TERM" ] && export TERM="vt100"
-
 # Credentials and tokens.
 if [ ! -f $BASE/.credentialsrc ]; then
 cat << EOF > $BASE/.credentialsrc
