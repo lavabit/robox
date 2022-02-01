@@ -40,20 +40,21 @@ if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
 fi
 
 # CentOS Repo Setup
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
+sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\/centos\//baseurl=https:\/\/vault.centos.org\/centos\//g" /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
 
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-AppStream.repo
+sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\/centos\//baseurl=https:\/\/vault.centos.org\/centos\//g" /etc/yum.repos.d/CentOS-Linux-AppStream.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-AppStream.repo
 
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
+sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\/centos\//baseurl=https:\/\/vault.centos.org\/centos\//g" /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
 
+sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\/centos\//baseurl=https:\/\/vault.centos.org\/centos\//g" /etc/yum.repos.d/CentOS-Linux-Plus.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-Plus.repo
+
+# sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\/centos\//baseurl=https:\/\/vault.centos.org\/centos\//g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
 sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
-
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-Plus.repo
-sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-Plus.repo
 
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
