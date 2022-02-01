@@ -17,18 +17,27 @@ autoinstall:
   apt:
       geoip: false
       primary:
-        - arches: [default]
-          uri: https://old-releases.ubuntu.com/ubuntu/
+          - arches: [default]
+            uri: https://old-releases.ubuntu.com/ubuntu/
       security:
-        - arches: [default]
-          uri: https://old-releases.ubuntu.com/ubuntu/
+          - arches: [default]
+            uri: https://old-releases.ubuntu.com/ubuntu/
+      sources_list: | 
+          deb $MIRROR groovy main restricted
+          deb $MIRROR groovy-security main restricted
+      conf: |
+          Acquire::AllowReleaseInfoChange::Suite "true";
+          Acquire::AllowReleaseInfoChange::Origin "true";
+          Acquire::AllowReleaseInfoChange::Label "true";
+          Acquire::AllowReleaseInfoChange::Version "true";
+          Acquire::AllowReleaseInfoChange::Codename "true";
   storage:
       layout:
           name: lvm
   identity:
       username: root
       hostname: ubuntu2010.localdomain
-      password: "$1$/vga2dsj$bsCafEX7p8AqpIyTbfCeK1"
+      password: "$6$RsFnUPD4Axp9Y9yQ$jPjBajFAlATEBb8wa.xmvGimRz8I9vQgfGLWyuBOcqcyLxgt23KrsVWS3khrH19i6oqdMi75L0UYgWkkmHEyw/"
   ssh:
       install-server: yes
       authorized-keys: []
@@ -55,27 +64,16 @@ autoinstall:
       path: /etc/systemd/network/eth0.network
       permissions: '0644'
   early-commands:
-    - systemctl stop ssh.service
-    - systemctl stop unattended-upgrades.service
-    - systemctl stop apt-daily.timer apt-daily.service apt-daily-upgrade.timer apt-daily-upgrade.service
-    - printf "unattended-upgrades unattended-upgrades/enable_auto_updates boolean false\n" | debconf-set-selections
-    - dpkg-reconfigure -f noninteractive unattended-upgrades
-    - printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/99simplify
-    - printf "Unattended-Upgrade::InstallOnShutdown \"false\";\n" >> /etc/apt/apt.conf.d/99simplify
+    - systemctl stop ssh
     - sed -i "s/#Cache=.*/Cache=yes/g" /etc/systemd/resolved.conf
     - sed -i "s/#DNS=.*/DNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
     - sed -i "s/#FallbackDNS=.*/FallbackDNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
+    - printf "\n91.189.91.124 old-releases.ubuntu.com\n" >> /etc/hosts
     - systemctl restart systemd-resolved
   late-commands:
-    - echo "PermitRootLogin yes" >> /target/etc/ssh/sshd_config
-    - printf "APT::Periodic::Enable \"0\";\n" > /target/etc/apt/apt.conf.d/10periodic
-    - printf "APT::Periodic::Download-Upgradeable-Packages \"0\";\n" >> /target/etc/apt/apt.conf.d/10periodic
-    - printf "APT::Periodic::Unattended-Upgrade \"0\";\n" >> /target/etc/apt/apt.conf.d/10periodic
     - sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT=="\1 net.ifnames=0 biosdevname=0"/g' /target/etc/default/grub
     - sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=" net.ifnames/GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames/g' /target/etc/default/grub
+    - echo "PermitRootLogin yes" >> /target/etc/ssh/sshd_config
+    - sudo chroot /target /bin/bash -c '/usr/sbin/useradd --create-home --shell /bin/bash --password vagrant vagrant'
     - sudo chroot /target /bin/bash -c 'printf "vagrant\nvagrant\n" | passwd root'
     - curtin in-target --target=/target -- update-grub
-  power_state:
-    delay: "+15"
-    mode: reboot
-    condition: True

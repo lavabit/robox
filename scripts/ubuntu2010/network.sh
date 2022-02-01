@@ -1,9 +1,7 @@
 #!/bin/bash -ex
 
-# If the TERM environment variable is missing, then tput may produce spurrious error messages.
-if [[ ! -n "$TERM" ]] || [[ "$TERM" -eq "dumb" ]]; then
-  export TERM="vt100"
-fi
+# If the TERM environment variable is set to dumb, tput will generate spurrious error messages. 
+[ "$TERM" == "dumb" ] && export TERM="vt100"
 
 retry() {
   local COUNT=1
@@ -30,6 +28,10 @@ retry() {
 
   return "${RESULT}"
 }
+
+# To allow for automated installs, we disable interactive configuration steps.
+export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # Disable IPv6 for the current boot.
 sysctl net.ipv6.conf.all.disable_ipv6=1

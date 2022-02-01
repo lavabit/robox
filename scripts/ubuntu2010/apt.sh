@@ -1,9 +1,7 @@
 #!/bin/bash -ex
 
-# If the TERM environment variable is missing, then tput may produce spurrious error messages.
-if [[ ! -n "$TERM" ]] || [[ "$TERM" -eq "dumb" ]]; then
-  export TERM="vt100"
-fi
+# If the TERM environment variable is set to dumb, tput will generate spurrious error messages. 
+[ "$TERM" == "dumb" ] && export TERM="vt100"
 
 retry() {
   local COUNT=1
@@ -61,10 +59,6 @@ exit 0
 EOF
 fi
 
-# The sources should have been trimmed down to nothing by the installer, but just in case we do it again.
-# echo "deb cdrom:[Ubuntu 20.10 _Groovy Gorilla_ - Release amd64 (20201022)]/ groovy main restricted" > /etc/apt/sources.list
-echo "" > /etc/apt/sources.list
-
 # Remove a confusing, and potentially conflicting sources file left by the install process.
 [ -f /etc/apt/sources.list.curtin.old ] && rm --force /etc/apt/sources.list.curtin.old 
 
@@ -100,12 +94,29 @@ EOF
 fi
 
 # Keep the daily apt updater from deadlocking our the upgrade/install commands we are about to run.
+# systemctl --quiet is-active snapd.service && systemctl stop snapd.service snapd.socket
+
+# Stop the active servicees/timers.
 systemctl --quiet is-active apt-daily.timer && systemctl stop apt-daily.timer
-systemctl --quiet is-active apt-daily.service && systemctl stop apt-daily.service
 systemctl --quiet is-active apt-daily-upgrade.timer && systemctl stop apt-daily-upgrade.timer
+systemctl --quiet is-active update-notifier-download.timer && systemctl stop update-notifier-download.timer
+systemctl --quiet is-active apt-daily.service && systemctl stop apt-daily.service
+systemctl --quiet is-active packagekit.service && systemctl stop packagekit.service
 systemctl --quiet is-active apt-daily-upgrade.service && systemctl stop apt-daily-upgrade.service
 systemctl --quiet is-active unattended-upgrades.service && systemctl stop unattended-upgrades.service
-# systemctl stop snapd.service snapd.socket
+systemctl --quiet is-active update-notifier-download.service && systemctl stop update-notifier-download.service
+
+# Disable them so they don't restart.
+systemctl --quiet is-enabled apt-daily.timer && systemctl disable apt-daily.timer
+systemctl --quiet is-enabled apt-daily-upgrade.timer && systemctl disable apt-daily-upgrade.timer
+systemctl --quiet is-enabled update-notifier-download.timer && systemctl disable update-notifier-download.timer
+systemctl --quiet is-enabled unattended-upgrades.service && systemctl disable unattended-upgrades.service
+systemctl --quiet is-enabled apt-daily.service && systemctl mask apt-daily.service
+systemctl --quiet is-enabled apt-daily-upgrade.service && systemctl mask apt-daily-upgrade.service
+systemctl --quiet is-enabled update-notifier-download.service && systemctl mask update-notifier-download.service
+
+# Truncate the sources list in order to force a status purge.
+truncate --size=0 /etc/apt/sources.list
 
 # Run clean/autoclean/purge/update first, this will work around problems with ghost packages, and/or
 # conflicting data in the repo index cache. After the cleanup is complete, we can proceed with the 
@@ -129,6 +140,9 @@ deb https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted univ
 # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted universe multiverse
 
 EOF
+
+# Some of the ubuntu archive servers appear to be missing files/packages..
+printf "\n91.189.91.124 old-releases.ubuntu.com\n" >> /etc/hosts
 
 # Update the package database.
 retry apt-get --assume-yes --allow-releaseinfo-change -o Dpkg::Options::="--force-confnew" update ; error
