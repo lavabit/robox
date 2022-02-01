@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-# If the TERM environment variable is set to dumb, tput will generate spurrious error messages. 
+# If the TERM environment variable is set to dumb, tput will generate spurrious error messages.
 [ "$TERM" == "dumb" ] && export TERM="vt100"
 
 retry() {

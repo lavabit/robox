@@ -1,9 +1,7 @@
 #!/bin/bash -ex
 
-# If the TERM environment variable is missing, then tput may produce spurrious error messages.
-if [[ ! -n "$TERM" ]] || [[ "$TERM" -eq "dumb" ]]; then
-  export TERM="vt100"
-fi
+# If the TERM environment variable is set to dumb, tput will generate spurrious error messages.
+[ "$TERM" == "dumb" ] && export TERM="vt100"
 
 retry() {
   local COUNT=1
