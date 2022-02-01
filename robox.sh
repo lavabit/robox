@@ -27,7 +27,7 @@ popd > /dev/null
 cd $BASE
 
 # Use a fall back terminal type.
-if [ ! -n "$TERM" ] && export TERM="vt100"
+[ ! -n "$TERM" ] && export TERM="vt100"
 
 # Credentials and tokens.
 if [ ! -f $BASE/.credentialsrc ]; then
