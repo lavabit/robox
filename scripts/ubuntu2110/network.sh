@@ -29,6 +29,10 @@ retry() {
   return "${RESULT}"
 }
 
+# To allow for automated installs, we disable interactive configuration steps.
+export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
+
 # Disable IPv6 for the current boot.
 sysctl net.ipv6.conf.all.disable_ipv6=1
 

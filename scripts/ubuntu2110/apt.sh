@@ -94,31 +94,68 @@ EOF
 fi
 
 # Keep the daily apt updater from deadlocking our the upgrade/install commands we are about to run.
+# systemctl --quiet is-active snapd.service && systemctl stop snapd.service snapd.socket
+
+# Stop the active servicees/timers.
 systemctl --quiet is-active apt-daily.timer && systemctl stop apt-daily.timer
-systemctl --quiet is-active apt-daily.service && systemctl stop apt-daily.service
 systemctl --quiet is-active apt-daily-upgrade.timer && systemctl stop apt-daily-upgrade.timer
+systemctl --quiet is-active update-notifier-download.timer && systemctl stop update-notifier-download.timer
+systemctl --quiet is-active apt-daily.service && systemctl stop apt-daily.service
+systemctl --quiet is-active packagekit.service && systemctl stop packagekit.service
 systemctl --quiet is-active apt-daily-upgrade.service && systemctl stop apt-daily-upgrade.service
 systemctl --quiet is-active unattended-upgrades.service && systemctl stop unattended-upgrades.service
-# systemctl stop snapd.service snapd.socket
+systemctl --quiet is-active update-notifier-download.service && systemctl stop update-notifier-download.service
 
-# Run clean/autoclean/purge first, to ensure there aren't any ghost packages, and/or
-# cached repo data that will cause a conflict with the update/upgrade/install commands that follow.
+# Disable them so they don't restart.
+systemctl --quiet is-enabled apt-daily.timer && systemctl disable apt-daily.timer
+systemctl --quiet is-enabled apt-daily-upgrade.timer && systemctl disable apt-daily-upgrade.timer
+systemctl --quiet is-enabled update-notifier-download.timer && systemctl disable update-notifier-download.timer
+systemctl --quiet is-enabled unattended-upgrades.service && systemctl disable unattended-upgrades.service
+systemctl --quiet is-enabled apt-daily.service && systemctl mask apt-daily.service
+systemctl --quiet is-enabled apt-daily-upgrade.service && systemctl mask apt-daily-upgrade.service
+systemctl --quiet is-enabled update-notifier-download.service && systemctl mask update-notifier-download.service
+
+# Truncate the sources list in order to force a status purge.
+# truncate --size=0 /etc/apt/sources.list
+
+# Run clean/autoclean/purge/update first, this will work around problems with ghost packages, and/or
+# conflicting data in the repo index cache. After the cleanup is complete, we can proceed with the 
+# update/upgrade/install commands below.
 apt-get --assume-yes clean ; error
 apt-get --assume-yes autoclean ; error
-apt-get --assume-yes purge ; error
+apt-get --assume-yes update ; error
+
+# # Enable this once 21.04 reaches the end of its life.
+# # Write out a nice and compact sources list.
+# cat <<-EOF > /etc/apt/sources.list
+# 
+# deb https://old-releases.ubuntu.com/ubuntu/ groovy main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ groovy-updates main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ groovy-backports main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted universe multiverse
+# 
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-updates main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-backports main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted universe multiverse
+# 
+# EOF
+# 
+# # Some of the ubuntu archive servers appear to be missing files/packages..
+# printf "\n91.189.91.124 old-releases.ubuntu.com\n" >> /etc/hosts
 
 # Update the package database.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update ; error
 
 # Ensure the linux-tools and linux-cloud-tools get updated with the kernel.
-# retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-tools-generic linux-cloud-tools-generic
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-cloud-tools-virtual
 
 # Upgrade the installed packages.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade ; error
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade ; error
 
 # Needed to retrieve source code, and other misc system tools.
-retry apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sysstat lsof pciutils usbutils lsb-release psmisc ; error
+retry apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sudo sysstat lsof pciutils usbutils lsb-release psmisc ; error
 
 # Enable the sysstat collection service.
 sed -i -e "s|.*ENABLED=\".*\"|ENABLED=\"true\"|g" /etc/default/sysstat

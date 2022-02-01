@@ -13,7 +13,9 @@ autoinstall:
           ethernets:
               eth0:
                  dhcp4: yes
+                 dhcp6: no
   apt:
+      geoip: false
       primary:
           - arches: [default]
             uri: https://mirrors.kernel.org/ubuntu/
@@ -22,13 +24,21 @@ autoinstall:
           - arches: [default]
             uri: https://mirrors.kernel.org/ubuntu/
             # uri: https://old-releases.ubuntu.com/ubuntu/
-  storage:
+      # sources_list: | 
+      #    deb $MIRROR hirsute main restricted
+      #    deb $MIRROR hirsute-security main restricted
+      # conf: |
+      #    Acquire::AllowReleaseInfoChange::Suite "true";
+      #    Acquire::AllowReleaseInfoChange::Origin "true";
+      #    Acquire::AllowReleaseInfoChange::Label "true";
+      #    Acquire::AllowReleaseInfoChange::Version "true";
+      #    Acquire::AllowReleaseInfoChange::Codename "true"; storage:
       layout:
           name: lvm
   identity:
       username: root
       hostname: ubuntu2104.localdomain
-      password: "$1$/vga2dsj$bsCafEX7p8AqpIyTbfCeK1"
+      password: "$6$RsFnUPD4Axp9Y9yQ$jPjBajFAlATEBb8wa.xmvGimRz8I9vQgfGLWyuBOcqcyLxgt23KrsVWS3khrH19i6oqdMi75L0UYgWkkmHEyw/"
   ssh:
       install-server: yes
       authorized-keys: []
@@ -59,6 +69,7 @@ autoinstall:
     - sed -i "s/#Cache=.*/Cache=yes/g" /etc/systemd/resolved.conf
     - sed -i "s/#DNS=.*/DNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
     - sed -i "s/#FallbackDNS=.*/FallbackDNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
+    - # printf "\n91.189.91.124 old-releases.ubuntu.com\n" >> /etc/hosts
     - systemctl restart systemd-resolved
   late-commands:
     - sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT=="\1 net.ifnames=0 biosdevname=0"/g' /target/etc/default/grub

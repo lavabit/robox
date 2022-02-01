@@ -123,7 +123,6 @@ truncate --size=0 /etc/apt/sources.list
 # update/upgrade/install commands below.
 apt-get --assume-yes clean ; error
 apt-get --assume-yes autoclean ; error
-apt-get --assume-yes purge ; error
 apt-get --assume-yes update ; error
 
 # Write out a nice and compact sources list.
@@ -145,7 +144,7 @@ EOF
 printf "\n91.189.91.124 old-releases.ubuntu.com\n" >> /etc/hosts
 
 # Update the package database.
-retry apt-get --assume-yes --allow-releaseinfo-change -o Dpkg::Options::="--force-confnew" update ; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update ; error
 
 # Ensure the linux-tools and linux-cloud-tools get updated with the kernel.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" install linux-cloud-tools-virtual

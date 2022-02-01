@@ -27,7 +27,7 @@ dpkg -l libeatmydata1 &>/dev/null && apt-get --assume-yes purge libeatmydata1
 dpkg -l cloud-init &>/dev/null && apt-get --assume-yes purge cloud-init
 
 # We can probably also remove unattended-upgrades ... but we'll save that for later.
-dpkg -l unattended-upgrades &>/dev/null && apt-get --assume-yes purge unattended-upgrades
+# dpkg -l unattended-upgrades &>/dev/null && apt-get --assume-yes purge unattended-upgrades
 
 # Cleanup unused packages.
 apt-get --assume-yes autoremove; error
