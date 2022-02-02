@@ -32,7 +32,8 @@ autoinstall:
       #    Acquire::AllowReleaseInfoChange::Origin "true";
       #    Acquire::AllowReleaseInfoChange::Label "true";
       #    Acquire::AllowReleaseInfoChange::Version "true";
-      #    Acquire::AllowReleaseInfoChange::Codename "true"; storage:
+      #    Acquire::AllowReleaseInfoChange::Codename "true";
+  storage:
       layout:
           name: lvm
   identity:
