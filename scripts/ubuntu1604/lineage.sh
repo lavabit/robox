@@ -43,10 +43,10 @@ export DEBCONF_NONINTERACTIVE_SEEN=true
 # Ensure Python 3.6 is installed. The ppa dropped support for Xenial, so we have
 # to download the deb files from the build system. 
 
-retry curl --location --output "python3.6_3.6.13-1+xenial2_amd64.deb" "https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa/+build/21060900/+files/python3.6_3.6.13-1+xenial2_amd64.deb"
-retry curl --location --output "python3.6-minimal_3.6.13-1+xenial2_amd64.deb" "https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa/+build/21060900/+files/python3.6-minimal_3.6.13-1+xenial2_amd64.deb"
-retry curl --location --output "libpython3.6-stdlib_3.6.13-1+xenial2_amd64.deb" "https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa/+build/21060900/+files/libpython3.6-stdlib_3.6.13-1+xenial2_amd64.deb"
-retry curl --location --output "libpython3.6-minimal_3.6.13-1+xenial2_amd64.deb" "https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa/+build/21060900/+files/libpython3.6-minimal_3.6.13-1+xenial2_amd64.deb"
+retry curl --location --output "python3.6_3.6.13-1+xenial2_amd64.deb" "https://archive.org/download/xenial_python3.6_deb/python3.6_3.6.13-1%2Bxenial2_amd64.deb"
+retry curl --location --output "python3.6-minimal_3.6.13-1+xenial2_amd64.deb" "https://archive.org/download/xenial_python3.6_deb/python3.6-minimal_3.6.13-1%2Bxenial2_amd64.deb"
+retry curl --location --output "libpython3.6-stdlib_3.6.13-1+xenial2_amd64.deb" "https://archive.org/download/xenial_python3.6_deb/libpython3.6-stdlib_3.6.13-1%2Bxenial2_amd64.deb"
+retry curl --location --output "libpython3.6-minimal_3.6.13-1+xenial2_amd64.deb" "https://archive.org/download/xenial_python3.6_deb/libpython3.6-minimal_3.6.13-1%2Bxenial2_amd64.deb"
 
 echo "16055c7d458f61ed7cd52276073bf40a6319c4c36143f328d382f630eccfd756  python3.6_3.6.13-1+xenial2_amd64.deb" | sha256sum -c || exit 1
 echo "0226db72e2e2b6db09c0f69eeff496fb034b9a47ebb66b4c1f0f14f73749c711  python3.6-minimal_3.6.13-1+xenial2_amd64.deb" | sha256sum -c || exit 1
