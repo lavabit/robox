@@ -166,7 +166,7 @@ function curltry() {
   local RESULT=0
   while [[ "${COUNT}" -le 100 ]]; do
     RESULT=0 ; OUTPUT=`"${@}"` || RESULT="${?}"
-    if [[ $RESULT == 0 ]] || [[ `echo "$OUTPUT" | grep --count "404"` == 1 ]]; then
+    if [[ $RESULT == 0 ]] || [[ `echo "$OUTPUT" | grep --count --extended-regexp --max-count=1 "^404$|^HTTP/1.1 404|^HTTP/2 404"` == 1 ]]; then
       break
     fi
     COUNT="$((COUNT + 1))"
@@ -498,15 +498,24 @@ function verify_availability() {
 
   local RESULT=0
 
+  if [ ! -z ${CURLOPTS+x} ]; then export CURL=$(echo ${CURL} $CURLOPTS | sed "s/USER/${1:0:2}$(($RANDOM%32))/g" | sed "s/PASS/${1:0:2}/g") ; fi
+
   curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box" | grep --silent "200"
 
   if [ $? != 0 ]; then
-    #printf "Box  -  "; tput setaf 1; printf "${1}/${2} ${3}\n"; tput sgr0
     printf "%sBox  -   %s${1}/${2} ${3}%s \n%s" "`tput sgr0`" "`tput setaf 1`" "`tput sgr0`" "`tput sgr0`"
     let RESULT=1
   else
-    #printf "Box  +  "; tput setaf 2; printf "${1}/${2} ${3}\n"; tput sgr0
-    printf "%sBox  +   %s${1}/${2} ${3}%s \n%s" "`tput sgr0`" "`tput setaf 2`" "`tput sgr0`" "`tput sgr0`"
+    STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/$1/$2/version/$4\" | jq -r '.status' 2>/dev/null`"
+    LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/$1/boxes/$2/versions/$4/providers/$3.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
+
+    if [ "$LENGTH" == "0" ]; then
+      printf "%sBox  *   %s${1}/${2} ${3}%s \n%s" "`tput sgr0`" "`tput setaf 5`" "`tput sgr0`" "`tput sgr0`"
+    elif [ "$STATUS" != "active" ]; then
+      printf "%sBox  ~   %s${1}/${2} ${3}%s \n%s" "`tput sgr0`" "`tput setaf 3`" "`tput sgr0`" "`tput sgr0`"
+    else
+      printf "%sBox  +   %s${1}/${2} ${3}%s \n%s" "`tput sgr0`" "`tput setaf 2`" "`tput sgr0`" "`tput sgr0`"
+    fi
   fi
 
   return $RESULT
@@ -732,6 +741,7 @@ function available() {
 
     FOUND=0
     MISSING=0
+    UNRELEASED=0
     LIST=($TAGS)
     FILTER=($FILTERED_TAGS)
 
@@ -751,14 +761,21 @@ function available() {
           [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
-          ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
+          ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
 
           if [ $? != 0 ]; then
             let MISSING+=1
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
           else
             let FOUND+=1
-            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+            STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
+            
+           if [ "$STATUS" != "active" ]; then
+              let UNRELEASED+=1
+              printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+            else
+              printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+            fi       
           fi
         fi
       fi
@@ -772,7 +789,14 @@ function available() {
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
         else
           let FOUND+=1
-          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
+          
+          if [ "$STATUS" != "active" ]; then
+            let UNRELEASED+=1
+            printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          fi
         fi
       fi
 
@@ -784,7 +808,14 @@ function available() {
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
         let FOUND+=1
-        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
+        
+        if [ "$STATUS" != "active" ]; then
+          let UNRELEASED+=1
+          printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        else
+          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        fi
       fi
 
       PROVIDER="parallels"
@@ -796,7 +827,14 @@ function available() {
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
         else
           let FOUND+=1
-          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
+          
+          if [ "$STATUS" != "active" ]; then
+            let UNRELEASED+=1
+            printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          fi
         fi
       fi
 
@@ -808,7 +846,14 @@ function available() {
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
         let FOUND+=1
-        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
+        
+        if [ "$STATUS" != "active" ]; then
+          let UNRELEASED+=1
+          printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        else
+          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        fi
       fi
 
       PROVIDER="vmware_desktop"
@@ -820,9 +865,20 @@ function available() {
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
         else
           let FOUND+=1
-          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
+          
+          if [ "$STATUS" != "active" ]; then
+            let UNRELEASED+=1
+            printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          fi
         fi
       fi
+            
+      # Limit requests to ~100 per minute to avoid stalls.
+      sleep 1.2 &> /dev/null || echo "" &> /dev/null
+
     done
 
     # Get the totla number of boxes.
@@ -830,10 +886,12 @@ function available() {
     let FOUND=${TOTAL}-${MISSING}
 
     # Let the user know how many boxes were missing.
-    if [ $MISSING -eq 0 ]; then
+    if [ $MISSING -eq 0 ] && [ $UNRELEASED -eq 0 ]; then
       printf "\nAll ${TOTAL} of the boxes are available...\n\n"
+    elif [ $UNRELEASED -eq 0 ]; then
+      printf "\nOf the ${TOTAL} boxes defined, ${FOUND} are available, ${MISSING} are unavailable...\n\n"
     else
-      printf "\nOf the ${TOTAL} boxes defined, and ${FOUND} are privately available, while ${MISSING} are unavailable...\n\n"
+      printf "\nOf the ${TOTAL} boxes defined, ${FOUND} are available, with ${UNRELEASED} unreleased, and ${MISSING} unavailable...\n\n"
     fi
 }
 
@@ -841,6 +899,7 @@ function public() {
 
     FOUND=0
     MISSING=0
+    UNRELEASED=0
     LIST=($TAGS)
     FILTER=($FILTERED_TAGS)
 
@@ -861,13 +920,20 @@ function public() {
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
           curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
-
+          
           if [ $? != 0 ]; then
             let MISSING+=1
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
           else
             let FOUND+=1
-            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+            STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
+            
+            if [ "$STATUS" != "active" ]; then
+              let UNRELEASED+=1
+              printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+            else
+              printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+            fi
           fi
         fi
       fi
@@ -881,7 +947,14 @@ function public() {
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
         else
           let FOUND+=1
-          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
+          
+          if [ "$STATUS" != "active" ]; then
+            let UNRELEASED+=1
+            printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          fi
         fi
       fi
 
@@ -893,7 +966,14 @@ function public() {
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
         let FOUND+=1
-        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
+        
+        if [ "$STATUS" != "active" ]; then
+          let UNRELEASED+=1
+          printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        else
+          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        fi
       fi
 
       PROVIDER="parallels"
@@ -905,7 +985,14 @@ function public() {
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
         else
           let FOUND+=1
-          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
+          
+          if [ "$STATUS" != "active" ]; then
+            let UNRELEASED+=1
+            printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          fi
         fi
       fi
 
@@ -917,7 +1004,14 @@ function public() {
         printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
       else
         let FOUND+=1
-        printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
+        
+        if [ "$STATUS" != "active" ]; then
+          let UNRELEASED+=1
+          printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        else
+          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        fi
       fi
 
       PROVIDER="vmware_desktop"
@@ -929,12 +1023,19 @@ function public() {
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
         else
           let FOUND+=1
-          printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
+          
+          if [ "$STATUS" != "active" ]; then
+            let UNRELEASED+=1
+            printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          else
+            printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          fi
         fi
       fi
 
       # Limit requests to ~100 per minute to avoid stalls.
-      sleep 0.6 &> /dev/null || echo "" &> /dev/null
+      sleep 1.2 &> /dev/null || echo "" &> /dev/null
 
     done
 
@@ -943,10 +1044,12 @@ function public() {
     let FOUND=${TOTAL}-${MISSING}
 
     # Let the user know how many boxes were missing.
-    if [ $MISSING -eq 0 ]; then
+    if [ $MISSING -eq 0 ] && [ $UNRELEASED -eq 0 ]; then
       printf "\nAll ${TOTAL} of the boxes are available...\n\n"
+    elif [ $UNRELEASED -eq 0 ]; then
+      printf "\nOf the ${TOTAL} boxes defined, ${FOUND} are available, ${MISSING} are unavailable...\n\n"
     else
-      printf "\nOf the ${TOTAL} boxes defined, ${FOUND} are publicly available, while ${MISSING} are unavailable...\n\n"
+      printf "\nOf the ${TOTAL} boxes defined, ${FOUND} are available, with ${UNRELEASED} unreleased, and ${MISSING} unavailable...\n\n"
     fi
 }
 
@@ -978,8 +1081,11 @@ function ppublic() {
       fi
 
       PROVIDER="hyperv"
-      O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
-
+      PROVIDER="hyperv"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
+        O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+      fi
+      
       PROVIDER="libvirt"
       O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
 
@@ -992,13 +1098,16 @@ function ppublic() {
       O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
 
       PROVIDER="vmware_desktop"
-      O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
-
+      PROVIDER="hyperv"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
+        O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
+      fi
+      
     done
 
     export -f curltry ; export -f verify_availability ; export CURL ;
     # parallel --jobs 16 --keep-order --xapply verify_availability {1} {2} {3} {4} ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
-    parallel --jobs 4 --keep-order --line-buffer --xapply verify_availability {1} {2} {3} {4} '||' let MISSING+=1 ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
+    parallel --jobs 192 --delay 1 --keep-order --line-buffer --xapply verify_availability {1} {2} {3} {4} '||' let MISSING+=1 ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
     # Get the totla number of boxes.
     let TOTAL=${#B[@]}
     let FOUND=${TOTAL}-${MISSING}
@@ -1008,6 +1117,114 @@ function ppublic() {
       printf "\nAll ${TOTAL} of the boxes are available...\n\n"
     else
       printf "\nOf the ${TOTAL} boxes defined, ${FOUND} are publicly available, while ${MISSING} are unavailable...\n\n"
+    fi
+}
+
+function invalid() {
+
+    TOTAL=0
+    INVALID=0
+    LIST=($TAGS)
+    FILTER=($FILTERED_TAGS)
+
+    # Loop through and remove the filtered tags from the list.
+    for ((i = 0; i < ${#FILTER[@]}; ++i)); do
+      LIST=(${LIST[@]//${FILTER[$i]}})
+    done
+
+    for ((i = 0; i < ${#LIST[@]}; ++i)); do
+      ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
+      BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
+
+      PROVIDER="docker"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
+        if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
+          [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
+          LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
+     
+          if [ "$LENGTH" == "0" ]; then
+            let TOTAL+=1
+            let INVALID+=1
+            printf "Box  *  "; tput setaf 5; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+          else
+            let TOTAL+=1
+          fi
+        fi
+      fi
+
+      PROVIDER="hyperv"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
+        LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
+   
+        if [ "$LENGTH" == "0" ]; then
+          let TOTAL+=1
+          let INVALID+=1
+          printf "Box  *  "; tput setaf 5; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        else
+          let TOTAL+=1
+        fi
+      fi
+
+      PROVIDER="libvirt"
+      LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
+
+      if [ "$LENGTH" == "0" ]; then
+        let TOTAL+=1
+        let INVALID+=1
+        printf "Box  *  "; tput setaf 5; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        let TOTAL+=1
+      fi
+
+      PROVIDER="parallels"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes)$ ]]; then
+        LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
+   
+        if [ "$LENGTH" == "0" ]; then
+          let TOTAL+=1
+          let INVALID+=1
+          printf "Box  *  "; tput setaf 5; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        else
+          let TOTAL+=1
+        fi
+      fi
+
+      PROVIDER="virtualbox"
+      LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
+
+      if [ "$LENGTH" == "0" ]; then
+        let TOTAL+=1
+        let INVALID+=1
+        printf "Box  *  "; tput setaf 5; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+      else
+        let TOTAL+=1
+      fi
+
+      PROVIDER="vmware_desktop"
+      if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
+        LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
+        
+        if [ "$LENGTH" == "0" ]; then
+          let TOTAL+=1
+          let INVALID+=1
+          printf "Box  *  "; tput setaf 5; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
+        else
+          let TOTAL+=1
+        fi
+      fi
+
+      # Limit requests to ~100 per minute to avoid stalls.
+      sleep 0.6 &> /dev/null || echo "" &> /dev/null
+    done
+
+    # Let the user know how many boxes were missing.
+    if [ $INVALID -eq 0 ]; then
+      printf "\nAll ${TOTAL} of the boxes are available...\n\n"
+    else
+      printf "\nOf the ${TOTAL} boxes defined, ${INVALID} have an invalid size...\n\n"
     fi
 }
 
@@ -1383,6 +1600,7 @@ elif [[ $1 == "docker" ]]; then verify_json generic-docker ; verify_json magma-d
 elif [[ $1 == "isos" ]]; then isos
 elif [[ $1 == "sums" ]]; then sums
 elif [[ $1 == "local" ]]; then localized
+elif [[ $1 == "invalid" ]]; then invalid
 elif [[ $1 == "missing" ]]; then missing
 elif [[ $1 == "public" ]]; then public
 elif [[ $1 == "ppublic" ]]; then ppublic
@@ -1446,7 +1664,7 @@ else
   echo $"  `basename $0` {isos|sums|links|local|cache} or"
   echo ""
   echo " Helpers"
-  echo $"  `basename $0` {missing|public|available} or"
+  echo $"  `basename $0` {missing|public|invalid|available} or"
   echo ""
   echo " Boxes"
   echo $"  `basename $0` {box NAME} or"
