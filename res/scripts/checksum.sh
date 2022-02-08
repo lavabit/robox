@@ -116,11 +116,11 @@ if [[ "$BOX" =~ ^.*-x32$ ]]; then
 fi
 
 if [[ "$FILENAME" =~ ^.*\.box$ ]]; then
-  # Calculate the hash using the box file.
+  # Calculate a hash using the box file.
   HASH="`sha256sum $FILEPATH | awk -F' ' '{print $1}'`"
 else
   # Read the hash in from the checksum file
-  HASH="`awk -F' ' '{print $1}' $FILEPATH`"
+  HASH="`cat $FILEPATH | tail -1 | awk -F' ' '{print $1}'`"
 fi
 
 # Verify the values were all parsed properly.

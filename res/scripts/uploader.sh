@@ -99,11 +99,12 @@ if [ "$VERSION" == "" ]; then
   exit 1
 fi
 
-if [ "$HASH" == "" ]; then
-  tput setaf 1; printf "\n\nThe hash couldn't be calculated properly.\n\n\n"; tput sgr0
-  exit 1
+# Generate a hash using the box file if value is invalid.
+if [ "$HASH" == "" ] || [ `echo "$HASH" | wc -c` != 65 ]; then
+  HASH="`sha256sum $FILEPATH | awk -F' ' '{print $1}'`"
 fi
 
+# If the hash is still invalid, then we report an error and exit.
 if [ `echo "$HASH" | wc -c` != 65 ]; then
   tput setaf 1; printf "\n\nThe hash couldn't be calculated properly.\n\n\n"; tput sgr0
   exit 1
