@@ -272,7 +272,7 @@ function iso() {
 
   if [ "$1" == "gentoo" ]; then
 
-    # Find the existing Arch URL and hash values.
+    # Find the existing Gentoo URL and hash values.
     ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo\")) | .iso_url" 2>/dev/null`
     ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo\")) | .iso_checksum" 2>/dev/null`
 
@@ -341,7 +341,7 @@ function iso() {
 
   elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
 
-    # Find the existing Arch URL and hash values.
+    # Find the existing HardenedBSD URL and hash values.
     ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"hardenedbsd13\")) | .iso_url" 2>/dev/null`
     ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"hardenedbsd13\")) | .iso_checksum" 2>/dev/null`
 
