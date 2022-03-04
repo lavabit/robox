@@ -43,8 +43,6 @@ printf "export HISTSIZE=\"100000\"\n" > /etc/profile.d/histsize.sh
 chcon "system_u:object_r:bin_t:s0" /etc/profile.d/histsize.sh
 chmod 644 /etc/profile.d/histsize.sh
 
-# Set the timezone to Pacific time.
-printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
 
 # Reboot
 shutdown --reboot --no-wall +1

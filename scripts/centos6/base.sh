@@ -89,5 +89,3 @@ chmod 644 /etc/profile.d/histsize.sh
 printf "alias vi vim\n" > /etc/profile.d/vim.csh
 printf "# For bash/zsh, if no alias is already set.\nalias vi >/dev/null 2>&1 || alias vi=vim\n" > /etc/profile.d/vim.sh
 
-# Set the timezone to Pacific time.
-printf "ZONE=\"America/Los_Angeles\"\n" > /etc/sysconfig/clock
