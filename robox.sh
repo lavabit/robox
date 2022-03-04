@@ -498,7 +498,7 @@ function verify_availability() {
 
   local RESULT=0
 
-  if [ ! -z ${CURLOPTS+x} ]; then export CURL=$(echo ${CURL} $CURLOPTS | sed "s/USER/${1:0:2}$(($RANDOM%32))/g" | sed "s/PASS/${1:0:2}/g") ; fi
+  if [ ! -z ${CURLOPTS+x} ]; then export CURL="${CURL} $(eval echo $CURLOPTS)" ; fi
 
   curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box" | grep --silent "200"
 
