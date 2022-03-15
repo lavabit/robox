@@ -243,6 +243,8 @@ function print_iso() {
 # Print the current URL and SHA hash for install discs which are updated frequently.
 function isos() {
 
+  [ ! -n "$JOBS" ] && export JOBS="16"
+
   # Find the Gentoo URL.
   URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
   ISO=`${CURL} --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
@@ -264,7 +266,7 @@ function isos() {
   # N=( "${N[@]}" "Buster" ); U=( "${U[@]}" "$URL" )
 
   export -f print_iso
-  parallel -j 16 --xapply print_iso {1} {2} ::: "${N[@]}" ::: "${U[@]}"
+  parallel --jobs $JOBS --xapply print_iso {1} {2} ::: "${N[@]}" ::: "${U[@]}"
 
 }
 
@@ -659,12 +661,14 @@ function links() {
 
 function sums() {
 
+  [ ! -n "$JOBS" ] && export JOBS="32"
+
   # for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
   #     verify_sum "${ISOURLS[$i]}" "${ISOSUMS[$i]}"
   # done
 
   export -f verify_sum
-  parallel -j 64 --delay 1 --xapply verify_sum {1} {2} ":::" "${ISOURLS[@]}" ":::" "${ISOSUMS[@]}"
+  parallel --jobs $JOBS --delay 1 --line-buffer --shuf --xapply verify_sum {1} {2} ":::" "${ISOURLS[@]}" ":::" "${ISOSUMS[@]}"
 
   # Let the user know all of the links passed.
   # printf "\nAll ${#ISOURLS[@]} of the install media locations have been validated...\n\n"
@@ -1059,6 +1063,7 @@ function ppublic() {
     MISSING=0
     LIST=($TAGS)
     FILTER=($FILTERED_TAGS)
+    [ ! -n "$JOBS" ] && export JOBS="192"
 
     # Loop through and remove the filtered tags from the list.
     for ((i = 0; i < ${#FILTER[@]}; ++i)); do
@@ -1106,8 +1111,8 @@ function ppublic() {
     done
 
     export -f curltry ; export -f verify_availability ; export CURL ;
-    # parallel --jobs 16 --keep-order --xapply verify_availability {1} {2} {3} {4} ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
-    parallel --jobs 192 --delay 1 --keep-order --line-buffer --xapply verify_availability {1} {2} {3} {4} '||' let MISSING+=1 ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
+    # parallel --jobs $JOBS --keep-order --xapply verify_availability {1} {2} {3} {4} ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
+    parallel --jobs $JOBS --delay 1 --keep-order --line-buffer --xapply verify_availability {1} {2} {3} {4} '||' let MISSING+=1 ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
     # Get the totla number of boxes.
     let TOTAL=${#B[@]}
     let FOUND=${TOTAL}-${MISSING}
