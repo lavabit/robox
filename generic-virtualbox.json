@@ -4477,7 +4477,7 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.4/iso/openSUSE-Leap-15.4-NET-x86_64-Current.iso",
-      "iso_checksum": "sha256:9378a13a64c4dc5717d63f53feb3af24338df40a3a329579e072cedcecfcf7a9",
+      "iso_checksum": "sha256:3b1ea928aa5e6ab224b6a228ac4723053e1ad2bedd20ae4ffce889c6fe4046d8",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
