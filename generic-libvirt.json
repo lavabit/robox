@@ -5349,7 +5349,7 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.15/releases/x86_64/alpine-virt-3.15.1-x86_64.iso|",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.15/releases/x86_64/alpine-virt-3.15.1-x86_64.iso",
       "iso_checksum": "sha256:3e15b6618663af182d85ad69f0f55406716016e46624395440e6bc11e56dcdd9",
       "ssh_username": "root",
       "ssh_password": "vagrant",
