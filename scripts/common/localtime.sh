@@ -1,4 +1,4 @@
-bash -eux
+#!/bin/bash -eux
 
 if [ "$(command -v timedatectl)" ]; then
   timedatectl set-timezone UTC
