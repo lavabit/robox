@@ -618,7 +618,7 @@
     {
       "name": "opensuse15",
       "output_directory": "output/opensuse15",
-      "iso_url": "https://mirrors.edge.kernel.org/opensuse/distribution/leap/15.3/iso/openSUSE-Leap-15.3-NET-x86_64-Current.iso",
+      "iso_url": "https://download.opensuse.org/distribution/leap/15.3/iso/openSUSE-Leap-15.3-3-NET-x86_64-Build38.1-Media.iso",
       "iso_checksum": "sha256:636f266e11c31e3cead0b81bba193deb9cac061f3d4b4138c31c14496b060889",
       "boot_wait": "5s",
       "disk_size": 1,
