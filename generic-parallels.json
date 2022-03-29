@@ -5308,7 +5308,7 @@
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><enter><wait>",
-        "linux netsetup=dhcp install=https://download.opensuse.org/distribution/leap/15.3/repo/oss/ lang=en_US  textmode=1 <wait>",
+        "linux netsetup=dhcp lang=en_US  textmode=1 <wait>",
         "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse15.vagrant.cfg<wait>",
         "<enter><wait>"
       ],
@@ -5350,8 +5350,8 @@
       "hard_drive_interface": "ide",
       "guest_os_type": "opensuse",
       "http_directory": "http",
-      "iso_url": "https://download.opensuse.org/distribution/leap/15.3/iso/openSUSE-Leap-15.3-3-NET-x86_64-Build38.1-Media.iso",
-      "iso_checksum": "sha256:636f266e11c31e3cead0b81bba193deb9cac061f3d4b4138c31c14496b060889",
+      "iso_url": "https://download.opensuse.org/distribution/leap/15.3/iso/openSUSE-Leap-15.3-3-DVD-x86_64-Build38.1-Media.iso",
+      "iso_checksum": "sha256:c1515358daec1ab7c3be2b7c28636eac2e18f0ad550b918ed0550722b87f8b49",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
