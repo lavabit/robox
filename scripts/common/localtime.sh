@@ -14,8 +14,8 @@ elif [ -f /etc/sysconfig/clock ] && [ "$(command -v tzdata-update)" ]; then
   tzdata-update
 
 # Logic of last resort.
-elif [ -f /etc/localtime ] && [ -f /usr/share/zoneinfo/UTC ]; then
-  cp -f /usr/share/zoneinfo/UTC /etc/localtime
 elif [ -h /etc/localtime ] && [ -f /usr/share/zoneinfo/UTC ]; then
   ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+elif [ -f /etc/localtime ] && [ -f /usr/share/zoneinfo/UTC ]; then
+  cp -f /usr/share/zoneinfo/UTC /etc/localtime
 fi
