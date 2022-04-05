@@ -110,12 +110,9 @@ dev/scripts/builders/build.lib.sh all; error
 # Reset the sandbox database and storage files.
 dev/scripts/database/schema.reset.sh; error
 
-# Enable the anti-virus engine and update the signatures.
+# Copy the virus databases into the sandbox and enable the anti-virus engine.
 # dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
-cp /var/lib/clamav/bytecode.cvd sandbox/virus/
-cp /var/lib/clamav/daily.cvd sandbox/virus/
-cp /var/lib/clamav/main.cvd sandbox/virus/
-sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
+cp /var/lib/clamav/bytecode.cvd sandbox/virus/ && cp /var/lib/clamav/daily.cvd sandbox/virus/ && cp /var/lib/clamav/main.cvd sandbox/virus/ && sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 
 # Ensure the sandbox config uses port 2525 for relays.
 sed -i -e "/magma.relay\[[0-9]*\].name.*/d" sandbox/etc/magma.sandbox.config
