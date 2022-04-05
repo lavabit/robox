@@ -196,10 +196,6 @@ function start() {
   if [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ;
   elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
 
-  if [ -f /etc/init.d/vmware ]; then sudo /etc/init.d/vmware start ; fi
-  if [ -f /etc/init.d/vmware-USBArbitrator ]; then sudo /etc/init.d/vmware-USBArbitrator start ; fi
-  if [ -f /etc/init.d/vmware-workstation-server ]; then sudo /etc/init.d/vmware-workstation-server start ; fi
-
   # Confirm the VMware modules loaded.
   if [ -f /usr/bin/vmware-modconfig ]; then
     MODS=`sudo /etc/init.d/vmware status | grep --color=none --extended-regexp "Module vmmon loaded|Module vmnet loaded" | wc -l`
@@ -212,6 +208,10 @@ function start() {
       fi
     fi
   fi
+
+  if [ -f /etc/init.d/vmware ]; then sudo /etc/init.d/vmware start ; fi
+  if [ -f /etc/init.d/vmware-USBArbitrator ]; then sudo /etc/init.d/vmware-USBArbitrator start ; fi
+  if [ -f /etc/init.d/vmware-workstation-server ]; then sudo /etc/init.d/vmware-workstation-server start ; fi
 
   # Confirm the VirtualBox kernel modules loaded.
   if [ -f /usr/lib/virtualbox/vboxdrv.sh ]; then

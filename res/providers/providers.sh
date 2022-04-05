@@ -150,6 +150,10 @@ function provide-vmware() {
   systemctl disable vmware.service
   systemctl disable vmware-USBArbitrator.service
   systemctl disable vmware-workstation-server.service
+  
+  # Add dependency info so the systemd generator knows how these services relate.
+  sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware-workstation-server\n### END INIT INFO\n' /etc/rc.d/init.d/vmware-workstation-server.
+  sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware\n# Required-Start: vmware-workstation-server\n# Required-Stop:\n### END INIT INFO\n'  /etc/rc.d/init.d/vmware
 
   # Setup the Virtual Interfaces as Trusted
   if [ -f /usr/bin/firewall-cmd ]; then
@@ -249,7 +253,13 @@ function provide-docker() {
     python-docker-py python-docker-scripts python-dockerfile-parse
 
   # Setup Docker Latest as the Default
-  sed -i -e "s/#DOCKERBINARY=\/usr\/bin\/docker-latest/DOCKERBINARY=\/usr\/bin\/docker-latest/g" /etc/sysconfig/docker
+  sed -i "s/#DOCKERBINARY=\/usr\/bin\/docker-latest/DOCKERBINARY=\/usr\/bin\/docker-latest/g" /etc/sysconfig/docker
+  sed -i "s/#DOCKERDBINARY=\/usr\/bin\/dockerd-latest/DOCKERDBINARY=\/usr\/bin\/dockerd-latest/g" /etc/sysconfig/docker
+  sed -i "s/#DOCKER_CONTAINERD_BINARY=\/usr\/bin\/docker-containerd-latest/DOCKER_CONTAINERD_BINARY=\/usr\/bin\/docker-containerd-latest/g" /etc/sysconfig/docker
+  sed -i "s/#DOCKER_CONTAINERD_SHIM_BINARY=\/usr\/bin\/docker-containerd-shim-latest/DOCKER_CONTAINERD_SHIM_BINARY=\/usr\/bin\/docker-containerd-shim-latest/g"  /etc/sysconfig/docker
+
+  # Use the overlay2 driver, not a logical volume.
+  sed -i "s/^STORAGE_DRIVER=.*$/STORAGE_DRIVER=overlay2/g" /usr/lib/docker-latest-storage-setup/docker-latest-storage-setup
 
   # Setup the Docker Group
   groupadd docker
