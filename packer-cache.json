@@ -123,8 +123,8 @@
     {
       "name": "alpine312",
       "output_directory": "output/alpine312",
-      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.12/releases/x86_64/alpine-virt-3.12.11-x86_64.iso",
-      "iso_checksum": "sha256:78bdf733a6113213af7ddc772ab9dc8369f3aff26fd0dce394db2b76a27daf9c",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.12/releases/x86_64/alpine-virt-3.12.12-x86_64.iso",
+      "iso_checksum": "sha256:f569f7a9d47c1310f4ec50155a479adf0e27c79239d981a33629b62fa4281b63",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -933,8 +933,8 @@
     {
       "name": "alpine313",
       "output_directory": "output/alpine313",
-      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.9-x86_64.iso",
-      "iso_checksum": "sha256:7d0835404f5ce7c344088bff87701482b96420340d0700473f31770ee4521a30",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.10-x86_64.iso",
+      "iso_checksum": "sha256:3d94b60e6c1b050fa45cdeeb8e90703ba88ffb0f89cc77c85f7993541e8f470f",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -948,8 +948,8 @@
     {
       "name": "alpine314",
       "output_directory": "output/alpine314",
-      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.14/releases/x86_64/alpine-virt-3.14.5-x86_64.iso",
-      "iso_checksum": "sha256:ff979af528ac88bdae5bd078177ab4559e0b96b0da7e5d3b853617bb9df969af",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.14/releases/x86_64/alpine-virt-3.14.6-x86_64.iso",
+      "iso_checksum": "sha256:70acb81e36139cc3a53865cdc1732a0de9be9366fbb37cde9af48e2ef72ad0fd",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -1113,8 +1113,8 @@
     {
       "name": "alpine315",
       "output_directory": "output/alpine315",
-      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.15/releases/x86_64/alpine-virt-3.15.3-x86_64.iso",
-      "iso_checksum": "sha256:b432eb9a71b7f5531cb7868c82f405cc63c052358698f44fbfe06103b40fa1bb",
+      "iso_url": "https://sjc.edge.kernel.org/alpine/v3.15/releases/x86_64/alpine-virt-3.15.4-x86_64.iso",
+      "iso_checksum": "sha256:70acb81e36139cc3a53865cdc1732a0de9be9366fbb37cde9af48e2ef72ad0fd",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
