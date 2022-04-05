@@ -5,14 +5,6 @@
 #
 # Description: Used to build various virtual machines using packer.
 
-# Version Information
-[ ! -n "$VERSION" ] && export VERSION="3.6.14"
-export AGENT="Vagrant/2.2.18 (+https://www.vagrantup.com; ruby2.7.4)"
-
-# Limit the number of cpus packer will use.
-export GOMAXPROCS="2"
-export PACKERMAXPROCS="1"
-
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
   export CMD=$BASH_SOURCE
@@ -30,18 +22,24 @@ cd $BASE
 if [ ! -f $BASE/.credentialsrc ]; then
 cat << EOF > $BASE/.credentialsrc
 #!/bin/bash
+# Overrides the repo version string with a default value.
+# [ ! -n "$VERSION" ] && VERSION="1.0.0"
 
 # Set the following to override default values.
-# export GOMAXPROCS="2"
-# export QUAY_USER="LOGIN"
-# export QUAY_PASSWORD="PASSWORD"
-# export DOCKER_USER="LOGIN"
-# export DOCKER_PASSWORD="PASSWORD"
-# export VMWARE_WORKSTATION="SERIAL"
-# export VAGRANT_CLOUD_TOKEN="TOKEN"
+# [ ! -n "$GOMAXPROCS" ] && export GOMAXPROCS="2"
 
-# Overrides the repo version string with a default value.
-# VERSION="1.0.0"
+# [ ! -n "$PACKER_ON_ERROR" ] && export PACKER_ON_ERROR="cleanup"
+# [ ! -n "$PACKER_MAX_PROCS" ] && export PACKER_MAX_PROCS="2"
+# [ ! -n "$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="./packer_cache/"
+#
+# [ ! -n "$QUAY_USER" ] && export QUAY_USER="LOGIN"
+# [ ! -n "$QUAY_PASSWORD" ] && export QUAY_PASSWORD="PASSWORD"
+# [ ! -n "$DOCKER_USER" ] && export DOCKER_USER="LOGIN"
+# [ ! -n "$DOCKER_PASSWORD" ] && export DOCKER_PASSWORD="PASSWORD"
+# [ ! -n "$VAGRANT_CLOUD_TOKEN" ] && export VAGRANT_CLOUD_TOKEN="TOKEN"
+
+# [ ! -n "$VMWARE_WORKSTATION" ] && export VMWARE_WORKSTATION="SERIAL"
+
 EOF
 tput setaf 1; printf "\n\nCredentials file was missing. Stub file created.\n\n\n"; tput sgr0
 sleep 5
@@ -49,6 +47,16 @@ fi
 
 # Import the credentials.
 source $BASE/.credentialsrc
+
+# Version Information
+[ ! -n "$VERSION" ] && export VERSION="3.6.14"
+export AGENT="Vagrant/2.2.18 (+https://www.vagrantup.com; ruby2.7.4)"
+
+# Limit the number of cpus packer will use and control how errors are handled.
+[ ! -n "$GOMAXPROCS" ] && export GOMAXPROCS="2"
+[ ! -n "$PACKER_ON_ERROR" ] && export PACKER_ON_ERROR="cleanup"
+[ ! -n "$PACKER_MAX_PROCS" ] && export PACKER_MAX_PROCS="1"
+[ ! -n "$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="$BASE/packer_cache/"
 
 # The list of packer config files.
 FILES="packer-cache.json "\
@@ -384,9 +392,9 @@ function cache {
   unset PACKER_LOG ; unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
 
   if [[ $OS == "Windows_NT" ]]; then
-    packer.exe build -on-error=cleanup -color=false -parallel-builds=$PACKERMAXPROCS -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+    packer.exe build -on-error=cleanup -color=false -parallel-builds=$PACKER_MAX_PROCS -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
   else
-    packer build -on-error=cleanup -color=false -parallel-builds=$PACKERMAXPROCS -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+    packer build -on-error=cleanup -color=false -parallel-builds=$PACKER_MAX_PROCS -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
   fi
 
   if [[ $? != 0 ]]; then
@@ -472,16 +480,17 @@ function verify_local {
 # Validate the templates before building.
 function verify_json() {
 
+  RESULT=0
   unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
 
   if [[ $OS == "Windows_NT" ]]; then
-    packer.exe validate $1.json
+    ( packer.exe validate $1.json 2>&1 || RESULT=1 ) | grep -v "The configuration is valid."
   else
-    packer validate $1.json
+    ( packer validate $1.json 2>&1 || RESULT=1 ) | grep -v "The configuration is valid."
   fi
 
-  if [[ $? != 0 ]]; then
-    tput setaf 1; tput bold; printf "\n\nthe $1 packer template failed to validate...\n\n"; tput sgr0
+  if [[ $RESULT != 0 ]]; then
+    tput setaf 1; tput bold; printf "\n\nThe $1 file failed to validate...\n\n"; tput sgr0
     for i in 1 2 3; do printf "\a"; sleep 1; done
     exit 1
   fi
@@ -533,10 +542,10 @@ function build() {
   
   if [[ $OS == "Windows_NT" ]]; then
     export PACKER_LOG_PATH="$BASE/logs/$1-`date +'%Y%m%d.%I%M%S'`.txt"
-    packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" $1.json
+    packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" $1.json
   else
     export PACKER_LOG_PATH="$BASE/logs/$1-`date +'%Y%m%d.%I%M%S'`.txt"
-    packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" $1.json
+    packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" $1.json
   fi
 
   if [[ $? != 0 ]]; then
@@ -549,7 +558,7 @@ function build() {
       for ((i = 0; i < ${#LIST[@]}; ++i)); do
         if [ ! -f "$BASE/output/${LIST[$i]}-$VERSION.box" ]; then
           export PACKER_LOG_PATH="$BASE/logs/$1-`date +'%Y%m%d.%I%M%S'`.txt"
-          packer build -parallel-builds=$PACKERMAXPROCS -only="${LIST[$i]}" -except="${EXCEPTIONS}" $1.json
+          packer build -parallel-builds=$PACKER_MAX_PROCS -only="${LIST[$i]}" -except="${EXCEPTIONS}" $1.json
         fi
       done
     fi
@@ -569,68 +578,68 @@ function box() {
   if [[ $OS == "Windows_NT" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/magma-hyperv-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 magma-hyperv.json
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/generic-hyperv-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 generic-hyperv.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/lineage-hyperv-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-hyperv.json
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-hyperv.json
       export PACKER_LOG_PATH="$BASE/logs/developer-hyperv-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 developer-hyperv.json
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-hyperv.json
 
   fi
 
   if [[ `uname` == "Darwin" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/generic-parallels-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*parallels.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 generic-parallels.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*parallels.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-parallels.json
 
   fi
 
   if [[ `uname` == "Linux" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/magma-docker-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 magma-docker.json; docker-logout)
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker.json; docker-logout)
       export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 magma-libvirt.json
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-libvirt.json
 
       export PACKER_LOG_PATH="$BASE/logs/generic-docker-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 generic-docker.json; docker-logout)
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker.json; docker-logout)
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x32-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*x32-libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 generic-libvirt-x32.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*x32-libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x32.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 generic-libvirt.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt.json
 
       export PACKER_LOG_PATH="$BASE/logs/developer-ova-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 developer-ova.json
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-ova.json
       export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 developer-libvirt.json
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-libvirt.json
 
       export PACKER_LOG_PATH="$BASE/logs/lineage-libvirt-log-`date +'%Y%m%d.%I%M%S'`.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-libvirt.json
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-libvirt.json
 
   fi
 
   export PACKER_LOG_PATH="$BASE/logs/magma-vmware-log-`date +'%Y%m%d.%I%M%S'`.txt"
-  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 magma-vmware.json
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-vmware.json
   export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-log-`date +'%Y%m%d.%I%M%S'`.txt"
-  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 magma-virtualbox.json
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-virtualbox.json
 
   export PACKER_LOG_PATH="$BASE/logs/generic-vmware-log-`date +'%Y%m%d.%I%M%S'`.txt"
-  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 generic-vmware.json
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-vmware.json
   export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-x32-log-`date +'%Y%m%d.%I%M%S'`.txt"
-  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*x32-virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 generic-virtualbox-x32.json
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*x32-virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox-x32.json
   export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-log-`date +'%Y%m%d.%I%M%S'`.txt"
-  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 generic-virtualbox.json
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox.json
 
   export PACKER_LOG_PATH="$BASE/logs/developer-vmware-log-`date +'%Y%m%d.%I%M%S'`.txt"
-  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 developer-vmware.json
+  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-vmware.json
   export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-log-`date +'%Y%m%d.%I%M%S'`.txt"
-  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 developer-virtualbox.json
+  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-virtualbox.json
 
   export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-log-`date +'%Y%m%d.%I%M%S'`.txt"
-  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-vmware.json
+  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-vmware.json
   export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-log-`date +'%Y%m%d.%I%M%S'`.txt"
-  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKERMAXPROCS -only=$1 lineage-virtualbox.json
+  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-virtualbox.json
 
   return 0
 }
@@ -1461,36 +1470,36 @@ function hyperv() {
     # Build the generic boxes first.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^generic-[a-z]*[0-9]*-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv.json
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv.json
       fi
     done
 
     # Build the magma boxes second.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-[a-z]*[0-9]*-hyperv$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^magma-developer-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv.json
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv.json
       fi
     done
 
     # Build the Lineage boxes fourth.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z]*[0-9]*-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
       fi
     done
 
@@ -1548,9 +1557,9 @@ function parallels() {
         # Build the box. If the first attempt fails, try building the box a second time.
         if [ ! -f "$BASE/output/${LIST[$i]}-$VERSION.box" ]; then
           PACKER_LOG_PATH="$BASE/logs/generic-parallels-log-`date +'%Y%m%d.%I%M%S'`.txt" \
-            packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" "$BASE/generic-parallels.json" \
+            packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" "$BASE/generic-parallels.json" \
             || (PACKER_LOG_PATH="$BASE/logs/generic-parallels-log-`date +'%Y%m%d.%I%M%S'`.txt" \
-            packer build -parallel-builds=$PACKERMAXPROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" "$BASE/generic-parallels.json")
+            packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" "$BASE/generic-parallels.json")
         fi
       fi
     done
