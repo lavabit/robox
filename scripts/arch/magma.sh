@@ -136,7 +136,10 @@ fi
 
 # Alternatively, run the unit tests atop Valgrind.
 # Note this takes awhile when the anti-virus engine is enabled.
-# dev/scripts/launch/check.vg
+MAGMA_CHECK_VALGRIND=$(echo $MAGMA_CHECK_VALGRIND | tr "[:lower:]" "[:upper:]")
+if [ "$MAGMA_CHECK_VALGRIND" == "YES" ]; then
+  dev/scripts/launch/check.vg
+fi
 
 # Daemonize instead of running on the console.
 # sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
