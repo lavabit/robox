@@ -36,13 +36,21 @@ fi
 #   vinagre --vnc-scale rdp://127.0.0.1:$p &> /dev/null &
 # done
 
-# Find the VirtualBox boxes.
+# Find the VirtualBox boxes and connect via RDP.
 which vboxmanage &> /dev/null
 if [ $? == 0 ]; then
-VMS=`vboxmanage list vms | awk -F' ' '{print $1}' | awk -F'"' '{print $2}'`
-for vm in $VMS; do
-  VirtualBox --startvm $vm --no-startvm-errormsgbox --separate &> /dev/null &
-done
+  vboxmanage list vms | awk -F' ' '{print $2}' | while read BOX ; do 
+    PORT=$(vboxmanage showvminfo "$BOX" --details 2>&1 | grep "VRDE property:" | grep "TCP/Ports" | grep -Eo '\"[0-9]*\"' | tr -d '\"' )
+    vinagre --vnc-scale vnc://127.0.0.1:$p &> /dev/null &
+  done 
 fi
+
+# An alternative method, using the VirtualBox GUI application instead of RDP.
+# which vboxmanage &> /dev/null && which VirtualBox &> /dev/null
+# if [ $? == 0 ]; then
+#   vboxmanage list vms | awk -F' ' '{print $2}' | while read BOX ; do 
+#     VirtualBox --startvm $BOX --no-startvm-errormsgbox --separate &> /dev/null &
+#   done
+# fi
 
 exit 0
