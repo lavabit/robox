@@ -20,4 +20,6 @@ ln -s /usr/libexec/locate.updatedb /usr/bin/updatedb
 /usr/libexec/locate.updatedb
 
 # Reboot gracefully.
-shutdown -r +1 &
+( shutdown -r +1 ) &
+exit 0
+

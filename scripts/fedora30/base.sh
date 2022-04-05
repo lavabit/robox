@@ -38,12 +38,12 @@ systemctl disable remote-fs.target
 # Disable kernel dumping.
 # systemctl disable kdump.service
 
-
 # Setup the python path and increase the history size.
 printf "export HISTSIZE=\"100000\"\n" > /etc/profile.d/histsize.sh
 chcon "system_u:object_r:bin_t:s0" /etc/profile.d/histsize.sh
 chmod 644 /etc/profile.d/histsize.sh
 
-
 # Reboot
-shutdown --reboot --no-wall +1
+( shutdown --reboot --no-wall +1 ) &
+exit 0
+

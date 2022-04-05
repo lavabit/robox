@@ -5,9 +5,9 @@ retry() {
   local RESULT=0
   while [[ "${COUNT}" -le 10 ]]; do
     [[ "${RESULT}" -ne 0 ]] && {
-      [ "`which tput 2> /dev/null`" != "" ] && [ ! -z "$TERM" ] && tput setaf 1
+      [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput setaf 1
       echo -e "\\n${*} failed... retrying ${COUNT} of 10.\\n" >&2
-      [ "`which tput 2> /dev/null`" != "" ] && [ ! -z "$TERM" ] && tput sgr0
+      [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput sgr0
     }
     "${@}" && { RESULT=0 && break; } || RESULT="${?}"
     COUNT="$((COUNT + 1))"
@@ -18,9 +18,9 @@ retry() {
   done
 
   [[ "${COUNT}" -gt 10 ]] && {
-    [ "`which tput 2> /dev/null`" != "" ] && [ ! -z "$TERM" ] && tput setaf 1
+    [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput setaf 1
     echo -e "\\nThe command failed 10 times.\\n" >&2
-    [ "`which tput 2> /dev/null`" != "" ] && [ ! -z "$TERM" ] && tput sgr0
+    [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput sgr0
   }
 
   return "${RESULT}"
@@ -47,4 +47,7 @@ sed -i -e "s/\/bin\/ash/\/bin\/bash/g" /etc/passwd
 updatedb
 
 # Reboot onto the new kernel (if applicable).
-reboot
+( sleep 15 ; reboot ) &
+exit 0
+
+

@@ -25,7 +25,6 @@ sed -i -e "/IPV6_PEERROUTES.*/d;$ a IPV6_PEERROUTES=no" /etc/sysconfig/network-s
 sed -i -e "/IPV6FORWARDING.*/d;$ a IPV6FORWARDING=no" /etc/sysconfig/network-scripts/ifcfg-eth0
 sed -i -e "/IPV6_AUTOTUNNEL.*/d;$ a IPV6_AUTOTUNNEL=no" /etc/sysconfig/network-scripts/ifcfg-eth0
 
-
 # Ensure good DNS servers are being used.
 if [ -f /etc/sysconfig/network-scripts/ifcfg-eth0 ]; then
   printf "DNS1=4.2.2.1\n" >> /etc/sysconfig/network-scripts/ifcfg-eth0
@@ -43,6 +42,7 @@ printf "export HISTSIZE=\"100000\"\n" > /etc/profile.d/histsize.sh
 chcon "system_u:object_r:bin_t:s0" /etc/profile.d/histsize.sh
 chmod 644 /etc/profile.d/histsize.sh
 
-
 # Reboot
-shutdown --reboot --no-wall +1
+( shutdown --reboot --no-wall +1 ) &
+exit 0
+

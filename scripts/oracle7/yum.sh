@@ -11,4 +11,6 @@ yum --assumeyes install deltarpm net-tools yum-utils bash-completion man-pages v
 
 # Schedule a reboot, but give the computer time to cleanly shutdown the
 # network interface first.
-shutdown --reboot --no-wall +1
+( shutdown --reboot --no-wall +1 ) &
+exit 0
+

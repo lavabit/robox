@@ -46,4 +46,6 @@ chmod 644 /etc/profile.d/histsize.sh
 
 
 # Reboot
-shutdown --reboot --no-wall +1
+( shutdown --reboot --no-wall +1 ) &
+exit 0
+
