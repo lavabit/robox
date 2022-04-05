@@ -142,8 +142,8 @@ fi
 
 # Alternatively, run the unit tests atop Valgrind.
 # Note this takes awhile when the anti-virus engine is enabled.
-MAGMA_CHECK_VALGRIND=$(echo $MAGMA_CHECK_VALGRIND | tr "[:lower:]" "[:upper:]")
-if [ "$MAGMA_CHECK_VALGRIND" == "YES" ]; then
+MAGMA_CHECK_VALGRIND=$(echo \$MAGMA_CHECK_VALGRIND | tr "[:lower:]" "[:upper:]")
+if [ "\$MAGMA_CHECK_VALGRIND" == "YES" ]; then
   dev/scripts/launch/check.vg
 fi
 
