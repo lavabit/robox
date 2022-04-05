@@ -2519,6 +2519,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Oracle_64",
       "http_directory": "http",
       "headless": true,
@@ -2562,6 +2565,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "OpenSUSE_64",
       "http_directory": "http",
       "headless": true,
@@ -2611,6 +2617,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux_64",
       "http_directory": "http",
       "headless": true,
@@ -2660,6 +2669,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux_64",
       "http_directory": "http",
       "headless": true,
@@ -2709,6 +2721,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux_64",
       "http_directory": "http",
       "headless": true,
@@ -2758,6 +2773,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux_64",
       "http_directory": "http",
       "headless": true,
@@ -2798,6 +2816,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "headless": true,
@@ -2838,6 +2859,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "headless": true,
@@ -2878,6 +2902,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "headless": true,
@@ -2936,6 +2963,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "ArchLinux_64",
       "http_directory": "http",
       "headless": true,
@@ -2980,6 +3010,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Fedora_64",
       "http_directory": "http",
       "headless": true,
@@ -3024,6 +3057,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Fedora_64",
       "http_directory": "http",
       "headless": true,
@@ -3068,6 +3104,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Fedora_64",
       "http_directory": "http",
       "headless": true,
@@ -3112,6 +3151,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Fedora_64",
       "http_directory": "http",
       "headless": true,
@@ -3156,6 +3198,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Fedora_64",
       "http_directory": "http",
       "headless": true,
@@ -3208,6 +3253,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Debian_64",
       "http_directory": "http",
       "headless": true,
@@ -3260,6 +3308,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Debian_64",
       "http_directory": "http",
       "headless": true,
@@ -3316,6 +3367,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -3364,6 +3418,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -3412,6 +3469,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -3460,6 +3520,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -3520,6 +3583,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -3580,6 +3646,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -3630,6 +3699,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Gentoo_64",
       "http_directory": "http",
       "headless": true,
@@ -3686,6 +3758,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "FreeBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -3730,6 +3805,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "OpenBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -3786,6 +3864,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "FreeBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -3826,6 +3907,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "headless": true,
@@ -3866,6 +3950,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "headless": true,
@@ -3920,6 +4007,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "FreeBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -3977,7 +4067,6 @@
         "sh /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 131072,
-      "hard_drive_interface": "scsi",
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -3988,6 +4077,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "scsi",
       "guest_os_type": "FreeBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -4081,6 +4173,9 @@
         "x<wait><enter><wait10>"
       ],
       "disk_size": 131072,
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "NetBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -4135,6 +4230,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "FreeBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -4185,6 +4283,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux_64",
       "http_directory": "http",
       "headless": true,
@@ -4237,6 +4338,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Debian_64",
       "http_directory": "http",
       "headless": true,
@@ -4297,6 +4401,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -4341,6 +4448,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Fedora_64",
       "http_directory": "http",
       "headless": true,
@@ -4381,6 +4491,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Oracle_64",
       "http_directory": "http",
       "headless": true,
@@ -4431,6 +4544,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux_64",
       "http_directory": "http",
       "headless": true,
@@ -4474,6 +4590,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "OpenSUSE_64",
       "http_directory": "http",
       "headless": true,
@@ -4514,6 +4633,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "headless": true,
@@ -4558,6 +4680,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Fedora_64",
       "http_directory": "http",
       "headless": true,
@@ -4618,6 +4743,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -4668,6 +4796,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux_64",
       "http_directory": "http",
       "headless": true,
@@ -4728,6 +4859,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -4771,6 +4905,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Fedora_64",
       "http_directory": "http",
       "headless": true,
@@ -4861,6 +4998,9 @@
         "x<wait><enter><wait10>"
       ],
       "disk_size": 131072,
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "NetBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -4911,6 +5051,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux_64",
       "http_directory": "http",
       "headless": true,
@@ -4963,6 +5106,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Debian_64",
       "http_directory": "http",
       "headless": true,
@@ -5015,6 +5161,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Debian_64",
       "http_directory": "http",
       "headless": true,
@@ -5067,6 +5216,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Debian_64",
       "http_directory": "http",
       "headless": true,
@@ -5122,6 +5274,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -5165,6 +5320,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Fedora_64",
       "http_directory": "http",
       "headless": true,
@@ -5215,6 +5373,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux_64",
       "http_directory": "http",
       "headless": true,
@@ -5265,6 +5426,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux_64",
       "http_directory": "http",
       "headless": true,
@@ -5320,6 +5484,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -5360,6 +5527,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "headless": true,
@@ -5400,6 +5570,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "headless": true,
@@ -5443,6 +5616,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Fedora_64",
       "http_directory": "http",
       "headless": true,
@@ -5499,6 +5675,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "FreeBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -5553,6 +5732,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "FreeBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -5610,7 +5792,6 @@
         "sh /tmp/installerconfig && reboot<enter><wait>"
       ],
       "disk_size": 131072,
-      "hard_drive_interface": "scsi",
       "cpus": 2,
       "memory": 2048,
       "vboxmanage": [
@@ -5621,6 +5802,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "scsi",
       "guest_os_type": "FreeBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -5673,6 +5857,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Debian_64",
       "http_directory": "http",
       "headless": true,
@@ -5718,6 +5905,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "OpenBSD_64",
       "http_directory": "http",
       "headless": true,
@@ -5773,6 +5963,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "headless": true,
@@ -5823,6 +6016,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux_64",
       "http_directory": "http",
       "headless": true,
@@ -5866,6 +6062,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Fedora_64",
       "http_directory": "http",
       "headless": true,
@@ -5918,6 +6117,9 @@
           "64"
         ]
       ],
+      "hard_drive_nonrotational" : true,
+      "hard_drive_discard": true,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Debian_64",
       "http_directory": "http",
       "headless": true,

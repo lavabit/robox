@@ -81,6 +81,9 @@
                     "64"
                 ]
             ],
+            "hard_drive_nonrotational" : true,
+            "hard_drive_discard": true,
+            "hard_drive_interface": "sata",
             "guest_os_type": "RedHat_64",
             "http_directory": "http",
             "headless": true,
