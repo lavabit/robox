@@ -652,6 +652,17 @@ function links() {
   # Wait until the children done working.
   wait
 
+  # Detect downloads that aren't being fetched by the packer-cache.json file.
+  for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
+    grep --silent "${ISOURLS[$i]}" packer-cache.json ||
+      echo "Cache Failure:  ${ISOURLS[$i]}"
+  done
+  
+  for ((i = 0; i < ${#ISOSUMS[@]}; ++i)); do
+    grep --silent "${ISOSUMS[$i]}" packer-cache.json ||
+      echo "Cache Failure:  ${ISOSUMS[$i]}"
+  done
+
   # Combine the media URLs with the regular box ISO urls.
   let TOTAL=${#UNIQURLS[@]}+${#MURLS[@]}
 
