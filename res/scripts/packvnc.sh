@@ -41,7 +41,7 @@ which vboxmanage &> /dev/null
 if [ $? == 0 ]; then
   vboxmanage list vms | awk -F' ' '{print $2}' | while read BOX ; do 
     PORT=$(vboxmanage showvminfo "$BOX" --details 2>&1 | grep "VRDE property:" | grep "TCP/Ports" | grep -Eo '\"[0-9]*\"' | tr -d '\"' )
-    vinagre --vnc-scale vnc://127.0.0.1:$PORT &> /dev/null &
+    vinagre rdp://127.0.0.1:$PORT &> /dev/null &
   done 
 fi
 
