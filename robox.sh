@@ -200,7 +200,8 @@ function start() {
   if [ -f /usr/bin/vmware-modconfig ]; then
     MODS=`sudo /etc/init.d/vmware status | grep --color=none --extended-regexp "Module vmmon loaded|Module vmnet loaded" | wc -l`
     if [ "$MODS" != "2" ]; then
-      sudo vmware-modconfig --console --install-all
+       printf "\nBuilding VMWare kernel modules...\n"; 
+      sudo vmware-modconfig --console --install-all &> /dev/null
       if [ $? != 0 ]; then
         tput setaf 1; tput bold; printf "\n\nThe vmware kernel modules failed to load properly...\n\n"; tput sgr0
         for i in 1 2 3; do printf "\a"; sleep 1; done
