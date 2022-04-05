@@ -38,7 +38,7 @@ printf "\nretries=128\nmetadata_expire=0\nmirrorlist_expire=0\n" >> /etc/yum.con
 
 # CentOS Repo Setup
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Base.repo
-sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\/centos\//baseurl=https:\/\/vault.centos.org\/centos\//g" /etc/yum.repos.d/CentOS-Base.repo
+sed -i -e "s/^#[ ]\+baseurl=http:\/\/mirror.centos.org\/centos\//baseurl=https:\/\/vault.centos.org\/centos\//g" /etc/yum.repos.d/CentOS-Base.repo
 
 # Disable the physical media repos, along with fasttrack repos.
 sed --in-place "s/^/# /g" /etc/yum.repos.d/CentOS-Media.repo
@@ -58,7 +58,7 @@ retry yum --assumeyes --enablerepo=extras install deltarpm epel-release; error
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6; error
 
 # Update EPEL to use HTTPS and switch to archive server.
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
+sed -i -e "s/^#[ ]\+baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/archives.fedoraproject.org\/pub\/archive\/epel\//g" /etc/yum.repos.d/epel.repo
 

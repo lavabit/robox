@@ -52,6 +52,9 @@ retry yum --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
 # These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
 retry yum --quiet --assumeyes install python-crypto python-cryptography
 
+# Install ClamAV.
+retry yum --assumeyes install clamav clamav-data
+
 # Create the clamav user to avoid spurious errors.
 useradd clamav
 
@@ -131,7 +134,10 @@ dev/scripts/builders/build.lib.sh all; error
 dev/scripts/database/schema.reset.sh; error
 
 # Enable the anti-virus engine and update the signatures.
-dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
+# dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
+cp /var/lib/clamav/bytecode.cvd sandbox/virus/
+cp /var/lib/clamav/daily.cvd sandbox/virus/
+cp /var/lib/clamav/main.cvd sandbox/virus/
 sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 
 # Ensure the sandbox config uses port 2525 for relays.

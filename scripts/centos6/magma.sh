@@ -30,7 +30,7 @@ retry() {
 retry yum --assumeyes --enablerepo=extras install epel-release
 
 # Packages needed beyond a minimal install to build and run magma.
-retry yum --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers libgomp mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes cmake libarchive
+retry yum --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers libgomp mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes cmake libarchive 
 
 # Install libbsd because DSPAM relies upon for the strl functions, and the
 # entropy which improves the availability of random bits, and helps magma
@@ -45,6 +45,9 @@ retry yum --assumeyes install libevent memcached
 
 # Packages used to retrieve the magma code, but aren't required for building/running the daemon.
 retry yum --assumeyes install wget git rsync perl-Git perl-Error
+
+# Install ClamAV.
+retry yum --assumeyes install clamav clamav-data
 
 # Ensure memcached doesn't try to use IPv6.
 if [ -f /etc/sysconfig/memcached ]; then
@@ -153,7 +156,11 @@ dev/scripts/builders/build.lib.sh all; error
 dev/scripts/database/schema.reset.sh; error
 
 # Enable the anti-virus engine and update the signatures.
-dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
+# dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
+cp /var/lib/clamav/bytecode.cvd sandbox/virus/
+cp /var/lib/clamav/daily.cvd sandbox/virus/
+cp /var/lib/clamav/main.cvd sandbox/virus/
+cp /var/lib/clamav/mirrors.dat sandbox/virus/
 sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 
 # Ensure the sandbox config uses port 2525 for relays.
