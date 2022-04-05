@@ -160,7 +160,6 @@ dev/scripts/database/schema.reset.sh; error
 cp /var/lib/clamav/bytecode.cvd sandbox/virus/
 cp /var/lib/clamav/daily.cvd sandbox/virus/
 cp /var/lib/clamav/main.cvd sandbox/virus/
-cp /var/lib/clamav/mirrors.dat sandbox/virus/
 sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 
 # Ensure the sandbox config uses port 2525 for relays.
