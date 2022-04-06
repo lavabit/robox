@@ -107,8 +107,6 @@
                     "64"
                 ]
             ],
-            "hard_drive_nonrotational" : true,
-            "hard_drive_discard": true,
             "hard_drive_interface": "sata",
             "guest_os_type": "Ubuntu_64",
             "http_directory": "http",

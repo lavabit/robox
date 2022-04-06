@@ -194,8 +194,6 @@
           "64"
         ]
       ],
-      "hard_drive_nonrotational" : true,
-      "hard_drive_discard": true,
       "hard_drive_interface": "sata",
       "guest_os_type": "Debian",
       "http_directory": "http",
@@ -249,8 +247,6 @@
           "64"
         ]
       ],
-      "hard_drive_nonrotational" : true,
-      "hard_drive_discard": true,
       "hard_drive_interface": "sata",
       "guest_os_type": "Debian",
       "http_directory": "http",
@@ -304,8 +300,6 @@
           "64"
         ]
       ],
-      "hard_drive_nonrotational" : true,
-      "hard_drive_discard": true,
       "hard_drive_interface": "sata",
       "guest_os_type": "Debian",
       "http_directory": "http",
@@ -361,8 +355,6 @@
           "on"
         ]
       ],
-      "hard_drive_nonrotational" : true,
-      "hard_drive_discard": true,
       "hard_drive_interface": "sata",
       "guest_os_type": "Debian",
       "http_directory": "http",

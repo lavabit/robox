@@ -20,12 +20,39 @@ The templates in this repo require a current version of packer, (1.3.4+) and in 
 ## Pending Tasks
 
 Update VirtualBox from 5.2 to 6.1 (will require changes to the NetBSD boot command/timing)  
-Update Packer from 1.6.6 to latest (the preceding task is a prerequisite)  
 
 Generate docker variants for the Ubuntu/Debian/Alpine configurations  
 Add upload/delete/release functions to robox.sh  
 Add vagrant user password randomization logic to the bundled Vagrantfiles  
 Add init based test, and SSH command test to the box test and check script  
+
+## VirtualBox Disks
+
+Enabling the discard/nonrotational options with our VirtualBox configs, appears to improve performance, but only on build robots equipped with SSDs or NVMe drives, and then only if the virtual machine is configured to with VDI virtual disks. This combination allows guests to utilize discard/unmap/trim. However, if a virtual machine is deployed onto traditional magnetic hard disks with discard/nonrotational enabled, performance will drop significantly ( 1/50th of normal in some cases ). 
+
+Furthermore, while Packer appears to use VDI disk image files, when the virtual machine is exported and converted into a Vagrant box, the disk gets converted into the VMDK format. The discard/nonrotational options are preserved, and the result is that when the base box is deployed, it results in a virtual machine with the discard/nonrotational options enabled with an unsupported VMDK virtual disk.
+
+As a result, we currently not using the following options in our Packer config files. 
+```
+"hard_drive_discard": true,
+"hard_drive_nonrotational" : true,
+```
+A handful of the relevant messages from VirtualBox when a Vagrant box is deployed with this issue.
+```
+File system of 'generic-debian8-virtualbox/generic-debian8-virtualbox_default_1649216430418_60259/generic-debian8-virtualbox-disk001.vmdk' is xfs
+  Format              <string>  = "VMDK" (cb=5)
+  Path                <string>  = "generic-debian8-virtualbox/generic-debian8-virtualbox_default_1649216430418_60259/generic-debian8-virtualbox-disk001.vmdk" (cb=154)
+VMSetError: /home/vbox/vbox-5.2.44/src/VBox/Storage/VD.cpp(5662) int VDOpen(PVDISK, const char*, const char*, unsigned int, PVDINTERFACE); rc=VERR_VD_DISCARD_NOT_SUPPORTED
+MSetError: VD: Backend 'VMDK' does not support discard
+AIOMgr: Endpoint for file 'generic-debian8-virtualbox/generic-debian8-virtualbox_default_1649216430418_60259/generic-debian8-virtualbox-disk001.vmdk' (flags 000c0723) created successfully
+AIOMgr: generic-debian8-virtualbox/generic-debian8-virtualbox_default_1649216430418_60259/generic-debian8-virtualbox-disk001.vmdk
+```
+The performance degradation leads to write timeouts, and the logs become filled with messages like the following.
+```
+VD#0: Write request was active for 36 seconds
+VD#0: Aborted write (524288 bytes left) returned rc=VERR_PDM_MEDIAEX_IOREQ_CANCELED
+AHCI#0P0: Canceled write at offset 82372182016 (524288 bytes left) returned rc=VERR_PDM_MEDIAEX_IOREQ_CANCELED
+```
 
 ## Pending Additions
 
