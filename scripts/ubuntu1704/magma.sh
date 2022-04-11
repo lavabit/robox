@@ -128,15 +128,34 @@ cd magma-develop; error
 # Setup the bin links, just in case we need to troubleshoot things manually.
 dev/scripts/linkup.sh; error
 
+# Explicitly control the number of build jobs (instead of using nproc).
+[ ! -z "\${MAGMA_JOBS##*[!0-9]*}" ] && export M_JOBS="\$MAGMA_JOBS"
+
+# The unit tests for the bundled dependencies get skipped with quick builds.
+MAGMA_QUICK=\$(echo \$MAGMA_QUICK | tr "[:lower:]" "[:upper:]")
+if [ "\$MAGMA_QUICK" == "YES" ]; then
+  export QUICK=yes
+fi
+
 # Compile the dependencies into a shared library.
 dev/scripts/builders/build.lib.sh all; error
 
 # Reset the sandbox database and storage files.
 dev/scripts/database/schema.reset.sh; error
 
+# Controls whether ClamAV is enabled, and/or if the signature databases are updated.
+MAGMA_CLAMAV=\$(echo \$MAGMA_CLAMAV | tr "[:lower:]" "[:upper:]")
+MAGMA_FRESHEN=\$(echo \$MAGMA_FRESHEN | tr "[:lower:]" "[:upper:]")
+if [ "\$MAGMA_CLAMAV" == "YES" ]; then
+  sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
+fi
+if [ "\$MAGMA_FRESHEN" == "YES" ]; then
+  dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
+fi
+
 # Download the signatures and then enable the anti-virus engine. If an error occurs, leave it disabled.
 # dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
-cd sandbox/virus/ && curl -LOs https://github.com/ladar/clamav-data/raw/main/main.cvd.[01-10] -LOs https://github.com/ladar/clamav-data/raw/main/main.cvd.sha256 -LOs https://github.com/ladar/clamav-data/raw/main/daily.cvd.[01-10] -LOs https://github.com/ladar/clamav-data/raw/main/daily.cvd.sha256 -LOs https://github.com/ladar/clamav-data/raw/main/bytecode.cvd -LOs https://github.com/ladar/clamav-data/raw/main/bytecode.cvd.sha256 && rm -f main.cvd daily.cvd && cat main.cvd.01 main.cvd.02 main.cvd.03 main.cvd.04 main.cvd.05 main.cvd.06 main.cvd.07 main.cvd.08 main.cvd.09 main.cvd.10 > main.cvd && cat daily.cvd.01 daily.cvd.02 daily.cvd.03 daily.cvd.04 daily.cvd.05 daily.cvd.06 daily.cvd.07 daily.cvd.08 daily.cvd.09 daily.cvd.10 > daily.cvd && sha256sum -c main.cvd.sha256 daily.cvd.sha256 bytecode.cvd.sha256 && rm -f main.cvd.[01-10] daily.cvd.[01-10] && cd \$HOM/cd magma-develop && sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
+cd sandbox/virus/ && curl -LOs https://github.com/ladar/clamav-data/raw/main/main.cvd.[01-10] -LOs https://github.com/ladar/clamav-data/raw/main/main.cvd.sha256 -LOs https://github.com/ladar/clamav-data/raw/main/daily.cvd.[01-10] -LOs https://github.com/ladar/clamav-data/raw/main/daily.cvd.sha256 -LOs https://github.com/ladar/clamav-data/raw/main/bytecode.cvd -LOs https://github.com/ladar/clamav-data/raw/main/bytecode.cvd.sha256 && rm -f main.cvd daily.cvd && cat main.cvd.01 main.cvd.02 main.cvd.03 main.cvd.04 main.cvd.05 main.cvd.06 main.cvd.07 main.cvd.08 main.cvd.09 main.cvd.10 > main.cvd && cat daily.cvd.01 daily.cvd.02 daily.cvd.03 daily.cvd.04 daily.cvd.05 daily.cvd.06 daily.cvd.07 daily.cvd.08 daily.cvd.09 daily.cvd.10 > daily.cvd && sha256sum -c main.cvd.sha256 daily.cvd.sha256 bytecode.cvd.sha256 && rm -f main.cvd.[01-10] daily.cvd.[01-10] && cd \$HOME/magma-develop && sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 cd \$HOM/cd magma-develop
 
 # Ensure the sandbox config uses port 2525 for relays.
@@ -170,8 +189,8 @@ fi
 
 # Alternatively, run the unit tests atop Valgrind.
 # Note this takes awhile when the anti-virus engine is enabled.
-MAGMA_CHECK_VALGRIND=$(echo \$MAGMA_CHECK_VALGRIND | tr "[:lower:]" "[:upper:]")
-if [ "\$MAGMA_CHECK_VALGRIND" == "YES" ]; then
+MAGMA_MEMCHECK=\$(echo \$MAGMA_MEMCHECK | tr "[:lower:]" "[:upper:]")
+if [ "\$MAGMA_MEMCHECK" == "YES" ]; then
   dev/scripts/launch/check.vg
 fi
 

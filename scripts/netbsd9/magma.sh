@@ -60,15 +60,30 @@ cd magma-develop; error
 # Setup the bin links, just in case we need to troubleshoot things manually.
 dev/scripts/linkup.sh; error
 
+# Explicitly control the number of build jobs (instead of using nproc).
+[ ! -z "\${MAGMA_JOBS##*[!0-9]*}" ] && export M_JOBS="\$MAGMA_JOBS"
+
+# The unit tests for the bundled dependencies get skipped with quick builds.
+MAGMA_QUICK=\$(echo \$MAGMA_QUICK | tr "[:lower:]" "[:upper:]")
+if [ "\$MAGMA_QUICK" == "YES" ]; then
+  export QUICK=yes
+fi
+
 # Compile the dependencies into a shared library.
 dev/scripts/builders/build.lib.sh all; error
 
 # Reset the sandbox database and storage files.
 dev/scripts/database/schema.reset.sh; error
 
-# Enable the anti-virus engine and update the signatures.
-dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
-sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
+# Controls whether ClamAV is enabled, and/or if the signature databases are updated.
+MAGMA_CLAMAV=\$(echo \$MAGMA_CLAMAV | tr "[:lower:]" "[:upper:]")
+MAGMA_FRESHEN=\$(echo \$MAGMA_FRESHEN | tr "[:lower:]" "[:upper:]")
+if [ "\$MAGMA_CLAMAV" == "YES" ]; then
+  sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
+fi
+if [ "\$MAGMA_FRESHEN" == "YES" ]; then
+  dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
+fi
 
 # Ensure the sandbox config uses port 2525 for relays.
 sed -i -e "/magma.relay\[[0-9]*\].name.*/d" sandbox/etc/magma.sandbox.config
@@ -98,8 +113,8 @@ fi
 
 # Alternatively, run the unit tests atop Valgrind.
 # Note this takes awhile when the anti-virus engine is enabled.
-MAGMA_CHECK_VALGRIND=$(echo \$MAGMA_CHECK_VALGRIND | tr "[:lower:]" "[:upper:]")
-if [ "\$MAGMA_CHECK_VALGRIND" == "YES" ]; then
+MAGMA_MEMCHECK=\$(echo \$MAGMA_MEMCHECK | tr "[:lower:]" "[:upper:]")
+if [ "\$MAGMA_MEMCHECK" == "YES" ]; then
   dev/scripts/launch/check.vg
 fi
 

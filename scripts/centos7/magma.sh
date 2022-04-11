@@ -58,18 +58,21 @@ retry yum --assumeyes install clamav clamav-data
 # Create the clamav user to avoid spurious errors.
 useradd clamav
 
-# Find out how much RAM is installed, and what 50% would be in KB.
-TOTALMEM=`free -k | grep -E "^Mem:" | awk -F' ' '{print $2}'`
-HALFMEM=`echo $(($TOTALMEM/2))`
+cat <<-EOF > /etc/security/limits.d/90-everybody.conf
+*    soft    memlock    2027044
+*    hard    memlock    2027044
+*    soft    stack      unlimited
+*    hard    stack      unlimited
+*    soft    nofile     65536
+*    hard    nofile     65536
+*    soft    nproc      65536
+*    hard    nproc      65536
+EOF
 
-# Setup the memory locking limits.
-printf "*    soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-magmad.conf
-printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.conf
-printf "*    soft    nofile     65536\n" >> /etc/security/limits.d/50-magmad.conf
-printf "*    hard    nofile     65536\n" >> /etc/security/limits.d/50-magmad.conf
-
-# Fix the SELinux context.
-chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
+chmod 644 /etc/security/limits.d/25-root.conf
+chmod 644 /etc/security/limits.d/90-everybody.conf
+chcon "system_u:object_r:etc_t:s0" /etc/security/limits.d/25-root.conf
+chcon "system_u:object_r:etc_t:s0" /etc/security/limits.d/90-everybody.conf
 
 # Force MySQL/MariaDB except the old fashioned '0000-00-00' date format.
 printf "[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/my.cnf.d/server-mode.cnf
@@ -127,6 +130,15 @@ cd magma-develop; error
 # Setup the bin links, just in case we need to troubleshoot things manually.
 dev/scripts/linkup.sh; error
 
+# Explicitly control the number of build jobs (instead of using nproc).
+[ ! -z "\${MAGMA_JOBS##*[!0-9]*}" ] && export M_JOBS="\$MAGMA_JOBS"
+
+# The unit tests for the bundled dependencies get skipped with quick builds.
+MAGMA_QUICK=\$(echo \$MAGMA_QUICK | tr "[:lower:]" "[:upper:]")
+if [ "\$MAGMA_QUICK" == "YES" ]; then
+  export QUICK=yes
+fi
+
 # Compile the dependencies into a shared library.
 dev/scripts/builders/build.lib.sh all; error
 
@@ -165,8 +177,8 @@ fi
 
 # Alternatively, run the unit tests atop Valgrind.
 # Note this takes awhile when the anti-virus engine is enabled.
-MAGMA_CHECK_VALGRIND=$(echo \$MAGMA_CHECK_VALGRIND | tr "[:lower:]" "[:upper:]")
-if [ "\$MAGMA_CHECK_VALGRIND" == "YES" ]; then
+MAGMA_MEMCHECK=\$(echo \$MAGMA_MEMCHECK | tr "[:lower:]" "[:upper:]")
+if [ "\$MAGMA_MEMCHECK" == "YES" ]; then
   dev/scripts/launch/check.vg
 fi
 

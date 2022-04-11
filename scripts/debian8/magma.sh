@@ -91,6 +91,15 @@ cd magma-develop; error
 # Setup the bin links, just in case we need to troubleshoot things manually.
 dev/scripts/linkup.sh; error
 
+# Explicitly control the number of build jobs (instead of using nproc).
+[ ! -z "\${MAGMA_JOBS##*[!0-9]*}" ] && export M_JOBS="\$MAGMA_JOBS"
+
+# The unit tests for the bundled dependencies get skipped with quick builds.
+MAGMA_QUICK=\$(echo \$MAGMA_QUICK | tr "[:lower:]" "[:upper:]")
+if [ "\$MAGMA_QUICK" == "YES" ]; then
+  export QUICK=yes
+fi
+
 # Compile the dependencies into a shared library.
 dev/scripts/builders/build.lib.sh all; error
 
@@ -133,8 +142,8 @@ fi
 
 # Alternatively, run the unit tests atop Valgrind.
 # Note this takes awhile when the anti-virus engine is enabled.
-MAGMA_CHECK_VALGRIND=$(echo \$MAGMA_CHECK_VALGRIND | tr "[:lower:]" "[:upper:]")
-if [ "\$MAGMA_CHECK_VALGRIND" == "YES" ]; then
+MAGMA_MEMCHECK=\$(echo \$MAGMA_MEMCHECK | tr "[:lower:]" "[:upper:]")
+if [ "\$MAGMA_MEMCHECK" == "YES" ]; then
   dev/scripts/launch/check.vg
 fi
 
