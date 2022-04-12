@@ -38,7 +38,7 @@ error() {
 retry yum --assumeyes --enablerepo=extras install epel-release; error
 
 # Packages needed beyond a minimal install to build and run magma.
-retry yum --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel; error
+retry yum --quiet --assumeyes install texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel gdb valgrind valgrind-devel valgrind-openmpi openmpi-devel openmpi procps perl patchutils bison ctags diffstat doxygen elfutils flex gcc-gfortran gettext indent intltool swig cscope byacc zip unzip ; error
 
 # Grab the required packages from the EPEL repo.
 retry yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
