@@ -92,7 +92,7 @@ fi
 export NSS_DISABLE_HW_AES=1
 
 # If the TERM environment variable is missing, then tput may trigger a fatal error.
-if [[ -n "$TERM" ]] && [[ "$TERM" -ne "dumb" ]]; then
+if [[ -n "\$TERM" ]] && [[ "\$TERM" -ne "dumb" ]]; then
   export TPUT="tput"
 else
   export TPUT="tput -Tvt100"
