@@ -30,7 +30,7 @@ retry() {
 retry yum --assumeyes --enablerepo=extras install epel-release
 
 # Packages needed beyond a minimal install to build and run magma.
-retry yum --assumeyes install gdb texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers libgomp mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes cmake libarchive openmpi-devel openmpi procps perl patchutils bison ctags diffstat doxygen elfutils flex gcc-gfortran gettext indent intltool swig cscope byacc zip unzip 
+retry yum --assumeyes install gdb texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cloog-ppl cpp glibc-devel glibc-headers kernel-headers libgomp mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes cmake libarchive openmpi-devel openmpi procps perl patchutils bison ctags diffstat doxygen elfutils flex gcc-gfortran gettext indent intltool swig cscope byacc zip unzip perl-Digest-HMAC perl-Digest-SHA perl-Digest-SHA1 perl-Digest-Bcrypt perl-Digest-CRC perl-Digest-JHash perl-Digest-MD2 perl-Digest-MD4 perl-Digest-MD5-File perl-Digest-PBKDF2 perl-Digest-Perl-MD5 perl-Digest-SHA3 libgsasl libgsasl-devel expect python java-1.8.0-openjdk wget openssh-clients jq libssh2 libssh2-devel libzstd libzstd-devel libzstd-static stunnel libnghttp2 libnghttp2-devel 
 
 # Install libbsd because DSPAM relies upon for the strl functions, and the
 # entropy which improves the availability of random bits, and helps magma
@@ -1369,7 +1369,7 @@ if [ -x /usr/bin/id ]; then
 fi
 
 # If the TERM environment variable is missing, then tput may trigger a fatal error.
-if [[ -n "$TERM" ]] && [[ "$TERM" -ne "dumb" ]]; then
+if [[ -n "\$TERM" ]] && [[ "\$TERM" -ne "dumb" ]]; then
   export TPUT="tput"
 else
   export TPUT="tput -Tvt100"

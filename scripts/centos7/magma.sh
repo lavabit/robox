@@ -38,7 +38,7 @@ error() {
 retry yum --assumeyes --enablerepo=extras install epel-release; error
 
 # Packages needed beyond a minimal install to build and run magma.
-retry yum --quiet --assumeyes install texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel gdb valgrind valgrind-devel valgrind-openmpi openmpi-devel openmpi procps perl patchutils bison ctags diffstat doxygen elfutils flex gcc-gfortran gettext indent intltool swig cscope byacc zip unzip ; error
+retry yum --quiet --assumeyes install texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel gdb valgrind valgrind-devel valgrind-openmpi openmpi-devel openmpi procps perl patchutils bison ctags diffstat doxygen elfutils flex gcc-gfortran gettext indent intltool swig cscope byacc zip unzip perl-Digest perl-Digest-CRC perl-Digest-HMAC perl-Digest-JHash perl-Digest-MD2 perl-Digest-MD4 perl-Digest-MD5 perl-Digest-PBKDF2 perl-Digest-SHA perl-Digest-SHA1 perl-Digest-SHA3 libgsasl libgsasl-devel python3 expect python java-1.8.0-openjdk wget openssh-clients jq python2-impacket python36-impacket libssh2 libssh2-devel libzstd libzstd-devel libzstd-static stunnel libnghttp2 libnghttp2-devel ; error
 
 # Grab the required packages from the EPEL repo.
 retry yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
@@ -57,6 +57,17 @@ retry yum --assumeyes install clamav clamav-data
 
 # Create the clamav user to avoid spurious errors.
 useradd clamav
+
+cat <<-EOF > /etc/security/limits.d/25-root.conf
+root    soft    memlock    2027044
+root    hard    memlock    2027044
+root    soft    stack      2027044
+root    hard    stack      2027044
+root    soft    nofile     1048576
+root    hard    nofile     1048576
+root    soft    nproc      65536
+root    hard    nproc      65536
+EOF
 
 cat <<-EOF > /etc/security/limits.d/90-everybody.conf
 *    soft    memlock    2027044
