@@ -150,13 +150,31 @@ dev/scripts/builders/build.lib.sh all; error
 # Reset the sandbox database and storage files.
 dev/scripts/database/schema.reset.sh; error
 
-# Controls whether ClamAV is enabled, and/or if the signature databases are updated.
+# Controls whether ClamAV is enabled, and/or if the signature databases get updated.
 MAGMA_CLAMAV=\$(echo \$MAGMA_CLAMAV | tr "[:lower:]" "[:upper:]")
-MAGMA_FRESHEN=\$(echo \$MAGMA_FRESHEN | tr "[:lower:]" "[:upper:]")
+MAGMA_CLAMAV_FRESHEN=\$(echo \$MAGMA_CLAMAV_FRESHEN | tr "[:lower:]" "[:upper:]")
+MAGMA_CLAMAV_DOWNLOAD=\$(echo \$MAGMA_CLAMAV_DOWNLOAD | tr "[:lower:]" "[:upper:]")
 if [ "\$MAGMA_CLAMAV" == "YES" ]; then
   sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
 fi
-if [ "\$MAGMA_FRESHEN" == "YES" ]; then
+if [ "\$MAGMA_CLAMAV_DOWNLOAD" == "YES" ]; then
+  cd sandbox/virus/ && curl -LOs \
+  https://github.com/ladar/clamav-data/raw/main/main.cvd.[01-10] -LOs \
+  https://github.com/ladar/clamav-data/raw/main/main.cvd.sha256 -LOs \
+  https://github.com/ladar/clamav-data/raw/main/daily.cvd.[01-10] -LOs \
+  https://github.com/ladar/clamav-data/raw/main/daily.cvd.sha256 -LOs \
+  https://github.com/ladar/clamav-data/raw/main/bytecode.cvd -LOs \
+  https://github.com/ladar/clamav-data/raw/main/bytecode.cvd.sha256 && \
+  rm -f main.cvd daily.cvd bytecode.cvd && \
+  cat main.cvd.01 main.cvd.02 main.cvd.03 main.cvd.04 main.cvd.05 \
+  main.cvd.06 main.cvd.07 main.cvd.08 main.cvd.09 main.cvd.10 > main.cvd && \
+  cat daily.cvd.01 daily.cvd.02 daily.cvd.03 daily.cvd.04 daily.cvd.05 \
+  daily.cvd.06 daily.cvd.07 daily.cvd.08 daily.cvd.09 daily.cvd.10 > daily.cvd && \
+  sha256sum -c main.cvd.sha256 daily.cvd.sha256 bytecode.cvd.sha256 && \
+  rm -f main.cvd.[01-10] daily.cvd.[01-10] && \
+  cd \$HOME/magma-develop
+fi
+if [ "\$MAGMA_CLAMAV_FRESHEN" == "YES" ]; then
   dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
 fi
 

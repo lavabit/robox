@@ -200,7 +200,7 @@ function start() {
   if [ -f /usr/bin/vmware-modconfig ]; then
     MODS=`sudo /etc/init.d/vmware status | grep --color=none --extended-regexp "Module vmmon loaded|Module vmnet loaded" | wc -l`
     if [ "$MODS" != "2" ]; then
-       printf "\nBuilding VMWare kernel modules...\n"; 
+       printf "Compiling the VMWare kernel modules.\n"; 
       sudo vmware-modconfig --console --install-all &> /dev/null
       if [ $? != 0 ]; then
         tput setaf 1; tput bold; printf "\n\nThe vmware kernel modules failed to load properly...\n\n"; tput sgr0
@@ -1255,7 +1255,12 @@ function invalid() {
 }
 
 function grab() {
-
+  
+  if [ $# -ne 3 ]; then
+    tput setaf 1; printf "\n\n  Usage:\n    $(basename $0) grab ORG BOX PROVIDER\n\n\n"; tput sgr0
+    exit 1
+  fi
+  
   URL=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
     | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | .download_url ][0]" 2>/dev/null`
   if [ "$URL" == "" ]; then
