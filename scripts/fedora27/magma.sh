@@ -29,24 +29,35 @@ retry() {
 # Create the clamav user to avoid spurious errors.
 useradd clamav
 
-# Set the local hostname to resolve properly.
-printf "\n127.0.0.1	bazinga.localdomain\n\n" >> /etc/hosts
+cat <<-EOF > /etc/security/limits.d/25-root.conf
+root    soft    memlock    2027044
+root    hard    memlock    2027044
+root    soft    stack      2027044
+root    hard    stack      2027044
+root    soft    nofile     1048576
+root    hard    nofile     1048576
+root    soft    nproc      65536
+root    hard    nproc      65536
+EOF
 
-# Find out how much RAM is installed, and what 50% would be in KB.
-TOTALMEM=`free -k | grep -E "^Mem:" | awk -F' ' '{print $2}'`
-HALFMEM=`echo $(($TOTALMEM/2))`
+cat <<-EOF > /etc/security/limits.d/90-everybody.conf
+*    soft    memlock    2027044
+*    hard    memlock    2027044
+*    soft    stack      unlimited
+*    hard    stack      unlimited
+*    soft    nofile     65536
+*    hard    nofile     65536
+*    soft    nproc      65536
+*    hard    nproc      65536
+EOF
 
-# Setup the memory locking limits.
-printf "*    soft    memlock    $HALFMEM\n" > /etc/security/limits.d/50-magmad.conf
-printf "*    hard    memlock    $HALFMEM\n" >> /etc/security/limits.d/50-magmad.conf
-printf "*    soft    nofile     65536\n" >> /etc/security/limits.d/50-magmad.conf
-printf "*    hard    nofile     65536\n" >> /etc/security/limits.d/50-magmad.conf
-
-# Fix the SELinux context.
-chcon system_u:object_r:etc_t:s0 /etc/security/limits.d/50-magmad.conf
+chmod 644 /etc/security/limits.d/25-root.conf
+chmod 644 /etc/security/limits.d/90-everybody.conf
+chcon "system_u:object_r:etc_t:s0" /etc/security/limits.d/25-root.conf
+chcon "system_u:object_r:etc_t:s0" /etc/security/limits.d/90-everybody.conf
 
 # Packages required to compile magma.
-retry dnf install --assumeyes cmake zlib-devel
+retry dnf install --assumeyes cmake zlib-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel gdb valgrind valgrind-devel valgrind-openmpi openmpi-devel openmpi procps perl patchutils bison ctags diffstat doxygen elfutils flex gcc-gfortran gettext indent intltool swig cscope byacc zip unzip perl-Digest perl-Digest-CRC perl-Digest-HMAC perl-Digest-JHash perl-Digest-MD2 perl-Digest-MD4 perl-Digest-MD5 perl-Digest-PBKDF2 perl-Digest-SHA perl-Digest-SHA1 perl-Digest-SHA3 libgsasl libgsasl-devel python3 expect python java-1.8.0-openjdk wget openssh-clients jq python2-impacket libssh2 libssh2-devel libzstd libzstd-devel stunnel libnghttp2 libnghttp2-devel libbsd libbsd-devel inotify-tools git rsync perl-Git perl-Error python2-crypto python2-cryptography python3-crypto python3-cryptography
 
 # Install ClamAV.
 retry yum --assumeyes install clamav clamav-data
