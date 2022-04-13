@@ -32,6 +32,12 @@ export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # The packages needed to compile magma.
 retry apt-get --assume-yes install gcc g++ gcc-multilib make autoconf autoconf-archive automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config ninja-build libltdl-dev m4 python-pytest python3-pytest nasm libdigest-bcrypt-perl libdigest-crc-perl libdigest-hmac-perl libdigest-jhash-perl libdigest-md2-perl libdigest-md4-perl libdigest-sha-perl libdigest-sha3-perl libdigest-whirlpool-perl gnu-standards gettext
+ 
+# v1 WIP
+# retry apt-get --assume-yes install gcc g++ gcc-multilib make autoconf autoconf-archive automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config ninja-build libltdl-dev m4 python-pytest python3-pytest nasm libdigest-bcrypt-perl libdigest-crc-perl libdigest-hmac-perl libdigest-jhash-perl libdigest-md2-perl libdigest-md4-perl libdigest-sha-perl libdigest-sha3-perl libdigest-whirlpool-perl gnu-standards gettext gobjc++-5 gnulib libstdc++5 libstdc++6 libstdc++-5-dev libregexp-common-perl libregexp-assemble-perl netcat
+
+# v1+1 WIP
+# retry apt-get --assume-yes install automake check debhelper dh-autoreconf dh-systemd dh-ap=parmor dh-strip-nondeterminism libbz2-dev libcurl4-openssl-dev libjson-c-dev libltdl-dev libmilter-dev libmspack-dev libncurses5-dev libpcre3-dev libssl-dev libsystemd-dev libtfm-dev libxml2-dev llvm-dev perl pkg-config po-debconf python:native zlib1g-dev libbz2-dev libc6-dev libidn11-dev libssl-dev libtommath-dev zlib1g-dev lsb-base procps ucf automake check debhelper dh-apparmor dh-strip-nondeterminism libbz2-dev libcurl4-openssl-dev libltdl-dev libmilter-dev libmspack-dev libpcre2-dev libssl-dev libsystemd-dev libtfm-dev libxml2-dev pkg-config po-debconf python zlib1g-dev
 
 # Need to retrieve the source code.
 retry apt-get --assume-yes install git git-man liberror-perl rsync wget
@@ -123,7 +129,7 @@ fi
 
 # Clone the magma repository off Github.
 git clone --quiet https://github.com/lavabit/magma.git magma-develop && \
-  printf "\nMagma repository downloaded\n." ; error
+  printf "\nMagma repository downloaded.\n" ; error
 cd magma-develop; error
 
 # Setup the bin links, just in case we need to troubleshoot things manually.
