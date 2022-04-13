@@ -119,7 +119,7 @@ fi
 
 # Clone the magma repository off Github.
 git clone --quiet https://github.com/lavabit/magma.git magma-develop && \
-  printf "\nMagma repository downloaded\n." ; error
+  printf "\nMagma repository downloaded.\n" ; error
 cd magma-develop; error
 
 # Setup the bin links, just in case we need to troubleshoot things manually.
