@@ -38,7 +38,7 @@ error() {
 retry yum --assumeyes --enablerepo=extras install epel-release; error
 
 # Packages needed beyond a minimal install to build and run magma.
-retry yum --quiet --assumeyes install texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel gdb valgrind valgrind-devel valgrind-openmpi openmpi-devel openmpi procps perl patchutils bison ctags diffstat doxygen elfutils flex gcc-gfortran gettext indent intltool swig cscope byacc zip unzip perl-Digest perl-Digest-CRC perl-Digest-HMAC perl-Digest-JHash perl-Digest-MD2 perl-Digest-MD4 perl-Digest-MD5 perl-Digest-PBKDF2 perl-Digest-SHA perl-Digest-SHA1 perl-Digest-SHA3 libgsasl libgsasl-devel python3 expect python java-1.8.0-openjdk wget openssh-clients jq python2-impacket python36-impacket libssh2 libssh2-devel libzstd libzstd-devel libzstd-static stunnel libnghttp2 libnghttp2-devel ; error
+retry yum --quiet --assumeyes install texinfo autoconf autolibtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes clibarchive zlib-devel gdb valgrind valgrind-devel valgrind-openmpi openmpi-devel openmpi procps perl patchutils bison ctags diffstat doxygen elfutils flex gcc-gfortran gettext indent intltool swig cscope byacc zip unzip perl-Digest perl-Digest-CRC perl-Digest-HMAC perl-Digest-JHash perl-Digest-MD2 perl-Digest-MD4 perl-Digest-MD5 perl-Digest-PBKDF2 perl-Digest-SHA perl-Digest-SHA1 perl-Digest-SHA3 libgsasl libgsasl-devel python3 expect python java-1.8.0-openjdk wget openssh-clients jq python2-impacket python36-impacket libssh2 libssh2-devel libzstd libzstd-devel libzstd-static stunnel libnghttp2 libnghttp2-devel ; error
 
 # Grab the required packages from the EPEL repo.
 retry yum --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
@@ -154,8 +154,8 @@ fi
 dev/scripts/builders/build.lib.sh all; error
 
 # Reset the sandbox database and storage files.
-dev/scripts/database/schema.reset.sh; error
-
+dev/scripts/database/schema.reset.sh &> lib/logs/schema.txt && \
+  printf "\nMagma database schema loaded successfully.\n"; error
 
 # Controls whether ClamAV is enabled, and/or if the signature databases get updated.
 MAGMA_CLAMAV=\$(echo \$MAGMA_CLAMAV | tr "[:lower:]" "[:upper:]")
@@ -163,7 +163,9 @@ MAGMA_CLAMAV_FRESHEN=\$(echo \$MAGMA_CLAMAV_FRESHEN | tr "[:lower:]" "[:upper:]"
 MAGMA_CLAMAV_DOWNLOAD=\$(echo \$MAGMA_CLAMAV_DOWNLOAD | tr "[:lower:]" "[:upper:]")
 ( cp /var/lib/clamav/bytecode.cvd sandbox/virus/ && cp /var/lib/clamav/daily.cvd sandbox/virus/ && cp /var/lib/clamav/main.cvd sandbox/virus/ ) || echo "Unable to use the system copy of the virus databases."
 if [ "\$MAGMA_CLAMAV" == "YES" ]; then
-  sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
+  sed -i 's/^[# ]*magma.iface.virus.available[ ]*=.*$/magma.iface.virus.available = true/g' sandbox/etc/magma.sandbox.config
+else
+  sed -i 's/^[# ]*magma.iface.virus.available[ ]*=.*$/magma.iface.virus.available = false/g' sandbox/etc/magma.sandbox.config
 fi
 if [ "\$MAGMA_CLAMAV_DOWNLOAD" == "YES" ]; then
   cd sandbox/virus/ && curl -LOs \
@@ -183,9 +185,9 @@ if [ "\$MAGMA_CLAMAV_DOWNLOAD" == "YES" ]; then
   cd \$HOME/magma-develop
 fi
 if [ "\$MAGMA_CLAMAV_FRESHEN" == "YES" ]; then
-  dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
+  dev/scripts/freshen/freshen.clamav.sh &> lib/logs/freshen.txt && \
+    printf "\nClamAV databases updated.\n"; error
 fi
-
 
 # Ensure the sandbox config uses port 2525 for relays.
 sed -i -e "/magma.relay\[[0-9]*\].name.*/d" sandbox/etc/magma.sandbox.config
@@ -199,14 +201,15 @@ if [ ! -d 'sandbox/spool/scan/' ]; then
 fi
 
 # Compile the daemon and then compile the unit tests.
-make all; error
+make -j4 all &> lib/logs/magma.txt && \
+  printf "\nMagma compiled successfully.\n"; error
 
 # Run the unit tests.
 dev/scripts/launch/check.run.sh
 
 # If the unit tests fail, print an error, but contine running.
 if [ \$? -ne 0 ]; then
-  \${TPUT} setaf 1; \${TPUT} bold; printf "\n\nsome of the magma daemon unit tests failed...\n\n"; \${TPUT} sgr0;
+  \${TPUT} setaf 1; \${TPUT} bold; printf "\n\nSome of the magma unit tests failed...\n\n"; \${TPUT} sgr0;
   for i in 1 2 3; do
     printf "\a"; sleep 1
   done

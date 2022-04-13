@@ -1407,7 +1407,8 @@ fi
 dev/scripts/builders/build.lib.sh all; error
 
 # Reset the sandbox database and storage files.
-dev/scripts/database/schema.reset.sh; error
+dev/scripts/database/schema.reset.sh &> lib/logs/schema.txt && \
+  printf "\nMagma database schema loaded successfully.\n"; error
 
 # Controls whether ClamAV is enabled, and/or if the signature databases get updated.
 MAGMA_CLAMAV=\$(echo \$MAGMA_CLAMAV | tr "[:lower:]" "[:upper:]")
@@ -1415,7 +1416,9 @@ MAGMA_CLAMAV_FRESHEN=\$(echo \$MAGMA_CLAMAV_FRESHEN | tr "[:lower:]" "[:upper:]"
 MAGMA_CLAMAV_DOWNLOAD=\$(echo \$MAGMA_CLAMAV_DOWNLOAD | tr "[:lower:]" "[:upper:]")
 ( cp /var/lib/clamav/bytecode.cvd sandbox/virus/ && cp /var/lib/clamav/daily.cvd sandbox/virus/ && cp /var/lib/clamav/main.cvd sandbox/virus/ ) || echo "Unable to use the system copy of the virus databases."
 if [ "\$MAGMA_CLAMAV" == "YES" ]; then
-  sed -i -e "s/virus.available = false/virus.available = true/g" sandbox/etc/magma.sandbox.config
+  sed -i 's/^[# ]*magma.iface.virus.available[ ]*=.*$/magma.iface.virus.available = true/g' sandbox/etc/magma.sandbox.config
+else
+  sed -i 's/^[# ]*magma.iface.virus.available[ ]*=.*$/magma.iface.virus.available = false/g' sandbox/etc/magma.sandbox.config
 fi
 if [ "\$MAGMA_CLAMAV_DOWNLOAD" == "YES" ]; then
   cd sandbox/virus/ && curl -LOs \
@@ -1450,14 +1453,15 @@ if [ ! -d 'sandbox/spool/scan/' ]; then
 fi
 
 # Compile the daemon and then compile the unit tests.
-make all; error
+make -j4 all &> lib/logs/magma.txt && \
+  printf "\nMagma compiled successfully.\n"; error
 
 # Run the unit tests.
 dev/scripts/launch/check.run.sh
 
 # If the unit tests fail, print an error, but contine running.
 if [ \$? -ne 0 ]; then
-  \${TPUT} setaf 1; \${TPUT} bold; printf "\n\nsome of the magma daemon unit tests failed...\n\n"; \${TPUT} sgr0;
+  \${TPUT} setaf 1; \${TPUT} bold; printf "\n\nSome of the magma unit tests failed...\n\n"; \${TPUT} sgr0;
   for i in 1 2 3; do
     printf "\a"; sleep 1
   done
