@@ -37,6 +37,28 @@ if [[ `dmidecode -s system-product-name` != "Parallels Virtual Platform" ]]; the
     exit 0
 fi
 
+# The Ubuntu cloud tools package automatically installs kernel drivers and background
+# services for several virtualization platforms. Crude runtime dependency checks should
+# block unnecessary drivers from loading, and unnecessary services from starting, but this 
+# strategy still generates spurious log messages, along with an (albeit slight) performance
+# penalty. So reduce noise, and avoid any performance penalties we disable and mask 
+# guest drivers/services which don't match the target virtualization platform.
+systemctl --quiet is-enabled hv-fcopy-daemon.service &> /dev/null && \
+  ( systemctl disable hv-fcopy-daemon.service ; systemctl mask hv-fcopy-daemon.service ) || \
+  echo "hv-fcopy-daemon.service already disabled" &> /dev/null
+systemctl --quiet is-enabled hv-kvp-daemon.servicee &> /dev/null && \
+  ( systemctl disable hv-kvp-daemon.service ; systemctl mask hv-kvp-daemon.service ) || \
+  echo "hv-kvp-daemon.service already disabled" &> /dev/null
+systemctl --quiet is-enabled hv-vss-daemon.servicee &> /dev/null && \
+  ( systemctl disable hv-vss-daemon.service ; systemctl mask hv-vss-daemon.service ) || \
+  echo "hv-vss-daemon.servicee already disabled" &> /dev/null
+systemctl --quiet is-enabled open-vm-tools.servicee &> /dev/null && \
+  ( systemctl disable open-vm-tools.service ; systemctl mask open-vm-tools.service ) || \
+  echo "open-vm-tools.servicee already disabled" &> /dev/null
+systemctl --quiet is-enabled virtualbox-guest-utils.service &> /dev/null && \
+  ( systemctl disable virtualbox-guest-utils.service ; systemctl mask virtualbox-guest-utils.service ) || \
+  echo "virtualbox-guest-utils.service already disabled" &> /dev/null
+  
 # Read in the version number.
 PARALLELSVERSION=`cat /root/parallels-tools-version.txt`
 
