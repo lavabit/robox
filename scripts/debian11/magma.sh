@@ -85,7 +85,8 @@ if [ -d magma-develop ]; then
 fi
 
 # Clone the magma repository off Github.
-git clone https://github.com/lavabit/magma.git magma-develop; error
+git clone --quiet https://github.com/lavabit/magma.git magma-develop && \
+  printf "\nMagma repository downloaded\n." ; error
 cd magma-develop; error
 
 # Setup the bin links, just in case we need to troubleshoot things manually.
@@ -134,7 +135,8 @@ if [ "\$MAGMA_CLAMAV_DOWNLOAD" == "YES" ]; then
   cd \$HOME/magma-develop
 fi
 if [ "\$MAGMA_CLAMAV_FRESHEN" == "YES" ]; then
-  dev/scripts/freshen/freshen.clamav.sh 2>&1 | grep -v WARNING | grep -v PANIC; error
+  dev/scripts/freshen/freshen.clamav.sh &> lib/logs/freshen.txt && \
+    printf "\nClamAV databases updated.\n"; error
 fi
 
 # Ensure the sandbox config uses port 2525 for relays.
