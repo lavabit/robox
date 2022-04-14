@@ -26,6 +26,12 @@ retry() {
   return "${RESULT}"
 }
 
+# Packages required to compile Magma.
+retry dnf install --assumeyes cmake zlib-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel gdb valgrind valgrind-devel valgrind-openmpi openmpi-devel openmpi procps perl patchutils bison ctags diffstat doxygen elfutils flex gcc-gfortran gettext indent intltool swig cscope byacc zip unzip perl-Digest perl-Digest-CRC perl-Digest-HMAC perl-Digest-JHash perl-Digest-MD2 perl-Digest-MD4 perl-Digest-MD5 perl-Digest-PBKDF2 perl-Digest-SHA perl-Digest-SHA1 perl-Digest-SHA3 libgsasl libgsasl-devel python3 expect python java-1.8.0-openjdk wget openssh-clients jq python2-impacket libssh2 libssh2-devel libzstd libzstd-devel stunnel libnghttp2 libnghttp2-devel libbsd libbsd-devel inotify-tools git rsync perl-Git perl-Error python2-crypto python2-cryptography python3-crypto python3-cryptography python2-pytest python3-pytest autoconf autoconf-archive libtool-ltdl-devel m4 pkg-config
+
+# Install ClamAV.
+retry yum --assumeyes install clamav clamav-data
+
 # Create the clamav user to avoid spurious errors.
 useradd clamav
 
@@ -56,13 +62,6 @@ chmod 644 /etc/security/limits.d/90-everybody.conf
 chcon "system_u:object_r:etc_t:s0" /etc/security/limits.d/25-root.conf
 chcon "system_u:object_r:etc_t:s0" /etc/security/limits.d/90-everybody.conf
 
-# Packages required to compile magma.
-retry dnf install --assumeyes cmake zlib-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel gdb valgrind valgrind-devel valgrind-openmpi openmpi-devel openmpi procps perl patchutils bison ctags diffstat doxygen elfutils flex gcc-gfortran gettext indent intltool swig cscope byacc zip unzip perl-Digest perl-Digest-CRC perl-Digest-HMAC perl-Digest-JHash perl-Digest-MD2 perl-Digest-MD4 perl-Digest-MD5 perl-Digest-PBKDF2 perl-Digest-SHA perl-Digest-SHA1 perl-Digest-SHA3 libgsasl libgsasl-devel python3 expect python java-1.8.0-openjdk wget openssh-clients jq python2-impacket libssh2 libssh2-devel libzstd libzstd-devel stunnel libnghttp2 libnghttp2-devel libbsd libbsd-devel inotify-tools git rsync perl-Git perl-Error python2-crypto python2-cryptography python3-crypto python3-cryptography python2-pytest python3-pytest autoconf autoconf-archive libtool-ltdl-devel m4 pkg-config
-
-# Install ClamAV.
-retry yum --assumeyes install clamav clamav-data
-
-
 if [ -d /home/vagrant/ ]; then
   OUTPUT="/home/vagrant/magma-build.sh"
 else
@@ -75,7 +74,7 @@ cat <<-EOF > $OUTPUT
 
 error() {
   if [ \$? -ne 0 ]; then
-    printf "\n\nmagma daemon compilation failed...\n\n";
+    printf "Compilation of the bundled Magma dendencies failed.\n\n";
     exit 1
   fi
 }
@@ -108,12 +107,12 @@ if [ -d magma-develop ]; then
   rm --recursive --force magma-develop
 fi
 
-# Clone the magma repository off Github.
+# Use the GitHub repository to clone the Magma source code.
 git clone --quiet https://github.com/lavabit/magma.git magma-develop && \
   printf "\nMagma repository downloaded.\n" ; error
 cd magma-develop; error
 
-# Setup the bin links, just in case we need to troubleshoot things manually.
+# Setup the bin links, just in case we need to troubleshoot something manually.
 dev/scripts/linkup.sh; error
 
 # Explicitly control the number of build jobs (instead of using nproc).
@@ -130,7 +129,7 @@ dev/scripts/builders/build.lib.sh all; error
 
 # Reset the sandbox database and storage files.
 dev/scripts/database/schema.reset.sh &> lib/logs/schema.txt && \
-  printf "\nMagma database schema loaded successfully.\n"; error
+  printf "The Magma database schema installed successfully.\n"; error
 
 # Controls whether ClamAV is enabled, and/or if the signature databases get updated.
 MAGMA_CLAMAV=\$(echo \$MAGMA_CLAMAV | tr "[:lower:]" "[:upper:]")
@@ -138,6 +137,11 @@ MAGMA_CLAMAV_FRESHEN=\$(echo \$MAGMA_CLAMAV_FRESHEN | tr "[:lower:]" "[:upper:]"
 MAGMA_CLAMAV_DOWNLOAD=\$(echo \$MAGMA_CLAMAV_DOWNLOAD | tr "[:lower:]" "[:upper:]")
 if [ "\$MAGMA_CLAMAV" == "YES" ]; then
   sed -i 's/^[# ]*magma.iface.virus.available[ ]*=.*$/magma.iface.virus.available = true/g' sandbox/etc/magma.sandbox.config
+  ( cp /var/lib/clamav/bytecode.cvd sandbox/virus/ && \
+  cp /var/lib/clamav/daily.cvd sandbox/virus/ && \
+  cp /var/lib/clamav/main.cvd sandbox/virus/ ) || \
+  printf "Unable to setup the system copy of the virus databases.\n" \
+    "A download, or freshen must succeed, or the anti-virus unit tests will fail.\n"
 else
   sed -i 's/^[# ]*magma.iface.virus.available[ ]*=.*$/magma.iface.virus.available = false/g' sandbox/etc/magma.sandbox.config
 fi
@@ -160,7 +164,7 @@ if [ "\$MAGMA_CLAMAV_DOWNLOAD" == "YES" ]; then
 fi
 if [ "\$MAGMA_CLAMAV_FRESHEN" == "YES" ]; then
   dev/scripts/freshen/freshen.clamav.sh &> lib/logs/freshen.txt && \
-    printf "\nClamAV databases updated.\n"; error
+    printf "The ClamAV databases have been updated.\n"; error
 fi
 
 # Ensure the sandbox config uses port 2525 for relays.
@@ -176,42 +180,46 @@ fi
 
 # Compile the daemon and then compile the unit tests.
 make -j4 all &> lib/logs/magma.txt && \
-  printf "\nMagma compiled successfully.\n"; error
+  printf "Magma compiled successfully.\n"; error
 
-# Run the unit tests.
+# Run the unit tests and capture the return code.
 dev/scripts/launch/check.run.sh
+RETVAL=\$?
 
-# If the unit tests fail, print an error, but contine running.
-if [ \$? -ne 0 ]; then
-  \${TPUT} setaf 1; \${TPUT} bold; printf "\n\nSome of the magma unit tests failed...\n\n"; \${TPUT} sgr0;
-  for i in 1 2 3; do
-    printf "\a"; sleep 1
-  done
-  sleep 12
+# Run the unit tests and capture the return code, if they fail, print an error, 
+# and then exit using the captured return code.
+dev/scripts/launch/check.run.sh
+RETVAL=\$?
+if [ \$RETVAL -ne 0 ]; then
+  \${TPUT} setaf 1; \${TPUT} bold; printf "Some of the Magma unit tests failed...\n\n"; \${TPUT} sgr0;
+  exit \$RETVAL
 fi
 
-# Alternatively, run the unit tests atop Valgrind.
-# Note this takes awhile when the anti-virus engine is enabled.
+# Additionally, run the unit tests atop Valgrind, note this will take a 
+# long time if the anti-virus engine is enabled, but like the normal unit
+# tests above, we capture the return code. If they fail, print an error, 
+# and then exit using the captured return code.
 MAGMA_MEMCHECK=\$(echo \$MAGMA_MEMCHECK | tr "[:lower:]" "[:upper:]")
 if [ "\$MAGMA_MEMCHECK" == "YES" ]; then
-  dev/scripts/launch/check.vg
+  dev/scripts/launch/check.vg.sh
+  RETVAL=\$?
+  if [ \$RETVAL -ne 0 ]; then
+    \${TPUT} setaf 1; \${TPUT} bold; printf "Some of the Magma unit tests failed...\n\n"; \${TPUT} sgr0;
+    exit \$RETVAL
+  fi
 fi
 
-# Daemonize instead of running on the console.
+# Uncomment the follwoing lines to have Magma daemonize instead of running in the foreground.
 # sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
 # sed -i -e "s/magma.system.daemonize = false/magma.system.daemonize = true/g" sandbox/etc/magma.sandbox.config
 
-# Launch the daemon.
-# ./magmad --config magma.system.daemonize=true sandbox/etc/magma.sandbox.config
+# Launch the daemon, and give it time to start before exiting.
+# ./magmad --config magma.system.daemonize=true sandbox/etc/magma.sandbox.config  || exit 1
+# sleep 15
 
-# Save the result.
-# RETVAL=\$?
-
-# Give the daemon time to start before exiting.
-sleep 15
-
-# Exit wit a zero so Vagrant doesn't think a failed unit test is a provision failure.
-exit \$RETVAL
+# Ensure we exit with a zero so Vagrant and/or the various CI systems used 
+# for testing know everything worked.
+exit 0
 EOF
 
 # Make the script executable.
