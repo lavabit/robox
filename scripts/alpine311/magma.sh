@@ -180,10 +180,6 @@ make -j4 all &> lib/logs/magma.txt && \
 # Change the socket path.
 sed -i -e "s/\/var\/lib\/mysql\/mysql.sock/\/var\/run\/mysqld\/mysqld.sock/g" sandbox/etc/magma.sandbox.config
 
-# Run the unit tests and capture the return code.
-dev/scripts/launch/check.run.sh
-RETVAL=\$?
-
 # Run the unit tests and capture the return code, if they fail, print an error, 
 # and then exit using the captured return code.
 dev/scripts/launch/check.run.sh

@@ -117,10 +117,6 @@ fi
 make -j4 all &> lib/logs/magma.txt && \
   printf "Magma compiled successfully.\n"; error
 
-# Run the unit tests and capture the return code.
-dev/scripts/launch/check.run.sh
-RETVAL=\$?
-
 # Run the unit tests and capture the return code, if they fail, print an error, 
 # and then exit using the captured return code.
 dev/scripts/launch/check.run.sh
