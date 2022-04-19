@@ -200,7 +200,7 @@ function start() {
   if [ -f /usr/bin/vmware-modconfig ]; then
     MODS=`sudo /etc/init.d/vmware status | grep --color=none --extended-regexp "Module vmmon loaded|Module vmnet loaded" | wc -l`
     if [ "$MODS" != "2" ]; then
-       printf "Compiling the VMWare kernel modules.\n"; 
+       printf "Compiling the VMWare kernel modules.\n";
       sudo vmware-modconfig --console --install-all &> /dev/null
       if [ $? != 0 ]; then
         tput setaf 1; tput bold; printf "\n\nThe vmware kernel modules failed to load properly...\n\n"; tput sgr0
@@ -540,7 +540,7 @@ function build() {
   export PACKER_LOG="1"
   unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
   [ -z "$PACKER_ON_ERROR" ] && export PACKER_ON_ERROR="cleanup"
-  
+
   if [[ $OS == "Windows_NT" ]]; then
     export PACKER_LOG_PATH="$BASE/logs/$1-`date +'%Y%m%d.%H.%M.%S'`.txt"
     packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" $1.json
@@ -575,7 +575,7 @@ function box() {
   export PACKER_LOG="1"
   unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
   [ -z "$PACKER_ON_ERROR" ] && export PACKER_ON_ERROR="cleanup"
-  
+
   if [[ $OS == "Windows_NT" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/magma-hyperv-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
@@ -667,7 +667,7 @@ function links() {
     grep --silent "${ISOURLS[$i]}" packer-cache.json ||
       echo "Cache Failure:  ${ISOURLS[$i]}"
   done
-  
+
   for ((i = 0; i < ${#ISOSUMS[@]}; ++i)); do
     grep --silent "${ISOSUMS[$i]}" packer-cache.json ||
       echo "Cache Failure:  ${ISOSUMS[$i]}"
@@ -794,13 +794,13 @@ function available() {
           else
             let FOUND+=1
             STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
-            
+
            if [ "$STATUS" != "active" ]; then
               let UNRELEASED+=1
               printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
             else
               printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
-            fi       
+            fi
           fi
         fi
       fi
@@ -815,7 +815,7 @@ function available() {
         else
           let FOUND+=1
           STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
-          
+
           if [ "$STATUS" != "active" ]; then
             let UNRELEASED+=1
             printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
@@ -834,7 +834,7 @@ function available() {
       else
         let FOUND+=1
         STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
-        
+
         if [ "$STATUS" != "active" ]; then
           let UNRELEASED+=1
           printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
@@ -853,7 +853,7 @@ function available() {
         else
           let FOUND+=1
           STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
-          
+
           if [ "$STATUS" != "active" ]; then
             let UNRELEASED+=1
             printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
@@ -872,7 +872,7 @@ function available() {
       else
         let FOUND+=1
         STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
-        
+
         if [ "$STATUS" != "active" ]; then
           let UNRELEASED+=1
           printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
@@ -891,7 +891,7 @@ function available() {
         else
           let FOUND+=1
           STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}?access_token=${VAGRANT_CLOUD_TOKEN}\" | jq -r '.status' 2>/dev/null`"
-          
+
           if [ "$STATUS" != "active" ]; then
             let UNRELEASED+=1
             printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
@@ -900,7 +900,7 @@ function available() {
           fi
         fi
       fi
-            
+
       # Limit requests to ~100 per minute to avoid stalls.
       sleep 1.2 &> /dev/null || echo "" &> /dev/null
 
@@ -945,14 +945,14 @@ function public() {
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
           curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
-          
+
           if [ $? != 0 ]; then
             let MISSING+=1
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
           else
             let FOUND+=1
             STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
-            
+
             if [ "$STATUS" != "active" ]; then
               let UNRELEASED+=1
               printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
@@ -973,7 +973,7 @@ function public() {
         else
           let FOUND+=1
           STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
-          
+
           if [ "$STATUS" != "active" ]; then
             let UNRELEASED+=1
             printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
@@ -992,7 +992,7 @@ function public() {
       else
         let FOUND+=1
         STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
-        
+
         if [ "$STATUS" != "active" ]; then
           let UNRELEASED+=1
           printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
@@ -1011,7 +1011,7 @@ function public() {
         else
           let FOUND+=1
           STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
-          
+
           if [ "$STATUS" != "active" ]; then
             let UNRELEASED+=1
             printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
@@ -1030,7 +1030,7 @@ function public() {
       else
         let FOUND+=1
         STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
-        
+
         if [ "$STATUS" != "active" ]; then
           let UNRELEASED+=1
           printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
@@ -1049,7 +1049,7 @@ function public() {
         else
           let FOUND+=1
           STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
-          
+
           if [ "$STATUS" != "active" ]; then
             let UNRELEASED+=1
             printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
@@ -1111,7 +1111,7 @@ function ppublic() {
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
         O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
       fi
-      
+
       PROVIDER="libvirt"
       O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
 
@@ -1128,7 +1128,7 @@ function ppublic() {
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
         O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
       fi
-      
+
     done
 
     export -f curltry ; export -f verify_availability ; export CURL ;
@@ -1170,7 +1170,7 @@ function invalid() {
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
           LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
-     
+
           if [ "$LENGTH" == "0" ]; then
             let TOTAL+=1
             let INVALID+=1
@@ -1184,7 +1184,7 @@ function invalid() {
       PROVIDER="hyperv"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
         LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
-   
+
         if [ "$LENGTH" == "0" ]; then
           let TOTAL+=1
           let INVALID+=1
@@ -1208,7 +1208,7 @@ function invalid() {
       PROVIDER="parallels"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes)$ ]]; then
         LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
-   
+
         if [ "$LENGTH" == "0" ]; then
           let TOTAL+=1
           let INVALID+=1
@@ -1232,7 +1232,7 @@ function invalid() {
       PROVIDER="vmware_desktop"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit|lineage|lineageos)$ ]]; then
         LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
-        
+
         if [ "$LENGTH" == "0" ]; then
           let TOTAL+=1
           let INVALID+=1
@@ -1255,12 +1255,12 @@ function invalid() {
 }
 
 function grab() {
-  
+
   if [ $# -ne 3 ]; then
     tput setaf 1; printf "\n\n  Usage:\n    $(basename $0) grab ORG BOX PROVIDER\n\n\n"; tput sgr0
     exit 1
   fi
-  
+
   URL=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
     | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | .download_url ][0]" 2>/dev/null`
   if [ "$URL" == "" ]; then
@@ -1317,7 +1317,129 @@ function cleanup() {
 }
 
 function distclean() {
+
+  # The typical cleanup.
   rm -rf $BASE/packer_cache/ $BASE/output/ $BASE/logs/
+
+  printf "\n\nThe distclean target will purge status information across the entire system.\n" ; \
+  tput setaf 1; tput bold;  printf "Be very careful. This message will self-destruct in thirty seconds.\n" ; tput sgr0
+  read -t 30 -r -p "Would you like to continue? [y/N]: " RESPONSE
+  RESPONSE=${RESPONSE,,}
+  if [[ ! $RESPONSE =~ ^(yes|y) ]]; then
+    exit 1
+  fi
+
+  # If VMWare is installed.
+  if [ "$(command -v vmrun)" ]; then
+    vmrun -T ws list | grep -v "Total running VMs:" | while read VMX ; do
+      vmrun -T ws stop $VMX hard
+      vmrun -T ws deleteVM $VMX
+    done
+  fi
+
+  # If VirtualBox is installed.
+  if [ "$(command -v vboxmanage)" ]; then
+    vboxmanage list vms | awk -F' ' '{print $2}' | while read UUID ; do
+      vboxmanage controlvm "$UUID" poweroff &> /dev/null
+      vboxmanage unregistervm "$UUID" --delete &> /dev/null
+    done
+  fi
+
+  # If libvirt is installed.
+  if [ "$(command -v virsh)" ]; then
+
+    # If the description indicates the VM was created by Vagrant we remove it.
+    virsh --connect=qemu:///system list --name --all | grep -vE "^\$" | while read DOMNAME ; do
+      if [ "$(virsh --connect=qemu:///system desc --domain $DOMNAME | grep -E '/Vagrantfile$')" ]; then
+        virsh --connect=qemu:///system destroy --domain $DOMNAME &> /dev/null
+        virsh --connect=qemu:///system undefine --domain $DOMNAME --remove-all-storage --delete-snapshots &> /dev/null
+      fi
+    done
+
+    # We look for volumes that appear to be base images, or whose name matches the default naming convention used by Vagrant.
+    virsh --connect=qemu:///system vol-list default | awk -F' ' '{print $2}' | grep -vE "^\$|^Path\$" | while read VOLNAME ; do
+      if [ "$(echo $VOLNAME | grep -E '\/(generic|roboxes|lavabit|lineage|lineageos)\-VAGRANTSLASH\-.*\_box\.img$')" ]; then
+        virsh --connect=qemu:///system vol-delete --pool default $VOLNAME &> /dev/null
+      elif [ "$(echo $VOLNAME | grep -E '\/(generic|roboxes|lavabit\-magma|lineage|lineageos)\-.*\-libvirt\_default\.img')" ]; then
+        virsh --connect=qemu:///system vol-delete --pool default $VOLNAME &> /dev/null
+      fi
+    done
+
+    virsh --connect=qemu:///system net-list --name --all | grep -vE "^\$" | while read NETNAME ; do
+      if [ "$(echo $NETNAME | grep -E '^vagrant\-')" ]; then
+        virsh --connect=qemu:///system net-destroy --network $NETNAME &> /dev/null
+        virsh --connect=qemu:///system net-undefine --network $NETNAME &> /dev/null
+      fi
+    done
+  fi
+
+  # If Docker is installed.
+  if [ "$(command -v docker-latest)" ]; then
+    docker-latest ps --all --quiet | while read UUID ; do
+      docker-latest rm --force $UUID &> /dev/null
+    done
+    docker-latest images --all --quiet | while read UUID ; do
+      docker rmi --force $UUID &> /dev/null
+    done
+  elif [ "$(command -v docker)" ]; then
+    docker ps --all --quiet | while read UUID ; do
+      docker rm --force $UUID &> /dev/null
+    done
+    docker images --all --quiet | while read UUID ; do
+      docker rmi --force $UUID &> /dev/null
+    done
+  fi
+
+  sudo killall -9 /usr/bin/docker-containerd-shim-latest &> /dev/null
+  sudo killall -9 docker-containerd-shim-latest &> /dev/null
+
+  sudo killall -9 /usr/lib/vmware/bin/vmware-vmx &> /dev/null
+  sudo killall -9 killall vmware-vmx &> /dev/null
+
+  sudo killall -9 /usr/lib/virtualbox/VBoxHeadless &> /dev/null
+  sudo killall -9 VBoxHeadless &> /dev/null
+
+  sudo killall -9 /usr/libexec/qemu-kvm &> /dev/null
+  sudo killall -9 qemu-kvm &> /dev/null
+
+  sudo truncate --size=0 /etc/vmware/vmnet1/dhcpd/dhcpd.leases
+  sudo truncate --size=0 /etc/vmware/vmnet8/dhcpd/dhcpd.lease
+
+  [ -d $HOME/.vmware/ ] && rm -rf $HOME/.vmware/
+  [ -d $HOME/.packer.d/ ] && rm -rf $HOME/.packer.d/
+  [ -d $HOME/.vagrant.d/ ] && rm -rf $HOME/.vagrant.d/
+  [ -d $HOME/.cache/libvirt/ ] && rm -rf $HOME/.cache/libvirt/
+  [ -d $HOME/.config/libvirt/ ] && rm -rf $HOME/.config/libvirt/
+  [ -d $HOME/.VirtualBox\ VMs/ ] && rm -rf $HOME/VirtualBox\ VMs/
+
+  if [ -f /etc/init.d/vmware ]; then sudo /etc/init.d/vmware start ; fi
+  if [ -f /etc/init.d/vmware-USBArbitrator ]; then sudo /etc/init.d/vmware-USBArbitrator start ; fi
+  if [ -f /etc/init.d/vmware-workstation-server ]; then sudo /etc/init.d/vmware-workstation-server start ; fi
+  if [ -f /usr/lib/systemd/system/vboxdrv.service ]; then sudo systemctl restart vboxdrv.service ; fi
+  if [ -f /usr/lib/systemd/system/libvirtd.service ]; then sudo systemctl restart libvirtd.service ; fi
+  if [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ;
+  elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
+
+  if [ -f /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility ]; then
+    sudo systemctl stop vagrant-vmware-utility.service &> /dev/null
+    sudo /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility service uninstall &> /dev/null
+
+    [ -f /opt/vagrant-vmware-desktop/settings/nat.json ] && sudo rm -f /opt/vagrant-vmware-desktop/settings/nat.json
+    [ -f /opt/vagrant-vmware-desktop/settings/portforwarding.json ] && sudo rm -f /opt/vagrant-vmware-desktop/settings/portforwarding.json
+    [ -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.client.crt ] && sudo rm -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.client.crt
+    [ -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.client.key ] && sudo rm -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.client.key
+    [ -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.crt ] && sudo rm -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.crt
+    [ -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.key ] && sudo rm -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.key
+
+    sudo /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility certificate generate &> /dev/null
+    sudo /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility service install &> /dev/null
+    sudo systemctl restart vagrant-vmware-utility.service &> /dev/null
+  elif [ -f /etc/systemd/system/vagrant-vmware-utility.service ]; then
+    sudo systemctl restart vagrant-vmware-utility.service &> /dev/null
+  elif [ -f /etc/init.d/vagrant-vmware-utility ]; then
+    sudo /etc/init.d/vagrant-vmware-utility restart &> /dev/null
+  fi
+
 }
 
 function docker-login() {
