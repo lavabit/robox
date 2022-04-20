@@ -85,8 +85,27 @@ mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
 sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11 || sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; error
 ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions; error
 
-# Test if the vboxsf module is present
+# Test if the vboxsf vboxguest and vboxvideo kernel modules.
 [ -s "/lib/modules/$(uname -r)/misc/vboxsf.ko" ]; error
+[ -s "/lib/modules/$(uname -r)/misc/vboxguest.ko" ]; error
+[ -s "/lib/modules/$(uname -r)/misc/vboxvideo.ko" ]; error
+
+cat <<-EOF >> /etc/initramfs-tools/modules
+
+vboxsf
+vboxguest
+vboxvideo
+
+EOF
+
+(cd /lib/modules/ ; find * -maxdepth 0 -type d) | while read KERN ; do
+  /sbin/rcvboxadd quicksetup $KERN
+done
+update-initramfs -t -u -k all  
+INSTALL_NO_MODULE_BUILDS=1 /sbin/rcvboxadd setup
+
+# It may be necessary to froce the service to load sooner to avoid Vagrant thinking the module is missing.
+# sed -i "s/^Before=/Before=network.target /g" /lib/systemd/system/vboxadd-service.service
 
 umount /mnt/virtualbox; error
 rm -rf /root/VBoxVersion.txt; error
