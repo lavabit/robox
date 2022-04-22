@@ -18,3 +18,5 @@ res/scripts/download.sh
 res/providers/vagrant_*.*.*_x86_64.rpm
 res/providers/packer_1.2.4_linux_amd64.zip
 res/providers/VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle
+res/providers/qemu-*.tar.xz
+res/providers/qemu-*/
