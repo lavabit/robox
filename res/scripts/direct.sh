@@ -17,20 +17,90 @@ pushd `dirname $CMD` > /dev/null
 BASE=`pwd -P`
 popd > /dev/null
 
-if [ $# != 1 ]; then
+
+# This logic allows us to force colorized output regardless of what 
+# TERM and/or tput indicate. Activate forced color mode if COLORTERM is set 
+# to any value, or if USE_ANSI_COLORS is set to 1, yes, or simply y. 
+if [ test -t 1 ]; then 
+  test -n "${COLORTERM+set}" && : ${USE_ANSI_COLORS="1"}
+  case "$USE_ANSI_COLORS" in
+    y|yes|Y|YES) USE_ANSI_COLORS=1 ;;
+  esac
+  
+  # Use ANSI escape sequences.
+  if test 1 = "$USE_ANSI_COLORS"; then
+    tc_reset='\e[0;0m'
+    
+    tc_black='\e[0;30m'
+    tc_red='\e[0;31m'
+    tc_green='\e[0;32m'
+    tc_yellow='\e[0;33m'
+    tc_blue='\e[0;34m'
+    tc_magenta='\e[0;35m'
+    tc_cyan='\e[0;36m'
+    tc_white='\e[0;37m'
+    
+    
+    tc_black='\e[0;30m'
+    tc_red='\e[0;31m'
+    tc_green='\e[0;32m'
+    tc_yellow='\e[0;33m'
+    tc_blue='\e[0;34m'
+    tc_magenta='\e[0;35m'
+    tc_cyan='\e[0;36m'
+    tc_white='\e[0;37m'
+    
+    
+    tc_bold='\e[0;1m'
+    tc_underline='\e[0;4m'
+
+    tc_standout='\e[0;7m'
+    
+  # Fall back to letting tput decide.
+  else
+    test -n "`tput sgr0 2>/dev/null`" && {
+      tc_reset=`tput sgr0`
+      test -n "`tput bold 2>/dev/null`" && tc_bold=`tput bold`
+      tc_standout=$tc_bold
+      test -n "`tput smso 2>/dev/null`" && tc_standout=`tput smso`
+      test -n "`tput setaf 1 2>/dev/null`" && tc_red=`tput setaf 1`
+      test -n "`tput setaf 2 2>/dev/null`" && tc_green=`tput setaf 2`
+      test -n "`tput setaf 4 2>/dev/null`" && tc_blue=`tput setaf 4`
+      test -n "`tput setaf 5 2>/dev/null`" && tc_cyan=`tput setaf 5`
+    }
+  fi
+  
+fi
+
+
+
+if [ $# != 1 ] && [ $# != 2 ]; then
   tput setaf 1; printf "\n\n  Usage:\n    $0 FILENAME\n\n\n"; tput sgr0
   exit 1
 fi
 
+# Make sure the recursion level is numeric.
+if [ $# == 2 ] && [ -z "${2##*[!0-9]*}" ]; then
+	tput setaf 1; printf "\n\nInvalid recursion level. Exiting instead.\n"; tput sgr0
+	exit 1
+fi
+
+# Make sure the file exists.
 if [ ! -f "$1" ]; then
-  tput setaf 1; printf "\n\nThe $1 file does not exist.\n\n\n"; tput sgr0
+  tput setaf 1; printf "\n\nThe $1 file does not exist. Exiting.\n\n\n"; tput sgr0
   exit 1
 fi
 
-if [ -f /opt/vagrant/embedded/bin/curl ]; then
-  export CURL="/opt/vagrant/embedded/bin/curl"
+# If a second variable is provided then check to ensure we haven't hit the recursion limit.
+if [ $# == 2 ] && [ "$2" -gt "10" ]; then
+  tput setaf 1; printf "\n\nThe recursion level has been reached. Exiting.\n\n\n"; tput sgr0
+  exit 1
+# Otherwise increment the level.
+elif [ $# == 2 ]; then
+  export RECURSION=$(($2+1))
+# If no level is provided set an initial level of 0.
 else
-  export CURL="curl"
+  export RECURSION=1
 fi
 
 if [ -f /opt/vagrant/embedded/lib64/libssl.so ] && [ -z LD_PRELOAD ]; then
@@ -68,6 +138,21 @@ fi
 if [ -z ${VAGRANT_CLOUD_TOKEN} ]; then
   tput setaf 1; printf "\nError. The vagrant cloud token is missing. Add it to the credentials file.\n\n"; tput sgr0
   exit 2
+fi
+
+
+# See if the log directory exists, if not create it.
+if [ ! -d "$BASE/../../logs/" ]; then
+  mkdir -p "$BASE/../../logs/" || mkdir "$BASE/../../logs"
+fi
+
+export UPLOAD_STD_LOGFILE="$BASE/../../logs/direct.txt"
+export UPLOAD_ERR_LOGFILE="$BASE/../../logs/direct.errors.txt"
+
+if [ -f /opt/vagrant/embedded/bin/curl ]; then
+  export CURL="/opt/vagrant/embedded/bin/curl"
+else
+  export CURL="curl"
 fi
 
 FILENAME=`basename "$1"`
@@ -120,7 +205,7 @@ fi
 if [ -f $FILEPATH.sha256 ]; then
 
   # Read the hash in from the checksum file.
-  HASH="`awk -F' ' '{print $1}' $FILEPATH.sha256`"
+  HASH="`cat $FILEPATH.sha256 | tail -1 | awk -F' ' '{print $1}'`"
 
 else
 
@@ -129,7 +214,7 @@ else
 
 fi
 
-# Verify the values were all parsed properly.
+# Verify the values have been parsed properly.
 if [ "$ORG" == "" ]; then
   tput setaf 1; printf "\n\nThe organization couldn't be parsed from the file name.\n\n\n"; tput sgr0
   exit 1

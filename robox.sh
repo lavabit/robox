@@ -497,7 +497,7 @@ function verify_json() {
   fi
 }
 
-# Make sure the logging directory is avcailable. If it isn't, then create it.
+# Make sure the logging directory is available. If it isn't, then create it.
 function verify_logdir {
 
   if [ ! -d "$BASE/logs/" ]; then
