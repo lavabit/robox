@@ -339,7 +339,7 @@ function provide-setup() {
   yum --assumeyes update
 
   # Install Basic Packages
-  yum --assumeyes install bind-tools vim wget curl git lsof gawk nload \
+  yum --assumeyes install bind-tools vim wget curl git lsof gawk nload jq \
     kernel-headers kernel-devel yum-plugin-fastestmirror yum-plugin-verify
 
   # Install the Development Tools
