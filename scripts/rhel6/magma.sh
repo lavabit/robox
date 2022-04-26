@@ -152,14 +152,14 @@ else
   sed -i 's/^[# ]*magma.iface.virus.available[ ]*=.*$/magma.iface.virus.available = false/g' sandbox/etc/magma.sandbox.config
 fi
 if [ "\$MAGMA_CLAMAV_DOWNLOAD" == "YES" ]; then
-  cd sandbox/virus/ && curl -LOs \
-  https://github.com/ladar/clamav-data/raw/main/main.cvd.[01-10] -LOs \
-  https://github.com/ladar/clamav-data/raw/main/main.cvd.sha256 -LOs \
-  https://github.com/ladar/clamav-data/raw/main/daily.cvd.[01-10] -LOs \
-  https://github.com/ladar/clamav-data/raw/main/daily.cvd.sha256 -LOs \
-  https://github.com/ladar/clamav-data/raw/main/bytecode.cvd -LOs \
-  https://github.com/ladar/clamav-data/raw/main/bytecode.cvd.sha256 && \
-  rm -f main.cvd daily.cvd bytecode.cvd && \
+  cd sandbox/virus/ && \
+  curl -LOs https://github.com/ladar/clamav-data/raw/main/main.cvd.[01-10] \
+  -LOs https://github.com/ladar/clamav-data/raw/main/main.cvd.sha256 \
+  -LOs https://github.com/ladar/clamav-data/raw/main/daily.cvd.[01-10] \
+  -LOs https://github.com/ladar/clamav-data/raw/main/daily.cvd.sha256 \
+  -LOs https://github.com/ladar/clamav-data/raw/main/bytecode.cvd \
+  -LOs https://github.com/ladar/clamav-data/raw/main/bytecode.cvd.sha256 && \
+  rm -f main.cvd daily.cvd && \
   cat main.cvd.01 main.cvd.02 main.cvd.03 main.cvd.04 main.cvd.05 \
   main.cvd.06 main.cvd.07 main.cvd.08 main.cvd.09 main.cvd.10 > main.cvd && \
   cat daily.cvd.01 daily.cvd.02 daily.cvd.03 daily.cvd.04 daily.cvd.05 \
