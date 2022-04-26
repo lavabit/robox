@@ -54,7 +54,23 @@ systemctl --quiet is-enabled clamav-freshclam.service &> /dev/null && \
   echo "clamav-freshclam.service already disabled" &> /dev/null
 
 # On Debian/Ubuntu there is no virus database package. We use freshclam instead.
-retry freshclam --quiet
+( cd /var/lib/clamav && curl -LOs \
+  https://github.com/ladar/clamav-data/raw/main/main.cvd.[01-10] -LOs \
+  https://github.com/ladar/clamav-data/raw/main/main.cvd.sha256 -LOs \
+  https://github.com/ladar/clamav-data/raw/main/daily.cvd.[01-10] -LOs \
+  https://github.com/ladar/clamav-data/raw/main/daily.cvd.sha256 -LOs \
+  https://github.com/ladar/clamav-data/raw/main/bytecode.cvd -LOs \
+  https://github.com/ladar/clamav-data/raw/main/bytecode.cvd.sha256 && \
+  rm -f main.cvd daily.cvd bytecode.cvd && \
+  cat main.cvd.01 main.cvd.02 main.cvd.03 main.cvd.04 main.cvd.05 \
+  main.cvd.06 main.cvd.07 main.cvd.08 main.cvd.09 main.cvd.10 > main.cvd && \
+  cat daily.cvd.01 daily.cvd.02 daily.cvd.03 daily.cvd.04 daily.cvd.05 \
+  daily.cvd.06 daily.cvd.07 daily.cvd.08 daily.cvd.09 daily.cvd.10 > daily.cvd && \
+  sha256sum -c main.cvd.sha256 daily.cvd.sha256 bytecode.cvd.sha256 || exit 1 ; \
+  rm -f main.cvd.[01-10] daily.cvd.[01-10] main.cvd.sha256 daily.cvd.sha256 bytecode.cvd.sha256 && \
+  cd $HOME/ )
+freshclam --quiet || \
+  echo "freshclam attempt failed ... ignoring." &> /dev/null
 
 # Force MySQL/MariaDB except the old fashioned '0000-00-00' date format.
 if [ -d /etc/mysql/mysql.conf.d/ ]; then
