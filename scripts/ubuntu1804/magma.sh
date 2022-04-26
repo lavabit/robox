@@ -48,7 +48,8 @@ retry apt-get --assume-yes install mysql-server
 # Install ClamAV.
 retry apt-get --assume-yes install clamav clamav-daemon clamav-freshclam 
 systemctl --quiet is-enabled clamav-freshclam.service &> /dev/null && \
-  ( systemctl disable clamav-freshclam.service &> /dev/null ) || \
+  ( systemctl stop clamav-freshclam.service &> /dev/null ;
+  systemctl disable clamav-freshclam.service &> /dev/null ) || \
   echo "clamav-freshclam.service already disabled" &> /dev/null
 
 # On Debian/Ubuntu there is no virus database package. We use freshclam instead.
@@ -97,7 +98,7 @@ cat <<-EOF > $OUTPUT
 
 error() {
   if [ \$? -ne 0 ]; then
-    printf "Compilation of the bundled Magma dendencies failed.\n\n";
+    printf "Compilation of the bundled Magma dependencies failed.\n\n";
     exit 1
   fi
 }

@@ -84,7 +84,7 @@ cat <<-EOF > $OUTPUT
 
 error() {
   if [ \$? -ne 0 ]; then
-    printf "Compilation of the bundled Magma dendencies failed.\n\n";
+    printf "Compilation of the bundled Magma dependencies failed.\n\n";
     exit 1
   fi
 }
