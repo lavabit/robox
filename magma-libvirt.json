@@ -693,6 +693,57 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora30/fixdns.sh",
+        "scripts/fedora30/hostname.sh",
+        "scripts/fedora30/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora30-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora30/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora30-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora30/kernel.sh",
+        "scripts/fedora30/vga.sh",
+        "scripts/fedora30/fixtmp.sh",
+        "scripts/fedora30/virtualbox.sh",
+        "scripts/fedora30/parallels.sh",
+        "scripts/fedora30/vmware.sh",
+        "scripts/fedora30/qemu.sh",
+        "scripts/fedora30/vagrant.sh",
+        "scripts/fedora30/mariadb.sh",
+        "scripts/fedora30/postfix.sh",
+        "scripts/fedora30/magma.sh",
+        "scripts/fedora30/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora30-libvirt"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -1413,6 +1464,43 @@
       "headless": true,
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Server/x86_64/iso/Fedora-Server-netinst-x86_64-29-1.2.iso",
       "iso_checksum": "sha256:aa7fb0e6e5b71774ebdaab0dae76bdd9246a5bc7aedc28b7f1103aaaf9750654",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "magma-fedora30-libvirt",
+      "vm_name": "magma-fedora30-libvirt",
+      "output_directory": "output/magma-fedora30-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora30.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "on",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
+      "iso_checksum": "sha256:5e4eac4566d8c572bfb3bcf54b7d6c82006ec3c6c882a2c9235c6d3494d7b100",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
