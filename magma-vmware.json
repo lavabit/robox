@@ -876,6 +876,46 @@
     },
     {
       "scripts": [
+        "scripts/ubuntu1810/apt.sh",
+        "scripts/ubuntu1810/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1810-vmware"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1810/limits.sh",
+        "scripts/ubuntu1810/floppy.sh",
+        "scripts/ubuntu1810/vagrant.sh",
+        "scripts/ubuntu1810/profile.sh",
+        "scripts/ubuntu1810/motd.sh",
+        "scripts/ubuntu1810/postfix.sh",
+        "scripts/ubuntu1810/mysql.sh",
+        "scripts/ubuntu1810/memcached.sh",
+        "scripts/ubuntu1810/magma.sh",
+        "scripts/ubuntu1810/fixtty.sh",
+        "scripts/ubuntu1810/virtualbox.sh",
+        "scripts/ubuntu1810/parallels.sh",
+        "scripts/ubuntu1810/vmware.sh",
+        "scripts/ubuntu1810/qemu.sh",
+        "scripts/ubuntu1810/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1810-vmware"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -1900,6 +1940,54 @@
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://cdimage.ubuntu.com/ubuntu/releases/18.04.6/release/ubuntu-18.04.6-server-amd64.iso",
       "iso_checksum": "sha256:f5cbb8104348f0097a8e513b10173a07dbc6684595e331cb06f93f385d0aecf6",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "magma-ubuntu1810-vmware",
+      "vm_name": "magma-ubuntu1810-vmware",
+      "vmdk_name": "magma-ubuntu1810-vmware",
+      "output_directory": "output/magma-ubuntu1810-vmware",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1810.vagrant.cfg<wait> ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "ubuntu-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://old-releases.ubuntu.com/releases/18.10/ubuntu-18.10-server-amd64.iso",
+      "iso_checksum": "sha256:cf9250781dadd919f23c9d9612212cad653e35fccc2fbcf6853f67ad09e067ba",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

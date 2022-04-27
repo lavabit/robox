@@ -876,6 +876,46 @@
     },
     {
       "scripts": [
+        "scripts/ubuntu1810/apt.sh",
+        "scripts/ubuntu1810/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1810-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1810/limits.sh",
+        "scripts/ubuntu1810/postfix.sh",
+        "scripts/ubuntu1810/mysql.sh",
+        "scripts/ubuntu1810/memcached.sh",
+        "scripts/ubuntu1810/floppy.sh",
+        "scripts/ubuntu1810/vagrant.sh",
+        "scripts/ubuntu1810/profile.sh",
+        "scripts/ubuntu1810/motd.sh",
+        "scripts/ubuntu1810/magma.sh",
+        "scripts/ubuntu1810/fixtty.sh",
+        "scripts/ubuntu1810/virtualbox.sh",
+        "scripts/ubuntu1810/parallels.sh",
+        "scripts/ubuntu1810/vmware.sh",
+        "scripts/ubuntu1810/qemu.sh",
+        "scripts/ubuntu1810/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1810-hyperv"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -1712,6 +1752,44 @@
       "http_directory": "http",
       "iso_url": "https://cdimage.ubuntu.com/ubuntu/releases/18.04.6/release/ubuntu-18.04.6-server-amd64.iso",
       "iso_checksum": "sha256:f5cbb8104348f0097a8e513b10173a07dbc6684595e331cb06f93f385d0aecf6",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-ubuntu1810-hyperv",
+      "vm_name": "magma-ubuntu1810-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-ubuntu1810-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1810.vagrant.cfg --- <wait><enter>"
+      ],
+      "disk_size": 131072,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://old-releases.ubuntu.com/releases/18.10/ubuntu-18.10-server-amd64.iso",
+      "iso_checksum": "sha256:cf9250781dadd919f23c9d9612212cad653e35fccc2fbcf6853f67ad09e067ba",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
