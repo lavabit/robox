@@ -89,8 +89,6 @@ if [ "$ORG" == "magma" ]; then
 
   # Specialized magma box name mappings.
   [ "$BOX" == "magma-alpine36" ] && BOX="magma-alpine"
-  [ "$BOX" == "magma-debian8" ] && BOX="magma-debian"
-  [ "$BOX" == "magma-fedora27" ] && BOX="magma-fedora"
   [ "$BOX" == "magma-freebsd11" ] && BOX="magma-freebsd"
   [ "$BOX" == "magma-openbsd6" ] && BOX="magma-openbsd"
 

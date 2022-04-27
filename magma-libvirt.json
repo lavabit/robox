@@ -1151,6 +1151,58 @@
           "magma-ubuntu1604-libvirt"
         ]
       }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/magma-default.rb",
+        "output": "output/{{ replace_all \"debian8\" \"debian\" build_name }}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lavabit/info.json"
+        ],
+        "only": [
+          "magma-debian8-libvirt"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{ replace_all \"debian8\" \"debian\" build_name }}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "magma-debian8-libvirt"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/magma-default.rb",
+        "output": "output/{{ replace_all \"fedora27\" \"fedora\" build_name }}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lavabit/info.json"
+        ],
+        "only": [
+          "magma-fedora27-libvirt"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{ replace_all \"fedora27\" \"fedora\" build_name }}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "magma-fedora27-libvirt"
+        ]
+      }
     ]
   ]
 }

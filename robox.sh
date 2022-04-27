@@ -98,7 +98,7 @@ MAGMA_BOXES=`echo $MAGMA_SPECIAL_BOXES $MAGMA_BOXES | sed 's/ /\n/g' | sort -u -
 BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $LINEAGEOS_BOXES"
 
 # Collect the list of box tags.
-MAGMA_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/debian8/debian/g" | sed "s/fedora27/fedora/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
+MAGMA_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
 MAGMA_SPECIAL_TAGS="lavabit/magma lavabit/magma-centos lavabit/magma-ubuntu"
 ROBOX_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep -v "roboxes-x32" |sort -u --field-separator=-`
 ROBOX_X32_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep "roboxes-x32" |sort -u --field-separator=-`
@@ -485,16 +485,14 @@ function verify_json() {
   unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
 
   if [[ $OS == "Windows_NT" ]]; then
-    ( packer.exe validate $1.json 2>&1 || RESULT=1 ) | grep -v "The configuration is valid."
+    PACKER="packer.exe"
   else
-    ( packer validate $1.json 2>&1 || RESULT=1 ) | grep -v "The configuration is valid."
+    PACKER="packer"
   fi
+  
+  ${PACKER} validate $1.json &>/dev/null || \
+  { tput setaf 1 ; tput bold ; printf "The $1.json file failed to validate.\n" ; tput sgr0 ; exit 1 ; }
 
-  if [[ $RESULT != 0 ]]; then
-    tput setaf 1; tput bold; printf "\n\nThe $1 file failed to validate...\n\n"; tput sgr0
-    for i in 1 2 3; do printf "\a"; sleep 1; done
-    exit 1
-  fi
 }
 
 # Make sure the logging directory is available. If it isn't, then create it.
@@ -589,14 +587,14 @@ function box() {
 
   fi
 
-  if [[ `uname` == "Darwin" ]]; then
+  if [[ "$(uname)" == "Darwin" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/generic-parallels-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*parallels.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-parallels.json
 
   fi
 
-  if [[ `uname` == "Linux" ]]; then
+  if [[ "$(uname)" == "Linux" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/magma-docker-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker.json; docker-logout)
@@ -696,29 +694,29 @@ function sums() {
 }
 
 function validate() {
-  verify_json packer-cache
-  verify_json magma-docker
-  verify_json magma-hyperv
-  verify_json magma-vmware
-  verify_json magma-libvirt
-  verify_json magma-virtualbox
-  verify_json generic-docker
-  verify_json generic-hyperv
-  verify_json generic-vmware
-  verify_json generic-libvirt
-  verify_json generic-libvirt-x32
-  verify_json generic-parallels
-  verify_json generic-virtualbox
-  verify_json generic-virtualbox-x32
-  verify_json developer-ova
-  verify_json developer-hyperv
-  verify_json developer-vmware
-  verify_json developer-libvirt
-  verify_json developer-virtualbox
-  verify_json lineage-hyperv
-  verify_json lineage-vmware
-  verify_json lineage-libvirt
-  verify_json lineage-virtualbox
+  verify_json packer-cache && printf "The packer-cache.json file is valid.\n"
+  verify_json magma-docker && printf "The magma-docker.json file is valid.\n"
+  verify_json magma-hyperv && printf "The magma-hyperv.json file is valid.\n"
+  verify_json magma-vmware && printf "The magma-vmware.json file is valid.\n"
+  verify_json magma-libvirt && printf "The magma-libvirt.json file is valid.\n"
+  verify_json magma-virtualbox && printf "The magma-virtualbox.json file is valid.\n"
+  verify_json generic-docker && printf "The generic-docker.json file is valid.\n"
+  verify_json generic-hyperv && printf "The generic-hyperv.json file is valid.\n"
+  verify_json generic-vmware && printf "The generic-vmware.json file is valid.\n"
+  verify_json generic-libvirt && printf "The generic-libvirt.json file is valid.\n"
+  verify_json generic-libvirt-x32 && printf "The generic-libvirt-x32.json file is valid.\n"
+  verify_json generic-parallels && printf "The generic-parallels.json file is valid.\n"
+  verify_json generic-virtualbox && printf "The generic-virtualbox.json file is valid.\n"
+  verify_json generic-virtualbox-x32 && printf "The generic-virtualbox-x32.json file is valid.\n"
+  verify_json developer-ova && printf "The developer-ova.json file is valid.\n"
+  verify_json developer-hyperv && printf "The developer-hyperv.json file is valid.\n"
+  verify_json developer-vmware && printf "The developer-vmware.json file is valid.\n"
+  verify_json developer-libvirt && printf "The developer-libvirt.json file is valid.\n"
+  verify_json developer-virtualbox && printf "The developer-virtualbox.json file is valid.\n"
+  verify_json lineage-hyperv && printf "The lineage-hyperv.json file is valid.\n"
+  verify_json lineage-vmware && printf "The lineage-vmware.json file is valid.\n"
+  verify_json lineage-libvirt && printf "The lineage-libvirt.json file is valid.\n"
+  verify_json lineage-virtualbox && printf "The lineage-virtualbox.json file is valid.\n"
 }
 
 function missing() {
@@ -1530,7 +1528,7 @@ function magma() {
 function generic() {
   if [[ $OS == "Windows_NT" ]]; then
     build generic-hyperv
-  elif [[ `uname` == "Darwin" ]]; then
+  elif [[ "$(uname)" == "Darwin" ]]; then
     build generic-parallels
   else
     build generic-vmware
@@ -1654,7 +1652,7 @@ function parallels() {
 
   unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
 
-  if [[ `uname` == "Darwin" ]]; then
+  if [[ "$(uname)" == "Darwin" ]]; then
 
     # Ideally, we shouldn't need this. However the ancient Macbook Air
     # used to make the Parallels boxes doesn't have the resources to
