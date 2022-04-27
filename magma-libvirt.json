@@ -916,6 +916,46 @@
     },
     {
       "scripts": [
+        "scripts/ubuntu1904/apt.sh",
+        "scripts/ubuntu1904/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1904-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1904/limits.sh",
+        "scripts/ubuntu1904/postfix.sh",
+        "scripts/ubuntu1904/mysql.sh",
+        "scripts/ubuntu1904/memcached.sh",
+        "scripts/ubuntu1904/floppy.sh",
+        "scripts/ubuntu1904/vagrant.sh",
+        "scripts/ubuntu1904/profile.sh",
+        "scripts/ubuntu1904/motd.sh",
+        "scripts/ubuntu1904/magma.sh",
+        "scripts/ubuntu1904/fixtty.sh",
+        "scripts/ubuntu1904/virtualbox.sh",
+        "scripts/ubuntu1904/parallels.sh",
+        "scripts/ubuntu1904/vmware.sh",
+        "scripts/ubuntu1904/qemu.sh",
+        "scripts/ubuntu1904/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1904-libvirt"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -1832,6 +1872,47 @@
       "headless": true,
       "iso_url": "https://old-releases.ubuntu.com/releases/18.10/ubuntu-18.10-server-amd64.iso",
       "iso_checksum": "sha256:cf9250781dadd919f23c9d9612212cad653e35fccc2fbcf6853f67ad09e067ba",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "magma-ubuntu1904-libvirt",
+      "vm_name": "magma-ubuntu1904-libvirt",
+      "output_directory": "output/magma-ubuntu1904-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1904.vagrant.cfg<wait> ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "on",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://old-releases.ubuntu.com/releases/19.04/ubuntu-19.04-server-amd64.iso",
+      "iso_checksum": "sha256:7e8a0d07522f591dfee9bc9fcd7c05466763161e6cb0117906655bce1750b2fa",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
