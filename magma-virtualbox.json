@@ -796,6 +796,46 @@
     },
     {
       "scripts": [
+        "scripts/ubuntu1710/apt.sh",
+        "scripts/ubuntu1710/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1710-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1710/limits.sh",
+        "scripts/ubuntu1710/postfix.sh",
+        "scripts/ubuntu1710/mysql.sh",
+        "scripts/ubuntu1710/memcached.sh",
+        "scripts/ubuntu1710/floppy.sh",
+        "scripts/ubuntu1710/vagrant.sh",
+        "scripts/ubuntu1710/profile.sh",
+        "scripts/ubuntu1710/motd.sh",
+        "scripts/ubuntu1710/magma.sh",
+        "scripts/ubuntu1710/fixtty.sh",
+        "scripts/ubuntu1710/virtualbox.sh",
+        "scripts/ubuntu1710/parallels.sh",
+        "scripts/ubuntu1710/vmware.sh",
+        "scripts/ubuntu1710/qemu.sh",
+        "scripts/ubuntu1710/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1710-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -1736,6 +1776,55 @@
       "vrdp_port_max": 12000,
       "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/Server/x86_64/iso/Fedora-Server-netinst-x86_64-31-1.9.iso",
       "iso_checksum": "sha256:5be8debd3e8fb4e86b9fbf67c7eb66ea598d2b7ad0c7ba8d505ce88067b43444",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "magma-ubuntu1710-virtualbox",
+      "vm_name": "magma-ubuntu1710-virtualbox",
+      "output_directory": "output/magma-ubuntu1710-virtualbox",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1710.vagrant.cfg<wait> ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "hard_drive_interface": "sata",
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://old-releases.ubuntu.com/releases/17.10/ubuntu-17.10.1-server-amd64.iso",
+      "iso_checksum": "sha256:8ff73f1b622276758475c3bd5190b382774626de5a82c50930519381f6c3a3f8",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
