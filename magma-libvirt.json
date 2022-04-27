@@ -552,6 +552,46 @@
     },
     {
       "scripts": [
+        "scripts/debian11/apt.sh",
+        "scripts/debian11/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian11-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian11/limits.sh",
+        "scripts/debian11/postfix.sh",
+        "scripts/debian11/mysql.sh",
+        "scripts/debian11/memcached.sh",
+        "scripts/debian11/floppy.sh",
+        "scripts/debian11/profile.sh",
+        "scripts/debian11/vagrant.sh",
+        "scripts/debian11/motd.sh",
+        "scripts/debian11/magma.sh",
+        "scripts/debian11/fixtty.sh",
+        "scripts/debian11/virtualbox.sh",
+        "scripts/debian11/parallels.sh",
+        "scripts/debian11/vmware.sh",
+        "scripts/debian11/qemu.sh",
+        "scripts/debian11/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian11-libvirt"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -1152,6 +1192,51 @@
       "headless": true,
       "iso_url": "https://cdimage.debian.org/cdimage/archive/10.12.0/amd64/iso-cd/debian-10.12.0-amd64-netinst.iso",
       "iso_checksum": "sha256:3cdec5aa9865a768434e4ad2b9fba0e8ca82fc297ceb4137518c53045d5d4af8",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "magma-debian11-libvirt",
+      "vm_name": "magma-debian11-libvirt",
+      "output_directory": "output/magma-debian11-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian11.vagrant.cfg ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "on",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.3.0/amd64/iso-cd/debian-11.3.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:7892981e1da216e79fb3a1536ce5ebab157afdd20048fe458f2ae34fbc26c19b",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

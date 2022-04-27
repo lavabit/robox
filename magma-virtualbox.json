@@ -552,6 +552,46 @@
     },
     {
       "scripts": [
+        "scripts/debian11/apt.sh",
+        "scripts/debian11/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian11-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian11/limits.sh",
+        "scripts/debian11/postfix.sh",
+        "scripts/debian11/mysql.sh",
+        "scripts/debian11/memcached.sh",
+        "scripts/debian11/floppy.sh",
+        "scripts/debian11/profile.sh",
+        "scripts/debian11/vagrant.sh",
+        "scripts/debian11/motd.sh",
+        "scripts/debian11/magma.sh",
+        "scripts/debian11/fixtty.sh",
+        "scripts/debian11/virtualbox.sh",
+        "scripts/debian11/parallels.sh",
+        "scripts/debian11/vmware.sh",
+        "scripts/debian11/qemu.sh",
+        "scripts/debian11/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian11-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -1259,6 +1299,59 @@
       "vrdp_port_max": 12000,
       "iso_url": "https://cdimage.debian.org/cdimage/archive/10.12.0/amd64/iso-cd/debian-10.12.0-amd64-netinst.iso",
       "iso_checksum": "sha256:3cdec5aa9865a768434e4ad2b9fba0e8ca82fc297ceb4137518c53045d5d4af8",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "magma-debian11-virtualbox",
+      "vm_name": "magma-debian11-virtualbox",
+      "output_directory": "output/magma-debian11-virtualbox",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian11.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "hard_drive_interface": "sata",
+      "guest_os_type": "Debian_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.3.0/amd64/iso-cd/debian-11.3.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:7892981e1da216e79fb3a1536ce5ebab157afdd20048fe458f2ae34fbc26c19b",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
