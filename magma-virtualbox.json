@@ -956,6 +956,46 @@
     },
     {
       "scripts": [
+        "scripts/ubuntu1910/apt.sh",
+        "scripts/ubuntu1910/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1910-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1910/limits.sh",
+        "scripts/ubuntu1910/postfix.sh",
+        "scripts/ubuntu1910/mysql.sh",
+        "scripts/ubuntu1910/memcached.sh",
+        "scripts/ubuntu1910/floppy.sh",
+        "scripts/ubuntu1910/vagrant.sh",
+        "scripts/ubuntu1910/profile.sh",
+        "scripts/ubuntu1910/motd.sh",
+        "scripts/ubuntu1910/magma.sh",
+        "scripts/ubuntu1910/fixtty.sh",
+        "scripts/ubuntu1910/virtualbox.sh",
+        "scripts/ubuntu1910/parallels.sh",
+        "scripts/ubuntu1910/vmware.sh",
+        "scripts/ubuntu1910/qemu.sh",
+        "scripts/ubuntu1910/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1910-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -2092,6 +2132,55 @@
       "vrdp_port_max": 12000,
       "iso_url": "https://old-releases.ubuntu.com/releases/19.04/ubuntu-19.04-server-amd64.iso",
       "iso_checksum": "sha256:7e8a0d07522f591dfee9bc9fcd7c05466763161e6cb0117906655bce1750b2fa",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "magma-ubuntu1910-virtualbox",
+      "vm_name": "magma-ubuntu1910-virtualbox",
+      "output_directory": "output/magma-ubuntu1910-virtualbox",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1910.vagrant.cfg<wait> ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "hard_drive_interface": "sata",
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://archive.org/download/ubuntu-19.10-server-amd64/ubuntu-19.10-server-amd64.iso",
+      "iso_checksum": "sha256:921fd8b271c04aa86a321cc35b40e677f9b85f7903bf2204efb2389b0f0a64c1",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

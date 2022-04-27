@@ -956,6 +956,46 @@
     },
     {
       "scripts": [
+        "scripts/ubuntu1910/apt.sh",
+        "scripts/ubuntu1910/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1910-vmware"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1910/limits.sh",
+        "scripts/ubuntu1910/floppy.sh",
+        "scripts/ubuntu1910/vagrant.sh",
+        "scripts/ubuntu1910/profile.sh",
+        "scripts/ubuntu1910/motd.sh",
+        "scripts/ubuntu1910/postfix.sh",
+        "scripts/ubuntu1910/mysql.sh",
+        "scripts/ubuntu1910/memcached.sh",
+        "scripts/ubuntu1910/magma.sh",
+        "scripts/ubuntu1910/fixtty.sh",
+        "scripts/ubuntu1910/virtualbox.sh",
+        "scripts/ubuntu1910/parallels.sh",
+        "scripts/ubuntu1910/vmware.sh",
+        "scripts/ubuntu1910/qemu.sh",
+        "scripts/ubuntu1910/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1910-vmware"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -2076,6 +2116,54 @@
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://old-releases.ubuntu.com/releases/19.04/ubuntu-19.04-server-amd64.iso",
       "iso_checksum": "sha256:7e8a0d07522f591dfee9bc9fcd7c05466763161e6cb0117906655bce1750b2fa",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "magma-ubuntu1910-vmware",
+      "vm_name": "magma-ubuntu1910-vmware",
+      "vmdk_name": "magma-ubuntu1910-vmware",
+      "output_directory": "output/magma-ubuntu1910-vmware",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1910.vagrant.cfg<wait> ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "ubuntu-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://archive.org/download/ubuntu-19.10-server-amd64/ubuntu-19.10-server-amd64.iso",
+      "iso_checksum": "sha256:921fd8b271c04aa86a321cc35b40e677f9b85f7903bf2204efb2389b0f0a64c1",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
