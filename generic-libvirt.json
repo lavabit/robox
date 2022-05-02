@@ -5569,7 +5569,7 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/21.10/ubuntu-21.10-live-server-amd64.iso",
+      "iso_url": "https://releases.ubuntu.com/22.04/ubuntu-22.04-live-server-amd64.iso",
       "iso_checksum": "sha256:84aeaf7823c8c61baa0ae862d0a06b03409394800000b3235854a6b38eb4856f",
       "ssh_username": "root",
       "ssh_password": "vagrant",
