@@ -5979,7 +5979,7 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_url": "https://sjc.edge.kernel.org/alpine/v3.15/releases/x86_64/alpine-virt-3.15.4-x86_64.iso",
-      "iso_checksum": "sha256:70acb81e36139cc3a53865cdc1732a0de9be9366fbb37cde9af48e2ef72ad0fd",
+      "iso_checksum": "sha256:11cb6ceec4967e0089c44268d2cc7b4efbad74f40d962ecec558e1a8fb6f2ac9",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
