@@ -30,7 +30,7 @@ Add vagrant user password randomization logic to the bundled Vagrantfiles
 Add init based test, and SSH command test to the box test and check script  
 Update VirtualBox from 5.2 to 6.1 (will require changes to the NetBSD boot command/timing)  
 Create arm images for distros/platforms with support  
-`  `WE NEED A HARDWARE DONATION TO MAKE ARM64 IMAGES  
+ ^-- WE NEED A HARDWARE DONATION TO MAKE ARM64 IMAGES  
 
 ## Building a Box
 
