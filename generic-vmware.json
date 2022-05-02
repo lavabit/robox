@@ -2518,6 +2518,55 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora36/fixdns.sh",
+        "scripts/fedora36/hostname.sh",
+        "scripts/fedora36/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora36-vmware"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora36/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora36-vmware"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora36/kernel.sh",
+        "scripts/fedora36/updatedb.sh",
+        "scripts/fedora36/vga.sh",
+        "scripts/fedora36/fixtmp.sh",
+        "scripts/fedora36/virtualbox.sh",
+        "scripts/fedora36/parallels.sh",
+        "scripts/fedora36/vmware.sh",
+        "scripts/fedora36/qemu.sh",
+        "scripts/fedora36/vagrant.sh",
+        "scripts/fedora36/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora36-vmware"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -6083,6 +6132,49 @@
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://mirrors.kernel.org/ubuntu-releases/21.10/ubuntu-21.10-live-server-amd64.iso",
       "iso_checksum": "sha256:84aeaf7823c8c61baa0ae862d0a06b03409394800000b3235854a6b38eb4856f",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-fedora36-vmware",
+      "vm_name": "generic-fedora36-vmware",
+      "vmdk_name": "generic-fedora36-vmware",
+      "output_directory": "output/generic-fedora36-vmware",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "<wait>text net.ifnames=0 ",
+        "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora36.vagrant.ks ",
+        "<wait><enter>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "fedora-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/test/36_Beta/Server/x86_64/iso/Fedora-Server-netinst-x86_64-36_Beta-1.4.iso",
+      "iso_checksum": "sha256:e6e2385aa78f5af9ab96bbf0cebf60c8630b6a8c4c3d6c2fe5861fd073298d52",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

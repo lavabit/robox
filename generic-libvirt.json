@@ -2518,6 +2518,55 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora36/fixdns.sh",
+        "scripts/fedora36/hostname.sh",
+        "scripts/fedora36/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora36-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora36/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora36-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora36/kernel.sh",
+        "scripts/fedora36/updatedb.sh",
+        "scripts/fedora36/vga.sh",
+        "scripts/fedora36/fixtmp.sh",
+        "scripts/fedora36/virtualbox.sh",
+        "scripts/fedora36/parallels.sh",
+        "scripts/fedora36/vmware.sh",
+        "scripts/fedora36/qemu.sh",
+        "scripts/fedora36/vagrant.sh",
+        "scripts/fedora36/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora36-libvirt"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -5527,6 +5576,42 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "ssh_handshake_attempts": "10000",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-fedora36-libvirt",
+      "vm_name": "generic-fedora36-libvirt",
+      "output_directory": "output/generic-fedora36-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "<wait>text net.ifnames=0 ",
+        "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora36.vagrant.ks ",
+        "<wait><enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "on",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/test/36_Beta/Server/x86_64/iso/Fedora-Server-netinst-x86_64-36_Beta-1.4.iso",
+      "iso_checksum": "sha256:e6e2385aa78f5af9ab96bbf0cebf60c8630b6a8c4c3d6c2fe5861fd073298d52",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     }
   ],

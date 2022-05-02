@@ -2521,6 +2521,55 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora36/fixdns.sh",
+        "scripts/fedora36/hostname.sh",
+        "scripts/fedora36/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora36-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora36/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora36-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora36/kernel.sh",
+        "scripts/fedora36/updatedb.sh",
+        "scripts/fedora36/vga.sh",
+        "scripts/fedora36/fixtmp.sh",
+        "scripts/fedora36/virtualbox.sh",
+        "scripts/fedora36/parallels.sh",
+        "scripts/fedora36/vmware.sh",
+        "scripts/fedora36/qemu.sh",
+        "scripts/fedora36/vagrant.sh",
+        "scripts/fedora36/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora36-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -5485,6 +5534,41 @@
       "http_directory": "http",
       "iso_url": "https://mirrors.kernel.org/ubuntu-releases/21.10/ubuntu-21.10-live-server-amd64.iso",
       "iso_checksum": "sha256:84aeaf7823c8c61baa0ae862d0a06b03409394800000b3235854a6b38eb4856f",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": false,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-fedora36-hyperv",
+      "vm_name": "generic-fedora36-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-fedora36-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "<wait>text net.ifnames=0 ",
+        "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora36.vagrant.ks ",
+        "<wait><enter>"
+      ],
+      "disk_size": 131072,
+      "memory": 2048,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/test/36_Beta/Server/x86_64/iso/Fedora-Server-netinst-x86_64-36_Beta-1.4.iso",
+      "iso_checksum": "sha256:e6e2385aa78f5af9ab96bbf0cebf60c8630b6a8c4c3d6c2fe5861fd073298d52",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
