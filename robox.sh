@@ -1329,9 +1329,10 @@ function distclean() {
 
   # If VMWare is installed.
   if [ "$(command -v vmrun)" ]; then
+    unset LD_PRELOAD ; unset LD_LIBRARY_PATH
     vmrun -T ws list | grep -v "Total running VMs:" | while read VMX ; do
-      vmrun -T ws stop $VMX hard
-      vmrun -T ws deleteVM $VMX
+      vmrun -T ws stop "$VMX" hard
+      vmrun -T ws deleteVM "$VMX"
     done
   fi
 
