@@ -1081,6 +1081,57 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora32/fixdns.sh",
+        "scripts/fedora32/hostname.sh",
+        "scripts/fedora32/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora32-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora32/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora32-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora32/kernel.sh",
+        "scripts/fedora32/vga.sh",
+        "scripts/fedora32/fixtmp.sh",
+        "scripts/fedora32/virtualbox.sh",
+        "scripts/fedora32/parallels.sh",
+        "scripts/fedora32/vmware.sh",
+        "scripts/fedora32/qemu.sh",
+        "scripts/fedora32/vagrant.sh",
+        "scripts/fedora32/mariadb.sh",
+        "scripts/fedora32/postfix.sh",
+        "scripts/fedora32/magma.sh",
+        "scripts/fedora32/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora32-hyperv"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -2102,6 +2153,42 @@
       "http_directory": "http",
       "iso_url": "https://vault.centos.org/8.5.2111/isos/x86_64/CentOS-8.5.2111-x86_64-boot.iso",
       "iso_checksum": "sha256:9602c69c52d93f51295c0199af395ca0edbe35e36506e32b8e749ce6c8f5b60a",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-fedora32-hyperv",
+      "vm_name": "magma-fedora32-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-fedora32-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora32.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/iso/Fedora-Server-netinst-x86_64-32-1.6.iso",
+      "iso_checksum": "sha256:5be8debd3e8fb4e86b9fbf67c7eb66ea598d2b7ad0c7ba8d505ce88067b43444",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
