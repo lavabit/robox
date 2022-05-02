@@ -1319,7 +1319,7 @@ function distclean() {
   # The typical cleanup.
   rm -rf $BASE/packer_cache/ $BASE/output/ $BASE/logs/
 
-  printf "\n\nThe distclean target will purge status information across the entire system.\n" ; \
+  printf "\nThe distclean target will purge status information across the entire system.\n" ; \
   tput setaf 1; tput bold;  printf "Be very careful. This message will self-destruct in thirty seconds.\n" ; tput sgr0
   read -t 30 -r -p "Would you like to continue? [y/N]: " RESPONSE
   RESPONSE=${RESPONSE,,}
