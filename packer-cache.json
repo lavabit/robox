@@ -1156,6 +1156,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "ubuntu2204",
+      "output_directory": "output/ubuntu2204",
+      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/21.10/ubuntu-21.10-live-server-amd64.iso",
+      "iso_checksum": "sha256:84aeaf7823c8c61baa0ae862d0a06b03409394800000b3235854a6b38eb4856f",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "dragonflybsd6",
       "output_directory": "output/dragonflybsd6",
       "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.2.1_REL.iso",

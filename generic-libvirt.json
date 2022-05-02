@@ -2483,6 +2483,42 @@
     },
     {
       "scripts": [
+        "scripts/ubuntu2204/apt.sh",
+        "scripts/ubuntu2204/floppy.sh",
+        "scripts/ubuntu2204/fixkvp.sh",
+        "scripts/ubuntu2204/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2204-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2204/vagrant.sh",
+        "scripts/ubuntu2204/profile.sh",
+        "scripts/ubuntu2204/motd.sh",
+        "scripts/ubuntu2204/fixtty.sh",
+        "scripts/ubuntu2204/virtualbox.sh",
+        "scripts/ubuntu2204/parallels.sh",
+        "scripts/ubuntu2204/vmware.sh",
+        "scripts/ubuntu2204/qemu.sh",
+        "scripts/ubuntu2204/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2204-libvirt"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -5443,6 +5479,55 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-ubuntu2204-libvirt",
+      "vm_name": "generic-ubuntu2204-libvirt",
+      "output_directory": "output/generic-ubuntu2204-libvirt",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "c<wait10>",
+        "set gfxpayload=keep<enter><wait10>",
+        "linux /casper/vmlinuz autoinstall quiet net.ifnames=0 biosdevname=0 ",
+        "ds=\"nocloud-net;s=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2204.vagrant.\" --- <enter><wait10>",
+        "initrd /casper/initrd<enter><wait10>",
+        "boot<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "on",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/21.10/ubuntu-21.10-live-server-amd64.iso",
+      "iso_checksum": "sha256:84aeaf7823c8c61baa0ae862d0a06b03409394800000b3235854a6b38eb4856f",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "ssh_handshake_attempts": "10000",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     }
   ],
   "post-processors": [
