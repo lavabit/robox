@@ -16,9 +16,8 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
         DEBCONF_NONINTERACTIVE_SEEN: true
       run: 
-         curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add - && \
-         sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" && \
-         sudo apt-get update && sudo apt-get install packer
+        curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+        sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" && sudo apt-get update && sudo apt-get install packer
     - name: Validate Generic Box Configurations
       env:
         GOGC: 50
