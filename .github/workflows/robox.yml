@@ -32,14 +32,14 @@ jobs:
         VERSION: 1.0.0
       run: |
         date +"%nStarting generic box validation at %r on %x%n"
-        export PACKER_LOG_PATH=generic-docker.txt ; packer validate generic-docker.json &>> packer_validate.txt && printf "File  + generic-docker.json\n" || { printf "File  - generic-docker.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=generic-hyperv.txt ; packer validate generic-hyperv.json &>> packer_validate.txt && printf "File  + generic-hyperv.json\n" || { printf "File  - generic-hyperv.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=generic-libvirt.txt ; packer validate generic-libvirt.json &>> packer_validate.txt && printf "File  + generic-libvirt.json\n" || { printf "File  - generic-libvirt.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=generic-parallels.txt ; packer validate generic-parallels.json &>> packer_validate.txt && printf "File  + generic-parallels.json\n" || { printf "File  - generic-parallels.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=generic-virtualbox.txt ; packer validate generic-virtualbox.json &>> packer_validate.txt && printf "File  + generic-virtualbox.json\n" || { printf "File  - generic-virtualbox.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=generic-vmware.txt ; packer validate generic-vmware.json &>> packer_validate.txt && printf "File  + generic-vmware.json\n" || { printf "File  - generic-vmware.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=generic-libvirt-x32.txt ; packer validate generic-libvirt-x32.json &>> packer_validate.txt && printf "File  + generic-libvirt-x32.json\n" || { printf "File  - generic-libvirt-x32.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=generic-virtualbox-x32.txt ; packer validate generic-virtualbox-x32.json &>> packer_validate.txt && printf "File  + generic-virtualbox-x32.json\n" || { printf "File  - generic-virtualbox-x32.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=generic-docker.txt ; packer validate generic-docker.json &>> packer-validate.txt && printf "File  + generic-docker.json\n" || { printf "File  - generic-docker.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=generic-hyperv.txt ; packer validate generic-hyperv.json &>> packer-validate.txt && printf "File  + generic-hyperv.json\n" || { printf "File  - generic-hyperv.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=generic-libvirt.txt ; packer validate generic-libvirt.json &>> packer-validate.txt && printf "File  + generic-libvirt.json\n" || { printf "File  - generic-libvirt.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=generic-parallels.txt ; packer validate generic-parallels.json &>> packer-validate.txt && printf "File  + generic-parallels.json\n" || { printf "File  - generic-parallels.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=generic-virtualbox.txt ; packer validate generic-virtualbox.json &>> packer-validate.txt && printf "File  + generic-virtualbox.json\n" || { printf "File  - generic-virtualbox.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=generic-vmware.txt ; packer validate generic-vmware.json &>> packer-validate.txt && printf "File  + generic-vmware.json\n" || { printf "File  - generic-vmware.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=generic-libvirt-x32.txt ; packer validate generic-libvirt-x32.json &>> packer-validate.txt && printf "File  + generic-libvirt-x32.json\n" || { printf "File  - generic-libvirt-x32.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=generic-virtualbox-x32.txt ; packer validate generic-virtualbox-x32.json &>> packer-validate.txt && printf "File  + generic-virtualbox-x32.json\n" || { printf "File  - generic-virtualbox-x32.json\n" ; exit 1 ; }
         date +"%nFinished generic box validation at %r on %x%n"
     - name: Validate Magma Box Configurations
       env:
@@ -49,16 +49,16 @@ jobs:
         VERSION: 1.0.0
       run: |
         date +"%nStarting magma box validation at %r on %x%n"
-        export PACKER_LOG_PATH=magma-docker.txt ; packer validate magma-docker.json &>> packer_validate.txt && printf "File  + magma-docker.json\n" || { printf "File  - magma-docker.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=magma-hyperv.txt ; packer validate magma-hyperv.json &>> packer_validate.txt && printf "File  + magma-hyperv.json\n" || { printf "File  - magma-hyperv.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=magma-libvirt.txt ; packer validate magma-libvirt.json &>> packer_validate.txt && printf "File  + magma-libvirt.json\n" || { printf "File  - magma-libvirt.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=magma-virtualbox.txt ; packer validate magma-virtualbox.json &>> packer_validate.txt && printf "File  + magma-virtualbox.json\n" || { printf "File  - magma-virtualbox.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=magma-vmware.txt ; packer validate magma-vmware.json &>> packer_validate.txt && printf "File  + magma-vmware.json\n" || { printf "File  - magma-vmware.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=developer-hyperv.txt ; packer validate developer-hyperv.json &>> packer_validate.txt && printf "File  + developer-hyperv.json\n" || { printf "File  - developer-hyperv.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=developer-libvirt.txt ; packer validate developer-libvirt.json &>> packer_validate.txt && printf "File  + developer-libvirt.json\n" || { printf "File  - developer-libvirt.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=developer-ova.txt ; packer validate developer-ova.json &>> packer_validate.txt && printf "File  + developer-ova.json\n" || { printf "File  - developer-ova.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=developer-virtualbox.txt ; packer validate developer-virtualbox.json &>> packer_validate.txt && printf "File  + developer-virtualbox.json\n" || { printf "File  - developer-virtualbox.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=developer-vmware.txt ; packer validate developer-vmware.json &>> packer_validate.txt && printf "File  + developer-vmware.json\n" || { printf "File  - developer-vmware.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=magma-docker.txt ; packer validate magma-docker.json &>> packer-validate.txt && printf "File  + magma-docker.json\n" || { printf "File  - magma-docker.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=magma-hyperv.txt ; packer validate magma-hyperv.json &>> packer-validate.txt && printf "File  + magma-hyperv.json\n" || { printf "File  - magma-hyperv.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=magma-libvirt.txt ; packer validate magma-libvirt.json &>> packer-validate.txt && printf "File  + magma-libvirt.json\n" || { printf "File  - magma-libvirt.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=magma-virtualbox.txt ; packer validate magma-virtualbox.json &>> packer-validate.txt && printf "File  + magma-virtualbox.json\n" || { printf "File  - magma-virtualbox.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=magma-vmware.txt ; packer validate magma-vmware.json &>> packer-validate.txt && printf "File  + magma-vmware.json\n" || { printf "File  - magma-vmware.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=developer-hyperv.txt ; packer validate developer-hyperv.json &>> packer-validate.txt && printf "File  + developer-hyperv.json\n" || { printf "File  - developer-hyperv.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=developer-libvirt.txt ; packer validate developer-libvirt.json &>> packer-validate.txt && printf "File  + developer-libvirt.json\n" || { printf "File  - developer-libvirt.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=developer-ova.txt ; packer validate developer-ova.json &>> packer-validate.txt && printf "File  + developer-ova.json\n" || { printf "File  - developer-ova.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=developer-virtualbox.txt ; packer validate developer-virtualbox.json &>> packer-validate.txt && printf "File  + developer-virtualbox.json\n" || { printf "File  - developer-virtualbox.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=developer-vmware.txt ; packer validate developer-vmware.json &>> packer-validate.txt && printf "File  + developer-vmware.json\n" || { printf "File  - developer-vmware.json\n" ; exit 1 ; }
         date +"%nFinished magma box validation at %r on %x%n"
     - name: Validate Lineage Box Configurations
       env:
@@ -68,10 +68,10 @@ jobs:
         VERSION: 1.0.0
       run: |
         date +"%nStarting lineage box validation at %r on %x%n"
-        export PACKER_LOG_PATH=lineage-hyperv.txt ; packer validate lineage-hyperv.json &>> packer_validate.txt && printf "File  + lineage-hyperv.json\n" || { printf "File  - lineage-hyperv.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=lineage-libvirt.txt ; packer validate lineage-libvirt.json &>> packer_validate.txt && printf "File  + lineage-libvirt.json\n" || { printf "File  - lineage-libvirt.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=lineage-virtualbox.txt ; packer validate lineage-virtualbox.json &>> packer_validate.txt && printf "File  + lineage-virtualbox.json\n" || { printf "File  - lineage-virtualbox.json\n" ; exit 1 ; }
-        export PACKER_LOG_PATH=lineage-vmware.txt ; packer validate lineage-vmware.json &>> packer_validate.txt && printf "File  + lineage-vmware.json\n" || { printf "File  - lineage-vmware.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=lineage-hyperv.txt ; packer validate lineage-hyperv.json &>> packer-validate.txt && printf "File  + lineage-hyperv.json\n" || { printf "File  - lineage-hyperv.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=lineage-libvirt.txt ; packer validate lineage-libvirt.json &>> packer-validate.txt && printf "File  + lineage-libvirt.json\n" || { printf "File  - lineage-libvirt.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=lineage-virtualbox.txt ; packer validate lineage-virtualbox.json &>> packer-validate.txt && printf "File  + lineage-virtualbox.json\n" || { printf "File  - lineage-virtualbox.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=lineage-vmware.txt ; packer validate lineage-vmware.json &>> packer-validate.txt && printf "File  + lineage-vmware.json\n" || { printf "File  - lineage-vmware.json\n" ; exit 1 ; }
         date +"%nFinished lineage box validation at %r on %x%n"
     - name: Validate Cache Configuration
       env:
@@ -81,7 +81,7 @@ jobs:
         VERSION: 1.0.0
       run: |
         date +"%nStarting cache box validation at %r on %x%n"
-        export PACKER_LOG_PATH=packer-cache.txt ; packer validate packer-cache.json &>> packer_validate.txt && printf "File  + packer-cache.json\n" || { printf "File  - packer-cache.json\n" ; exit 1 ; }
+        export PACKER_LOG_PATH=packer-cache.txt ; packer validate packer-cache.json &>> packer-validate.txt && printf "File  + packer-cache.json\n" || { printf "File  - packer-cache.json\n" ; exit 1 ; }
         date +"%nFinished Cache box validation at %r on %x%n"
     - name: Archive Log Files
       uses: actions/upload-artifact@v3
@@ -89,6 +89,7 @@ jobs:
         name: validate-logs
         retention-days: 14
         path: |
+          packer-validate.txt
           generic-docker.txt
           generic-hyperv.txt
           generic-libvirt.txt
