@@ -13,18 +13,18 @@ jobs:
     - uses: actions/checkout@master
     - name: Install Dependencies
       env: 
-        DEBIAN_FRONTEND=noninteractive
-        DEBCONF_NONINTERACTIVE_SEEN=true
+        DEBIAN_FRONTEND: noninteractive
+        DEBCONF_NONINTERACTIVE_SEEN: true
       run: 
          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add - && \
          sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" && \
          sudo apt-get update && sudo apt-get install packer
     - name: Validate Generic Box Configurations
       env:
-        export GOGC=50
-        export PACKER_LOG=1
-        export GOMAXPROCS=1
-        export VERSION=1.0.0
+        GOGC: 50
+        PACKER_LOG: 1
+        GOMAXPROCS: 1
+        VERSION: 1.0.0
       run: 
         date +"%nStarting generic box validation at %r on %x%n"
         export PACKER_LOG_PATH=generic-docker.txt ; packer validate generic-docker.json &> /dev/null && printf "File  + $(tput setaf 2)generic-docker.json$(tput sgr0)\n" || { printf "File  - $(tput setaf 1)generic-docker.json$(tput sgr0)\n" ; exit 1 ; }
@@ -38,10 +38,10 @@ jobs:
         date +"%nFinished generic box validation at %r on %x%n"
     - name: Validate Magma Box Configurations
       env:
-        export GOGC=50
-        export PACKER_LOG=1
-        export GOMAXPROCS=1
-        export VERSION=1.0.0
+        GOGC: 50
+        PACKER_LOG: 1
+        GOMAXPROCS: 1
+        VERSION: 1.0.0
       run: 
         date +"%nStarting magma box validation at %r on %x%n"
         export PACKER_LOG_PATH=magma-docker.txt ; packer validate magma-docker.json &> /dev/null && printf "File  + $(tput setaf 2)magma-docker.json$(tput sgr0)\n" || { printf "File  - $(tput setaf 1)magma-docker.json$(tput sgr0)\n" ; exit 1 ; }
@@ -57,10 +57,10 @@ jobs:
         date +"%nFinished magma box validation at %r on %x%n"
     - name: Validate Lineage Box Configurations
       env:
-        export GOGC=50
-        export PACKER_LOG=1
-        export GOMAXPROCS=1
-        export VERSION=1.0.0
+        GOGC: 50
+        PACKER_LOG: 1
+        GOMAXPROCS: 1
+        VERSION: 1.0.0
       run: 
         date +"%nStarting lineage box validation at %r on %x%n"
         export PACKER_LOG_PATH=lineage-hyperv.txt ; packer validate lineage-hyperv.json &> /dev/null && printf "File  + $(tput setaf 2)lineage-hyperv.json$(tput sgr0)\n" || { printf "File  - $(tput setaf 1)lineage-hyperv.json$(tput sgr0)\n" ; exit 1 ; }
@@ -70,10 +70,10 @@ jobs:
         date +"%nFinished lineage box validation at %r on %x%n"
     - name: Validate Cache Configuration
       env:
-        export GOGC=50
-        export PACKER_LOG=1
-        export GOMAXPROCS=1
-        export VERSION=1.0.0
+        GOGC: 50
+        PACKER_LOG: 1
+        GOMAXPROCS: 1
+        VERSION: 1.0.0
       run: 
         date +"%nStarting cache box validation at %r on %x%n"
         export PACKER_LOG_PATH=packer-cache.txt ; packer validate packer-cache.json &> /dev/null && printf "File  + $(tput setaf 2)packer-cache.json$(tput sgr0)\n" || { printf "File  - $(tput setaf 1)packer-cache.json$(tput sgr0)\n" ; exit 1 ; }
