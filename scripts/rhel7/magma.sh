@@ -165,7 +165,7 @@ fi
 
 # Compile the daemon and then compile the unit tests.
 make -j4 all &> lib/logs/magma.txt && \
-  printf "Magma compiled successfully.\n"; error
+  printf "The Magma code compiled successfully.\n\n"; error
 
 # Run the unit tests and capture the return code, if they fail, print an error, 
 # and then exit using the captured return code.

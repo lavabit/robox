@@ -222,7 +222,7 @@ fi
 
 # Compile the daemon and then compile the unit tests.
 make -j4 all &> lib/logs/magma.txt && \
-  printf "Magma compiled successfully.\n"; error
+  printf "The Magma code compiled successfully.\n\n"; error
 
 # Change the socket path.
 sed -i -e "s/\/var\/lib\/mysql\/mysql.sock/\/var\/run\/mysqld\/mysqld.sock/g" sandbox/etc/magma.sandbox.config
