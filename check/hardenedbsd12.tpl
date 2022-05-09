@@ -5,12 +5,15 @@ Vagrant.configure(2) do |config|
 
   config.ssh.shell = 'sh'
   config.vm.box = "generic/hardenedbsd12"
-
+  config.vm.network :private_network, :auto_config => true, :autostart => true, :libvirt__network_name => "default", :libvirt__always_destroy => false
+  
   config.vm.provider :libvirt do |v, override|
     v.driver = "kvm"
     v.video_vram = 256
     v.memory = 2048
     v.cpus = 2
+    v.management_network_keep = true
+    v.management_network_autostart = true
     v.nic_model_type = "e1000"
   end
 

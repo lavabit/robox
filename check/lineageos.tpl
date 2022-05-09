@@ -4,6 +4,7 @@
 Vagrant.configure(2) do |config|
 
   config.vm.box = "lineageos/lineage"
+  config.vm.network :private_network, :auto_config => true, :autostart => true, :libvirt__network_name => "default", :libvirt__always_destroy => false
 
   config.vm.provider :libvirt do |v, override|
     v.driver = "kvm"
@@ -12,6 +13,8 @@ Vagrant.configure(2) do |config|
     v.video_vram = 256
     v.disk_bus = 'scsi'
     v.disk_device = 'sda'
+    v.management_network_keep = true
+    v.management_network_autostart = true
     v.cputopology :sockets => '1', :cores => '8', :threads => '1'
     v.disk_driver :bus => 'scsi', :discard => 'ignore', :detect_zeroes => 'off', :io => 'threads', :cache => 'unsafe'
   end

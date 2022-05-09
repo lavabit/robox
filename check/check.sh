@@ -13,16 +13,16 @@ fi
 
 # Ensure a consistent working directory so relative paths work.
 pushd "`dirname \"$CMD\"`" > /dev/null
-BASE="`pwd -P`"
+export BASE="`pwd -P`"
 popd > /dev/null
 cd "$BASE"
-NAME="`basename \"$CMD\"`"
+export NAME="`basename \"$CMD\"`"
 
 # Localize the Vagrant Home Directory
 export VAGRANT_HOME=$BASE/vagrant.d/
 
 if [ -x $OS ]; then
-  OS=`uname`
+  export OS=`uname`
 fi
 
 export VAGRANT_HOME="$BASE/vagrant.d/"
