@@ -963,7 +963,7 @@
     {
       "name": "ubuntu2104",
       "output_directory": "output/ubuntu2104",
-      "iso_url": "https://mirrors.kernel.org/ubuntu-releases/21.04/ubuntu-21.04-live-server-amd64.iso",
+      "iso_url": "https://old-releases.ubuntu.com/releases/21.04/ubuntu-21.04-live-server-amd64.iso",
       "iso_checksum": "sha256:e4089c47104375b59951bad6c7b3ee5d9f6d80bfac4597e43a716bb8f5c1f3b0",
       "boot_wait": "5s",
       "disk_size": 1,
