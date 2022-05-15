@@ -28,7 +28,7 @@ retry() {
 }
 
 # Install MariaDB
-retry dnf install --assumeyes libevent memcached mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL
+retry dnf install --assumeyes libevent memcached mariadb mariadb-connector-c mariadb-server-utils mariadb-backup mariadb-server perl-DBI perl-DBD-MySQL
 
 # Change the default temporary table directory or else the schema reset will fail when it creates a temp table.
 printf "\n\n[server]\ntmpdir=/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf

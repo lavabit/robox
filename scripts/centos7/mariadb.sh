@@ -30,7 +30,7 @@ retry() {
 # Install MariaDB
 retry yum install --assumeyes mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL
 
-# OpenSSL command line tool is used to generate a passowrd below.
+# OpenSSL command line tool is used to generate a password below.
 retry yum install --assumeyes openssl
 
 # Change the default temporary table directory or else the schema reset will fail when it creates a temp table.

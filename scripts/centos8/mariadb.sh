@@ -28,9 +28,9 @@ retry() {
 }
 
 # Install MariaDB
-retry dnf install --assumeyes mariadb mariadb-libs mariadb-server perl-DBI perl-DBD-MySQL
+retry dnf install --assumeyes mariadb mariadb-connector-c mariadb-server-utils mariadb-backup mariadb-server perl-DBI perl-DBD-MySQL
 
-# OpenSSL command line tool is used to generate a passowrd below.
+# OpenSSL command line tool is used to generate a password below.
 retry dnf install --assumeyes openssl
 
 # Change the default temporary table directory or else the schema reset will fail when it creates a temp table.
