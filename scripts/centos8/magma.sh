@@ -39,7 +39,7 @@ error() {
 retry dnf --assumeyes --enablerepo=extras install epel-release; error
 
 # Packages needed beyond a minimal install to build and run magma.
-retry dnf --quiet --assumeyes install valgrind valgrind-devel texinfo autoconf automake libtool ncurses-devel gcc-c++ libstdc++-devel gcc cpp glibc-devel glibc-headers kernel-headers mpfr ppl perl perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-libs perl-version patch sysstat perl-Time-HiRes make cmake libarchive zlib-devel; error
+retry dnf --quiet --assumeyes install autoconf automake bison byacc cmake cpp cscope ctags diffstat doxygen elfutils expect flex gcc gcc-c++ gcc-gfortran gdb gettext glibc-devel glibc-headers indent intltool java-1.8.0-openjdk jq kernel-headers libarchive libgsasl libgsasl-devel libnghttp2 libnghttp2-devel libssh2 libssh2-devel libstdc++-devel libtool libzstd libzstd-devel make mpfr ncurses-devel openmpi openmpi-devel openssh-clients patch patchutils perl perl-Digest perl-Digest-CRC perl-Digest-HMAC perl-Digest-MD4 perl-Digest-MD5 perl-Digest-SHA perl-Digest-SHA1 perl-libs perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-Time-HiRes perl-version procps python3 python3-impacket stunnel swig sysstat texinfo unzip valgrind valgrind-devel wget zip zlib-devel ; error
 
 # Grab the required packages from the EPEL repo.
 retry dnf --quiet --assumeyes install libbsd libbsd-devel inotify-tools; error
@@ -51,7 +51,7 @@ retry dnf --quiet --assumeyes install haveged; error
 retry dnf --quiet --assumeyes install wget git rsync perl-Git perl-Error; error
 
 # These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
-retry dnf --quiet --assumeyes install python-crypto python-cryptography
+retry dnf --quiet --assumeyes install python3-pycryptodomex python3-cryptography
 
 # Create the clamav user to avoid spurious errors.
 useradd clamav
@@ -212,7 +212,7 @@ if [ "\$MAGMA_MEMCHECK" == "YES" ]; then
   fi
 fi
 
-# Uncomment the follwoing lines to have Magma daemonize instead of running in the foreground.
+# Uncomment the following lines to have Magma daemonize instead of running in the foreground.
 # sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
 # sed -i -e "s/magma.system.daemonize = false/magma.system.daemonize = true/g" sandbox/etc/magma.sandbox.config
 

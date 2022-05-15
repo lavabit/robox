@@ -58,6 +58,10 @@ systemctl --quiet is-enabled clamav-freshclam.service &> /dev/null && \
   ( systemctl stop clamav-freshclam.service &> /dev/null ;
   systemctl disable clamav-freshclam.service &> /dev/null ) || \
   echo "clamav-freshclam.service already disabled" &> /dev/null
+systemctl --quiet is-enabled clamav-daemon.service &> /dev/null && \
+  ( systemctl stop clamav-daemon.service &> /dev/null ;
+  systemctl disable clamav-daemon.service &> /dev/null ) || \
+  echo "clamav-daemon.service already disabled" &> /dev/null
 
 # On Debian/Ubuntu there is no virus database package. We use freshclam instead.
 ( cd /var/lib/clamav && rm -f main.cvd daily.cvd bytecode.cvd && \
@@ -256,7 +260,7 @@ if [ "\$MAGMA_MEMCHECK" == "YES" ]; then
   fi
 fi
 
-# Uncomment the follwoing lines to have Magma daemonize instead of running in the foreground.
+# Uncomment the following lines to have Magma daemonize instead of running in the foreground.
 # sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
 # sed -i -e "s/magma.system.daemonize = false/magma.system.daemonize = true/g" sandbox/etc/magma.sandbox.config
 

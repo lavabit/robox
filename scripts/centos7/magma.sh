@@ -234,7 +234,7 @@ if [ "\$MAGMA_MEMCHECK" == "YES" ]; then
   fi
 fi
 
-# Uncomment the follwoing lines to have Magma daemonize instead of running in the foreground.
+# Uncomment the following lines to have Magma daemonize instead of running in the foreground.
 # sed -i -e "s/magma.output.file = false/magma.output.file = true/g" sandbox/etc/magma.sandbox.config
 # sed -i -e "s/magma.system.daemonize = false/magma.system.daemonize = true/g" sandbox/etc/magma.sandbox.config
 

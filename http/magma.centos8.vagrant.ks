@@ -1,5 +1,4 @@
 install
-cdrom
 
 lang en_US.UTF-8
 keyboard us
@@ -16,25 +15,25 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=magma.builder
 
 zerombr
 clearpart --all --initlabel
-autopart --nohome
-
 bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check"
+autopart --nohome
 
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
 
 reboot --eject
 
-%packages --instLangs=en --nobase
+# repo --name=BaseOS
+url --url=https://vault.centos.org/8.5.2111/BaseOS/x86_64/os/
+
+%packages --instLangs=en_US.utf8
 @core
-authconfig
 sudo
-# Microcode updates don't work in a VM
--microcode_ctl
-# Firmware packages aren't needed in a VM
--*firmware
+authconfig
 -fprintd-pam
 -intltool
+-iwl*-firmware
+-microcode_ctl
 %end
 
 %post
