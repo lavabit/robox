@@ -4,9 +4,10 @@ printf "Cleanup stage.\n"
 
 # Make sure the ethnernet configuration script doesn't retain identifiers.
 printf "Remove the ethernet identity values.\n"
-sed -i /UUID/d /etc/sysconfig/network-scripts/ifcfg-eth0
-sed -i /HWADDR/d /etc/sysconfig/network-scripts/ifcfg-eth0
-
+if [ -f /etc/sysconfig/network-scripts/ifcfg-eth0 ]; then
+  sed -i /UUID/d /etc/sysconfig/network-scripts/ifcfg-eth0
+  sed -i /HWADDR/d /etc/sysconfig/network-scripts/ifcfg-eth0
+fi
 # Clean up the dnf data.
 printf "Remove packages only required for provisioning purposes and then dump the repository cache.\n"
 dnf --quiet --assumeyes clean all
