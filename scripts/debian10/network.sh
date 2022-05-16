@@ -43,8 +43,8 @@ if [[ "$PACKER_BUILD_NAME" =~ ^generic-debian10-(x32-)?(vmware|hyperv|libvirt|pa
   printf "debian10.localdomain\n" > /etc/hostname
   printf "\n127.0.0.1 debian10.localdomain\n\n" >> /etc/hosts
 else
-  printf "magma.builder\n" > /etc/hostname
-  printf "\n127.0.0.1 magma.builder\n\n" >> /etc/hosts
+  printf "magma.localdomain\n" > /etc/hostname
+  printf "\n127.0.0.1 magma.localdomain\n\n" >> /etc/hosts
 fi
 
 # Clear out the existing automatic ifup rules.
