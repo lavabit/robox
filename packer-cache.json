@@ -603,7 +603,7 @@
     {
       "name": "openbsd6",
       "output_directory": "output/openbsd6",
-      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/6.9/amd64/cd69.iso",
+      "iso_url": "https://ftp.nluug.nl/OpenBSD/6.9/amd64/cd69.iso",
       "iso_checksum": "sha256:b391350d72a4fcab550033c830a17612cff65ebdb6de428732d9b15f780bf9c2",
       "boot_wait": "5s",
       "disk_size": 1,
@@ -1083,7 +1083,7 @@
     {
       "name": "openbsd7",
       "output_directory": "output/openbsd7",
-      "iso_url": "https://ftp.openbsd.org/pub/OpenBSD/7.1/amd64/cd71.iso",
+      "iso_url": "https://ftp.nluug.nl/OpenBSD/7.1/amd64/cd71.iso",
       "iso_checksum": "sha256:3b3c4e5c18b41afc37c58fa16885f2d702c5f6837dedbb8f69925fa06354d1c4",
       "boot_wait": "5s",
       "disk_size": 1,
