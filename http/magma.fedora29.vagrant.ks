@@ -1,7 +1,5 @@
-install
 text
 reboot --eject
-url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/
 lang en_US.UTF-8
 keyboard us
 timezone US/Pacific
@@ -16,10 +14,12 @@ volgroup fedora --pesize=4096 pv.01
 logvol swap --fstype="swap" --size=2048 --name=swap --vgname=fedora
 logvol / --fstype="xfs" --percent=100 --label="root" --name=root --vgname=fedora
 
-
-bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=792"
 firewall --enabled --service=ssh --port=6000:tcp,6050:tcp,7000:tcp,7050:tcp,7500:tcp,7501:tcp,7550:tcp,7551:tcp,8000:tcp,8050:tcp,8500:tcp,8550:tcp,9000:tcp,9050:tcp,9500:tcp,9550:tcp,10000:tcp,10050:tcp,10500:tcp,10550:tcp
 authconfig --enableshadow --passalgo=sha512
+network --device eth0 --bootproto dhcp --noipv6 --hostname=magma.localdomain
+bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=792 nomodeset text"
+
+url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Everything/x86_64/os/
 
 %packages
 net-tools

@@ -17,10 +17,8 @@ logvol / --fstype="xfs" --percent=100 --label="root" --name=root --vgname=fedora
 firewall --enabled --service=ssh
 authconfig --enableshadow --passalgo=sha512
 network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora29.localdomain
-# bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=normal nomodeset text"
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=792 nomodeset text"
 
-# When this release is no longer available from mirrors, enable the archive url.
 url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Everything/x86_64/os/
 
 %packages
