@@ -1,5 +1,32 @@
 #!/bin/bash -eux
 
+retry() {
+  local COUNT=1
+  local DELAY=0
+  local RESULT=0
+  while [[ "${COUNT}" -le 10 ]]; do
+    [[ "${RESULT}" -ne 0 ]] && {
+      [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput setaf 1
+      echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
+      [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput sgr0
+    }
+    "${@}" && { RESULT=0 && break; } || RESULT="${?}"
+    COUNT="$((COUNT + 1))"
+
+    # Increase the delay with each iteration.
+    DELAY="$((DELAY + 10))"
+    sleep $DELAY
+  done
+
+  [[ "${COUNT}" -gt 10 ]] && {
+    [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput setaf 1
+    echo -e "\nThe command failed 10 times.\n" >&2
+    [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput sgr0
+  }
+
+  return "${RESULT}"
+}
+
 # Setup the box, for magma. These commands will be run as root during provisioning.
 error() {
         if [ $? -ne 0 ]; then
@@ -8,28 +35,23 @@ error() {
         fi
 }
 
-# Check whether the install media is mounted, and if necessary mount it.
-if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
-  mount /dev/cdrom /media || (printf "\nFailed mount RHEL cdrom.\n"; exit 1)
-fi
-
 # Install the the EPEL repository.
-dnf --enablerepo=extras --quiet --assumeyes install epel-release ; error
+retry dnf --quiet --assumeyes install oracle-epel-release-el8 ; error
 
 # Packages needed beyond a minimal install to build and run magma.
-dnf --enablerepo=powertools --enablerepo=epel --quiet --assumeyes install autoconf automake bison byacc cmake cpp cscope ctags diffstat doxygen elfutils expect flex gcc gcc-c++ gcc-gfortran gdb gettext glibc-devel glibc-headers indent intltool java-1.8.0-openjdk jq kernel-headers libarchive libgsasl libgsasl-devel libnghttp2 libnghttp2-devel libssh2 libssh2-devel libstdc++-devel libtool libzstd libzstd-devel make mpfr ncurses-devel openmpi openmpi-devel openssh-clients patch patchutils perl perl-Digest perl-Digest-CRC perl-Digest-HMAC perl-Digest-MD4 perl-Digest-MD5 perl-Digest-SHA perl-Digest-SHA1 perl-libs perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-Time-HiRes perl-version procps python3 python3-impacket stunnel swig sysstat texinfo unzip valgrind valgrind-devel wget zip zlib-devel ; error
+retry dnf --quiet --enablerepo=ol8_developer_EPEL --enablerepo=ol8_developer_EPEL_modular --enablerepo=ol8_codeready_builder --assumeyes install autoconf automake bison byacc cmake cpp cscope ctags diffstat doxygen elfutils expect flex gcc gcc-c++ gcc-gfortran gdb gettext glibc-devel glibc-headers indent intltool java-1.8.0-openjdk jq kernel-headers libarchive libgsasl libgsasl-devel libnghttp2 libnghttp2-devel libssh2 libssh2-devel libstdc++-devel libtool libzstd libzstd-devel make mpfr ncurses-devel openmpi openmpi-devel openssh-clients patch patchutils perl perl-Digest perl-Digest-CRC perl-Digest-HMAC perl-Digest-MD4 perl-Digest-MD5 perl-Digest-SHA perl-Digest-SHA1 perl-libs perl-Module-Pluggable perl-Pod-Escapes perl-Pod-Simple perl-Time-HiRes perl-version procps python3 python3-impacket stunnel swig sysstat texinfo unzip valgrind valgrind-devel wget zip zlib-devel ; error
 
 # Grab the required packages from the EPEL repo.
-dnf --enablerepo=powertools --enablerepo=epel --quiet --assumeyes install libbsd libbsd-devel inotify-tools ; error
+retry dnf --quiet --enablerepo=ol8_developer_EPEL --enablerepo=ol8_developer_EPEL_modular --enablerepo=ol8_codeready_builder --assumeyes install libbsd libbsd-devel inotify-tools ; error
 
 # Boosts the available entropy which allows magma to start faster.
-dnf --enablerepo=powertools --enablerepo=epel --quiet --assumeyes install haveged ; error
+retry dnf --quiet --enablerepo=ol8_developer_EPEL --enablerepo=ol8_developer_EPEL_modular --enablerepo=ol8_codeready_builder --assumeyes install haveged ; error
 
 # Packages used to retrieve the Magma code, but aren't required for building/running the daemon.
-dnf --enablerepo=powertools --enablerepo=epel --quiet --assumeyes install wget git rsync perl-Git perl-Error ; error
+retry dnf --quiet --enablerepo=ol8_developer_EPEL --enablerepo=ol8_developer_EPEL_modular --enablerepo=ol8_codeready_builder --assumeyes install wget git rsync perl-Git perl-Error ; error
 
 # These packages are required for the stacie.py script, which requires the python cryptography package (installed via pip).
-dnf --enablerepo=powertools --enablerepo=epel --quiet --assumeyes install python3-pycryptodomex python3-cryptography ; error
+retry dnf --quiet --enablerepo=ol8_developer_EPEL --enablerepo=ol8_developer_EPEL_modular --enablerepo=ol8_codeready_builder --assumeyes install python3-pycryptodomex python3-cryptography ; error
 
 # Create the clamav user to avoid spurious errors.
 useradd clamav
