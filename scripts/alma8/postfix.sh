@@ -52,8 +52,8 @@ printf "virtual_mailbox_limit = 0\n\n"
 # Configure the postfix hostname and origin parameters.
 printf "\ninet_interfaces = localhost\n" >> /etc/postfix/main.cf
 printf "inet_protocols = ipv4\n" >> /etc/postfix/main.cf
-printf "myhostname = relay.magma.builder\n" >> /etc/postfix/main.cf
-printf "myorigin = magma.builder\n" >> /etc/postfix/main.cf
+printf "myhostname = relay.magma.localdomain\n" >> /etc/postfix/main.cf
+printf "myorigin = magma.localdomain\n" >> /etc/postfix/main.cf
 printf "transport_maps = hash:/etc/postfix/transport\n" >> /etc/postfix/main.cf
 
 # Configure postfix to listen for relays on port 2525 so it doesn't conflict with magma.
@@ -68,7 +68,7 @@ printf "/var/log/maillog {\n\tdaily\n\trotate 7\n\tmissingok\n}\n" > /etc/logrot
 # Fix the SELinux context for the postfix logrotate config.
 chcon system_u:object_r:etc_t:s0 /etc/logrotate.d/postfix
 
-#printf "\nmagma.builder         smtp:[127.0.0.1]:7000\n" >> /etc/postfix/transport
+#printf "\nmagma.localdomain         smtp:[127.0.0.1]:7000\n" >> /etc/postfix/transport
 #printf "magmadaemon.com         smtp:[127.0.0.1]:7000\n" >> /etc/postfix/transport
 postmap /etc/postfix/transport
 

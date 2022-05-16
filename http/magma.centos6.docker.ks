@@ -8,7 +8,7 @@ authconfig --enableshadow --passalgo=sha512
 timezone US/Pacific
 selinux --enforcing
 firewall --disabled
-network --bootproto=dhcp --device=eth0 --activate --onboot=on --noipv6 --hostname=magma.builder
+network --bootproto=dhcp --device=eth0 --activate --onboot=on --noipv6 --hostname=magma.localdomain
 reboot
 bootloader --location=partition
 

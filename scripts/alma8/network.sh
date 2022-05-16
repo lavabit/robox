@@ -8,8 +8,8 @@ if [[ "$PACKER_BUILD_NAME" =~ ^generic-alma8-(vmware|hyperv|libvirt|parallels|vi
   printf "alma8.localdomain\n" > /etc/hostname
   printf "\n127.0.0.1 alma8.localdomain\n\n" >> /etc/hosts
 else
-  printf "magma.builder\n" > /etc/hostname
-  printf "\n127.0.0.1 magma.builder\n\n" >> /etc/hosts
+  printf "magma.localdomain\n" > /etc/hostname
+  printf "\n127.0.0.1 magma.localdomain\n\n" >> /etc/hosts
 fi
 
 # Disable IPv6 or dnf will resolve mirror names to IPv6 address and then fail to connect with them.

@@ -14,6 +14,6 @@ if [[ "$PACKER_BUILD_NAME" =~ ^generic-gentoo-(vmware|hyperv|libvirt|parallels|v
   printf "gentoo.localdomain\n" > /etc/hostname
   printf "\n127.0.0.1 gentoo.localdomain\n\n" >> /etc/hosts
 else
-  printf "magma.builder\n" > /etc/hostname
-  printf "\n127.0.0.1 magma.builder\n\n" >> /etc/hosts
+  printf "magma.localdomain\n" > /etc/hostname
+  printf "\n127.0.0.1 magma.localdomain\n\n" >> /etc/hosts
 fi

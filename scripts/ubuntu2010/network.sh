@@ -45,8 +45,8 @@ if [[ "$PACKER_BUILD_NAME" =~ ^generic-ubuntu2010-(vmware|hyperv|libvirt|paralle
   printf "ubuntu2010.localdomain\n" > /etc/hostname
   printf "\n127.0.0.1 ubuntu2010.localdomain\n\n" >> /etc/hosts
 else
-  printf "magma.builder\n" > /etc/hostname
-  printf "\n127.0.0.1 magma.builder\n\n" >> /etc/hosts
+  printf "magma.localdomain\n" > /etc/hostname
+  printf "\n127.0.0.1 magma.localdomain\n\n" >> /etc/hosts
 fi
 
 cat <<-EOF > /etc/netplan/01-netcfg.yaml

@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-echo 'magma.builder' > /etc/hostname
+echo 'magma.localdomain' > /etc/hostname
 
 ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 sed -i -e 's/^#\(en_US.UTF-8\)/\1/' /etc/locale.gen

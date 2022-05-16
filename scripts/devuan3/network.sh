@@ -5,8 +5,8 @@ if [[ "$PACKER_BUILD_NAME" =~ ^generic-devuan3-(vmware|hyperv|libvirt|parallels|
   printf "devuan3.localdomain\n" > /etc/hostname
   printf "\n127.0.0.1 devuan3.localdomain\n\n" >> /etc/hosts
 else
-  printf "magma.builder\n" > /etc/hostname
-  printf "\n127.0.0.1 magma.builder\n\n" >> /etc/hosts
+  printf "magma.localdomain\n" > /etc/hostname
+  printf "\n127.0.0.1 magma.localdomain\n\n" >> /etc/hosts
 fi
 
 # Tne network interface and DHCP client are configured by the installer
