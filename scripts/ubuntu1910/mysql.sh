@@ -35,7 +35,7 @@ export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # The mysql client and related utilities.
-retry apt-get --assume-yes install mysql-client mysql-server perl libdbi-perl libmysqlclient20 mysql-common libdbd-mysql-perl
+retry apt-get --assume-yes install mysql-client mysql-server perl libdbi-perl libmysqlclient21 mysql-common libdbd-mysql-perl
 
 # Enable mysql and configure it to automatically start.
 systemctl start mysql.service && systemctl enable mysql.service
