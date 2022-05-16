@@ -487,7 +487,7 @@
       "scripts": [
         "scripts/debian9/limits.sh",
         "scripts/debian9/postfix.sh",
-        "scripts/debian9/mysql.sh",
+        "scripts/debian9/mariadb.sh",
         "scripts/debian9/memcached.sh",
         "scripts/debian9/floppy.sh",
         "scripts/debian9/profile.sh",
@@ -527,7 +527,7 @@
       "scripts": [
         "scripts/debian10/limits.sh",
         "scripts/debian10/postfix.sh",
-        "scripts/debian10/mysql.sh",
+        "scripts/debian10/mariadb.sh",
         "scripts/debian10/memcached.sh",
         "scripts/debian10/floppy.sh",
         "scripts/debian10/profile.sh",
@@ -567,7 +567,7 @@
       "scripts": [
         "scripts/debian11/limits.sh",
         "scripts/debian11/postfix.sh",
-        "scripts/debian11/mysql.sh",
+        "scripts/debian11/mariadb.sh",
         "scripts/debian11/memcached.sh",
         "scripts/debian11/floppy.sh",
         "scripts/debian11/profile.sh",

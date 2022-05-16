@@ -31,7 +31,7 @@ retry() {
 retry dnf install --assumeyes libevent memcached mariadb mariadb-connector-c mariadb-server-utils mariadb-backup mariadb-server perl-DBI perl-DBD-MySQL
 
 # Change the default temporary table directory or else the schema reset will fail when it creates a temp table.
-printf "\n\n[server]\ntmpdir=/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
+printf "\n\n[server]\ntmpdir=/var/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
 chcon system_u:object_r:mysqld_etc_t:s0 /etc/my.cnf.d/server-tmpdir.cnf
 
 printf "[mysqld]\n" >> /etc/my.cnf.d/server-buffers.cnf
@@ -89,7 +89,7 @@ mysqladmin --user=root password "$PRAND"
 printf "\n\n[mysql]\nuser=root\npassword=$PRAND\n\n" >> /root/.my.cnf
 
 # Change the default temporary table directory or else the schema reset will fail when it creates a temp table.
-printf "\n\n[server]\ntmpdir=/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
+printf "\n\n[server]\ntmpdir=/var/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
 chcon system_u:object_r:mysqld_etc_t:s0 /etc/my.cnf.d/server-tmpdir.cnf
 
 # Create the mytool user and grant the required permissions.
