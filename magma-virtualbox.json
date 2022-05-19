@@ -258,6 +258,7 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora27/fixtmp.sh",
         "scripts/fedora27/base.sh"
       ],
       "pause_before": "120s",
@@ -273,7 +274,6 @@
       "scripts": [
         "scripts/fedora27/kernel.sh",
         "scripts/fedora27/vga.sh",
-        "scripts/fedora27/fixtmp.sh",
         "scripts/fedora27/virtualbox.sh",
         "scripts/fedora27/parallels.sh",
         "scripts/fedora27/vmware.sh",
@@ -608,6 +608,7 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora28/fixtmp.sh",
         "scripts/fedora28/base.sh"
       ],
       "pause_before": "120s",
@@ -623,7 +624,6 @@
       "scripts": [
         "scripts/fedora28/kernel.sh",
         "scripts/fedora28/vga.sh",
-        "scripts/fedora28/fixtmp.sh",
         "scripts/fedora28/virtualbox.sh",
         "scripts/fedora28/parallels.sh",
         "scripts/fedora28/vmware.sh",
@@ -659,6 +659,7 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora29/fixtmp.sh",
         "scripts/fedora29/base.sh"
       ],
       "pause_before": "120s",
@@ -674,7 +675,6 @@
       "scripts": [
         "scripts/fedora29/kernel.sh",
         "scripts/fedora29/vga.sh",
-        "scripts/fedora29/fixtmp.sh",
         "scripts/fedora29/virtualbox.sh",
         "scripts/fedora29/parallels.sh",
         "scripts/fedora29/vmware.sh",
@@ -710,6 +710,7 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora30/fixtmp.sh",
         "scripts/fedora30/base.sh"
       ],
       "pause_before": "120s",
@@ -725,7 +726,6 @@
       "scripts": [
         "scripts/fedora30/kernel.sh",
         "scripts/fedora30/vga.sh",
-        "scripts/fedora30/fixtmp.sh",
         "scripts/fedora30/virtualbox.sh",
         "scripts/fedora30/parallels.sh",
         "scripts/fedora30/vmware.sh",
@@ -761,6 +761,7 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora31/fixtmp.sh",
         "scripts/fedora31/base.sh"
       ],
       "pause_before": "120s",
@@ -776,7 +777,6 @@
       "scripts": [
         "scripts/fedora31/kernel.sh",
         "scripts/fedora31/vga.sh",
-        "scripts/fedora31/fixtmp.sh",
         "scripts/fedora31/virtualbox.sh",
         "scripts/fedora31/parallels.sh",
         "scripts/fedora31/vmware.sh",
@@ -1098,6 +1098,7 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora32/fixtmp.sh",
         "scripts/fedora32/base.sh"
       ],
       "pause_before": "120s",
@@ -1113,7 +1114,6 @@
       "scripts": [
         "scripts/fedora32/kernel.sh",
         "scripts/fedora32/vga.sh",
-        "scripts/fedora32/fixtmp.sh",
         "scripts/fedora32/virtualbox.sh",
         "scripts/fedora32/parallels.sh",
         "scripts/fedora32/vmware.sh",
@@ -1149,6 +1149,7 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora33/fixtmp.sh",
         "scripts/fedora33/base.sh"
       ],
       "pause_before": "120s",
@@ -1164,7 +1165,6 @@
       "scripts": [
         "scripts/fedora33/kernel.sh",
         "scripts/fedora33/vga.sh",
-        "scripts/fedora33/fixtmp.sh",
         "scripts/fedora33/virtualbox.sh",
         "scripts/fedora33/parallels.sh",
         "scripts/fedora33/vmware.sh",
@@ -1200,6 +1200,7 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora34/fixtmp.sh",
         "scripts/fedora34/base.sh"
       ],
       "pause_before": "120s",
@@ -1215,7 +1216,6 @@
       "scripts": [
         "scripts/fedora34/kernel.sh",
         "scripts/fedora34/vga.sh",
-        "scripts/fedora34/fixtmp.sh",
         "scripts/fedora34/virtualbox.sh",
         "scripts/fedora34/parallels.sh",
         "scripts/fedora34/vmware.sh",
@@ -1251,6 +1251,7 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora35/fixtmp.sh",
         "scripts/fedora35/base.sh"
       ],
       "pause_before": "120s",
@@ -1266,7 +1267,6 @@
       "scripts": [
         "scripts/fedora35/kernel.sh",
         "scripts/fedora35/vga.sh",
-        "scripts/fedora35/fixtmp.sh",
         "scripts/fedora35/virtualbox.sh",
         "scripts/fedora35/parallels.sh",
         "scripts/fedora35/vmware.sh",
@@ -1302,6 +1302,7 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora36/fixtmp.sh",
         "scripts/fedora36/base.sh"
       ],
       "pause_before": "120s",
@@ -1317,7 +1318,6 @@
       "scripts": [
         "scripts/fedora36/kernel.sh",
         "scripts/fedora36/vga.sh",
-        "scripts/fedora36/fixtmp.sh",
         "scripts/fedora36/virtualbox.sh",
         "scripts/fedora36/parallels.sh",
         "scripts/fedora36/vmware.sh",
