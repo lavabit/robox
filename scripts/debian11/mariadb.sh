@@ -32,7 +32,7 @@ export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # The mysql client and related utilities.
-retry apt-get --assume-yes install mariadb mariadb-connector-c mariadb-server-utils mariadb-backup mariadb-server perl-DBI perl-DBD-MySQL
+retry apt-get --assume-yes install mariadb-client libmariadb3 mariadb-backup mariadb-server libdbi-perl libdbd-mariadb-perl
 
 # Enable and start the daemons.
 systemctl enable mariadb

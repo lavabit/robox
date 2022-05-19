@@ -28,7 +28,7 @@ retry() {
 }
 
 # Install MariaDB
-retry dnf install --assumeyes mariadb-client mariadb-server perl libdbi-perl libmariadbclient18 mariadb-common libdbd-mysql-perl
+retry apt-get install --assumeyes mariadb-client mariadb-server perl libdbi-perl libmariadbclient18 mariadb-common libdbd-mysql-perl
 
 # Setup mysql to start automatically.
 systemctl start mariadb.service && systemctl enable mariadb.service
