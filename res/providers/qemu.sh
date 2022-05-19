@@ -14,7 +14,7 @@ popd > /dev/null
 cd $BASE
 
 QEMU_VERSION="6.0.1"
-QEMU_MD5SUM="10c651469e07844523995e2c980a4fdb"
+QEMU_SHA256SUM="73619af50fc552a7b0a7a723d006747ec9d2367cab793a13592145cb76434446"
 QEMU_DIR="qemu-${QEMU_VERSION}"
 QEMU_ARCHIVE="qemu-${QEMU_VERSION}.tar.xz"
 QEMU_URL="https://download.qemu.org/${QEMU_ARCHIVE}"
@@ -36,9 +36,9 @@ if [ ! -f "${QEMU_ARCHIVE}" ]; then
     curl --output "${QEMU_ARCHIVE}" "${QEMU_URL}"
 fi
 
-DOWNLOAD_MD5SUM="$(md5sum "${QEMU_ARCHIVE}" | cut -f1 -d' ')"
-if [ "${QEMU_MD5SUM}" != "${DOWNLOAD_MD5SUM}" ]; then
-    echo "md5sum of ${QEMU_ARCHIVE} (${DOWNLOAD_MD5SUM}) is not the expected hash (${QEMU_MD5SUM})!"
+DOWNLOAD_SHA256SUM="$(sha256sum "${QEMU_ARCHIVE}" | cut -f1 -d' ')"
+if [ "${QEMU_SHA256SUM}" != "${DOWNLOAD_SHA256SUM}" ]; then
+    echo "sha256sum of ${QEMU_ARCHIVE} (${DOWNLOAD_SHA256SUM}) is not the expected hash (${QEMU_SHA256SUM})!"
     rm "${QEMU_ARCHIVE}"
     exit 1
 fi
