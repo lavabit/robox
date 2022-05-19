@@ -27,8 +27,12 @@ retry() {
   return "${RESULT}"
 }
 
+# To allow for automated installs, we disable interactive configuration steps.
+export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
+
 # Install MariaDB
-retry apt-get install --assumeyes mariadb-client mariadb-server perl libdbi-perl libmariadbclient18 mariadb-common libdbd-mysql-perl
+retry apt-get --assume-yes install mariadb-client mariadb-server perl libdbi-perl libmariadbclient18 mariadb-common libdbd-mysql-perl
 
 # Setup mysql to start automatically.
 systemctl start mariadb.service && systemctl enable mariadb.service

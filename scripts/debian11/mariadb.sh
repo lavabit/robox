@@ -35,8 +35,7 @@ export DEBCONF_NONINTERACTIVE_SEEN=true
 retry apt-get --assume-yes install mariadb-client libmariadb3 mariadb-backup mariadb-server libdbi-perl libdbd-mariadb-perl
 
 # Enable and start the daemons.
-systemctl enable mariadb
-systemctl start mariadb
+systemctl start mariadb.service && systemctl enable mariadb.service
 
 # Setup the mysql root account with a random password.
 export PRAND=`openssl rand -base64 18`
@@ -44,10 +43,6 @@ mysqladmin --user=root password "$PRAND"
 
 # Allow the root user to login to mysql as root by saving the randomly generated password.
 printf "\n\n[mysql]\nuser=root\npassword=$PRAND\n\n" >> /root/.my.cnf
-
-# Change the default temporary table directory or else the schema reset will fail when it creates a temp table.
-printf "\n\n[server]\ntmpdir=/var/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
-chcon system_u:object_r:mysqld_etc_t:s0 /etc/my.cnf.d/server-tmpdir.cnf
 
 # Create the mytool user and grant the required permissions.
 mysql --execute="CREATE USER mytool@localhost IDENTIFIED BY 'aComplex1'"
