@@ -1216,6 +1216,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "centos9s",
+      "output_directory": "output/centos9s",
+      "iso_url": "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20220509.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:a0f08eced9b720555f463ec0aa1bdcdf32d949504a20519991a4f8c6ce5cadf1",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "dragonflybsd6",
       "output_directory": "output/dragonflybsd6",
       "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.2.1_REL.iso",
