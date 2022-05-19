@@ -2634,7 +2634,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -2901,7 +2901,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -2933,7 +2933,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -3753,7 +3753,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -4207,7 +4207,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -4317,7 +4317,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.vagrant.ks<enter><wait>"
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -4533,7 +4533,7 @@
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
-        "<wait>text net.ifnames=0 ",
+        "<wait> text net.ifnames=0 ",
         "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora32.vagrant.ks ",
         "<wait><enter>"
       ],
@@ -4880,7 +4880,7 @@
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
-        "<wait>text net.ifnames=0 ",
+        "<wait> text net.ifnames=0 ",
         "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora33.vagrant.ks ",
         "<wait><enter>"
       ],
@@ -5047,7 +5047,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky8.vagrant.ks<enter><wait>"
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky8.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -5079,7 +5079,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma8.vagrant.ks<enter><wait>"
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma8.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -5112,7 +5112,7 @@
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
-        "<wait>text net.ifnames=0 ",
+        "<wait> text net.ifnames=0 ",
         "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora34.vagrant.ks ",
         "<wait><enter>"
       ],
@@ -5475,7 +5475,7 @@
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
-        "<wait>text net.ifnames=0 ",
+        "<wait> text net.ifnames=0 ",
         "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora35.vagrant.ks ",
         "<wait><enter>"
       ],
@@ -5601,7 +5601,7 @@
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> ",
-        "<wait>text net.ifnames=0 ",
+        "<wait> text net.ifnames=0 ",
         "<wait>inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora36.vagrant.ks ",
         "<wait><enter>"
       ],
@@ -5635,7 +5635,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks<enter><wait>"
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
       "memory": 2048,

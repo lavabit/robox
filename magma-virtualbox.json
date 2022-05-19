@@ -1451,7 +1451,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
       "cpus": 2,
@@ -2590,7 +2590,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos8.vagrant.ks<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos8.vagrant.ks<enter><wait>"
       ],
       "disk_size": 131072,
       "cpus": 2,
