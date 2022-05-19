@@ -2560,6 +2560,48 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rhel9/network.sh",
+        "scripts/rhel9/dnf.sh",
+        "scripts/rhel9/base.sh",
+        "scripts/rhel9/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel9-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rhel9/kernel.sh",
+        "scripts/rhel9/floppy.sh",
+        "scripts/rhel9/virtualbox.sh",
+        "scripts/rhel9/parallels.sh",
+        "scripts/rhel9/vmware.sh",
+        "scripts/rhel9/qemu.sh",
+        "scripts/rhel9/vagrant.sh",
+        "scripts/rhel9/tuning.sh",
+        "scripts/rhel9/sshd.sh",
+        "scripts/rhel9/randomness.sh",
+        "scripts/rhel9/updatedb.sh",
+        "scripts/rhel9/cleanup.sh",
+        "scripts/rhel9/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel9-parallels"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -7614,6 +7656,73 @@
       "http_directory": "http",
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/iso/Fedora-Server-netinst-x86_64-36-1.5.iso",
       "iso_checksum": "sha256:421c4c6e23d72e4669a55e7710562287ecd9308b3d314329960f586b89ccca19",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-rhel9-parallels",
+      "vm_name": "generic-rhel9-parallels",
+      "output_directory": "output/generic-rhel9-parallels",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--shf-host-defined",
+          "off"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "rhel7",
+      "http_directory": "http",
+      "iso_url": "https://archive.org/download/rhel-9.0/rhel-baseos-9.0-x86_64-dvd.iso",
+      "iso_checksum": "sha256:a387f3230acf87ee38707ee90d3c88f44d7bf579e6325492f562f0f1f9449e89",
+      "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

@@ -2567,6 +2567,48 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rhel9/network.sh",
+        "scripts/rhel9/dnf.sh",
+        "scripts/rhel9/base.sh",
+        "scripts/rhel9/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel9-vmware"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rhel9/kernel.sh",
+        "scripts/rhel9/floppy.sh",
+        "scripts/rhel9/virtualbox.sh",
+        "scripts/rhel9/parallels.sh",
+        "scripts/rhel9/vmware.sh",
+        "scripts/rhel9/qemu.sh",
+        "scripts/rhel9/vagrant.sh",
+        "scripts/rhel9/tuning.sh",
+        "scripts/rhel9/sshd.sh",
+        "scripts/rhel9/randomness.sh",
+        "scripts/rhel9/updatedb.sh",
+        "scripts/rhel9/cleanup.sh",
+        "scripts/rhel9/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rhel9-vmware"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -6175,6 +6217,47 @@
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/iso/Fedora-Server-netinst-x86_64-36-1.5.iso",
       "iso_checksum": "sha256:421c4c6e23d72e4669a55e7710562287ecd9308b3d314329960f586b89ccca19",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-rhel9-vmware",
+      "vm_name": "generic-rhel9-vmware",
+      "vmdk_name": "generic-rhel9-vmware",
+      "output_directory": "output/generic-rhel9-vmware",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab>text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "disk_adapter_type": "sata",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "rhel7-64",
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://archive.org/download/rhel-9.0/rhel-baseos-9.0-x86_64-dvd.iso",
+      "iso_checksum": "sha256:a387f3230acf87ee38707ee90d3c88f44d7bf579e6325492f562f0f1f9449e89",
+      "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
