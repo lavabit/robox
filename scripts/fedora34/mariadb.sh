@@ -31,51 +31,51 @@ retry() {
 retry dnf install --assumeyes libevent memcached mariadb mariadb-connector-c mariadb-server-utils mariadb-backup mariadb-server perl-DBI perl-DBD-MySQL
 
 # Change the default temporary table directory or else the schema reset will fail when it creates a temp table.
-printf "\n\n[server]\ntmpdir=/var/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
-chcon system_u:object_r:mysqld_etc_t:s0 /etc/my.cnf.d/server-tmpdir.cnf
+#printf "\n\n[server]\ntmpdir=/var/tmp/\n\n" >> /etc/my.cnf.d/server-tmpdir.cnf
+#chcon system_u:object_r:mysqld_etc_t:s0 /etc/my.cnf.d/server-tmpdir.cnf
 
-printf "[mysqld]\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "back_log = 1500\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "table_open_cache = 520\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "table_open_cache_instances = 32\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "key_buffer_size = 16M\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "query_cache_type = 0\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "join_buffer_size = 32K\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "sort_buffer_size = 32K\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_buffer_pool_size=128M\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_use_native_aio=1\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_data_file_path=ibdata1:50M:autoextend\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_file_per_table=1\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_open_files=100\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_flush_log_at_trx_commit=1\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_lock_wait_timeout = 120\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_doublewrite=0\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_buffer_pool_instances=16\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_mtflush_threads=16\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_compression_level=6\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_compression_algorithm=zlib\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "max-prepared-stmt-count=400000\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_fast_shutdown=0\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_log_buffer_size=128M\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_log_files_in_group=3\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_log_file_size=128M\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_thread_concurrency=32\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_flush_method = O_DIRECT\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_write_io_threads=16\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_read_io_threads=16\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_max_dirty_pages_pct=10\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "skip-name-resolve\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_adaptive_flushing=1\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_file_format=barracuda\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_fast_shutdown=0\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_mtflush_threads=16\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_use_mtflush=1\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_checksum_algorithm=crc32\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_flush_neighbors=0\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_lru_scan_depth=2500 \n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_io_capacity=25000\n" >> /etc/my.cnf.d/server-buffers.cnf
-printf "innodb_io_capacity_max=35000\n" >> /etc/my.cnf.d/server-buffers.cnf
-chcon system_u:object_r:mysqld_etc_t:s0 /etc/my.cnf.d/server-buffers.cnf
+#printf "[mysqld]\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "back_log = 1500\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "table_open_cache = 520\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "table_open_cache_instances = 32\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "key_buffer_size = 16M\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "query_cache_type = 0\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "join_buffer_size = 32K\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "sort_buffer_size = 32K\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_buffer_pool_size=128M\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_use_native_aio=1\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_data_file_path=ibdata1:50M:autoextend\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_file_per_table=1\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_open_files=100\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_flush_log_at_trx_commit=1\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_lock_wait_timeout = 120\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_doublewrite=0\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_buffer_pool_instances=16\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_mtflush_threads=16\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_compression_level=6\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_compression_algorithm=zlib\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "max-prepared-stmt-count=400000\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_fast_shutdown=0\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_log_buffer_size=128M\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_log_files_in_group=3\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_log_file_size=128M\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_thread_concurrency=32\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_flush_method = O_DIRECT\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_write_io_threads=16\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_read_io_threads=16\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_max_dirty_pages_pct=10\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "skip-name-resolve\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_adaptive_flushing=1\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_file_format=barracuda\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_fast_shutdown=0\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_mtflush_threads=16\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_use_mtflush=1\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_checksum_algorithm=crc32\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_flush_neighbors=0\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_lru_scan_depth=2500 \n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_io_capacity=25000\n" >> /etc/my.cnf.d/server-buffers.cnf
+#printf "innodb_io_capacity_max=35000\n" >> /etc/my.cnf.d/server-buffers.cnf
+#chcon system_u:object_r:mysqld_etc_t:s0 /etc/my.cnf.d/server-buffers.cnf
 
 # Enable and start the daemons.
 systemctl enable mariadb
