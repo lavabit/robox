@@ -2609,6 +2609,48 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/centos8s/network.sh",
+        "scripts/centos8s/dnf.sh",
+        "scripts/centos8s/base.sh",
+        "scripts/centos8s/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos8s-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/centos8s/kernel.sh",
+        "scripts/centos8s/floppy.sh",
+        "scripts/centos8s/virtualbox.sh",
+        "scripts/centos8s/parallels.sh",
+        "scripts/centos8s/vmware.sh",
+        "scripts/centos8s/qemu.sh",
+        "scripts/centos8s/vagrant.sh",
+        "scripts/centos8s/tuning.sh",
+        "scripts/centos8s/sshd.sh",
+        "scripts/centos8s/randomness.sh",
+        "scripts/centos8s/updatedb.sh",
+        "scripts/centos8s/cleanup.sh",
+        "scripts/centos8s/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos8s-libvirt"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -5612,6 +5654,38 @@
       "headless": true,
       "iso_url": "https://archive.org/download/rhel-9.0/rhel-baseos-9.0-x86_64-dvd.iso",
       "iso_checksum": "sha256:a387f3230acf87ee38707ee90d3c88f44d7bf579e6325492f562f0f1f9449e89",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-centos8s-libvirt",
+      "vm_name": "generic-centos8s-libvirt",
+      "output_directory": "output/generic-centos8s-libvirt",
+      "qemu_binary": "qemu-system-x86_64",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8s.vagrant.ks<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "on",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20220513-boot.iso",
+      "iso_checksum": "sha256:68b43af786ff204496a9d7325354d297bb025216648c65de46bf18c5d6b4d6d0",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

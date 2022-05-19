@@ -1201,6 +1201,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "centos8s",
+      "output_directory": "output/centos8s",
+      "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20220513-boot.iso",
+      "iso_checksum": "sha256:68b43af786ff204496a9d7325354d297bb025216648c65de46bf18c5d6b4d6d0",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "dragonflybsd6",
       "output_directory": "output/dragonflybsd6",
       "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.2.1_REL.iso",

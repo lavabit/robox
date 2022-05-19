@@ -2602,6 +2602,48 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/centos8s/network.sh",
+        "scripts/centos8s/dnf.sh",
+        "scripts/centos8s/base.sh",
+        "scripts/centos8s/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos8s-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/centos8s/kernel.sh",
+        "scripts/centos8s/floppy.sh",
+        "scripts/centos8s/virtualbox.sh",
+        "scripts/centos8s/parallels.sh",
+        "scripts/centos8s/vmware.sh",
+        "scripts/centos8s/qemu.sh",
+        "scripts/centos8s/vagrant.sh",
+        "scripts/centos8s/tuning.sh",
+        "scripts/centos8s/sshd.sh",
+        "scripts/centos8s/randomness.sh",
+        "scripts/centos8s/updatedb.sh",
+        "scripts/centos8s/cleanup.sh",
+        "scripts/centos8s/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-centos8s-parallels"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -7722,6 +7764,67 @@
       "http_directory": "http",
       "iso_url": "https://archive.org/download/rhel-9.0/rhel-baseos-9.0-x86_64-dvd.iso",
       "iso_checksum": "sha256:a387f3230acf87ee38707ee90d3c88f44d7bf579e6325492f562f0f1f9449e89",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-centos8s-parallels",
+      "vm_name": "generic-centos8s-parallels",
+      "output_directory": "output/generic-centos8s-parallels",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8s.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "centos",
+      "http_directory": "http",
+      "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20220513-boot.iso",
+      "iso_checksum": "sha256:68b43af786ff204496a9d7325354d297bb025216648c65de46bf18c5d6b4d6d0",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
