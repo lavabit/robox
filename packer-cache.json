@@ -978,8 +978,8 @@
     {
       "name": "rocky8",
       "output_directory": "output/rocky8",
-      "iso_url": "https://dfw.mirror.rackspace.com/rocky/8.5/isos/x86_64/Rocky-8.5-x86_64-boot.iso",
-      "iso_checksum": "sha256:5a0dc65d1308e47b51a49e23f1030b5ee0f0ece3702483a8a6554382e893333c",
+      "iso_url": "https://dfw.mirror.rackspace.com/rocky/8.6/isos/x86_64/Rocky-8.6-x86_64-boot.iso",
+      "iso_checksum": "sha256:fe77cc293a2f2fe6ddbf5d4bc2b5c820024869bc7ea274c9e55416d215db0cc5",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
