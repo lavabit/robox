@@ -2681,7 +2681,7 @@
         "scripts/centos9s/sshd.sh",
         "scripts/centos9s/randomness.sh",
         "scripts/centos9s/updatedb.sh",
-        "scripts/centos9s/cleanup.sh",
+        "scripts/centos9s/cleanup.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
