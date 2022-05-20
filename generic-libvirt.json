@@ -5679,7 +5679,13 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks<enter><wait>"
+        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks vga=792 <enter><wait>"
+      ],
+      "qemuargs": [
+        [ 
+          "-cpu", 
+          "max" 
+        ]
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -5743,7 +5749,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos9s.vagrant.ks<enter><wait>"
+        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos9s.vagrant.ks vga=792 <enter><wait>"
       ],
       "format": "qcow2",
       "disk_size": "131072",
