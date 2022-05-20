@@ -40,34 +40,7 @@ if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
   sed --in-place "s/^enabled=.*/enabled=0/g" /etc/dnf/plugins/subscription-manager.conf
 fi
 
-# # CentOS Repo Setup
-# sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\//baseurl=https:\/\/vault.centos.org\//g" /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
-# sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
-# 
-# sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\//baseurl=https:\/\/vault.centos.org\//g" /etc/yum.repos.d/CentOS-Linux-AppStream.repo
-# sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-AppStream.repo
-# 
-# sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\//baseurl=https:\/\/vault.centos.org\//g" /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
-# sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
-# 
-# sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\//baseurl=https:\/\/vault.centos.org\//g" /etc/yum.repos.d/CentOS-Linux-Plus.repo
-# sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-Plus.repo
-# 
-# # sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\/centos\//baseurl=https:\/\/vault.centos.org\/centos\//g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
-# sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
-# sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
-
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
-
-# Disable the physical media repos, along with the fasttrack and devel repos.
-sed --in-place "s/^/# /g" /etc/yum.repos.d/CentOS-Linux-Media.repo
-sed --in-place "s/# #/##/g" /etc/yum.repos.d/CentOS-Linux-Media.repo
-sed --in-place "s/^/# /g" /etc/yum.repos.d/CentOS-Linux-ContinuousRelease.repo
-sed --in-place "s/# #/##/g" /etc/yum.repos.d/CentOS-Linux-ContinuousRelease.repo
-sed --in-place "s/^/# /g" /etc/yum.repos.d/CentOS-Linux-FastTrack.repo
-sed --in-place "s/# #/##/g" /etc/yum.repos.d/CentOS-Linux-FastTrack.repo
-sed --in-place "s/^/# /g" /etc/yum.repos.d/CentOS-Linux-Devel.repo
-sed --in-place "s/# #/##/g" /etc/yum.repos.d/CentOS-Linux-Devel.repo
 
 # EPEL Repo Setup
 retry dnf --quiet --assumeyes --enablerepo=extras install epel-release
@@ -91,26 +64,4 @@ retry dnf --assumeyes update
 # Install the basic packages we'd expect to find.
 retry dnf --assumeyes install sudo dmidecode dnf-utils bash-completion man man-pages mlocate vim-enhanced bind-utils wget dos2unix unix2dos lsof tar telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc python39
 
-if [ -f /etc/yum.repos.d/CentOS-Linux-Vault.repo.rpmnew ]; then
-  rm --force /etc/yum.repos.d/CentOS-Linux-Vault.repo.rpmnew
-fi
 
-if [ -f /etc/yum.repos.d/CentOS-Linux-Media.repo.rpmnew ]; then
-  rm --force /etc/yum.repos.d/CentOS-Linux-Media.repo.rpmnew
-fi
-
-if [ -f /etc/yum.repos.d/epel-playground.repo.rpmnew ]; then
-  rm --force /etc/yum.repos.d/epel-playground.repo.rpmnew
-fi
-
-if [ -f /etc/yum.repos.d/epel-testing-modular.repo.rpmnew ]; then
-  rm --force /etc/yum.repos.d/epel-testing-modular.repo.rpmnew
-fi
-
-if [ -f /etc/yum.repos.d/epel-testing.repo.rpmnew ]; then
-  rm --force /etc/yum.repos.d/epel-testing.repo.rpmnew
-fi
-
-if [ -f /etc/yum.repos.d/epel.repo.rpmnew ]; then
-  rm --force /etc/yum.repos.d/epel.repo.rpmnew
-fi

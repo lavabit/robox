@@ -115,6 +115,52 @@ FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lav
 # A list of configs to skip during complete build operations.
 export EXCEPTIONS=""
 
+
+# Some of the rpositories we use. This will warn us of if they are removed/archived.
+
+# Ubuntu 16.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
+
+# Ubuntu 18.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/bionic/InRelease" )
+
+# Ubuntu 20.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/focal/InRelease" )
+
+# Ubuntu 21.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/hirsute/InRelease" )
+
+# Ubuntu 21.10
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/impish/InRelease" )
+
+# Ubuntu 22.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/jammy/InRelease" )
+
+# Ubuntu 22.10
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/kinetic/InRelease" )
+
+# Fedora 32
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 33
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 34
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 35
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 36
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/os/repodata/repomd.xml" )
+
+# CentOS 8 Stream
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
+
+# CentOS 9 Stream
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
+
+
 # Detect Windows subsystem for Linux.
 if [ -z $OS ]; then
   if [[ "`uname -r`" =~ -Microsoft$ ]]; then
@@ -350,6 +396,78 @@ function iso() {
     sed --in-place "s/$ISO_URL/$URL/g" $FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
 
+  elif [ "$1" == "centos8s" ]; then
+    
+    # Find the existing CentOS 8 stream URL and hash values.
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"centos8s\")) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"centos8s\")) | .iso_checksum" 2>/dev/null`
+
+    # Find the CentOS 8 stream URL.
+    URL="https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/"
+    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "CentOS\-Stream\-8\-x86\_64\-[0-9]{8}\-boot\.iso" | uniq`
+    if [ $? != 0 ] || [ "$ISO" == "" ]; then
+      tput setaf 1; printf "\nThe CentOS 8 stream ISO update failed.\n\n"; tput sgr0
+      return 1
+    fi
+
+    # Calculate the new URL.
+    URL="${URL}${ISO}"
+
+    # Download the ISO file and calculate the new hash value.
+    set -o pipefail
+    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    if [ $? != 0 ] || [ "$SHA" == "" ]; then
+        tput setaf 1; printf "\nThe CentOS 8 stream ISO update failed.\n\n"; tput sgr0
+        return 1
+    fi
+    set +o pipefail
+
+    # Escape the URL strings.
+    URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
+    ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
+
+    # Replace the existing ISO and hash values with the update values.
+    sed --in-place "s/$ISO_URL/$URL/g" $FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    
+  elif [ "$1" == "centos9s" ]; then
+
+    # Find the existing CentOS 9 stream URL and hash values.
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"centos9s\")) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"centos9s\")) | .iso_checksum" 2>/dev/null`
+
+    # Find the CentOS 9 stream URL.
+    URL="https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/"
+    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "CentOS\-Stream\-8\-[0-9]{8}\.[0-9]\-x86\_64\-boot\.iso" | uniq`
+    if [ $? != 0 ] || [ "$ISO" == "" ]; then
+      tput setaf 1; printf "\nThe CentOS 9 stream ISO update failed.\n\n"; tput sgr0
+      return 1
+    fi
+
+    # Calculate the new URL.
+    URL="${URL}${ISO}"
+
+    # Download the ISO file and calculate the new hash value.
+    set -o pipefail
+    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    if [ $? != 0 ] || [ "$SHA" == "" ]; then
+        tput setaf 1; printf "\nThe CentOS 9 stream ISO update failed.\n\n"; tput sgr0
+        return 1
+    fi
+    set +o pipefail
+
+    # Escape the URL strings.
+    URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
+    ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
+
+    # Replace the existing ISO and hash values with the update values.
+    sed --in-place "s/$ISO_URL/$URL/g" $FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    
+  elif [ "$1" == "stream" ]; then
+    
+    iso centos8s && iso centos9s
+    
   elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
 
     # Find the existing HardenedBSD URL and hash values.
@@ -656,8 +774,13 @@ function links() {
     (verify_url "${UNIQURLS[$i]}") &
     sleep 0.1 &> /dev/null || echo "" &> /dev/null
   done
+  
+  for ((i = 0; i < ${#REPOS[@]}; ++i)); do
+    (verify_url "${REPOS[$i]}") &
+    sleep 0.1 &> /dev/null || echo "" &> /dev/null
+  done
 
-  # Wait until the children done working.
+  # Wait until the children are done working.
   wait
 
   # Detect downloads that aren't being fetched by the packer-cache.json file.
@@ -671,11 +794,11 @@ function links() {
       echo "Cache Failure:  ${ISOSUMS[$i]}"
   done
 
-  # Combine the media URLs with the regular box ISO urls.
-  let TOTAL=${#UNIQURLS[@]}+${#MURLS[@]}
+  # Combine the media URLs with the regular box ISO URLs and the repos.
+  let TOTAL=${#UNIQURLS[@]}+${#MURLS[@]}+${#REPOS[@]}
 
   # Let the user know all of the links passed.
-  printf "\nAll $TOTAL of the install media locations have been checked...\n\n"
+  printf "\nAll $TOTAL of the install media/package repository locations have been checked...\n\n"
 }
 
 function sums() {
