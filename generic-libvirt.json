@@ -5751,6 +5751,12 @@
       "boot_command": [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos9s.vagrant.ks vga=792 <enter><wait>"
       ],
+      "qemuargs": [
+        [ 
+          "-cpu", 
+          "max" 
+        ]
+      ],
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
