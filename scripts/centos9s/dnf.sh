@@ -43,7 +43,7 @@ fi
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
 # EPEL Repo Setup
-retry dnf --quiet --assumeyes --enablerepo=extras install epel-release
+retry dnf --quiet --assumeyes --enablerepo=extras-common install epel-release
 
 # sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
 # sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
