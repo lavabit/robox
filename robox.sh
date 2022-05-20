@@ -438,7 +438,7 @@ function iso() {
 
     # Find the CentOS 9 stream URL.
     URL="https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "CentOS\-Stream\-8\-[0-9]{8}\.[0-9]\-x86\_64\-boot\.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "CentOS\-Stream\-9\-[0-9]{8}\.[0-9]\-x86\_64\-boot\.iso" | uniq`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe CentOS 9 stream ISO update failed.\n\n"; tput sgr0
       return 1
