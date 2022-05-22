@@ -9,7 +9,7 @@ export PATH="/sbin/:/bin/:/usr/sbin/:/usr/bin/:/usr/pkg/bin/:/usr/pkg/sbin/:/usr
 export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.0/All"
 
 # Add the packages.
-pkg_add vim curl wget sudo bash pkgin slocate bash-completion
+pkg_add vim curl wget sudo bash pkgin slocate bash-completion ca-certificates pkg_alternatives
 
 # Enable the binary package repositories.
 sed -i 's,^[^#].*$,http://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/$arch/8.0/All,' /usr/pkg/etc/pkgin/repositories.conf
