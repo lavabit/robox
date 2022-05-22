@@ -51,7 +51,7 @@ if [ "\$PS1" ]; then
       if [ -e /etc/sysconfig/bash-prompt-screen ]; then
           PROMPT_COMMAND=/etc/sysconfig/bash-prompt-screen
       else
-          PROMPT_COMMAND='printf "\033k%s@%s:%s\033\\" "\${USER}" "\${HOSTNAME%%.*}" "\${PWD/#\$HOME/~}"'
+          PROMPT_COMMAND='printf "\033k%s@%s:%s\033\\\" "\${USER}" "\${HOSTNAME%%.*}" "\${PWD/#\$HOME/~}"'
       fi
       ;;
     *)
@@ -156,7 +156,7 @@ if [ "\$PS1" ]; then
       if [ -e /etc/sysconfig/bash-prompt-screen ]; then
           PROMPT_COMMAND=/etc/sysconfig/bash-prompt-screen
       else
-          PROMPT_COMMAND='printf "\033k%s@%s:%s\033\\" "\${USER}" "\${HOSTNAME%%.*}" "\${PWD/#\$HOME/~}"'
+          PROMPT_COMMAND='printf "\033k%s@%s:%s\033\\\" "\${USER}" "\${HOSTNAME%%.*}" "\${PWD/#\$HOME/~}"'
       fi
       ;;
     *)
