@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Find the QEMU boxes.
-PORT=`sudo netstat -pnl 2>&1 | grep tcp | grep -E "qemu|qemu-kvm" | awk -F':' '{print $2}' | awk -F' ' '{print $1}' | grep -E "^59"`
+PORT=`sudo netstat -pnl 2>&1 | grep tcp | grep -E "/qemu|/qemu-kvm|/qemu-system-" | awk -F':' '{print $2}' | awk -F' ' '{print $1}' | grep -E "^59"`
 which vinagre &> /dev/null
 if [ $? == 0 ]; then
   for p in $PORT; do
@@ -9,7 +9,7 @@ if [ $? == 0 ]; then
     #remote-viewer vnc://127.0.0.1:$p &> /dev/null &
     CUT1="`echo $p | cut -b '3,4' -`"
     CUT2="`echo $CUT1 | sed 's/^0//g'`"
-    COUNT="`ps -ef | grep qemu-kvm | grep --extended-regexp --count \"\\-vnc 127.0.0.1:$CUT1|\\-vnc 127.0.0.1:$CUT2\"`"
+    COUNT="`ps -ef | grep --extended-regexp "qemu-kvm|qemu-system-x86_64" | grep --extended-regexp --count \"\\-vnc 127.0.0.1:$CUT1|\\-vnc 127.0.0.1:$CUT2\"`"
     if [ "$COUNT" == 1 ]; then
       rpm -q vinagre  &> /dev/null || (printf "\n\nA VNC port was detected, but Vinagre doesn't appear to be available.\n\n" && exit 1)
       vinagre --vnc-scale vnc://127.0.0.1:$p &> /dev/null &

@@ -87,7 +87,7 @@ retry apt-get --assume-yes install maven libatk-wrapper-java libatk-wrapper-java
 retry curl --location --output openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb
 retry curl --location --output openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb
 retry curl --location --output openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb
-retry curl --location --output libjpeg62-turbo_1.5.1-2_amd64.deb https://mirrors.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
+retry curl --location --output libjpeg62-turbo_1.5.1-2_amd64.deb https://mirrors.edge.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
 
 echo "55b4208bca9e772cd3d6e6a3f6bf3949d170e6da77e53b0ba59abb8f1658bb64  libjpeg62-turbo_1.5.1-2_amd64.deb" | sha256sum -c || exit 1
 echo "a7fa42ebfd7c12bb9de88ead6e40246e92f0437215049efa359678b07b5a513f  openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb" | sha256sum -c || exit 1

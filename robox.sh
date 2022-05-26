@@ -324,7 +324,7 @@ function isos() {
   [ ! -n "$JOBS" ] && export JOBS="16"
 
   # Find the Gentoo URL.
-  URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
+  URL="https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
   ISO=`${CURL} --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
   URL="${URL}${ISO}"
   N=( "${N[@]}" "Gentoo" ); U=( "${U[@]}" "$URL" )
@@ -357,7 +357,7 @@ function iso() {
     ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo\")) | .iso_checksum" 2>/dev/null`
 
     # Find the Gentoo URL.
-    URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
+    URL="https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
     ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0

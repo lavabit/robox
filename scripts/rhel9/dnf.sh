@@ -345,7 +345,7 @@ rm --force epel-release-9-2.el9.noarch.rpm
 # Update the EPEL repo to use HTTPS.
 sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
-sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/mirrors.kernel.org\/fedora-epel\//g" /etc/yum.repos.d/epel.repo
+sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/mirrors.edge.kernel.org\/fedora-epel\//g" /etc/yum.repos.d/epel.repo
 
 # Disable the testing repo.
 sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-testing.repo

@@ -22,7 +22,7 @@ mount "${device}2" /mnt
 # Ensure the leaseweb.net and kernel.org mirrors are always listed, so things work, even when the archlinux
 # website goes offline.
 printf "Server = https://mirror.leaseweb.net/archlinux/\$repo/os/\$arch\n" > /etc/pacman.d/mirrorlist
-printf "Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch\n" >> /etc/pacman.d/mirrorlist
+printf "Server = https://mirrors.edge.kernel.org/archlinux/\$repo/os/\$arch\n" >> /etc/pacman.d/mirrorlist
 
 curl -fsS "https://www.archlinux.org/mirrorlist/?country=all" > /tmp/mirrolist
 grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 5 | sed 's/^#//' >> /etc/pacman.d/mirrorlist

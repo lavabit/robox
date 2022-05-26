@@ -18,11 +18,11 @@ autoinstall:
       geoip: false
       primary:
           - arches: [default]
-            uri: https://mirrors.kernel.org/ubuntu/
+            uri: https://mirrors.edge.kernel.org/ubuntu/
             # uri: https://old-releases.ubuntu.com/ubuntu/
       security:
           - arches: [default]
-            uri: https://mirrors.kernel.org/ubuntu/
+            uri: https://mirrors.edge.kernel.org/ubuntu/
             # uri: https://old-releases.ubuntu.com/ubuntu/
   storage:
       layout:

@@ -21,7 +21,7 @@ bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=
 
 # When this release is no longer available from mirrors, enable the archive url.
 url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/os/
-# url --url=https://mirrors.kernel.org/fedora/releases/34/Everything/x86_64/os/
+# url --url=https://mirrors.edge.kernel.org/fedora/releases/34/Everything/x86_64/os/
 # url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/34/Everything/x86_64/os/
 
 %packages
