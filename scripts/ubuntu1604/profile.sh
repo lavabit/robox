@@ -44,6 +44,7 @@ index f6939ee..545eaea 100644
 +fi
 EOF
 
+if [ -d /home/vagrant/ ] && [ -f /home/vagrant/.bashrc ]; then
 cd /home/vagrant/ && patch -p1 <<-EOF
 diff --git a/.bashrc b/.bashrc
 index b488fcc..559370c 100644
@@ -68,3 +69,5 @@ index b488fcc..559370c 100644
  # check the window size after each command and, if necessary,
  # update the values of LINES and COLUMNS.
 EOF
+chown vagrant:vagrant /home/vagrant/.bashrc
+fi

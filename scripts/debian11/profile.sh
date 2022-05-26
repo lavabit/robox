@@ -8,16 +8,6 @@ sed --in-place "s/#alias fgrep='fgrep --color=auto'/alias fgrep='fgrep --color=a
 sed --in-place "s/#alias egrep='egrep --color=auto'/alias egrep='egrep --color=auto'/g" /etc/skel/.bashrc
 sed --in-place "s/#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'/export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'/g" /etc/skel/.bashrc
 
-# If the vagrant user is already setup, edit the existing bashrc file.
-if [ -f /home/vagrant/.bashrc ]; then
-  sed --in-place "s/#alias dir='dir --color=auto'/alias dir='dir --color=auto'/g" /home/vagrant/.bashrc
-  sed --in-place "s/#alias vdir='vdir --color=auto'/alias vdir='vdir --color=auto'/g" /home/vagrant/.bashrc
-  sed --in-place "s/#alias grep='grep --color=auto'/alias grep='grep --color=auto'/g" /home/vagrant/.bashrc
-  sed --in-place "s/#alias fgrep='fgrep --color=auto'/alias fgrep='fgrep --color=auto'/g" /home/vagrant/.bashrc
-  sed --in-place "s/#alias egrep='egrep --color=auto'/alias egrep='egrep --color=auto'/g" /home/vagrant/.bashrc
-  sed --in-place "s/#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'/export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'/g" /home/vagrant/.bashrc
-fi
-
 # Enable color terminal support for root.
 cat <<-EOF >> /root/.bashrc
 # set a fancy prompt (non-color, unless we know we "want" color)
@@ -79,6 +69,20 @@ cat <<-EOF > /root/.vimrc
 set mouse-=a
 EOF
 
+# If the vagrant user is already setup, edit the existing bashrc file.
+if [ -d /home/vagrant/ ] && [ -f /home/vagrant/.bashrc ]; then
+  sed --in-place "s/#alias dir='dir --color=auto'/alias dir='dir --color=auto'/g" /home/vagrant/.bashrc
+  sed --in-place "s/#alias vdir='vdir --color=auto'/alias vdir='vdir --color=auto'/g" /home/vagrant/.bashrc
+  sed --in-place "s/#alias grep='grep --color=auto'/alias grep='grep --color=auto'/g" /home/vagrant/.bashrc
+  sed --in-place "s/#alias fgrep='fgrep --color=auto'/alias fgrep='fgrep --color=auto'/g" /home/vagrant/.bashrc
+  sed --in-place "s/#alias egrep='egrep --color=auto'/alias egrep='egrep --color=auto'/g" /home/vagrant/.bashrc
+  sed --in-place "s/#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'/export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'/g" /home/vagrant/.bashrc
+  chown vagrant:vagrant /home/vagrant/.bashrc
+fi
+
+if [ -d /home/vagrant/ ]; then
 cat <<-EOF > /home/vagrant/.vimrc
 set mouse-=a
 EOF
+chown vagrant:vagrant /home/vagrant/.vimrc
+fi
