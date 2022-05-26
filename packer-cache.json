@@ -1231,6 +1231,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "alpine316",
+      "output_directory": "output/alpine316",
+      "iso_url": "https://mirrors.kernel.org/alpine/v3.16/releases/x86_64/alpine-virt-3.16.0-x86_64.iso",
+      "iso_checksum": "sha256:ba8007f74f9b54fbae3b2520da577831b4834778a498d732f091260c61aa7ca1",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "dragonflybsd6",
       "output_directory": "output/dragonflybsd6",
       "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.2.1_REL.iso",

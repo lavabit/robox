@@ -2695,6 +2695,43 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/alpine316/network.sh",
+        "scripts/alpine316/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine316-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine316/hostname.sh",
+        "scripts/alpine316/lsb.sh",
+        "scripts/alpine316/floppy.sh",
+        "scripts/alpine316/vagrant.sh",
+        "scripts/alpine316/sshd.sh",
+        "scripts/alpine316/virtualbox.sh",
+        "scripts/alpine316/parallels.sh",
+        "scripts/alpine316/vmware.sh",
+        "scripts/alpine316/qemu.sh",
+        "scripts/alpine316/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine316-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -5795,6 +5832,50 @@
       "ssh_port": 22,
       "ssh_timeout": "7200s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": false,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-alpine316-hyperv",
+      "vm_name": "generic-alpine316-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-alpine316-hyperv",
+      "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine316.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "source generic.alpine316.vagrant.cfg<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine316.vagrant.cfg && ",
+        "mount /dev/sda2 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+        "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
+        "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "memory": 2048,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://mirrors.kernel.org/alpine/v3.16/releases/x86_64/alpine-virt-3.16.0-x86_64.iso",
+      "iso_checksum": "sha256:ba8007f74f9b54fbae3b2520da577831b4834778a498d732f091260c61aa7ca1",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "/sbin/poweroff",
       "generation": 1,
       "headless": true,
       "communicator": "ssh",
