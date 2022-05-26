@@ -139,20 +139,35 @@ REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/jammy/InRelease" )
 # Ubuntu 22.10
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/kinetic/InRelease" )
 
+# Fedora 27
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 28
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 29
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 30
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/30/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 31
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/Everything/x86_64/os/repodata/repomd.xml" )
+
 # Fedora 32
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/32/Everything/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 33
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/33/Everything/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 34
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 35
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 36
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/os/repodata/repomd.xml" )
 
 # CentOS 8 Stream
 REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
@@ -160,6 +175,14 @@ REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repod
 # CentOS 9 Stream
 REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
 
+# FreeBSD 12
+REPOS+=( "http://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
+
+# FreeBSD 13
+REPOS+=( "http://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
+
+# FreeBSD 14
+REPOS+=( "http://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
 
 # Detect Windows subsystem for Linux.
 if [ -z $OS ]; then
