@@ -1038,8 +1038,8 @@
     {
       "name": "hardenedbsd13",
       "output_directory": "output/hardenedbsd13",
-      "iso_url": "https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/build-461/disc1.iso",
-      "iso_checksum": "sha256:b1f757b0cc19ed64cf9b2a690658817e21de74db797827b63a9c49050ad1567c",
+      "iso_url": "https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/build-462/disc1.iso",
+      "iso_checksum": "sha256:d05947769244247912b4af977265291829934847173657e858c1bba842d8885b",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
