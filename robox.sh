@@ -30,7 +30,7 @@ cat << EOF > $BASE/.credentialsrc
 
 # [ ! -n "\$PACKER_ON_ERROR" ] && export PACKER_ON_ERROR="cleanup"
 # [ ! -n "\$PACKER_MAX_PROCS" ] && export PACKER_MAX_PROCS="2"
-# [ ! -n "\$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="./packer_cache/"
+# [ ! -n "\$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="$BASE/packer_cache/"
 #
 # [ ! -n "\$QUAY_USER" ] && export QUAY_USER="LOGIN"
 # [ ! -n "\$QUAY_PASSWORD" ] && export QUAY_PASSWORD="PASSWORD"
@@ -49,7 +49,7 @@ fi
 source $BASE/.credentialsrc
 
 # Version Information
-[ ! -n "$VERSION" ] && export VERSION="4.0.0"
+[ ! -n "$VERSION" ] && export VERSION="4.0.2"
 export AGENT="Vagrant/2.2.19 (+https://www.vagrantup.com; ruby2.7.4)"
 
 # Limit the number of cpus packer will use and control how errors are handled.
@@ -89,7 +89,9 @@ UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}'
 MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 MAGMA_SPECIAL_BOXES="magma-hyperv magma-vmware magma-libvirt magma-virtualbox magma-docker "\
 "magma-centos-hyperv magma-centos-vmware magma-centos-libvirt magma-centos-virtualbox magma-centos-docker "\
-"magma-ubuntu-hyperv magma-ubuntu-vmware magma-ubuntu-libvirt magma-ubuntu-virtualbox"
+"magma-debian-hyperv magma-debian-vmware magma-debian-libvirt magma-debian-virtualbox "\
+"magma-fedora-hyperv magma-fedora-vmware magma-fedora-libvirt magma-fedora-virtualbox "\
+"magma-ubuntu-hyperv magma-ubuntu-vmware magma-ubuntu-libvirt magma-ubuntu-virtualbox "
 GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 ROBOX_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sed "s/generic-/roboxes-/g"| sort --field-separator=- -k 3i -k 2.1,2.0`
 LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
