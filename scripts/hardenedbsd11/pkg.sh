@@ -36,7 +36,7 @@ export ASSUME_ALWAYS_YES=yes
 mkdir -p /usr/local/etc/pkg/repos/
 # echo 'HardenedBSD: { url: "pkg+http://pkg.hardenedbsd.org/HardenedBSD/pkg/${ABI}" }' > /usr/local/etc/pkg/repos/HardenedBSD.conf
 # echo 'HardenedBSD: { url: "pkg+http://pkg.freebsd.org/${ABI}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
-echo 'HardenedBSD: { url: "pkg+http://mirrors.xtom.com/freebsd-pkg/FreeBSD%3A11%3Aamd64/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+echo 'HardenedBSD: { url: "pkg+http://mirrors.xtom.com/freebsd-pkg/FreeBSD%3A11%3Aamd64/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 
 retry pkg bootstrap
 retry pkg-static update --force
