@@ -10,7 +10,7 @@ else
 fi
 export device
 
-sfdisk "$device" <<EOF
+sfdisk "$device" <<-EOF
 label: dos
 size=4096MiB,                      type=82
                                    type=83, bootable

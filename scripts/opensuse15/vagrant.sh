@@ -7,7 +7,7 @@
 set -eux
 
 if [ -d /etc/polkit-1/rules.d/ ]; then
-cat <<EOF > /etc/polkit-1/rules.d/49-vagrant.rules
+cat <<-EOF > /etc/polkit-1/rules.d/49-vagrant.rules
 polkit.addRule(function(action, subject) {
     if (subject.isInGroup("vagrant")) {
         return polkit.Result.YES;

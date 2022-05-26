@@ -22,7 +22,7 @@ sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
 mkdir -p /etc/systemd/network
 ln -sf /dev/null /etc/systemd/network/99-default.link
-cat <<EOF > /etc/systemd/network/eth0.network
+cat <<-EOF > /etc/systemd/network/eth0.network
 [Match]
 Name=eth0
 

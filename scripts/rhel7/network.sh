@@ -58,7 +58,7 @@ fi
 
 printf "Fixing the problem with slow DNS queries.\n"
 
-cat >> /etc/NetworkManager/dispatcher.d/fix-slow-dns <<EOF
+cat >> /etc/NetworkManager/dispatcher.d/fix-slow-dns <<-EOF
 #!/bin/bash
 echo "options single-request-reopen" >> /etc/resolv.conf
 EOF
