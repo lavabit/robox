@@ -22,7 +22,7 @@ clearpart --all --initlabel
 autopart --nohome
 
 # repo --name=BaseOS
-url --url=https://vault.centos.org/8.5.2111/BaseOS/x86_64/os/
+url --url=https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/
 
 # Package setup
 %packages --instLangs=en_US.utf8
@@ -37,6 +37,7 @@ sudo
 
 %post
 
-#echo "locked" | passwd --stdin
+sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
+sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 
 %end

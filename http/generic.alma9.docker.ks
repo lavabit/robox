@@ -1,6 +1,5 @@
 # This is a minimal Alma kickstart designed to create a dockerized environment.
 install
-
 keyboard us
 rootpw locked
 timezone US/Pacific
@@ -26,7 +25,7 @@ autopart --nohome
 url --url=https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/
 
 # Package setup
-%packages --instLangs=en_US.utf8
+%packages
 @core
 authconfig
 sudo
@@ -38,6 +37,7 @@ sudo
 
 %post
 
-#echo "locked" | passwd --stdin
+sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
+sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 
 %end
