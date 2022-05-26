@@ -175,14 +175,75 @@ REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repod
 # CentOS 9 Stream
 REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
 
+# FreeBSD 11
+REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD%3A11%3Aamd64/latest/packagesite.txz" )
+
 # FreeBSD 12
-REPOS+=( "http://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
 
 # FreeBSD 13
-REPOS+=( "http://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
 
 # FreeBSD 14
-REPOS+=( "http://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
+
+# Alpine Edge
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.5
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.5/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.5/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.6
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.6/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.6/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.7
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.7/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.7/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.8
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.8/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.8/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.9
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.9/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.9/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.10
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.11
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.11/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.11/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.12
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.13
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.14
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.14/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.14/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.15
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.15/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.15/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.16
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/community/x86_64/APKINDEX.tar.gz" )
+
+# NetBSD 8.2
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/All/.pkgcache" )
+
+# NetBSD 9.2
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/All/.pkgcache" )
 
 # Detect Windows subsystem for Linux.
 if [ -z $OS ]; then

@@ -8,7 +8,8 @@ export ASSUME_ALWAYS_YES=yes
 # We need to use HTTP until the CA bundle has been updated.
 mkdir -p /usr/local/etc/pkg/repos/
 rm /var/db/pkg/FreeBSD.meta /var/db/pkg/repo-FreeBSD.sqlite
-echo 'FreeBSD: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+# echo 'FreeBSD: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+echo 'FreeBSD: { url: "pkg+http://mirrors.xtom.com/freebsd-pkg/FreeBSD%3A11%3Aamd64/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 
 # Install the packages needed to update the CA bundle.
 pkg bootstrap
