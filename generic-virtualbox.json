@@ -6527,8 +6527,8 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
-      "guest_additions_sha256": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
+      "guest_additions_url": "https://www.virtualbox.org/download/testcase/VBoxGuestAdditions_6.1.35-151478.iso",
+      "guest_additions_sha256": "5cf459b0329360e4bfd84a7df4b3bf63b83b1373874de919fc44cf124366a6ce",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
