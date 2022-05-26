@@ -2732,6 +2732,48 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/alma9/network.sh",
+        "scripts/alma9/dnf.sh",
+        "scripts/alma9/base.sh",
+        "scripts/alma9/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma9-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alma9/kernel.sh",
+        "scripts/alma9/floppy.sh",
+        "scripts/alma9/virtualbox.sh",
+        "scripts/alma9/parallels.sh",
+        "scripts/alma9/vmware.sh",
+        "scripts/alma9/qemu.sh",
+        "scripts/alma9/vagrant.sh",
+        "scripts/alma9/tuning.sh",
+        "scripts/alma9/sshd.sh",
+        "scripts/alma9/randomness.sh",
+        "scripts/alma9/updatedb.sh",
+        "scripts/alma9/cleanup.sh",
+        "scripts/alma9/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma9-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -5890,6 +5932,38 @@
       "ssh_port": 22,
       "ssh_timeout": "7200s",
       "shutdown_command": "/sbin/poweroff",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": false,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-alma9-hyperv",
+      "vm_name": "generic-alma9-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-alma9-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "memory": 2048,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.0/isos/x86_64/AlmaLinux-9.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:c41ce7bc2f4ab27a3597b3e160fc8b01c56a6b58e1046a4a23b8518fb9e9a61f",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
       "communicator": "ssh",

@@ -2729,6 +2729,48 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alma9/network.sh",
+        "scripts/alma9/dnf.sh",
+        "scripts/alma9/base.sh",
+        "scripts/alma9/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma9-vmware"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alma9/kernel.sh",
+        "scripts/alma9/floppy.sh",
+        "scripts/alma9/virtualbox.sh",
+        "scripts/alma9/parallels.sh",
+        "scripts/alma9/vmware.sh",
+        "scripts/alma9/qemu.sh",
+        "scripts/alma9/vagrant.sh",
+        "scripts/alma9/tuning.sh",
+        "scripts/alma9/sshd.sh",
+        "scripts/alma9/randomness.sh",
+        "scripts/alma9/updatedb.sh",
+        "scripts/alma9/cleanup.sh",
+        "scripts/alma9/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma9-vmware"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -6534,6 +6576,46 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-alma9-vmware",
+      "vm_name": "generic-alma9-vmware",
+      "vmdk_name": "generic-alma9-vmware",
+      "output_directory": "output/generic-alma9-vmware",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "centos-64",
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.0/isos/x86_64/AlmaLinux-9.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:c41ce7bc2f4ab27a3597b3e160fc8b01c56a6b58e1046a4a23b8518fb9e9a61f",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "tools_upload_flavor": "linux"
     }
   ],

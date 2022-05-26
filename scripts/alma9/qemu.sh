@@ -1,4 +1,4 @@
-#!/bin/bash -eux
+#!/bin/bash
 
 retry() {
   local COUNT=1
@@ -27,13 +27,20 @@ retry() {
   return "${RESULT}"
 }
 
-# Now that the system is running atop the updated kernel, we can install the
-# development files for the kernel. These files are required to compile the
-# virtualization kernel modules later in the provisioning process.
-retry dnf --assumeyes install kernel-tools kernel-devel kernel-headers
+error() {
+	if [ $? -ne 0 ]; then
+			printf "\n\nqemu addons failed to install...\n\n";
+			exit 1
+	fi
+}
 
-# Now that the system is running on the updated kernel, we can remove the
-# old kernel(s) from the system.
-if [[ `rpm -q kernel | wc -l` != 1 ]]; then
-  dnf --assumeyes remove $( rpm -q kernel | grep -v `uname -r` )
+
+# Bail if we are not running atop QEMU.
+if [[ `dmidecode -s system-product-name` != "KVM" && `dmidecode -s system-manufacturer` != "QEMU" ]]; then
+    exit 0
 fi
+
+# Install the QEMU using Yum.
+printf "Installing the QEMU Tools.\n"
+
+retry dnf --quiet --assumeyes install qemu-guest-agent; error

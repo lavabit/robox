@@ -65,21 +65,6 @@ FILES="packer-cache.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
 "developer-ova.json developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
-# Media Files
-MEDIAFILES="res/media/rhel-server-6.10-x86_64-dvd.iso"\
-"|res/media/rhel-server-7.6-x86_64-dvd.iso"\
-"|res/media/rhel-8.0-beta-1-x86_64-dvd.iso"
-MEDIASUMS="1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727"\
-"|60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c"\
-"|005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43"
-MEDIAURLS="https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso"\
-"|https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso"\
-"|https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso"
-
-# When validating ISO checksums skip these URLS.
-DYNAMICURLS="https://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso|"\
-"https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
-
 # Collect the list of ISO urls.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -Ev "$DYNAMICURLS" | awk -F'"' '{print $4}'`)
 ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | awk -F'"' '{print $4}' | sed "s/^sha256://g"`)
@@ -117,9 +102,7 @@ FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lav
 # A list of configs to skip during complete build operations.
 export EXCEPTIONS=""
 
-
-# Some of the rpositories we use. This will warn us of if they are removed/archived.
-
+# The repository URLs, so we can catch any which might disappeared since the last build.
 # Ubuntu 16.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
 
@@ -173,9 +156,42 @@ REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_6
 
 # CentOS 8 Stream
 REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/AppStream/x86_64/os/repodata/repomd.xml" )
 
 # CentOS 9 Stream
 REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/AppStream/x86_64/os/repodata/repomd.xml" )
+
+# Alma 8
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/AppStream/x86_64/os/repodata/repomd.xml" )
+
+# Alma 9
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
+
+# Rocky 8
+REPOS+=( "https://dfw.mirror.rackspace.com/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
+
+# Rocky 9
+# REPOS+=( "https://dfw.mirror.rackspace.com/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
+
+# Oracle 6
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/UEKR4/x86_64/repodata/repomd.xml" )
+
+# Oracle 7
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/UEKR6/x86_64/repodata/repomd.xml" )
+
+# Oracle 8
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repomd.xml" )
+
+# Oracle 9
+# REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
+# REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
 
 # FreeBSD 11
 REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD%3A11%3Aamd64/latest/packagesite.txz" )
@@ -246,6 +262,13 @@ REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/All/.pkgca
 
 # NetBSD 9.2
 REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/All/.pkgcache" )
+
+# EPEL
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/epel/6/x86_64/repodata/repomd.xml")
+REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/7/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/8/Everything/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/8/Modular/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/9/Everything/x86_64/repodata/repomd.xml" )
 
 # Detect Windows subsystem for Linux.
 if [ -z $OS ]; then
@@ -668,24 +691,6 @@ function verify_sum {
   return 0
 }
 
-# Verify the local ISO files are valid and if necessary download the file.
-function verify_local {
-
-  ISOAGENT="Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
-
-  # Make sure the ISO exists, and is the proper size.
-  if [ ! -f "${2}" ] || [ "`sha256sum \"${2}\" | awk -F' ' '{print \$1}'`" != "${1}" ]; then
-    ${CURL} --location --retry 16 --retry-delay 16 --max-redirs 16 --user-agent "${ISOAGENT}" --output "${2}.part" "${3}"
-    sha256sum "${2}.part" | grep --silent "${1}"
-    if [ $? != 0 ]; then
-      tput setaf 1; tput bold; printf "\n\nLocal ISO file could not be downloaded...\n\n"; tput sgr0
-      rm --force "${2}"
-    else
-      mv --force "${2}.part" "${2}"
-    fi
-  fi
-}
-
 # Validate the templates before building.
 function verify_json() {
 
@@ -853,13 +858,6 @@ function box() {
 
 function links() {
 
-  MURLS=(`echo $MEDIAURLS | sed "s/|/ /g"`)
-
-  for ((i = 0; i < ${#MURLS[@]}; ++i)); do
-    (verify_url "${MURLS[$i]}") &
-    sleep 0.1 &> /dev/null || echo "" &> /dev/null
-  done
-
   for ((i = 0; i < ${#UNIQURLS[@]}; ++i)); do
     (verify_url "${UNIQURLS[$i]}") &
     sleep 0.1 &> /dev/null || echo "" &> /dev/null
@@ -879,13 +877,8 @@ function links() {
       echo "Cache Failure:  ${ISOURLS[$i]}"
   done
 
-  for ((i = 0; i < ${#ISOSUMS[@]}; ++i)); do
-    grep --silent "${ISOSUMS[$i]}" packer-cache.json ||
-      echo "Cache Failure:  ${ISOSUMS[$i]}"
-  done
-
   # Combine the media URLs with the regular box ISO URLs and the repos.
-  let TOTAL=${#UNIQURLS[@]}+${#MURLS[@]}+${#REPOS[@]}
+  let TOTAL=${#UNIQURLS[@]}+${#REPOS[@]}
 
   # Let the user know all of the links passed.
   printf "\nAll $TOTAL of the install media/package repository locations have been checked...\n\n"
@@ -1503,26 +1496,6 @@ function grab() {
 
 }
 
-function localized() {
-
-  MSUMS=(`echo $MEDIASUMS | sed "s/|/ /g"`)
-  MURLS=(`echo $MEDIAURLS | sed "s/|/ /g"`)
-  MFILES=(`echo $MEDIAFILES | sed "s/|/ /g"`)
-
-  # RHEL 6
-  verify_local "${MSUMS[0]}" "${MFILES[0]}" "${MURLS[0]}"
-  # RHEL 7
-  verify_local "${MSUMS[1]}" "${MFILES[1]}" "${MURLS[1]}"
-  # RHEL 8
-  verify_local "${MSUMS[2]}" "${MFILES[2]}" "${MURLS[2]}"
-
-  # Former Logic
-  # verify_local 1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727 res/media/rhel-server-6.10-x86_64-dvd.iso https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso
-  # verify_local 60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c res/media/rhel-server-7.6-x86_64-dvd.iso https://archive.org/download/rhel-server-7.6-x86_64-dvd/rhel-server-7.6-x86_64-dvd.iso
-  # verify_local 005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43 res/media/rhel-8.0-beta-1-x86_64-dvd.iso https://archive.org/download/rhel-8.0-x86_64-dvd/rhel-8.0-x86_64-dvd.iso
-
-}
-
 function cleanup() {
   rm -rf $BASE/output/ $BASE/logs/
 }
@@ -1964,7 +1937,6 @@ elif [[ $1 == "docker" ]]; then verify_json generic-docker ; verify_json magma-d
 # The helper functions.
 elif [[ $1 == "isos" ]]; then isos
 elif [[ $1 == "sums" ]]; then sums
-elif [[ $1 == "local" ]]; then localized
 elif [[ $1 == "invalid" ]]; then invalid
 elif [[ $1 == "missing" ]]; then missing
 elif [[ $1 == "public" ]]; then public

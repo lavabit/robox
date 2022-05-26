@@ -1246,6 +1246,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "alma9",
+      "output_directory": "output/alma9",
+      "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.0/isos/x86_64/AlmaLinux-9.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:c41ce7bc2f4ab27a3597b3e160fc8b01c56a6b58e1046a4a23b8518fb9e9a61f",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "dragonflybsd6",
       "output_directory": "output/dragonflybsd6",
       "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.2.1_REL.iso",

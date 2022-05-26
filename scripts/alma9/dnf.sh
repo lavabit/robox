@@ -40,13 +40,26 @@ if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
   sed --in-place "s/^enabled=.*/enabled=0/g" /etc/dnf/plugins/subscription-manager.conf
 fi
 
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+# Alma Repo Setup
+sed -i -e "s/^# baseurl/baseurl/g" /etc/yum.repos.d/almalinu-baseos.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/almalinux-baseos.repo
+
+sed -i -e "s/^# baseurl/baseurl/g" /etc/yum.repos.d/almalinux-appstream.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/almalinux-appstream.repo
+
+sed -i -e "s/^# baseurl/baseurl/g" /etc/yum.repos.d/almalinux-extras.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/almalinux-extras.repo
+
+sed -i -e "s/^# baseurl/baseurl/g" /etc/yum.repos.d/almalinux-plus.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/almalinux-plus.repo
+
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9
 
 # EPEL Repo Setup
-retry dnf --quiet --assumeyes --enablerepo=extras-common install epel-release
+retry dnf --quiet --assumeyes --enablerepo=extras install epel-release
 
-# sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
-# sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
 
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9
 
@@ -63,5 +76,4 @@ retry dnf --assumeyes update
 
 # Install the basic packages we'd expect to find.
 retry dnf --assumeyes install sudo dmidecode dnf-utils bash-completion man man-pages mlocate vim-enhanced bind-utils wget dos2unix unix2dos lsof tar telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc python39
-
 

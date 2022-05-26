@@ -2729,6 +2729,48 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alma9/network.sh",
+        "scripts/alma9/dnf.sh",
+        "scripts/alma9/base.sh",
+        "scripts/alma9/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma9-virtualbox"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alma9/kernel.sh",
+        "scripts/alma9/floppy.sh",
+        "scripts/alma9/virtualbox.sh",
+        "scripts/alma9/parallels.sh",
+        "scripts/alma9/vmware.sh",
+        "scripts/alma9/qemu.sh",
+        "scripts/alma9/vagrant.sh",
+        "scripts/alma9/tuning.sh",
+        "scripts/alma9/sshd.sh",
+        "scripts/alma9/randomness.sh",
+        "scripts/alma9/updatedb.sh",
+        "scripts/alma9/cleanup.sh",
+        "scripts/alma9/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma9-virtualbox"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -6582,6 +6624,71 @@
       "shutdown_command": "/sbin/poweroff",
       "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
       "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-alma9-virtualbox",
+      "vm_name": "generic-alma9-virtualbox",
+      "output_directory": "output/generic-alma9-virtualbox",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ],
+        [
+          "setextradata",
+          "{{.Name}}",
+          "VBoxInternal/CPUM/IsaExts/SSE4.1",
+          "1"
+        ],
+        [
+          "setextradata",
+          "{{.Name}}",
+          "VBoxInternal/CPUM/IsaExts/SSE4.2",
+          "1"
+        ],
+        [
+          "setextradata",
+          "{{.Name}}",
+          "VBoxInternal/CPUM/IsaExts/POPCNT",
+          "1"
+        ],
+        [
+          "setextradata",
+          "{{.Name}}",
+          "VBoxInternal/CPUM/IsaExts/CMPXCHG16B",
+          "1"
+        ]
+      ],
+      "hard_drive_interface": "sata",
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.0/isos/x86_64/AlmaLinux-9.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:c41ce7bc2f4ab27a3597b3e160fc8b01c56a6b58e1046a4a23b8518fb9e9a61f",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.35.so",
+      "guest_additions_sha256": "5cf459b0329360e4bfd84a7df4b3bf63b83b1373874de919fc44cf124366a6ce",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"

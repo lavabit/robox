@@ -1,4 +1,4 @@
-#!/bin/bash -eux
+#!/bin/bash
 
 retry() {
   local COUNT=1
@@ -27,13 +27,14 @@ retry() {
   return "${RESULT}"
 }
 
-# Now that the system is running atop the updated kernel, we can install the
-# development files for the kernel. These files are required to compile the
-# virtualization kernel modules later in the provisioning process.
-retry dnf --assumeyes install kernel-tools kernel-devel kernel-headers
+# Configure tuned
+retry dnf --assumeyes install tuned
+systemctl enable tuned
+systemctl start tuned
 
-# Now that the system is running on the updated kernel, we can remove the
-# old kernel(s) from the system.
-if [[ `rpm -q kernel | wc -l` != 1 ]]; then
-  dnf --assumeyes remove $( rpm -q kernel | grep -v `uname -r` )
-fi
+# Set the profile to virtual guest.
+tuned-adm profile virtual-guest
+
+# Configure grub to wait just 1 second before booting
+sed -i -e 's/^GRUB_TIMEOUT=[0-9]\+$/GRUB_TIMEOUT=1/' /etc/default/grub
+grub2-mkconfig -o /boot/grub2/grub.cfg
