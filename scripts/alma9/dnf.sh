@@ -66,10 +66,6 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9
 # Disable the playground/testing repo.
 sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-testing.repo
 sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-testing.repo
-sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-testing-modular.repo
-sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-testing-modular.repo
-sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-playground.repo
-sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-playground.repo
 
 # Update the base install first.
 retry dnf --assumeyes update
