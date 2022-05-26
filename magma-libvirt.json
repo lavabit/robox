@@ -1486,6 +1486,24 @@
         "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.arch.vagrant{,.chroot}.sh'<enter><wait>",
         "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
       ],
+      "qemuargs": [
+        [
+          "-device",
+          "virtio-serial"
+        ],
+        [
+          "-device",
+          "virtserialport,id=channel0,name=org.qemu.guest_agent.0"
+        ],
+        [
+          "-device",
+          "virtio-scsi-pci,id=scsi0"
+        ],
+        [
+          "-device",
+          "scsi-hd,bus=scsi0.0,drive=drive0"
+        ]
+      ],
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
