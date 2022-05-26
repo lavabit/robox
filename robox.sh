@@ -487,10 +487,6 @@ function iso() {
     sed --in-place "s/$ISO_URL/$URL/g" $FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
     
-  elif [ "$1" == "stream" ]; then
-    
-    iso centos8s && iso centos9s
-    
   elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
 
     # Find the existing HardenedBSD URL and hash values.
@@ -524,7 +520,15 @@ function iso() {
     # Replace the existing ISO and hash values with the update values.
     sed --in-place "s/$ISO_URL/$URL/g" $FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
-
+  elif [ "$1" == "stream" ] || [ "$1" == "streams" ]; then
+    iso centos8s
+    iso centos9s
+  elif [ "$1" == "all" ]; then
+    iso arch
+    iso centos8s
+    iso centos9s
+    iso gentoo
+    iso hardenedbsd
   fi
 
 }
