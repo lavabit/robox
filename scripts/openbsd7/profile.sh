@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-cat <<EOF > /root/.bash_profile
+cat <<-EOF > /root/.bash_profile
 # /root/.bash_profile
 
 # System wide functions and aliases
@@ -105,7 +105,7 @@ if [ ! -d /home/vagrant/ ]; then
 fi
 
 # Setup the bash command prompt/environment.
-cat <<EOF > /home/vagrant/.bash_profile
+cat <<-EOF > /home/vagrant/.bash_profile
 # /home/vagrant/.bash_profile
 
 # System wide functions and aliases
