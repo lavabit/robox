@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-cat <<'EOF' > /root/.bash_profile
+cat <<-EOF > /root/.bash_profile
 # /root/.bash_profile
 
 # System wide functions and aliases
