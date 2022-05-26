@@ -35,6 +35,10 @@ net-tools
 
 %post
 
+systemctl disable tmp.mount
+systemctl stop tmp.mount
+systemctl mask tmp.mount
+
 # Create the vagrant user account.
 /usr/sbin/useradd vagrant
 echo "vagrant" | passwd --stdin vagrant
