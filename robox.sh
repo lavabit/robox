@@ -66,7 +66,7 @@ FILES="packer-cache.json "\
 "developer-ova.json developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
 # Collect the list of ISO urls.
-ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | grep -Ev "$DYNAMICURLS" | awk -F'"' '{print $4}'`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}'`)
 ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | awk -F'"' '{print $4}' | sed "s/^sha256://g"`)
 UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}' | sort | uniq`)
 
@@ -194,7 +194,7 @@ REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repo
 # REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
 
 # FreeBSD 11
-REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD%3A11%3Aamd64/latest/packagesite.txz" )
+REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
 
 # FreeBSD 12
 REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
@@ -204,6 +204,15 @@ REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
 
 # FreeBSD 14
 REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
+
+# HardenedBSD 12
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:12:amd64/packagesite.txz" )
+
+# HardenedBSD 13
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
+
+# HardenedBSD 14
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesite.txz" )
 
 # Alpine Edge
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
@@ -258,10 +267,10 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/main/x86_64/APKINDEX.tar.
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/community/x86_64/APKINDEX.tar.gz" )
 
 # NetBSD 8.2
-REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/All/.pkgcache" )
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/SHA512.bz2" )
 
 # NetBSD 9.2
-REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/All/.pkgcache" )
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/SHA512.bz2" )
 
 # EPEL
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/epel/6/x86_64/repodata/repomd.xml")
