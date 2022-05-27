@@ -1,0 +1,2803 @@
+{
+  "variables": {
+    "box_version": "{{env `VERSION`}}"
+  },
+  "provisioners": [
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine36/network.sh",
+        "scripts/alpine36/apk.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/sh '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-alpine36-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine36/limits.sh",
+        "scripts/alpine36/mariadb.sh",
+        "scripts/alpine36/memcached.sh",
+        "scripts/alpine36/postfix.sh",
+        "scripts/alpine36/hostname.sh",
+        "scripts/alpine36/lsb.sh",
+        "scripts/alpine36/floppy.sh",
+        "scripts/alpine36/vagrant.sh",
+        "scripts/alpine36/sshd.sh",
+        "scripts/alpine36/glibc.sh",
+        "scripts/alpine36/magma.sh",
+        "scripts/alpine36/virtualbox.sh",
+        "scripts/alpine36/parallels.sh",
+        "scripts/alpine36/vmware.sh",
+        "scripts/alpine36/qemu.sh",
+        "scripts/alpine36/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-alpine36-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/centos6/yum.sh",
+        "scripts/centos6/base.sh",
+        "scripts/centos6/network.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-centos6-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/centos6/kernel.sh",
+        "scripts/centos6/vga.sh",
+        "scripts/centos6/virtualbox.sh",
+        "scripts/centos6/parallels.sh",
+        "scripts/centos6/vmware.sh",
+        "scripts/centos6/qemu.sh",
+        "scripts/centos6/postfix.sh",
+        "scripts/centos6/vagrant.sh",
+        "scripts/centos6/magma.sh",
+        "scripts/centos6/tuning.sh",
+        "scripts/centos6/sshd.sh",
+        "scripts/centos6/randomness.sh",
+        "scripts/centos6/updatedb.sh",
+        "scripts/centos6/cleanup.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-centos6-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/centos7/network.sh",
+        "scripts/centos7/yum.sh",
+        "scripts/centos7/base.sh",
+        "scripts/centos7/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-centos7-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/centos7/kernel.sh",
+        "scripts/centos7/floppy.sh",
+        "scripts/centos7/virtualbox.sh",
+        "scripts/centos7/parallels.sh",
+        "scripts/centos7/vmware.sh",
+        "scripts/centos7/qemu.sh",
+        "scripts/centos7/postfix.sh",
+        "scripts/centos7/vagrant.sh",
+        "scripts/centos7/memcached.sh",
+        "scripts/centos7/mariadb.sh",
+        "scripts/centos7/magma.sh",
+        "scripts/centos7/tuning.sh",
+        "scripts/centos7/sshd.sh",
+        "scripts/centos7/randomness.sh",
+        "scripts/centos7/updatedb.sh",
+        "scripts/centos7/cleanup.sh",
+        "scripts/centos7/unyum.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-centos7-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/gentoo/network.sh",
+        "scripts/gentoo/emerge.sh"
+      ],
+      "type": "shell",
+      "timeout": "720m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-gentoo-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/gentoo/virtualbox.sh",
+        "scripts/gentoo/parallels.sh",
+        "scripts/gentoo/vmware.sh",
+        "scripts/gentoo/qemu.sh",
+        "scripts/gentoo/vagrant.sh",
+        "scripts/gentoo/magma.sh"
+      ],
+      "type": "shell",
+      "timeout": "720m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-gentoo-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/arch/pacman.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-arch-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/arch/limits.sh",
+        "scripts/arch/mariadb.sh",
+        "scripts/arch/memcached.sh",
+        "scripts/arch/postfix.sh",
+        "scripts/arch/virtualbox.sh",
+        "scripts/arch/parallels.sh",
+        "scripts/arch/vmware.sh",
+        "scripts/arch/qemu.sh",
+        "scripts/arch/vagrant.sh",
+        "scripts/arch/magma.sh",
+        "scripts/arch/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-arch-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian8/apt.sh",
+        "scripts/debian8/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian8-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian8/limits.sh",
+        "scripts/debian8/postfix.sh",
+        "scripts/debian8/mysql.sh",
+        "scripts/debian8/memcached.sh",
+        "scripts/debian8/floppy.sh",
+        "scripts/debian8/profile.sh",
+        "scripts/debian8/vagrant.sh",
+        "scripts/debian8/motd.sh",
+        "scripts/debian8/magma.sh",
+        "scripts/debian8/fixtty.sh",
+        "scripts/debian8/virtualbox.sh",
+        "scripts/debian8/parallels.sh",
+        "scripts/debian8/vmware.sh",
+        "scripts/debian8/qemu.sh",
+        "scripts/debian8/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian8-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora27/fixdns.sh",
+        "scripts/fedora27/hostname.sh",
+        "scripts/fedora27/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora27-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora27/fixtmp.sh",
+        "scripts/fedora27/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora27-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora27/kernel.sh",
+        "scripts/fedora27/vga.sh",
+        "scripts/fedora27/virtualbox.sh",
+        "scripts/fedora27/parallels.sh",
+        "scripts/fedora27/vmware.sh",
+        "scripts/fedora27/qemu.sh",
+        "scripts/fedora27/vagrant.sh",
+        "scripts/fedora27/mariadb.sh",
+        "scripts/fedora27/postfix.sh",
+        "scripts/fedora27/magma.sh",
+        "scripts/fedora27/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora27-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/freebsd11/pkg.sh",
+        "scripts/freebsd11/hostname.sh",
+        "scripts/freebsd11/kernel.sh",
+        "scripts/freebsd11/firstboot.sh",
+        "scripts/freebsd11/motd.sh",
+        "scripts/freebsd11/vagrant.sh",
+        "scripts/freebsd11/magma.sh",
+        "scripts/freebsd11/virtualbox.sh",
+        "scripts/freebsd11/parallels.sh",
+        "scripts/freebsd11/vmware.sh",
+        "scripts/freebsd11/qemu.sh",
+        "scripts/freebsd11/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "magma-freebsd11-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/openbsd6/pkg.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
+      "only": [
+        "magma-openbsd6-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/openbsd6/hostname.sh",
+        "scripts/openbsd6/motd.sh",
+        "scripts/openbsd6/vagrant.sh",
+        "scripts/openbsd6/profile.sh",
+        "scripts/openbsd6/virtualbox.sh",
+        "scripts/openbsd6/parallels.sh",
+        "scripts/openbsd6/vmware.sh",
+        "scripts/openbsd6/qemu.sh",
+        "scripts/openbsd6/magma.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "magma-openbsd6-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1604/apt.sh",
+        "scripts/ubuntu1604/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1604-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1604/limits.sh",
+        "scripts/ubuntu1604/postfix.sh",
+        "scripts/ubuntu1604/mysql.sh",
+        "scripts/ubuntu1604/memcached.sh",
+        "scripts/ubuntu1604/floppy.sh",
+        "scripts/ubuntu1604/vagrant.sh",
+        "scripts/ubuntu1604/profile.sh",
+        "scripts/ubuntu1604/motd.sh",
+        "scripts/ubuntu1604/magma.sh",
+        "scripts/ubuntu1604/fixtty.sh",
+        "scripts/ubuntu1604/virtualbox.sh",
+        "scripts/ubuntu1604/parallels.sh",
+        "scripts/ubuntu1604/vmware.sh",
+        "scripts/ubuntu1604/qemu.sh",
+        "scripts/ubuntu1604/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1604-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1610/apt.sh",
+        "scripts/ubuntu1610/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1610-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1610/limits.sh",
+        "scripts/ubuntu1610/postfix.sh",
+        "scripts/ubuntu1610/mysql.sh",
+        "scripts/ubuntu1610/memcached.sh",
+        "scripts/ubuntu1610/floppy.sh",
+        "scripts/ubuntu1610/vagrant.sh",
+        "scripts/ubuntu1610/profile.sh",
+        "scripts/ubuntu1610/motd.sh",
+        "scripts/ubuntu1610/magma.sh",
+        "scripts/ubuntu1610/fixtty.sh",
+        "scripts/ubuntu1610/virtualbox.sh",
+        "scripts/ubuntu1610/parallels.sh",
+        "scripts/ubuntu1610/vmware.sh",
+        "scripts/ubuntu1610/qemu.sh",
+        "scripts/ubuntu1610/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1610-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1704/apt.sh",
+        "scripts/ubuntu1704/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1704-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1704/limits.sh",
+        "scripts/ubuntu1704/postfix.sh",
+        "scripts/ubuntu1704/mysql.sh",
+        "scripts/ubuntu1704/memcached.sh",
+        "scripts/ubuntu1704/floppy.sh",
+        "scripts/ubuntu1704/vagrant.sh",
+        "scripts/ubuntu1704/profile.sh",
+        "scripts/ubuntu1704/motd.sh",
+        "scripts/ubuntu1704/magma.sh",
+        "scripts/ubuntu1704/fixtty.sh",
+        "scripts/ubuntu1704/virtualbox.sh",
+        "scripts/ubuntu1704/parallels.sh",
+        "scripts/ubuntu1704/vmware.sh",
+        "scripts/ubuntu1704/qemu.sh",
+        "scripts/ubuntu1704/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1704-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian9/apt.sh",
+        "scripts/debian9/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian9-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian9/limits.sh",
+        "scripts/debian9/postfix.sh",
+        "scripts/debian9/mariadb.sh",
+        "scripts/debian9/memcached.sh",
+        "scripts/debian9/floppy.sh",
+        "scripts/debian9/profile.sh",
+        "scripts/debian9/vagrant.sh",
+        "scripts/debian9/motd.sh",
+        "scripts/debian9/magma.sh",
+        "scripts/debian9/fixtty.sh",
+        "scripts/debian9/virtualbox.sh",
+        "scripts/debian9/parallels.sh",
+        "scripts/debian9/vmware.sh",
+        "scripts/debian9/qemu.sh",
+        "scripts/debian9/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian9-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian10/apt.sh",
+        "scripts/debian10/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian10-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian10/limits.sh",
+        "scripts/debian10/postfix.sh",
+        "scripts/debian10/mariadb.sh",
+        "scripts/debian10/memcached.sh",
+        "scripts/debian10/floppy.sh",
+        "scripts/debian10/profile.sh",
+        "scripts/debian10/vagrant.sh",
+        "scripts/debian10/motd.sh",
+        "scripts/debian10/magma.sh",
+        "scripts/debian10/fixtty.sh",
+        "scripts/debian10/virtualbox.sh",
+        "scripts/debian10/parallels.sh",
+        "scripts/debian10/vmware.sh",
+        "scripts/debian10/qemu.sh",
+        "scripts/debian10/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian10-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian11/apt.sh",
+        "scripts/debian11/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian11-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian11/limits.sh",
+        "scripts/debian11/postfix.sh",
+        "scripts/debian11/mariadb.sh",
+        "scripts/debian11/memcached.sh",
+        "scripts/debian11/floppy.sh",
+        "scripts/debian11/profile.sh",
+        "scripts/debian11/vagrant.sh",
+        "scripts/debian11/motd.sh",
+        "scripts/debian11/magma.sh",
+        "scripts/debian11/fixtty.sh",
+        "scripts/debian11/virtualbox.sh",
+        "scripts/debian11/parallels.sh",
+        "scripts/debian11/vmware.sh",
+        "scripts/debian11/qemu.sh",
+        "scripts/debian11/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-debian11-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora28/fixdns.sh",
+        "scripts/fedora28/hostname.sh",
+        "scripts/fedora28/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora28-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora28/fixtmp.sh",
+        "scripts/fedora28/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora28-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora28/kernel.sh",
+        "scripts/fedora28/vga.sh",
+        "scripts/fedora28/virtualbox.sh",
+        "scripts/fedora28/parallels.sh",
+        "scripts/fedora28/vmware.sh",
+        "scripts/fedora28/qemu.sh",
+        "scripts/fedora28/vagrant.sh",
+        "scripts/fedora28/mariadb.sh",
+        "scripts/fedora28/postfix.sh",
+        "scripts/fedora28/magma.sh",
+        "scripts/fedora28/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora28-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora29/fixdns.sh",
+        "scripts/fedora29/hostname.sh",
+        "scripts/fedora29/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora29-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora29/fixtmp.sh",
+        "scripts/fedora29/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora29-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora29/kernel.sh",
+        "scripts/fedora29/vga.sh",
+        "scripts/fedora29/virtualbox.sh",
+        "scripts/fedora29/parallels.sh",
+        "scripts/fedora29/vmware.sh",
+        "scripts/fedora29/qemu.sh",
+        "scripts/fedora29/vagrant.sh",
+        "scripts/fedora29/mariadb.sh",
+        "scripts/fedora29/postfix.sh",
+        "scripts/fedora29/magma.sh",
+        "scripts/fedora29/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora29-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora30/fixdns.sh",
+        "scripts/fedora30/hostname.sh",
+        "scripts/fedora30/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora30-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora30/fixtmp.sh",
+        "scripts/fedora30/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora30-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora30/kernel.sh",
+        "scripts/fedora30/vga.sh",
+        "scripts/fedora30/virtualbox.sh",
+        "scripts/fedora30/parallels.sh",
+        "scripts/fedora30/vmware.sh",
+        "scripts/fedora30/qemu.sh",
+        "scripts/fedora30/vagrant.sh",
+        "scripts/fedora30/mariadb.sh",
+        "scripts/fedora30/postfix.sh",
+        "scripts/fedora30/magma.sh",
+        "scripts/fedora30/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora30-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora31/fixdns.sh",
+        "scripts/fedora31/hostname.sh",
+        "scripts/fedora31/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora31-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora31/fixtmp.sh",
+        "scripts/fedora31/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora31-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora31/kernel.sh",
+        "scripts/fedora31/vga.sh",
+        "scripts/fedora31/virtualbox.sh",
+        "scripts/fedora31/parallels.sh",
+        "scripts/fedora31/vmware.sh",
+        "scripts/fedora31/qemu.sh",
+        "scripts/fedora31/vagrant.sh",
+        "scripts/fedora31/mariadb.sh",
+        "scripts/fedora31/postfix.sh",
+        "scripts/fedora31/magma.sh",
+        "scripts/fedora31/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora31-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1710/apt.sh",
+        "scripts/ubuntu1710/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1710-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1710/limits.sh",
+        "scripts/ubuntu1710/postfix.sh",
+        "scripts/ubuntu1710/mysql.sh",
+        "scripts/ubuntu1710/memcached.sh",
+        "scripts/ubuntu1710/floppy.sh",
+        "scripts/ubuntu1710/vagrant.sh",
+        "scripts/ubuntu1710/profile.sh",
+        "scripts/ubuntu1710/motd.sh",
+        "scripts/ubuntu1710/magma.sh",
+        "scripts/ubuntu1710/fixtty.sh",
+        "scripts/ubuntu1710/virtualbox.sh",
+        "scripts/ubuntu1710/parallels.sh",
+        "scripts/ubuntu1710/vmware.sh",
+        "scripts/ubuntu1710/qemu.sh",
+        "scripts/ubuntu1710/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1710-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1804/apt.sh",
+        "scripts/ubuntu1804/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1804-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1804/limits.sh",
+        "scripts/ubuntu1804/postfix.sh",
+        "scripts/ubuntu1804/mysql.sh",
+        "scripts/ubuntu1804/memcached.sh",
+        "scripts/ubuntu1804/floppy.sh",
+        "scripts/ubuntu1804/vagrant.sh",
+        "scripts/ubuntu1804/profile.sh",
+        "scripts/ubuntu1804/motd.sh",
+        "scripts/ubuntu1804/magma.sh",
+        "scripts/ubuntu1804/fixtty.sh",
+        "scripts/ubuntu1804/virtualbox.sh",
+        "scripts/ubuntu1804/parallels.sh",
+        "scripts/ubuntu1804/vmware.sh",
+        "scripts/ubuntu1804/qemu.sh",
+        "scripts/ubuntu1804/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1804-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1810/apt.sh",
+        "scripts/ubuntu1810/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1810-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1810/limits.sh",
+        "scripts/ubuntu1810/postfix.sh",
+        "scripts/ubuntu1810/mysql.sh",
+        "scripts/ubuntu1810/memcached.sh",
+        "scripts/ubuntu1810/floppy.sh",
+        "scripts/ubuntu1810/vagrant.sh",
+        "scripts/ubuntu1810/profile.sh",
+        "scripts/ubuntu1810/motd.sh",
+        "scripts/ubuntu1810/magma.sh",
+        "scripts/ubuntu1810/fixtty.sh",
+        "scripts/ubuntu1810/virtualbox.sh",
+        "scripts/ubuntu1810/parallels.sh",
+        "scripts/ubuntu1810/vmware.sh",
+        "scripts/ubuntu1810/qemu.sh",
+        "scripts/ubuntu1810/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1810-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1904/apt.sh",
+        "scripts/ubuntu1904/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1904-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1904/limits.sh",
+        "scripts/ubuntu1904/postfix.sh",
+        "scripts/ubuntu1904/mysql.sh",
+        "scripts/ubuntu1904/memcached.sh",
+        "scripts/ubuntu1904/floppy.sh",
+        "scripts/ubuntu1904/vagrant.sh",
+        "scripts/ubuntu1904/profile.sh",
+        "scripts/ubuntu1904/motd.sh",
+        "scripts/ubuntu1904/magma.sh",
+        "scripts/ubuntu1904/fixtty.sh",
+        "scripts/ubuntu1904/virtualbox.sh",
+        "scripts/ubuntu1904/parallels.sh",
+        "scripts/ubuntu1904/vmware.sh",
+        "scripts/ubuntu1904/qemu.sh",
+        "scripts/ubuntu1904/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1904-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1910/apt.sh",
+        "scripts/ubuntu1910/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1910-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1910/limits.sh",
+        "scripts/ubuntu1910/postfix.sh",
+        "scripts/ubuntu1910/mysql.sh",
+        "scripts/ubuntu1910/memcached.sh",
+        "scripts/ubuntu1910/floppy.sh",
+        "scripts/ubuntu1910/vagrant.sh",
+        "scripts/ubuntu1910/profile.sh",
+        "scripts/ubuntu1910/motd.sh",
+        "scripts/ubuntu1910/magma.sh",
+        "scripts/ubuntu1910/fixtty.sh",
+        "scripts/ubuntu1910/virtualbox.sh",
+        "scripts/ubuntu1910/parallels.sh",
+        "scripts/ubuntu1910/vmware.sh",
+        "scripts/ubuntu1910/qemu.sh",
+        "scripts/ubuntu1910/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu1910-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2004/apt.sh",
+        "scripts/ubuntu2004/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu2004-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2004/limits.sh",
+        "scripts/ubuntu2004/postfix.sh",
+        "scripts/ubuntu2004/mysql.sh",
+        "scripts/ubuntu2004/memcached.sh",
+        "scripts/ubuntu2004/floppy.sh",
+        "scripts/ubuntu2004/vagrant.sh",
+        "scripts/ubuntu2004/profile.sh",
+        "scripts/ubuntu2004/motd.sh",
+        "scripts/ubuntu2004/magma.sh",
+        "scripts/ubuntu2004/fixtty.sh",
+        "scripts/ubuntu2004/virtualbox.sh",
+        "scripts/ubuntu2004/parallels.sh",
+        "scripts/ubuntu2004/vmware.sh",
+        "scripts/ubuntu2004/qemu.sh",
+        "scripts/ubuntu2004/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-ubuntu2004-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/centos8/network.sh",
+        "scripts/centos8/dnf.sh",
+        "scripts/centos8/base.sh",
+        "scripts/centos8/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-centos8-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/centos8/kernel.sh",
+        "scripts/centos8/floppy.sh",
+        "scripts/centos8/virtualbox.sh",
+        "scripts/centos8/parallels.sh",
+        "scripts/centos8/vmware.sh",
+        "scripts/centos8/qemu.sh",
+        "scripts/centos8/vagrant.sh",
+        "scripts/centos8/postfix.sh",
+        "scripts/centos8/memcached.sh",
+        "scripts/centos8/mariadb.sh",
+        "scripts/centos8/magma.sh",
+        "scripts/centos8/tuning.sh",
+        "scripts/centos8/sshd.sh",
+        "scripts/centos8/randomness.sh",
+        "scripts/centos8/updatedb.sh",
+        "scripts/centos8/cleanup.sh",
+        "scripts/centos8/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-centos8-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora32/fixdns.sh",
+        "scripts/fedora32/hostname.sh",
+        "scripts/fedora32/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora32-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora32/fixtmp.sh",
+        "scripts/fedora32/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora32-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora32/kernel.sh",
+        "scripts/fedora32/vga.sh",
+        "scripts/fedora32/virtualbox.sh",
+        "scripts/fedora32/parallels.sh",
+        "scripts/fedora32/vmware.sh",
+        "scripts/fedora32/qemu.sh",
+        "scripts/fedora32/vagrant.sh",
+        "scripts/fedora32/mariadb.sh",
+        "scripts/fedora32/postfix.sh",
+        "scripts/fedora32/magma.sh",
+        "scripts/fedora32/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora32-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora33/fixdns.sh",
+        "scripts/fedora33/hostname.sh",
+        "scripts/fedora33/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora33-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora33/fixtmp.sh",
+        "scripts/fedora33/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora33-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora33/kernel.sh",
+        "scripts/fedora33/vga.sh",
+        "scripts/fedora33/virtualbox.sh",
+        "scripts/fedora33/parallels.sh",
+        "scripts/fedora33/vmware.sh",
+        "scripts/fedora33/qemu.sh",
+        "scripts/fedora33/vagrant.sh",
+        "scripts/fedora33/mariadb.sh",
+        "scripts/fedora33/postfix.sh",
+        "scripts/fedora33/magma.sh",
+        "scripts/fedora33/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora33-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora34/fixdns.sh",
+        "scripts/fedora34/hostname.sh",
+        "scripts/fedora34/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora34-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora34/fixtmp.sh",
+        "scripts/fedora34/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora34-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora34/kernel.sh",
+        "scripts/fedora34/vga.sh",
+        "scripts/fedora34/virtualbox.sh",
+        "scripts/fedora34/parallels.sh",
+        "scripts/fedora34/vmware.sh",
+        "scripts/fedora34/qemu.sh",
+        "scripts/fedora34/vagrant.sh",
+        "scripts/fedora34/mariadb.sh",
+        "scripts/fedora34/postfix.sh",
+        "scripts/fedora34/magma.sh",
+        "scripts/fedora34/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora34-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora35/fixdns.sh",
+        "scripts/fedora35/hostname.sh",
+        "scripts/fedora35/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora35-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora35/fixtmp.sh",
+        "scripts/fedora35/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora35-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora35/kernel.sh",
+        "scripts/fedora35/vga.sh",
+        "scripts/fedora35/virtualbox.sh",
+        "scripts/fedora35/parallels.sh",
+        "scripts/fedora35/vmware.sh",
+        "scripts/fedora35/qemu.sh",
+        "scripts/fedora35/vagrant.sh",
+        "scripts/fedora35/mariadb.sh",
+        "scripts/fedora35/postfix.sh",
+        "scripts/fedora35/magma.sh",
+        "scripts/fedora35/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora35-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora36/fixdns.sh",
+        "scripts/fedora36/hostname.sh",
+        "scripts/fedora36/dnf.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora36-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora36/fixtmp.sh",
+        "scripts/fedora36/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora36-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora36/kernel.sh",
+        "scripts/fedora36/vga.sh",
+        "scripts/fedora36/virtualbox.sh",
+        "scripts/fedora36/parallels.sh",
+        "scripts/fedora36/vmware.sh",
+        "scripts/fedora36/qemu.sh",
+        "scripts/fedora36/vagrant.sh",
+        "scripts/fedora36/mariadb.sh",
+        "scripts/fedora36/postfix.sh",
+        "scripts/fedora36/magma.sh",
+        "scripts/fedora36/tuning.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "magma-fedora36-hyperv"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/common/motd.sh",
+        "scripts/common/keys.sh",
+        "scripts/common/machine.sh",
+        "scripts/common/leases.sh",
+        "scripts/common/localtime.sh",
+        "scripts/common/zerodisk.sh",
+        "scripts/common/lockout.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true"
+    }
+  ],
+  "builders": [
+    {
+      "type": "hyperv-iso",
+      "name": "magma-centos6-hyperv",
+      "vm_name": "magma-centos6-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-centos6-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos6.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
+      "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-centos7-hyperv",
+      "vm_name": "magma-centos7-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-centos7-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos7.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://mirrors.edge.kernel.org/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso",
+      "iso_checksum": "sha256:07b94e6b1a0b0260b94c83d6bb76b26bf7a310dc78d7a9c7432809fb9bc6194a",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-alpine36-hyperv",
+      "vm_name": "magma-alpine36-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-alpine36-hyperv",
+      "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.alpine36.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | setup-alpine -f magma.alpine36.vagrant.cfg && ",
+        "mount /dev/sda3 /mnt && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
+        "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.6/releases/x86_64/alpine-virt-3.6.5-x86_64.iso",
+      "iso_checksum": "sha256:b5936e27487e605ea3cbf040d444505ea7fd735021258d7b119faaa9b4b5b083",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-arch-hyperv",
+      "vm_name": "magma-arch-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-arch-hyperv",
+      "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<spacebar>net.ifnames=0 biosdevname=0 systemd.mask=sshd.service<enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "sed -i 's/[#]\\?DNSSEC=.*/DNSSEC=false/g' /etc/systemd/resolved.conf<enter><wait>",
+        "systemctl restart systemd-resolved<enter><wait>",
+        "systemctl restart dhcpcd<enter><wait>",
+        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.arch.vagrant{,.chroot}.sh'<enter><wait>",
+        "bash magma.arch.vagrant.sh < magma.arch.vagrant.chroot.sh && systemctl reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2022.05.01-x86_64.iso",
+      "iso_checksum": "sha256:d0605dc6a648be9bcb431a86f14f50fb87696cfc0e8b27ec4fd16d3de4029a1a",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "systemctl poweroff",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-fedora27-hyperv",
+      "vm_name": "magma-fedora27-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-fedora27-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora27.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Server/x86_64/iso/Fedora-Server-netinst-x86_64-27-1.6.iso",
+      "iso_checksum": "sha256:2b93836c38833b26891345388ff5ddea60529b27a616b4539d432a3520d1c90b",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-debian8-hyperv",
+      "vm_name": "magma-debian8-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-debian8-hyperv",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian8.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/amd64/iso-dvd/debian-8.11.1-amd64-DVD-1.iso",
+      "iso_checksum": "sha256:a3bd67cd363b609e1340cea06a666cb476b63fc79abf4380c0475dd1b6dc8a31",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-ubuntu1604-hyperv",
+      "vm_name": "magma-ubuntu1604-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-ubuntu1604-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<enter><wait>",
+        "<f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1604.vagrant.cfg --- <wait><enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://mirrors.edge.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",
+      "iso_checksum": "sha256:b23488689e16cad7a269eb2d3a3bf725d3457ee6b0868e00c8762d3816e25848",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-ubuntu1610-hyperv",
+      "vm_name": "magma-ubuntu1610-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-ubuntu1610-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1610.vagrant.cfg --- <wait><enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://old-releases.ubuntu.com/releases/16.10/ubuntu-16.10-server-amd64.iso",
+      "iso_checksum": "sha256:72b0d421da77f1e0c549b4efe6fc6c184e9909d6792f0d1e59b56d63e9705659",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-ubuntu1704-hyperv",
+      "vm_name": "magma-ubuntu1704-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-ubuntu1704-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1704.vagrant.cfg --- <wait><enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://old-releases.ubuntu.com/releases/17.04/ubuntu-17.04-server-amd64.iso",
+      "iso_checksum": "sha256:ca5d9a8438e2434b9a3ac2be67b5c5fa2c1f8e3e40b954519462935195464034",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-gentoo-hyperv",
+      "vm_name": "magma-gentoo-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-gentoo-hyperv",
+      "boot_wait": "5s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "gentoo-nofb<enter>",
+        "<wait10><enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
+        "sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf<enter><wait>",
+        "passwd root<enter><wait><wait><wait>",
+        "vagrant<enter><wait>",
+        "vagrant<enter><wait>",
+        "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
+        "bash magma.gentoo.vagrant.sh<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 8192,
+      "cpus": 8,
+      "http_directory": "http",
+      "iso_url": "https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20220522T170533Z.iso",
+      "iso_checksum": "sha256:c9fc734891a2b780c0301c554cf71c782bfc660b936128abe11f7bae60b02afa",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "9800s",
+      "shutdown_command": "shutdown -hP now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-freebsd11-hyperv",
+      "vm_name": "magma-freebsd11-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-freebsd11-hyperv",
+      "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait5>",
+        "mdmfs -s 100m md2 /mnt<enter><wait5>",
+        "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig && reboot<wait><enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "http://ftp-archive.freebsd.org/pub/FreeBSD-Archive/old-releases/ISO-IMAGES/11.4/FreeBSD-11.4-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "sha256:d76c1ded99b2c1005b1ff94cc0c811fbcd8a2d04196432009ab5f203c2146914",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-openbsd6-hyperv",
+      "vm_name": "magma-openbsd6-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-openbsd6-hyperv",
+      "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "S<enter><wait5>",
+        "dhclient hvn0<enter><wait10>",
+        "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.cfg<enter><wait5>",
+        "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/magma.openbsd6.install.chroot.sh<enter><wait5>",
+        "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://ftp.nluug.nl/OpenBSD/6.9/amd64/cd69.iso",
+      "iso_checksum": "sha256:b391350d72a4fcab550033c830a17612cff65ebdb6de428732d9b15f780bf9c2",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "shutdown -h -p now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-debian9-hyperv",
+      "vm_name": "magma-debian9-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-debian9-hyperv",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian9.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/9.13.0/amd64/iso-cd/debian-9.13.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:71c7e9eb292acc880f84605b1ca2b997f25737fe0a43fc9586f61d35cd2eb43b",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-debian10-hyperv",
+      "vm_name": "magma-debian10-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-debian10-hyperv",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian10.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/10.12.0/amd64/iso-cd/debian-10.12.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:3cdec5aa9865a768434e4ad2b9fba0e8ca82fc297ceb4137518c53045d5d4af8",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-debian11-hyperv",
+      "vm_name": "magma-debian11-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-debian11-hyperv",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.debian11.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.3.0/amd64/iso-cd/debian-11.3.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:7892981e1da216e79fb3a1536ce5ebab157afdd20048fe458f2ae34fbc26c19b",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-fedora28-hyperv",
+      "vm_name": "magma-fedora28-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-fedora28-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora28.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Server/x86_64/iso/Fedora-Server-netinst-x86_64-28-1.1.iso",
+      "iso_checksum": "sha256:ea1efdc692356b3346326f82e2f468903e8da59324fdee8b10eac4fea83f23fe",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-fedora29-hyperv",
+      "vm_name": "magma-fedora29-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-fedora29-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora29.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Server/x86_64/iso/Fedora-Server-netinst-x86_64-29-1.2.iso",
+      "iso_checksum": "sha256:aa7fb0e6e5b71774ebdaab0dae76bdd9246a5bc7aedc28b7f1103aaaf9750654",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-fedora30-hyperv",
+      "vm_name": "magma-fedora30-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-fedora30-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora30.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
+      "iso_checksum": "sha256:5e4eac4566d8c572bfb3bcf54b7d6c82006ec3c6c882a2c9235c6d3494d7b100",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-fedora31-hyperv",
+      "vm_name": "magma-fedora31-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-fedora31-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora31.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/Server/x86_64/iso/Fedora-Server-netinst-x86_64-31-1.9.iso",
+      "iso_checksum": "sha256:5be8debd3e8fb4e86b9fbf67c7eb66ea598d2b7ad0c7ba8d505ce88067b43444",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-ubuntu1710-hyperv",
+      "vm_name": "magma-ubuntu1710-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-ubuntu1710-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1710.vagrant.cfg --- <wait><enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://old-releases.ubuntu.com/releases/17.10/ubuntu-17.10.1-server-amd64.iso",
+      "iso_checksum": "sha256:8ff73f1b622276758475c3bd5190b382774626de5a82c50930519381f6c3a3f8",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-ubuntu1804-hyperv",
+      "vm_name": "magma-ubuntu1804-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-ubuntu1804-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1804.vagrant.cfg --- <wait><enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://cdimage.ubuntu.com/ubuntu/releases/18.04.6/release/ubuntu-18.04.6-server-amd64.iso",
+      "iso_checksum": "sha256:f5cbb8104348f0097a8e513b10173a07dbc6684595e331cb06f93f385d0aecf6",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-ubuntu1810-hyperv",
+      "vm_name": "magma-ubuntu1810-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-ubuntu1810-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1810.vagrant.cfg --- <wait><enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://old-releases.ubuntu.com/releases/18.10/ubuntu-18.10-server-amd64.iso",
+      "iso_checksum": "sha256:cf9250781dadd919f23c9d9612212cad653e35fccc2fbcf6853f67ad09e067ba",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-ubuntu1904-hyperv",
+      "vm_name": "magma-ubuntu1904-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-ubuntu1904-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1904.vagrant.cfg --- <wait><enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://old-releases.ubuntu.com/releases/19.04/ubuntu-19.04-server-amd64.iso",
+      "iso_checksum": "sha256:7e8a0d07522f591dfee9bc9fcd7c05466763161e6cb0117906655bce1750b2fa",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-ubuntu1910-hyperv",
+      "vm_name": "magma-ubuntu1910-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-ubuntu1910-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu1910.vagrant.cfg --- <wait><enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://archive.org/download/ubuntu-19.10-server-amd64/ubuntu-19.10-server-amd64.iso",
+      "iso_checksum": "sha256:921fd8b271c04aa86a321cc35b40e677f9b85f7903bf2204efb2389b0f0a64c1",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-ubuntu2004-hyperv",
+      "vm_name": "magma-ubuntu2004-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-ubuntu2004-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "fb=false auto-install/enable=true debconf/priority=critical debconf/frontend=noninteractive ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.ubuntu2004.vagrant.cfg --- <wait><enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/ubuntu-20.04.1-legacy-server-amd64.iso",
+      "iso_checksum": "sha256:f11bda2f2caed8f420802b59f382c25160b114ccc665dbac9c5046e7fceaced2",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-centos8-hyperv",
+      "vm_name": "magma-centos8-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-centos8-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.centos8.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://vault.centos.org/8.5.2111/isos/x86_64/CentOS-8.5.2111-x86_64-boot.iso",
+      "iso_checksum": "sha256:9602c69c52d93f51295c0199af395ca0edbe35e36506e32b8e749ce6c8f5b60a",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-fedora32-hyperv",
+      "vm_name": "magma-fedora32-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-fedora32-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora32.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/32/Server/x86_64/iso/Fedora-Server-netinst-x86_64-32-1.6.iso",
+      "iso_checksum": "sha256:7f4afd2a26c718f9f15e4bbfd9c2e8849f81036d2a82a4e81fa4a313a833da9c",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-fedora33-hyperv",
+      "vm_name": "magma-fedora33-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-fedora33-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora33.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/33/Server/x86_64/iso/Fedora-Server-netinst-x86_64-33-1.2.iso",
+      "iso_checksum": "sha256:1f1f018e78f0cc23d08db0c85952344ea5c200e67b672da5b07507c066a52ccf",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-fedora34-hyperv",
+      "vm_name": "magma-fedora34-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-fedora34-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora34.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/iso/Fedora-Server-netinst-x86_64-34-1.2.iso",
+      "iso_checksum": "sha256:e1a38b9faa62f793ad4561b308c31f32876cfaaee94457a7a9108aaddaeec406",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-fedora35-hyperv",
+      "vm_name": "magma-fedora35-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-fedora35-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora35.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/x86_64/iso/Fedora-Server-netinst-x86_64-35-1.2.iso",
+      "iso_checksum": "sha256:dd35f955dd5a7054213a0098c6ee737ff116aa3090fc6dbfe89d424b5c3552dd",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "magma-fedora36-hyperv",
+      "vm_name": "magma-fedora36-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/magma-fedora36-hyperv",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> ",
+        "inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/magma.fedora36.vagrant.ks ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_block_size": 1,
+      "memory": 2048,
+      "cpus": 4,
+      "http_directory": "http",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/iso/Fedora-Server-netinst-x86_64-36-1.5.iso",
+      "iso_checksum": "sha256:421c4c6e23d72e4669a55e7710562287ecd9308b3d314329960f586b89ccca19",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": true,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/magma-default.rb",
+        "output": "output/{{build_name}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lavabit/info.json"
+        ],
+        "except": [
+          "magma-alpine36-hyperv",
+          "magma-openbsd6-hyperv",
+          "magma-freebsd11-hyperv"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+        "except": [
+          "magma-alpine36-hyperv",
+          "magma-openbsd6-hyperv",
+          "magma-freebsd11-hyperv"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/magma-alpine.rb",
+        "output": "output/{{build_name}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lavabit/info.json"
+        ],
+        "only": [
+          "magma-alpine36-hyperv"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "magma-alpine36-hyperv"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/magma-bsd.rb",
+        "output": "output/{{build_name}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lavabit/info.json"
+        ],
+        "only": [
+          "magma-openbsd6-hyperv",
+          "magma-freebsd11-hyperv"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "magma-openbsd6-hyperv",
+          "magma-freebsd11-hyperv"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/magma-default.rb",
+        "output": "output/{{ replace_all \"-centos6\" \"\" build_name }}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lavabit/info.json"
+        ],
+        "only": [
+          "magma-centos6-hyperv"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{ replace_all \"-centos6\" \"\" build_name }}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "magma-centos6-hyperv"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/magma-default.rb",
+        "output": "output/{{ replace_all \"centos6\" \"centos\" build_name }}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lavabit/info.json"
+        ],
+        "only": [
+          "magma-centos6-hyperv"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{ replace_all \"centos6\" \"centos\" build_name }}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "magma-centos6-hyperv"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/magma-default.rb",
+        "output": "output/{{ replace_all \"ubuntu1604\" \"ubuntu\" build_name }}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lavabit/info.json"
+        ],
+        "only": [
+          "magma-ubuntu1604-hyperv"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{ replace_all \"ubuntu1604\" \"ubuntu\" build_name }}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "magma-ubuntu1604-hyperv"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/magma-default.rb",
+        "output": "output/{{ replace_all \"debian8\" \"debian\" build_name }}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lavabit/info.json"
+        ],
+        "only": [
+          "magma-debian8-hyperv"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{ replace_all \"debian8\" \"debian\" build_name }}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "magma-debian8-hyperv"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/magma-default.rb",
+        "output": "output/{{ replace_all \"fedora27\" \"fedora\" build_name }}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lavabit/info.json"
+        ],
+        "only": [
+          "magma-fedora27-hyperv"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{ replace_all \"fedora27\" \"fedora\" build_name }}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "magma-fedora27-hyperv"
+        ]
+      }
+    ]
+  ]
+}
