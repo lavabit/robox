@@ -61,23 +61,5 @@ VBOXVERSION=`cat /root/VBoxVersion.txt`
 
 retry dnf install --assumeyes virtualbox-guest-additions; error
 
-# dnf install --assumeyes dkms binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel bzip2 kernel-headers kernel-devel kernel-cross-headers; error
-#
-# # The group vboxsf is needed for shared folder access.
-# getent group vboxsf >/dev/null || groupadd --system vboxsf; error
-# getent passwd vboxadd >/dev/null || useradd --system --gid bin --home-dir /var/run/vboxadd --shell /sbin/nologin vboxadd; error
-#
-# mkdir -p /mnt/virtualbox; error
-# mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
-#
-# # For some reason the vboxsf module fails the first time, but installs
-# # successfully if we run the installer a second time.
-# sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11 || sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; error
-# ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions; error
-#
-# # Test if the vboxsf module is present
-# [ -s "/lib/modules/$(uname -r)/misc/vboxsf.ko" ]; error
-#
-# umount /mnt/virtualbox; error
 rm -rf /root/VBoxVersion.txt; error
 rm -rf /root/VBoxGuestAdditions.iso; error
