@@ -272,12 +272,76 @@ REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/SHA512.bz2
 # NetBSD 9.2
 REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/SHA512.bz2" )
 
+# OpenSUSE 42.3
+REPOS+=( "http://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
+
+# OpenSUSE 15.3
+REPOS+=( "https://download.opensuse.org/distribution/leap/15.3/repo/oss/INDEX.gz" )
+
+# Devuan 1
+REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/jessie/InRelease" )
+
+# Devuan 2
+REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/ascii/InRelease" )
+
+# Devuan 3
+REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/beowulf/InRelease" )
+
+# Devuan 4
+REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/ceres/InRelease" )
+
+# Devuan 5
+REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/daedalus/InRelease" )
+
+# Debian 8
+REPOS+=( "https://ftp.debian.org/debian/dists/jessie/Release" )
+
+# Debian 9
+REPOS+=( "http://ftp.debian.org/debian/dists/stretch/Release" )
+
+# Debian 10
+REPOS+=( "https://ftp.debian.org/debian/dists/buster/InRelease" )
+
+# Debian 11
+REPOS+=( "https://ftp.debian.org/debian/dists/bullseye/InRelease" )
+
+# Debian 12
+REPOS+=( "https://ftp.debian.org/debian/dists/bookworm/InRelease" )
+
+# Debian 13
+# REPOS+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
+
 # EPEL
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/epel/6/x86_64/repodata/repomd.xml")
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/epel/6/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/7/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/8/Everything/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/8/Modular/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/9/Everything/x86_64/repodata/repomd.xml" )
+
+# Other URls Embedded inside configuration modules
+RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/libpython3.6-minimal_3.6.13-1%2Bxenial2_amd64.deb" )
+RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/libpython3.6-stdlib_3.6.13-1%2Bxenial2_amd64.deb" )
+RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/python3.6_3.6.13-1%2Bxenial2_amd64.deb" )
+RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/python3.6-minimal_3.6.13-1%2Bxenial2_amd64.deb" )
+RESOURCES+=( "https://dl.google.com/android/repository/platform-tools-latest-linux.zip" )
+RESOURCES+=( "https://files.pythonhosted.org/packages/03/1a/60984cb85cc38c4ebdfca27b32a6df6f1914959d8790f5a349608c78be61/cryptography-1.5.2.tar.gz" )
+RESOURCES+=( "https://files.pythonhosted.org/packages/10/46/059775dc8e50f722d205452bced4b3cc965d27e8c3389156acd3b1123ae3/pyasn1-0.4.4.tar.gz" )
+RESOURCES+=( "https://files.pythonhosted.org/packages/16/d8/bc6316cf98419719bd59c91742194c111b6f2e85abac88e496adefaf7afe/six-1.11.0.tar.gz" )
+RESOURCES+=( "https://files.pythonhosted.org/packages/34/a9/65ef401499e6878b3c67c473ecfd8803eacf274b03316ec8f2e86116708d/setuptools-11.3.tar.gz" )
+RESOURCES+=( "https://files.pythonhosted.org/packages/65/c4/80f97e9c9628f3cac9b98bfca0402ede54e0563b56482e3e6e45c43c4935/idna-2.7.tar.gz" )
+RESOURCES+=( "https://files.pythonhosted.org/packages/97/8d/77b8cedcfbf93676148518036c6b1ce7f8e14bf07e95d7fd4ddcb8cc052f/ipaddress-1.0.22.tar.gz" )
+RESOURCES+=( "https://files.pythonhosted.org/packages/bf/3e/31d502c25302814a7c2f1d3959d2a3b3f78e509002ba91aea64993936876/enum34-1.1.6.tar.gz" )
+RESOURCES+=( "https://files.pythonhosted.org/packages/e7/a7/4cd50e57cc6f436f1cc3a7e8fa700ff9b8b4d471620629074913e3735fb2/cffi-1.11.5.tar.gz" )
+RESOURCES+=( "https://mirrors.edge.kernel.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb" )
+RESOURCES+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/All/open-vm-tools-nox11-11.3.0,2.pkg" )
+RESOURCES+=( "https://raw.githubusercontent.com/curl/curl/85f91248cffb22d151d5983c32f0dbf6b1de572a/lib/mk-ca-bundle.pl" )
+RESOURCES+=( "https://sourceware.org/pub/valgrind/valgrind-3.15.0.tar.bz2" )
+RESOURCES+=( "https://storage.googleapis.com/git-repo-downloads/repo" )
+
+# This server doesn't have a properly configured HTTPS certificate, so we use HTTP
+RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb" )
+RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb" )
+RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb" )
 
 # Detect Windows subsystem for Linux.
 if [ -z $OS ]; then
@@ -876,6 +940,11 @@ function links() {
     (verify_url "${REPOS[$i]}") &
     sleep 0.1 &> /dev/null || echo "" &> /dev/null
   done
+  
+  for ((i = 0; i < ${#RESOURCES[@]}; ++i)); do
+    (verify_url "${RESOURCES[$i]}") &
+    sleep 0.1 &> /dev/null || echo "" &> /dev/null
+  done
 
   # Wait until the children are done working.
   wait
@@ -887,7 +956,7 @@ function links() {
   done
 
   # Combine the media URLs with the regular box ISO URLs and the repos.
-  let TOTAL=${#UNIQURLS[@]}+${#REPOS[@]}
+  let TOTAL=${#UNIQURLS[@]}+${#REPOS[@]}+${#RESOURCES[@]}
 
   # Let the user know all of the links passed.
   printf "\nAll $TOTAL of the install media/package repository locations have been checked...\n\n"
