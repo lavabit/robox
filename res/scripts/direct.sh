@@ -283,6 +283,7 @@ ${CURL} \
   --silent \
   --retry 16 \
   --retry-delay 60 \
+  --max-time 180 \
   --output /dev/null \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
@@ -301,6 +302,7 @@ ${CURL} \
   --silent \
   --retry 16 \
   --retry-delay 60 \
+  --max-time 180 \
   --output /dev/null \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   --request DELETE \
@@ -315,6 +317,7 @@ ${CURL} \
   --silent \
   --retry 16 \
   --retry-delay 60 \
+  --max-time 180 \
   --output /dev/null \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
@@ -327,6 +330,7 @@ UPLOAD_RESPONSE=$( ${CURL} \
   --show-error \
   --tlsv1.2 \
   --silent \
+  --max-time 180 \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   "https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/upload/direct" )
 
@@ -348,6 +352,8 @@ retry ${CURL} --tlsv1.2 \
   --show-error \
   --request PUT \
   --max-time 7200 \
+  --speed-time 60 \
+  --speed-limit 16384 \
   --expect100-timeout 7200 \
   --header "Connection: keep-alive" \
   --write-out "FILE: $FILENAME\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n\n" \
@@ -367,7 +373,7 @@ ${CURL} --tlsv1.2 \
   --output "/dev/null" \
   --show-error \
   --request PUT \
-  --max-time 7200 \
+  --max-time 180 \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   "$UPLOAD_CALLBACK"
 
@@ -381,7 +387,7 @@ if [ "$RESULT" -ne 0 ]; then
     --output "/dev/null" \
     --show-error \
     --request PUT \
-    --max-time 7200 \
+    --max-time 180 \
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     "$UPLOAD_CALLBACK"
 
