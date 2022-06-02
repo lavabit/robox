@@ -54,7 +54,43 @@ mysql --execute="GRANT ALL ON *.* TO mytool@localhost"
 retry yum --assumeyes install zlib-devel openssl-devel libffi-devel python-pip python-ply python-devel python-pycparser python-crypto2.6 libcom_err-devel libsepol-devel libselinux-devel keyutils-libs-devel krb5-devel
 
 # Install the Python Prerequisites
-pip install --disable-pip-version-check cryptography==1.5.2 cffi==1.11.5 enum34==1.1.6 idna==2.7 ipaddress==1.0.22 pyasn1==0.4.4 six==1.11.0 setuptools==11.3
+curl --silent -o cryptography-1.5.2.tar.gz https://files.pythonhosted.org/packages/03/1a/60984cb85cc38c4ebdfca27b32a6df6f1914959d8790f5a349608c78be61/cryptography-1.5.2.tar.gz || \
+{ rm -f cryptography-1.5.2.tar.gz ; curl --silent -o cryptography-1.5.2.tar.gz https://archive.org/download/legacy-pip-packages/cryptography-1.5.2.tar.gz }
+
+curl --silent -o cffi-1.11.5.tar.gz https://files.pythonhosted.org/packages/e7/a7/4cd50e57cc6f436f1cc3a7e8fa700ff9b8b4d471620629074913e3735fb2/cffi-1.11.5.tar.gz || \
+{ rm -f cffi-1.11.5.tar.gz ; curl --location --silent -o cffi-1.11.5.tar.gz https://archive.org/download/legacy-pip-packages/cffi-1.11.5.tar.gz }
+
+curl --silent -o enum34-1.1.6.tar.gz https://files.pythonhosted.org/packages/bf/3e/31d502c25302814a7c2f1d3959d2a3b3f78e509002ba91aea64993936876/enum34-1.1.6.tar.gz || \
+{ rm -f enum34-1.1.6.tar.gz ; curl --location --silent -o enum34-1.1.6.tar.gz https://archive.org/download/legacy-pip-packages/enum34-1.1.6.tar.gz }
+
+curl --silent -o ipaddress-1.0.22.tar.gz https://files.pythonhosted.org/packages/97/8d/77b8cedcfbf93676148518036c6b1ce7f8e14bf07e95d7fd4ddcb8cc052f/ipaddress-1.0.22.tar.gz || \
+{ rm -f ipaddress-1.0.22.tar.gz ; curl --location --silent -o ipaddress-1.0.22.tar.gz https://archive.org/download/legacy-pip-packages/ipaddress-1.0.22.tar.gz }
+
+curl --silent -o idna-2.7.tar.gz https://files.pythonhosted.org/packages/65/c4/80f97e9c9628f3cac9b98bfca0402ede54e0563b56482e3e6e45c43c4935/idna-2.7.tar.gz || \
+{ rm -f idna-2.7.tar.gz ; curl --location --silent -o idna-2.7.tar.gz https://archive.org/download/legacy-pip-packages/idna-2.7.tar.gz }
+
+curl --silent -o pyasn1-0.4.4.tar.gz https://files.pythonhosted.org/packages/10/46/059775dc8e50f722d205452bced4b3cc965d27e8c3389156acd3b1123ae3/pyasn1-0.4.4.tar.gz || \
+{ rm -f pyasn1-0.4.4.tar.gz ; curl --location --silent -o pyasn1-0.4.4.tar.gz https://archive.org/download/legacy-pip-packages/pyasn1-0.4.4.tar.gz }
+
+curl --silent -o six-1.11.0.tar.gz https://files.pythonhosted.org/packages/16/d8/bc6316cf98419719bd59c91742194c111b6f2e85abac88e496adefaf7afe/six-1.11.0.tar.gz || \
+{ rm -f six-1.11.0.tar.gz ; curl --location --silent -o six-1.11.0.tar.gz https://archive.org/download/legacy-pip-packages/six-1.11.0.tar.gz }
+
+curl --silent -o setuptools-11.3.tar.gz https://files.pythonhosted.org/packages/34/a9/65ef401499e6878b3c67c473ecfd8803eacf274b03316ec8f2e86116708d/setuptools-11.3.tar.gz || \
+{ rm -f setuptools-11.3.tar.gz ; curl --location --silent -o setuptools-11.3.tar.gz https://archive.org/download/legacy-pip-packages/setuptools-11.3.tar.gz }
+
+sha256sum --quiet --check <<-EOF || { echo "Python package tarball hashes failed to validate ..." ; exit 1 ; }
+e90f17980e6ab0f3c2f3730e56d1fe9bcba1891eeea58966e89d352492cc74f4  cffi-1.11.5.tar.gz
+eb8875736734e8e870b09be43b17f40472dc189b1c422a952fa8580768204832  cryptography-1.5.2.tar.gz
+8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1  enum34-1.1.6.tar.gz
+684a38a6f903c1d71d6d5fac066b58d7768af4de2b832e426ec79c30daa94a16  idna-2.7.tar.gz
+b146c751ea45cad6188dd6cf2d9b757f6f4f8d6ffb96a023e6f2e26eea02a72c  ipaddress-1.0.22.tar.gz
+f58f2a3d12fd754aa123e9fa74fb7345333000a035f3921dbdaa08597aa53137  pyasn1-0.4.4.tar.gz
+a2da967efa9ed2f033d4dc4b3230001e97365b43993fdc744c3c3717c919380e  setuptools-11.3.tar.gz
+70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9  six-1.11.0.tar.gz
+EOF
+
+pip install idna-2.7.tar.gz pyasn1-0.4.4.tar.gz six-1.11.0.tar.gz enum34-1.1.6.tar.gz cffi-1.11.5.tar.gz ipaddress-1.0.22.tar.gz setuptools-11.3.tar.gz cryptography-1.5.2.tar.gz
+rm --force idna-2.7.tar.gz pyasn1-0.4.4.tar.gz six-1.11.0.tar.gz enum34-1.1.6.tar.gz cffi-1.11.5.tar.gz ipaddress-1.0.22.tar.gz setuptools-11.3.tar.gz cryptography-1.5.2.tar.gz
 
 printf "export PYTHONPATH=/usr/lib64/python2.6/site-packages/pycrypto-2.6.1-py2.6-linux-x86_64.egg/\n" > /etc/profile.d/pypath.sh
 chcon "system_u:object_r:bin_t:s0" /etc/profile.d/pypath.sh
