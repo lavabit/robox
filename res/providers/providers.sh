@@ -89,6 +89,22 @@ function provide-libvirt() {
   systemctl disable libvirtd.service
   systemctl disable libvirt-guests.service
 
+  # Detect support the vhost_net kernel module and configure it to load automatically.
+  export $(grep CONFIG_PCI_MSI= /boot/config-$(uname -r))
+  export $(grep CONFIG_VHOST_NET= /boot/config-$(uname -r))
+
+  if [[ "$CONFIG_PCI_MSI" =~ ^(m|y) ]] && [[ "$CONFIG_VHOST_NET" =~ ^(m|y) ]] && \
+    [ -d /etc/modules-load.d/ ] && [ ! -f /etc/modules-load.d/10-vhost_net.conf ]; then
+    printf "vhost_net\n" > "/etc/modules-load.d/10-vhost_net.conf"
+    chown root:root "/etc/modules-load.d/10-vhost_net.conf"
+    chmod 644 "/etc/modules-load.d/10-vhost_net.conf"
+    chcon system_u:object_r:etc_t:s0 "/etc/modules-load.d/10-vhost_net.conf"
+    modprobe vhost_net
+   fi
+   
+   unset CONFIG_PCI_MSI
+   unset CONFIG_VHOST_NET
+   
   if [ -f /usr/bin/X ]; then
     provide-virtmanager
   fi
