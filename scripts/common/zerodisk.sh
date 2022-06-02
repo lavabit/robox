@@ -47,6 +47,8 @@ else
 
   # Whiteout boot if the block count is different then root, otherwise if the
   # block counts are identical, we assume both folders are on the same partition.
+  rootcount=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')
+  rootcount=$(($rootcount-1))
   bootcount=$(df --sync -kP /boot | tail -n1 | awk -F ' ' '{print $4}')
   bootcount=$(($bootcount-1))
   if [ $rootcount != $bootcount ]; then
