@@ -43,7 +43,7 @@ Vagrant.configure(2) do |config|
     sudo sed -i 's/.*X11Forwarding.*/X11Forwarding yes/g' /etc/ssh/sshd_config
     sudo sed -i 's/.*X11UseLocalhost.*/X11UseLocalhost no/g' /etc/ssh/sshd_config
     sudo sed -i 's/.*X11DisplayOffset.*/X11DisplayOffset 10/g' /etc/ssh/sshd_config
-    sudo systemctl restart sshd.service
+    sudo systemctl reload sshd.service
   SHELL
 
 end
