@@ -301,7 +301,7 @@ function box() {
 function generic-virtualbox() {
 
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma8" ); P=( "${P[@]}" "virtualbox" );
-#   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine35" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine36" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine37" ); P=( "${P[@]}" "virtualbox" );
@@ -388,7 +388,7 @@ function generic-virtualbox() {
 function generic-libvirt() {
 
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma8" ); P=( "${P[@]}" "libvirt" );
-#   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine35" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine36" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine37" ); P=( "${P[@]}" "libvirt" );
@@ -475,7 +475,7 @@ function generic-libvirt() {
 function generic-vmware() {
 
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma8" ); P=( "${P[@]}" "vmware" );
-#   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine35" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine36" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine37" ); P=( "${P[@]}" "vmware" );
@@ -563,7 +563,7 @@ function generic-hyperv() {
 
   if [[ $OS == "Windows_NT" ]]; then
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma8" ); P=( "${P[@]}" "hyperv" );
-#     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine35" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine36" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine37" ); P=( "${P[@]}" "hyperv" );
@@ -654,7 +654,7 @@ function generic-parallels() {
 
   if [[ `uname` == "Darwin" ]]; then
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma8" ); P=( "${P[@]}" "parallels" );
-#     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine35" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine36" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine37" ); P=( "${P[@]}" "parallels" );
@@ -744,7 +744,7 @@ function generic-parallels() {
 function robox-virtualbox() {
 
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma8" ); P=( "${P[@]}" "virtualbox" );
-#   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine35" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine36" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine37" ); P=( "${P[@]}" "virtualbox" );
@@ -831,7 +831,7 @@ function robox-virtualbox() {
 function robox-libvirt() {
 
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma8" ); P=( "${P[@]}" "libvirt" );
-#   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine35" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine36" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine37" ); P=( "${P[@]}" "libvirt" );
@@ -918,7 +918,7 @@ function robox-libvirt() {
 function robox-vmware() {
 
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma8" ); P=( "${P[@]}" "vmware" );
-#   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine35" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine36" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine37" ); P=( "${P[@]}" "vmware" );
@@ -1006,7 +1006,7 @@ function robox-hyperv() {
 
   if [[ $OS == "Windows_NT" ]]; then
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma8" ); P=( "${P[@]}" "hyperv" );
-#     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine35" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine36" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine37" ); P=( "${P[@]}" "hyperv" );
@@ -1097,7 +1097,7 @@ function robox-parallels() {
 
   if [[ `uname` == "Darwin" ]]; then
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma8" ); P=( "${P[@]}" "parallels" );
-#     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alma9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine35" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine36" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine37" ); P=( "${P[@]}" "parallels" );
@@ -1520,7 +1520,7 @@ function cleanup() {
   # fi
 
   rm --recursive --force $BASE/{generic,roboxes}-alma8-{hyperv,libvirt,parallels,virtualbox,vmware}
-#   rm --recursive --force $BASE/{generic,roboxes}-alma9-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-alma9-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-alpine35-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-alpine36-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-alpine37-{hyperv,libvirt,parallels,virtualbox,vmware}
