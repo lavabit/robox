@@ -55,28 +55,28 @@ retry yum --assumeyes install zlib-devel openssl-devel libffi-devel python-pip p
 
 # Install the Python Prerequisites
 curl --silent -o cryptography-1.5.2.tar.gz https://files.pythonhosted.org/packages/03/1a/60984cb85cc38c4ebdfca27b32a6df6f1914959d8790f5a349608c78be61/cryptography-1.5.2.tar.gz || \
-{ rm -f cryptography-1.5.2.tar.gz ; curl --silent -o cryptography-1.5.2.tar.gz https://archive.org/download/legacy-pip-packages/cryptography-1.5.2.tar.gz }
+{ rm -f cryptography-1.5.2.tar.gz ; curl --silent -o cryptography-1.5.2.tar.gz https://archive.org/download/legacy-pip-packages/cryptography-1.5.2.tar.gz ; }
 
 curl --silent -o cffi-1.11.5.tar.gz https://files.pythonhosted.org/packages/e7/a7/4cd50e57cc6f436f1cc3a7e8fa700ff9b8b4d471620629074913e3735fb2/cffi-1.11.5.tar.gz || \
-{ rm -f cffi-1.11.5.tar.gz ; curl --location --silent -o cffi-1.11.5.tar.gz https://archive.org/download/legacy-pip-packages/cffi-1.11.5.tar.gz }
+{ rm -f cffi-1.11.5.tar.gz ; curl --location --silent -o cffi-1.11.5.tar.gz https://archive.org/download/legacy-pip-packages/cffi-1.11.5.tar.gz ; }
 
 curl --silent -o enum34-1.1.6.tar.gz https://files.pythonhosted.org/packages/bf/3e/31d502c25302814a7c2f1d3959d2a3b3f78e509002ba91aea64993936876/enum34-1.1.6.tar.gz || \
-{ rm -f enum34-1.1.6.tar.gz ; curl --location --silent -o enum34-1.1.6.tar.gz https://archive.org/download/legacy-pip-packages/enum34-1.1.6.tar.gz }
+{ rm -f enum34-1.1.6.tar.gz ; curl --location --silent -o enum34-1.1.6.tar.gz https://archive.org/download/legacy-pip-packages/enum34-1.1.6.tar.gz ; }
 
 curl --silent -o ipaddress-1.0.22.tar.gz https://files.pythonhosted.org/packages/97/8d/77b8cedcfbf93676148518036c6b1ce7f8e14bf07e95d7fd4ddcb8cc052f/ipaddress-1.0.22.tar.gz || \
-{ rm -f ipaddress-1.0.22.tar.gz ; curl --location --silent -o ipaddress-1.0.22.tar.gz https://archive.org/download/legacy-pip-packages/ipaddress-1.0.22.tar.gz }
+{ rm -f ipaddress-1.0.22.tar.gz ; curl --location --silent -o ipaddress-1.0.22.tar.gz https://archive.org/download/legacy-pip-packages/ipaddress-1.0.22.tar.gz ; }
 
 curl --silent -o idna-2.7.tar.gz https://files.pythonhosted.org/packages/65/c4/80f97e9c9628f3cac9b98bfca0402ede54e0563b56482e3e6e45c43c4935/idna-2.7.tar.gz || \
 { rm -f idna-2.7.tar.gz ; curl --location --silent -o idna-2.7.tar.gz https://archive.org/download/legacy-pip-packages/idna-2.7.tar.gz }
 
 curl --silent -o pyasn1-0.4.4.tar.gz https://files.pythonhosted.org/packages/10/46/059775dc8e50f722d205452bced4b3cc965d27e8c3389156acd3b1123ae3/pyasn1-0.4.4.tar.gz || \
-{ rm -f pyasn1-0.4.4.tar.gz ; curl --location --silent -o pyasn1-0.4.4.tar.gz https://archive.org/download/legacy-pip-packages/pyasn1-0.4.4.tar.gz }
+{ rm -f pyasn1-0.4.4.tar.gz ; curl --location --silent -o pyasn1-0.4.4.tar.gz https://archive.org/download/legacy-pip-packages/pyasn1-0.4.4.tar.gz ; }
 
 curl --silent -o six-1.11.0.tar.gz https://files.pythonhosted.org/packages/16/d8/bc6316cf98419719bd59c91742194c111b6f2e85abac88e496adefaf7afe/six-1.11.0.tar.gz || \
-{ rm -f six-1.11.0.tar.gz ; curl --location --silent -o six-1.11.0.tar.gz https://archive.org/download/legacy-pip-packages/six-1.11.0.tar.gz }
+{ rm -f six-1.11.0.tar.gz ; curl --location --silent -o six-1.11.0.tar.gz https://archive.org/download/legacy-pip-packages/six-1.11.0.tar.gz ; }
 
 curl --silent -o setuptools-11.3.tar.gz https://files.pythonhosted.org/packages/34/a9/65ef401499e6878b3c67c473ecfd8803eacf274b03316ec8f2e86116708d/setuptools-11.3.tar.gz || \
-{ rm -f setuptools-11.3.tar.gz ; curl --location --silent -o setuptools-11.3.tar.gz https://archive.org/download/legacy-pip-packages/setuptools-11.3.tar.gz }
+{ rm -f setuptools-11.3.tar.gz ; curl --location --silent -o setuptools-11.3.tar.gz https://archive.org/download/legacy-pip-packages/setuptools-11.3.tar.gz ; }
 
 sha256sum --quiet --check <<-EOF || { echo "Python package tarball hashes failed to validate ..." ; exit 1 ; }
 e90f17980e6ab0f3c2f3730e56d1fe9bcba1891eeea58966e89d352492cc74f4  cffi-1.11.5.tar.gz
