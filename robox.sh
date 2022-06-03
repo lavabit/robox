@@ -466,6 +466,11 @@ function start() {
     sudo /usr/bin/cpupower set -b 0
     sudo /usr/bin/cpupower info
   fi
+  
+  if [ -f /sys/kernel/mm/ksm/run ]; then
+    echo 1 | sudo tee /sys/kernel/mm/ksm/run > /dev/null
+  fi
+
 }
 
 function print_iso() {
