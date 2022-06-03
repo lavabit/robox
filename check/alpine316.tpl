@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
 
   #config.vm.guest = :alpine
-  config.vm.box = "generic/alpine315"
+  config.vm.box = "generic/alpine316"
   #config.vagrant.plugins = ["vagrant-alpine"]
   config.vm.hostname = "alpine.example.org"
   config.vm.network :private_network, :auto_config => true, :autostart => true, :libvirt__network_name => "default", :libvirt__always_destroy => false

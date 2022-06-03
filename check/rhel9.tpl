@@ -3,10 +3,7 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "generic/centos8s"
-
-  config.ssh.forward_x11 = true
-  config.ssh.forward_agent = true
+  config.vm.box = "generic/rhel9"
   config.vm.network :private_network, :auto_config => true, :autostart => true, :libvirt__network_name => "default", :libvirt__always_destroy => false
   
   config.vm.provider :libvirt do |v, override|
@@ -38,12 +35,5 @@ Vagrant.configure(2) do |config|
       v.vmx["cpuid.coresPerSocket"] = "1"
     end
   end
-
-  config.vm.provision "shell", inline: <<-SHELL
-    sudo sed -i 's/.*X11Forwarding.*/X11Forwarding yes/g' /etc/ssh/sshd_config
-    sudo sed -i 's/.*X11UseLocalhost.*/X11UseLocalhost no/g' /etc/ssh/sshd_config
-    sudo sed -i 's/.*X11DisplayOffset.*/X11DisplayOffset 10/g' /etc/ssh/sshd_config
-    sudo systemctl restart sshd.service
-  SHELL
 
 end

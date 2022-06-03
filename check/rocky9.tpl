@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "generic/rocky8"
+  config.vm.box = "generic/rocky9"
 
   config.ssh.forward_x11 = true
   config.ssh.forward_agent = true

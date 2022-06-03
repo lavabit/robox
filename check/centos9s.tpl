@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "generic/centos8"
+  config.vm.box = "generic/centos9s"
 
   config.ssh.forward_x11 = true
   config.ssh.forward_agent = true
