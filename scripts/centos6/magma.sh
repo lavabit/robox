@@ -86,7 +86,7 @@ curl --silent -o enum34-1.1.6.tar.gz https://files.pythonhosted.org/packages/bf/
 { rm -f enum34-1.1.6.tar.gz ; curl --location --silent -o enum34-1.1.6.tar.gz https://archive.org/download/legacy-pip-packages/enum34-1.1.6.tar.gz ; }
 
 curl --silent -o ipaddress-1.0.22.tar.gz https://files.pythonhosted.org/packages/97/8d/77b8cedcfbf93676148518036c6b1ce7f8e14bf07e95d7fd4ddcb8cc052f/ipaddress-1.0.22.tar.gz || \
-{ rm -f ipaddress-1.0.22.tar.gz ; curl --location --silent -o ipaddress-1.0.22.tar.gz https://archive.org/download/legacy-pip-packages/ipaddress-1.0.22.tar.gz }
+{ rm -f ipaddress-1.0.22.tar.gz ; curl --location --silent -o ipaddress-1.0.22.tar.gz https://archive.org/download/legacy-pip-packages/ipaddress-1.0.22.tar.gz ; }
 
 curl --silent -o idna-2.7.tar.gz https://files.pythonhosted.org/packages/65/c4/80f97e9c9628f3cac9b98bfca0402ede54e0563b56482e3e6e45c43c4935/idna-2.7.tar.gz || \
 { rm -f idna-2.7.tar.gz ; curl --location --silent -o idna-2.7.tar.gz https://archive.org/download/legacy-pip-packages/idna-2.7.tar.gz ; }

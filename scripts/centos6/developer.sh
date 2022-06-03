@@ -67,7 +67,7 @@ curl --silent -o ipaddress-1.0.22.tar.gz https://files.pythonhosted.org/packages
 { rm -f ipaddress-1.0.22.tar.gz ; curl --location --silent -o ipaddress-1.0.22.tar.gz https://archive.org/download/legacy-pip-packages/ipaddress-1.0.22.tar.gz ; }
 
 curl --silent -o idna-2.7.tar.gz https://files.pythonhosted.org/packages/65/c4/80f97e9c9628f3cac9b98bfca0402ede54e0563b56482e3e6e45c43c4935/idna-2.7.tar.gz || \
-{ rm -f idna-2.7.tar.gz ; curl --location --silent -o idna-2.7.tar.gz https://archive.org/download/legacy-pip-packages/idna-2.7.tar.gz }
+{ rm -f idna-2.7.tar.gz ; curl --location --silent -o idna-2.7.tar.gz https://archive.org/download/legacy-pip-packages/idna-2.7.tar.gz ; }
 
 curl --silent -o pyasn1-0.4.4.tar.gz https://files.pythonhosted.org/packages/10/46/059775dc8e50f722d205452bced4b3cc965d27e8c3389156acd3b1123ae3/pyasn1-0.4.4.tar.gz || \
 { rm -f pyasn1-0.4.4.tar.gz ; curl --location --silent -o pyasn1-0.4.4.tar.gz https://archive.org/download/legacy-pip-packages/pyasn1-0.4.4.tar.gz ; }
