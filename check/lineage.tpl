@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
   
   config.vm.box = "lineage/lineage"
-  config.vm.network :private_network, :auto_config => true, :autostart => true, :libvirt__network_name => "default", :libvirt__always_destroy => false
+  config.vm.network :private_network, :auto_config => false, :autostart => false, :libvirt__network_name => "default", :libvirt__always_destroy => false
 
   config.vm.provider :libvirt do |v, override|
     v.driver = "kvm"
