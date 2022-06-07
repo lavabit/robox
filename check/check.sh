@@ -466,7 +466,7 @@ function generic-libvirt() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "libvirt" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-  plugin-libvirt && parallel --jobs 4 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+  plugin-libvirt && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
   unset O; unset B; unset P; wait
 
   tput setaf 4; tput bold; printf "\nThe generic libvirt run finished.\n"; tput sgr0
