@@ -275,8 +275,8 @@ REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/SHA512.bz2
 # OpenSUSE 42.3
 REPOS+=( "http://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
 
-# OpenSUSE 15.3
-REPOS+=( "https://download.opensuse.org/distribution/leap/15.3/repo/oss/INDEX.gz" )
+# OpenSUSE 15.4
+REPOS+=( "https://download.opensuse.org/distribution/leap/15.4/repo/oss/INDEX.gz" )
 
 # Devuan 1
 REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/jessie/InRelease" )
