@@ -618,7 +618,7 @@
     {
       "name": "opensuse15",
       "output_directory": "output/opensuse15",
-      "iso_url": "https://download.opensuse.org/distribution/leap/15.4/iso/openSUSE-Leap-15.4-dvD-X86_64-buIld243.2-mEdia.iso",
+      "iso_url": "https://download.opensuse.org/distribution/leap/15.4/iso/openSUSE-Leap-15.4-DVD-x86_64-Build243.2-Media.iso",
       "iso_checksum": "sha256:4683345f242397c7fd7d89a50731a120ffd60a24460e21d2634e783b3c169695",
       "boot_wait": "5s",
       "disk_size": 1,

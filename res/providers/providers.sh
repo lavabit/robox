@@ -300,7 +300,7 @@ function provide-docker() {
 function provide-vagrant() {
 
   # Attempt to find out the latest Vagrant version automatically.
-  export VAGRANT_VERSION=`curl --silent https://www.vagrantup.com/ | grep button | grep Download | sed -e "s/.*Download \([0-9]*\.[0-9]*\.[0-9]*\).*/\1/g"`
+  export VAGRANT_VERSION=$(curl --silent https://releases.hashicorp.com/vagrant/ | grep -Eo 'href="/vagrant/.*"' | sort --version-sort --reverse | head -1 | sed 's/href\=\"\/vagrant\/\([0-9\.]*\)\/\"/\1/g')
 
   # Download Vagrant
   curl --location --output "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm" "https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
@@ -321,10 +321,7 @@ function provide-vagrant() {
 function provide-packer() {
 
   # Attempt to find out the latest Packer version automatically.
-  export PACKER_VERSION=$(curl --silent https://releases.hashicorp.com/packer/ | grep -Eo 'href="/packer/.*"' | sort --version-sort --reverse | head -1 | sed 's/href=\"\/packer\/\([0-9\.]*\)\"/\1/g')
-
-  # Old method of finding the version.
-  # export PACKER_VERSION=`curl --silent https://www.packer.io/ | grep button | grep Download | sed -e "s/.*Download \([0-9]*\.[0-9]*\.[0-9]*\).*/\1/g"`
+  export PACKER_VERSION=$(curl --silent https://releases.hashicorp.com/packer/ | grep -Eo 'href="/packer/.*"' | sort --version-sort --reverse | head -1 | sed 's/href\=\"\/packer\/\([0-9\.]*\)\/\"/\1/g')
 
   # Download Packer
   curl --location --output "$BASE/packer_${PACKER_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip"

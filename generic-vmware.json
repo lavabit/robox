@@ -4811,7 +4811,7 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://download.opensuse.org/distribution/leap/15.4/iso/openSUSE-Leap-15.4-dvD-X86_64-buIld243.2-mEdia.iso",
+      "iso_url": "https://download.opensuse.org/distribution/leap/15.4/iso/openSUSE-Leap-15.4-DVD-x86_64-Build243.2-Media.iso",
       "iso_checksum": "sha256:4683345f242397c7fd7d89a50731a120ffd60a24460e21d2634e783b3c169695",
       "skip_compaction": false,
       "ssh_username": "root",
