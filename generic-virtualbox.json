@@ -6569,8 +6569,8 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "https://www.virtualbox.org/download/testcase/VBoxGuestAdditions_6.1.35-151478.iso",
-      "guest_additions_sha256": "5cf459b0329360e4bfd84a7df4b3bf63b83b1373874de919fc44cf124366a6ce",
+      "guest_additions_url": "https://www.virtualbox.org/download/testcase/VBoxGuestAdditions_6.1.35-151866.iso",
+      "guest_additions_sha256": "9b0e9a86a7d04c7135bdc3798471f7d21c6740c19cae927b2f0b0a36be8e00e0",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
@@ -6687,8 +6687,8 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "https://www.virtualbox.org/download/testcase/VBoxGuestAdditions_6.1.35-151478.iso",
-      "guest_additions_sha256": "5cf459b0329360e4bfd84a7df4b3bf63b83b1373874de919fc44cf124366a6ce",
+      "guest_additions_url": "https://www.virtualbox.org/download/testcase/VBoxGuestAdditions_6.1.35-151866.iso",
+      "guest_additions_sha256": "9b0e9a86a7d04c7135bdc3798471f7d21c6740c19cae927b2f0b0a36be8e00e0",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
