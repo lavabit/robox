@@ -1203,8 +1203,8 @@
     {
       "name": "centos8s",
       "output_directory": "output/centos8s",
-      "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20220603-boot.iso",
-      "iso_checksum": "sha256:0f433162c0ba7b845b06a9cb3c64768b88da1ddf9fb921b65de2a055fb7453f7",
+      "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20220627-boot.iso",
+      "iso_checksum": "sha256:7d819a7b2b27b47cfc8aea612fb865aee21d053ea1a9a1bd0ee18a92f09200fd",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
