@@ -12,12 +12,12 @@ zypper --non-interactive removerepo "`zypper repos 1 | head -1 | awk -F':' '{pri
 # Add the default repositories for this release.
 # zypper --non-interactive addrepo https://download.opensuse.org/distribution/leap/${version}/repo/oss/ openSUSE-Leap-${version}-Oss
 # zypper --non-interactive addrepo https://download.opensuse.org/distribution/leap/${version}/repo/non-oss/ openSUSE-Leap-${version}-Non-Oss
-# zypper --non-interactive addrepo https://download.opensuse.org/update/leap/${version}/oss/ openSUSE-Leap-${version}-Update
+# zypper --non-interactive addrepo https://download.opensuse.org/update/leap/${version}/oss/ openSUSE-Leap-${version}-Update-Oss
 # zypper --non-interactive addrepo https://download.opensuse.org/update/leap/${version}/non-oss/ openSUSE-Leap-${version}-Update-Non-Oss
 
 zypper --non-interactive addrepo https://mirrors.edge.kernel.org/opensuse/distribution/leap/${version}/repo/oss/ openSUSE-Leap-${version}-Oss
 zypper --non-interactive addrepo https://mirrors.edge.kernel.org/opensuse/distribution/leap/${version}/repo/non-oss/ openSUSE-Leap-${version}-Non-Oss
-zypper --non-interactive addrepo https://mirrors.edge.kernel.org/opensuse/update/leap/${version}/oss/ openSUSE-Leap-${version}-Update
+zypper --non-interactive addrepo https://mirrors.edge.kernel.org/opensuse/update/leap/${version}/oss/ openSUSE-Leap-${version}-Update-Oss
 zypper --non-interactive addrepo https://mirrors.edge.kernel.org/opensuse/update/leap/${version}/non-oss/ openSUSE-Leap-${version}-Update-Non-Oss
 
 # Clean out any stale cache data.
