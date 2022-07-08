@@ -1462,7 +1462,7 @@ function cleanup() {
 
   # Search for the Virtual Box machine using the vboxmanage command.
   if [ `command -v vboxmanage` ]; then
-    export PATTERN="(generic|roboxes)-[a-z]*[0-9]*-virtualbox_default_[0-9\_]*|magma-[a-z]*[0-9]*-virtualbox_default_[0-9\_]*|lineage-[a-z0-9\-]*-virtualbox_default_[0-9\_]*"
+    export PATTERN="(generic|roboxes)-[a-z0-9]*-virtualbox_default_[0-9\_]*|magma-[a-z0-9]*-virtualbox_default_[0-9\_]*|lineage-[a-z0-9\-]*-virtualbox_default_[0-9\_]*"
     export BOXES=( `vboxmanage list -s vms | awk -F' ' '{print $1}' | awk -F'"' '{print $2}' | grep --extended-regexp $PATTERN` )
     for box in "${BOXES[@]}"; do
       STATE="`vboxmanage showvminfo \"$box\" --machinereadable | grep --extended-regexp \"^VMState=\\".*\\"$\" | awk -F'\"' '{print $2}'`"
@@ -1480,7 +1480,7 @@ function cleanup() {
     if [ `command -v virsh` ] && [ `virsh --connect=qemu:///system pool-list --name --all  | awk -F' ' '{print $1}' | grep --extended-regexp default` ]; then
 
       # Undefine the box domain.
-      PATTERN="(generic|roboxes)-[a-z]*[0-9]*-libvirt_default|magma-[a-z]*[0-9]*-libvirt_default|lineage-[a-z0-9\-]*-libvirt_default"
+      PATTERN="(generic|roboxes)-[a-z0-9]*-libvirt_default|magma-[a-z0-9]*-libvirt_default|lineage-[a-z0-9\-]*-libvirt_default"
       DOMAINS=( `virsh --connect=qemu:///system list --name --all | grep --extended-regexp $PATTERN` )
       for domain in "${DOMAINS[@]}"; do
         # If the domain is running, destroy (aka halt/kill) it before calling undefine.
@@ -1491,7 +1491,7 @@ function cleanup() {
       done
 
       # Delete the disk images.
-      PATTERN="(generic|roboxes)-[a-z]*[0-9]*-libvirt_default.img|magma-[a-z]*[0-9]*-libvirt_default.img|lineage-[a-z0-9\-]*-libvirt_default.img"
+      PATTERN="(generic|roboxes)-[a-z0-9]*-libvirt_default.img|magma-[a-z0-9]*-libvirt_default.img|lineage-[a-z0-9\-]*-libvirt_default.img"
       IMAGES=( `virsh --connect=qemu:///system vol-list default | awk -F' ' '{print $2}' | grep --extended-regexp $PATTERN` )
       for image in "${IMAGES[@]}"; do
         virsh --connect=qemu:///system --debug=3 vol-delete --pool default $image

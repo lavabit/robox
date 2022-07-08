@@ -1874,7 +1874,7 @@ function hyperv() {
 
     # Build the generic boxes first.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^generic-[a-z]*[0-9]*-hyperv$ ]]; then
+      if [[ "${LIST[$i]}" =~ ^generic-[a-z0-9]*-hyperv$ ]]; then
         packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv.json
       fi
     done
@@ -1886,7 +1886,7 @@ function hyperv() {
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^magma-[a-z]*[0-9]*-hyperv$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv$ ]]; then
+      if [[ "${LIST[$i]}" =~ ^magma-[a-z0-9]*-hyperv$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv$ ]]; then
         packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
       fi
     done
@@ -1903,7 +1903,7 @@ function hyperv() {
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z]*[0-9]*-hyperv$ ]]; then
+      if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z0-9]*-hyperv$ ]]; then
         packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
       fi
     done
@@ -1953,7 +1953,7 @@ function parallels() {
       # Ensure there is enough disk space.
       if [[ `df -m . | tail -1 |  awk -F' ' '{print $4}'` -lt 8192 ]]; then
         tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
-      elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
+      elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z0-9]*-parallels$ ]]; then
 
         # Enable logging and ensure the log path exists.
         export PACKER_LOG="1"
