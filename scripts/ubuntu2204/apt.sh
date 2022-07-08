@@ -97,7 +97,7 @@ fi
 # Keep the daily apt updater from deadlocking our the upgrade/install commands we are about to run.
 # systemctl --quiet is-active snapd.service && systemctl stop snapd.service snapd.socket
 
-# Stop the active servicees/timers.
+# Stop the active services/timers.
 systemctl --quiet is-active apt-daily.timer && systemctl stop apt-daily.timer
 systemctl --quiet is-active apt-daily-upgrade.timer && systemctl stop apt-daily-upgrade.timer
 systemctl --quiet is-active update-notifier-download.timer && systemctl stop update-notifier-download.timer

@@ -49,12 +49,12 @@ fi
 systemctl --quiet is-enabled hv-fcopy-daemon.service &> /dev/null && \
   ( systemctl disable hv-fcopy-daemon.service ; systemctl mask hv-fcopy-daemon.service ) || \
   echo "hv-fcopy-daemon.service already disabled" &> /dev/null
-systemctl --quiet is-enabled hv-kvp-daemon.servicee &> /dev/null && \
+systemctl --quiet is-enabled hv-kvp-daemon.service &> /dev/null && \
   ( systemctl disable hv-kvp-daemon.service ; systemctl mask hv-kvp-daemon.service ) || \
   echo "hv-kvp-daemon.service already disabled" &> /dev/null
-systemctl --quiet is-enabled hv-vss-daemon.servicee &> /dev/null && \
+systemctl --quiet is-enabled hv-vss-daemon.service &> /dev/null && \
   ( systemctl disable hv-vss-daemon.service ; systemctl mask hv-vss-daemon.service ) || \
-  echo "hv-vss-daemon.servicee already disabled" &> /dev/null
+  echo "hv-vss-daemon.service already disabled" &> /dev/null
 systemctl --quiet is-enabled virtualbox-guest-utils.service &> /dev/null && \
   ( systemctl disable virtualbox-guest-utils.service ; systemctl mask virtualbox-guest-utils.service ) || \
   echo "virtualbox-guest-utils.service already disabled" &> /dev/null
