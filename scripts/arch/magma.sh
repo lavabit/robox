@@ -28,7 +28,7 @@ retry() {
 }
 
 # The packages needed to compile magma.
-retry pacman --sync --noconfirm --refresh m4 gc gcc patch make cmake flex binutils bison valgrind libtool autoconf pkg-config gdb gdb-common ncurses mpfr jsoncpp guile guile2.0 shared-mime-info glibc libatomic_ops libmpc libuv libxml2 libbsd libarchive python python-appdirs python-extras python-fixtures python-mimeparse python-packaging python-pbr python-pyparsing python-pyrsistent python-setuptools python-six python-testtools python-subunit
+retry pacman --sync --noconfirm --refresh m4 gc gcc patch make cmake flex binutils bison valgrind libtool autoconf pkg-config gdb gdb-common ncurses mpfr jsoncpp guile shared-mime-info glibc libatomic_ops libmpc libuv libxml2 libbsd libarchive python python-appdirs python-extras python-fixtures python-mimeparse python-packaging python-pbr python-pyparsing python-pyrsistent python-setuptools python-six python-testtools python-subunit
 
 # Need to retrieve the source code.
 retry pacman --sync --noconfirm --refresh git perl-error
