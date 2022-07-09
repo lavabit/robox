@@ -17,6 +17,7 @@ pushd `dirname $CMD` > /dev/null
 BASE=`pwd -P`
 popd > /dev/null
 cd $BASE
+echo $BASE
 
 # Credentials and tokens.
 if [ ! -f $BASE/.credentialsrc ]; then

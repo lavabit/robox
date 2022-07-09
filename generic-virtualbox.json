@@ -5721,7 +5721,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dfw.mirror.rackspace.com/rocky/8.6/isos/x86_64/Rocky-8.6-x86_64-boot.iso",
+      "iso_url": "http://10.8.0.30/ISOs/Rocky-8.6-x86_64-dvd1.iso",
       "iso_checksum": "sha256:fe77cc293a2f2fe6ddbf5d4bc2b5c820024869bc7ea274c9e55416d215db0cc5",
       "ssh_username": "root",
       "ssh_password": "vagrant",

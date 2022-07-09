@@ -5216,7 +5216,7 @@
       "http_directory": "http",
       "headless": true,
       "iso_url": "http://10.8.0.30/ISOs/Rocky-8.6-x86_64-dvd1.iso",
-      "iso_checksum": "sha256:fe77cc293a2f2fe6ddbf5d4bc2b5c820024869bc7ea274c9e55416d215db0cc5",
+      "iso_checksum": "sha256:1d48e0af63d07ff4e582a1819348e714c694e7fd33207f48879c2bc806960786",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
