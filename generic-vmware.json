@@ -2852,6 +2852,42 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/oracle6/yum.sh",
+        "scripts/oracle6/network.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle6-vmware"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/oracle6/kernel.sh",
+        "scripts/oracle6/floppy.sh",
+        "scripts/oracle6/virtualbox.sh",
+        "scripts/oracle6/parallels.sh",
+        "scripts/oracle6/vmware.sh",
+        "scripts/oracle6/qemu.sh",
+        "scripts/oracle6/vagrant.sh",
+        "scripts/oracle6/tuning.sh",
+        "scripts/oracle6/cleanup.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle6-vmware"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -6772,6 +6808,46 @@
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://dl.rockylinux.org/stg/rocky/9.0-RC2/isos/x86_64/Rocky-9.0-x86_64-boot.iso",
       "iso_checksum": "sha256:fc6b306b9fc8d327d7545373ce88c48bd1f7e84d29548814a91e84676b7d26e4",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-oracle6-vmware",
+      "vm_name": "generic-oracle6-vmware",
+      "vmdk_name": "generic-oracle6-vmware",
+      "output_directory": "output/generic-oracle6-vmware",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle6.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "oraclelinux-64",
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL6/u10/x86_64/OracleLinux-R6-U10-Server-x86_64-dvd.iso",
+      "iso_checksum": "sha256:625044388ee60a031965a42a32f4c1de0c029268975edcd542fd14160e0dadcb",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",

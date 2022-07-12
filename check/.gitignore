@@ -273,6 +273,11 @@ generic-opensuse42-libvirt/
 generic-opensuse42-parallels/
 generic-opensuse42-virtualbox/
 generic-opensuse42-vmware/
+generic-oracle6-hyperv/
+generic-oracle6-libvirt/
+generic-oracle6-parallels/
+generic-oracle6-virtualbox/
+generic-oracle6-vmware/
 generic-oracle7-hyperv/
 generic-oracle7-libvirt/
 generic-oracle7-parallels/
@@ -283,6 +288,11 @@ generic-oracle8-libvirt/
 generic-oracle8-parallels/
 generic-oracle8-virtualbox/
 generic-oracle8-vmware/
+generic-oracle9-hyperv/
+generic-oracle9-libvirt/
+generic-oracle9-parallels/
+generic-oracle9-virtualbox/
+generic-oracle9-vmware/
 generic-rhel9-hyperv/
 generic-rhel9-libvirt/
 generic-rhel9-parallels/
@@ -996,6 +1006,11 @@ roboxes-opensuse42-libvirt/
 roboxes-opensuse42-parallels/
 roboxes-opensuse42-virtualbox/
 roboxes-opensuse42-vmware/
+roboxes-oracle6-hyperv/
+roboxes-oracle6-libvirt/
+roboxes-oracle6-parallels/
+roboxes-oracle6-virtualbox/
+roboxes-oracle6-vmware/
 roboxes-oracle7-hyperv/
 roboxes-oracle7-libvirt/
 roboxes-oracle7-parallels/
@@ -1006,6 +1021,11 @@ roboxes-oracle8-libvirt/
 roboxes-oracle8-parallels/
 roboxes-oracle8-virtualbox/
 roboxes-oracle8-vmware/
+roboxes-oracle9-hyperv/
+roboxes-oracle9-libvirt/
+roboxes-oracle9-parallels/
+roboxes-oracle9-virtualbox/
+roboxes-oracle9-vmware/
 roboxes-rhel9-hyperv/
 roboxes-rhel9-libvirt/
 roboxes-rhel9-parallels/

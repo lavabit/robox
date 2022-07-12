@@ -19,18 +19,16 @@ clearpart --all --initlabel
 bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 elevator=noop no_timer_check vga=792"
 autopart
 
-
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
 
 reboot --eject
 
-%packages --nobase
+%packages --instLangs=en --nobase
 @core
 sudo
 curl
 authconfig
-system-config-firewall-base
 # Microcode updates don't work in a VM
 -microcode_ctl
 # Firmware packages aren't needed in a VM

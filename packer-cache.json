@@ -1291,6 +1291,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "oracle6",
+      "output_directory": "output/oracle6",
+      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL6/u10/x86_64/OracleLinux-R6-U10-Server-x86_64-dvd.iso",
+      "iso_checksum": "sha256:625044388ee60a031965a42a32f4c1de0c029268975edcd542fd14160e0dadcb",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "dragonflybsd6",
       "output_directory": "output/dragonflybsd6",
       "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.2.2_REL.iso",

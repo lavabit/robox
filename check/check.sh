@@ -355,15 +355,16 @@ function generic-virtualbox() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "virtualbox" );
-  # O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "virtualbox" );
-#   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "virtualbox" );
@@ -442,15 +443,16 @@ function generic-libvirt() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "libvirt" );
-  # O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "libvirt" );
-#   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "libvirt" );
@@ -529,15 +531,16 @@ function generic-vmware() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "vmware" );
-  # O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "vmware" );
-#   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "vmware" );
@@ -617,15 +620,16 @@ function generic-hyperv() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "hyperv" );
-    # O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "hyperv" );
-#     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "hyperv" );
@@ -708,15 +712,16 @@ function generic-parallels() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "parallels" );
-    # O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "parallels" );
-#     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "parallels" );
@@ -798,15 +803,16 @@ function robox-virtualbox() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "virtualbox" );
-  # O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "virtualbox" );
-#   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "virtualbox" );
@@ -885,15 +891,16 @@ function robox-libvirt() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "libvirt" );
-  # O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "libvirt" );
-#   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "libvirt" );
@@ -972,15 +979,16 @@ function robox-vmware() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "vmware" );
-  # O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "vmware" );
-#   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "vmware" );
@@ -1060,15 +1068,16 @@ function robox-hyperv() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "hyperv" );
-    # O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "hyperv" );
-#     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "hyperv" );
@@ -1151,15 +1160,16 @@ function robox-parallels() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "parallels" );
-    # O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "parallels" );
-#     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "parallels" );
@@ -1574,15 +1584,16 @@ function cleanup() {
   rm --recursive --force $BASE/{generic,roboxes}-openbsd7-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-opensuse15-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-opensuse42-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-oracle6-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-oracle7-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-oracle8-{hyperv,libvirt,parallels,virtualbox,vmware}
-  # rm --recursive --force $BASE/{generic,roboxes}-oracle9-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-oracle9-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-rhel6-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-rhel7-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-rhel8-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-rhel9-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-rocky8-{hyperv,libvirt,parallels,virtualbox,vmware}
-#   rm --recursive --force $BASE/{generic,roboxes}-rocky9-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-rocky9-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-ubuntu1604-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-ubuntu1610-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-ubuntu1704-{hyperv,libvirt,parallels,virtualbox,vmware}
