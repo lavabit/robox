@@ -104,7 +104,10 @@ function provide-libvirt() {
    
   #  unset CONFIG_PCI_MSI
   #  unset CONFIG_VHOST_NET
-   
+
+  ln -s /usr/libexec/qemu-kvm /usr/local/bin/qemu-system-i396
+  ln -s /usr/libexec/qemu-kvm /usr/local/bin/qemu-system-x86_64
+
   if [ -f /usr/bin/X ]; then
     provide-virtmanager
   fi
