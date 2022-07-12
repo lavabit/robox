@@ -19,13 +19,12 @@ authconfig --enableshadow --passalgo=sha512
 network --device eth0 --bootproto dhcp --noipv6 --hostname=oracle9.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
 
-# repo --name=BaseOS
 url --url=https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/
+repo --name=appstream --baseurl=https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/
 
 %packages
 @core
 sudo
-authconfig
 -fprintd-pam
 -intltool
 -iwl*-firmware
