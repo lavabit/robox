@@ -1,6 +1,5 @@
 install
-cdrom
-
+reboot --eject
 lang en_US.UTF-8
 keyboard us
 timezone US/Pacific
@@ -22,7 +21,8 @@ autopart --nohome
 rootpw vagrant
 authconfig --enableshadow --passalgo=sha512
 
-reboot --eject
+url --url=https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/
+repo --name=appstream --baseurl=https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/
 
 %packages --instLangs=en
 @core
