@@ -2771,6 +2771,45 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/oracle9/network.sh",
+        "scripts/oracle9/dnf.sh",
+        "scripts/oracle9/base.sh",
+        "scripts/oracle9/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle9-vmware"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/oracle9/kernel.sh",
+        "scripts/oracle9/floppy.sh",
+        "scripts/oracle9/virtualbox.sh",
+        "scripts/oracle9/parallels.sh",
+        "scripts/oracle9/vmware.sh",
+        "scripts/oracle9/qemu.sh",
+        "scripts/oracle9/vagrant.sh",
+        "scripts/oracle9/tuning.sh",
+        "scripts/oracle9/cleanup.sh",
+        "scripts/oracle9/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle9-vmware"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -6610,6 +6649,47 @@
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.0/isos/x86_64/AlmaLinux-9.0-x86_64-boot.iso",
       "iso_checksum": "sha256:c41ce7bc2f4ab27a3597b3e160fc8b01c56a6b58e1046a4a23b8518fb9e9a61f",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-oracle9-vmware",
+      "vm_name": "generic-oracle9-vmware",
+      "vmdk_name": "generic-oracle9-vmware",
+      "output_directory": "output/generic-oracle9-vmware",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle9.vagrant.ks vga=792 <enter><wait>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "disk_adapter_type": "sata",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "oraclelinux-64",
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL9/u0/x86_64/OracleLinux-R9-U0-x86_64-boot.iso",
+      "iso_checksum": "sha256:8da742eadb7bcd4d03bacd71c73d500247fa2f680a18c619220bcb88d6bd336f",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",

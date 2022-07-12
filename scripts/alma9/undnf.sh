@@ -12,3 +12,8 @@ sed -i -e "s/^#mirrorlist/mirrorlist/g" /etc/yum.repos.d/almalinux-extras.repo
 
 sed -i -e "s/^baseurl/#baseurl/g" /etc/yum.repos.d/almalinux-plus.repo
 sed -i -e "s/^#mirrorlist/mirrorlist/g" /etc/yum.repos.d/almalinux-plus.repo
+
+sed -i -e "s/^baseurl/#baseurl/g" /etc/yum.repos.d/epel.repo
+sed -i -e "s/^#mirrorlist/mirrorlist/g" /etc/yum.repos.d/epel.repo
+
+
