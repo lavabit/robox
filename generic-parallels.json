@@ -2803,6 +2803,48 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky9/network.sh",
+        "scripts/rocky9/dnf.sh",
+        "scripts/rocky9/base.sh",
+        "scripts/rocky9/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky9-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky9/kernel.sh",
+        "scripts/rocky9/floppy.sh",
+        "scripts/rocky9/virtualbox.sh",
+        "scripts/rocky9/parallels.sh",
+        "scripts/rocky9/vmware.sh",
+        "scripts/rocky9/qemu.sh",
+        "scripts/rocky9/vagrant.sh",
+        "scripts/rocky9/tuning.sh",
+        "scripts/rocky9/sshd.sh",
+        "scripts/rocky9/randomness.sh",
+        "scripts/rocky9/updatedb.sh",
+        "scripts/rocky9/cleanup.sh",
+        "scripts/rocky9/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky9-parallels"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -8252,6 +8294,67 @@
       "http_directory": "http",
       "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL9/u0/x86_64/OracleLinux-R9-U0-x86_64-boot.iso",
       "iso_checksum": "sha256:8da742eadb7bcd4d03bacd71c73d500247fa2f680a18c619220bcb88d6bd336f",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-rocky9-parallels",
+      "vm_name": "generic-rocky9-parallels",
+      "output_directory": "output/generic-rocky9-parallels",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky9.vagrant.ks vga=792 <enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "centos",
+      "http_directory": "http",
+      "iso_url": "https://dl.rockylinux.org/stg/rocky/9.0-RC2/isos/x86_64/Rocky-9.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:fc6b306b9fc8d327d7545373ce88c48bd1f7e84d29548814a91e84676b7d26e4",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
