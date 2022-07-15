@@ -1,4 +1,5 @@
 install
+cdrom
 
 lang en_US.UTF-8
 keyboard us
@@ -11,7 +12,7 @@ firstboot --disabled
 selinux --enforcing
 firewall --enabled --service=ssh
 
-network --device eth0 --bootproto dhcp --noipv6 --hostname=alma8.localdomain
+network --device eth0 --bootproto dhcp --noipv6 --hostname=rhel8.localdomain
 
 zerombr
 clearpart --all --initlabel
@@ -23,13 +24,10 @@ authconfig --enableshadow --passalgo=sha512
 
 reboot --eject
 
-# repo --name=BaseOS
-url --url=https://dfw.mirror.rackspace.com/almalinux/8.6/BaseOS/x86_64/os/
-
-%packages --instLangs=en_US.utf8
+%packages --instLangs=en
 @core
-sudo
 authconfig
+sudo
 -fprintd-pam
 -intltool
 -iwl*-firmware
@@ -38,6 +36,8 @@ authconfig
 
 %post
 
-# echo locked | passwd --stdin root
+# Duplicate the install media so the DVD can be ejected.
+mount /dev/cdrom /mnt/
+cp --recursive /mnt/BaseOS/ /media/ && cp --recursive /mnt/AppStream/ /media/
 
 %end

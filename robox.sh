@@ -174,6 +174,7 @@ REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/rep
 REPOS+=( "https://dfw.mirror.rackspace.com/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
 
 # Rocky 9
+REPOS+=( "https://dl.rockylinux.org/stg/rocky/9.0-RC2/BaseOS/x86_64/os/repodata/repomd.xml" )
 # REPOS+=( "https://dfw.mirror.rackspace.com/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
 
 # Oracle 6
@@ -190,8 +191,8 @@ REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repomd.xml" )
 
 # Oracle 9
-# REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
-# REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
 
 # FreeBSD 11
 REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )

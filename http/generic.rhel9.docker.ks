@@ -9,20 +9,18 @@ zerombr
 clearpart --all --initlabel
 part /boot --fstype="xfs" --size=1024 --label=boot
 part pv.01 --fstype="lvmpv" --grow
-volgroup alma --pesize=4096 pv.01
-logvol swap --fstype="swap" --size=2048 --name=swap --vgname=alma
-logvol / --fstype="xfs" --percent=100 --label="root" --name=root --vgname=alma
+volgroup rhel --pesize=4096 pv.01
+logvol swap --fstype="swap" --size=2048 --name=swap --vgname=rhel
+logvol / --fstype="xfs" --percent=100 --label="root" --name=root --vgname=rhel
 
 firewall --enabled --service=ssh
 authconfig --enableshadow --passalgo=sha512
-network --device eth0 --bootproto dhcp --noipv6 --hostname=alma9.localdomain
+network --device eth0 --bootproto dhcp --noipv6 --hostname=rhel9.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
-
-# repo --name=BaseOS
-url --url=https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/
 
 %packages
 @core
+authconfig
 sudo
 -fprintd-pam
 -intltool
@@ -31,6 +29,10 @@ sudo
 %end
 
 %post
+
+# Duplicate the install media so the DVD can be ejected.
+mount /dev/cdrom /mnt/
+cp --recursive /mnt/BaseOS/ /media/ && cp --recursive /mnt/AppStream/ /media/
 
 sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
