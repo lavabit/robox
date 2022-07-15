@@ -18,8 +18,6 @@ Vagrant.configure(2) do |config|
     v.management_network_name = "vagrant-libvirt"
     v.management_network_keep = true
     v.management_network_autostart = false
-    v.management_network_keep = true
-    v.management_network_autostart = true
     v.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
   end
 

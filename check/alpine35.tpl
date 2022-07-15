@@ -3,8 +3,10 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "generic/alpine35"  
   #config.vm.guest = :alpine
+  config.vm.box = "generic/alpine35"
+  #config.vagrant.plugins = ["vagrant-alpine"]
+  config.vm.hostname = "alpine.example.org"
   config.vm.network :private_network, :auto_config => false, :autostart => false, :libvirt__network_name => "vagrant-libvirt", :libvirt__always_destroy => false
   
   config.vm.provider :libvirt do |v, override|
@@ -17,7 +19,6 @@ Vagrant.configure(2) do |config|
     v.management_network_keep = true
     v.management_network_autostart = false
     v.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
-    v.random :model => 'random'
   end
 
   config.vm.provider :hyperv do |v, override|
