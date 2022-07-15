@@ -34,7 +34,7 @@ retry pacman --sync --noconfirm --refresh
 retry pacman --sync --noconfirm --refresh --sysupgrade
 
 # Useful tools.
-retry pacman --sync --noconfirm --refresh vim curl wget sysstat lsof psmisc man-db mlocate net-tools haveged lm_sensors vim-runtime bash-completion
+retry pacman --sync --noconfirm --refresh vim curl wget sysstat lsof psmisc man-db mlocate net-tools haveged lm_sensors vim-runtime bash-completion rsync
 
 # Start the services we just added so the system will track its own performance.
 systemctl enable sysstat.service && systemctl start sysstat.service

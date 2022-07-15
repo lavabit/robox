@@ -10,7 +10,7 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
 yum --assumeyes update
 
 # The basic utilities we'd expect to find.
-yum --assumeyes install deltarpm net-tools yum-utils bash-completion man-pages vim-enhanced mlocate sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl psmisc
+yum --assumeyes install deltarpm net-tools yum-utils bash-completion man-pages vim-enhanced mlocate sysstat bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl psmisc rsync
 
 # Update the locate database.
 [ -f /etc/cron.daily/mlocate.cron ] && /etc/cron.daily/mlocate.cron

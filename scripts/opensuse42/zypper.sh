@@ -30,7 +30,7 @@ zypper --non-interactive refresh
 zypper --non-interactive update --auto-agree-with-licenses
 
 # Install the packages we'd expect to find.
-zypper --non-interactive install --force-resolution man mlocate sysstat psmisc
+zypper --non-interactive install --force-resolution man mlocate sysstat psmiscreadline rsync
 
 # Update the locate database.
 /etc/cron.daily/mlocate.cron

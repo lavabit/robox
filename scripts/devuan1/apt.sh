@@ -62,7 +62,7 @@ retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
 
 # The packages users expect on a sane system.
-retry apt-get --assume-yes install vim net-tools mlocate psmisc; error
+retry apt-get --assume-yes install vim net-tools mlocate psmisc rsync; error
 
 # Populate the mlocate database during boot.
 printf "@reboot root command bash -c '/etc/cron.daily/mlocate'\n" > /etc/cron.d/mlocate
