@@ -171,11 +171,10 @@ REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repoda
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
 
 # Rocky 8
-REPOS+=( "https://dfw.mirror.rackspace.com/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
 
 # Rocky 9
-REPOS+=( "https://dl.rockylinux.org/stg/rocky/9.0-RC2/BaseOS/x86_64/os/repodata/repomd.xml" )
-# REPOS+=( "https://dfw.mirror.rackspace.com/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
 
 # Oracle 6
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/latest/x86_64/repodata/repomd.xml" )
@@ -1079,8 +1078,10 @@ function available() {
       PROVIDER="docker"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
         if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
-          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
-          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || [[ "${BOX}" == "rhel9" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || [[ "${BOX}" == "oracle9" ]] || \
+          [[ "${BOX}" == "alma8" ]] || [[ "${BOX}" == "alma9" ]] || \
+          [[ "${BOX}" == "rocky8" ]] || [[ "${BOX}" == "rocky9" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
           ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
@@ -1237,8 +1238,10 @@ function public() {
       PROVIDER="docker"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
         if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
-          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
-          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || [[ "${BOX}" == "rhel9" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || [[ "${BOX}" == "oracle9" ]] || \
+          [[ "${BOX}" == "alma8" ]] || [[ "${BOX}" == "alma9" ]] || \
+          [[ "${BOX}" == "rocky8" ]] || [[ "${BOX}" == "rocky9" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
           curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
@@ -1395,8 +1398,10 @@ function ppublic() {
       PROVIDER="docker"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
         if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
-          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
-          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || [[ "${BOX}" == "rhel9" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || [[ "${BOX}" == "oracle9" ]] || \
+          [[ "${BOX}" == "alma8" ]] || [[ "${BOX}" == "alma9" ]] || \
+          [[ "${BOX}" == "rocky8" ]] || [[ "${BOX}" == "rocky9" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
             O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
@@ -1462,8 +1467,10 @@ function invalid() {
       PROVIDER="docker"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
         if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
-          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
-          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || [[ "${BOX}" == "rhel9" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || [[ "${BOX}" == "oracle9" ]] || \
+          [[ "${BOX}" == "alma8" ]] || [[ "${BOX}" == "alma9" ]] || \
+          [[ "${BOX}" == "rocky8" ]] || [[ "${BOX}" == "rocky9" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
           LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"

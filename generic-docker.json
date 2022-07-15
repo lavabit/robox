@@ -908,7 +908,7 @@
           "memory": 2048,
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://dfw.mirror.rackspace.com/rocky/8.6/isos/x86_64/Rocky-8.6-x86_64-boot.iso",
+          "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/8.6/isos/x86_64/Rocky-8.6-x86_64-boot.iso",
           "iso_checksum": "sha256:fe77cc293a2f2fe6ddbf5d4bc2b5c820024869bc7ea274c9e55416d215db0cc5",
           "ssh_username": "root",
           "ssh_password": "locked",
