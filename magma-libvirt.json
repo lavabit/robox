@@ -1494,14 +1494,6 @@
         [
           "-device",
           "virtserialport,id=channel0,name=org.qemu.guest_agent.0"
-        ],
-        [
-          "-device",
-          "virtio-scsi-pci,id=scsi0"
-        ],
-        [
-          "-device",
-          "scsi-hd,bus=scsi0.0,drive=drive0"
         ]
       ],
       "format": "qcow2",
@@ -1511,7 +1503,7 @@
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
