@@ -5,9 +5,8 @@ rm -rf vagrant.d vagrant-libvirt ; ./check.sh plugin-libvirt ; source env.sh && 
 # Check that the default vagrant-libvirt network is ready.
 virsh --connect=qemu:///system net-list --all
 
-
-
-
+# From a fresh session, run the following.
+cd check/ && ./check.sh generic-libvirt 
 
 
 
