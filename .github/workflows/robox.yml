@@ -17,16 +17,22 @@ jobs:
     - uses: actions/checkout@master
     - name: Increase Limits
       run: |
-          sudo sysctl -q vm.overcommit_ratio=100
-          sudo sysctl -q net.unix.max_dgram_qlen=64
-          sudo prlimit --pid $$ --nproc=65536:65536
-          sudo prlimit --pid $$ --nofile=500000:500000
-          printf "DefaultLimitNPROC=65536:65536\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
-          printf "DefaultLimitNPROC=65536:65536\n" | sudo tee -a /etc/systemd/system.conf > /dev/null || exit 1
-          printf "DefaultLimitNOFILE=500000:500000\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
-          printf "DefaultLimitNOFILE=500000:500000\n" | sudo tee -a /etc/systemd/system.conf > /dev/null || exit 1
-          sudo systemctl daemon-reload
-          systemctl --user daemon-reload 
+        sudo sysctl -q vm.overcommit_ratio=100
+        sudo sysctl -q net.unix.max_dgram_qlen=64
+        sudo prlimit --pid $$ --nproc=65536:65536
+        sudo prlimit --pid $$ --nofile=500000:500000
+        printf "DefaultLimitNPROC=65536:65536\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
+        printf "DefaultLimitNPROC=65536:65536\n" | sudo tee -a /etc/systemd/system.conf > /dev/null || exit 1
+        printf "DefaultLimitNOFILE=500000:500000\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
+        printf "DefaultLimitNOFILE=500000:500000\n" | sudo tee -a /etc/systemd/system.conf > /dev/null || exit 1
+        sudo systemctl daemon-reload
+        systemctl --user daemon-reload 
+    - name: Increase Swap
+      run: |
+        sudo dd if=/dev/zero of=swap bs=1M count=4096
+        sudo chmod 600 swap
+        sudo mkswap swap
+        free -m
     - name: Install Dependencies
       env: 
         DEBIAN_FRONTEND: noninteractive
