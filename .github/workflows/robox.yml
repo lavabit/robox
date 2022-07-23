@@ -27,7 +27,7 @@ jobs:
         printf "DefaultLimitNOFILE=500000:500000\n" | sudo tee -a /etc/systemd/system.conf > /dev/null || exit 1
         sudo systemctl daemon-reload
         systemctl --user daemon-reload
-        echo "Reliability test 8."
+        echo "Reliability test 9."
     - name: Increase Swap
       run: |
         free -m
