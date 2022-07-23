@@ -24,6 +24,8 @@ jobs:
         sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
         sudo apt-get update
         sudo apt-get --assume-yes install packer
+        printf "DefaultLimitNOFILESoft=65536\n" | sudo tee -a /etc/systemd/user.conf &gt; /dev/null || exit 1
+        sudo systemctl daemon-reload
     - name: Validate Generic Box Configurations
       env:
         GOGC: 50
@@ -38,14 +40,11 @@ jobs:
         sudo sysctl -q net.core.wmem_default=65536
         sudo sysctl -q net.core.rmem_max=65536
         sudo sysctl -q net.core.wmem_max=65536
-        ulimit -a
-        free -m
+        sudo sysctl -a | grep -i max | grep -i fs
         ulimit -s 32768
-        ulimit -a
-        systemctl --user show | grep -i lim
-        prlimit
+        systemctl --user show | grep -i limit
         prlimit --nofile=65536 --pid=$$
-        prlimit
+        systemctl --user show | grep -i limit
         export PACKER_LOG_PATH=generic-docker.txt ; packer validate generic-docker.json &>> packer-validate.txt && printf "File  + generic-docker.json\n" || { printf "File  - generic-docker.json\n" ; exit 1 ; }
         export PACKER_LOG_PATH=generic-hyperv.txt ; packer validate generic-hyperv.json &>> packer-validate.txt && printf "File  + generic-hyperv.json\n" || { printf "File  - generic-hyperv.json\n" ; exit 1 ; }
         export PACKER_LOG_PATH=generic-libvirt.txt ; packer validate generic-libvirt.json &>> packer-validate.txt && printf "File  + generic-libvirt.json\n" || { printf "File  - generic-libvirt.json\n" ; exit 1 ; }
