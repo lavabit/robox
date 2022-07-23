@@ -16,7 +16,6 @@ Vagrant.configure(2) do |config|
     v.video_vram = 256
     v.memory = 2048
     v.cpus = 2
-    v.mgmt_attach = false
     v.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
   end
 
