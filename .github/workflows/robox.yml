@@ -17,6 +17,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Increase Limits
       run: |
+          sudo sysctl vm.overcommit_ratio
           sudo prlimit --pid $$ --nproc=65536:65536
           sudo prlimit --pid $$ --nofile=500000:500000
           printf "DefaultLimitNPROC=65536:65536\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
@@ -65,7 +66,6 @@ jobs:
         #echo ; echo ; echo 
         sudo prlimit --pid $$ --nproc=65536:65536
         sudo prlimit --pid $$ --nofile=500000:500000
-        sudo sysctl vm.overcommit_ratio
         ulimit -u
         ulimit -n
         export PACKER_LOG_PATH=generic-docker.txt ; packer validate generic-docker.json &>> packer-validate.txt && printf "File  + generic-docker.json\n" || { printf "File  - generic-docker.json\n" ; exit 1 ; }
