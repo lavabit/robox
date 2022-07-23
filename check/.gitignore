@@ -1127,3 +1127,4 @@ roboxes-ubuntu2204-parallels/
 roboxes-ubuntu2204-virtualbox/
 roboxes-ubuntu2204-vmware/
 vagrant.d/
+vagrant-libvirt/

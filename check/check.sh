@@ -4,6 +4,17 @@
 # Find:     ^(.*)(EXISTING)(.*)$
 # Replace:  $1$2$3\n$1ADDITION$3
 
+# To use the latest libvirt plugin code.
+# . /check.sh plugin-libvirt && \
+# source env.sh && \
+# git clone https://github.com/vagrant-libvirt/vagrant-libvirt.git && \
+# cd vagrant-libvirt && \
+# git tag 100.100.1 && \
+# /opt/vagrant/embedded/bin/gem build vagrant-libvirt.gemspec && \
+# vagrant plugin install vagrant-libvirt-100.100.1.gem && \
+# cd .. && \
+# vagrant plugin list
+
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
   export CMD=$BASH_SOURCE
@@ -1658,6 +1669,7 @@ function cleanup() {
   rm --recursive --force $BASE/{lineage,lineageos}-lineage-nash-{hyperv,libvirt,parallels,virtualbox,vmware}
 
   rm --force $BASE/log.txt $BASE/log.vm.txt $BASE/log.vmware.txt $BASE/log.hyperv.txt $BASE/log.libvirt.txt $BASE/log.parallels.txt $BASE/log.virtualbox.txt
+  rm --recursive --force $BASE/vagrant-libvirt/
   rm --recursive --force $VAGRANT_HOME
 
 }
