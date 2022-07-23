@@ -4,7 +4,6 @@
 Vagrant.configure(2) do |config|
 
   config.vm.box = "generic/alpine36"
-  #config.vm.guest = :alpine
   config.vm.network :private_network, :auto_config => false, :autostart => false, :libvirt__network_name => "vagrant-libvirt", :libvirt__always_destroy => false
   
   config.vm.provider :libvirt do |v, override|
