@@ -52,31 +52,8 @@ jobs:
         VERSION: 1.0.0
       run: |
         date +"%nStarting generic box validation at %r on %x%n"
-        #sudo sysctl -q vm.overcommit_ratio=1000
-        #sudo sysctl -q net.unix.max_dgram_qlen=64
-        #sudo sysctl -q net.core.rmem_default=65536
-        #sudo sysctl -q net.core.wmem_default=65536
-        #sudo sysctl -q net.core.rmem_max=65536
-        #sudo sysctl -q net.core.wmem_max=65536
-        #sudo sysctl -a | grep -i max | grep -i fs
-        #ulimit -s 32768
-        #sudo systemctl show | egrep 'Path|NOFILE'
-        #echo ; echo ; echo 
-        #systemctl show --user | egrep 'Path|NOFILE'
-        #echo ; echo ; echo 
-        #sudo systemctl show | egrep 'Path|NOFILE'
-        #echo ; echo ; echo 
-        #systemctl show --user | egrep 'Path|NOFILE'
-        #echo ; echo ; echo 
-        #systemctl --user show * | grep nofile -i
-        #echo ; echo ; echo 
-        #ulimit -u
-        #ulimit -n
-        #echo ; echo ; echo 
         sudo prlimit --pid $$ --nproc=65536:65536
         sudo prlimit --pid $$ --nofile=500000:500000
-        ulimit -u
-        ulimit -n
         export PACKER_LOG_PATH=generic-docker.txt ; packer validate generic-docker.json &>> packer-validate.txt && printf "File  + generic-docker.json\n" || { printf "File  - generic-docker.json\n" ; exit 1 ; }
         export PACKER_LOG_PATH=generic-hyperv.txt ; packer validate generic-hyperv.json &>> packer-validate.txt && printf "File  + generic-hyperv.json\n" || { printf "File  - generic-hyperv.json\n" ; exit 1 ; }
         export PACKER_LOG_PATH=generic-libvirt.txt ; packer validate generic-libvirt.json &>> packer-validate.txt && printf "File  + generic-libvirt.json\n" || { printf "File  - generic-libvirt.json\n" ; exit 1 ; }
