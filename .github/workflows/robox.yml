@@ -86,10 +86,10 @@ jobs:
         date +"%nFinished Cache box validation at %r on %x%n"
     - name: Archive Log Files
       uses: actions/upload-artifact@v3
+      if: ${{ always() }}
       with:
         name: validate-logs
         retention-days: 14
-        if: ${{ always() }}
         path: |
           packer-validate.txt
           generic-docker.txt
