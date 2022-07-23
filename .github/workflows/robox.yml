@@ -43,12 +43,12 @@ jobs:
         sudo sysctl -q net.core.wmem_max=65536
         sudo sysctl -a | grep -i max | grep -i fs
         ulimit -s 32768
-        systemctl show user@.service | egrep 'Path|NOFILE'
+        sudo systemctl show | egrep 'Path|NOFILE'
         echo ; echo ; echo 
         systemctl show --user | egrep 'Path|NOFILE'
         prlimit --nofile=65536 --pid="$$"
         echo ; echo ; echo 
-        systemctl show user@.service | egrep 'Path|NOFILE'
+        sudo systemctl show | egrep 'Path|NOFILE'
         echo ; echo ; echo 
         systemctl show --user | egrep 'Path|NOFILE'
         echo ; echo ; echo 
