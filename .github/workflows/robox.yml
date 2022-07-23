@@ -15,8 +15,6 @@ jobs:
         LC_ALL: en_US.UTF-8
     steps:
     - uses: actions/checkout@master
-    image
-
     - name: Increase Limits
       run: |
           sudo prlimit --pid $$ --nofile=500000:500000
