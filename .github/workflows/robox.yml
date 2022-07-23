@@ -89,6 +89,7 @@ jobs:
       with:
         name: validate-logs
         retention-days: 14
+        if: ${{ always() }}
         path: |
           packer-validate.txt
           generic-docker.txt
