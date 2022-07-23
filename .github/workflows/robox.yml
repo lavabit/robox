@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Increase Limits
       run: |
-          sudo sysctl vm.overcommit_ratio
+          sudo sysctl -q vm.overcommit_ratio=100
           sudo prlimit --pid $$ --nproc=65536:65536
           sudo prlimit --pid $$ --nofile=500000:500000
           printf "DefaultLimitNPROC=65536:65536\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
