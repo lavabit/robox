@@ -41,7 +41,7 @@ jobs:
         ulimit -a
         free -m
         ulimit -s 32768
-        ulimit -l 65536
+        ulimit -l 128
         ulimit -n 131072
         ulimit -a
         systemctl --user show | grep -i lim
