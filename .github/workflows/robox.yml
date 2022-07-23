@@ -29,9 +29,10 @@ jobs:
         systemctl --user daemon-reload 
     - name: Increase Swap
       run: |
-        sudo dd if=/dev/zero of=swap bs=1M count=4096
-        sudo chmod 600 swap
-        sudo mkswap swap
+        free -m
+        sudo dd if=/dev/zero of=/swap bs=1M count=4096
+        sudo chmod 600 /swap
+        sudo mkswap /swap
         free -m
     - name: Install Dependencies
       env: 
