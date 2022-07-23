@@ -27,6 +27,7 @@ jobs:
         printf "DefaultLimitNOFILE=65535:65535\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
         printf "DefaultLimitNOFILE=65535:65535\n" | sudo tee -a /etc/systemd/system.conf > /dev/null || exit 1
         sudo systemctl daemon-reload
+        systemctl --user daemon-reload 
     - name: Validate Generic Box Configurations
       env:
         GOGC: 50
