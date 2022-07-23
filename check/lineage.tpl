@@ -9,6 +9,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider :libvirt do |v, override|
     v.driver = "qemu"
     v.qemuargs :value => "-enable-kvm"
+    v.qemu_use_session = false
     v.cpus = 8
     v.memory = 24576
     v.video_vram = 256
