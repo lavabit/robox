@@ -24,8 +24,12 @@ jobs:
         sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
         sudo apt-get update
         sudo apt-get --assume-yes install packer
-        sudo sysctl -w net.unix.max_dgram_qlen=64
         sudo sysctl -w vm.overcommit_ratio=400
+        sudo sysctl -w net.unix.max_dgram_qlen=64
+        sudo sysctl -w net.core.rmem_default=65536
+        sudo sysctl -w net.core.wmem_default=65536
+        ulimit -n 8192
+        ulimit -a
     - name: Validate Generic Box Configurations
       env:
         GOGC: 50
