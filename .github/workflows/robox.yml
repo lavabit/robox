@@ -51,6 +51,8 @@ jobs:
         systemctl show user@.service | egrep 'Path|NOFILE'
         echo ; echo ; echo 
         systemctl show --user | egrep 'Path|NOFILE'
+        echo ; echo ; echo 
+        systemctl --user show * | grep nofile -i
         export PACKER_LOG_PATH=generic-docker.txt ; packer validate generic-docker.json &>> packer-validate.txt && printf "File  + generic-docker.json\n" || { printf "File  - generic-docker.json\n" ; exit 1 ; }
         export PACKER_LOG_PATH=generic-hyperv.txt ; packer validate generic-hyperv.json &>> packer-validate.txt && printf "File  + generic-hyperv.json\n" || { printf "File  - generic-hyperv.json\n" ; exit 1 ; }
         export PACKER_LOG_PATH=generic-libvirt.txt ; packer validate generic-libvirt.json &>> packer-validate.txt && printf "File  + generic-libvirt.json\n" || { printf "File  - generic-libvirt.json\n" ; exit 1 ; }
