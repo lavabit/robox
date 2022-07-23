@@ -17,7 +17,10 @@ jobs:
     - uses: actions/checkout@master
     - name: Increase Limits
       run: |
+          sudo prlimit --pid $$ --nproc=65536:65536
           sudo prlimit --pid $$ --nofile=500000:500000
+          printf "DefaultLimitNPROC=65536:65536\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
+          printf "DefaultLimitNPROC=65536:65536\n" | sudo tee -a /etc/systemd/system.conf > /dev/null || exit 1
           printf "DefaultLimitNOFILE=500000:500000\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
           printf "DefaultLimitNOFILE=500000:500000\n" | sudo tee -a /etc/systemd/system.conf > /dev/null || exit 1
           sudo systemctl daemon-reload
@@ -57,9 +60,12 @@ jobs:
         echo ; echo ; echo 
         systemctl --user show * | grep nofile -i
         echo ; echo ; echo 
+        ulimit -u
         ulimit -n
         echo ; echo ; echo 
+        sudo prlimit --pid $$ --nproc=65536:65536
         sudo prlimit --pid $$ --nofile=500000:500000
+        ulimit -u
         ulimit -n
         export PACKER_LOG_PATH=generic-docker.txt ; packer validate generic-docker.json &>> packer-validate.txt && printf "File  + generic-docker.json\n" || { printf "File  - generic-docker.json\n" ; exit 1 ; }
         export PACKER_LOG_PATH=generic-hyperv.txt ; packer validate generic-hyperv.json &>> packer-validate.txt && printf "File  + generic-hyperv.json\n" || { printf "File  - generic-hyperv.json\n" ; exit 1 ; }
