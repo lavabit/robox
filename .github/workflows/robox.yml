@@ -15,6 +15,15 @@ jobs:
         LC_ALL: en_US.UTF-8
     steps:
     - uses: actions/checkout@master
+    image
+
+    - name: Increase Limits
+      run: |
+          sudo prlimit --pid $$ --nofile=500000:500000
+          printf "DefaultLimitNOFILE=500000:500000\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
+          printf "DefaultLimitNOFILE=500000:500000\n" | sudo tee -a /etc/systemd/system.conf > /dev/null || exit 1
+          sudo systemctl daemon-reload
+          systemctl --user daemon-reload 
     - name: Install Dependencies
       env: 
         DEBIAN_FRONTEND: noninteractive
@@ -24,10 +33,6 @@ jobs:
         sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
         sudo apt-get update
         sudo apt-get --assume-yes install packer
-        printf "DefaultLimitNOFILE=65535:65535\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
-        printf "DefaultLimitNOFILE=65535:65535\n" | sudo tee -a /etc/systemd/system.conf > /dev/null || exit 1
-        sudo systemctl daemon-reload
-        systemctl --user daemon-reload 
     - name: Validate Generic Box Configurations
       env:
         GOGC: 50
@@ -54,6 +59,8 @@ jobs:
         systemctl show --user | egrep 'Path|NOFILE'
         echo ; echo ; echo 
         systemctl --user show * | grep nofile -i
+        echo ; echo ; echo 
+        ulimit -n
         export PACKER_LOG_PATH=generic-docker.txt ; packer validate generic-docker.json &>> packer-validate.txt && printf "File  + generic-docker.json\n" || { printf "File  - generic-docker.json\n" ; exit 1 ; }
         export PACKER_LOG_PATH=generic-hyperv.txt ; packer validate generic-hyperv.json &>> packer-validate.txt && printf "File  + generic-hyperv.json\n" || { printf "File  - generic-hyperv.json\n" ; exit 1 ; }
         export PACKER_LOG_PATH=generic-libvirt.txt ; packer validate generic-libvirt.json &>> packer-validate.txt && printf "File  + generic-libvirt.json\n" || { printf "File  - generic-libvirt.json\n" ; exit 1 ; }
