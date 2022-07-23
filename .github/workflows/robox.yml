@@ -33,6 +33,7 @@ jobs:
         sudo dd if=/dev/zero of=/swap bs=1M count=4096
         sudo chmod 600 /swap
         sudo mkswap /swap
+        sudo swapon /swap
         free -m
     - name: Install Dependencies
       env: 
