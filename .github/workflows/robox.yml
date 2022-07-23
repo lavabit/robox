@@ -18,6 +18,8 @@ jobs:
     - name: Increase Limits
       run: |
           sudo sysctl -q vm.overcommit_ratio=100
+          sudo sysctl net.unix.max_dgram_qlen
+          #sudo sysctl -q net.unix.max_dgram_qlen=64
           sudo prlimit --pid $$ --nproc=65536:65536
           sudo prlimit --pid $$ --nofile=500000:500000
           printf "DefaultLimitNPROC=65536:65536\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
