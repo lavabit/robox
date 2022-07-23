@@ -24,7 +24,8 @@ jobs:
         sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
         sudo apt-get update
         sudo apt-get --assume-yes install packer
-        printf "DefaultLimitNOFILESoft=65536\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
+        printf "DefaultLimitNOFILESoft=65535:65535\n" | sudo tee -a /etc/systemd/user.conf > /dev/null || exit 1
+        printf "DefaultLimitNOFILESoft=65535:65535\n" | sudo tee -a /etc/systemd/system.conf > /dev/null || exit 1
         sudo systemctl daemon-reload
     - name: Validate Generic Box Configurations
       env:
@@ -42,8 +43,9 @@ jobs:
         sudo sysctl -q net.core.wmem_max=65536
         sudo sysctl -a | grep -i max | grep -i fs
         ulimit -s 32768
-        systemctl --user show | grep -i limit
+        systemctl show user@1000.service | egrep 'Path|NOFILE'
         prlimit --nofile=65536 --pid="$$"
+        echo ; echo ; echo 
         systemctl --user show | grep -i limit
         export PACKER_LOG_PATH=generic-docker.txt ; packer validate generic-docker.json &>> packer-validate.txt && printf "File  + generic-docker.json\n" || { printf "File  - generic-docker.json\n" ; exit 1 ; }
         export PACKER_LOG_PATH=generic-hyperv.txt ; packer validate generic-hyperv.json &>> packer-validate.txt && printf "File  + generic-hyperv.json\n" || { printf "File  - generic-hyperv.json\n" ; exit 1 ; }
