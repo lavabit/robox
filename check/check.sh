@@ -5,7 +5,7 @@
 # Replace:  $1$2$3\n$1ADDITION$3
 
 # To use the latest libvirt plugin code.
-# . /check.sh plugin-libvirt && \
+# ./check.sh plugin-libvirt && \
 # source env.sh && \
 # git clone https://github.com/vagrant-libvirt/vagrant-libvirt.git && \
 # cd vagrant-libvirt && \
