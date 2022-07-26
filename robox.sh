@@ -23,14 +23,14 @@ if [ ! -f $BASE/.credentialsrc ]; then
 cat << EOF > $BASE/.credentialsrc
 #!/bin/bash
 # Overrides the repo version string with a default value.
-# [ ! -n "\$VERSION" ] && VERSION="1.0.0"
+[ ! -n "\$VERSION" ] && VERSION="1.0.0"
 
 # Set the following to override default values.
 # [ ! -n "\$GOMAXPROCS" ] && export GOMAXPROCS="2"
 
 # [ ! -n "\$PACKER_ON_ERROR" ] && export PACKER_ON_ERROR="cleanup"
 # [ ! -n "\$PACKER_MAX_PROCS" ] && export PACKER_MAX_PROCS="2"
-# [ ! -n "\$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="$BASE/packer_cache/"
+[ ! -n "\$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="$BASE/packer_cache/"
 #
 # [ ! -n "\$QUAY_USER" ] && export QUAY_USER="LOGIN"
 # [ ! -n "\$QUAY_PASSWORD" ] && export QUAY_PASSWORD="PASSWORD"
@@ -38,6 +38,7 @@ cat << EOF > $BASE/.credentialsrc
 # [ ! -n "\$DOCKER_PASSWORD" ] && export DOCKER_PASSWORD="PASSWORD"
 # [ ! -n "\$VAGRANT_CLOUD_TOKEN" ] && export VAGRANT_CLOUD_TOKEN="TOKEN"
 
+# Update the following if using provider.sh to install VMWare Workstation.
 # [ ! -n "\$VMWARE_WORKSTATION" ] && export VMWARE_WORKSTATION="SERIAL"
 
 EOF
@@ -49,7 +50,7 @@ fi
 source $BASE/.credentialsrc
 
 # Version Information
-[ ! -n "$VERSION" ] && export VERSION="4.1.0"
+[ ! -n "$VERSION" ] && export VERSION="4.1.2"
 export AGENT="Vagrant/2.2.19 (+https://www.vagrantup.com; ruby2.7.4)"
 
 # Limit the number of cpus packer will use and control how errors are handled.
