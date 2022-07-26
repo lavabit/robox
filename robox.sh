@@ -957,17 +957,12 @@ function links() {
   # Detect downloads that aren't being fetched by the packer-cache.json file.
   for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
     grep --silent "${ISOURLS[$i]}" packer-cache.json || \
-      echo "Cache Failure:  ${ISOURLS[$i]}" | \
-      grep -v "https://www.virtualbox.org/download/testcase/VBoxGuestAdditions_6.1.35-152139.iso"
-      #####6
-       # Remove the above exception when the v6.1.36 guest additions are released.
-      ####
+    echo "Cache Failure:  ${ISOURLS[$i]}"
   done
   
-  # Check whether the VIrtualBox v6.1.36 guest additions have been released, so we can switch the RHEL 9 (and friends)
-  # config away from the v6.1.35 test release, to the official release.
-  HTTPCODE=$(curl -Lso /dev/null --write-out "%{http_code}\n" "https://download.virtualbox.org/virtualbox/6.1.36/VBoxGuestAdditions_6.1.36.iso")
-  [ "$HTTPCODE" == "200" ] && echo "Release Notification:  https://download.virtualbox.org/virtualbox/6.1.36/VBoxGuestAdditions_6.1.36.iso"
+  # Check whether the a given URL is available and notify. The VirtualBox v6.1.36 guest additions are used as an example.
+  # HTTPCODE=$(curl -Lso /dev/null --write-out "%{http_code}\n" "https://download.virtualbox.org/virtualbox/6.1.36/VBoxGuestAdditions_6.1.36.iso")
+  # [ "$HTTPCODE" == "200" ] && echo "Release Notification:  https://download.virtualbox.org/virtualbox/6.1.36/VBoxGuestAdditions_6.1.36.iso"
 
   # Combine the media URLs with the regular box ISO URLs and the repos.
   let TOTAL=${#UNIQURLS[@]}+${#REPOS[@]}+${#RESOURCES[@]}

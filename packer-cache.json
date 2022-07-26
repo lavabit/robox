@@ -29,7 +29,7 @@
       "ssh_timeout": "10s",
       "ssh_username": "root",
       "type": "vmware-iso"
-    },
+    },  
     {
       "name": "alpine36",
       "output_directory": "output/alpine36",
@@ -916,10 +916,25 @@
       "type": "vmware-iso"
     },
     {
-      "name": "virtualbox-6-1-24",
-      "output_directory": "output/virtualbox-6-1-24",
+      "name": "virtualbox-6-1-30",
+      "output_directory": "output/virtualbox-6-1-30",
       "iso_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
       "iso_checksum": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
+      "name": "virtualbox-6-1-36",
+      "output_directory": "output/virtualbox-6-1-36",
+      "iso_url": "https://download.virtualbox.org/virtualbox/6.1.36/VBoxGuestAdditions_6.1.36.iso",
+      "iso_checksum": "b7ed5a4c9fa80d1f9e23019d919aa37b72c7aa53ed062ff756ca17f84057fc13",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
