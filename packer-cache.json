@@ -934,7 +934,7 @@
       "name": "virtualbox-6-1-36",
       "output_directory": "output/virtualbox-6-1-36",
       "iso_url": "https://download.virtualbox.org/virtualbox/6.1.36/VBoxGuestAdditions_6.1.36.iso",
-      "iso_checksum": "b7ed5a4c9fa80d1f9e23019d919aa37b72c7aa53ed062ff756ca17f84057fc13",
+      "iso_checksum": "c987cdc8c08c579f56d921c85269aeeac3faf636babd01d9461ce579c9362cdd",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
