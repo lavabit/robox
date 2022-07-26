@@ -9,9 +9,9 @@
 # source env.sh && \
 # git clone https://github.com/vagrant-libvirt/vagrant-libvirt.git && \
 # cd vagrant-libvirt && \
-# git tag 100.100.1 && \
+# git tag 0.100.1 && \
 # /opt/vagrant/embedded/bin/gem build vagrant-libvirt.gemspec && \
-# vagrant plugin install vagrant-libvirt-100.100.1.gem && \
+# vagrant plugin install vagrant-libvirt-0.100.1.gem && \
 # cd .. && \
 # vagrant plugin list
 
