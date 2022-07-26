@@ -72,8 +72,8 @@ autoinstall:
 
 # End of life config additions.
 # sources_list: | 
-#    deb $MIRROR hirsute main restricted
-#    deb $MIRROR hirsute-security main restricted
+#    deb $MIRROR jammy main restricted
+#    deb $MIRROR jammy-security main restricted
 # conf: |
 #    Acquire::AllowReleaseInfoChange::Suite "true";
 #    Acquire::AllowReleaseInfoChange::Origin "true";

@@ -1113,7 +1113,7 @@
     {
       "name": "ubuntu2110",
       "output_directory": "output/ubuntu2110",
-      "iso_url": "https://mirrors.edge.kernel.org/ubuntu-releases/21.10/ubuntu-21.10-live-server-amd64.iso",
+      "iso_url": "https://old-releases.ubuntu.com/releases/21.10/ubuntu-21.10-live-server-amd64.iso",
       "iso_checksum": "sha256:e84f546dfc6743f24e8b1e15db9cc2d2c698ec57d9adfb852971772d1ce692d4",
       "boot_wait": "5s",
       "disk_size": 1,
@@ -1293,7 +1293,7 @@
     {
       "name": "rocky9",
       "output_directory": "output/rocky9",
-      "iso_url": "https://dl.rockylinux.org/pub/rocky/9.0/isos/x86_64/Rocky-9.0-x86_64-boot.iso",
+      "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/9.0/isos/x86_64/Rocky-9.0-x86_64-boot.iso",
       "iso_checksum": "sha256:fc6b306b9fc8d327d7545373ce88c48bd1f7e84d29548814a91e84676b7d26e4",
       "boot_wait": "5s",
       "disk_size": 1,

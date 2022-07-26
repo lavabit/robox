@@ -126,19 +126,19 @@ apt-get --assume-yes clean ; error
 apt-get --assume-yes autoclean ; error
 apt-get --assume-yes update ; error
 
-# # Enable this once 21.04 reaches the end of its life.
+# # Enable this once 22.04 reaches the end of its life.
 # # Write out a nice and compact sources list.
 # cat <<-EOF > /etc/apt/sources.list
 # 
-# deb https://old-releases.ubuntu.com/ubuntu/ groovy main restricted universe multiverse
-# deb https://old-releases.ubuntu.com/ubuntu/ groovy-updates main restricted universe multiverse
-# deb https://old-releases.ubuntu.com/ubuntu/ groovy-backports main restricted universe multiverse
-# deb https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
 # 
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy main restricted universe multiverse
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-updates main restricted universe multiverse
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-backports main restricted universe multiverse
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
 # 
 # EOF
 # 

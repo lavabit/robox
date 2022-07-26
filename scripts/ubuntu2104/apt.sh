@@ -126,24 +126,23 @@ apt-get --assume-yes clean ; error
 apt-get --assume-yes autoclean ; error
 apt-get --assume-yes update ; error
 
-# # Enable this once 21.04 reaches the end of its life.
-# # Write out a nice and compact sources list.
-# cat <<-EOF > /etc/apt/sources.list
-# 
-# deb https://old-releases.ubuntu.com/ubuntu/ groovy main restricted universe multiverse
-# deb https://old-releases.ubuntu.com/ubuntu/ groovy-updates main restricted universe multiverse
-# deb https://old-releases.ubuntu.com/ubuntu/ groovy-backports main restricted universe multiverse
-# deb https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted universe multiverse
-# 
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy main restricted universe multiverse
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-updates main restricted universe multiverse
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-backports main restricted universe multiverse
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted universe multiverse
-# 
-# EOF
-# 
-# # Some of the ubuntu archive servers appear to be missing files/packages..
-# printf "\n91.189.91.124 old-releases.ubuntu.com\n" >> /etc/hosts
+# Write out a nice and compact sources list.
+cat <<-EOF > /etc/apt/sources.list
+
+deb https://old-releases.ubuntu.com/ubuntu/ hirsute main restricted universe multiverse
+deb https://old-releases.ubuntu.com/ubuntu/ hirsute-updates main restricted universe multiverse
+deb https://old-releases.ubuntu.com/ubuntu/ hirsute-backports main restricted universe multiverse
+deb https://old-releases.ubuntu.com/ubuntu/ hirsute-security main restricted universe multiverse
+
+# deb-src https://old-releases.ubuntu.com/ubuntu/ hirsute main restricted universe multiverse
+# deb-src https://old-releases.ubuntu.com/ubuntu/ hirsute-updates main restricted universe multiverse
+# deb-src https://old-releases.ubuntu.com/ubuntu/ hirsute-backports main restricted universe multiverse
+# deb-src https://old-releases.ubuntu.com/ubuntu/ hirsute-security main restricted universe multiverse
+
+EOF
+
+# Some of the ubuntu archive servers appear to be missing files/packages..
+printf "\n91.189.91.124 old-releases.ubuntu.com\n" >> /etc/hosts
 
 # Update the package database.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update ; error

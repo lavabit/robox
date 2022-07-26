@@ -106,17 +106,38 @@ export EXCEPTIONS=""
 # Ubuntu 16.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
 
+# Ubuntu 16.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/yakkety/InRelease" )
+
+# Ubuntu 17.04
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/zesty/InRelease" )
+
+# Ubuntu 17.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/artful/InRelease" )
+
 # Ubuntu 18.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/bionic/InRelease" )
+
+# Ubuntu 18.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/cosmic/InRelease" )
+
+# Ubuntu 19.04
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/disco/InRelease" )
+
+# Ubuntu 19.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/eoan/InRelease" )
 
 # Ubuntu 20.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/focal/InRelease" )
 
+# Ubuntu 20.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/groovy/InRelease" )
+
 # Ubuntu 21.04
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/hirsute/InRelease" )
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/hirsute/InRelease" )
 
 # Ubuntu 21.10
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/impish/InRelease" )
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/impish/InRelease" )
 
 # Ubuntu 22.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/jammy/InRelease" )
