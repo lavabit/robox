@@ -11,8 +11,8 @@ systemctl stop mariadb
 systemctl stop postfix
 
 awk '(NF==0&&!done){print "override_install_langs='$LANG'\ntsflags=nodocs";done=1}{print}' \
-    < /etc/dnf.conf > /etc/dnf.conf.new
-mv /etc/dnf.conf.new /etc/dnf.conf
+    < /etc/dnf/dnf.conf > /etc/dnf/dnf.conf.new
+mv /etc/dnf/dnf.conf.new /etc/dnf/dnf.conf
 echo 'container' > /etc/dnf/vars/infra
 
 rm -f /usr/lib/locale/locale-archive
@@ -44,7 +44,7 @@ rm /var/run/nologin
 date --utc > /etc/docker_box_build_time
 
 # Randomize the root password and then lock the root account.
-dd if=/dev/urandom count=50 | md5sum | passwd --stdin root
+dd if=/dev/urandom count=50 | md5sum | awk -F' ' '{print $1}' | passwd --stdin root
 passwd --lock root
 
 if [ -f /etc/machine-id ]; then

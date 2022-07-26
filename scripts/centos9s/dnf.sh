@@ -28,7 +28,7 @@ retry() {
 }
 
 # Tell dnf to retry 128 times before failing, so unattended installs don't skip packages when errors occur.
-printf "\nretries=128\ndeltarpm=0\nmetadata_expire=0\nmirrorlist_expire=0\n" >> /etc/dnf.conf
+printf "\nretries=128\ndeltarpm=0\nmetadata_expire=0\nmirrorlist_expire=0\n" >> /etc/dnf/dnf.conf
 
 # Disable the subscription manager plugin.
 if [ -f /etc/yum/pluginconf.d/subscription-manager.conf ]; then

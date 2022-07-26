@@ -40,7 +40,7 @@ rm -rf /tmp/*
 date --utc > /etc/docker_box_build_time
 
 # Randomize the root password and then lock the root account.
-dd if=/dev/urandom count=50 | md5sum | passwd --stdin root
+dd if=/dev/urandom count=50 | md5sum | awk -F' ' '{print $1}' | passwd --stdin root
 passwd --lock root
 
 if [ -f /etc/machine-id ]; then
