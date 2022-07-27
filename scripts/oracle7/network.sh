@@ -40,7 +40,7 @@ fi
 
 # Make sure Udev doesn't block our network
 printf "Cleaning up udev rules.\n"
-rm /etc/udev/rules.d/70-persistent-net.rules
+[ -f /etc/udev/rules.d/70-persistent-net.rules ] && rm -f /etc/udev/rules.d/70-persistent-net.rules
 mkdir /etc/udev/rules.d/70-persistent-net.rules
 
 # If postfix is installed, configure it use only ipv4 interfaces, or it will fail to start properly.

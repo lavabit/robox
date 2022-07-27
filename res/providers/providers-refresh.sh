@@ -75,7 +75,8 @@ function provide-libvirt() {
   dnf --assumeyes --enablerepo=epel install \
     libvirt libvirt-client libvirt-daemon python3-libvirt \
     qemu-kvm qemu-img qemu-kvm-tools qemu-kvm-block-curl qemu-kvm-docs \
-    guestfs-tools libguestfs libguestfs-inspect-icons
+    guestfs-tools libguestfs libguestfs-inspect-icons \
+    ruby ruby-devel ruby-default-gems rubygems rubygem-rexml rubygem-builder
 
   # Setup the Libvirt, QEMU and KVM Groups
   usermod -aG kvm root
@@ -104,7 +105,10 @@ function provide-libvirt() {
    
   #  unset CONFIG_PCI_MSI
   #  unset CONFIG_VHOST_NET
-   
+
+  ln -s /usr/libexec/qemu-kvm /usr/local/bin/qemu-system-i396
+  ln -s /usr/libexec/qemu-kvm /usr/local/bin/qemu-system-x86_64
+
   if [ -f /usr/bin/X ]; then
     provide-virtmanager
   fi

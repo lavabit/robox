@@ -24,14 +24,14 @@ if [ ! -f $BASE/.credentialsrc ]; then
 cat << EOF > $BASE/.credentialsrc
 #!/bin/bash
 # Overrides the repo version string with a default value.
-# [ ! -n "\$VERSION" ] && VERSION="1.0.0"
+[ ! -n "\$VERSION" ] && VERSION="1.0.0"
 
 # Set the following to override default values.
 # [ ! -n "\$GOMAXPROCS" ] && export GOMAXPROCS="2"
 
 # [ ! -n "\$PACKER_ON_ERROR" ] && export PACKER_ON_ERROR="cleanup"
 # [ ! -n "\$PACKER_MAX_PROCS" ] && export PACKER_MAX_PROCS="2"
-# [ ! -n "\$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="$BASE/packer_cache/"
+[ ! -n "\$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="$BASE/packer_cache/"
 #
 # [ ! -n "\$QUAY_USER" ] && export QUAY_USER="LOGIN"
 # [ ! -n "\$QUAY_PASSWORD" ] && export QUAY_PASSWORD="PASSWORD"
@@ -39,6 +39,7 @@ cat << EOF > $BASE/.credentialsrc
 # [ ! -n "\$DOCKER_PASSWORD" ] && export DOCKER_PASSWORD="PASSWORD"
 # [ ! -n "\$VAGRANT_CLOUD_TOKEN" ] && export VAGRANT_CLOUD_TOKEN="TOKEN"
 
+# Update the following if using provider.sh to install VMWare Workstation.
 # [ ! -n "\$VMWARE_WORKSTATION" ] && export VMWARE_WORKSTATION="SERIAL"
 
 EOF
@@ -50,7 +51,7 @@ fi
 source $BASE/.credentialsrc
 
 # Version Information
-[ ! -n "$VERSION" ] && export VERSION="4.0.4"
+[ ! -n "$VERSION" ] && export VERSION="4.1.2"
 export AGENT="Vagrant/2.2.19 (+https://www.vagrantup.com; ruby2.7.4)"
 
 # Limit the number of cpus packer will use and control how errors are handled.
@@ -87,7 +88,7 @@ BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $LINEAGEOS_BOXES"
 
 # Collect the list of box tags.
 MAGMA_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
-MAGMA_SPECIAL_TAGS="lavabit/magma lavabit/magma-centos lavabit/magma-ubuntu"
+MAGMA_SPECIAL_TAGS="lavabit/magma lavabit/magma-centos lavabit/magma-debian lavabit/magma-fedora lavabit/magma-ubuntu"
 ROBOX_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep -v "roboxes-x32" |sort -u --field-separator=-`
 ROBOX_X32_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep "roboxes-x32" |sort -u --field-separator=-`
 GENERIC_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | grep -v "generic-x32" | sort -u --field-separator=-`
@@ -107,17 +108,38 @@ export EXCEPTIONS=""
 # Ubuntu 16.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
 
+# Ubuntu 16.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/yakkety/InRelease" )
+
+# Ubuntu 17.04
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/zesty/InRelease" )
+
+# Ubuntu 17.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/artful/InRelease" )
+
 # Ubuntu 18.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/bionic/InRelease" )
+
+# Ubuntu 18.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/cosmic/InRelease" )
+
+# Ubuntu 19.04
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/disco/InRelease" )
+
+# Ubuntu 19.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/eoan/InRelease" )
 
 # Ubuntu 20.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/focal/InRelease" )
 
+# Ubuntu 20.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/groovy/InRelease" )
+
 # Ubuntu 21.04
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/hirsute/InRelease" )
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/hirsute/InRelease" )
 
 # Ubuntu 21.10
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/impish/InRelease" )
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/impish/InRelease" )
 
 # Ubuntu 22.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/jammy/InRelease" )
@@ -172,10 +194,10 @@ REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repoda
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
 
 # Rocky 8
-REPOS+=( "https://dfw.mirror.rackspace.com/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
 
 # Rocky 9
-# REPOS+=( "https://dfw.mirror.rackspace.com/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
 
 # Oracle 6
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/latest/x86_64/repodata/repomd.xml" )
@@ -191,8 +213,8 @@ REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repomd.xml" )
 
 # Oracle 9
-# REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
-# REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
 
 # FreeBSD 11
 REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
@@ -958,17 +980,12 @@ function links() {
   # Detect downloads that aren't being fetched by the packer-cache.json file.
   for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
     grep --silent "${ISOURLS[$i]}" packer-cache.json || \
-      echo "Cache Failure:  ${ISOURLS[$i]}" | \
-      grep -v "https://www.virtualbox.org/download/testcase/VBoxGuestAdditions_6.1.35-151866.iso"
-      #####6
-       # Remove the above exception when the v6.1.36 guest additions are released.
-      ####
+    echo "Cache Failure:  ${ISOURLS[$i]}"
   done
   
-  # Check whether the VIrtualBox v6.1.36 guest additions have been released, so we can switch the RHEL 9 (and friends)
-  # config away from the v6.1.35 test release, to the official release.
-  HTTPCODE=$(curl -Lso /dev/null --write-out "%{http_code}\n" "https://download.virtualbox.org/virtualbox/6.1.36/VBoxGuestAdditions_6.1.36.iso")
-  [ "$HTTPCODE" == "200" ] && echo "Release Notification:  https://download.virtualbox.org/virtualbox/6.1.36/VBoxGuestAdditions_6.1.36.iso"
+  # Check whether the a given URL is available and notify. The VirtualBox v6.1.36 guest additions are used as an example.
+  # HTTPCODE=$(curl -Lso /dev/null --write-out "%{http_code}\n" "https://download.virtualbox.org/virtualbox/6.1.36/VBoxGuestAdditions_6.1.36.iso")
+  # [ "$HTTPCODE" == "200" ] && echo "Release Notification:  https://download.virtualbox.org/virtualbox/6.1.36/VBoxGuestAdditions_6.1.36.iso"
 
   # Combine the media URLs with the regular box ISO URLs and the repos.
   let TOTAL=${#UNIQURLS[@]}+${#REPOS[@]}+${#RESOURCES[@]}
@@ -1079,8 +1096,10 @@ function available() {
       PROVIDER="docker"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
         if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
-          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
-          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || [[ "${BOX}" == "rhel9" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || [[ "${BOX}" == "oracle9" ]] || \
+          [[ "${BOX}" == "alma8" ]] || [[ "${BOX}" == "alma9" ]] || \
+          [[ "${BOX}" == "rocky8" ]] || [[ "${BOX}" == "rocky9" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
           ${CURL} --head --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box?access_token=${VAGRANT_CLOUD_TOKEN}" | head -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200|HTTP/1\.1 302 Found|HTTP/2.0 302 Found|HTTP/2 302 Found"
@@ -1237,8 +1256,10 @@ function public() {
       PROVIDER="docker"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
         if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
-          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
-          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || [[ "${BOX}" == "rhel9" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || [[ "${BOX}" == "oracle9" ]] || \
+          [[ "${BOX}" == "alma8" ]] || [[ "${BOX}" == "alma9" ]] || \
+          [[ "${BOX}" == "rocky8" ]] || [[ "${BOX}" == "rocky9" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
           curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box" | grep --silent "200"
@@ -1395,8 +1416,10 @@ function ppublic() {
       PROVIDER="docker"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
         if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
-          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
-          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || [[ "${BOX}" == "rhel9" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || [[ "${BOX}" == "oracle9" ]] || \
+          [[ "${BOX}" == "alma8" ]] || [[ "${BOX}" == "alma9" ]] || \
+          [[ "${BOX}" == "rocky8" ]] || [[ "${BOX}" == "rocky9" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
             O=( "${O[@]}" "${ORGANIZATION}" ); B=( "${B[@]}" "${BOX}" ); P=( "${P[@]}" "${PROVIDER}" ); V=( "${V[@]}" "${VERSION}" );
@@ -1462,8 +1485,10 @@ function invalid() {
       PROVIDER="docker"
       if [[ "${ORGANIZATION}" =~ ^(generic|roboxes|lavabit)$ ]]; then
         if [[ "${BOX}" == "centos6" ]] || [[ "${BOX}" == "centos7" ]] || [[ "${BOX}" == "centos8" ]] || \
-          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || \
-          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || \
+          [[ "${BOX}" == "rhel6" ]] || [[ "${BOX}" == "rhel7" ]] || [[ "${BOX}" == "rhel8" ]] || [[ "${BOX}" == "rhel9" ]] || \
+          [[ "${BOX}" == "oracle7" ]] || [[ "${BOX}" == "oracle8" ]] || [[ "${BOX}" == "oracle9" ]] || \
+          [[ "${BOX}" == "alma8" ]] || [[ "${BOX}" == "alma9" ]] || \
+          [[ "${BOX}" == "rocky8" ]] || [[ "${BOX}" == "rocky9" ]] || \
           [[ "${BOX}" == "magma" ]] || [[ "${BOX}" == "magma-centos" ]] || \
           [[ "${BOX}" == "magma-centos6" ]] || [[ "${BOX}" == "magma-centos7" ]]; then
           LENGTH="`curltry ${CURL} --head --request GET --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}.box\" 2>&1 | grep -a 'Content-Length' | awk -F': ' '{print \$2}' | tail -1`"
@@ -1875,7 +1900,7 @@ function hyperv() {
 
     # Build the generic boxes first.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^generic-[a-z]*[0-9]*-hyperv$ ]]; then
+      if [[ "${LIST[$i]}" =~ ^generic-[a-z0-9]*-hyperv$ ]]; then
         packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv.json
       fi
     done
@@ -1887,7 +1912,7 @@ function hyperv() {
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^magma-[a-z]*[0-9]*-hyperv$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv$ ]]; then
+      if [[ "${LIST[$i]}" =~ ^magma-[a-z0-9]*-hyperv$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv$ ]]; then
         packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
       fi
     done
@@ -1904,7 +1929,7 @@ function hyperv() {
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z]*[0-9]*-hyperv$ ]]; then
+      if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z0-9]*-hyperv$ ]]; then
         packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
       fi
     done
@@ -1954,7 +1979,7 @@ function parallels() {
       # Ensure there is enough disk space.
       if [[ `df -m . | tail -1 |  awk -F' ' '{print $4}'` -lt 8192 ]]; then
         tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
-      elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z]*[0-9]*-parallels$ ]]; then
+      elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z0-9]*-parallels$ ]]; then
 
         # Enable logging and ensure the log path exists.
         export PACKER_LOG="1"

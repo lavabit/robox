@@ -18,12 +18,19 @@ autoinstall:
       geoip: false
       primary:
           - arches: [default]
-            uri: https://mirrors.edge.kernel.org/ubuntu/
-            # uri: https://old-releases.ubuntu.com/ubuntu/
+            uri: https://old-releases.ubuntu.com/ubuntu/
       security:
           - arches: [default]
-            uri: https://mirrors.edge.kernel.org/ubuntu/
-            # uri: https://old-releases.ubuntu.com/ubuntu/
+            uri: https://old-releases.ubuntu.com/ubuntu/
+      sources_list: | 
+          deb $MIRROR impish main restricted
+          deb $MIRROR impish-security main restricted
+      conf: |
+          Acquire::AllowReleaseInfoChange::Suite "true";
+          Acquire::AllowReleaseInfoChange::Origin "true";
+          Acquire::AllowReleaseInfoChange::Label "true";
+          Acquire::AllowReleaseInfoChange::Version "true";
+          Acquire::AllowReleaseInfoChange::Codename "true"; 
   storage:
       layout:
           name: lvm
@@ -61,6 +68,7 @@ autoinstall:
     - sed -i "s/#Cache=.*/Cache=yes/g" /etc/systemd/resolved.conf
     - sed -i "s/#DNS=.*/DNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
     - sed -i "s/#FallbackDNS=.*/FallbackDNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
+    - printf "\n91.189.91.124 old-releases.ubuntu.com\n" >> /etc/hosts
     - systemctl restart systemd-resolved
   late-commands:
     - sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT=="\1 net.ifnames=0 biosdevname=0"/g' /target/etc/default/grub
@@ -69,18 +77,3 @@ autoinstall:
     - sudo chroot /target /bin/bash -c '/usr/sbin/useradd --create-home --shell /bin/bash --password vagrant vagrant'
     - sudo chroot /target /bin/bash -c 'printf "vagrant\nvagrant\n" | passwd root'
     - curtin in-target --target=/target -- update-grub
-
-# End of life config additions.
-# sources_list: | 
-#    deb $MIRROR hirsute main restricted
-#    deb $MIRROR hirsute-security main restricted
-# conf: |
-#    Acquire::AllowReleaseInfoChange::Suite "true";
-#    Acquire::AllowReleaseInfoChange::Origin "true";
-#    Acquire::AllowReleaseInfoChange::Label "true";
-#    Acquire::AllowReleaseInfoChange::Version "true";
-#    Acquire::AllowReleaseInfoChange::Codename "true"; 
-
-# End of life early command additions.
-# - printf "\n91.189.91.124 old-releases.ubuntu.com\n" >> /etc/hosts
-

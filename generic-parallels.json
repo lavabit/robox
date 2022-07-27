@@ -2764,6 +2764,123 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/oracle9/network.sh",
+        "scripts/oracle9/dnf.sh",
+        "scripts/oracle9/base.sh",
+        "scripts/oracle9/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle9-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/oracle9/kernel.sh",
+        "scripts/oracle9/floppy.sh",
+        "scripts/oracle9/virtualbox.sh",
+        "scripts/oracle9/parallels.sh",
+        "scripts/oracle9/vmware.sh",
+        "scripts/oracle9/qemu.sh",
+        "scripts/oracle9/vagrant.sh",
+        "scripts/oracle9/tuning.sh",
+        "scripts/oracle9/cleanup.sh",
+        "scripts/oracle9/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle9-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky9/network.sh",
+        "scripts/rocky9/dnf.sh",
+        "scripts/rocky9/base.sh",
+        "scripts/rocky9/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky9-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rocky9/kernel.sh",
+        "scripts/rocky9/floppy.sh",
+        "scripts/rocky9/virtualbox.sh",
+        "scripts/rocky9/parallels.sh",
+        "scripts/rocky9/vmware.sh",
+        "scripts/rocky9/qemu.sh",
+        "scripts/rocky9/vagrant.sh",
+        "scripts/rocky9/tuning.sh",
+        "scripts/rocky9/sshd.sh",
+        "scripts/rocky9/randomness.sh",
+        "scripts/rocky9/updatedb.sh",
+        "scripts/rocky9/cleanup.sh",
+        "scripts/rocky9/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-rocky9-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/oracle6/yum.sh",
+        "scripts/oracle6/network.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle6-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/oracle6/kernel.sh",
+        "scripts/oracle6/floppy.sh",
+        "scripts/oracle6/virtualbox.sh",
+        "scripts/oracle6/parallels.sh",
+        "scripts/oracle6/vmware.sh",
+        "scripts/oracle6/qemu.sh",
+        "scripts/oracle6/vagrant.sh",
+        "scripts/oracle6/tuning.sh",
+        "scripts/oracle6/cleanup.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-oracle6-parallels"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -2828,8 +2945,8 @@
       "hard_drive_interface": "ide",
       "guest_os_type": "linux",
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/oracle/OL7/u9/x86_64/OracleLinux-R7-U9-Server-x86_64-dvd.iso",
-      "iso_checksum": "sha256:dc2782bfd92b4c060cf8006fbc6e18036c27f599eebf3584a1a2ac54f008bf2f",
+      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL7/u9/x86_64/x86_64-boot-uek.iso",
+      "iso_checksum": "sha256:6da0323423f3a52d20d1021c2651885052319ca4ace7532859d8d20640829004",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -3441,8 +3558,8 @@
       "guest_os_type": "linux",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2022.06.01-x86_64.iso",
-      "iso_checksum": "sha256:6b3bfe8d4e0d0f82cc3322f9565e92b0c44f27105889a665a8626ce47fbf7ab8",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2022.07.01-x86_64.iso",
+      "iso_checksum": "sha256:54974bcac724e97ec242552a8b7d01e037ca8a944100f366bbb6c80865b311df",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -4429,8 +4546,8 @@
       "guest_os_type": "linux",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20220626T170536Z.iso",
-      "iso_checksum": "sha256:50530f02fdb103e5b3d3fd9a30282701241fa10ffb27289bc5ec4acabf5e7266",
+      "iso_url": "https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20220724T170611Z.iso",
+      "iso_checksum": "sha256:e8155999be21ed539aaf6f8727ea31cd0b308eedfaea8a69dba86a1b3baa3c61",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -5503,8 +5620,8 @@
       "hard_drive_interface": "ide",
       "guest_os_type": "linux",
       "http_directory": "http",
-      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL8/u6/x86_64/OracleLinux-R8-U6-x86_64-dvd.iso",
-      "iso_checksum": "sha256:988969accaddd7fbf4f7ddced16c1b69d3e5c097435fcb2474426936a9c52aeb",
+      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL8/u6/x86_64/x86_64-boot-uek.iso",
+      "iso_checksum": "sha256:856d4ddfffabb2bed1ffee1e21a82ba81f30156936c908d19b73706f08bfa731",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -5598,7 +5715,7 @@
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><enter><wait>",
-        "linux netsetup=dhcp lang=en_US  textmode=1 <wait>",
+        "linux netsetup=dhcp lang=en_US textmode=1 ssh=0 sshd=0 <wait>",
         "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse15.vagrant.cfg<wait>",
         "<enter><wait>"
       ],
@@ -6675,8 +6792,8 @@
       "hard_drive_interface": "ide",
       "guest_os_type": "linux",
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.10-x86_64.iso",
-      "iso_checksum": "sha256:3d94b60e6c1b050fa45cdeeb8e90703ba88ffb0f89cc77c85f7993541e8f470f",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.11-x86_64.iso",
+      "iso_checksum": "sha256:a658172940484f411345c19318afc21e2e5f71525d9a8275c852eb32ae8566ce",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -6748,8 +6865,8 @@
       "hard_drive_interface": "ide",
       "guest_os_type": "linux",
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.14/releases/x86_64/alpine-virt-3.14.6-x86_64.iso",
-      "iso_checksum": "sha256:70acb81e36139cc3a53865cdc1732a0de9be9366fbb37cde9af48e2ef72ad0fd",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.14/releases/x86_64/alpine-virt-3.14.7-x86_64.iso",
+      "iso_checksum": "sha256:9ecda0aab5a80f9c43ddc095ee04c62480079546acfce0d52b3ca4c91822ea6a",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -6885,7 +7002,7 @@
       "hard_drive_interface": "ide",
       "guest_os_type": "centos",
       "http_directory": "http",
-      "iso_url": "https://dfw.mirror.rackspace.com/rocky/8.6/isos/x86_64/Rocky-8.6-x86_64-boot.iso",
+      "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/8.6/isos/x86_64/Rocky-8.6-x86_64-boot.iso",
       "iso_checksum": "sha256:fe77cc293a2f2fe6ddbf5d4bc2b5c820024869bc7ea274c9e55416d215db0cc5",
       "skip_compaction": false,
       "ssh_username": "root",
@@ -7175,8 +7292,8 @@
       "guest_os_type": "freebsd",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/build-496/disc1.iso",
-      "iso_checksum": "sha256:243f042bc89971a760da22e4a9cf59e2b304230552b390c6f35e79b5a955a9ba",
+      "iso_url": "https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/build-523/disc1.iso",
+      "iso_checksum": "sha256:bd584b4ca6b362782994587435dacec9da9ed07149ee7241d843386f72bd3996",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -7336,8 +7453,8 @@
       "guest_os_type": "debian",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://cdimage.debian.org/cdimage/release/11.3.0/amd64/iso-cd/debian-11.3.0-amd64-netinst.iso",
-      "iso_checksum": "sha256:7892981e1da216e79fb3a1536ce5ebab157afdd20048fe458f2ae34fbc26c19b",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.4.0/amd64/iso-cd/debian-11.4.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:d490a35d36030592839f24e468a5b818c919943967012037d6ab3d65d030ef7f",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -7478,7 +7595,7 @@
       "guest_os_type": "ubuntu",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/ubuntu-releases/21.10/ubuntu-21.10-live-server-amd64.iso",
+      "iso_url": "https://old-releases.ubuntu.com/releases/21.10/ubuntu-21.10-live-server-amd64.iso",
       "iso_checksum": "sha256:e84f546dfc6743f24e8b1e15db9cc2d2c698ec57d9adfb852971772d1ce692d4",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -7550,8 +7667,8 @@
       "hard_drive_interface": "ide",
       "guest_os_type": "linux",
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.15/releases/x86_64/alpine-virt-3.15.4-x86_64.iso",
-      "iso_checksum": "sha256:11cb6ceec4967e0089c44268d2cc7b4efbad74f40d962ecec558e1a8fb6f2ac9",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.15/releases/x86_64/alpine-virt-3.15.5-x86_64.iso",
+      "iso_checksum": "sha256:1af45c447bfea17936a91c51b961e24c3f82ab0b27f6c94f61bb344aebd90573",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -7955,8 +8072,8 @@
       "hard_drive_interface": "ide",
       "guest_os_type": "centos",
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20220627-boot.iso",
-      "iso_checksum": "sha256:7d819a7b2b27b47cfc8aea612fb865aee21d053ea1a9a1bd0ee18a92f09200fd",
+      "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20220719-boot.iso",
+      "iso_checksum": "sha256:20fcfdd45d8c1773137ba52cf6fea4808a7717c89eb2bf10583ac9242ddfd1b7",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -8016,8 +8133,8 @@
       "hard_drive_interface": "ide",
       "guest_os_type": "centos",
       "http_directory": "http",
-      "iso_url": "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20220627.1-x86_64-boot.iso",
-      "iso_checksum": "sha256:5ed4e78fb85e11f4ea82a6513cf4a56a5b0604f3cc703144f105d1c7a8191ec8",
+      "iso_url": "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20220718.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:dd58cd2d0fef203a97bb035938fdd3adedc8658f4fbe99a2a57553f52b6ef24e",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -8089,8 +8206,8 @@
       "hard_drive_interface": "ide",
       "guest_os_type": "linux",
       "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.16/releases/x86_64/alpine-virt-3.16.0-x86_64.iso",
-      "iso_checksum": "sha256:ba8007f74f9b54fbae3b2520da577831b4834778a498d732f091260c61aa7ca1",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.16/releases/x86_64/alpine-virt-3.16.1-x86_64.iso",
+      "iso_checksum": "sha256:ce507d7f8a0da796339b86705a539d0d9eef5f19eebb1840185ce64be65e7e07",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -8152,6 +8269,189 @@
       "http_directory": "http",
       "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.0/isos/x86_64/AlmaLinux-9.0-x86_64-boot.iso",
       "iso_checksum": "sha256:c41ce7bc2f4ab27a3597b3e160fc8b01c56a6b58e1046a4a23b8518fb9e9a61f",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-oracle9-parallels",
+      "vm_name": "generic-oracle9-parallels",
+      "output_directory": "output/generic-oracle9-parallels",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle9.vagrant.ks vga=792 <enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 1,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "linux",
+      "http_directory": "http",
+      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL9/u0/x86_64/OracleLinux-R9-U0-x86_64-boot.iso",
+      "iso_checksum": "sha256:8da742eadb7bcd4d03bacd71c73d500247fa2f680a18c619220bcb88d6bd336f",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-rocky9-parallels",
+      "vm_name": "generic-rocky9-parallels",
+      "output_directory": "output/generic-rocky9-parallels",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky9.vagrant.ks vga=792 <enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "centos",
+      "http_directory": "http",
+      "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/9.0/isos/x86_64/Rocky-9.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:fc6b306b9fc8d327d7545373ce88c48bd1f7e84d29548814a91e84676b7d26e4",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-oracle6-parallels",
+      "vm_name": "generic-oracle6-parallels",
+      "output_directory": "output/generic-oracle6-parallels",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle6.vagrant.ks<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 1,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "linux",
+      "http_directory": "http",
+      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL6/u10/x86_64/OracleLinux-R6-U10-Server-x86_64-dvd.iso",
+      "iso_checksum": "sha256:625044388ee60a031965a42a32f4c1de0c029268975edcd542fd14160e0dadcb",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",

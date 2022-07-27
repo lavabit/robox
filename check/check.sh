@@ -4,6 +4,17 @@
 # Find:     ^(.*)(EXISTING)(.*)$
 # Replace:  $1$2$3\n$1ADDITION$3
 
+# To use the latest libvirt plugin code.
+# ./check.sh plugin-libvirt && \
+# source env.sh && \
+# git clone https://github.com/vagrant-libvirt/vagrant-libvirt.git && \
+# cd vagrant-libvirt && \
+# git tag 0.100.1 && \
+# /opt/vagrant/embedded/bin/gem build vagrant-libvirt.gemspec && \
+# vagrant plugin install vagrant-libvirt-0.100.1.gem && \
+# cd .. && \
+# vagrant plugin list
+
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
   export CMD=$BASH_SOURCE
@@ -355,15 +366,16 @@ function generic-virtualbox() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "virtualbox" );
-  # O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "virtualbox" );
-#   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "virtualbox" );
@@ -379,7 +391,7 @@ function generic-virtualbox() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "virtualbox" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-  parallel --jobs 4 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+  parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
   unset O; unset B; unset P; wait
 
   tput setaf 4; tput bold; printf "\nThe generic virtualbox run finished.\n"; tput sgr0
@@ -442,15 +454,16 @@ function generic-libvirt() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "libvirt" );
-  # O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "libvirt" );
-#   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "libvirt" );
@@ -529,15 +542,16 @@ function generic-vmware() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "vmware" );
-  # O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "vmware" );
-#   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "vmware" );
@@ -553,7 +567,7 @@ function generic-vmware() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "vmware" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-  plugin-vmware && parallel --jobs 4 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+  plugin-vmware && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
   unset O; unset B; unset P; wait
 
   tput setaf 4; tput bold; printf "\nThe generic vmware run finished.\n"; tput sgr0
@@ -617,15 +631,16 @@ function generic-hyperv() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "hyperv" );
-    # O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "hyperv" );
-#     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "hyperv" );
@@ -641,7 +656,7 @@ function generic-hyperv() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "hyperv" );
 
     export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-    parallel --jobs 4 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+    parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
     unset O; unset B; unset P; wait
 
     tput setaf 4; tput bold; printf "\nThe generic hyperv run finished.\n"; tput sgr0
@@ -708,15 +723,16 @@ function generic-parallels() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "parallels" );
-    # O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "parallels" );
-#     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "parallels" );
@@ -732,7 +748,7 @@ function generic-parallels() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "parallels" );
 
     export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-    parallel --jobs 4 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+    parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
     unset O; unset B; unset P; wait
 
     tput setaf 4; tput bold; printf "\nThe generic parallels run finished.\n"; tput sgr0
@@ -798,15 +814,16 @@ function robox-virtualbox() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "virtualbox" );
-  # O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "virtualbox" );
-#   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "virtualbox" );
@@ -822,7 +839,7 @@ function robox-virtualbox() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "virtualbox" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-  parallel --jobs 4 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+  parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
   unset O; unset B; unset P; wait
 
   tput setaf 4; tput bold; printf "\nThe roboxes virtualbox run finished.\n"; tput sgr0
@@ -885,15 +902,16 @@ function robox-libvirt() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "libvirt" );
-  # O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "libvirt" );
-#   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "libvirt" );
@@ -909,7 +927,7 @@ function robox-libvirt() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "libvirt" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-  plugin-libvirt && parallel --jobs 4 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+  plugin-libvirt && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
   unset O; unset B; unset P; wait
 
   tput setaf 4; tput bold; printf "\nThe roboxes libvirt run finished.\n"; tput sgr0
@@ -972,15 +990,16 @@ function robox-vmware() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "vmware" );
-  # O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "vmware" );
-#   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "vmware" );
@@ -996,7 +1015,7 @@ function robox-vmware() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "vmware" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-  plugin-vmware && parallel --jobs 4 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+  plugin-vmware && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
   unset O; unset B; unset P; wait
 
   tput setaf 4; tput bold; printf "\nThe roboxes vmware run finished.\n"; tput sgr0
@@ -1060,15 +1079,16 @@ function robox-hyperv() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "hyperv" );
-    # O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "hyperv" );
-#     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "hyperv" );
@@ -1084,7 +1104,7 @@ function robox-hyperv() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "hyperv" );
 
     export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-    parallel --jobs 4 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+    parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
     unset O; unset B; unset P; wait
 
     tput setaf 4; tput bold; printf "\nThe roboxes hyperv run finished.\n"; tput sgr0
@@ -1151,15 +1171,16 @@ function robox-parallels() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse15" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "opensuse42" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle6" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle8" ); P=( "${P[@]}" "parallels" );
-    # O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "oracle9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel6" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel7" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel8" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rhel9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky8" ); P=( "${P[@]}" "parallels" );
-#     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "rocky9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1604" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1610" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu1704" ); P=( "${P[@]}" "parallels" );
@@ -1175,7 +1196,7 @@ function robox-parallels() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "parallels" );
 
     export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-    parallel --jobs 4 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+    parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
     unset O; unset B; unset P; wait
 
     tput setaf 4; tput bold; printf "\nThe roboxes parallels run finished.\n"; tput sgr0
@@ -1230,7 +1251,7 @@ function magma-virtualbox() {
   # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-openbsd" ); P=( "${P[@]}" "virtualbox" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-  parallel --jobs 4 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+  parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
   unset O; unset B; unset P; wait
 
   tput setaf 4; tput bold; printf "\nThe magma virtualbox run finished.\n"; tput sgr0
@@ -1282,7 +1303,7 @@ function magma-libvirt() {
   # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-openbsd" ); P=( "${P[@]}" "libvirt" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-  plugin-libvirt && parallel --jobs 4 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+  plugin-libvirt && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
   unset O; unset B; unset P; wait
 
   tput setaf 4; tput bold; printf "\nThe magma libvirt run finished.\n"; tput sgr0
@@ -1334,7 +1355,7 @@ function magma-vmware() {
 #   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-openbsd" ); P=( "${P[@]}" "vmware" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-  plugin-vmware && parallel --jobs 4 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+  plugin-vmware && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
   unset O; unset B; unset P; wait
 
   tput setaf 4; tput bold; printf "\nThe magma vmware run finished.\n"; tput sgr0
@@ -1386,7 +1407,7 @@ function magma-hyperv() {
   # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-openbsd" ); P=( "${P[@]}" "hyperv" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-  parallel --jobs 4 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+  parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
   unset O; unset B; unset P; wait
 
   tput setaf 4; tput bold; printf "\nThe magma hyperv run was skipped.\n"; tput sgr0
@@ -1432,7 +1453,7 @@ function lineage() {
     O=( "${O[@]}" "lineageos" ); B=( "${B[@]}" "lineage" ); P=( "${P[@]}" "hyperv" );
 
     export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-    parallel --jobs 4 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+    parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
     unset O; unset B; unset P; wait
 
   elif [[ `uname` == "Darwin" ]]; then
@@ -1440,7 +1461,7 @@ function lineage() {
     O=( "${O[@]}" "lineageos" ); B=( "${B[@]}" "lineage" ); P=( "${P[@]}" "parallels" );
 
     export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-    parallel --jobs 4 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+    parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
     unset O; unset B; unset P; wait
 
   else
@@ -1452,7 +1473,7 @@ function lineage() {
     O=( "${O[@]}" "lineageos" ); B=( "${B[@]}" "lineage" ); P=( "${P[@]}" "vmware" );
 
     export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
-    plugin-vmware && plugin-libvirt && parallel --jobs 4 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
+    plugin-vmware && plugin-libvirt && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
     unset O; unset B; unset P; wait
 
   fi
@@ -1462,7 +1483,7 @@ function cleanup() {
 
   # Search for the Virtual Box machine using the vboxmanage command.
   if [ `command -v vboxmanage` ]; then
-    export PATTERN="(generic|roboxes)-[a-z]*[0-9]*-virtualbox_default_[0-9\_]*|magma-[a-z]*[0-9]*-virtualbox_default_[0-9\_]*|lineage-[a-z0-9\-]*-virtualbox_default_[0-9\_]*"
+    export PATTERN="(generic|roboxes)-[a-z0-9]*-virtualbox_default_[0-9\_]*|magma-[a-z0-9]*-virtualbox_default_[0-9\_]*|lineage-[a-z0-9\-]*-virtualbox_default_[0-9\_]*"
     export BOXES=( `vboxmanage list -s vms | awk -F' ' '{print $1}' | awk -F'"' '{print $2}' | grep --extended-regexp $PATTERN` )
     for box in "${BOXES[@]}"; do
       STATE="`vboxmanage showvminfo \"$box\" --machinereadable | grep --extended-regexp \"^VMState=\\".*\\"$\" | awk -F'\"' '{print $2}'`"
@@ -1480,7 +1501,7 @@ function cleanup() {
     if [ `command -v virsh` ] && [ `virsh --connect=qemu:///system pool-list --name --all  | awk -F' ' '{print $1}' | grep --extended-regexp default` ]; then
 
       # Undefine the box domain.
-      PATTERN="(generic|roboxes)-[a-z]*[0-9]*-libvirt_default|magma-[a-z]*[0-9]*-libvirt_default|lineage-[a-z0-9\-]*-libvirt_default"
+      PATTERN="(generic|roboxes)-[a-z0-9]*-libvirt_default|magma-[a-z0-9]*-libvirt_default|lineage-[a-z0-9\-]*-libvirt_default"
       DOMAINS=( `virsh --connect=qemu:///system list --name --all | grep --extended-regexp $PATTERN` )
       for domain in "${DOMAINS[@]}"; do
         # If the domain is running, destroy (aka halt/kill) it before calling undefine.
@@ -1491,7 +1512,7 @@ function cleanup() {
       done
 
       # Delete the disk images.
-      PATTERN="(generic|roboxes)-[a-z]*[0-9]*-libvirt_default.img|magma-[a-z]*[0-9]*-libvirt_default.img|lineage-[a-z0-9\-]*-libvirt_default.img"
+      PATTERN="(generic|roboxes)-[a-z0-9]*-libvirt_default.img|magma-[a-z0-9]*-libvirt_default.img|lineage-[a-z0-9\-]*-libvirt_default.img"
       IMAGES=( `virsh --connect=qemu:///system vol-list default | awk -F' ' '{print $2}' | grep --extended-regexp $PATTERN` )
       for image in "${IMAGES[@]}"; do
         virsh --connect=qemu:///system --debug=3 vol-delete --pool default $image
@@ -1574,15 +1595,16 @@ function cleanup() {
   rm --recursive --force $BASE/{generic,roboxes}-openbsd7-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-opensuse15-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-opensuse42-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-oracle6-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-oracle7-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-oracle8-{hyperv,libvirt,parallels,virtualbox,vmware}
-  # rm --recursive --force $BASE/{generic,roboxes}-oracle9-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-oracle9-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-rhel6-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-rhel7-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-rhel8-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-rhel9-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-rocky8-{hyperv,libvirt,parallels,virtualbox,vmware}
-#   rm --recursive --force $BASE/{generic,roboxes}-rocky9-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-rocky9-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-ubuntu1604-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-ubuntu1610-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-ubuntu1704-{hyperv,libvirt,parallels,virtualbox,vmware}
@@ -1647,6 +1669,7 @@ function cleanup() {
   rm --recursive --force $BASE/{lineage,lineageos}-lineage-nash-{hyperv,libvirt,parallels,virtualbox,vmware}
 
   rm --force $BASE/log.txt $BASE/log.vm.txt $BASE/log.vmware.txt $BASE/log.hyperv.txt $BASE/log.libvirt.txt $BASE/log.parallels.txt $BASE/log.virtualbox.txt
+  rm --recursive --force $BASE/vagrant-libvirt/
   rm --recursive --force $VAGRANT_HOME
 
 }

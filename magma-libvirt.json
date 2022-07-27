@@ -1494,14 +1494,6 @@
         [
           "-device",
           "virtserialport,id=channel0,name=org.qemu.guest_agent.0"
-        ],
-        [
-          "-device",
-          "virtio-scsi-pci,id=scsi0"
-        ],
-        [
-          "-device",
-          "scsi-hd,bus=scsi0.0,drive=drive0"
         ]
       ],
       "format": "qcow2",
@@ -1511,14 +1503,14 @@
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2022.06.01-x86_64.iso",
-      "iso_checksum": "sha256:6b3bfe8d4e0d0f82cc3322f9565e92b0c44f27105889a665a8626ce47fbf7ab8",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2022.07.01-x86_64.iso",
+      "iso_checksum": "sha256:54974bcac724e97ec242552a8b7d01e037ca8a944100f366bbb6c80865b311df",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -1767,8 +1759,8 @@
       "memory": 8192,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20220626T170536Z.iso",
-      "iso_checksum": "sha256:50530f02fdb103e5b3d3fd9a30282701241fa10ffb27289bc5ec4acabf5e7266",
+      "iso_url": "https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20220724T170611Z.iso",
+      "iso_checksum": "sha256:e8155999be21ed539aaf6f8727ea31cd0b308eedfaea8a69dba86a1b3baa3c61",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -1983,8 +1975,8 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://cdimage.debian.org/cdimage/release/11.3.0/amd64/iso-cd/debian-11.3.0-amd64-netinst.iso",
-      "iso_checksum": "sha256:7892981e1da216e79fb3a1536ce5ebab157afdd20048fe458f2ae34fbc26c19b",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.4.0/amd64/iso-cd/debian-11.4.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:d490a35d36030592839f24e468a5b818c919943967012037d6ab3d65d030ef7f",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

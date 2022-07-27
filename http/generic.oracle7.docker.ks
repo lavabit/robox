@@ -1,5 +1,4 @@
 install
-cdrom
 
 lang en_US.UTF-8
 keyboard us
@@ -21,6 +20,8 @@ autopart --nohome
 
 rootpw locked
 authconfig --enableshadow --passalgo=sha512
+
+url --url=https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/
 
 reboot --eject
 

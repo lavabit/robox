@@ -73,7 +73,7 @@ fi
 retry yum --assumeyes update
 
 # Install the basic packages we'd expect to find.
-retry yum --assumeyes install deltarpm sudo dmidecode yum-utils bash-completion man man-pages mlocate vim-enhanced bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc
+retry yum --assumeyes install deltarpm sudo dmidecode yum-utils bash-completion man man-pages mlocate vim-enhanced bind-utils jwhois wget dos2unix unix2dos lsof telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive texinfo autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc rsync
 
 if [ -f /etc/yum.repos.d/CentOS-Vault.repo.rpmnew ]; then
   rm --force /etc/yum.repos.d/CentOS-Vault.repo.rpmnew

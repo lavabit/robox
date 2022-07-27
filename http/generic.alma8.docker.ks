@@ -1,35 +1,35 @@
-# This is a minimal Alma kickstart designed to create a dockerized environment.
 install
 
+lang en_US.UTF-8
 keyboard us
-rootpw locked
 timezone US/Pacific
 
 text
 skipx
 
 firstboot --disabled
-
 selinux --enforcing
-firewall --disabled
-network --bootproto=dhcp --device=link --activate --onboot=on --noipv6 --hostname=alma8.localdomain
-reboot
-bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 no_timer_check"
-lang en_US
+firewall --enabled --service=ssh
 
-# Disk setup
+network --device eth0 --bootproto dhcp --noipv6 --hostname=alma8.localdomain
+
 zerombr
 clearpart --all --initlabel
+bootloader --location=mbr --append="net.ifnames=0 biosdevname=0 no_timer_check"
 autopart --nohome
+
+rootpw locked
+authconfig --enableshadow --passalgo=sha512
+
+reboot --eject
 
 # repo --name=BaseOS
 url --url=https://dfw.mirror.rackspace.com/almalinux/8.6/BaseOS/x86_64/os/
 
-# Package setup
 %packages --instLangs=en_US.utf8
 @core
-authconfig
 sudo
+authconfig
 -fprintd-pam
 -intltool
 -iwl*-firmware
@@ -38,6 +38,6 @@ sudo
 
 %post
 
-#echo "locked" | passwd --stdin
+# echo locked | passwd --stdin root
 
 %end
