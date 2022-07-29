@@ -3,6 +3,10 @@
 .credentialsrc
 .credentials.bat
 
+# Windows Batch Files
+run.bat
+run2.bat
+
 # Resulting Files
 logs/
 output/

@@ -1268,7 +1268,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}\n"; tput sgr0
           else
             let FOUND+=1
-            STATUS="`curltry ${CURL} --verbose --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
+            STATUS="`curltry ${CURL} --fail --silent --location --user-agent \"${AGENT}\" \"https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}\" | jq -r '.status' 2>/dev/null`"
             curltry ${CURL} --verbose --fail --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/${ORGANIZATION}/${BOX}/version/${VERSION}"
             if [ "$STATUS" != "active" ]; then
               let UNRELEASED+=1
