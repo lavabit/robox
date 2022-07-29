@@ -261,7 +261,7 @@ retry() {
   local RESULT=0
   while [[ "${COUNT}" -le 10 ]]; do
     [[ "${RESULT}" -ne 0 ]] && {
-      printf "  ${*} ${T_BYEL}failed.${T_RESET}... retrying ${COUNT} of 10.\n" >&2
+      printf "  %s ${T_BYEL}failed.${T_RESET}... retrying ${COUNT} of 10.\n" "${*}" >&2
     }
     "${@}" && { RESULT=0 && break; } || RESULT="${?}"
     COUNT="$((COUNT + 1))"
