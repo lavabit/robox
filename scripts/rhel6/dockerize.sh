@@ -55,15 +55,15 @@ printf "/tmp/excludes\n" > /tmp/excludes
 printf "/tmp/$PACKER_BUILD_NAME.tar\n" >> /tmp/excludes
 
 # Exclude all of the special files from the tarball.
-find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type b -print 1>>/home/ladar/test.txt 2>/dev/null
-find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type c -print 1>>/home/ladar/test.txt 2>/dev/null
-find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type p -print 1>>/home/ladar/test.txt 2>/dev/null
-find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type s -print 1>>/home/ladar/test.txt 2>/dev/null
-find /var/log/ -type f -print 1>>/home/ladar/test.txt 2>/dev/null
-find /lib/modules/ -mindepth 1 -print 1>>/home/ladar/test.txt 2>/dev/null
-find /usr/src/kernels/ -mindepth 1 -print 1>>/home/ladar/test.txt 2>/dev/null
-find /var/lib/yum/yumdb/ -mindepth 1 -print 1>>/home/ladar/test.txt 2>/dev/null
-find /etc/sysconfig/network-scripts/ -name "ifcfg-*" -print 1>>/home/ladar/test.txt 2>/dev/null
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type b -print 1>>/tmp/excludes 2>/dev/null
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type c -print 1>>/tmp/excludes 2>/dev/null
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type p -print 1>>/tmp/excludes 2>/dev/null
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type s -print 1>>/tmp/excludes 2>/dev/null
+find /var/log/ -type f -print 1>>/tmp/excludes 2>/dev/null
+find /lib/modules/ -mindepth 1 -print 1>>/tmp/excludes 2>/dev/null
+find /usr/src/kernels/ -mindepth 1 -print 1>>/tmp/excludes 2>/dev/null
+find /var/lib/yum/yumdb/ -mindepth 1 -print 1>>/tmp/excludes 2>/dev/null
+find /etc/sysconfig/network-scripts/ -name "ifcfg-*" -print 1>>/tmp/excludes 2>/dev/null
 find /tmp -type f -or -type d -print | grep --invert-match --extended-regexp "^/tmp/$|^/tmp$" >> /tmp/excludes
 
 # Remove the files associated with these packages since containers don't need them.
