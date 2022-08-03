@@ -59,15 +59,15 @@ printf "/tmp/excludes\n" > /tmp/excludes
 printf "/tmp/$PACKER_BUILD_NAME.tar\n" >> /tmp/excludes
 
 # Exclude all of the special files from the tarball.
-find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type b -print >> /tmp/excludes
-find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type c -print >> /tmp/excludes
-find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type p -print >> /tmp/excludes
-find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type s -print >> /tmp/excludes
-find -L /var/log/ -type f -print >> /tmp/excludes
-find -L /lib/modules/ -mindepth 1 -print >> /tmp/excludes
-find -L /usr/src/kernels/ -mindepth 1 -print >> /tmp/excludes
-find -L /var/lib/yum/yumdb/ -mindepth 1 -print >> /tmp/excludes
-find -L /etc/sysconfig/network-scripts/ -name "ifcfg-*" -print >> /tmp/excludes
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type b -print 1>>/home/ladar/test.txt 2>/dev/null
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type c -print 1>>/home/ladar/test.txt 2>/dev/null
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type p -print 1>>/home/ladar/test.txt 2>/dev/null
+find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type s -print 1>>/home/ladar/test.txt 2>/dev/null
+find -L /var/log/ -type f -print 1>>/home/ladar/test.txt 2>/dev/null
+find -L /lib/modules/ -mindepth 1 -print 1>>/home/ladar/test.txt 2>/dev/null
+find -L /usr/src/kernels/ -mindepth 1 -print 1>>/home/ladar/test.txt 2>/dev/null
+find -L /var/lib/yum/yumdb/ -mindepth 1 -print 1>>/home/ladar/test.txt 2>/dev/null
+find -L /etc/sysconfig/network-scripts/ -name "ifcfg-*" -print 1>>/home/ladar/test.txt 2>/dev/null
 find -L /tmp -type f -or -type d -print | grep --invert-match --extended-regexp "^/tmp/$|^/tmp$" >> /tmp/excludes
 
 # Remove the files associated with these packages since containers don't need them.
@@ -87,7 +87,7 @@ printf "\n\n\n\n\n-----------------------------------------------------\n\n\n\n\
 tar --create --numeric-owner --preserve-permissions --one-file-system --verbose \
   --directory=/ --file=/tmp/$PACKER_BUILD_NAME.tar --exclude=/etc/firewalld \
   --exclude=/boot --exclude=/proc --exclude=/lost+found --exclude=/mnt --exclude=/sys \
-  --exclude=/var/run/udev/ -X /tmp/excludes /
+  --exclude=/var/run/udev --exclude=/run/udev -X /tmp/excludes /
 
 if [ $? != 0 ] || [ ! -f /tmp/$PACKER_BUILD_NAME.tar ]; then
   printf "\n\nTarball generation failed.\n\n"
