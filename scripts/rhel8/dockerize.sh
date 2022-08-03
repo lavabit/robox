@@ -86,7 +86,8 @@ printf "\n\n\n\n\n-----------------------------------------------------\n\n\n\n\
 # Tarball the filesystem.
 tar --create --numeric-owner --preserve-permissions --one-file-system --verbose \
   --directory=/ --file=/tmp/$PACKER_BUILD_NAME.tar --exclude=/etc/firewalld \
-  --exclude=/boot --exclude=/proc --exclude=/lost+found --exclude=/mnt --exclude=/sys -X /tmp/excludes /
+  --exclude=/boot --exclude=/proc --exclude=/lost+found --exclude=/mnt --exclude=/sys \
+  --exclude=/var/run/udev/ -X /tmp/excludes /
 
 if [ $? != 0 ] || [ ! -f /tmp/$PACKER_BUILD_NAME.tar ]; then
   printf "\n\nTarball generation failed.\n\n"
