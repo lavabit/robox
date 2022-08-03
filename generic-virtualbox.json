@@ -1474,8 +1474,7 @@
         "scripts/centos8/sshd.sh",
         "scripts/centos8/randomness.sh",
         "scripts/centos8/updatedb.sh",
-        "scripts/centos8/cleanup.sh",
-        "scripts/centos8/undnf.sh"
+        "scripts/centos8/cleanup.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
@@ -2639,8 +2638,7 @@
         "scripts/centos8s/sshd.sh",
         "scripts/centos8s/randomness.sh",
         "scripts/centos8s/updatedb.sh",
-        "scripts/centos8s/cleanup.sh",
-        "scripts/centos8s/undnf.sh"
+        "scripts/centos8s/cleanup.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",

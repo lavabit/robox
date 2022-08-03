@@ -41,19 +41,19 @@ if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
 fi
 
 # Rocky Repo Setup
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/Rocky-BaseOS.repo
+sed -i -e "s/^#[ ]\+baseurl/baseurl/g" /etc/yum.repos.d/Rocky-BaseOS.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/Rocky-BaseOS.repo
 
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/Rocky-AppStream.repo
+sed -i -e "s/^#[ ]\+baseurl/baseurl/g" /etc/yum.repos.d/Rocky-AppStream.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/Rocky-AppStream.repo
 
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/Rocky-PowerTools.repo
+sed -i -e "s/^#[ ]\+baseurl/baseurl/g" /etc/yum.repos.d/Rocky-PowerTools.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/Rocky-PowerTools.repo
 
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/Rocky-Extras.repo
+sed -i -e "s/^#[ ]\+baseurl/baseurl/g" /etc/yum.repos.d/Rocky-Extras.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/Rocky-Extras.repo
 
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/Rocky-Plus.repo
+sed -i -e "s/^#[ ]\+baseurl/baseurl/g" /etc/yum.repos.d/Rocky-Plus.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/Rocky-Plus.repo
 
 sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\//baseurl=https:\/\/dl.rockylinux.org\//g" /etc/yum.repos.d/Rocky-AppStream.repo
@@ -78,7 +78,7 @@ sed --in-place "s/# #/##/g" /etc/yum.repos.d/Rocky-Devel.repo
 # EPEL Repo Setup
 retry dnf --quiet --assumeyes --enablerepo=extras install epel-release
 
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
+sed -i -e "s/^#[ ]\+baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
 
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8

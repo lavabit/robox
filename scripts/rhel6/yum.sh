@@ -283,7 +283,7 @@ rm --force epel-release-6-8.noarch.rpm
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
 
 # Update EPEL to use HTTPS and switch to archive server.
-sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
+sed -i -e "s/^#[ ]\+baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/http:\/\/download.fedoraproject.org\/pub\/epel\//https:\/\/archives.fedoraproject.org\/pub\/archive\/epel\//g" /etc/yum.repos.d/epel.repo
 

@@ -94,7 +94,6 @@
             "scripts": [
                 "scripts/centos8/floppy.sh",
                 "scripts/centos8/cleanup.sh",
-                "scripts/centos8/undnf.sh",
                 "scripts/centos8/dockerize.sh"
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",

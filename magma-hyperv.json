@@ -1069,8 +1069,7 @@
         "scripts/centos8/sshd.sh",
         "scripts/centos8/randomness.sh",
         "scripts/centos8/updatedb.sh",
-        "scripts/centos8/cleanup.sh",
-        "scripts/centos8/undnf.sh"
+        "scripts/centos8/cleanup.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
