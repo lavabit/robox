@@ -296,7 +296,7 @@ function box() {
     done
 
     # Delete the drive snapshot
-    export PATTERN="$1-VAGRANTSLASH-$2\_vagrant_box_image_[0-9]+\.[0-9]+\.[0-9]+\.img"
+    export PATTERN="$1-VAGRANTSLASH-$2\_vagrant_box_image_[0-9]+\.[0-9]+\.[0-9]+\_box.img"
     export IMAGES=( `virsh --connect=qemu:///system vol-list default | awk -F' ' '{print $2}' | grep --extended-regexp $PATTERN` )
     for image in "${IMAGES[@]}"; do
       virsh --connect=qemu:///system --debug=3 vol-delete --pool default $image &>> "$1-$2-$3.txt" ; warn $1 $2 $3
@@ -1513,14 +1513,14 @@ function cleanup() {
       done
 
       # Delete the disk images.
-      PATTERN="(generic|roboxes)-[a-z0-9]*-libvirt_default.img|magma-[a-z0-9]*-libvirt_default.img|lineage-[a-z0-9\-]*-libvirt_default.img"
+      PATTERN="(generic|roboxes|lavabit|magma|lineageos|lineage)-[a-z0-9]*-libvirt_default.img"
       IMAGES=( `virsh --connect=qemu:///system vol-list default | awk -F' ' '{print $2}' | grep --extended-regexp $PATTERN` )
       for image in "${IMAGES[@]}"; do
         virsh --connect=qemu:///system --debug=3 vol-delete --pool default $image
       done
 
       # Delete the drive snapshot.
-      PATTERN="(generic|roboxes)-VAGRANTSLASH-[a-z0-9\-]*_vagrant_box_image_[0-9]+\.[0-9]+\.[0-9]+\.img|lavabit-VAGRANTSLASH-[a-z0-9\-]*_vagrant_box_image_[0-9]+\.[0-9]+\.[0-9]+\.img|lineage-VAGRANTSLASH-[a-z0-9\-]*_vagrant_box_image_[0-9]+\.[0-9]+\.[0-9]+\.img"
+      PATTERN="(generic|roboxes|lavabit|magma|lineageos|lineage)-VAGRANTSLASH-[a-z0-9\-]*_vagrant_box_image_[0-9]+\.[0-9]+\.[0-9]+_box\.img"
       IMAGES=( `virsh --connect=qemu:///system vol-list default | awk -F' ' '{print $2}' | grep --extended-regexp $PATTERN` )
       for image in "${IMAGES[@]}"; do
         virsh --connect=qemu:///system --debug=3 vol-delete --pool default $image
@@ -1746,7 +1746,7 @@ function purge() {
       done
 
       # Delete the drive snapshot
-      export PATTERN="$1-VAGRANTSLASH-$2\_vagrant_box_image_[0-9]+\.[0-9]+\.[0-9]+\.img"
+      export PATTERN="$1-VAGRANTSLASH-$2\_vagrant_box_image_[0-9]+\.[0-9]+\.[0-9]+_box\.img"
       export IMAGES=( `virsh --connect=qemu:///system vol-list default | awk -F' ' '{print $2}' | grep --extended-regexp $PATTERN` )
       for image in "${IMAGES[@]}"; do
         virsh --connect=qemu:///system --debug=3 vol-delete --pool default $image &>> "$1-$2-$3.txt"
