@@ -26,6 +26,9 @@ printf "Server = https://mirrors.edge.kernel.org/archlinux/\$repo/os/\$arch\n" >
 
 curl -LfsS "https:/archlinux.org/mirrorlist/?country=all" > /tmp/mirrolist
 grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 5 | sed 's/^#//' >> /etc/pacman.d/mirrorlist
+
+# Update the keyring and install the initial set of packages required to bootstrap a system.
+pacman --sync --noconfirm --refresh archlinux-keyring
 pacstrap /mnt base grub bash sudo linux dhcpcd mkinitcpio openssh
 
 swapon "${device}1"
