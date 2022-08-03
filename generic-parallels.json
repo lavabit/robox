@@ -2791,8 +2791,7 @@
         "scripts/oracle9/qemu.sh",
         "scripts/oracle9/vagrant.sh",
         "scripts/oracle9/tuning.sh",
-        "scripts/oracle9/cleanup.sh",
-        "scripts/oracle9/undnf.sh"
+        "scripts/oracle9/cleanup.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "pause_before": "120s",
