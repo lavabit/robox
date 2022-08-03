@@ -29,7 +29,7 @@ fi
 printf "if [ \"\$PS1\" ]; then\n  cd \$HOME\nfi\n" > /etc/profile.d/home.sh
 
 # Setup the locale, and arrogantly assume everyone lives in the US.
-localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
+localedef -c -i en_US -f UTF-8 en_US.UTF-8
 
 rm -rf /var/cache/yum/*
 rm -f /tmp/ks-script*

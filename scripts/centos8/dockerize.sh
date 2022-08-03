@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Setup the locale, and arrogantly assume everyone lives in the US.
+dnf --assumeyes install glibc-locale-source
+localedef -c -i en_US -f UTF-8 en_US.UTF-8
+dnf --assumeyes remove glibc-locale-source
+
 # Cleanup.
 rpm -Va --nofiles --nodigest
 dnf clean all
@@ -24,9 +29,6 @@ fi
 
 # Add a profile directive to send docker logins to the home directory.
 printf "if [ \"\$PS1\" ]; then\n  cd \$HOME\nfi\n" > /etc/profile.d/home.sh
-
-# Setup the locale, and arrogantly assume everyone lives in the US.
-localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
 
 rm -rf /var/cache/dnf/*
 rm -f /tmp/ks-script*
