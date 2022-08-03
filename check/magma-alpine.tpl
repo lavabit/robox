@@ -7,8 +7,6 @@ Vagrant.configure(2) do |config|
   config.vm.network :private_network, :auto_config => false, :autostart => false, :libvirt__network_name => "vagrant-libvirt", :libvirt__always_destroy => false
   
   config.vm.provider :libvirt do |v, override|
-    v.driver = "qemu"
-    v.qemuargs :value => "-enable-kvm"
     v.qemu_use_session = false
     v.video_vram = 256
     v.memory = 2048
