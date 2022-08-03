@@ -5,10 +5,10 @@ rpm -Va --nofiles --nodigest
 dnf clean all
 
 # Stop services to avoid tarring sockets.
-systemctl stop abrt
-systemctl stop dbus
-systemctl stop mariadb
-systemctl stop postfix
+systemctl --quiet is-active abrt.service && systemctl stop abrt.service
+systemctl --quiet is-active dbus.service && systemctl stop dbus.service
+systemctl --quiet is-active mariadb.service && systemctl stop mariadb.service
+systemctl --quiet is-active postfix.service && systemctl stop postfix.service
 
 awk '(NF==0&&!done){print "override_install_langs='$LANG'\ntsflags=nodocs";done=1}{print}' \
     < /etc/yum.conf > /etc/yum.conf.new
