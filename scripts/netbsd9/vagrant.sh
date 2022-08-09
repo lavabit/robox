@@ -31,7 +31,7 @@ retry() {
 export PATH="/usr/sbin/:/usr/pkg/bin/:$PATH"
 
 # Dictate the package repository.
-export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/All"
+export PKG_PATH="http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.3/All"
 
 # Sudo should already be installed, but just in case.
 retry pkg_add sudo
