@@ -298,7 +298,7 @@ function provide-docker() {
 }
 
 function provide-vagrant() {
-
+  
   # Attempt to find out the latest Vagrant version automatically.
   export VAGRANT_VERSION=$(curl --silent https://releases.hashicorp.com/vagrant/ | grep -Eo 'href="/vagrant/.*"' | sort --version-sort --reverse | head -1 | sed 's/href\=\"\/vagrant\/\([0-9\.]*\)\/\"/\1/g')
 
@@ -307,6 +307,9 @@ function provide-vagrant() {
 
   # Download Vagrant
   curl --location --output "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm" "${VAGRANT_PACKAGE}"
+
+  # Install Vagrant
+  dnf --assumeyes install "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
 
   # The Libvirt Headers are Required for the Vagrant Plugin
   yum --assumeyes install libvirt-devel
