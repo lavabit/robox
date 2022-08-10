@@ -309,7 +309,7 @@ function provide-vagrant() {
   curl --location --output "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm" "${VAGRANT_PACKAGE}"
 
   # Install Vagrant
-  dnf --assumeyes install "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
+  yum --assumeyes install "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
 
   # The Libvirt Headers are Required for the Vagrant Plugin
   yum --assumeyes install libvirt-devel
