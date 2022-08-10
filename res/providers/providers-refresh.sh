@@ -304,7 +304,7 @@ function provide-libvirt() {
 function provide-vagrant() {
 
   # Attempt to find out the latest Vagrant version automatically.
-  export VAGRANT_VERSION=$(curl --silent https://releases.hashicorp.com/vagrant/ | grep -Eo 'href="/vagrant/.*"' | sort --version-sort --reverse  )
+  export VAGRANT_VERSION=$(curl --silent https://releases.hashicorp.com/vagrant/ | grep -Eo 'href="/vagrant/.*"' | sort --version-sort --reverse | head -1 | sed 's/href\=\"\/vagrant\/\([0-9\.]*\)\/\"/\1/g')
 
   # Translate the version into a URL for an RPM package.
   export VAGRANT_PACKAGE=$(curl --silent  "https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/"  | grep -Eo "href=\"https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/.*\.x86_64.rpm\"" | sort --version-sort --reverse  | head -1 | sed 's/href\=//g' | tr -d '"')
