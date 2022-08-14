@@ -741,13 +741,13 @@ function cache {
 function verify_url {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
-  ${CURL} --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 "$1" | grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
+  ${CURL} --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 --max-time 120 "$1" | grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
 
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
 
     # Wait a minute, and then try again. Many of the failures are transient network errors.
-    sleep 10; ${CURL} --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 "$1" |  grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
+    sleep 10; ${CURL} --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 --max-time 120 "$1" |  grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
 
     if [ $? != 0 ]; then
       printf "Link Failure:  $1\n"
@@ -760,7 +760,7 @@ function verify_url {
 function verify_sum {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
-  ${CURL} --silent --location --head "$1" | grep --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
+  ${CURL} --silent --location --head --connect-timeout 60 --max-time 120  "$1" | grep --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
 
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
