@@ -27,3 +27,9 @@ find /var/log -type f -exec truncate --size=0 {} \;
 # Wipe the temp directory.
 printf "Purge the setup files and temporary data.\n"
 rm --recursive --force /var/tmp/* /tmp/* /var/cache/dnf/* /tmp/ks-script*
+
+# Don't persist the legacy network config scripts.
+rm -f /etc/sysconfig/network-scripts/ifcfg-eth0
+rm -f /etc/sysconfig/network-scripts/ifcfg-eth1
+rm -f /etc/sysconfig/network-scripts/ifcfg-eth2
+rm -f /etc/sysconfig/network-scripts/ifcfg-eth3
