@@ -50,7 +50,7 @@ fi
 source $BASE/.credentialsrc
 
 # Version Information
-[ ! -n "$VERSION" ] && export VERSION="4.1.4"
+[ ! -n "$VERSION" ] && export VERSION="4.1.10"
 export AGENT="Vagrant/2.2.19 (+https://www.vagrantup.com; ruby2.7.4)"
 
 # Limit the number of cpus packer will use and control how errors are handled.
@@ -101,7 +101,7 @@ TAGS="$GENERIC_TAGS $GENERIC_X32_TAGS $ROBOX_TAGS $ROBOX_X32_TAGS $MAGMA_TAGS $L
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
 
 # A list of configs to skip during complete build operations.
-export EXCEPTIONS=""
+export EXCEPTIONS="generic-netbsd9-libvirt"
 
 # The repository URLs, so we can catch any which might disappeared since the last build.
 # Ubuntu 16.04
