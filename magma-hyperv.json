@@ -283,7 +283,8 @@
         "scripts/fedora27/mariadb.sh",
         "scripts/fedora27/postfix.sh",
         "scripts/fedora27/magma.sh",
-        "scripts/fedora27/tuning.sh"
+        "scripts/fedora27/tuning.sh",
+        "scripts/fedora27/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "45m",
@@ -633,7 +634,8 @@
         "scripts/fedora28/mariadb.sh",
         "scripts/fedora28/postfix.sh",
         "scripts/fedora28/magma.sh",
-        "scripts/fedora28/tuning.sh"
+        "scripts/fedora28/tuning.sh",
+        "scripts/fedora28/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "45m",
@@ -684,7 +686,8 @@
         "scripts/fedora29/mariadb.sh",
         "scripts/fedora29/postfix.sh",
         "scripts/fedora29/magma.sh",
-        "scripts/fedora29/tuning.sh"
+        "scripts/fedora29/tuning.sh",
+        "scripts/fedora29/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "45m",
@@ -735,7 +738,8 @@
         "scripts/fedora30/mariadb.sh",
         "scripts/fedora30/postfix.sh",
         "scripts/fedora30/magma.sh",
-        "scripts/fedora30/tuning.sh"
+        "scripts/fedora30/tuning.sh",
+        "scripts/fedora30/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "45m",
@@ -786,7 +790,8 @@
         "scripts/fedora31/mariadb.sh",
         "scripts/fedora31/postfix.sh",
         "scripts/fedora31/magma.sh",
-        "scripts/fedora31/tuning.sh"
+        "scripts/fedora31/tuning.sh",
+        "scripts/fedora31/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "45m",
@@ -1123,7 +1128,8 @@
         "scripts/fedora32/mariadb.sh",
         "scripts/fedora32/postfix.sh",
         "scripts/fedora32/magma.sh",
-        "scripts/fedora32/tuning.sh"
+        "scripts/fedora32/tuning.sh",
+        "scripts/fedora32/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "45m",
@@ -1174,7 +1180,8 @@
         "scripts/fedora33/mariadb.sh",
         "scripts/fedora33/postfix.sh",
         "scripts/fedora33/magma.sh",
-        "scripts/fedora33/tuning.sh"
+        "scripts/fedora33/tuning.sh",
+        "scripts/fedora33/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "45m",
@@ -1225,7 +1232,8 @@
         "scripts/fedora34/mariadb.sh",
         "scripts/fedora34/postfix.sh",
         "scripts/fedora34/magma.sh",
-        "scripts/fedora34/tuning.sh"
+        "scripts/fedora34/tuning.sh",
+        "scripts/fedora34/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "45m",
@@ -1276,7 +1284,8 @@
         "scripts/fedora35/mariadb.sh",
         "scripts/fedora35/postfix.sh",
         "scripts/fedora35/magma.sh",
-        "scripts/fedora35/tuning.sh"
+        "scripts/fedora35/tuning.sh",
+        "scripts/fedora35/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "45m",
@@ -1327,7 +1336,8 @@
         "scripts/fedora36/mariadb.sh",
         "scripts/fedora36/postfix.sh",
         "scripts/fedora36/magma.sh",
-        "scripts/fedora36/tuning.sh"
+        "scripts/fedora36/tuning.sh",
+        "scripts/fedora36/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "45m",
