@@ -54,7 +54,7 @@ sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\//baseurl=https:\/\/vault.cent
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-Plus.repo
 
 # sed -i -e "s/^#baseurl=http:\/\/mirror.centos.org\/centos\//baseurl=https:\/\/vault.centos.org\/centos\//g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
-sed -i -e "s/^#[ ]\+baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
+sed -i -e "s/^#[ ]\?baseurl/baseurl/g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-Linux-Extras.repo
 
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
@@ -72,7 +72,7 @@ sed --in-place "s/# #/##/g" /etc/yum.repos.d/CentOS-Linux-Devel.repo
 # EPEL Repo Setup
 retry dnf --quiet --assumeyes --enablerepo=extras install epel-release
 
-sed -i -e "s/^#[ ]\+baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
+sed -i -e "s/^#[ ]\?baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
 
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
