@@ -53,15 +53,10 @@ sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/rocky-devel.repo
 sed -i -e "s/^#[ ]\?baseurl/baseurl/g" /etc/yum.repos.d/rocky-addons.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/rocky-addons.repo
 
-# sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\//baseurl=https:\/\/dl.rockylinux.org\//g" /etc/yum.repos.d/rocky.repo
-# sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\//baseurl=https:\/\/dl.rockylinux.org\//g" /etc/yum.repos.d/rocky-devel.repo
-# sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\//baseurl=https:\/\/dl.rockylinux.org\//g" /etc/yum.repos.d/rocky-extras.repo
-# sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\//baseurl=https:\/\/dl.rockylinux.org\//g" /etc/yum.repos.d/rocky-addons.repo
-
-sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\/\$contentdir\/\$releasever\//baseurl=https:\/\/dl.rockylinux.org\/stg\/rocky\/9.0-RC2\//g" /etc/yum.repos.d/rocky.repo
-sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\/\$contentdir\/\$releasever\//baseurl=https:\/\/dl.rockylinux.org\/stg\/rocky\/9.0-RC2\//g" /etc/yum.repos.d/rocky-devel.repo
-sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\/\$contentdir\/\$releasever\//baseurl=https:\/\/dl.rockylinux.org\/stg\/rocky\/9.0-RC2\//g" /etc/yum.repos.d/rocky-extras.repo
-sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\/\$contentdir\/\$releasever\//baseurl=https:\/\/dl.rockylinux.org\/stg\/rocky\/9.0-RC2\//g" /etc/yum.repos.d/rocky-addons.repo
+sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\//baseurl=https:\/\/dl.rockylinux.org\//g" /etc/yum.repos.d/rocky.repo
+sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\//baseurl=https:\/\/dl.rockylinux.org\//g" /etc/yum.repos.d/rocky-devel.repo
+sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\//baseurl=https:\/\/dl.rockylinux.org\//g" /etc/yum.repos.d/rocky-extras.repo
+sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\//baseurl=https:\/\/dl.rockylinux.org\//g" /etc/yum.repos.d/rocky-addons.repo
 
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 
