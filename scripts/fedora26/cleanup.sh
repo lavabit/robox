@@ -17,9 +17,6 @@ rm --force /root/anaconda-ks.cfg /root/install.log /root/install.log.syslog /var
 # Clear the random seed.
 rm -f /var/lib/systemd/random-seed
 
-# Clear the command history.
-export HISTSIZE=0
-
 # Truncate the log files.
 printf "Truncate the log files.\n"
 find /var/log -type f -exec truncate --size=0 {} \;
@@ -33,3 +30,6 @@ rm -f /etc/sysconfig/network-scripts/ifcfg-eth0
 rm -f /etc/sysconfig/network-scripts/ifcfg-eth1
 rm -f /etc/sysconfig/network-scripts/ifcfg-eth2
 rm -f /etc/sysconfig/network-scripts/ifcfg-eth3
+
+# Clear the command history.
+export HISTSIZE=0
