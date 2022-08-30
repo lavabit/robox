@@ -44,7 +44,7 @@ systemctl enable haveged.service && systemctl start haveged.service
 
 # Initialize the databases.
 updatedb
-mandb
+mandb -q
 
 # Setup vim as the default editor.
 printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
