@@ -27,3 +27,5 @@ rm --recursive --force /var/tmp/* /tmp/* /var/cache/yum/* /tmp/ks-script*
 
 # Clear the command history.
 export HISTSIZE=0
+
+exit 0

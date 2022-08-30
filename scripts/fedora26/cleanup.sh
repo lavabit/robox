@@ -33,3 +33,5 @@ rm -f /etc/sysconfig/network-scripts/ifcfg-eth3
 
 # Clear the command history.
 export HISTSIZE=0
+
+exit 0
