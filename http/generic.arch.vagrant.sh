@@ -28,11 +28,11 @@ curl -LfsS "https://archlinux.org/mirrorlist/?country=all" > /tmp/mirrolist
 grep '^#Server' /tmp/mirrolist | grep "https" | sort -R | head -n 5 | sed 's/^#//' >> /etc/pacman.d/mirrorlist
 
 # Update the keyring and install the initial set of packages required to bootstrap a system.
-pacman --sync --noconfirm --refresh archlinux-keyring
-pacstrap /mnt base grub bash sudo linux dhcpcd mkinitcpio openssh
+pacman --sync --noconfirm --refresh archlinux-keyring || exit 1
+pacstrap /mnt base grub bash sudo linux dhcpcd mkinitcpio openssh || exit 1
 
 swapon "${device}1"
 genfstab -U -p /mnt >> /mnt/etc/fstab
-arch-chroot /mnt /bin/bash
+arch-chroot /mnt /bin/bash || exit 1
 [ -f /mnt/etc/fstab.pacnew ] && rm -f /mnt/etc/fstab.pacnew
 swapoff "${device}1"
