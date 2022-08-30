@@ -1,5 +1,9 @@
 #!/bin/bash
 
+grep --quiet mirrorlist /etc/yum.repos.d/epel.repo && \
+sed -i -e "s/^baseurl/#baseurl/g" /etc/yum.repos.d/epel.repo && \
+sed -i -e "s/^#mirrorlist/mirrorlist/g" /etc/yum.repos.d/epel.repo
+
 grep --quiet mirrorlist /etc/yum.repos.d/Rocky-BaseOS.repo && \
 sed -i -e "s/^baseurl/#baseurl/g" /etc/yum.repos.d/Rocky-BaseOS.repo && \
 sed -i -e "s/^#mirrorlist/mirrorlist/g" /etc/yum.repos.d/Rocky-BaseOS.repo
@@ -20,6 +24,5 @@ grep --quiet mirrorlist /etc/yum.repos.d/Rocky-Plus.repo && \
 sed -i -e "s/^baseurl/#baseurl/g" /etc/yum.repos.d/Rocky-Plus.repo && \
 sed -i -e "s/^#mirrorlist/mirrorlist/g" /etc/yum.repos.d/Rocky-Plus.repo
 
-grep --quiet mirrorlist /etc/yum.repos.d/epel.repo && \
-sed -i -e "s/^baseurl/#baseurl/g" /etc/yum.repos.d/epel.repo && \
-sed -i -e "s/^#mirrorlist/mirrorlist/g" /etc/yum.repos.d/epel.repo
+exit 0
+
