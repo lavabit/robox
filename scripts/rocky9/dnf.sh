@@ -41,16 +41,16 @@ if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
 fi
 
 # Rocky Repo Setup
-sed -i -e s/^#baseurl/baseurl/g" /etc/yum.repos.d/rocky.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/rocky.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/rocky.repo
 
-sed -i -e s/^#baseurl/baseurl/g" /etc/yum.repos.d/rocky-extras.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/rocky-extras.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/rocky-extras.repo
 
-sed -i -e s/^#baseurl/baseurl/g" /etc/yum.repos.d/rocky-devel.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/rocky-devel.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/rocky-devel.repo
 
-sed -i -e s/^#baseurl/baseurl/g" /etc/yum.repos.d/rocky-addons.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/rocky-addons.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/rocky-addons.repo
 
 sed -i -e "s/baseurl=http:\/\/dl.rockylinux.org\//baseurl=https:\/\/dl.rockylinux.org\//g" /etc/yum.repos.d/rocky.repo
@@ -63,7 +63,7 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 # EPEL Repo Setup
 retry dnf --quiet --assumeyes --enablerepo=extras install epel-release
 
-sed -i -e s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
+sed -i -e "s/^#baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
 sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
 
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9
