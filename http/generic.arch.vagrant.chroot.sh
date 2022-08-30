@@ -33,9 +33,11 @@ EOF
 sed -i -e "s/#DNS=.*/DNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
 sed -i -e "s/#FallbackDNS=.*/FallbackDNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
 sed -i -e "s/#Domains=.*/Domains=/g" /etc/systemd/resolved.conf
-sed -i -e "s/#DNSSEC=.*/DNSSEC=yes/g" /etc/systemd/resolved.conf
 sed -i -e "s/#Cache=.*/Cache=yes/g" /etc/systemd/resolved.conf
 sed -i -e "s/#DNSStubListener=.*/DNSStubListener=yes/g" /etc/systemd/resolved.conf
+
+# DNSSEC is broken for now.
+# sed -i -e "s/#DNSSEC=.*/DNSSEC=yes/g" /etc/systemd/resolved.conf
 
 cat <<-EOF > /etc/resolv.conf
 nameserver 4.2.2.1
