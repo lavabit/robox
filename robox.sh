@@ -101,7 +101,7 @@ TAGS="$GENERIC_TAGS $GENERIC_X32_TAGS $ROBOX_TAGS $ROBOX_X32_TAGS $MAGMA_TAGS $L
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
 
 # A list of configs to skip during complete build operations.
-export EXCEPTIONS="generic-netbsd9-libvirt"
+export EXCEPTIONS=""
 
 # The repository URLs, so we can catch any which might disappeared since the last build.
 # Ubuntu 16.04
