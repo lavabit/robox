@@ -50,7 +50,7 @@ fi
 source $BASE/.credentialsrc
 
 # Version Information
-[ ! -n "$VERSION" ] && export VERSION="4.1.10"
+[ ! -n "$VERSION" ] && export VERSION="4.1.12"
 export AGENT="Vagrant/2.2.19 (+https://www.vagrantup.com; ruby2.7.4)"
 
 # Limit the number of cpus packer will use and control how errors are handled.
