@@ -59,41 +59,50 @@ export AGENT="Vagrant/2.2.19 (+https://www.vagrantup.com; ruby2.7.4)"
 [ ! -n "$PACKER_MAX_PROCS" ] && export PACKER_MAX_PROCS="1"
 [ ! -n "$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="$BASE/packer_cache/"
 
+# The provider platforms.
+ROBOX_PROVIDERS="docker hyperv libvirt parallels virtualbox vmware"
+
+# The namespaces.
+ROBOX_NAMESPACES="generic magma developer lineage"
+
+# The iso update functions.
+ROBOX_ISOS="all arch centos centos8s centos9s gentoo hardenedbsd"
+
 # The list of packer config files.
-FILES="packer-cache.json "\
+ROBOX_FILES="packer-cache.json "\
 "magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
 "generic-docker.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-libvirt-x32.json generic-parallels.json generic-virtualbox.json generic-virtualbox-x32.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
 "developer-ova.json developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
 # Collect the list of ISO urls.
-ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | awk -F'"' '{print $4}' | sed "s/^sha256://g"`)
-UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}' | sort | uniq`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" $ROBOX_FILES | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $ROBOX_FILES | awk -F'"' '{print $4}' | sed "s/^sha256://g"`)
+UNIQURLS=(`grep -E "iso_url|guest_additions_url" $ROBOX_FILES | awk -F'"' '{print $4}' | sort | uniq`)
 
 # Collect the list of box names.
-MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
+MAGMA_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 MAGMA_SPECIAL_BOXES="magma-hyperv magma-vmware magma-libvirt magma-virtualbox magma-docker "\
 "magma-centos-hyperv magma-centos-vmware magma-centos-libvirt magma-centos-virtualbox magma-centos-docker "\
 "magma-debian-hyperv magma-debian-vmware magma-debian-libvirt magma-debian-virtualbox "\
 "magma-fedora-hyperv magma-fedora-vmware magma-fedora-libvirt magma-fedora-virtualbox "\
 "magma-ubuntu-hyperv magma-ubuntu-vmware magma-ubuntu-libvirt magma-ubuntu-virtualbox "
-GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
-ROBOX_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sed "s/generic-/roboxes-/g"| sort --field-separator=- -k 3i -k 2.1,2.0`
-LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
-LINEAGEOS_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sed "s/lineage-/lineageos-/g"| sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
+GENERIC_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
+ROBOX_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic-" | sed "s/generic-/roboxes-/g"| sort --field-separator=- -k 3i -k 2.1,2.0`
+LINEAGE_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
+LINEAGEOS_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sed "s/lineage-/lineageos-/g"| sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
 MAGMA_BOXES=`echo $MAGMA_SPECIAL_BOXES $MAGMA_BOXES | sed 's/ /\n/g' | sort -u --field-separator=- -k 3i -k 2.1,2.0`
 BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $LINEAGEOS_BOXES"
 
 # Collect the list of box tags.
-MAGMA_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
+MAGMA_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
 MAGMA_SPECIAL_TAGS="lavabit/magma lavabit/magma-centos lavabit/magma-debian lavabit/magma-fedora lavabit/magma-ubuntu"
-ROBOX_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep -v "roboxes-x32" |sort -u --field-separator=-`
-ROBOX_X32_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep "roboxes-x32" |sort -u --field-separator=-`
-GENERIC_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | grep -v "generic-x32" | sort -u --field-separator=-`
-GENERIC_X32_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | grep "generic-x32" | sort -u --field-separator=-`
-LINEAGE_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineage\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
-LINEAGEOS_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineageos\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
+ROBOX_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep -v "roboxes-x32" |sort -u --field-separator=-`
+ROBOX_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep "roboxes-x32" |sort -u --field-separator=-`
+GENERIC_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | grep -v "generic-x32" | sort -u --field-separator=-`
+GENERIC_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | grep "generic-x32" | sort -u --field-separator=-`
+LINEAGE_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineage\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
+LINEAGEOS_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineageos\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
 MAGMA_TAGS=`echo $MAGMA_SPECIAL_TAGS $MAGMA_TAGS | sed 's/ /\n/g' | sort -u --field-separator=-`
 TAGS="$GENERIC_TAGS $GENERIC_X32_TAGS $ROBOX_TAGS $ROBOX_X32_TAGS $MAGMA_TAGS $LINEAGE_TAGS $LINEAGEOS_TAGS"
 
@@ -504,36 +513,6 @@ function print_iso() {
   tput setaf 2; printf "\n$1\n\n"; tput sgr0; printf "${2}\n${SHA}\n\n"
 }
 
-# Print the current URL and SHA hash for install discs which are updated frequently.
-function isos() {
-
-  [ ! -n "$JOBS" ] && export JOBS="16"
-
-  # Find the Gentoo URL.
-  URL="https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
-  ISO=`${CURL} --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
-  URL="${URL}${ISO}"
-  N=( "${N[@]}" "Gentoo" ); U=( "${U[@]}" "$URL" )
-
-  # Find the Arch URL.
-  URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
-  ISO=`${CURL} --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
-  URL="${URL}${ISO}"
-  N=( "${N[@]}" "Arch" ); U=( "${U[@]}" "$URL" )
-
-  # Ubuntu Disco
-  # URL="https://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso"
-  # N=( "${N[@]}" "Disco" ); U=( "${U[@]}" "$URL" )
-
-  # Debian Buster
-  # URL="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
-  # N=( "${N[@]}" "Buster" ); U=( "${U[@]}" "$URL" )
-
-  export -f print_iso
-  parallel --jobs $JOBS --xapply print_iso {1} {2} ::: "${N[@]}" ::: "${U[@]}"
-
-}
-
 function iso() {
 
   if [ "$1" == "gentoo" ]; then
@@ -567,8 +546,8 @@ function iso() {
     ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
 
     # Replace the existing ISO and hash values with the update values.
-    sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
 
 
   elif [ "$1" == "arch" ]; then
@@ -602,8 +581,8 @@ function iso() {
     ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
 
     # Replace the existing ISO and hash values with the update values.
-    sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
 
   elif [ "$1" == "centos8s" ]; then
     
@@ -636,8 +615,8 @@ function iso() {
     ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
 
     # Replace the existing ISO and hash values with the update values.
-    sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
     
   elif [ "$1" == "centos9s" ]; then
 
@@ -670,8 +649,8 @@ function iso() {
     ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
 
     # Replace the existing ISO and hash values with the update values.
-    sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
     
   elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
 
@@ -704,8 +683,8 @@ function iso() {
     ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
 
     # Replace the existing ISO and hash values with the update values.
-    sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
   elif [ "$1" == "stream" ] || [ "$1" == "streams" ]; then
     iso centos8s
     iso centos9s
@@ -844,6 +823,32 @@ function verify_availability() {
   return $RESULT
 }
 
+# List all of the iso update targets.
+function list_isos() {
+  echo $ROBOX_ISOS
+}
+
+# List all of the org/type namespaces.
+function list_namespaces() {
+  echo $ROBOX_NAMESPACES
+}
+
+# List all of the supported providers.
+function list_providers() {
+  echo $ROBOX_PROVIDERS
+}
+
+# List all of the box names.
+function list_boxes() {
+  BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $LINEAGEOS_BOXES"
+  echo $BOXES
+}
+
+# List all of the config files.
+function list_configs() {
+  echo $(echo $ROBOX_FILES | sed 's/.json//g')
+}
+
 # Build the boxes and cleanup the packer cache after each run.
 function build() {
 
@@ -910,12 +915,12 @@ function box() {
   if [[ "$(uname)" == "Linux" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/magma-docker-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker.json; docker-logout)
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker.json; container-registry-logout)
       export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-libvirt.json
 
       export PACKER_LOG_PATH="$BASE/logs/generic-docker-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker.json; docker-logout)
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker.json; container-registry-logout)
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*x32-libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x32.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
@@ -1732,7 +1737,7 @@ function distclean() {
 
 }
 
-function docker-login() {
+function container-registry-login() {
 
   # If jq is installed, we can use it to determine whether a login is required. Otherwise we rely on the more primitive login logic.
   if [ -f /usr/bin/jq ] || [ -f /usr/local/bin/jq ]; then
@@ -1791,7 +1796,7 @@ function docker-login() {
 
 }
 
-function docker-logout() {
+function container-registry-logout() {
   RUNNING=`ps -ef | grep --invert grep | grep --count --extended-regexp "packer build.*generic-docker.json|packer build.*magma-docker.json"`
 
   if [ $RUNNING == 0 ]; then
@@ -1813,7 +1818,7 @@ function magma() {
     build magma-libvirt
     build magma-virtualbox
 
-    docker-login ; build magma-docker; docker-logout
+    container-registry-login ; build magma-docker; container-registry-logout
   fi
 }
 
@@ -1829,7 +1834,7 @@ function generic() {
     build generic-virtualbox
     build generic-virtualbox-x32
 
-    docker-login ; build generic-docker; docker-logout
+    container-registry-login ; build generic-docker; container-registry-logout
   fi
 }
 
@@ -2028,6 +2033,16 @@ elif [[ $1 == "build" ]]; then builder
 elif [[ $1 == "cleanup" ]]; then cleanup
 elif [[ $1 == "distclean" ]]; then distclean
 
+elif [[ $1 == "list-isos" ]]; then list_isos
+elif [[ $1 == "list-boxes" ]]; then list_boxes
+elif [[ $1 == "list-namespaces" ]]; then list_namespaces
+elif [[ $1 == "list-providers" ]]; then list_providers
+elif [[ $1 == "list-configs" ]]; then list_configs
+
+# Login/logout aliases for the container registries.
+elif [[ $1 == "container-registry-login" || $1 == "registry-login" || $1 == "docker-login" || $1 == "podman-login" ]]; then container-registry-login 
+elif [[ $1 == "container-registry-logout" || $1 == "registry-logout" || $1 == "docker-logout" || $1 == "podman-logout" ]]; then container-registry-logout 
+
 # The type functions.
 elif [[ $1 == "ova" ]]; then vmware
 elif [[ $1 == "vmware" ]]; then vmware
@@ -2036,8 +2051,8 @@ elif [[ $1 == "libvirt" ]]; then libvirt
 elif [[ $1 == "parallels" ]]; then parallels
 elif [[ $1 == "virtualbox" ]]; then virtualbox
 
-# Docker is a command, so to avoid name space isues, we use an inline function.
-elif [[ $1 == "docker" ]]; then verify_json generic-docker ; verify_json magma-docker ; docker-login ; build generic-docker ; build magma-docker ; docker-logout
+# Docker is a command, so to avoid name space issues, we use an inline function instead calling a function called "docker."
+elif [[ $1 == "docker" ]]; then verify_json generic-docker ; verify_json magma-docker ; container-registry-login ; build generic-docker ; build magma-docker ; container-registry-logout
 
 # The helper functions.
 elif [[ $1 == "isos" ]]; then isos
@@ -2063,7 +2078,7 @@ elif [[ $1 == "magma-vmware" || $1 == "magma-vmware.json" ]]; then build magma-v
 elif [[ $1 == "magma-hyperv" || $1 == "magma-hyperv.json" ]]; then build magma-hyperv
 elif [[ $1 == "magma-libvirt" || $1 == "magma-libvirt.json" ]]; then build magma-libvirt
 elif [[ $1 == "magma-virtualbox" || $1 == "magma-virtualbox.json" ]]; then build magma-virtualbox
-elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then verify_json magma-docker ; docker-login ; build magma-docker ; docker-logout
+elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then verify_json magma-docker ; container-registry-login ; build magma-docker ; container-registry-logout
 
 elif [[ $1 == "developer-vmware" || $1 == "developer-vmware.json" ]]; then build developer-vmware
 elif [[ $1 == "developer-hyperv" || $1 == "developer-hyperv.json" ]]; then build developer-hyperv
@@ -2077,7 +2092,7 @@ elif [[ $1 == "generic-libvirt-x32" || $1 == "generic-libvirt-x32.json" ]]; then
 elif [[ $1 == "generic-parallels" || $1 == "generic-parallels.json" ]]; then build generic-parallels
 elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox.json" ]]; then build generic-virtualbox
 elif [[ $1 == "generic-virtualbox-x32" || $1 == "generic-virtualbox-x32.json" ]]; then build generic-virtualbox-x32
-elif [[ $1 == "generic-docker" || $1 == "generic-docker.json" ]]; then verify_json generic-docker ; docker-login ; build generic-docker ; docker-logout
+elif [[ $1 == "generic-docker" || $1 == "generic-docker.json" ]]; then verify_json generic-docker ; container-registry-login ; build generic-docker ; container-registry-logout
 
 elif [[ $1 == "lineage-vmware" || $1 == "lineage-vmware.json" ]]; then build lineage-vmware
 elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv.json" ]]; then build lineage-hyperv
