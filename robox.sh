@@ -1747,7 +1747,7 @@ function docker-login() {
         fi
       fi
     fi
-    if [[ `jq "[ .auths.\"docker.io\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]] || [[ `jq "[ .auths.\"https://index.docker.io/v1/\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+    if [[ `jq "[ .auths.\"docker.io\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]] && [[ `jq "[ .auths.\"https://index.docker.io/v1/\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]]; then
       docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe docker.io login credentials failed.\n\n"; tput sgr0
