@@ -18,6 +18,7 @@ systemctl --quiet is-active apt-daily-upgrade.timer && systemctl apt-daily-upgra
 systemctl --quiet is-active apt-daily-upgrade.service && systemctl apt-daily-upgrade.service
 
 # Cleanup unused packages.
+apt-get -y purge installation-report &>/dev/null || true
 apt-get --assume-yes autoremove; error
 apt-get --assume-yes autoclean; error
 apt-get --assume-yes purge; error

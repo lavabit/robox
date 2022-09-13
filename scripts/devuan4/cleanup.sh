@@ -12,6 +12,7 @@ export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # Cleanup unused packages.
+apt-get -y purge installation-report &>/dev/null || true
 apt-get --assume-yes autoremove; error
 apt-get --assume-yes autoclean; error
 apt-get --assume-yes purge; error

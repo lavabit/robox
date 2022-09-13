@@ -15,6 +15,7 @@ export DEBCONF_NONINTERACTIVE_SEEN=true
 systemctl --quiet is-active cron.service && systemctl stop cron.service
 
 # Cleanup unused packages.
+apt-get -y purge installation-report &>/dev/null || true
 apt-get --assume-yes autoremove; error
 apt-get --assume-yes autoclean; error
 apt-get --assume-yes purge; error
