@@ -1,0 +1,201 @@
+{
+    "variables": {
+        "box_version": "4.1.12",
+        "quay-user": "{{env `QUAY_USER`}}",
+        "docker-user": "{{env `DOCKER_USER`}}",
+        "quay-password": "{{env `QUAY_PASSWORD`}}",
+        "docker-password": "{{env `DOCKER_PASSWORD`}}"
+    },
+    "builders": [
+        {
+            "type": "file",
+            "target": "output/generic-centos7-docker-{{user `box_version`}}.tar"
+        }  
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/generic-centos7-docker-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/generic/centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/generic-centos7-docker-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/generic/centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-centos7-docker-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/roboxes/centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-centos7-docker-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/roboxes/centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}"
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-centos7-docker-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "docker.io/roboxes/centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `docker_username`}}",
+                "login_password": "{{user `docker_password`}}"
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/roboxes-centos7-docker-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/roboxes/info.json"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/roboxes-centos7-docker-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-centos7-docker-{{user `box_version`}}.tar.gz"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "docker.io/roboxes/centos7",
+                "changes": [
+                  "CMD [\"/bin/bash\"]",
+                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `docker_username`}}",
+                "login_password": "{{user `docker_password`}}"
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/generic-centos7-docker-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/generic/info.json"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/generic-centos7-docker-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true
+            }
+        ]
+    ]
+}
