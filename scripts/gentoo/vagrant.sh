@@ -27,6 +27,12 @@ if [ -f /etc/security/passwdqc.conf ]; then
 fi
 
 printf "vagrant\nvagrant\n" | passwd vagrant
+
+if [ ! -d /etc/sudoers.d/ ]; then
+  mkdir /etc/sudoers.d/ || exit 1
+  chmod 750 /etc/sudoers.d/ || exit 1
+fi
+
 cat <<-EOF > /etc/sudoers.d/vagrant
 Defaults:vagrant !fqdn
 Defaults:vagrant !requiretty
