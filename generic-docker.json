@@ -1044,7 +1044,7 @@
                 "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                  "ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
                 ]
             },
             {
@@ -1079,7 +1079,7 @@
                 "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                  "ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
                 ]
             },
             {
@@ -1114,7 +1114,7 @@
                 "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                  "ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
                 ]
             },
             {
@@ -1149,7 +1149,7 @@
                 "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                  "ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
                 ]
             },
             {
@@ -1184,7 +1184,7 @@
                 "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                  "ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
                 ]
             },
             {
@@ -1236,7 +1236,7 @@
                 "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                  "ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
                 ]
             },
             {
