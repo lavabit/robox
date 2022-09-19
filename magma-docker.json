@@ -283,7 +283,7 @@
         "repository": "docker.io/lavabit/magma",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-docker"
@@ -296,7 +296,7 @@
         "repository": "docker.io/lavabit/magma-centos",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos-docker"
@@ -309,7 +309,7 @@
         "repository": "docker.io/lavabit/magma-centos6",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos6-docker"
@@ -322,7 +322,7 @@
         "repository": "docker.io/lavabit/magma-centos7",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos7-docker"
@@ -367,7 +367,7 @@
         "repository": "docker.io/lavabit/magma",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-docker"
@@ -380,7 +380,7 @@
         "repository": "docker.io/lavabit/magma-centos",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos-docker"
@@ -393,7 +393,7 @@
         "repository": "docker.io/lavabit/magma-centos6",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos6-docker"
@@ -406,7 +406,7 @@
         "repository": "docker.io/lavabit/magma-centos7",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos7-docker"
@@ -434,7 +434,7 @@
         "repository": "quay.io/lavabit/magma",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-docker"
@@ -447,7 +447,7 @@
         "repository": "quay.io/lavabit/magma-centos",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos-docker"
@@ -460,7 +460,7 @@
         "repository": "quay.io/lavabit/magma-centos6",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos6-docker"
@@ -473,7 +473,7 @@
         "repository": "quay.io/lavabit/magma-centos7",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos7-docker"
@@ -501,7 +501,7 @@
         "repository": "quay.io/lavabit/magma",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-docker"
@@ -514,7 +514,7 @@
         "repository": "quay.io/lavabit/magma-centos",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos-docker"
@@ -527,7 +527,7 @@
         "repository": "quay.io/lavabit/magma-centos6",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos6-docker"
@@ -540,7 +540,7 @@
         "repository": "quay.io/lavabit/magma-centos7",
         "changes": [
           "CMD [\"/bin/bash\"]",
-          "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+          "ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
         "only": [
           "magma-centos7-docker"
