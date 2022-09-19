@@ -453,10 +453,10 @@ function start() {
   if [ -f /usr/lib/systemd/system/vboxdrv.service ]; then sudo systemctl restart vboxdrv.service ; fi
   if [ -f /usr/lib/systemd/system/libvirtd.service ]; then sudo systemctl restart libvirtd.service ; fi
   
-  if [ -f /usr/lib/systemd/system/podman.service ]; then sudo systemctl restart podman.service ; fi
-  elif [ -f /usr/lib/systemd/system/io.podman.service ]; then sudo systemctl restart io.podman.service ; fi
-  elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
-  elif [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ;
+  if [ -f /usr/lib/systemd/system/podman.service ]; then sudo systemctl restart podman.service ; 
+  elif [ -f /usr/lib/systemd/system/io.podman.service ]; then sudo systemctl restart io.podman.service ; 
+  elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; 
+  elif [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ; fi
 
   # Confirm the VMware modules loaded.
   if [ -f /usr/bin/vmware-modconfig ]; then
