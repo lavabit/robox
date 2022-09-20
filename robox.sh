@@ -455,8 +455,8 @@ function start() {
   
   if [ -f /usr/lib/systemd/system/podman.service ]; then sudo systemctl restart podman.service ; 
   elif [ -f /usr/lib/systemd/system/io.podman.service ]; then sudo systemctl restart io.podman.service ; 
-  elif [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ; fi
-  elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; 
+  elif [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ;
+  elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
 
   # Confirm the VMware modules loaded.
   if [ -f /usr/bin/vmware-modconfig ]; then
