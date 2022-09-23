@@ -51,6 +51,6 @@ rc-update add sysstat default && rc-service sysstat start
 # Create an initial mlocate database.
 updatedb
 
-( sleep 15 ; reboot ) &
+( sleep 60 ; reboot ) &
 exit 0
 
