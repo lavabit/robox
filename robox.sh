@@ -1798,9 +1798,9 @@ function container-registry-login() {
       
       jq '.auths = {"docker.io":.auths."https://index.docker.io/v1/"} + .auths' $HOME/.docker/config.json > $HOME/.docker/config.json.new
       if [[ $? == 0 ]] && [[ `jq "[ .auths.\"docker.io\" ]" $HOME/.docker/config.json.new | jq " .[] | length"` == 1 ]]; then
-        echo mv $HOME/.docker/config.json.new $HOME/.docker/config.json
+        mv $HOME/.docker/config.json.new $HOME/.docker/config.json
       else
-        echo rm -f  $HOME/.docker/config.json.new
+        rm -f  $HOME/.docker/config.json.new
       fi
     
     else
