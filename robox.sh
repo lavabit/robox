@@ -453,10 +453,18 @@ function start() {
   if [ -f /usr/lib/systemd/system/vboxdrv.service ]; then sudo systemctl restart vboxdrv.service ; fi
   if [ -f /usr/lib/systemd/system/libvirtd.service ]; then sudo systemctl restart libvirtd.service ; fi
   
-  if [ -f /usr/lib/systemd/system/podman.service ]; then sudo systemctl restart podman.service ; 
-  elif [ -f /usr/lib/systemd/system/io.podman.service ]; then sudo systemctl restart io.podman.service ; 
-  elif [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ;
-  elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
+  if ; then sudo systemctl restart docker.service ; fi  
+  
+  if [ -f /usr/lib/systemd/system/podman.service ]; then 
+    sudo systemctl restart podman.service ; 
+  elif [ -f /usr/lib/systemd/system/io.podman.service ]; then 
+    sudo systemctl restart io.podman.service ; 
+  elif [ -f /usr/lib/systemd/system/docker-storage-setup.service ] && [ -f /usr/lib/systemd/system/docker.service ]; then 
+    sudo systemctl restart docker-storage-setup.service
+    sudo systemctl restart docker.service
+  elif [ -f /usr/lib/systemd/system/docker.service ]; then
+    sudo systemctl restart docker.service
+  fi
 
   # Confirm the VMware modules loaded.
   if [ -f /usr/bin/vmware-modconfig ]; then
@@ -918,12 +926,12 @@ function box() {
   if [[ "$(uname)" == "Linux" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/magma-docker-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker.json; container-registry-logout)
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/REGISTRY_AUTH_FILE=$HOME/.docker/config.json REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker.json; container-registry-logout)
       export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-libvirt.json
 
       export PACKER_LOG_PATH="$BASE/logs/generic-docker-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker.json; container-registry-logout)
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker.json; container-registry-logout)
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*x32-libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x32.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
@@ -1671,13 +1679,13 @@ function distclean() {
     done
   fi
 
-  # If Docker is installed.
-  if [ "$(command -v docker-latest)" ]; then
-    docker-latest ps --all --quiet | while read UUID ; do
-      docker-latest rm --force $UUID &> /dev/null
+  # If Podman / Docker is installed.
+  if [ "$(command -v podman)" ]; then
+    podman ps --all --quiet | while read UUID ; do
+      podman rm --force $UUID &> /dev/null
     done
-    docker-latest images --all --quiet | while read UUID ; do
-      docker rmi --force $UUID &> /dev/null
+    podman images --all --quiet | while read UUID ; do
+      podman rmi --force $UUID &> /dev/null
     done
   elif [ "$(command -v docker)" ]; then
     docker ps --all --quiet | while read UUID ; do
@@ -1688,17 +1696,12 @@ function distclean() {
     done
   fi
 
-  sudo killall -9 /usr/bin/docker-containerd-shim-latest &> /dev/null
-  sudo killall -9 docker-containerd-shim-latest &> /dev/null
-
-  sudo killall -9 /usr/lib/vmware/bin/vmware-vmx &> /dev/null
-  sudo killall -9 killall vmware-vmx &> /dev/null
-
-  sudo killall -9 /usr/lib/virtualbox/VBoxHeadless &> /dev/null
-  sudo killall -9 VBoxHeadless &> /dev/null
-
-  sudo killall -9 /usr/libexec/qemu-kvm &> /dev/null
-  sudo killall -9 qemu-kvm &> /dev/null
+  sudo killall -9 docker-containerd-shim docker-containerd-shim-current /usr/bin/docker-containerd-shim /usr/bin/docker-containerd-shim-current &> /dev/null
+  sudo killall -9 VBoxHeadless /usr/lib/virtualbox/VBoxHeadless &> /dev/null
+  sudo killall -9 vmware-vmx /usr/lib/vmware/bin/vmware-vmx &> /dev/null
+  sudo killall -9 qemu-system-x86_64 /usr/local/bin/qemu-system-x86_64 &> /dev/null
+  sudo killall -9 qemu-system-i386 /usr/local/bin/qemu-system-i386 &> /dev/null
+  sudo killall -9 qemu-kvm /usr/libexec/qemu-kvm &> /dev/null
 
   sudo truncate --size=0 /etc/vmware/vmnet1/dhcpd/dhcpd.leases
   sudo truncate --size=0 /etc/vmware/vmnet8/dhcpd/dhcpd.lease
@@ -1715,9 +1718,7 @@ function distclean() {
   if [ -f /etc/init.d/vmware-workstation-server ]; then sudo /etc/init.d/vmware-workstation-server start ; fi
   if [ -f /usr/lib/systemd/system/vboxdrv.service ]; then sudo systemctl restart vboxdrv.service ; fi
   if [ -f /usr/lib/systemd/system/libvirtd.service ]; then sudo systemctl restart libvirtd.service ; fi
-  if [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ;
-  elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
-
+  if [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; FI
   if [ -f /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility ]; then
     sudo systemctl stop vagrant-vmware-utility.service &> /dev/null
     sudo /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility service uninstall &> /dev/null
@@ -1748,12 +1749,19 @@ function container-registry-login() {
     export DOCKER="docker"
   fi
 
+  # This will force podman to store the tokens in the same place as docker.
+  [ ! -d $HOME/.docker/ ] && mkdir $HOME/.docker/
+  [ ! -f $HOME/.docker/config.json ] && printf '{"auths":{}}' > $HOME/.docker/config.json
+  
+  export REGISTRY_AUTH_FILE=$HOME/.docker/config.json
+
   # If jq is installed, we can use it to determine whether a login is required. Otherwise we rely on the more primitive login logic.
   if [ -f /usr/bin/jq ] || [ -f /usr/local/bin/jq ]; then
-    if [[ `jq "[ .auths.\"quay.io\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+    
+    if [[ `jq "[ .auths.\"quay.io\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]]; then
       ${DOCKER} login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
       if [[ $? != 0 ]]; then
-        tput setaf 1; tput bold; printf "\n\nThe quay.io login credentials failed.\n\n"; tput sgr0
+        tput setaf 1; tput bold; printf "\n\nThe quay.io login failed.\n\n"; tput sgr0
         read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
         RESPONSE=${RESPONSE,,}
         if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
@@ -1762,10 +1770,10 @@ function container-registry-login() {
       fi
     fi
 
-    if [[ `jq "[ .auths.\"registry.docker.com\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+    if [[ `jq "[ .auths.\"registry.docker.com\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]]; then
       ${DOCKER} login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" registry.docker.com
       if [[ $? != 0 ]]; then
-        tput setaf 1; tput bold; printf "\n\nThe docker.io login credentials failed.\n\n"; tput sgr0
+        tput setaf 1; tput bold; printf "\n\nThe docker.io login failed.\n\n"; tput sgr0
         read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
         RESPONSE=${RESPONSE,,}
         if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
@@ -1774,7 +1782,31 @@ function container-registry-login() {
       fi
     fi
 
-    if [[ `jq "[ .auths.\"docker.io\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+    if [[ `jq "[ .auths.\"https://index.docker.io/v1/\\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+      ${DOCKER} login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" https://index.docker.io/v1/
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe index.docker.io login failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
+    fi
+
+    if [ -d $HOME/.docker/ ] && [ -f $HOME/.docker/config.json ] && \
+      [[ `jq "[ .auths.\"docker.io\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]] && \
+      [[ `jq "[ .auths.\"https://index.docker.io/v1/\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 1 ]]; then
+      
+      jq '.auths = {"docker.io":.auths."https://index.docker.io/v1/"} + .auths' $HOME/.docker/config.json > $HOME/.docker/config.json.new
+      if [[ $? == 0 ]] && [[ `jq "[ .auths.\"docker.io\" ]" $HOME/.docker/config.json.new | jq " .[] | length"` == 1 ]]; then
+        echo mv $HOME/.docker/config.json.new $HOME/.docker/config.json
+      else
+        echo rm -f  $HOME/.docker/config.json.new
+      fi
+    
+    else
+
       ${DOCKER} login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe docker.io login credentials failed.\n\n"; tput sgr0
@@ -1784,7 +1816,9 @@ function container-registry-login() {
           exit 1
         fi
       fi
+
     fi
+
   else
     RUNNING=`${DOCKER} info 2>&1 | grep --count --extended-regexp "^Username:"`
 
@@ -1841,18 +1875,20 @@ function container-registry-logout() {
     export DOCKER="docker"
   fi
 
+  # This will force podman to store the tokens in the same place as docker.
+  [ ! -d $HOME/.docker/ ] && mkdir $HOME/.docker/
+  [ ! -f $HOME/.docker/config.json ] && printf '{"auths":{}}' > $HOME/.docker/config.json
+  
+  export REGISTRY_AUTH_FILE=$HOME/.docker/config.json
+
   RUNNING=`ps -ef | grep --invert grep | grep --count --extended-regexp "packer build.*generic-docker.json|packer build.*magma-docker.json"`
 
   if [ $RUNNING == 0 ]; then
-    ${DOCKER} logout quay.io && ${DOCKER} logout registry.docker.com && ${DOCKER} logout docker.io
-    if [[ $? != 0 ]]; then
-      tput setaf 1; tput bold; printf "\n\nThe registry logout command failed.\n\n"; tput sgr0
-      exit 1
-    fi    
-
-    # When using podman, we manually copy the auth tokens into this file. This will ensure they get cleared.
-    [ -d $HOME/.docker/ ] && [ -f $HOME/.docker/config.json ] && printf '{\n  "auths": {}\n}\n' > $HOME/.docker/config.json
-
+    ${DOCKER} logout registry.docker.com &> /dev/null
+    ${DOCKER} logout https://index.docker.io/v1/ &> /dev/null
+    ${DOCKER} logout docker.io &> /dev/null
+    ${DOCKER} logout quay.io &> /dev/null
+    printf '{"auths":{}}' > $HOME/.docker/config.json
   else
     tput setaf 3; tput bold; printf "\nSkipping registry logout because builds are still running.\n\n"; tput sgr0
   fi
