@@ -452,9 +452,7 @@ function start() {
   # sudo systemctl restart vmtoolsd.service
   if [ -f /usr/lib/systemd/system/vboxdrv.service ]; then sudo systemctl restart vboxdrv.service ; fi
   if [ -f /usr/lib/systemd/system/libvirtd.service ]; then sudo systemctl restart libvirtd.service ; fi
-  
-  if ; then sudo systemctl restart docker.service ; fi  
-  
+    
   if [ -f /usr/lib/systemd/system/podman.service ]; then 
     sudo systemctl restart podman.service ; 
   elif [ -f /usr/lib/systemd/system/io.podman.service ]; then 
