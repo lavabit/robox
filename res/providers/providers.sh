@@ -278,6 +278,10 @@ function provide-docker() {
   systemctl disable docker-cleanup.timer
   systemctl disable docker.service
 
+  # Use the overlay2 driver, not a logical volume.
+  sed -i "s/^STORAGE_DRIVER=.*$/STORAGE_DRIVER=overlay2/g" /usr/share/container-storage-setup/container-storage-setup
+  sed -i 's/^driver = ".*"$/driver = "overlay2"/g' /etc/containers/storage.conf 
+
   # Setup the Virtual Interfaces as Trusted
   if [ -f /usr/bin/firewall-cmd ]; then
     firewall-cmd --zone=trusted --add-interface=docker0
