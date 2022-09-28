@@ -113,6 +113,43 @@ FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lav
 export EXCEPTIONS=""
 
 # The repository URLs, so we can catch any which might disappeared since the last build.
+
+# OpenBSD 6.9
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/6.9/amd64/base69.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/6.9/packages/amd64/SHA256" )
+
+# OpenBSD 7.1
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.1/amd64/base71.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.1/packages/amd64/SHA256" )
+
+# NetBSD 8.2
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.2/SHA512.bz2" )
+
+# NetBSD 9.2
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.3/SHA512.bz2" )
+
+# FreeBSD 11
+REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
+
+# FreeBSD 12
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
+
+# FreeBSD 13
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
+
+# FreeBSD 14
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
+
+# HardenedBSD 12
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:12:amd64/packagesite.txz" )
+
+# HardenedBSD 13
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
+
+# HardenedBSD 14
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesite.txz" )
+
+
 # Ubuntu 16.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
 
@@ -224,27 +261,6 @@ REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repo
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
 
-# FreeBSD 11
-REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
-
-# FreeBSD 12
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
-
-# FreeBSD 13
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
-
-# FreeBSD 14
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
-
-# HardenedBSD 12
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:12:amd64/packagesite.txz" )
-
-# HardenedBSD 13
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
-
-# HardenedBSD 14
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesite.txz" )
-
 # Alpine Edge
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/community/x86_64/APKINDEX.tar.gz" )
@@ -296,12 +312,6 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.15/community/x86_64/APKINDEX
 # Alpine 3.16
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/main/x86_64/APKINDEX.tar.gz" )
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/community/x86_64/APKINDEX.tar.gz" )
-
-# NetBSD 8.2
-REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/SHA512.bz2" )
-
-# NetBSD 9.2
-REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/SHA512.bz2" )
 
 # OpenSUSE 42.3
 REPOS+=( "http://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
@@ -543,7 +553,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
         return 1
@@ -578,7 +588,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
         return 1
@@ -612,7 +622,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe CentOS 8 stream ISO update failed.\n\n"; tput sgr0
         return 1
@@ -646,7 +656,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe CentOS 9 stream ISO update failed.\n\n"; tput sgr0
         return 1
@@ -680,7 +690,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
         return 1
