@@ -821,7 +821,7 @@ function verify_availability() {
 
   if [ ! -z ${CURLOPTS+x} ]; then export CURL="${CURL} $(eval echo $CURLOPTS)" ; fi
 
-  curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box" | grep --silent "200"
+  curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --max-time 300 --write-out "%{http_code}" "https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box" | grep --silent "200"
 
   if [ $? != 0 ]; then
     printf "%sBox  -   %s${1}/${2} ${3}%s \n%s" "`tput sgr0`" "`tput setaf 1`" "`tput sgr0`" "`tput sgr0`"
@@ -879,6 +879,11 @@ function build() {
   if [[ $OS == "Windows_NT" ]]; then
     export PACKER_LOG_PATH="$BASE/logs/$1-`date +'%Y%m%d.%H.%M.%S'`.txt"
     packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" $1.json
+  elif [[ "$1" =~ ^.*docker.*$ ]]; then
+    container-registry-login 
+    export PACKER_LOG_PATH="$BASE/logs/$1-`date +'%Y%m%d.%H.%M.%S'`.txt"
+    env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" $1.json
+    container-registry-logout
   else
     export PACKER_LOG_PATH="$BASE/logs/$1-`date +'%Y%m%d.%H.%M.%S'`.txt"
     packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" $1.json
@@ -2171,7 +2176,7 @@ elif [[ $1 == "magma-vmware" || $1 == "magma-vmware.json" ]]; then build magma-v
 elif [[ $1 == "magma-hyperv" || $1 == "magma-hyperv.json" ]]; then build magma-hyperv
 elif [[ $1 == "magma-libvirt" || $1 == "magma-libvirt.json" ]]; then build magma-libvirt
 elif [[ $1 == "magma-virtualbox" || $1 == "magma-virtualbox.json" ]]; then build magma-virtualbox
-elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then verify_json magma-docker ; container-registry-login ; build magma-docker ; container-registry-logout
+elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then build magma-docker
 
 elif [[ $1 == "developer-vmware" || $1 == "developer-vmware.json" ]]; then build developer-vmware
 elif [[ $1 == "developer-hyperv" || $1 == "developer-hyperv.json" ]]; then build developer-hyperv
@@ -2185,7 +2190,7 @@ elif [[ $1 == "generic-libvirt-x32" || $1 == "generic-libvirt-x32.json" ]]; then
 elif [[ $1 == "generic-parallels" || $1 == "generic-parallels.json" ]]; then build generic-parallels
 elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox.json" ]]; then build generic-virtualbox
 elif [[ $1 == "generic-virtualbox-x32" || $1 == "generic-virtualbox-x32.json" ]]; then build generic-virtualbox-x32
-elif [[ $1 == "generic-docker" || $1 == "generic-docker.json" ]]; then verify_json generic-docker ; container-registry-login ; build generic-docker ; container-registry-logout
+elif [[ $1 == "generic-docker" || $1 == "generic-docker.json" ]]; then build generic-docker
 
 elif [[ $1 == "lineage-vmware" || $1 == "lineage-vmware.json" ]]; then build lineage-vmware
 elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv.json" ]]; then build lineage-hyperv
