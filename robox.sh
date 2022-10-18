@@ -115,8 +115,8 @@ export EXCEPTIONS=""
 # The repository URLs, so we can catch any which might disappeared since the last build.
 
 # OpenBSD 6.9
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/6.9/amd64/base69.tgz" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/6.9/packages/amd64/SHA256" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/base69.tgz" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256" )
 
 # OpenBSD 7.1
 REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.1/amd64/base71.tgz" )

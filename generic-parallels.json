@@ -4711,7 +4711,7 @@
       "guest_os_type": "other",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://ftp.nluug.nl/OpenBSD/6.9/amd64/cd69.iso",
+      "iso_url": "https://mirrors.lavabit.com/openbsd/6.9/amd64/cd69.iso",
       "iso_checksum": "sha256:b391350d72a4fcab550033c830a17612cff65ebdb6de428732d9b15f780bf9c2",
       "ssh_username": "root",
       "ssh_password": "vagrant",

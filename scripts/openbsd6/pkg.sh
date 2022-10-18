@@ -1,9 +1,7 @@
 #!/bin/sh
 
-# Setup a package mirror.
-echo "https://ftp.usa.openbsd.org/pub/OpenBSD/" > /etc/installurl
-# Alternative package mirror/archive site.
-# echo "https://ftp.nluug.nl/OpenBSD/" > /etc/installurl
+# Setup a the package mirror.
+echo "https://mirrors.lavabit.com/openbsd/" > /etc/installurl
 
 # Update the system.
 pkg_add -u
