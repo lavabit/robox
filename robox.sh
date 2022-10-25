@@ -114,152 +114,6 @@ export EXCEPTIONS=""
 
 # The repository URLs, so we can catch any which might disappeared since the last build.
 
-# OpenBSD 6.9
-REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/base69.tgz" )
-REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256" )
-
-# OpenBSD 7.1
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.1/amd64/base71.tgz" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.1/packages/amd64/SHA256" )
-
-# NetBSD 8.2
-REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.2/SHA512.bz2" )
-
-# NetBSD 9.2
-REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.3/SHA512.bz2" )
-
-# FreeBSD 11
-REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
-
-# FreeBSD 12
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
-
-# FreeBSD 13
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
-
-# FreeBSD 14
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
-
-# HardenedBSD 12
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:12:amd64/packagesite.txz" )
-
-# HardenedBSD 13
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
-
-# HardenedBSD 14
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesite.txz" )
-
-
-# Ubuntu 16.04
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
-
-# Ubuntu 16.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/yakkety/InRelease" )
-
-# Ubuntu 17.04
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/zesty/InRelease" )
-
-# Ubuntu 17.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/artful/InRelease" )
-
-# Ubuntu 18.04
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/bionic/InRelease" )
-
-# Ubuntu 18.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/cosmic/InRelease" )
-
-# Ubuntu 19.04
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/disco/InRelease" )
-
-# Ubuntu 19.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/eoan/InRelease" )
-
-# Ubuntu 20.04
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/focal/InRelease" )
-
-# Ubuntu 20.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/groovy/InRelease" )
-
-# Ubuntu 21.04
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/hirsute/InRelease" )
-
-# Ubuntu 21.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/impish/InRelease" )
-
-# Ubuntu 22.04
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/jammy/InRelease" )
-
-# Ubuntu 22.10
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/kinetic/InRelease" )
-
-# Fedora 27
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 28
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 29
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 30
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/30/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 31
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 32
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/32/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 33
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/33/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 34
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 35
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 36
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/os/repodata/repomd.xml" )
-
-# CentOS 8 Stream
-REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/AppStream/x86_64/os/repodata/repomd.xml" )
-
-# CentOS 9 Stream
-REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/AppStream/x86_64/os/repodata/repomd.xml" )
-
-# Alma 8
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/AppStream/x86_64/os/repodata/repomd.xml" )
-
-# Alma 9
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
-
-# Rocky 8
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
-
-# Rocky 9
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
-
-# Oracle 6
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/latest/x86_64/repodata/repomd.xml" )
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/UEKR4/x86_64/repodata/repomd.xml" )
-
-# Oracle 7
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/repodata/repomd.xml" )
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/UEKR6/x86_64/repodata/repomd.xml" )
-
-# Oracle 8
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/repodata/repomd.xml" )
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/repomd.xml" )
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repomd.xml" )
-
-# Oracle 9
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
 
 # Alpine Edge
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
@@ -313,6 +167,131 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.15/community/x86_64/APKINDEX
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/main/x86_64/APKINDEX.tar.gz" )
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/community/x86_64/APKINDEX.tar.gz" )
 
+# Alpine 3.17
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
+
+# OpenBSD 6.9
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/index.txt" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/SHA256" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/SHA256.sig" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/man69.tgz" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/base69.tgz" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/comp69.tgz" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/index.txt" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256.sig" )
+
+# OpenBSD 7.2
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/index.txt" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/SHA256" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/SHA256.sig" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/man72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/base72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/comp72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/index.txt" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/SHA256" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/SHA256.sig" )
+
+# NetBSD 8.2
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.2/SHA512.bz2" )
+
+# NetBSD 9.2
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.3/SHA512.bz2" )
+
+# FreeBSD 11
+REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
+
+# FreeBSD 12
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
+
+# FreeBSD 13
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
+
+# FreeBSD 14
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
+
+# HardenedBSD 12
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:12:amd64/packagesite.txz" )
+
+# HardenedBSD 13
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
+
+# HardenedBSD 14
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesite.txz" )
+
+# Fedora 27
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 28
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 29
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 30
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/30/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 31
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 32
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/32/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 33
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/33/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 34
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 35
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 36
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 37
+FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/os/repodata/repomd.xml" )
+
+# CentOS 8 Stream
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/AppStream/x86_64/os/repodata/repomd.xml" )
+
+# CentOS 9 Stream
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/AppStream/x86_64/os/repodata/repomd.xml" )
+
+# Alma 8
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/AppStream/x86_64/os/repodata/repomd.xml" )
+
+# Alma 9
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
+
+# Rocky 8
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
+
+# Rocky 9
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
+
+# Oracle 6
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/UEKR4/x86_64/repodata/repomd.xml" )
+
+# Oracle 7
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/UEKR6/x86_64/repodata/repomd.xml" )
+
+# Oracle 8
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repomd.xml" )
+
+# Oracle 9
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
+
 # OpenSUSE 42.3
 REPOS+=( "http://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
 
@@ -350,7 +329,49 @@ REPOS+=( "https://ftp.debian.org/debian/dists/bullseye/InRelease" )
 REPOS+=( "https://ftp.debian.org/debian/dists/bookworm/InRelease" )
 
 # Debian 13
-# REPOS+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
+FUTURE+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
+
+# Ubuntu 16.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
+
+# Ubuntu 16.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/yakkety/InRelease" )
+
+# Ubuntu 17.04
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/zesty/InRelease" )
+
+# Ubuntu 17.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/artful/InRelease" )
+
+# Ubuntu 18.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/bionic/InRelease" )
+
+# Ubuntu 18.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/cosmic/InRelease" )
+
+# Ubuntu 19.04
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/disco/InRelease" )
+
+# Ubuntu 19.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/eoan/InRelease" )
+
+# Ubuntu 20.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/focal/InRelease" )
+
+# Ubuntu 20.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/groovy/InRelease" )
+
+# Ubuntu 21.04
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/hirsute/InRelease" )
+
+# Ubuntu 21.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/impish/InRelease" )
+
+# Ubuntu 22.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/jammy/InRelease" )
+
+# Ubuntu 22.10
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/kinetic/InRelease" )
 
 # EPEL
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/epel/6/x86_64/repodata/repomd.xml" )
@@ -735,7 +756,20 @@ function cache {
 
 }
 
-# Verify all of the ISO locations are still valid.
+# Let us know when URLs become valid.
+function ready_url {
+
+    # Check whether a particular URL has become valid.
+    ${CURL} --fail --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 --max-time 120 --write-out "%{http_code}\n" --output /dev/null "$1" | grep --silent --extended-regexp "200"
+
+    if [ $? == 0 ]; then
+      printf "Link Ready:    $1\n"
+      return 1
+    fi
+
+}
+
+# Verify all of the URLs are still valid.
 function verify_url {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
@@ -745,7 +779,7 @@ function verify_url {
   if [ $? != 0 ]; then
 
     # Wait a minute, and then try again. Many of the failures are transient network errors.
-    sleep 10; ${CURL} --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 --max-time 120 "$1" |  grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
+    sleep 10; ${CURL} --fail --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 --max-time 120 --write-out "%{http_code}\n" --output /dev/null "$1" | grep --silent --extended-regexp "200"
 
     if [ $? != 0 ]; then
       printf "Link Failure:  $1\n"
@@ -999,6 +1033,11 @@ function links() {
   
   for ((i = 0; i < ${#RESOURCES[@]}; ++i)); do
     (verify_url "${RESOURCES[$i]}") &
+    sleep 0.1 &> /dev/null || echo "" &> /dev/null
+  done
+
+  for ((i = 0; i < ${#FUTURE[@]}; ++i)); do
+    (ready_url "${FUTURE[$i]}") &
     sleep 0.1 &> /dev/null || echo "" &> /dev/null
   done
 
