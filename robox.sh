@@ -114,6 +114,17 @@ export EXCEPTIONS=""
 
 # The repository URLs, so we can catch any which might disappeared since the last build.
 
+# Alma 8
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# Alma 9
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Alpine Edge
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
@@ -170,6 +181,69 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/community/x86_64/APKINDEX
 # Alpine 3.17
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz" )
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
+
+# CentOS 6
+REPOS+=( "https://vault.centos.org/6.10/os/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://vault.centos.org/6.10/os/x86_64/repodata/repomd.xml.asc" )
+REPOS+=( "https://vault.centos.org/6.10/updates/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://vault.centos.org/6.10/updates/x86_64/repodata/repomd.xml.asc" )
+
+# CentOS 7
+REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/os/x86_64/repodata/repomd.xml" )
+REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/os/x86_64/repodata/repomd.xml.asc" )
+REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/updates/x86_64/repodata/repomd.xml" )
+REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/updates/x86_64/repodata/repomd.xml.asc" )
+
+# CentOS 8
+REPOS+=( "https://vault.centos.org/8.5.2111/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://vault.centos.org/8.5.2111/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://vault.centos.org/8.5.2111/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://vault.centos.org/8.5.2111/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# CentOS 8 Stream
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# CentOS 9 Stream
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# Devuan 1
+REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/jessie/InRelease" )
+
+# Devuan 2
+REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/ascii/InRelease" )
+
+# Devuan 3
+REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/beowulf/InRelease" )
+
+# Devuan 4
+REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/ceres/InRelease" )
+
+# Devuan 5
+REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/daedalus/InRelease" )
+
+# Debian 8
+REPOS+=( "https://ftp.debian.org/debian/dists/jessie/Release" )
+
+# Debian 9
+REPOS+=( "http://ftp.debian.org/debian/dists/stretch/Release" )
+
+# Debian 10
+REPOS+=( "https://ftp.debian.org/debian/dists/buster/InRelease" )
+
+# Debian 11
+REPOS+=( "https://ftp.debian.org/debian/dists/bullseye/InRelease" )
+
+# Debian 12
+REPOS+=( "https://ftp.debian.org/debian/dists/bookworm/InRelease" )
+
+# Debian 13
+FUTURE+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
 
 # OpenBSD 6.9
 REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/index.txt" )
@@ -253,27 +327,62 @@ REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_6
 # Fedora 37
 FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/os/repodata/repomd.xml" )
 
-# CentOS 8 Stream
-REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/AppStream/x86_64/os/repodata/repomd.xml" )
+# FreeBSD 11
+REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
 
-# CentOS 9 Stream
-REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/AppStream/x86_64/os/repodata/repomd.xml" )
+# FreeBSD 12
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
 
-# Alma 8
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/AppStream/x86_64/os/repodata/repomd.xml" )
+# FreeBSD 13
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
 
-# Alma 9
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
+# FreeBSD 14
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
 
-# Rocky 8
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
+# Gentoo
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.bz2" )
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.bz2.gpgsig" )
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.bz2.md5sum" )
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.xz" )
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.xz.gpgsig" )
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.xz.md5sum" )
 
-# Rocky 9
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
+# HardenedBSD 12
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:12:amd64/packagesite.txz" )
+
+# HardenedBSD 13
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
+
+# HardenedBSD 14
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesite.txz" )
+
+# NetBSD 8.2
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.2/SHA512.bz2" )
+
+# NetBSD 9.2
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.3/SHA512.bz2" )
+
+# OpenBSD 6.9
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/index.txt" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/SHA256" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/SHA256.sig" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/man69.tgz" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/base69.tgz" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/comp69.tgz" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/index.txt" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256.sig" )
+
+# OpenBSD 7.2
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/index.txt" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/SHA256" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/SHA256.sig" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/man72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/base72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/comp72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/index.txt" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/SHA256" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/SHA256.sig" )
 
 # Oracle 6
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/latest/x86_64/repodata/repomd.xml" )
@@ -298,38 +407,11 @@ REPOS+=( "http://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/r
 # OpenSUSE 15.4
 REPOS+=( "https://download.opensuse.org/distribution/leap/15.4/repo/oss/INDEX.gz" )
 
-# Devuan 1
-REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/jessie/InRelease" )
+# Rocky 8
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
 
-# Devuan 2
-REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/ascii/InRelease" )
-
-# Devuan 3
-REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/beowulf/InRelease" )
-
-# Devuan 4
-REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/ceres/InRelease" )
-
-# Devuan 5
-REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/daedalus/InRelease" )
-
-# Debian 8
-REPOS+=( "https://ftp.debian.org/debian/dists/jessie/Release" )
-
-# Debian 9
-REPOS+=( "http://ftp.debian.org/debian/dists/stretch/Release" )
-
-# Debian 10
-REPOS+=( "https://ftp.debian.org/debian/dists/buster/InRelease" )
-
-# Debian 11
-REPOS+=( "https://ftp.debian.org/debian/dists/bullseye/InRelease" )
-
-# Debian 12
-REPOS+=( "https://ftp.debian.org/debian/dists/bookworm/InRelease" )
-
-# Debian 13
-FUTURE+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
+# Rocky 9
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
 
 # Ubuntu 16.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
