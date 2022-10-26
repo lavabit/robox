@@ -24,11 +24,13 @@ Submit a pull request with your favorite distro.
 
 ## Upcoming Additions
 
+Oct 20th, 2022 / OpenBSD 7.2 \*  
 Oct 20th, 2022 / Ubuntu 22.10  
-Oct 20th, 2022 / OpenBSD 7.2  
-Oct 25th, 2022 / Fedora 37  
+Nov  1st, 2022 / Fedora 37  
 Nov  1st, 2022 / Alpine 3.17  
 Dec  7th, 2022 / FreeBSD 12.4  
+
+\* Repo updated.
 
 ## Pending Tasks
 
