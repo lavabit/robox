@@ -18,10 +18,6 @@ or
 https://quay.io/organization/roboxes  
 https://quay.io/organization/lavabit  
 
-## Pending Additions
-
-Submit a pull request with your favorite distro.  
-
 ## Upcoming Additions
 
 Oct 20th, 2022 / OpenBSD 7.2 \*  
@@ -33,37 +29,29 @@ Dec  7th, 2022 / FreeBSD 12.4
 \* Repo updated.
 
 ## Pending Tasks
-
+  
+<sup><sub>_We would welcome community help (as a pull request) with any of the following tasks._</sub></sup>  
 Generate docker variants for the Ubuntu/Debian/Alpine configurations  
-Add upload/delete/release functions to robox.sh  
-Add vagrant user password randomization logic to the bundled Vagrantfiles  
-Add init based test, and SSH command test to the box test and check script  
-Update VirtualBox from 5.2 to 6.1 (will require changes to the NetBSD boot command/timing)  
-Create arm images for distros/platforms with support  
+Incorporate the upload/delete/release scripts into the robox.sh script as functions.  
+Add vagrant user password randomization logic to the bundled Vagrantfiles.  
+Improve the unit box validation/check script with SSH command tests/checks.
+Update VirtualBox from 5.2 to 6.1 (at a minimum this will involve changes to the NetBSD boot command/timing).  
+Start building ARM variants for some virtual machines/boxes.  
  ^-- WE NEED A HARDWARE DONATION TO MAKE ARM64 IMAGES  
-
-## Building a Box
-
-To build a specific box, run the following:  
-
-```bash
-git clone https://github.com/lavabit/robox && cd robox
-./robox.sh box generic-BOX-PROVIDER
-```
-
-Replace `BOX` with one of the following values:  `[alma8|alpine310|alpine311|alpine312|alpine313|alpine314|alpine315|alpine35|alpine36|alpine37|alpine38|alpine39|arch|centos6|centos7|centos8|debian10|debian11|debian8|debian9|devuan1|devuan2|devuan3|devuan4|dragonflybsd5|dragonflybsd6|fedora25|fedora26|fedora27|fedora28|fedora29|fedora30|fedora31|fedora32|fedora33|fedora34|fedora35|fedora36|freebsd11|freebsd12|freebsd13|gentoo|hardenedbsd11|hardenedbsd12|hardenedbsd13|netbsd8|netbsd9|openbsd6|openbsd7|opensuse15|opensuse42|oracle7|oracle8|rhel6|rhel7|rhel8|rocky8|ubuntu1604|ubuntu1610|ubuntu1704|ubuntu1710|ubuntu1804|ubuntu1810|ubuntu1904|ubuntu1910|ubuntu2004|ubuntu2010|ubuntu2104|ubuntu2110|ubuntu2204]` and replace `PROVIDER` provider with `[docker|hyperv|libvirt|parallels|virtualbox|vmware]`.
-
-The above presumes you already have [`packer`](https://www.packer.io/) and the target provider installed. The `res/providers/providers.sh` script can be used to configure a system appropriately, and install the various providers. Currently the script only works on RHEL 7 or CentOS 7, but the steps/commands should work on other Linux distros with appropriate adjustments. 
-
+ **THIS SHOULD, WE HOPE, IN THE WORKS --^**  
+  
 ## Operating System Requests
 
 The following variants of existing builds have been requested, and will be added at a future date, when time allows (or someone submits a pull request).
-
-[CentOS Stream](https://www.centos.org/centos-stream/)  
+  
 [Fedora Rawhide](https://fedoraproject.org/wiki/Releases/Rawhide)  
 [OpenSUSE Tumbleweed](https://software.opensuse.org/distributions/tumbleweed)  
+  
+This operating system has been requested, but at present doesn't apppear to have sufficient interest. If that changes, it could be easily added by adapting the existing Debian/Ubuntu configurations.  
 
-The following operating systems have been requested by a member of the robox community, but require a volunteer, so they can be incorporated into the robox workflow.
+[Pop\!\_OS](https://pop.system76.com/)  
+  
+The following operating systems have been requested by a member of the Robox community, but require a volunteer to generate a configuration, before they can be incorporated into the workflow.
 
 [Haiku](https://www.haiku-os.org/get-haiku/)  
 [Minix](https://www.minix3.org/)  
@@ -72,7 +60,7 @@ The following operating systems have been requested by a member of the robox com
 
 ## Operating System Candidates
 
-The following operating systems are on my personal list, but haven't been added because of various resource contraints.
+The following operating systems are potential candidates. They may be added in the future. 
 
 Manjaro  
 Mint  
@@ -80,12 +68,37 @@ OpenSolaris
 Slackware  
 
 MacOS  
+Darwin  
+  
 ReactOS  
 Windows  
 
 Tails  
 Kali  
 
+## Adding Boxes
+
+Submit a pull request with your favorite distro.  
+
+## Building a Box
+
+To build a Robox locally, run the following:  
+
+```bash
+git clone https://github.com/lavabit/robox && cd robox
+./robox.sh box generic-BOX-PROVIDER
+```
+
+You will to replace the BOX and PROVIDER placeholders in the example above.  
+  
+Replace `BOX` with one of the these values:  `[alma8|alma9|alpine35|alpine36|alpine37|alpine38|alpine39|alpine310|alpine311|alpine312|alpine313|alpine314|alpine315|alpine316|alpine317|arch|centos6|centos7|centos8|centos8s|centos9s|debian8|debian9|debian10|debian11|devuan1|devuan2|devuan3|devuan4|dragonflybsd5|dragonflybsd6|fedora25|fedora26|fedora27|fedora28|fedora29|fedora30|fedora31|fedora32|fedora33|fedora34|fedora35|fedora36|fedora37|freebsd11|freebsd12|freebsd13|gentoo|hardenedbsd11|hardenedbsd12|hardenedbsd13|netbsd8|netbsd9|openbsd6|openbsd7|opensuse15|opensuse42|oracle7|oracle8|oracle8|rhel6|rhel7|rhel8|rocky8|rocky9|ubuntu1604|ubuntu1610|ubuntu1704|ubuntu1710|ubuntu1804|ubuntu1810|ubuntu1904|ubuntu1910|ubuntu2004|ubuntu2010|ubuntu2104|ubuntu2110|ubuntu2204|ubuntu2210]` 
+  
+And replace `PROVIDER` with one of these values: `[docker|hyperv|libvirt|parallels|virtualbox|vmware]`.  
+  
+A configuration for all of the distros is available for every provider, EXCEPT Docker. At present we have only adapted a subset of the configurations to build Docker/Podman images.  
+
+The above presumes you already have [`packer`](https://www.packer.io/) and the hypervisor for the tartted provider installed. The `res/providers/providers.sh` script may provide guidance on the steps required to setup a Linux build host for VMWare/Virtualbox/Docker/libvirt. Please note that this scripts was written for RHEL/CentOS 7. You will then need to adapt the package names and CLI commands to your environment.  
+  
 ## VirtualBox Disks
 
 Enabling the discard/nonrotational options with our VirtualBox configs, appears to improve performance, but only on build robots equipped with SSDs or NVMe drives, and then only if the virtual machine is configured to with VDI virtual disks. This combination allows guests to utilize discard/unmap/trim. However, if a virtual machine is deployed onto traditional magnetic hard disks with discard/nonrotational enabled, performance will drop significantly ( 1/50th of normal in some cases ). 
