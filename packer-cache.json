@@ -138,8 +138,8 @@
     {
       "name": "arch",
       "output_directory": "output/arch",
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2022.10.01-x86_64.iso",
-      "iso_checksum": "sha256:17fe2053a114f2002efed53b39f740dd9778f5b689c9467a310b2649a80a6bfd",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2022.11.01-x86_64.iso",
+      "iso_checksum": "sha256:df6749df55b02cec98e5a9177c7957acfb96fe14d04553b6e4714100a4824f68",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
