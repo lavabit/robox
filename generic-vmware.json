@@ -2906,6 +2906,42 @@
     },
     {
       "scripts": [
+        "scripts/ubuntu2210/apt.sh",
+        "scripts/ubuntu2210/floppy.sh",
+        "scripts/ubuntu2210/fixkvp.sh",
+        "scripts/ubuntu2210/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2210-vmware"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu2210/vagrant.sh",
+        "scripts/ubuntu2210/profile.sh",
+        "scripts/ubuntu2210/motd.sh",
+        "scripts/ubuntu2210/fixtty.sh",
+        "scripts/ubuntu2210/virtualbox.sh",
+        "scripts/ubuntu2210/parallels.sh",
+        "scripts/ubuntu2210/vmware.sh",
+        "scripts/ubuntu2210/qemu.sh",
+        "scripts/ubuntu2210/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2210-vmware"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -6866,6 +6902,61 @@
       "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL6/u10/x86_64/OracleLinux-R6-U10-Server-x86_64-dvd.iso",
       "iso_checksum": "sha256:625044388ee60a031965a42a32f4c1de0c029268975edcd542fd14160e0dadcb",
       "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-ubuntu2210-vmware",
+      "vm_name": "generic-ubuntu2210-vmware",
+      "vmdk_name": "generic-ubuntu2210-vmware",
+      "output_directory": "output/generic-ubuntu2210-vmware",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "c<wait10>",
+        "set gfxpayload=keep<enter><wait10>",
+        "linux /casper/vmlinuz autoinstall quiet net.ifnames=0 biosdevname=0 ",
+        "ds=\"nocloud-net;s=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2210.vagrant.\" --- <enter><wait10>",
+        "initrd /casper/initrd<enter><wait10>",
+        "boot<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "ubuntu-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://releases.ubuntu.com/22.10/ubuntu-22.10-live-server-amd64.iso",
+      "iso_checksum": "sha256:874452797430a94ca240c95d8503035aa145bd03ef7d84f9b23b78f3c5099aed",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
