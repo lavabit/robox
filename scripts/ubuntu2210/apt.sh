@@ -126,7 +126,7 @@ apt-get --assume-yes clean ; error
 apt-get --assume-yes autoclean ; error
 apt-get --assume-yes update ; error
 
-# # Enable this once 22.04 reaches the end of its life.
+# # Enable this once 22.10 reaches the end of its life.
 # # Write out a nice and compact sources list.
 # cat <<-EOF > /etc/apt/sources.list
 # 
