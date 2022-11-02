@@ -50,7 +50,7 @@ fi
 source $BASE/.credentialsrc
 
 # Version Information
-[ ! -n "$VERSION" ] && export VERSION="4.1.20"
+[ ! -n "$VERSION" ] && export VERSION="4.2.0"
 export AGENT="Vagrant/2.2.19 (+https://www.vagrantup.com; ruby2.7.4)"
 
 # Limit the number of cpus packer will use and control how errors are handled.
@@ -179,8 +179,13 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/main/x86_64/APKINDEX.tar.
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/community/x86_64/APKINDEX.tar.gz" )
 
 # Alpine 3.17
-FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz" )
-FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/releases/x86_64/alpine-virt-3.17.0-x86_64.iso" )
+
+# Alpine 3.18
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz" )
 
 # CentOS 6
 REPOS+=( "https://vault.centos.org/6.10/os/x86_64/repodata/repomd.xml" )
@@ -245,34 +250,6 @@ REPOS+=( "https://ftp.debian.org/debian/dists/bookworm/InRelease" )
 # Debian 13
 FUTURE+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
 
-# OpenBSD 6.9
-REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/index.txt" )
-REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/SHA256" )
-REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/SHA256.sig" )
-REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/man69.tgz" )
-REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/base69.tgz" )
-REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/comp69.tgz" )
-REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/index.txt" )
-REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256" )
-REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256.sig" )
-
-# OpenBSD 7.2
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/index.txt" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/SHA256" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/SHA256.sig" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/man72.tgz" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/base72.tgz" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/comp72.tgz" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/index.txt" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/SHA256" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/SHA256.sig" )
-
-# NetBSD 8.2
-REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.2/SHA512.bz2" )
-
-# NetBSD 9.2
-REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.3/SHA512.bz2" )
-
 # FreeBSD 11
 REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
 
@@ -284,15 +261,6 @@ REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
 
 # FreeBSD 14
 REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
-
-# HardenedBSD 12
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:12:amd64/packagesite.txz" )
-
-# HardenedBSD 13
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
-
-# HardenedBSD 14
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesite.txz" )
 
 # Fedora 27
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/repodata/repomd.xml" )
@@ -359,7 +327,7 @@ REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesi
 # NetBSD 8.2
 REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.2/SHA512.bz2" )
 
-# NetBSD 9.2
+# NetBSD 9.3
 REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.3/SHA512.bz2" )
 
 # OpenBSD 6.9
