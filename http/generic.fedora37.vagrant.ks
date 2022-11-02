@@ -8,6 +8,7 @@ user --name=vagrant --password=vagrant --plaintext
 
 zerombr
 clearpart --all --initlabel
+part biosboot --fstype=biosboot --size=1
 part /boot --fstype="xfs" --size=1024 --label=boot
 part pv.01 --fstype="lvmpv" --grow
 volgroup fedora --pesize=4096 pv.01
@@ -19,7 +20,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora37.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
 
 #### Beta Repo / Remove and Enable Prod Nov 15th, 2002
-url --url=https://dl.fedoraproject.org/pub/fedora/linux/release/test/37_beta/Server/x86_64/os/
+url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/test/37_Beta/Server/x86_64/os/
 #### Prod Repo
 # url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/os/
 # url --url=https://mirrors.edge.kernel.org/fedora/releases/37/Everything/x86_64/os/
