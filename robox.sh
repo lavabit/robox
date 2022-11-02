@@ -180,7 +180,8 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/community/x86_64/APKINDEX
 
 # Alpine 3.17
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz" )
-REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
+# When it becomes available, update the ISO URL in the JSON files, and then remove this URL.
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/releases/x86_64/alpine-virt-3.17.0-x86_64.iso" )
 
 # Alpine 3.18
@@ -292,7 +293,14 @@ REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/x86_6
 # Fedora 36
 REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/os/repodata/repomd.xml" )
 
+# Fedora 37 Beta
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/test/37_Beta/Server/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/test/37_Beta/Server/x86_64/iso/Fedora-Server-netinst-x86_64-37_Beta-1.5.iso" )
+# Look for the ISO dir, and the ISO, since the version can change. When it's released, remove the beta
+# entries above, and the ISO URLs below. Then update the ISO URL in the JSO files, and the repo URL in the kickstart file.
 # Fedora 37
+FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/iso/" )
+FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/iso/Fedora-Server-netinst-x86_64-37-1.5.iso" )
 FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/os/repodata/repomd.xml" )
 
 # FreeBSD 11
