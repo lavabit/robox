@@ -125,22 +125,24 @@ else
   export VERSION="1.0.0"
 
   # We only validate these files, two at a time, because the packer validation process spawns 350+ processes.
-  nice packer validate packer-cache.new.json &> /dev/null &
+  nice -n +19 packer validate packer-cache.new.json &> /dev/null &
   P1=$!
-  nice packer validate generic-hyperv.new.json &> /dev/null &
+  nice -n +19 packer validate generic-hyperv.new.json &> /dev/null &
   P2=$!  
-  nice packer validate generic-vmware.new.json &> /dev/null &
+  nice -n +19 packer validate generic-vmware.new.json &> /dev/null &
   P3=$!
-  nice packer validate generic-libvirt.new.json &> /dev/null &
-  P4=$! 
-  nice packer validate generic-parallels.new.json &> /dev/null &
-  P5=$!
-  nice packer validate generic-virtualbox.new.json &> /dev/null &
-  P6=$!
-
+  
   wait $P1 || (tput setaf 1; printf "\n\nThe new packer-cache template validation failed.\n\n\n"; tput sgr0 ; exit 1)
   wait $P2 || (tput setaf 1; printf "\n\nThe new generic-hyperv template validation failed.\n\n\n"; tput sgr0 ; exit 1)
   wait $P3 || (tput setaf 1; printf "\n\nThe new generic-vmware template validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  
+  nice -n +19 packer validate generic-libvirt.new.json &> /dev/null &
+  P4=$! 
+  nice -n +19 packer validate generic-parallels.new.json &> /dev/null &
+  P5=$!
+  nice -n +19 packer validate generic-virtualbox.new.json &> /dev/null &
+  P6=$!
+
   wait $P4 || (tput setaf 1; printf "\n\nThe new generic-libvirt template validation failed.\n\n\n"; tput sgr0 ; exit 1)
   wait $P5 || (tput setaf 1; printf "\n\nThe new generic-parallels template validation failed.\n\n\n"; tput sgr0 ; exit 1)
   wait $P6 || (tput setaf 1; printf "\n\nThe new generic-virtualbox template validation failed.\n\n\n"; tput sgr0 ; exit 1)
