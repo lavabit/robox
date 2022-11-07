@@ -7283,7 +7283,7 @@
       "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
       "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.40/VBoxGuestAdditions_6.1.40.iso",
-      "guest_additions_sha256": "9cf5413399f59cfa4ba9ed89a9295b1b2ef3b997cb526a100637b5c59a526872",
+      "guest_additions_sha256": "d456c559926f1a8fdd7259056e0a50f12339fd494122cf30db7736e2032970c6",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
