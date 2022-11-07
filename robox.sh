@@ -180,7 +180,7 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/community/x86_64/APKINDEX
 
 # Alpine 3.17
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz" )
-FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
 # When it becomes available, update the ISO URL in the JSON files, and then remove this URL.
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/releases/x86_64/alpine-virt-3.17.0-x86_64.iso" )
 
