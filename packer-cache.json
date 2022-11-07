@@ -946,6 +946,36 @@
       "type": "vmware-iso"
     },
     {
+      "name": "virtualbox-6-1-40",
+      "output_directory": "output/virtualbox-6-1-40",
+      "iso_url": "https://download.virtualbox.org/virtualbox/6.1.40/VBoxGuestAdditions_6.1.40.iso",
+      "iso_checksum": "d456c559926f1a8fdd7259056e0a50f12339fd494122cf30db7736e2032970c6",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
+      "name": "virtualbox-7-0-2",
+      "output_directory": "output/virtualbox-7-0-2",
+      "iso_url": "https://download.virtualbox.org/virtualbox/7.0.2/VBoxGuestAdditions_7.0.2.iso",
+      "iso_checksum": "9cf5413399f59cfa4ba9ed89a9295b1b2ef3b997cb526a100637b5c59a526872",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "alpine313",
       "output_directory": "output/alpine313",
       "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.12-x86_64.iso",
