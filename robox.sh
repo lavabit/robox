@@ -378,7 +378,7 @@ REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repod
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
 
 # OpenSUSE 42.3
-REPOS+=( "http://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
+REPOS+=( "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
 
 # OpenSUSE 15.4
 REPOS+=( "https://download.opensuse.org/distribution/leap/15.4/repo/oss/INDEX.gz" )
