@@ -398,9 +398,9 @@ REPOS+=( "https://download.opensuse.org/distribution/leap/15.4/repo/oss/INDEX.gz
 
 # Rocky 8
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/BaseOS/x86_64/os/repodata/repomd.xml.sig" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/repomd.xml.sig" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Rocky 9
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
