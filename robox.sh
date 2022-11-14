@@ -115,16 +115,22 @@ export EXCEPTIONS=""
 # The repository URLs, so we can catch any which might disappeared since the last build.
 
 # Alma 8
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Alma 9
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# When 9.1 is released, these will replace the 9.0 URLs above.
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Alpine Edge
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
@@ -181,7 +187,8 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/community/x86_64/APKINDEX
 # Alpine 3.17
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz" )
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
-# When it becomes available, update the ISO URL in the JSON files, and then remove this URL.
+
+# When the release ISO becomes available, update the JSON files, and remove this URL.
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/releases/x86_64/alpine-virt-3.17.0-x86_64.iso" )
 
 # Alpine 3.18
@@ -384,10 +391,22 @@ REPOS+=( "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/
 REPOS+=( "https://download.opensuse.org/distribution/leap/15.4/repo/oss/INDEX.gz" )
 
 # Rocky 8
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/BaseOS/x86_64/os/repodata/repomd.xml.sig" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/repomd.xml.sig" )
 
 # Rocky 9
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# When 9.1 is released, these will replace the 9.0 URLs above.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Ubuntu 16.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
