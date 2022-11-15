@@ -497,6 +497,7 @@
         "scripts/debian9/motd.sh",
         "scripts/debian9/magma.sh",
         "scripts/debian9/fixtty.sh",
+        "scripts/debian9/fixuuid.sh",
         "scripts/debian9/virtualbox.sh",
         "scripts/debian9/parallels.sh",
         "scripts/debian9/vmware.sh",
