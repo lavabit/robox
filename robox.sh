@@ -121,16 +121,10 @@ REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/AppStream/x86_64/os/rep
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Alma 9
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml.asc" )
-
-# When 9.1 is released, these will replace the 9.0 URLs above.
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Alpine Edge
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
