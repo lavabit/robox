@@ -294,15 +294,8 @@ REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/x86_6
 # Fedora 36
 REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/os/repodata/repomd.xml" )
 
-# Fedora 37 Beta
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/test/37_Beta/Server/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/test/37_Beta/Server/x86_64/iso/Fedora-Server-netinst-x86_64-37_Beta-1.5.iso" )
-# Look for the ISO dir, and the ISO, since the version can change. When it's released, remove the beta
-# entries above, and the ISO URLs below. Then update the ISO URL in the JSO files, and the repo URL in the kickstart file.
 # Fedora 37
-FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/iso/" )
-FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/iso/Fedora-Server-netinst-x86_64-37-1.5.iso" )
-FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/os/repodata/repomd.xml" )
 
 # FreeBSD 11
 REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )

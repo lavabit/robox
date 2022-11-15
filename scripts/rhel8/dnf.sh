@@ -12,7 +12,7 @@ name=rhel8-base
 baseurl=file:///media/BaseOS/
 gpgcheck=1
 enabled=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 
 [rhel8-appstream-media]
 name=rhel8-appstream
@@ -23,7 +23,6 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 EOF
 
 # Import the Red Hat signing key.
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 
 # Setup the EPEL repo.
@@ -506,5 +505,5 @@ fi
 # Install the basic packages we'd expect to find.
 dnf --assumeyes install sudo dmidecode dnf-utils bash-completion man man-pages vim-enhanced sysstat bind-utils wget dos2unix unix2dos lsof tar telnet net-tools coreutils grep gawk sed curl patch sysstat make cmake libarchive info autoconf automake libtool gcc-c++ libstdc++-devel gcc cpp ncurses-devel glibc-devel glibc-headers kernel-headers psmisc whois python36 rsync
 
-# For some reason the beta thinks this package is installed, when in fact it's missing.
+# For some reason the system thinks this package is installed, when in fact it's missing.
 dnf --assumeyes reinstall libunistring

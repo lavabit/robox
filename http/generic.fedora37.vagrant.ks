@@ -19,13 +19,11 @@ firewall --enabled --service=ssh
 network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora37.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
 
-#### Beta Repo / Remove and Enable Prod Nov 15th, 2002
-url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/test/37_Beta/Server/x86_64/os/
 #### Prod Repo
-# url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/os/
+url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/os/
 # url --url=https://mirrors.edge.kernel.org/fedora/releases/37/Everything/x86_64/os/
 
-# When this release is no longer available from mirrors, enable the archive url.
+#### Archive Repo
 # url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/37/Everything/x86_64/os/
 
 %packages
