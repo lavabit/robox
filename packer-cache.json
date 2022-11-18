@@ -1,4 +1,4 @@
-F{
+{
   "builders": [
     {
       "name": "alpine35",
