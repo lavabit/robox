@@ -1,4 +1,4 @@
-{
+F{
   "builders": [
     {
       "name": "alpine35",
@@ -1233,8 +1233,8 @@
     {
       "name": "rhel9",
       "output_directory": "output/rhel9",
-      "iso_url": "https://archive.org/download/rhel-9.0/rhel-baseos-9.0-x86_64-dvd.iso",
-      "iso_checksum": "sha256:a387f3230acf87ee38707ee90d3c88f44d7bf579e6325492f562f0f1f9449e89",
+      "iso_url": "https://archive.org/download/rhel-9.1/rhel-baseos-9.1-x86_64-dvd.iso",
+      "iso_checksum": "sha256:d9dcae2b6e760d0f9dcf4a517bddc227d5fa3f213a8323592f4a07a05aa542a2",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
