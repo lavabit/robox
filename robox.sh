@@ -769,7 +769,8 @@ function iso() {
     ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"hardenedbsd13\")) | .iso_checksum" 2>/dev/null`
 
     # Find the HardenedBSD URL.
-    URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/"
+    # URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/"
+    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/"
     BUILD=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]{3}/\"" | grep --extended-regexp --only-matching "build\-[0-9]{3}" | sort -r | uniq | head -1`
     if [ $? != 0 ] || [ "$BUILD" == "" ]; then
       tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
@@ -777,7 +778,8 @@ function iso() {
     fi
 
     # Calculate the new URL.
-    URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
+    # URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
+    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
