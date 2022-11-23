@@ -120,11 +120,17 @@ REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/BaseOS/x86_64/os/repoda
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/AppStream/x86_64/os/repodata/repomd.xml" )
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/isos/x86_64/AlmaLinux-8.8-x86_64-boot.iso" )
+
 # Alma 9
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml" )
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/isos/x86_64/AlmaLinux-9.2-x86_64-boot.iso" )
 
 # Alpine Edge
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
@@ -367,8 +373,8 @@ REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/repod
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repomd.xml" )
 
-# When Oracle 8.7 is available this URL will become active. Update the JSON files and remove from here.
-FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL8/u7/x86_64/OracleLinux-R8-U7-x86_64-boot.iso" )
+# When Oracle 8.8 is available this URL will become active. Update the JSON files and remove from here.
+FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL8/u8/x86_64/x86_64-boot-uek.iso" )
 
 # Oracle 9
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
@@ -376,6 +382,7 @@ REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/
 
 # When Oracle 9.1 is available this URL will become active. Update the JSON files and remove from here.
 FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL9/u1/x86_64/OracleLinux-R9-U1-x86_64-boot.iso" )
+FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL9/u2/x86_64/OracleLinux-R9-U2-x86_64-boot.iso" )
 
 # OpenSUSE 42.3
 REPOS+=( "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
@@ -389,11 +396,17 @@ REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/BaseOS/x86_64/os/repodata/rep
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/repomd.xml" )
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/isos/x86_64/Rocky-8.8-x86_64-boot.iso" )
+
 # Rocky 9
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/isos/x86_64/Rocky-9.1-x86_64-boot.iso" )
 
 # When 9.1 is released, these will replace the 9.0 URLs above.
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
@@ -442,6 +455,19 @@ REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/jammy/InRelease" )
 
 # Ubuntu 22.10
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/kinetic/InRelease" )
+
+# Ubuntu 23.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/lunar/InRelease" )
+
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://releases.ubuntu.com/23.04/ubuntu-23.04-live-server-amd64.iso" )
+
+# Ubuntu 23.10
+# This means the 23.10 repository is available.
+# REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/UNKNOWN/InRelease" )
+
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://releases.ubuntu.com/23.10/ubuntu-23.10-live-server-amd64.iso" )
 
 # EPEL
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/epel/6/x86_64/repodata/repomd.xml" )
