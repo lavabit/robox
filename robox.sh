@@ -182,12 +182,12 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/community/x86_64/APKINDEX
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz" )
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
 
-# When the release ISO becomes available, update the JSON files, and remove this URL.
-FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.17/releases/x86_64/alpine-virt-3.17.0-x86_64.iso" )
-
 # Alpine 3.18
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz" )
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz" )
+
+# When the release ISO becomes available, update the JSON files, and remove this URL.
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.18/releases/x86_64/alpine-virt-3.18.0-x86_64.iso" )
 
 # CentOS 6
 REPOS+=( "https://vault.centos.org/6.10/os/x86_64/repodata/repomd.xml" )
@@ -769,8 +769,11 @@ function iso() {
     ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"hardenedbsd13\")) | .iso_checksum" 2>/dev/null`
 
     # Find the HardenedBSD URL.
-    # URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/"
-    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/"
+    URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/"
+    
+    # Alternate server (update in two places).
+    # URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/"
+    
     BUILD=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]{3}/\"" | grep --extended-regexp --only-matching "build\-[0-9]{3}" | sort -r | uniq | head -1`
     if [ $? != 0 ] || [ "$BUILD" == "" ]; then
       tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
@@ -778,8 +781,10 @@ function iso() {
     fi
 
     # Calculate the new URL.
-    # URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
-    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
+    URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
+    
+    # Alternate server (update in two places).
+    # URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
