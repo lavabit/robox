@@ -399,20 +399,26 @@ REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/
 # When this link becomes available, update the JSON files and remove it from here.
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/isos/x86_64/Rocky-8.8-x86_64-boot.iso" )
 
+# When 8.8 is released, these will replace the 8.7 URLs above.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
 # Rocky 9
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/isos/x86_64/Rocky-9.1-x86_64-boot.iso" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/isos/x86_64/Rocky-9.2-x86_64-boot.iso" )
 
-# When 9.1 is released, these will replace the 9.0 URLs above.
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/AppStream/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+# When 9.2 is released, these will replace the 9.1 URLs above.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Ubuntu 16.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
