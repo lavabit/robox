@@ -54,16 +54,19 @@ printf "APT::Acquire::Retries \"0\";\n" >> /etc/apt/apt.conf.d/20retries
 fi
 
 # Setup the source list.
-# cat <<-EOF > /etc/apt/sources.list
-# deb https://ftp.debian.org/debian/ jessie main
-# deb https://security.debian.org/debian-security jessie/updates main
-# deb https://ftp.debian.org/debian/ jessie-updates main
-# EOF
+cat <<-EOF > /etc/apt/sources.list
+deb http://ftp.debian.org/debian/ jessie main
+deb http://security.debian.org/debian-security jessie/updates main
+deb http://ftp.debian.org/debian/ jessie-updates main
+EOF
+
+# Trick the system into using expired keys.
+date -s 20200701
 
 # Ensure the server includes any necessary updates.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
-retry apt-get --assume-yes --force-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
+retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
 
 # The packages users expect on a sane system.
 retry apt-get --assume-yes install vim net-tools mlocate psmisc; error

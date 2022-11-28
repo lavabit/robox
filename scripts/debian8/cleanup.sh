@@ -26,3 +26,7 @@ apt-get --assume-yes purge; error
 # Remove the random seed so a unique value is used the first time the box is booted.
 systemctl --quiet is-active systemd-random-seed.service && systemctl stop systemd-random-seed.service
 [ -f /var/lib/systemd/random-seed ] && rm --force /var/lib/systemd/random-seed
+
+# Reset the system date.
+date -s `curl -I 'https://google.com/' 2>/dev/null | grep -i '^date:' | sed 's/^[Dd]ate: //g'`
+
