@@ -27,6 +27,11 @@ apt-get --assume-yes purge; error
 systemctl --quiet is-active systemd-random-seed.service && systemctl stop systemd-random-seed.service
 [ -f /var/lib/systemd/random-seed ] && rm --force /var/lib/systemd/random-seed
 
-# Reset the system date.
-date -s `curl -I 'https://google.com/' 2>/dev/null | grep -i '^date:' | sed 's/^[Dd]ate: //g'`
+# Reset the system date. Because the date is current wrong, we need to ignore certificate errors.
+date -s "`curl --insecure -I 'https://google.com/' 2>/dev/null | grep -i '^date:' | sed 's/^[Dd]ate: //g'`"
+
+# But assuming the above request worked, and the system time has been corrected, we can try again securely to confirm.
+date -s "`curl -I 'https://google.com/' 2>/dev/null | grep -i '^date:' | sed 's/^[Dd]ate: //g'`" || \
+{  printf "\n\nSystem date/time update failed...\n\n" ; exit exit 1 ; }
+
 
