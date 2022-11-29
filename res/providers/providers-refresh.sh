@@ -316,7 +316,7 @@ function provide-vagrant() {
   dnf --assumeyes install "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
 
   # The Libvirt Headers are Required for the Vagrant Plugin
-  dnf --assumeyes install libvirt-devel
+  dnf --assumeyes --enablerepo=crb install libvirt-devel
 
   # Vagrant Libvirt Plugin
   vagrant plugin install vagrant-libvirt
