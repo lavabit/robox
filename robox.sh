@@ -380,8 +380,7 @@ FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL8/u8/x86_64/x86_64-boot-uek
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
 
-# When Oracle 9.1 is available this URL will become active. Update the JSON files and remove from here.
-FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL9/u1/x86_64/OracleLinux-R9-U1-x86_64-boot.iso" )
+# When Oracle 9.2 is available this URL will become active. Update the JSON files and start looking for the 9,3 update.
 FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL9/u2/x86_64/OracleLinux-R9-U2-x86_64-boot.iso" )
 
 # OpenSUSE 42.3

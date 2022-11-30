@@ -1323,8 +1323,8 @@
     {
       "name": "oracle9",
       "output_directory": "output/oracle9",
-      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL9/u0/x86_64/OracleLinux-R9-U0-x86_64-boot.iso",
-      "iso_checksum": "sha256:8da742eadb7bcd4d03bacd71c73d500247fa2f680a18c619220bcb88d6bd336f",
+      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL9/u1/x86_64/OracleLinux-R9-U1-x86_64-boot.iso",
+      "iso_checksum": "sha256:21878b1136acdaa588556ac83c7e8700a0604c310cd05c22eb6a8329a85dfddd",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
