@@ -48,6 +48,10 @@ systemctl --quiet is-enabled clamav-daemon.service &> /dev/null && \
   systemctl disable clamav-daemon.service &> /dev/null ) || \
   echo "clamav-daemon.service already disabled" &> /dev/null
 
+# We need to correct the system clock or curl won't be able to verify the ClamAV files when they're downloaded.
+date -s "`curl -I 'https://google.com/' 2>/dev/null | grep -i '^date:' | sed 's/^[Dd]ate: //g'`" || \
+{  printf "\n\nSystem date/time update failed...\n\n" ; exit exit 1 ; }
+
 # On Debian/Ubuntu there is no virus database package. We use freshclam instead.
 ( cd /var/lib/clamav && rm -f main.cvd daily.cvd bytecode.cvd && \
   curl -LSOs https://github.com/ladar/clamav-data/raw/main/main.cvd.[01-10] \
@@ -66,6 +70,9 @@ systemctl --quiet is-enabled clamav-daemon.service &> /dev/null && \
   
 freshclam --quiet || \
   echo "The freshclam attempt failed ... ignoring." &> /dev/null
+
+# Go back to the fake system time in case any more modules need to install packages.
+ddate -s 20200701
 
 # Force MySQL/MariaDB except the old fashioned '0000-00-00' date format.
 printf "[mysqld]\nsql-mode=allow_invalid_dates\n" >> /etc/mysql/conf.d//60-server-mode.cnf
