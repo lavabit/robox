@@ -115,6 +115,7 @@
         "scripts/centos7/vmware.sh",
         "scripts/centos7/qemu.sh",
         "scripts/centos7/postfix.sh",
+        "scripts/centos7/lvm.sh",
         "scripts/centos7/vagrant.sh",
         "scripts/centos7/memcached.sh",
         "scripts/centos7/mariadb.sh",
@@ -282,7 +283,8 @@
         "scripts/fedora27/mariadb.sh",
         "scripts/fedora27/postfix.sh",
         "scripts/fedora27/magma.sh",
-        "scripts/fedora27/tuning.sh"
+        "scripts/fedora27/tuning.sh",
+        "scripts/fedora27/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
@@ -495,6 +497,7 @@
         "scripts/debian9/motd.sh",
         "scripts/debian9/magma.sh",
         "scripts/debian9/fixtty.sh",
+        "scripts/debian9/fixuuid.sh",
         "scripts/debian9/virtualbox.sh",
         "scripts/debian9/parallels.sh",
         "scripts/debian9/vmware.sh",
@@ -632,7 +635,8 @@
         "scripts/fedora28/mariadb.sh",
         "scripts/fedora28/postfix.sh",
         "scripts/fedora28/magma.sh",
-        "scripts/fedora28/tuning.sh"
+        "scripts/fedora28/tuning.sh",
+        "scripts/fedora28/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
@@ -683,7 +687,8 @@
         "scripts/fedora29/mariadb.sh",
         "scripts/fedora29/postfix.sh",
         "scripts/fedora29/magma.sh",
-        "scripts/fedora29/tuning.sh"
+        "scripts/fedora29/tuning.sh",
+        "scripts/fedora29/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
@@ -734,7 +739,8 @@
         "scripts/fedora30/mariadb.sh",
         "scripts/fedora30/postfix.sh",
         "scripts/fedora30/magma.sh",
-        "scripts/fedora30/tuning.sh"
+        "scripts/fedora30/tuning.sh",
+        "scripts/fedora30/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
@@ -785,7 +791,8 @@
         "scripts/fedora31/mariadb.sh",
         "scripts/fedora31/postfix.sh",
         "scripts/fedora31/magma.sh",
-        "scripts/fedora31/tuning.sh"
+        "scripts/fedora31/tuning.sh",
+        "scripts/fedora31/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
@@ -1060,6 +1067,7 @@
         "scripts/centos8/parallels.sh",
         "scripts/centos8/vmware.sh",
         "scripts/centos8/qemu.sh",
+        "scripts/centos8/lvm.sh",
         "scripts/centos8/vagrant.sh",
         "scripts/centos8/postfix.sh",
         "scripts/centos8/memcached.sh",
@@ -1121,7 +1129,8 @@
         "scripts/fedora32/mariadb.sh",
         "scripts/fedora32/postfix.sh",
         "scripts/fedora32/magma.sh",
-        "scripts/fedora32/tuning.sh"
+        "scripts/fedora32/tuning.sh",
+        "scripts/fedora32/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
@@ -1172,7 +1181,8 @@
         "scripts/fedora33/mariadb.sh",
         "scripts/fedora33/postfix.sh",
         "scripts/fedora33/magma.sh",
-        "scripts/fedora33/tuning.sh"
+        "scripts/fedora33/tuning.sh",
+        "scripts/fedora33/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
@@ -1223,7 +1233,8 @@
         "scripts/fedora34/mariadb.sh",
         "scripts/fedora34/postfix.sh",
         "scripts/fedora34/magma.sh",
-        "scripts/fedora34/tuning.sh"
+        "scripts/fedora34/tuning.sh",
+        "scripts/fedora34/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
@@ -1274,7 +1285,8 @@
         "scripts/fedora35/mariadb.sh",
         "scripts/fedora35/postfix.sh",
         "scripts/fedora35/magma.sh",
-        "scripts/fedora35/tuning.sh"
+        "scripts/fedora35/tuning.sh",
+        "scripts/fedora35/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
@@ -1325,7 +1337,8 @@
         "scripts/fedora36/mariadb.sh",
         "scripts/fedora36/postfix.sh",
         "scripts/fedora36/magma.sh",
-        "scripts/fedora36/tuning.sh"
+        "scripts/fedora36/tuning.sh",
+        "scripts/fedora36/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
@@ -1508,8 +1521,8 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2022.07.01-x86_64.iso",
-      "iso_checksum": "sha256:54974bcac724e97ec242552a8b7d01e037ca8a944100f366bbb6c80865b311df",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2022.12.01-x86_64.iso",
+      "iso_checksum": "sha256:de301b9f18973e5902b47bb00380732af38d8ca70084b573ae7cf36a818eb84c",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -1730,14 +1743,9 @@
       "vm_name": "magma-gentoo-libvirt",
       "output_directory": "output/magma-gentoo-libvirt",
       "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "5s",
+      "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "gentoo-nofb<enter>",
-        "<wait10><enter>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10><enter>",
         "sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf<enter><wait>",
         "passwd root<enter><wait><wait><wait>",
         "vagrant<enter><wait>",
@@ -1758,8 +1766,8 @@
       "memory": 8192,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20220731T170548Z.iso",
-      "iso_checksum": "sha256:77993dbeb43562d93994dac1b59f98f574c1056f0c2c9a11aec9e3e8e0296419",
+      "iso_url": "https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20221205T133149Z.iso",
+      "iso_checksum": "sha256:238d35eb0e9e576b666f7b928be8845fa324db6ddbf19fd395c65bb58d33b0dd",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -1842,7 +1850,7 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://ftp.nluug.nl/OpenBSD/6.9/amd64/cd69.iso",
+      "iso_url": "https://mirrors.lavabit.com/openbsd/6.9/amd64/cd69.iso",
       "iso_checksum": "sha256:b391350d72a4fcab550033c830a17612cff65ebdb6de428732d9b15f780bf9c2",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -1930,8 +1938,8 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://cdimage.debian.org/cdimage/archive/10.12.0/amd64/iso-cd/debian-10.12.0-amd64-netinst.iso",
-      "iso_checksum": "sha256:3cdec5aa9865a768434e4ad2b9fba0e8ca82fc297ceb4137518c53045d5d4af8",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/10.13.0/amd64/iso-cd/debian-10.13.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:75aa64071060402a594dcf1e14afd669ca0f8bf757b56d4c9c1a31b8f7c8f931",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -1974,8 +1982,8 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://cdimage.debian.org/cdimage/release/11.4.0/amd64/iso-cd/debian-11.4.0-amd64-netinst.iso",
-      "iso_checksum": "sha256:d490a35d36030592839f24e468a5b818c919943967012037d6ab3d65d030ef7f",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.5.0/amd64/iso-cd/debian-11.5.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:e307d0e583b4a8f7e5b436f8413d4707dd4242b70aea61eb08591dc0378522f3",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

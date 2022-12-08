@@ -16,6 +16,12 @@
 # cd .. && \
 # vagrant plugin list
 
+# To troubleshoot plugin build problems, replace (note the -V is capitalized 
+# for the gem command):
+# /opt/vagrant/embedded/bin/gem build vagrant-libvirt.gemspec 
+# with 
+# /opt/vagrant/embedded/bin/gem build -V vagrant-libvirt.gemspec
+
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
   export CMD=$BASH_SOURCE

@@ -17,9 +17,6 @@ rm --force /root/anaconda-ks.cfg /root/install.log /root/install.log.syslog /var
 # Clear the random seed.
 rm -f /var/lib/systemd/random-seed
 
-# Clear the command history.
-export HISTSIZE=0
-
 # Truncate the log files.
 printf "Truncate the log files.\n"
 find /var/log -type f -exec truncate --size=0 {} \;
@@ -27,3 +24,14 @@ find /var/log -type f -exec truncate --size=0 {} \;
 # Wipe the temp directory.
 printf "Purge the setup files and temporary data.\n"
 rm --recursive --force /var/tmp/* /tmp/* /var/cache/dnf/* /tmp/ks-script*
+
+# Don't persist the legacy network config scripts.
+rm -f /etc/sysconfig/network-scripts/ifcfg-eth0
+rm -f /etc/sysconfig/network-scripts/ifcfg-eth1
+rm -f /etc/sysconfig/network-scripts/ifcfg-eth2
+rm -f /etc/sysconfig/network-scripts/ifcfg-eth3
+
+# Clear the command history.
+export HISTSIZE=0
+
+exit 0

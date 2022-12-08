@@ -67,7 +67,7 @@ BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" packer-cache.
   sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
 jq --argjson new1 "${BUILDERS}" '.builders |= .[:-1] + $new1 + .[-1:]' packer-cache.json > packer-cache.new.json
 
-# Add provisioner/builder configs.
+# Add prevision/builder configs.
 BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-hyperv.json | \
   sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
 PROVISIONERS=`jq "[ .provisioners[] | select( .only[0] // \"no\" | contains(\"$1\")) ]" generic-hyperv.json | sed "s/$1/$2/g"`
@@ -107,7 +107,7 @@ cp --recursive "scripts/${1}" "scripts/${2}"
 # Replace the box name inside scripts (if applicable).
 find "scripts/${2}/" -type f -exec sed --in-place "s/$1/$2/g" {} \;
 
-# Duplicate the auto-instll configs/scripts.
+# Duplicate the auto-install configs/scripts.
 rename "http/generic.${1}" "http/generic.${2}" http/generic.${1}.* && git checkout "http/generic.${1}*"
 
 # Replace the box name inside scripts (if applicable).
@@ -124,25 +124,30 @@ else
   # We need to specify a version, but since we aren't building at this point, any value should work.
   export VERSION="1.0.0"
 
-  # We only validate these files, two at a time, because the packer validation process spwans 350+ processes.
-  packer validate packer-cache.new.json &> /dev/null &
+  # We only validate these files, two at a time, because the packer validation process spawns 350+ processes.
+  nice -n +19 packer validate packer-cache.new.json &> /dev/null &
   P1=$!
-  packer validate generic-hyperv.new.json &> /dev/null &
-  P2=$!
-  wait $P1 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
-  wait $P2 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
-  packer validate generic-vmware.new.json &> /dev/null &
-  P1=$!
-  packer validate generic-libvirt.new.json &> /dev/null &
-  P2=$!
-  wait $P1 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
-  wait $P2 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
-  packer validate generic-parallels.new.json &> /dev/null &
-  P1=$!
-  packer validate generic-virtualbox.new.json &> /dev/null &
-  P2=$!
-  wait $P1 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
-  wait $P2 || (tput setaf 1; printf "\n\nTemplate validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  nice -n +19 packer validate generic-hyperv.new.json &> /dev/null &
+  P2=$!  
+  nice -n +19 packer validate generic-vmware.new.json &> /dev/null &
+  P3=$!
+  
+  wait $P1 || (tput setaf 1; printf "\n\nThe new packer-cache template validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  wait $P2 || (tput setaf 1; printf "\n\nThe new generic-hyperv template validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  wait $P3 || (tput setaf 1; printf "\n\nThe new generic-vmware template validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  
+  nice -n +19 packer validate generic-libvirt.new.json &> /dev/null &
+  P4=$! 
+  nice -n +19 packer validate generic-parallels.new.json &> /dev/null &
+  P5=$!
+  nice -n +19 packer validate generic-virtualbox.new.json &> /dev/null &
+  P6=$!
+
+  wait $P4 || (tput setaf 1; printf "\n\nThe new generic-libvirt template validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  wait $P5 || (tput setaf 1; printf "\n\nThe new generic-parallels template validation failed.\n\n\n"; tput sgr0 ; exit 1)
+  wait $P6 || (tput setaf 1; printf "\n\nThe new generic-virtualbox template validation failed.\n\n\n"; tput sgr0 ; exit 1)
+
+  tput sgr0
 
 fi
 
@@ -152,3 +157,6 @@ mv generic-vmware.new.json generic-vmware.json
 mv generic-libvirt.new.json generic-libvirt.json
 mv generic-parallels.new.json generic-parallels.json
 mv generic-virtualbox.new.json generic-virtualbox.json
+
+tput sgr0
+

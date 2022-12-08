@@ -42,7 +42,7 @@ done
 # done
 
 # Find the VirtualBox boxes and connect via RDP.
-which vboxmanage &> /dev/null
+lsmod 2>&1 | grep --quiet --extended-regexp "^vboxdrv " && which vboxmanage &> /dev/null
 if [ $? == 0 ]; then
   vboxmanage list vms | awk -F' ' '{print $2}' | while read BOX ; do 
     PORT=$(vboxmanage showvminfo "$BOX" --details 2>&1 | grep "VRDE property:" | grep "TCP/Ports" | grep -Eo '\"[0-9]*\"' | tr -d '\"' )

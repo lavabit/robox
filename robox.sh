@@ -50,7 +50,7 @@ fi
 source $BASE/.credentialsrc
 
 # Version Information
-[ ! -n "$VERSION" ] && export VERSION="4.1.4"
+[ ! -n "$VERSION" ] && export VERSION="4.2.8"
 export AGENT="Vagrant/2.2.19 (+https://www.vagrantup.com; ruby2.7.4)"
 
 # Limit the number of cpus packer will use and control how errors are handled.
@@ -59,41 +59,50 @@ export AGENT="Vagrant/2.2.19 (+https://www.vagrantup.com; ruby2.7.4)"
 [ ! -n "$PACKER_MAX_PROCS" ] && export PACKER_MAX_PROCS="1"
 [ ! -n "$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="$BASE/packer_cache/"
 
+# The provider platforms.
+ROBOX_PROVIDERS="docker hyperv libvirt parallels virtualbox vmware"
+
+# The namespaces.
+ROBOX_NAMESPACES="generic magma developer lineage"
+
+# The iso update functions.
+ROBOX_ISOS="all arch centos centos8s centos9s gentoo hardenedbsd"
+
 # The list of packer config files.
-FILES="packer-cache.json "\
+ROBOX_FILES="packer-cache.json "\
 "magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
 "generic-docker.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-libvirt-x32.json generic-parallels.json generic-virtualbox.json generic-virtualbox-x32.json "\
 "lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
 "developer-ova.json developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
 
 # Collect the list of ISO urls.
-ISOURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}'`)
-ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $FILES | awk -F'"' '{print $4}' | sed "s/^sha256://g"`)
-UNIQURLS=(`grep -E "iso_url|guest_additions_url" $FILES | awk -F'"' '{print $4}' | sort | uniq`)
+ISOURLS=(`grep -E "iso_url|guest_additions_url" $ROBOX_FILES | awk -F'"' '{print $4}'`)
+ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $ROBOX_FILES | awk -F'"' '{print $4}' | sed "s/^sha256://g"`)
+UNIQURLS=(`grep -E "iso_url|guest_additions_url" $ROBOX_FILES | awk -F'"' '{print $4}' | sort | uniq`)
 
 # Collect the list of box names.
-MAGMA_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
+MAGMA_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 MAGMA_SPECIAL_BOXES="magma-hyperv magma-vmware magma-libvirt magma-virtualbox magma-docker "\
 "magma-centos-hyperv magma-centos-vmware magma-centos-libvirt magma-centos-virtualbox magma-centos-docker "\
 "magma-debian-hyperv magma-debian-vmware magma-debian-libvirt magma-debian-virtualbox "\
 "magma-fedora-hyperv magma-fedora-vmware magma-fedora-libvirt magma-fedora-virtualbox "\
 "magma-ubuntu-hyperv magma-ubuntu-vmware magma-ubuntu-libvirt magma-ubuntu-virtualbox "
-GENERIC_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
-ROBOX_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic-" | sed "s/generic-/roboxes-/g"| sort --field-separator=- -k 3i -k 2.1,2.0`
-LINEAGE_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
-LINEAGEOS_BOXES=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sed "s/lineage-/lineageos-/g"| sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
+GENERIC_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
+ROBOX_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic-" | sed "s/generic-/roboxes-/g"| sort --field-separator=- -k 3i -k 2.1,2.0`
+LINEAGE_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
+LINEAGEOS_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sed "s/lineage-/lineageos-/g"| sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
 MAGMA_BOXES=`echo $MAGMA_SPECIAL_BOXES $MAGMA_BOXES | sed 's/ /\n/g' | sort -u --field-separator=- -k 3i -k 2.1,2.0`
 BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $LINEAGEOS_BOXES"
 
 # Collect the list of box tags.
-MAGMA_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
+MAGMA_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
 MAGMA_SPECIAL_TAGS="lavabit/magma lavabit/magma-centos lavabit/magma-debian lavabit/magma-fedora lavabit/magma-ubuntu"
-ROBOX_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep -v "roboxes-x32" |sort -u --field-separator=-`
-ROBOX_X32_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep "roboxes-x32" |sort -u --field-separator=-`
-GENERIC_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | grep -v "generic-x32" | sort -u --field-separator=-`
-GENERIC_X32_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | grep "generic-x32" | sort -u --field-separator=-`
-LINEAGE_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineage\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
-LINEAGEOS_TAGS=`grep -E '"name":' $FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineageos\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
+ROBOX_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep -v "roboxes-x32" |sort -u --field-separator=-`
+ROBOX_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep "roboxes-x32" |sort -u --field-separator=-`
+GENERIC_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | grep -v "generic-x32" | sort -u --field-separator=-`
+GENERIC_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | grep "generic-x32" | sort -u --field-separator=-`
+LINEAGE_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineage\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
+LINEAGEOS_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineageos\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
 MAGMA_TAGS=`echo $MAGMA_SPECIAL_TAGS $MAGMA_TAGS | sed 's/ /\n/g' | sort -u --field-separator=-`
 TAGS="$GENERIC_TAGS $GENERIC_X32_TAGS $ROBOX_TAGS $ROBOX_X32_TAGS $MAGMA_TAGS $LINEAGE_TAGS $LINEAGEOS_TAGS"
 
@@ -104,137 +113,24 @@ FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lav
 export EXCEPTIONS=""
 
 # The repository URLs, so we can catch any which might disappeared since the last build.
-# Ubuntu 16.04
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
-
-# Ubuntu 16.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/yakkety/InRelease" )
-
-# Ubuntu 17.04
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/zesty/InRelease" )
-
-# Ubuntu 17.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/artful/InRelease" )
-
-# Ubuntu 18.04
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/bionic/InRelease" )
-
-# Ubuntu 18.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/cosmic/InRelease" )
-
-# Ubuntu 19.04
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/disco/InRelease" )
-
-# Ubuntu 19.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/eoan/InRelease" )
-
-# Ubuntu 20.04
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/focal/InRelease" )
-
-# Ubuntu 20.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/groovy/InRelease" )
-
-# Ubuntu 21.04
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/hirsute/InRelease" )
-
-# Ubuntu 21.10
-REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/impish/InRelease" )
-
-# Ubuntu 22.04
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/jammy/InRelease" )
-
-# Ubuntu 22.10
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/kinetic/InRelease" )
-
-# Fedora 27
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 28
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 29
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 30
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/30/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 31
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 32
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/32/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 33
-REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/33/Everything/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 34
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 35
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/x86_64/os/repodata/repomd.xml" )
-
-# Fedora 36
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/os/repodata/repomd.xml" )
-
-# CentOS 8 Stream
-REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/AppStream/x86_64/os/repodata/repomd.xml" )
-
-# CentOS 9 Stream
-REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/AppStream/x86_64/os/repodata/repomd.xml" )
 
 # Alma 8
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.6/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/isos/x86_64/AlmaLinux-8.8-x86_64-boot.iso" )
 
 # Alma 9
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.0/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
-# Rocky 8
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.6/BaseOS/x86_64/os/repodata/repomd.xml" )
-
-# Rocky 9
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.0/BaseOS/x86_64/os/repodata/repomd.xml" )
-
-# Oracle 6
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/latest/x86_64/repodata/repomd.xml" )
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/UEKR4/x86_64/repodata/repomd.xml" )
-
-# Oracle 7
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/repodata/repomd.xml" )
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/UEKR6/x86_64/repodata/repomd.xml" )
-
-# Oracle 8
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/repodata/repomd.xml" )
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/repomd.xml" )
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repomd.xml" )
-
-# Oracle 9
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
-
-# FreeBSD 11
-REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
-
-# FreeBSD 12
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
-
-# FreeBSD 13
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
-
-# FreeBSD 14
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
-
-# HardenedBSD 12
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:12:amd64/packagesite.txz" )
-
-# HardenedBSD 13
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
-
-# HardenedBSD 14
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesite.txz" )
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/isos/x86_64/AlmaLinux-9.2-x86_64-boot.iso" )
 
 # Alpine Edge
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
@@ -288,17 +184,46 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.15/community/x86_64/APKINDEX
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/main/x86_64/APKINDEX.tar.gz" )
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.16/community/x86_64/APKINDEX.tar.gz" )
 
-# NetBSD 8.2
-REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/SHA512.bz2" )
+# Alpine 3.17
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
 
-# NetBSD 9.2
-REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/SHA512.bz2" )
+# Alpine 3.18
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz" )
 
-# OpenSUSE 42.3
-REPOS+=( "http://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
+# When the release ISO becomes available, update the JSON files, and remove this URL.
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.18/releases/x86_64/alpine-virt-3.18.0-x86_64.iso" )
 
-# OpenSUSE 15.4
-REPOS+=( "https://download.opensuse.org/distribution/leap/15.4/repo/oss/INDEX.gz" )
+# CentOS 6
+REPOS+=( "https://vault.centos.org/6.10/os/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://vault.centos.org/6.10/os/x86_64/repodata/repomd.xml.asc" )
+REPOS+=( "https://vault.centos.org/6.10/updates/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://vault.centos.org/6.10/updates/x86_64/repodata/repomd.xml.asc" )
+
+# CentOS 7
+REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/os/x86_64/repodata/repomd.xml" )
+REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/os/x86_64/repodata/repomd.xml.asc" )
+REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/updates/x86_64/repodata/repomd.xml" )
+REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/updates/x86_64/repodata/repomd.xml.asc" )
+
+# CentOS 8
+REPOS+=( "https://vault.centos.org/8.5.2111/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://vault.centos.org/8.5.2111/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://vault.centos.org/8.5.2111/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://vault.centos.org/8.5.2111/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# CentOS 8 Stream
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/8-stream/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# CentOS 9 Stream
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/centos-stream/9-stream/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Devuan 1
 REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/jessie/InRelease" )
@@ -331,7 +256,223 @@ REPOS+=( "https://ftp.debian.org/debian/dists/bullseye/InRelease" )
 REPOS+=( "https://ftp.debian.org/debian/dists/bookworm/InRelease" )
 
 # Debian 13
-# REPOS+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
+FUTURE+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
+
+# FreeBSD 11
+REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
+
+# FreeBSD 12
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
+
+# FreeBSD 13
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
+
+# FreeBSD 14
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
+
+# Fedora 27
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 28
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 29
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 30
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/30/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 31
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 32
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/32/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 33
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/33/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 34
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 35
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 36
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 37
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/os/repodata/repomd.xml" )
+
+# FreeBSD 11
+REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
+
+# FreeBSD 12
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
+
+# FreeBSD 13
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
+
+# FreeBSD 14
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
+
+# Gentoo
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.bz2" )
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.bz2.gpgsig" )
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.bz2.md5sum" )
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.xz" )
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.xz.gpgsig" )
+REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.xz.md5sum" )
+
+# HardenedBSD 12
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:12:amd64/packagesite.txz" )
+
+# HardenedBSD 13
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
+
+# HardenedBSD 14
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesite.txz" )
+
+# NetBSD 8.2
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.2/SHA512.bz2" )
+
+# NetBSD 9.3
+REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.3/SHA512.bz2" )
+
+# OpenBSD 6.9
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/index.txt" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/SHA256" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/SHA256.sig" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/man69.tgz" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/base69.tgz" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/comp69.tgz" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/index.txt" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256" )
+REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256.sig" )
+
+# OpenBSD 7.2
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/index.txt" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/SHA256" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/SHA256.sig" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/man72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/base72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/comp72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/index.txt" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/SHA256" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/SHA256.sig" )
+
+# Oracle 6
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/UEKR4/x86_64/repodata/repomd.xml" )
+
+# Oracle 7
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/UEKR6/x86_64/repodata/repomd.xml" )
+
+# Oracle 8
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repomd.xml" )
+
+# When Oracle 8.8 is available this URL will become active. Update the JSON files and remove from here.
+FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL8/u8/x86_64/x86_64-boot-uek.iso" )
+
+# Oracle 9
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
+
+# When Oracle 9.2 is available this URL will become active. Update the JSON files and start looking for the 9,3 update.
+FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL9/u2/x86_64/OracleLinux-R9-U2-x86_64-boot.iso" )
+
+# OpenSUSE 42.3
+REPOS+=( "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
+
+# OpenSUSE 15.4
+REPOS+=( "https://download.opensuse.org/distribution/leap/15.4/repo/oss/INDEX.gz" )
+
+# Rocky 8
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/isos/x86_64/Rocky-8.8-x86_64-boot.iso" )
+
+# When 8.8 is released, these will replace the 8.7 URLs above.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# Rocky 9
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/isos/x86_64/Rocky-9.2-x86_64-boot.iso" )
+
+# When 9.2 is released, these will replace the 9.1 URLs above.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+
+# Ubuntu 16.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
+
+# Ubuntu 16.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/yakkety/InRelease" )
+
+# Ubuntu 17.04
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/zesty/InRelease" )
+
+# Ubuntu 17.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/artful/InRelease" )
+
+# Ubuntu 18.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/bionic/InRelease" )
+
+# Ubuntu 18.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/cosmic/InRelease" )
+
+# Ubuntu 19.04
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/disco/InRelease" )
+
+# Ubuntu 19.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/eoan/InRelease" )
+
+# Ubuntu 20.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/focal/InRelease" )
+
+# Ubuntu 20.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/groovy/InRelease" )
+
+# Ubuntu 21.04
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/hirsute/InRelease" )
+
+# Ubuntu 21.10
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/impish/InRelease" )
+
+# Ubuntu 22.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/jammy/InRelease" )
+
+# Ubuntu 22.10
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/kinetic/InRelease" )
+
+# Ubuntu 23.04
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/lunar/InRelease" )
+
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://releases.ubuntu.com/23.04/ubuntu-23.04-live-server-amd64.iso" )
+
+# Ubuntu 23.10
+# This means the 23.10 repository is available.
+# REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/UNKNOWN/InRelease" )
+
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://releases.ubuntu.com/23.10/ubuntu-23.10-live-server-amd64.iso" )
 
 # EPEL
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/epel/6/x86_64/repodata/repomd.xml" )
@@ -443,8 +584,17 @@ function start() {
   # sudo systemctl restart vmtoolsd.service
   if [ -f /usr/lib/systemd/system/vboxdrv.service ]; then sudo systemctl restart vboxdrv.service ; fi
   if [ -f /usr/lib/systemd/system/libvirtd.service ]; then sudo systemctl restart libvirtd.service ; fi
-  if [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ;
-  elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
+    
+  if [ -f /usr/lib/systemd/system/podman.service ]; then 
+    sudo systemctl restart podman.service ; 
+  elif [ -f /usr/lib/systemd/system/io.podman.service ]; then 
+    sudo systemctl restart io.podman.service ; 
+  elif [ -f /usr/lib/systemd/system/docker-storage-setup.service ] && [ -f /usr/lib/systemd/system/docker.service ]; then 
+    sudo systemctl restart docker-storage-setup.service
+    sudo systemctl restart docker.service
+  elif [ -f /usr/lib/systemd/system/docker.service ]; then
+    sudo systemctl restart docker.service
+  fi
 
   # Confirm the VMware modules loaded.
   if [ -f /usr/bin/vmware-modconfig ]; then
@@ -504,36 +654,6 @@ function print_iso() {
   tput setaf 2; printf "\n$1\n\n"; tput sgr0; printf "${2}\n${SHA}\n\n"
 }
 
-# Print the current URL and SHA hash for install discs which are updated frequently.
-function isos() {
-
-  [ ! -n "$JOBS" ] && export JOBS="16"
-
-  # Find the Gentoo URL.
-  URL="https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
-  ISO=`${CURL} --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
-  URL="${URL}${ISO}"
-  N=( "${N[@]}" "Gentoo" ); U=( "${U[@]}" "$URL" )
-
-  # Find the Arch URL.
-  URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
-  ISO=`${CURL} --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
-  URL="${URL}${ISO}"
-  N=( "${N[@]}" "Arch" ); U=( "${U[@]}" "$URL" )
-
-  # Ubuntu Disco
-  # URL="https://cdimage.ubuntu.com/ubuntu-server/daily/current/disco-server-amd64.iso"
-  # N=( "${N[@]}" "Disco" ); U=( "${U[@]}" "$URL" )
-
-  # Debian Buster
-  # URL="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso"
-  # N=( "${N[@]}" "Buster" ); U=( "${U[@]}" "$URL" )
-
-  export -f print_iso
-  parallel --jobs $JOBS --xapply print_iso {1} {2} ::: "${N[@]}" ::: "${U[@]}"
-
-}
-
 function iso() {
 
   if [ "$1" == "gentoo" ]; then
@@ -555,7 +675,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
         return 1
@@ -567,8 +687,8 @@ function iso() {
     ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
 
     # Replace the existing ISO and hash values with the update values.
-    sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
 
 
   elif [ "$1" == "arch" ]; then
@@ -590,7 +710,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
         return 1
@@ -602,8 +722,8 @@ function iso() {
     ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
 
     # Replace the existing ISO and hash values with the update values.
-    sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
 
   elif [ "$1" == "centos8s" ]; then
     
@@ -624,7 +744,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe CentOS 8 stream ISO update failed.\n\n"; tput sgr0
         return 1
@@ -636,8 +756,8 @@ function iso() {
     ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
 
     # Replace the existing ISO and hash values with the update values.
-    sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
     
   elif [ "$1" == "centos9s" ]; then
 
@@ -658,7 +778,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe CentOS 9 stream ISO update failed.\n\n"; tput sgr0
         return 1
@@ -670,8 +790,8 @@ function iso() {
     ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
 
     # Replace the existing ISO and hash values with the update values.
-    sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
     
   elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
 
@@ -681,6 +801,10 @@ function iso() {
 
     # Find the HardenedBSD URL.
     URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/"
+    
+    # Alternate server (update in two places).
+    # URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/"
+    
     BUILD=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]{3}/\"" | grep --extended-regexp --only-matching "build\-[0-9]{3}" | sort -r | uniq | head -1`
     if [ $? != 0 ] || [ "$BUILD" == "" ]; then
       tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
@@ -689,10 +813,13 @@ function iso() {
 
     # Calculate the new URL.
     URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
+    
+    # Alternate server (update in two places).
+    # URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`${CURL} --fail --speed-limit 0 --speed-time 10 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
         return 1
@@ -704,8 +831,8 @@ function iso() {
     ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
 
     # Replace the existing ISO and hash values with the update values.
-    sed --in-place "s/$ISO_URL/$URL/g" $FILES
-    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $FILES
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
   elif [ "$1" == "stream" ] || [ "$1" == "streams" ]; then
     iso centos8s
     iso centos9s
@@ -737,17 +864,30 @@ function cache {
 
 }
 
-# Verify all of the ISO locations are still valid.
+# Let us know when URLs become valid.
+function ready_url {
+
+    # Check whether a particular URL has become valid.
+    ${CURL} --fail --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 --max-time 120 --write-out "%{http_code}\n" --output /dev/null "$1" | grep --silent --extended-regexp "200"
+
+    if [ $? == 0 ]; then
+      printf "Link Ready:    $1\n"
+      return 1
+    fi
+
+}
+
+# Verify all of the URLs are still valid.
 function verify_url {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
-  ${CURL} --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 "$1" | grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
+  ${CURL} --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 --max-time 120 "$1" | grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
 
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
 
     # Wait a minute, and then try again. Many of the failures are transient network errors.
-    sleep 10; ${CURL} --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 "$1" |  grep --extended-regexp "HTTP/1\.1 [0-9]*|HTTP/2\.0 [0-9]*|HTTP/2 [0-9]*" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
+    sleep 10; ${CURL} --fail --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 --max-time 120 --write-out "%{http_code}\n" --output /dev/null "$1" | grep --silent --extended-regexp "200"
 
     if [ $? != 0 ]; then
       printf "Link Failure:  $1\n"
@@ -760,7 +900,7 @@ function verify_url {
 function verify_sum {
 
   # Grab just the response header and look for the 200 response code to indicate the link is valid.
-  ${CURL} --silent --location --head "$1" | grep --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
+  ${CURL} --silent --location --head --connect-timeout 60 --max-time 120  "$1" | grep --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200" | tail -1 | grep --silent --extended-regexp "HTTP/1\.1 200 OK|HTTP/2\.0 200 OK|HTTP/2 200"
 
   # The grep return code tells us whether it found a match in the header or not.
   if [ $? != 0 ]; then
@@ -823,7 +963,7 @@ function verify_availability() {
 
   if [ ! -z ${CURLOPTS+x} ]; then export CURL="${CURL} $(eval echo $CURLOPTS)" ; fi
 
-  curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box" | grep --silent "200"
+  curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --max-time 300 --write-out "%{http_code}" "https://vagrantcloud.com/$1/boxes/$2/versions/$4/providers/$3.box" | grep --silent "200"
 
   if [ $? != 0 ]; then
     printf "%sBox  -   %s${1}/${2} ${3}%s \n%s" "`tput sgr0`" "`tput setaf 1`" "`tput sgr0`" "`tput sgr0`"
@@ -844,6 +984,32 @@ function verify_availability() {
   return $RESULT
 }
 
+# List all of the iso update targets.
+function list_isos() {
+  echo $ROBOX_ISOS
+}
+
+# List all of the org/type namespaces.
+function list_namespaces() {
+  echo $ROBOX_NAMESPACES
+}
+
+# List all of the supported providers.
+function list_providers() {
+  echo $ROBOX_PROVIDERS
+}
+
+# List all of the box names.
+function list_boxes() {
+  BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $LINEAGEOS_BOXES"
+  echo $BOXES
+}
+
+# List all of the config files.
+function list_configs() {
+  echo $(echo $ROBOX_FILES | sed 's/.json//g')
+}
+
 # Build the boxes and cleanup the packer cache after each run.
 function build() {
 
@@ -855,6 +1021,11 @@ function build() {
   if [[ $OS == "Windows_NT" ]]; then
     export PACKER_LOG_PATH="$BASE/logs/$1-`date +'%Y%m%d.%H.%M.%S'`.txt"
     packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" $1.json
+  elif [[ "$1" =~ ^.*docker.*$ ]]; then
+    container-registry-login 
+    export PACKER_LOG_PATH="$BASE/logs/$1-`date +'%Y%m%d.%H.%M.%S'`.txt"
+    env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" $1.json
+    container-registry-logout
   else
     export PACKER_LOG_PATH="$BASE/logs/$1-`date +'%Y%m%d.%H.%M.%S'`.txt"
     packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" $1.json
@@ -910,12 +1081,12 @@ function box() {
   if [[ "$(uname)" == "Linux" ]]; then
 
       export PACKER_LOG_PATH="$BASE/logs/magma-docker-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker.json; docker-logout)
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker.json; container-registry-logout)
       export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-libvirt.json
 
       export PACKER_LOG_PATH="$BASE/logs/generic-docker-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (docker-login && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker.json; docker-logout)
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker.json; container-registry-logout)
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*x32-libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x32.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
@@ -970,6 +1141,11 @@ function links() {
   
   for ((i = 0; i < ${#RESOURCES[@]}; ++i)); do
     (verify_url "${RESOURCES[$i]}") &
+    sleep 0.1 &> /dev/null || echo "" &> /dev/null
+  done
+
+  for ((i = 0; i < ${#FUTURE[@]}; ++i)); do
+    (ready_url "${FUTURE[$i]}") &
     sleep 0.1 &> /dev/null || echo "" &> /dev/null
   done
 
@@ -1663,13 +1839,13 @@ function distclean() {
     done
   fi
 
-  # If Docker is installed.
-  if [ "$(command -v docker-latest)" ]; then
-    docker-latest ps --all --quiet | while read UUID ; do
-      docker-latest rm --force $UUID &> /dev/null
+  # If Podman / Docker is installed.
+  if [ "$(command -v podman)" ]; then
+    podman ps --all --quiet | while read UUID ; do
+      podman rm --force $UUID &> /dev/null
     done
-    docker-latest images --all --quiet | while read UUID ; do
-      docker rmi --force $UUID &> /dev/null
+    podman images --all --quiet | while read UUID ; do
+      podman rmi --force $UUID &> /dev/null
     done
   elif [ "$(command -v docker)" ]; then
     docker ps --all --quiet | while read UUID ; do
@@ -1680,17 +1856,12 @@ function distclean() {
     done
   fi
 
-  sudo killall -9 /usr/bin/docker-containerd-shim-latest &> /dev/null
-  sudo killall -9 docker-containerd-shim-latest &> /dev/null
-
-  sudo killall -9 /usr/lib/vmware/bin/vmware-vmx &> /dev/null
-  sudo killall -9 killall vmware-vmx &> /dev/null
-
-  sudo killall -9 /usr/lib/virtualbox/VBoxHeadless &> /dev/null
-  sudo killall -9 VBoxHeadless &> /dev/null
-
-  sudo killall -9 /usr/libexec/qemu-kvm &> /dev/null
-  sudo killall -9 qemu-kvm &> /dev/null
+  sudo killall -9 docker-containerd-shim docker-containerd-shim-current /usr/bin/docker-containerd-shim /usr/bin/docker-containerd-shim-current &> /dev/null
+  sudo killall -9 VBoxHeadless /usr/lib/virtualbox/VBoxHeadless &> /dev/null
+  sudo killall -9 vmware-vmx /usr/lib/vmware/bin/vmware-vmx &> /dev/null
+  sudo killall -9 qemu-system-x86_64 /usr/local/bin/qemu-system-x86_64 &> /dev/null
+  sudo killall -9 qemu-system-i386 /usr/local/bin/qemu-system-i386 &> /dev/null
+  sudo killall -9 qemu-kvm /usr/libexec/qemu-kvm &> /dev/null
 
   sudo truncate --size=0 /etc/vmware/vmnet1/dhcpd/dhcpd.leases
   sudo truncate --size=0 /etc/vmware/vmnet8/dhcpd/dhcpd.lease
@@ -1707,9 +1878,7 @@ function distclean() {
   if [ -f /etc/init.d/vmware-workstation-server ]; then sudo /etc/init.d/vmware-workstation-server start ; fi
   if [ -f /usr/lib/systemd/system/vboxdrv.service ]; then sudo systemctl restart vboxdrv.service ; fi
   if [ -f /usr/lib/systemd/system/libvirtd.service ]; then sudo systemctl restart libvirtd.service ; fi
-  if [ -f /usr/lib/systemd/system/docker-latest.service ]; then sudo systemctl restart docker-latest.service ;
-  elif [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
-
+  if [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
   if [ -f /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility ]; then
     sudo systemctl stop vagrant-vmware-utility.service &> /dev/null
     sudo /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility service uninstall &> /dev/null
@@ -1732,14 +1901,27 @@ function distclean() {
 
 }
 
-function docker-login() {
+function container-registry-login() {
+
+  if command -v podman > /dev/null 2>&1; then
+    export DOCKER="podman"
+  else
+    export DOCKER="docker"
+  fi
+
+  # This will force podman to store the tokens in the same place as docker.
+  [ ! -d $HOME/.docker/ ] && mkdir $HOME/.docker/
+  [ ! -f $HOME/.docker/config.json ] && printf '{"auths":{}}' > $HOME/.docker/config.json
+  
+  export REGISTRY_AUTH_FILE=$HOME/.docker/config.json
 
   # If jq is installed, we can use it to determine whether a login is required. Otherwise we rely on the more primitive login logic.
   if [ -f /usr/bin/jq ] || [ -f /usr/local/bin/jq ]; then
-    if [[ `jq "[ .auths.\"quay.io\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]]; then
-      docker login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
+    
+    if [[ `jq "[ .auths.\"quay.io\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+      ${DOCKER} login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
       if [[ $? != 0 ]]; then
-        tput setaf 1; tput bold; printf "\n\nThe quay.io login credentials failed.\n\n"; tput sgr0
+        tput setaf 1; tput bold; printf "\n\nThe quay.io login failed.\n\n"; tput sgr0
         read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
         RESPONSE=${RESPONSE,,}
         if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
@@ -1747,8 +1929,45 @@ function docker-login() {
         fi
       fi
     fi
-    if [[ `jq "[ .auths.\"docker.io\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]] || [[ `jq "[ .auths.\"https://index.docker.io/v1/\" ]" ~/.docker/config.json | jq " .[] | length"` == 0 ]]; then
-      docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
+
+    if [[ `jq "[ .auths.\"registry.docker.com\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+      ${DOCKER} login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" registry.docker.com
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe docker.io login failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
+    fi
+
+    if [[ `jq "[ .auths.\"https://index.docker.io/v1/\\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+      ${DOCKER} login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" https://index.docker.io/v1/
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe index.docker.io login failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
+    fi
+
+    if [ -d $HOME/.docker/ ] && [ -f $HOME/.docker/config.json ] && \
+      [[ `jq "[ .auths.\"docker.io\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]] && \
+      [[ `jq "[ .auths.\"https://index.docker.io/v1/\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 1 ]]; then
+      
+      jq '.auths = {"docker.io":.auths."https://index.docker.io/v1/"} + .auths' $HOME/.docker/config.json > $HOME/.docker/config.json.new
+      if [[ $? == 0 ]] && [[ `jq "[ .auths.\"docker.io\" ]" $HOME/.docker/config.json.new | jq " .[] | length"` == 1 ]]; then
+        mv $HOME/.docker/config.json.new $HOME/.docker/config.json
+      else
+        rm -f  $HOME/.docker/config.json.new
+      fi
+    
+    else
+
+      ${DOCKER} login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe docker.io login credentials failed.\n\n"; tput sgr0
         read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
@@ -1757,13 +1976,15 @@ function docker-login() {
           exit 1
         fi
       fi
+
     fi
+
   else
-    RUNNING=`docker info 2>&1 | grep --count --extended-regexp "^Username:"`
+    RUNNING=`${DOCKER} info 2>&1 | grep --count --extended-regexp "^Username:"`
 
     if [ $RUNNING == 0 ]; then
 
-      docker login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
+      ${DOCKER} login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe quay.io login credentials failed.\n\n"; tput sgr0
         read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
@@ -1774,7 +1995,17 @@ function docker-login() {
         fi
       fi
 
-      docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
+      ${DOCKER} login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" registry.docker.com
+      if [[ $? != 0 ]]; then
+        tput setaf 1; tput bold; printf "\n\nThe registry.docker.com login credentials failed.\n\n"; tput sgr0
+        read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
+        RESPONSE=${RESPONSE,,}
+        if [[ ! $RESPONSE =~ ^(yes|y| ) ]] && [[ ! -z $RESPONSE ]]; then
+          exit 1
+        fi
+      fi
+
+      ${DOCKER} login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe docker.io login credentials failed.\n\n"; tput sgr0
         read -t 30 -r -p "Would you like to continue? [Y/n]: " RESPONSE
@@ -1789,20 +2020,39 @@ function docker-login() {
 
   fi
 
+  if command -v podman > /dev/null 2>&1; then
+    [ ! -d $HOME/.docker/ ] && mkdir $HOME/.docker/
+    sudo cat ${XDG_RUNTIME_DIR}/containers/auth.json > $HOME/.docker/config.json
+  fi
+
 }
 
-function docker-logout() {
+function container-registry-logout() {
+
+  if command -v podman > /dev/null 2>&1; then
+    export DOCKER="podman"
+  else
+    export DOCKER="docker"
+  fi
+
+  # This will force podman to store the tokens in the same place as docker.
+  [ ! -d $HOME/.docker/ ] && mkdir $HOME/.docker/
+  [ ! -f $HOME/.docker/config.json ] && printf '{"auths":{}}' > $HOME/.docker/config.json
+  
+  export REGISTRY_AUTH_FILE=$HOME/.docker/config.json
+
   RUNNING=`ps -ef | grep --invert grep | grep --count --extended-regexp "packer build.*generic-docker.json|packer build.*magma-docker.json"`
 
   if [ $RUNNING == 0 ]; then
-    docker logout quay.io && docker logout docker.io && docker logout https://index.docker.io/v1/
-    if [[ $? != 0 ]]; then
-      tput setaf 1; tput bold; printf "\n\nThe registry logout command failed.\n\n"; tput sgr0
-      exit 1
-    fi
+    ${DOCKER} logout registry.docker.com &> /dev/null
+    ${DOCKER} logout https://index.docker.io/v1/ &> /dev/null
+    ${DOCKER} logout docker.io &> /dev/null
+    ${DOCKER} logout quay.io &> /dev/null
+    printf '{"auths":{}}' > $HOME/.docker/config.json
   else
     tput setaf 3; tput bold; printf "\nSkipping registry logout because builds are still running.\n\n"; tput sgr0
   fi
+
 }
 
 function magma() {
@@ -1813,7 +2063,7 @@ function magma() {
     build magma-libvirt
     build magma-virtualbox
 
-    docker-login ; build magma-docker; docker-logout
+    container-registry-login ; build magma-docker; container-registry-logout
   fi
 }
 
@@ -1829,7 +2079,7 @@ function generic() {
     build generic-virtualbox
     build generic-virtualbox-x32
 
-    docker-login ; build generic-docker; docker-logout
+    container-registry-login ; build generic-docker; container-registry-logout
   fi
 }
 
@@ -2028,6 +2278,16 @@ elif [[ $1 == "build" ]]; then builder
 elif [[ $1 == "cleanup" ]]; then cleanup
 elif [[ $1 == "distclean" ]]; then distclean
 
+elif [[ $1 == "list-isos" ]]; then list_isos
+elif [[ $1 == "list-boxes" ]]; then list_boxes
+elif [[ $1 == "list-namespaces" ]]; then list_namespaces
+elif [[ $1 == "list-providers" ]]; then list_providers
+elif [[ $1 == "list-configs" ]]; then list_configs
+
+# Login/logout aliases for the container registries.
+elif [[ $1 == "container-registry-login" || $1 == "registry-login" || $1 == "docker-login" || $1 == "podman-login" ]]; then container-registry-login 
+elif [[ $1 == "container-registry-logout" || $1 == "registry-logout" || $1 == "docker-logout" || $1 == "podman-logout" ]]; then container-registry-logout 
+
 # The type functions.
 elif [[ $1 == "ova" ]]; then vmware
 elif [[ $1 == "vmware" ]]; then vmware
@@ -2036,8 +2296,8 @@ elif [[ $1 == "libvirt" ]]; then libvirt
 elif [[ $1 == "parallels" ]]; then parallels
 elif [[ $1 == "virtualbox" ]]; then virtualbox
 
-# Docker is a command, so to avoid name space isues, we use an inline function.
-elif [[ $1 == "docker" ]]; then verify_json generic-docker ; verify_json magma-docker ; docker-login ; build generic-docker ; build magma-docker ; docker-logout
+# Docker is a command, so to avoid name space issues, we use an inline function instead calling a function called "docker."
+elif [[ $1 == "docker" ]]; then verify_json generic-docker ; verify_json magma-docker ; container-registry-login ; build generic-docker ; build magma-docker ; container-registry-logout
 
 # The helper functions.
 elif [[ $1 == "isos" ]]; then isos
@@ -2063,7 +2323,7 @@ elif [[ $1 == "magma-vmware" || $1 == "magma-vmware.json" ]]; then build magma-v
 elif [[ $1 == "magma-hyperv" || $1 == "magma-hyperv.json" ]]; then build magma-hyperv
 elif [[ $1 == "magma-libvirt" || $1 == "magma-libvirt.json" ]]; then build magma-libvirt
 elif [[ $1 == "magma-virtualbox" || $1 == "magma-virtualbox.json" ]]; then build magma-virtualbox
-elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then verify_json magma-docker ; docker-login ; build magma-docker ; docker-logout
+elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then build magma-docker
 
 elif [[ $1 == "developer-vmware" || $1 == "developer-vmware.json" ]]; then build developer-vmware
 elif [[ $1 == "developer-hyperv" || $1 == "developer-hyperv.json" ]]; then build developer-hyperv
@@ -2077,7 +2337,7 @@ elif [[ $1 == "generic-libvirt-x32" || $1 == "generic-libvirt-x32.json" ]]; then
 elif [[ $1 == "generic-parallels" || $1 == "generic-parallels.json" ]]; then build generic-parallels
 elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox.json" ]]; then build generic-virtualbox
 elif [[ $1 == "generic-virtualbox-x32" || $1 == "generic-virtualbox-x32.json" ]]; then build generic-virtualbox-x32
-elif [[ $1 == "generic-docker" || $1 == "generic-docker.json" ]]; then verify_json generic-docker ; docker-login ; build generic-docker ; docker-logout
+elif [[ $1 == "generic-docker" || $1 == "generic-docker.json" ]]; then build generic-docker
 
 elif [[ $1 == "lineage-vmware" || $1 == "lineage-vmware.json" ]]; then build lineage-vmware
 elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv.json" ]]; then build lineage-hyperv

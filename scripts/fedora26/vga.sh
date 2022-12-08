@@ -3,17 +3,7 @@
 # Remove the hard coded kernel VGA resolution needed to workaround Hyper-V bugs during installation.
 sed -i 's/^GRUB_CMDLINE_LINUX="\(.*\)vga=792\(.*\)"$/GRUB_CMDLINE_LINUX="\1\2"/g' /etc/default/grub
 
-# On UEFI systems.
-if [ -f /boot/efi/EFI/fedora/grub.cfg ]; then
-  grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
-
-elif [ -f /boot/efi/EFI/centos/grub.cfg ]; then
-  grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
-
-elif [ -f /boot/efi/EFI/redhat/grub.cfg ]; then
-  grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg
-
-# On BIOS systems.
-else
-  grub2-mkconfig -o /boot/grub2/grub.cfg
-fi
+# For UEFI systems.
+[ -f /etc/grub2-efi.cfg  ] && grub2-mkconfig -o /etc/grub2-efi.cfg 
+# For BIOS systems.
+[ -f /etc/grub2.cfg ] && grub2-mkconfig -o /etc/grub2.cfg

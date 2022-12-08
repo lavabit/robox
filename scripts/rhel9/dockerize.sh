@@ -84,7 +84,7 @@ cat /tmp/excludes | sort | uniq
 printf "\n\n\n\n\n-----------------------------------------------------\n\n\n\n\n"
 
 # Tarball the filesystem.
-tar --create --numeric-owner --preserve-permissions --one-file-system --verbose \
+tar --create --numeric-owner --preserve-permissions --one-file-system \
   --directory=/ --file=/tmp/$PACKER_BUILD_NAME.tar --exclude=/etc/firewalld \
   --exclude=/boot --exclude=/proc --exclude=/lost+found --exclude=/mnt --exclude=/sys\
   --exclude=/var/run/udev --exclude=/run/udev -X /tmp/excludes /

@@ -21,9 +21,6 @@ fi
 # Clear the random seed.
 rm -f /var/lib/systemd/random-seed
 
-# Clear the command history.
-export HISTSIZE=0
-
 # Truncate the log files.
 printf "Truncate the log files.\n"
 find /var/log -type f -exec truncate --size=0 {} \;
@@ -31,3 +28,8 @@ find /var/log -type f -exec truncate --size=0 {} \;
 # Wipe the temp directory.
 printf "Purge the setup files and temporary data.\n"
 rm --recursive --force /var/tmp/* /tmp/* /var/cache/yum/* /tmp/ks-script*
+
+# Clear the command history.
+export HISTSIZE=0
+
+exit 0

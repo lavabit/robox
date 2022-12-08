@@ -263,19 +263,9 @@ function provide-docker() {
   yum --assumeyes --enablerepo=extras install epel-release
 
   # Docker Install
-  yum --assumeyes --enablerepo=extras --enablerepo=epel install docker \
-    docker-common docker-selinux docker-logrotate docker-latest \
-    docker-latest-logrotate docker-latest-v1.10-migrator \
-    python-docker-py python-docker-scripts python-dockerfile-parse
-
-  # Setup Docker Latest as the Default
-  sed -i "s/#DOCKERBINARY=\/usr\/bin\/docker-latest/DOCKERBINARY=\/usr\/bin\/docker-latest/g" /etc/sysconfig/docker
-  sed -i "s/#DOCKERDBINARY=\/usr\/bin\/dockerd-latest/DOCKERDBINARY=\/usr\/bin\/dockerd-latest/g" /etc/sysconfig/docker
-  sed -i "s/#DOCKER_CONTAINERD_BINARY=\/usr\/bin\/docker-containerd-latest/DOCKER_CONTAINERD_BINARY=\/usr\/bin\/docker-containerd-latest/g" /etc/sysconfig/docker
-  sed -i "s/#DOCKER_CONTAINERD_SHIM_BINARY=\/usr\/bin\/docker-containerd-shim-latest/DOCKER_CONTAINERD_SHIM_BINARY=\/usr\/bin\/docker-containerd-shim-latest/g"  /etc/sysconfig/docker
-
-  # Use the overlay2 driver, not a logical volume.
-  sed -i "s/^STORAGE_DRIVER=.*$/STORAGE_DRIVER=overlay2/g" /usr/lib/docker-latest-storage-setup/docker-latest-storage-setup
+  yum --assumeyes --enablerepo=extras --enablerepo=epel install \
+    docker docker-client docker-compose docker-common docker-logrotate \
+    docker-novolume-plugin docker-v1.10-migrator
 
   # Setup the Docker Group
   groupadd docker
@@ -283,12 +273,14 @@ function provide-docker() {
   usermod -aG docker $HUMAN
 
   # Disable Docker Automatic Startup
-  systemctl disable docker-cleanup.service
-  systemctl disable docker-latest-storage-setup.service
-  systemctl disable docker-latest.service
   systemctl disable docker-storage-setup.service
-  systemctl disable docker.service
+  systemctl disable docker-cleanup.service
   systemctl disable docker-cleanup.timer
+  systemctl disable docker.service
+
+  # Use the overlay2 driver, not a logical volume.
+  sed -i "s/^STORAGE_DRIVER=.*$/STORAGE_DRIVER=overlay2/g" /usr/share/container-storage-setup/container-storage-setup
+  sed -i 's/^driver = ".*"$/driver = "overlay2"/g' /etc/containers/storage.conf 
 
   # Setup the Virtual Interfaces as Trusted
   if [ -f /usr/bin/firewall-cmd ]; then
@@ -298,12 +290,15 @@ function provide-docker() {
 }
 
 function provide-vagrant() {
-
+  
   # Attempt to find out the latest Vagrant version automatically.
   export VAGRANT_VERSION=$(curl --silent https://releases.hashicorp.com/vagrant/ | grep -Eo 'href="/vagrant/.*"' | sort --version-sort --reverse | head -1 | sed 's/href\=\"\/vagrant\/\([0-9\.]*\)\/\"/\1/g')
 
+  # Translate the version into a URL for an RPM package.
+  export VAGRANT_PACKAGE=$(curl --silent  "https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/"  | grep -Eo "href=\"https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/.*\.x86_64.rpm\"" | sort --version-sort --reverse  | head -1 | sed 's/href\=//g' | tr -d '"')
+
   # Download Vagrant
-  curl --location --output "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm" "https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
+  curl --location --output "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm" "${VAGRANT_PACKAGE}"
 
   # Install Vagrant
   yum --assumeyes install "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm"

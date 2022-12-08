@@ -41,22 +41,22 @@ if [ -f /etc/dnf/plugins/subscription-manager.conf ]; then
 fi
 
 # Oracle Repo Setup
-sed -Ei 's/^# *(baseurl.*)/\1/g' /etc/yum.repos.d/oracle-linux-ol9.repo
-sed -Ei 's/^(mirrorlist.*)/#\1/g' /etc/yum.repos.d/oracle-linux-ol9.repo
+sed -i -e "s/^#[ ]\?baseurl/baseurl/g" /etc/yum.repos.d/oracle-linux-ol9.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/oracle-linux-ol9.repo
 
-sed -Ei 's/^# *(baseurl.*)/\1/g' /etc/yum.repos.d/uek-ol9.repo
-sed -Ei 's/^(mirrorlist.*)/#\1/g' /etc/yum.repos.d/uek-ol9.repo
+sed -i -e "s/^#[ ]\?baseurl/baseurl/g" /etc/yum.repos.d/uek-ol9.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/uek-ol9.repo
 
-sed -Ei 's/^# *(baseurl.*)/\1/g' /etc/yum.repos.d/virt-ol9.repo
-sed -Ei 's/^(mirrorlist.*)/#\1/g' /etc/yum.repos.d/virt-ol9.repo
+sed -i -e "s/^#[ ]\?baseurl/baseurl/g" /etc/yum.repos.d/virt-ol9.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/virt-ol9.repo
 
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
 
 # EPEL Repo Setup
 retry dnf --quiet --assumeyes install oracle-epel-release-el9
 
-sed -Ei 's/^# *(baseurl.*)/\1/g' /etc/yum.repos.d/oracle-epel-ol9.repo
-sed -Ei 's/^(mirrorlist.*)/#\1/g' /etc/yum.repos.d/oracle-epel-ol9.repo
+sed -i -e "s/^#[ ]\?baseurl/baseurl/g" /etc/yum.repos.d/oracle-epel-ol9.repo
+sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/oracle-epel-ol9.repo
 
 # Update the base install first.
 retry dnf --assumeyes update

@@ -633,8 +633,8 @@
           "memory": 2048,
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL8/u6/x86_64/x86_64-boot-uek.iso",
-          "iso_checksum": "sha256:856d4ddfffabb2bed1ffee1e21a82ba81f30156936c908d19b73706f08bfa731",
+          "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL8/u7/x86_64/x86_64-boot-uek.iso",
+          "iso_checksum": "sha256:d88b649f384a08cbb13e87e3ab0fb4088a1c8c601e3678abbb916c700229f80e",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
@@ -729,8 +729,8 @@
           "memory": 2048,
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://archive.org/download/rhel-8.6/rhel-8.6-x86_64-dvd.iso",
-          "iso_checksum": "sha256:c324f3b07283f9393168f0a4ad2167ebbf7e4699d65c9670e0d9e58ba4e2a9a8",
+          "iso_url": "https://archive.org/download/rhel-8.7/rhel-8.7-x86_64-dvd.iso",
+          "iso_checksum": "sha256:a6a7418a75d721cc696d3cbdd648b5248808e7fef0f8742f518e43b46fa08139",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
@@ -767,8 +767,8 @@
           "memory": 2048,
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://archive.org/download/rhel-9.0/rhel-baseos-9.0-x86_64-dvd.iso",
-          "iso_checksum": "sha256:a387f3230acf87ee38707ee90d3c88f44d7bf579e6325492f562f0f1f9449e89",
+          "iso_url": "https://archive.org/download/rhel-9.1/rhel-baseos-9.1-x86_64-dvd.iso",
+          "iso_checksum": "sha256:d9dcae2b6e760d0f9dcf4a517bddc227d5fa3f213a8323592f4a07a05aa542a2",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
@@ -805,8 +805,8 @@
           "memory": 2048,
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL9/u0/x86_64/OracleLinux-R9-U0-x86_64-boot.iso",
-          "iso_checksum": "sha256:8da742eadb7bcd4d03bacd71c73d500247fa2f680a18c619220bcb88d6bd336f",
+          "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL9/u1/x86_64/OracleLinux-R9-U1-x86_64-boot.iso",
+          "iso_checksum": "sha256:21878b1136acdaa588556ac83c7e8700a0604c310cd05c22eb6a8329a85dfddd",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
@@ -837,8 +837,8 @@
           "memory": 2048,
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://dfw.mirror.rackspace.com/almalinux/8.6/isos/x86_64/AlmaLinux-8.6-x86_64-boot.iso",
-          "iso_checksum": "sha256:de92004fcc5bb5b9af586c9b5ab0e0c7c5a5eedce4d2be85156c5dd31a4fa81b",
+          "iso_url": "https://dfw.mirror.rackspace.com/almalinux/8.7/isos/x86_64/AlmaLinux-8.7-x86_64-boot.iso",
+          "iso_checksum": "sha256:a4fc8c53878e09f63849f2357228db9e2b547beea6f2b47758da2995bd59356e",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
@@ -875,8 +875,8 @@
           "memory": 2048,
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.0/isos/x86_64/AlmaLinux-9.0-x86_64-boot.iso",
-          "iso_checksum": "sha256:c41ce7bc2f4ab27a3597b3e160fc8b01c56a6b58e1046a4a23b8518fb9e9a61f",
+          "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.1/isos/x86_64/AlmaLinux-9.1-x86_64-boot.iso",
+          "iso_checksum": "sha256:9f22bd98c8930b1d0b2198ddd273c6647c09298e10a0167197a3f8c293d03090",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
@@ -907,8 +907,8 @@
           "memory": 2048,
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/8.6/isos/x86_64/Rocky-8.6-x86_64-boot.iso",
-          "iso_checksum": "sha256:fe77cc293a2f2fe6ddbf5d4bc2b5c820024869bc7ea274c9e55416d215db0cc5",
+          "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/8.7/isos/x86_64/Rocky-8.7-x86_64-boot.iso",
+          "iso_checksum": "sha256:94402815f251d982e748dc3466517db13fa5f9ea58fad491dcbd2cc821a360a2",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
@@ -945,8 +945,8 @@
           "memory": 2048,
           "http_directory": "http",
           "headless": true,
-          "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/9.0/isos/x86_64/Rocky-9.0-x86_64-boot.iso",
-          "iso_checksum": "sha256:fc6b306b9fc8d327d7545373ce88c48bd1f7e84d29548814a91e84676b7d26e4",
+          "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/9.1/isos/x86_64/Rocky-9.1-x86_64-boot.iso",
+          "iso_checksum": "sha256:a36753d0efbea2f54a3dc7bfaa4dba95efe9aa3d6af331d5c5b147ea91240c21",
           "ssh_username": "root",
           "ssh_password": "locked",
           "ssh_port": 22,
@@ -1044,7 +1044,7 @@
                 "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                  "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
                 ]
             },
             {
@@ -1079,7 +1079,7 @@
                 "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                  "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
                 ]
             },
             {
@@ -1114,7 +1114,7 @@
                 "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                  "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
                 ]
             },
             {
@@ -1149,7 +1149,7 @@
                 "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                  "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
                 ]
             },
             {
@@ -1184,7 +1184,7 @@
                 "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                  "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
                 ]
             },
             {
@@ -1236,7 +1236,7 @@
                 "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
                 "changes": [
                   "CMD [\"/bin/bash\"]",
-                  "ENV \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                  "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
                 ]
             },
             {

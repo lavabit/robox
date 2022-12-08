@@ -33,9 +33,11 @@ EOF
 sed -i -e "s/#DNS=.*/DNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
 sed -i -e "s/#FallbackDNS=.*/FallbackDNS=4.2.2.1 4.2.2.2 208.67.220.220/g" /etc/systemd/resolved.conf
 sed -i -e "s/#Domains=.*/Domains=/g" /etc/systemd/resolved.conf
-sed -i -e "s/#DNSSEC=.*/DNSSEC=yes/g" /etc/systemd/resolved.conf
 sed -i -e "s/#Cache=.*/Cache=yes/g" /etc/systemd/resolved.conf
 sed -i -e "s/#DNSStubListener=.*/DNSStubListener=yes/g" /etc/systemd/resolved.conf
+
+# DNSSEC is broken for now.
+# sed -i -e "s/#DNSSEC=.*/DNSSEC=yes/g" /etc/systemd/resolved.conf
 
 cat <<-EOF > /etc/resolv.conf
 nameserver 4.2.2.1
@@ -53,8 +55,8 @@ sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\
 sed -i -e 's/^GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=5/' /etc/default/grub
 
 # Install grub.
-grub-install "$device"
-grub-mkconfig -o /boot/grub/grub.cfg
+grub-install "$device" || exit 1
+grub-mkconfig -o /boot/grub/grub.cfg || exit 1
 
 # Detect Hyper-V and install the kernel modules.
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
@@ -62,7 +64,7 @@ if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
 
 # Hyper-V builds don't reboot properly without the no_timer_check kernel parameter.
 sed -i -e 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"$/GRUB_CMDLINE_LINUX_DEFAULT="\1 no_timer_check"/g' /etc/default/grub
-grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/grub/grub.cfg || exit 1
 
 pacman -S --noconfirm git base-devel
 
