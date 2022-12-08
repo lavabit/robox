@@ -100,20 +100,20 @@ And replace `PROVIDER` with one of these values: `[docker|hyperv|libvirt|paralle
   
 A configuration for all of the distros is available for every provider, EXCEPT Docker. At present we have only adapted a subset of the configurations to build Docker/Podman images.  
 
-The above presumes you already have [`packer`](https://www.packer.io/) and the hypervisor for the tartted provider installed. The `res/providers/providers.sh` script may provide guidance on the steps required to setup a Linux build host for VMWare/Virtualbox/Docker/libvirt. Please note that this scripts was written for RHEL/CentOS 7. You will then need to adapt the package names and CLI commands to your environment.  
+The above presumes you already have [`packer`](https://www.packer.io/) and the hypervisor for the targeted provider installed. The `res/providers/providers.sh` script may provide guidance on the steps required to setup a Linux build host for VMWare/Virtualbox/Docker/libvirt. Please note that this scripts was written for RHEL/CentOS 7. You will then need to adapt the package names and CLI commands to your environment.  
   
 ## VirtualBox Disks
 
-Enabling the discard/nonrotational options with our VirtualBox configs, appears to improve performance, but only on build robots equipped with SSDs or NVMe drives, and then only if the virtual machine is configured to with VDI virtual disks. This combination allows guests to utilize discard/unmap/trim. However, if a virtual machine is deployed onto traditional magnetic hard disks with discard/nonrotational enabled, performance will drop significantly ( 1/50th of normal in some cases ). 
+Enabling the discard/nonrotational options with our VirtualBox configs, appears to improve performance, but only on build robots equipped with SSDs or NVMe drives, and then only if the virtual machine is configured with VDI virtual disks. This combination allows guests to utilize discard/unmap/trim. However, if a virtual machine is deployed onto traditional magnetic hard disks with discard/nonrotational enabled, performance will drop significantly ( 1/50th of normal in some cases ). 
 
 Furthermore, while Packer appears to use VDI disk image files, when the virtual machine is exported and converted into a Vagrant box, the disk gets converted into the VMDK format. The discard/nonrotational options are preserved, and the result is that when the base box is deployed, it results in a virtual machine with the discard/nonrotational options enabled with an unsupported VMDK virtual disk.
 
-As a result, we currently not using the following options in our Packer config files. 
+As a result, we are currently not using the following options in our Packer config files. 
 ```
 "hard_drive_discard": true,
 "hard_drive_nonrotational" : true,
 ```
-A handful of the relevant messages from VirtualBox when a Vagrant box is deployed with this issue.
+A handful of relevant messages from VirtualBox when a Vagrant box is deployed with this issue.
 ```
 File system of 'generic-debian8-virtualbox/generic-debian8-virtualbox_default_1649216430418_60259/generic-debian8-virtualbox-disk001.vmdk' is xfs
   Format              <string>  = "VMDK" (cb=5)
