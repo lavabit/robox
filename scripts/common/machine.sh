@@ -2,6 +2,10 @@
 
 # Delete the machine-id file so a new value gets generated during subsequent reboots.
 
+if [ -f /var/lib/dbus/machine-id ]; then
+  truncate --size=0 /var/lib/dbus/machine-id
+fi
+
 if [ -f /etc/machine-id ]; then
   truncate --size=0 /etc/machine-id
 fi
