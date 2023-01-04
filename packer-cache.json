@@ -1113,8 +1113,8 @@
     {
       "name": "debian11",
       "output_directory": "output/debian11",
-      "iso_url": "https://cdimage.debian.org/cdimage/release/11.5.0/amd64/iso-cd/debian-11.5.0-amd64-netinst.iso",
-      "iso_checksum": "sha256:e307d0e583b4a8f7e5b436f8413d4707dd4242b70aea61eb08591dc0378522f3",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.6.0/amd64/iso-cd/debian-11.6.0-amd64-netinst.iso",
+      "iso_checksum": "sha256:e482910626b30f9a7de9b0cc142c3d4a079fbfa96110083be1d0b473671ce08d",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -1128,8 +1128,8 @@
     {
       "name": "debian11-x32",
       "output_directory": "output/debian11-x32",
-      "iso_url": "https://cdimage.debian.org/cdimage/release/11.5.0/i386/iso-cd/debian-11.5.0-i386-netinst.iso",
-      "iso_checksum": "sha256:700a775805262e16858f64eebe1a3317edef568fc44a5d55fa6f8ce48301acb2",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/11.6.0/i386/iso-cd/debian-11.6.0-i386-netinst.iso",
+      "iso_checksum": "sha256:e6369838b9a59db641246fbb134840b84f2d315b89bd2f912d69a5f7c08c2197",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
