@@ -67,7 +67,7 @@ function provide-libvirt() {
   # Repo setup.
   yum --assumeyes --enablerepo=extras install epel-release centos-release-qemu-ev
 
-  # Libvirt Install
+  # libvirt Install
   yum --assumeyes --enablerepo=epel --enablerepo=centos-qemu-ev install \
     libvirt libvirt-client libvirt-daemon libvirt-daemon-config-network \
     libvirt-daemon-config-nwfilter libvirt-daemon-driver-interface \
@@ -77,7 +77,7 @@ function provide-libvirt() {
     libvirt-daemon-kvm qemu qemu-common qemu-img qemu-kvm qemu-kvm-common \
     qemu-kvm-tools qemu-system-x86 qemu-user
 
-  # Setup the Libvirt, QEMU and KVM Groups
+  # Setup the libvirt, QEMU and KVM Groups
   usermod -aG kvm root
   usermod -aG qemu root
   usermod -aG libvirt root
@@ -85,7 +85,7 @@ function provide-libvirt() {
   usermod -aG qemu $HUMAN
   usermod -aG libvirt $HUMAN
 
-  # Disable Libvirt Automatic Startup
+  # Disable libvirt Automatic Startup
   systemctl disable libvirtd.service
   systemctl disable libvirt-guests.service
 
@@ -303,10 +303,10 @@ function provide-vagrant() {
   # Install Vagrant
   yum --assumeyes install "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
 
-  # The Libvirt Headers are Required for the Vagrant Plugin
+  # The libvirt Headers are Required for the Vagrant Plugin
   yum --assumeyes install libvirt-devel
 
-  # Vagrant Libvirt Plugin
+  # Vagrant libvirt Plugin
   vagrant plugin install vagrant-libvirt
 
   # Delete the Download
