@@ -1,7 +1,7 @@
 #!/bin/bash -ex
 
 # The unprivileged user that will be running packer/using the boxes.
-export HUMAN="`set -eu ; ((logname || echo $LOGNAME) || echo $SUDO_USER) || echo $USER`"
+export HUMAN="`set -eu ; ((echo $LOGNAME || logname) || echo $SUDO_USER) || echo $USER`"
 
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
@@ -71,14 +71,14 @@ function provide-libvirt() {
   # Repo setup.
   dnf --assumeyes --enablerepo=extras install epel-release
 
-  # Libvirt Install
+  # libvirt Install
   dnf --assumeyes --enablerepo=epel install \
     libvirt libvirt-client libvirt-daemon python3-libvirt \
     qemu-kvm qemu-img qemu-kvm-tools qemu-kvm-block-curl qemu-kvm-docs \
     guestfs-tools libguestfs libguestfs-inspect-icons \
     ruby ruby-devel ruby-default-gems rubygems rubygem-rexml rubygem-builder
 
-  # Setup the Libvirt, QEMU and KVM Groups
+  # Setup the libvirt, QEMU and KVM Groups
   usermod -aG kvm root
   usermod -aG qemu root
   usermod -aG libvirt root
@@ -86,9 +86,11 @@ function provide-libvirt() {
   usermod -aG qemu $HUMAN
   usermod -aG libvirt $HUMAN
 
-  # Disable Libvirt Automatic Startup
+  # Disable libvirt Automatic Startup
   # systemctl disable libvirtd.service
   # systemctl disable libvirt-guests.service
+
+  ln -s /usr/libexec/qemu-kvm /usr/bin/qemu-system-x86_64
 
   # # Detect support the vhost_net kernel module and configure it to load automatically.
   # export $(grep CONFIG_PCI_MSI= /boot/config-$(uname -r))
@@ -106,8 +108,8 @@ function provide-libvirt() {
   #  unset CONFIG_PCI_MSI
   #  unset CONFIG_VHOST_NET
 
-  ln -s /usr/libexec/qemu-kvm /usr/local/bin/qemu-system-i396
-  ln -s /usr/libexec/qemu-kvm /usr/local/bin/qemu-system-x86_64
+  ln -s /usr/libexec/qemu-kvm /usr/bin/qemu-system-i386
+  ln -s /usr/libexec/qemu-kvm /usr/bin/qemu-system-x86_64
 
   if [ -f /usr/bin/X ]; then
     provide-virtmanager
@@ -123,14 +125,14 @@ function provide-libvirt() {
 #   fi
 
 #   # Acquire the install bundle.
-#   if [ ! -f "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle" ]; then
-#     curl --location --output "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle" \
-#      "https://archive.org/download/vmware-workstation-full-15.5.7-17171714.x-86-64/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle"
+#   if [ ! -f "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle" ]; then
+#     curl --location --output "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle" \
+#      "https://archive.org/download/vmware-workstation-17.0.0/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle"
 #   fi
 
 #   # Verify the installer bundle.
-#   (printf "ed4d4b2345595de729049ac142c4cc39b7618061873a296d36e42feb9c37ce40  VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle\n" | sha256sum -c) || \
-#     (tput setaf 1 ; printf "\nError downloading the install bundle.\n\n" ; tput sgr0 ; exit 2)
+#   (printf "9014e87066f5b60e62f9dbd698e68f7cf507c6b59c5fcfe86de2aa44647e9910  VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle\n" | sha256sum -c) || \
+#     { tput setaf 1 ; printf "\nError downloading the install bundle.\n\n" ; tput sgr0 ; exit 2 ; }
 
 #   # Acquire the FreeBSD / Darwin / Solaris guest tools.
 #   if [ ! -f "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" ]; then
@@ -140,11 +142,11 @@ function provide-libvirt() {
 
 #   # Verify the tools bundle.
 #   (printf "b0ae1ba296f6be60a49e748f0aac48b629a0612d98d2c7c5cff072b5f5bbdb2a  VMware-Tools-10.1.15-other-6677369.tar.gz\n" | sha256sum -c) || \
-#     (tput setaf 1 ; printf "\nError downloading the alternative operating system guest additions.\n\n" ; tput sgr0 ; exit 2)
+#     { tput setaf 1 ; printf "\nError downloading the alternative operating system guest additions.\n\n" ; tput sgr0 ; exit 2 ; }
 
 #   # VMware Workstation Install
-#   chmod +x "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle"
-#   printf "yes\n" | bash "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle" --console \
+#   chmod +x "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle"
+#   printf "yes\n" | bash "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle" --console \
 #     --required --eulas-agreed --set-setting vmware-workstation serialNumber "${VMWARE_WORKSTATION}"
 
 #   # Install the alternative operating system ISOs.
@@ -170,11 +172,11 @@ function provide-libvirt() {
 #   systemctl disable vmware.service
 #   systemctl disable vmware-USBArbitrator.service
 #   systemctl disable vmware-workstation-server.service
-  
+ 
 #   # Add dependency info so the systemd generator knows how these services relate.
-#   sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware-workstation-server\n### END INIT INFO\n' /etc/rc.d/init.d/vmware-workstation-server.
-#   sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware\n# Required-Start: vmware-workstation-server\n# Required-Stop:\n### END INIT INFO\n'  /etc/rc.d/init.d/vmware
-
+#   sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware-workstation-server\n### END INIT INFO\n' /etc/rc.d/init.d/vmware-workstation-server
+#   sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware\n# Required-Start: vmware-workstation-server\n# Required-Stop:\n### END INIT INFO\n' /etc/rc.d/init.d/vmware
+ 
 #   # Setup the Virtual Interfaces as Trusted
 #   if [ -f /usr/bin/firewall-cmd ]; then
 #     firewall-cmd --zone=trusted --add-interface=vmnet1
@@ -184,7 +186,7 @@ function provide-libvirt() {
 #   fi
 
 #   rm --force "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz"
-#   rm --force "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle"
+#   rm --force "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle"
 
 #   # Install the dependencies.
 #   dnf --assumeyes install pcsc-lite-libs
@@ -257,7 +259,7 @@ function provide-libvirt() {
 
 #   # If there is a set of user preferences, relocate the default box directory.
 #   if [ -f $HOME/.config/VirtualBox/VirtualBox.xml ]; then
-#      sed -i "s/defaultMachineFolder=\"[^\"]*\"/defaultMachineFolder=\"${HOME////\\/}\/\.virtualbox\"/g" /home/ladar/.config/VirtualBox/VirtualBox.xml
+#      sed -i "s/defaultMachineFolder=\"[^\"]*\"/defaultMachineFolder=\"${HOME////\\/}\/\.virtualbox\"/g" $HOME/.config/VirtualBox/VirtualBox.xml
 #   fia
 
 # }
@@ -282,7 +284,7 @@ function provide-libvirt() {
 #   sed -i "s/^STORAGE_DRIVER=.*$/STORAGE_DRIVER=overlay2/g" /usr/lib/docker-latest-storage-setup/docker-latest-storage-setup
 
 #   # Setup the Docker Group
-#   groupadd docker
+#   getent group docker >/dev/null || groupadd docker
 #   usermod -aG docker root
 #   usermod -aG docker $HUMAN
 
@@ -315,14 +317,40 @@ function provide-vagrant() {
   # Install Vagrant
   dnf --assumeyes install "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
 
-  # The Libvirt Headers are Required for the Vagrant Plugin
+  # The libvirt Headers are Required for the Vagrant Plugin
   dnf --assumeyes --enablerepo=crb install libvirt-devel
 
-  # Vagrant Libvirt Plugin
+  # Vagrant libvirt Plugin
+  # CONFIGURE_ARGS="with-libvirt-include=/usr/include/libvirt with-libvirt-lib=/usr/lib64" vagrant plugin install vagrant-libvirt
   vagrant plugin install vagrant-libvirt
 
   # Delete the Download
   rm --force "$BASE/vagrant_${VAGRANT_VERSION}_x86_64.rpm"
+
+  # If VMWare is installed, we need the helper service.
+  if [ -f /bin/vmware ]; then
+
+    # Attempt to find out the latest Vagrant version automatically.
+    export VAGRANT_VMWARE_VERSION=$(curl --silent https://releases.hashicorp.com/vagrant-vmware-utility/ | grep -Eo 'href="/vagrant-vmware-utility/.*"' | sort --version-sort --reverse | head -1 | sed 's/href\=\"\/vagrant-vmware-utility\/\([0-9\.]*\)\/\"/\1/g')
+
+    # Translate the version into a URL for an RPM package.
+    export VAGRANT_VMWARE_PACKAGE=$(curl --silent  "https://releases.hashicorp.com/vagrant-vmware-utility/${VAGRANT_VMWARE_VERSION}/"  | grep -Eo "href=\"https://releases.hashicorp.com/vagrant-vmware-utility/${VAGRANT_VMWARE_VERSION}/.*\_x86_64.rpm\"" | sort --version-sort --reverse  | head -1 | sed 's/href\=//g' | tr -d '"')
+
+    # Download Vagrant
+    curl --location --output "$BASE/vagrant_vmware_${VAGRANT_VMWARE_VERSION}_x86_64.rpm" "${VAGRANT_VMWARE_PACKAGE}"
+
+    # Install Vagrant
+    dnf --assumeyes install "$BASE/vagrant_vmware_${VAGRANT_VMWARE_VERSION}_x86_64.rpm"
+    
+    systemctl daemon-reload && systemctl start vmware.service && systemctl start vagrant-vmware-utility.service
+
+    # Vagrant VMWare Plugin
+    # CONFIGURE_ARGS="with-libvirt-include=/usr/include/libvirt with-libvirt-lib=/usr/lib64" vagrant plugin install vagrant-vmware-desktop
+    vagrant plugin install vagrant-vmware-desktop
+    
+    rm --force "$BASE/vagrant_vmware_${VAGRANT_VMWARE_VERSION}_x86_64.rpm"
+  fi
+  
 }
 
 function provide-packer() {
@@ -367,7 +395,7 @@ function provide-setup() {
 
   # Create Human User If Necessary
   if [ ! -d /home/$HUMAN/ ]; then
-    useradd $HUMAN
+    getent passwd $HUMAN >/dev/null || useradd $HUMAN
   fi
 }
 

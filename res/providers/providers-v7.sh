@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 # The unprivileged user that will be running packer/using the boxes.
-export HUMAN="`set -eu ; ((logname || echo $LOGNAME) || echo $SUDO_USER) || echo $USER`"
+export HUMAN="`set -eu ; ((echo $LOGNAME || logname) || echo $SUDO_USER) || echo $USER`"
 
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
@@ -126,7 +126,7 @@ function provide-vmware() {
 
   # Verify the installer bundle.
   (printf "ed4d4b2345595de729049ac142c4cc39b7618061873a296d36e42feb9c37ce40  VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle\n" | sha256sum -c) || \
-    (tput setaf 1 ; printf "\nError downloading the install bundle.\n\n" ; tput sgr0 ; exit 2)
+    { tput setaf 1 ; printf "\nError downloading the install bundle.\n\n" ; tput sgr0 ; exit 2 ; }
 
   # Acquire the FreeBSD / Darwin / Solaris guest tools.
   if [ ! -f "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" ]; then
@@ -136,7 +136,7 @@ function provide-vmware() {
 
   # Verify the tools bundle.
   (printf "b0ae1ba296f6be60a49e748f0aac48b629a0612d98d2c7c5cff072b5f5bbdb2a  VMware-Tools-10.1.15-other-6677369.tar.gz\n" | sha256sum -c) || \
-    (tput setaf 1 ; printf "\nError downloading the alternative operating system guest additions.\n\n" ; tput sgr0 ; exit 2)
+    { tput setaf 1 ; printf "\nError downloading the alternative operating system guest additions.\n\n" ; tput sgr0 ; exit 2 ; }
 
   # VMware Workstation Install
   chmod +x "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle"
@@ -168,8 +168,8 @@ function provide-vmware() {
   systemctl disable vmware-workstation-server.service
   
   # Add dependency info so the systemd generator knows how these services relate.
-  sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware-workstation-server\n### END INIT INFO\n' /etc/rc.d/init.d/vmware-workstation-server.
-  sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware\n# Required-Start: vmware-workstation-server\n# Required-Stop:\n### END INIT INFO\n'  /etc/rc.d/init.d/vmware
+  sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware-workstation-server\n### END INIT INFO\n' /etc/rc.d/init.d/vmware-workstation-server
+  sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware\n# Required-Start: vmware-workstation-server\n# Required-Stop:\n### END INIT INFO\n' /etc/rc.d/init.d/vmware
 
   # Setup the Virtual Interfaces as Trusted
   if [ -f /usr/bin/firewall-cmd ]; then
@@ -253,7 +253,7 @@ function provide-vbox() {
 
   # If there is a set of user preferences, relocate the default box directory.
   if [ -f $HOME/.config/VirtualBox/VirtualBox.xml ]; then
-     sed -i "s/defaultMachineFolder=\"[^\"]*\"/defaultMachineFolder=\"${HOME////\\/}\/\.virtualbox\"/g" /home/ladar/.config/VirtualBox/VirtualBox.xml
+     sed -i "s/defaultMachineFolder=\"[^\"]*\"/defaultMachineFolder=\"${HOME////\\/}\/\.virtualbox\"/g" $HOME/.config/VirtualBox/VirtualBox.xml
   fi
 
 }
