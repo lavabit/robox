@@ -83,8 +83,8 @@ systemctl restart NetworkManager
 retry dnf install --assumeyes sudo dmidecode; error
 systemctl restart NetworkManager
 
-# Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays
-# often interupt the the provisioning process.
+# Run update a second time, just in case it failed the first time. Mirror timeouts and cosmic rays
+# often interrupt the the provisioning process.
 retry dnf upgrade --assumeyes; error
 systemctl restart NetworkManager
 

@@ -18,10 +18,7 @@ firewall --enabled --service=ssh
 network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora35.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
 
-# When this release is no longer available from mirrors, enable the archive url.
-url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/x86_64/os/
-# url --url=https://mirrors.edge.kernel.org/fedora/releases/35/Everything/x86_64/os/
-# url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/35/Everything/x86_64/os/
+url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/35/Everything/x86_64/os/
 
 %packages
 net-tools

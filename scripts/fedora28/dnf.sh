@@ -77,8 +77,8 @@ retry dnf install --assumeyes python-crypto python-cryptography
 # Packages used during the provisioning process and then removed during the cleanup stage.
 retry dnf install --assumeyes sudo dmidecode; error
 
-# Run update a second time, just in case it failed the first time. Mirror timeoutes and cosmic rays
-# often interupt the the provisioning process.
+# Run update a second time, just in case it failed the first time. Mirror timeouts and cosmic rays
+# often interrupt the the provisioning process.
 retry dnf upgrade --assumeyes; error
 
 # Reboot onto the new kernel (if applicable).
