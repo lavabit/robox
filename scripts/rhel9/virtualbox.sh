@@ -34,6 +34,7 @@ if [ ! -d /media/BaseOS/ ] || [ ! -d /media/AppStream/ ]; then
   mount /dev/cdrom /media || (printf "\nFailed mount RHEL cdrom.\n"; exit 1)
 fi
 
+# Needed to check whether we're running atop VirtualBox.
 dnf --assumeyes install dmidecode; error
 
 # Bail if we are not running atop VirtualBox.
@@ -47,8 +48,8 @@ printf "Installing the Virtual Box Tools.\n"
 # Read in the version number.
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
-# Build will fail without the elf utilities.
-dnf --quiet --assumeyes install bzip2 elfutils-libelf-devel; error
+# Build will fail without the dependencies.
+dnf --quiet --assumeyes install curl gcc make perl bzip2 autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel libICE libSM libX11-common libXau libxcb libX11 libXt libXext libXmu ; error
 
 # The group vboxsf is needed for shared folder access.
 getent group vboxsf >/dev/null || groupadd --system vboxsf; error

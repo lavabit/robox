@@ -1,4 +1,5 @@
-#!/bin/bash -eux
+#!/bin/bash
+
 retry() {
   local COUNT=1
   local DELAY=0
@@ -56,11 +57,7 @@ error() {
 }
 
 # Needed to check whether we're running atop VirtualBox.
-dnf --assumeyes install dmidecode; error
-
-# The group vboxsf is needed for shared folder access.
-getent group vboxsf >/dev/null || groupadd --system vboxsf; error
-getent passwd vboxadd >/dev/null || useradd --system --gid bin --home-dir /var/run/vboxadd --shell /sbin/nologin vboxadd; error
+retry dnf --assumeyes install dmidecode; error
 
 # Bail if we are not running atop VirtualBox.
 if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
@@ -73,9 +70,15 @@ printf "Installing the Virtual Box Tools.\n"
 # Read in the version number.
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
-# Packages required to build the guest additions.
-# dnf --assumeyes install gcc make perl dkms bzip2 kernel-tools kernel-headers kernel-devel kernel-uek-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
-retry dnf --assumeyes install curl gcc make perl bzip2 kernel-tools kernel-headers kernel-devel kernel-uek-devel autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel; error
+# Build will fail without the dependencies.
+retry dnf --quiet --assumeyes install curl gcc make perl bzip2 autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel libICE libSM libX11-common libXau libxcb libX11 libXt libXext libXmu ; error
+
+# Oracle specific dependencies.
+retry dnf --quiet --assumeyes install kernel-tools kernel-headers kernel-devel kernel-uek-devel ; error
+
+# The group vboxsf is needed for shared folder access.
+getent group vboxsf >/dev/null || groupadd --system vboxsf; error
+getent passwd vboxadd >/dev/null || useradd --system --gid bin --home-dir /var/run/vboxadd --shell /sbin/nologin vboxadd; error
 
 mkdir -p /mnt/virtualbox; error
 mount -o loop /root/VBoxGuestAdditions.iso /mnt/virtualbox; error
@@ -89,5 +92,5 @@ ln -s /opt/VBoxGuestAdditions-$VBOXVERSION/lib/VBoxGuestAdditions /usr/lib/VBoxG
 [ -s "/lib/modules/$(uname -r)/misc/vboxsf.ko" ]; error
 
 umount /mnt/virtualbox; error
-rm -rf /root/VBoxVersion.txt
-rm -rf /root/VBoxGuestAdditions.iso
+rm -rf /root/VBoxVersion.txt; error
+rm -rf /root/VBoxGuestAdditions.iso; error

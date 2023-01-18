@@ -56,6 +56,9 @@ error() {
   fi
 }
 
+# Needed to check whether we're running atop VirtualBox.
+retry dnf --assumeyes install dmidecode; error
+
 # Bail if we are not running atop VirtualBox.
 if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
     exit 0
@@ -67,10 +70,8 @@ printf "Installing the Virtual Box Tools.\n"
 # Read in the version number.
 VBOXVERSION=`cat /root/VBoxVersion.txt`
 
-retry dnf --quiet --assumeyes install bzip2 elfutils-libelf-devel; error
-
-# Packages required for /opt/VBoxGuestAdditions-[VBOXVERSION]/init/vboxadd status
-retry dnf --quiet --assumeyes install libX11 libXt libXext libXmu; error
+# Build will fail without the dependencies.
+retry dnf --quiet --assumeyes install curl gcc make perl bzip2 autoconf automake binutils bison elfutils-libelf-devel flex gcc-c++ gettext libtool make patch pkgconfig zlib-devel libICE libSM libX11-common libXau libxcb libX11 libXt libXext libXmu ; error
 
 # The group vboxsf is needed for shared folder access.
 getent group vboxsf >/dev/null || groupadd --system vboxsf; error
