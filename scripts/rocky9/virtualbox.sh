@@ -69,6 +69,9 @@ VBOXVERSION=`cat /root/VBoxVersion.txt`
 
 retry dnf --quiet --assumeyes install bzip2 elfutils-libelf-devel; error
 
+# Packages required for /opt/VBoxGuestAdditions-[VBOXVERSION]/init/vboxadd status
+retry dnf --quiet --assumeyes install libX11 libXt libXext libXmu; error
+
 # The group vboxsf is needed for shared folder access.
 getent group vboxsf >/dev/null || groupadd --system vboxsf; error
 getent passwd vboxadd >/dev/null || useradd --system --gid bin --home-dir /var/run/vboxadd --shell /sbin/nologin vboxadd; error
