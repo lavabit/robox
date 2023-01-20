@@ -7426,7 +7426,7 @@
       "guest_os_type": "freebsd",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/build-644/disc1.iso",
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/build-644/disc1.iso",
       "iso_checksum": "sha256:63b55dfbdef5f680e4df5f28d42275d9a892fc951f3bb6ce2b0f552dc5c00bd6",
       "ssh_username": "root",
       "ssh_password": "vagrant",

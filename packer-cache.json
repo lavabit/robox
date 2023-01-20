@@ -1098,7 +1098,7 @@
     {
       "name": "hardenedbsd13",
       "output_directory": "output/hardenedbsd13",
-      "iso_url": "https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/build-644/disc1.iso",
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/build-644/disc1.iso",
       "iso_checksum": "sha256:63b55dfbdef5f680e4df5f28d42275d9a892fc951f3bb6ce2b0f552dc5c00bd6",
       "boot_wait": "5s",
       "disk_size": 1,
