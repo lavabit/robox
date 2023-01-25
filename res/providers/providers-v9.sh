@@ -1,7 +1,10 @@
 #!/bin/bash -ex
 
 # The unprivileged user that will be running packer/using the boxes.
-export HUMAN="`set -eu ; ((echo $LOGNAME || logname) || echo $SUDO_USER) || echo $USER`"
+[ "${HUMAN}x" == "x" ] && export HUMAN="$(echo $SUDO_USER)"
+[ "${HUMAN}x" == "x" ] && export HUMAN="$(logname)"
+[ "${HUMAN}x" == "x" ] && export HUMAN="$(echo LOGNAME)"
+[ "${HUMAN}x" == "x" ] && export HUMAN="$(echo USER)"
 
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
@@ -194,116 +197,114 @@ function provide-vmware() {
 }
 
 
-# function provide-vbox() {
+function provide-vbox() {
 
-#   # Virtual Box Repo
-#   cp virtualbox.repo /etc/dnf.repos.d/virtualbox.repo
-#   chown root:root /etc/dnf.repos.d/virtualbox.repo
-#   chcon system_u:object_r:system_conf_t:s0 /etc/dnf.repos.d/virtualbox.repo
+  # Virtual Box Repo
+  cp virtualbox.repo /etc/yum.repos.d/virtualbox.repo
+  chown root:root /etc/yum.repos.d/virtualbox.repo
+  chcon system_u:object_r:system_conf_t:s0 /etc/yum.repos.d/virtualbox.repo
 
-#   cp virtualbox.pem /etc/pki/rpm-gpg/RPM-GPG-KEY-Oracle-Vbox
-#   chown root:root /etc/pki/rpm-gpg/RPM-GPG-KEY-Oracle-Vbox
-#   chcon system_u:object_r:cert_t:s0 /etc/pki/rpm-gpg/RPM-GPG-KEY-Oracle-Vbox
+  cp virtualbox.pem /etc/pki/rpm-gpg/RPM-GPG-KEY-Oracle-Vbox
+  chown root:root /etc/pki/rpm-gpg/RPM-GPG-KEY-Oracle-Vbox
+  chcon system_u:object_r:cert_t:s0 /etc/pki/rpm-gpg/RPM-GPG-KEY-Oracle-Vbox
 
-#   # Virtual Box Install
-#   dnf --assumeyes --enablerepo=virtualbox install VirtualBox-6.1.x86_64
+  # Virtual Box Install
+  dnf --assumeyes --enablerepo=virtualbox install VirtualBox-6.1.x86_64
 
-#   # Virtual Box Extensions, if X windows is installed.
-#   if [ -f /usr/bin/X ]; then
+  # Virtual Box Extensions, if X windows is installed.
+  if [ -f /usr/bin/X ]; then
 
-#     # Determine the download URL.
-#     VBOXVER=`VBoxManage --version | awk -F'r' '{print $1}'`
-#     VBOXEXT="Oracle_VM_VirtualBox_Extension_Pack-${VBOXVER}.vbox-extpack"
-#     VBOXEXTURL="https://download.virtualbox.org/virtualbox/${VBOXVER}/${VBOXEXT}"
+    # Determine the download URL.
+    VBOXVER=`VBoxManage --version | awk -F'r' '{print $1}'`
+    VBOXEXT="Oracle_VM_VirtualBox_Extension_Pack-${VBOXVER}.vbox-extpack"
+    VBOXEXTURL="https://download.virtualbox.org/virtualbox/${VBOXVER}/${VBOXEXT}"
 
-#     # Download the extension pack.
-#     curl "${VBOXEXTURL}" > "${VBOXEXT}"
+    # Download the extension pack.
+    curl "${VBOXEXTURL}" > "${VBOXEXT}"
 
-#     # Calculate the license hash.
-#     VBOXACCEPT=`tar --extract --to-stdout --file="${VBOXEXT}" ./ExtPack-license.txt | sha256sum | awk -F' ' '{print $1}'`
+    # Calculate the license hash.
+    VBOXACCEPT=`tar --extract --to-stdout --file="${VBOXEXT}" ./ExtPack-license.txt | sha256sum | awk -F' ' '{print $1}'`
 
-#     # Uncomment this line to install the VirtualBox extensions.
-#     VBoxManage extpack install --replace --accept-license="${VBOXACCEPT}" "${VBOXEXT}"
+    # Uncomment this line to install the VirtualBox extensions.
+    VBoxManage extpack install --replace --accept-license="${VBOXACCEPT}" "${VBOXEXT}"
 
-#     # Cleanup the downloaded file.
-#     rm --force "${VBOXEXT}"
-#   fi
+    # Cleanup the downloaded file.
+    rm --force "${VBOXEXT}"
+  fi
 
-#   # Disable update checks.
-#   VBoxManage setextradata global GUI/UpdateDate never
+  # Disable automatic startup.
+  systemctl disable vboxautostart-service.service
+  systemctl disable vboxballoonctrl-service.service
+  systemctl disable vboxweb-service.service
+  systemctl disable vboxdrv.service
 
-#   # Disable automatic startup.
-#   systemctl disable vboxautostart-service.service
-#   systemctl disable vboxballoonctrl-service.service
-#   systemctl disable vboxweb-service.service
-#   systemctl disable vboxdrv.service
+  # Add the key users to the vboxusers group.
+  usermod -aG vboxusers root
+  usermod -aG vboxusers $HUMAN
 
-#   # Add the key users to the vboxusers group.
-#   usermod -aG vboxusers root
-#   usermod -aG vboxusers $HUMAN
+  # Setup the Virtual Interfaces as Trusted
+  if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --zone=trusted --add-interface=vibr0
+    firewall-cmd --zone=trusted --add-interface=vibr1
+    firewall-cmd --permanent --zone=trusted --add-interface=vibr0
+    firewall-cmd --permanent --zone=trusted --add-interface=vibr1
 
-#   # Setup the Virtual Interfaces as Trusted
-#   if [ -f /usr/bin/firewall-cmd ]; then
-#     firewall-cmd --zone=trusted --add-interface=vibr0
-#     firewall-cmd --zone=trusted --add-interface=vibr1
-#     firewall-cmd --permanent --zone=trusted --add-interface=vibr0
-#     firewall-cmd --permanent --zone=trusted --add-interface=vibr1
+  fi
 
-#   fi
+  # Fix a permission issue to avoid spurious error messages in the system log.
+  if [ -f /usr/lib/virtualbox/VMMR0.r0 ]; then
+    chmod 755 /usr/lib/virtualbox/VMMR0.r0
+  fi
+  if [ -f /usr/lib/virtualbox/VBoxDDR0.r0 ]; then
+    chmod 755 /usr/lib/virtualbox/VBoxDDR0.r0
+  fi
 
-#   # Fix a permission issue to avoid spurious error messages in the system log.
-#   if [ -f /usr/lib/virtualbox/VMMR0.r0 ]; then
-#     chmod 755 /usr/lib/virtualbox/VMMR0.r0
-#   fi
-#   if [ -f /usr/lib/virtualbox/VBoxDDR0.r0 ]; then
-#     chmod 755 /usr/lib/virtualbox/VBoxDDR0.r0
-#   fi
+  # If there is a set of user preferences, relocate the default box directory and disable update checks.
+  VBoxManage setextradata global GUI/UpdateDate never
+  if [ -f $HOME/.config/VirtualBox/VirtualBox.xml ]; then
+     sed -i "s/defaultMachineFolder=\"[^\"]*\"/defaultMachineFolder=\"${HOME////\\/}\/\.virtualbox\"/g" $HOME/.config/VirtualBox/VirtualBox.xml
+  fi
 
-#   # If there is a set of user preferences, relocate the default box directory.
-#   if [ -f $HOME/.config/VirtualBox/VirtualBox.xml ]; then
-#      sed -i "s/defaultMachineFolder=\"[^\"]*\"/defaultMachineFolder=\"${HOME////\\/}\/\.virtualbox\"/g" $HOME/.config/VirtualBox/VirtualBox.xml
-#   fia
+  sudo su -l $HUMAN <<-EOF 
+  VBoxManage setextradata global GUI/UpdateDate never
+if [ -f \$HOME/.config/VirtualBox/VirtualBox.xml ]; then
+     sed -i "s/defaultMachineFolder=\"[^\"]*\"/defaultMachineFolder=\"\${HOME////\\\\/}\/\.virtualbox\"/g" \$HOME/.config/VirtualBox/VirtualBox.xml
+fi
+EOF
 
-# }
+}
 
-# function provide-docker() {
-#   # Ensure the EPEL Repo is Available
-#   dnf --assumeyes --enablerepo=extras install epel-release
+function provide-docker() {
+ 
+  # Ensure the EPEL Repo is Available
+  dnf --assumeyes --enablerepo=extras install epel-release
 
-#   # Docker Install
-#   dnf --assumeyes --enablerepo=extras --enablerepo=epel install docker \
-#     docker-common docker-selinux docker-logrotate docker-latest \
-#     docker-latest-logrotate docker-latest-v1.10-migrator \
-#     python-docker-py python-docker-scripts python-dockerfile-parse
+  # Docker Install
+  dnf --assumeyes --enablerepo=extras --enablerepo=epel install \
+    podman podman-plugins podman-docker podman-compose python3-podman \
+    python3-docker
 
-#   # Setup Docker Latest as the Default
-#   sed -i "s/#DOCKERBINARY=\/usr\/bin\/docker-latest/DOCKERBINARY=\/usr\/bin\/docker-latest/g" /etc/sysconfig/docker
-#   sed -i "s/#DOCKERDBINARY=\/usr\/bin\/dockerd-latest/DOCKERDBINARY=\/usr\/bin\/dockerd-latest/g" /etc/sysconfig/docker
-#   sed -i "s/#DOCKER_CONTAINERD_BINARY=\/usr\/bin\/docker-containerd-latest/DOCKER_CONTAINERD_BINARY=\/usr\/bin\/docker-containerd-latest/g" /etc/sysconfig/docker
-#   sed -i "s/#DOCKER_CONTAINERD_SHIM_BINARY=\/usr\/bin\/docker-containerd-shim-latest/DOCKER_CONTAINERD_SHIM_BINARY=\/usr\/bin\/docker-containerd-shim-latest/g"  /etc/sysconfig/docker
+  # Setup the Docker Group
+  getent group docker >/dev/null || groupadd docker
+  usermod -aG docker root
+  usermod -aG docker $HUMAN
 
-#   # Use the overlay2 driver, not a logical volume.
-#   sed -i "s/^STORAGE_DRIVER=.*$/STORAGE_DRIVER=overlay2/g" /usr/lib/docker-latest-storage-setup/docker-latest-storage-setup
+  # Disable Docker Automatic Startup
+  systemctl disable podman.service
+  systemctl disable podman-restart.service
+  systemctl disable podman-auto-update.timer
+  systemctl disable podman-auto-update.service
 
-#   # Setup the Docker Group
-#   getent group docker >/dev/null || groupadd docker
-#   usermod -aG docker root
-#   usermod -aG docker $HUMAN
+  # Use the overlay2 driver, not a logical volume.
+  # sed -i "s/^STORAGE_DRIVER=.*$/STORAGE_DRIVER=overlay2/g" /usr/share/container-storage-setup/container-storage-setup
+  # sed -i 's/^driver = ".*"$/driver = "overlay2"/g' /etc/containers/storage.conf 
 
-#   # Disable Docker Automatic Startup
-#   systemctl disable docker-cleanup.service
-#   systemctl disable docker-latest-storage-setup.service
-#   systemctl disable docker-latest.service
-#   systemctl disable docker-storage-setup.service
-#   systemctl disable docker.service
-#   systemctl disable docker-cleanup.timer
-
-#   # Setup the Virtual Interfaces as Trusted
-#   if [ -f /usr/bin/firewall-cmd ]; then
-#     firewall-cmd --zone=trusted --add-interface=docker0
-#     firewall-cmd --permanent --zone=trusted --add-interface=docker0
-#   fi
-# }
+  # Setup the Virtual Interfaces as Trusted
+  # if [ -f /usr/bin/firewall-cmd ]; then
+  #   firewall-cmd --zone=trusted --add-interface=docker0
+  #   firewall-cmd --permanent --zone=trusted --add-interface=docker0
+  # fi
+}
 
 function provide-vagrant() {
 
@@ -418,6 +419,11 @@ function all() {
 # Verify Root Permissions
 if [[ `id --user` != 0 ]]; then
   tput setaf 1; printf "\nError. Not running with root permissions.\n\n"; tput sgr0
+  exit 2
+fi
+
+if [ "${HUMAN}x" == "x" ] || [ "${HUMAN}" == "root" ]; then
+  tput setaf 1; printf "\nError. Unable to setup the human user. Run this script using sudo or set the HUMAN variable manually.\n\n"; tput sgr0
   exit 2
 fi
 

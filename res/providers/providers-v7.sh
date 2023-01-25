@@ -1,7 +1,10 @@
 #!/bin/bash 
 
 # The unprivileged user that will be running packer/using the boxes.
-export HUMAN="`set -eu ; ((echo $LOGNAME || logname) || echo $SUDO_USER) || echo $USER`"
+[ "${HUMAN}x" == "x" ] && export HUMAN="$(echo $SUDO_USER)"
+[ "${HUMAN}x" == "x" ] && export HUMAN="$(logname)"
+[ "${HUMAN}x" == "x" ] && export HUMAN="$(echo LOGNAME)"
+[ "${HUMAN}x" == "x" ] && export HUMAN="$(echo USER)"
 
 # Handle self referencing, sourcing etc.
 if [[ $0 != $BASH_SOURCE ]]; then
@@ -221,9 +224,6 @@ function provide-vbox() {
     rm --force "${VBOXEXT}"
   fi
 
-  # Disable update checks.
-  VBoxManage setextradata global GUI/UpdateDate never
-
   # Disable automatic startup.
   systemctl disable vboxautostart-service.service
   systemctl disable vboxballoonctrl-service.service
@@ -250,11 +250,19 @@ function provide-vbox() {
   if [ -f /usr/lib/virtualbox/VBoxDDR0.r0 ]; then
     chmod 755 /usr/lib/virtualbox/VBoxDDR0.r0
   fi
-
-  # If there is a set of user preferences, relocate the default box directory.
+ 
+  # If there is a set of user preferences, relocate the default box directory and disable update checks.
+  VBoxManage setextradata global GUI/UpdateDate never
   if [ -f $HOME/.config/VirtualBox/VirtualBox.xml ]; then
      sed -i "s/defaultMachineFolder=\"[^\"]*\"/defaultMachineFolder=\"${HOME////\\/}\/\.virtualbox\"/g" $HOME/.config/VirtualBox/VirtualBox.xml
   fi
+
+  sudo su -l $HUMAN <<-EOF 
+  VBoxManage setextradata global GUI/UpdateDate never
+if [ -f \$HOME/.config/VirtualBox/VirtualBox.xml ]; then
+     sed -i "s/defaultMachineFolder=\"[^\"]*\"/defaultMachineFolder=\"\${HOME////\\\\/}\/\.virtualbox\"/g" \$HOME/.config/VirtualBox/VirtualBox.xml
+fi
+EOF
 
 }
 
@@ -377,6 +385,11 @@ function all() {
 # Verify Root Permissions
 if [[ `id --user` != 0 ]]; then
   tput setaf 1; printf "\nError. Not running with root permissions.\n\n"; tput sgr0
+  exit 2
+fi
+
+if [ "${HUMAN}x" == "x" ] || [ "${HUMAN}" == "root" ]; then
+  tput setaf 1; printf "\nError. Unable to setup the human user. Run this script using sudo or set the HUMAN variable manually.\n\n"; tput sgr0
   exit 2
 fi
 
