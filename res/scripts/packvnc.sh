@@ -45,7 +45,7 @@ done
 lsmod 2>&1 | grep --quiet --extended-regexp "^vboxdrv " && which vboxmanage &> /dev/null
 if [ $? == 0 ]; then
   vboxmanage list vms | awk -F' ' '{print $2}' | while read BOX ; do 
-    PORT=$(vboxmanage showvminfo "$BOX" --details 2>&1 | grep "VRDE property:" | grep "TCP/Ports" | grep -Eo '\"[0-9]*\"' | tr -d '\"' )
+    PORT=$(vboxmanage showvminfo "$BOX" --details 2>&1 | grep "VRDE" | grep "Ports" |grep -Eo "Ports [0-9]*" | grep -Eo '[0-9]*' )
     ${RDPVIEWER} rdp://127.0.0.1:$PORT &> /dev/null &
   done 
 fi
