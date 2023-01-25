@@ -27,27 +27,27 @@ retry() {
   return "${RESULT}"
 }
 
-retry dnf --assumeyes install mlocate
+retry dnf --assumeyes install plocate
 
-# Override the default mlocate timer so it runs every hour.
-if [ ! -d /etc/systemd/system/mlocate-updatedb.timer.d/ ]; then
-  mkdir --parents /etc/systemd/system/mlocate-updatedb.timer.d/
+# Override the default plocate timer so it runs every hour.
+if [ ! -d /etc/systemd/system/plocate-updatedb.timer.d/ ]; then
+  mkdir --parents /etc/systemd/system/plocate-updatedb.timer.d/
 fi
 
-chcon system_u:object_r:systemd_unit_file_t:s0 /etc/systemd/system/mlocate-updatedb.timer.d/
-chmod 755 /etc/systemd/system/mlocate-updatedb.timer.d/
+chcon system_u:object_r:systemd_unit_file_t:s0 /etc/systemd/system/plocate-updatedb.timer.d/
+chmod 755 /etc/systemd/system/plocate-updatedb.timer.d/
 
-cat <<-EOF > /etc/systemd/system/mlocate-updatedb.timer.d/override.conf
+cat <<-EOF > /etc/systemd/system/plocate-updatedb.timer.d/override.conf
 [Unit]
-Description=Updates mlocate database every hour
+Description=Updates plocate database every hour
 
 [Timer]
 OnCalendar=hourly
 AccuracySec=1h
 EOF
 
-chcon system_u:object_r:systemd_unit_file_t:s0 /etc/systemd/system/mlocate-updatedb.timer.d/override.conf
-chmod 644 /etc/systemd/system/mlocate-updatedb.timer.d/override.conf
+chcon system_u:object_r:systemd_unit_file_t:s0 /etc/systemd/system/plocate-updatedb.timer.d/override.conf
+chmod 644 /etc/systemd/system/plocate-updatedb.timer.d/override.conf
 
 # Force systemd to load the new unit file, and ensure the timer is enabled.
-systemctl daemon-reload && systemctl enable mlocate-updatedb.timer
+systemctl daemon-reload && systemctl enable plocate-updatedb.timer
