@@ -1921,16 +1921,19 @@ function container-registry-login() {
     export DOCKER="docker"
   fi
 
+  # Where auth tokens get stored.
+  export REGISTRY_AUTH_FILE="$HOME/.docker/config.json"
+
   # This will force podman to store the tokens in the same place as docker.
   [ ! -d $HOME/.docker/ ] && mkdir $HOME/.docker/
-  [ ! -f $HOME/.docker/config.json ] && printf '{"auths":{}}' > $HOME/.docker/config.json
-  
-  export REGISTRY_AUTH_FILE=$HOME/.docker/config.json
+  [ ! -d ${XDG_RUNTIME_DIR}/containers/ ] && mkdir ${XDG_RUNTIME_DIR}/containers/
+  [ ! -f $REGISTRY_AUTH_FILE ] && printf '{"auths":{}}' > $REGISTRY_AUTH_FILE
+  [ "`wc -c $REGISTRY_AUTH_FILE |  awk -F' ' '{print $1}'`" == "0" ] && printf '{"auths":{}}' > $REGISTRY_AUTH_FILE
 
   # If jq is installed, we can use it to determine whether a login is required. Otherwise we rely on the more primitive login logic.
   if [ -f /usr/bin/jq ] || [ -f /usr/local/bin/jq ]; then
     
-    if [[ `jq "[ .auths.\"quay.io\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+    if [[ `jq "[ .auths.\"quay.io\" ]" $REGISTRY_AUTH_FILE | jq " .[] | length"` == 0 ]]; then
       ${DOCKER} login -u "$QUAY_USER" -p "$QUAY_PASSWORD" quay.io
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe quay.io login failed.\n\n"; tput sgr0
@@ -1942,7 +1945,7 @@ function container-registry-login() {
       fi
     fi
 
-    if [[ `jq "[ .auths.\"registry.docker.com\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+    if [[ `jq "[ .auths.\"registry.docker.com\" ]" $REGISTRY_AUTH_FILE | jq " .[] | length"` == 0 ]]; then
       ${DOCKER} login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" registry.docker.com
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe docker.io login failed.\n\n"; tput sgr0
@@ -1954,7 +1957,7 @@ function container-registry-login() {
       fi
     fi
 
-    if [[ `jq "[ .auths.\"https://index.docker.io/v1/\\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]]; then
+    if [[ `jq "[ .auths.\"https://index.docker.io/v1/\\" ]" $REGISTRY_AUTH_FILE | jq " .[] | length"` == 0 ]]; then
       ${DOCKER} login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" https://index.docker.io/v1/
       if [[ $? != 0 ]]; then
         tput setaf 1; tput bold; printf "\n\nThe index.docker.io login failed.\n\n"; tput sgr0
@@ -1966,15 +1969,15 @@ function container-registry-login() {
       fi
     fi
 
-    if [ -d $HOME/.docker/ ] && [ -f $HOME/.docker/config.json ] && \
-      [[ `jq "[ .auths.\"docker.io\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 0 ]] && \
-      [[ `jq "[ .auths.\"https://index.docker.io/v1/\" ]" $HOME/.docker/config.json | jq " .[] | length"` == 1 ]]; then
+    if [ -d $HOME/.docker/ ] && [ -f $REGISTRY_AUTH_FILE ] && \
+      [[ `jq "[ .auths.\"docker.io\" ]" $REGISTRY_AUTH_FILE | jq " .[] | length"` == 0 ]] && \
+      [[ `jq "[ .auths.\"https://index.docker.io/v1/\" ]" $REGISTRY_AUTH_FILE | jq " .[] | length"` == 1 ]]; then
       
-      jq '.auths = {"docker.io":.auths."https://index.docker.io/v1/"} + .auths' $HOME/.docker/config.json > $HOME/.docker/config.json.new
-      if [[ $? == 0 ]] && [[ `jq "[ .auths.\"docker.io\" ]" $HOME/.docker/config.json.new | jq " .[] | length"` == 1 ]]; then
-        mv $HOME/.docker/config.json.new $HOME/.docker/config.json
+      jq '.auths = {"docker.io":.auths."https://index.docker.io/v1/"} + .auths' $REGISTRY_AUTH_FILE > $REGISTRY_AUTH_FILE.new
+      if [[ $? == 0 ]] && [[ `jq "[ .auths.\"docker.io\" ]" $REGISTRY_AUTH_FILE.new | jq " .[] | length"` == 1 ]]; then
+        mv $REGISTRY_AUTH_FILE.new $REGISTRY_AUTH_FILE
       else
-        rm -f  $HOME/.docker/config.json.new
+        rm -f  $REGISTRY_AUTH_FILE.new
       fi
     
     else
@@ -2033,8 +2036,8 @@ function container-registry-login() {
   fi
 
   if command -v podman > /dev/null 2>&1; then
-    [ ! -d $HOME/.docker/ ] && mkdir $HOME/.docker/
-    sudo cat ${XDG_RUNTIME_DIR}/containers/auth.json > $HOME/.docker/config.json
+    cat $REGISTRY_AUTH_FILE > ${XDG_RUNTIME_DIR}/containers/auth.json
+    chmod 600 ${XDG_RUNTIME_DIR}/containers/auth.json
   fi
 
 }
@@ -2047,11 +2050,14 @@ function container-registry-logout() {
     export DOCKER="docker"
   fi
 
+  # Where auth tokens get stored.
+  export REGISTRY_AUTH_FILE="$HOME/.docker/config.json"
+
   # This will force podman to store the tokens in the same place as docker.
   [ ! -d $HOME/.docker/ ] && mkdir $HOME/.docker/
-  [ ! -f $HOME/.docker/config.json ] && printf '{"auths":{}}' > $HOME/.docker/config.json
-  
-  export REGISTRY_AUTH_FILE=$HOME/.docker/config.json
+  [ ! -d ${XDG_RUNTIME_DIR}/containers/ ] && mkdir ${XDG_RUNTIME_DIR}/containers/
+  [ ! -f $REGISTRY_AUTH_FILE ] && printf '{"auths":{}}' > $REGISTRY_AUTH_FILE
+  [ "`wc -c $REGISTRY_AUTH_FILE |  awk -F' ' '{print $1}'`" == "0" ] && printf '{"auths":{}}' > $REGISTRY_AUTH_FILE
 
   RUNNING=`ps -ef | grep --invert grep | grep --count --extended-regexp "packer build.*generic-docker.json|packer build.*magma-docker.json"`
 
@@ -2060,7 +2066,9 @@ function container-registry-logout() {
     ${DOCKER} logout https://index.docker.io/v1/ &> /dev/null
     ${DOCKER} logout docker.io &> /dev/null
     ${DOCKER} logout quay.io &> /dev/null
-    printf '{"auths":{}}' > $HOME/.docker/config.json
+    printf '{"auths":{}}' > $REGISTRY_AUTH_FILE
+    printf '{"auths":{}}' > ${XDG_RUNTIME_DIR}/containers/auth.json
+
   else
     tput setaf 3; tput bold; printf "\nSkipping registry logout because builds are still running.\n\n"; tput sgr0
   fi
