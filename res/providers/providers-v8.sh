@@ -125,7 +125,7 @@ function provide-vmware() {
   fi
 
   # Acquire the install bundle.
-  if [ ! -f "$BASE/VMware-Player-Full-16.2.5-20904516.x86_64.bundle" ]; then
+  if [ ! -f "$BASE/VMware-Workstation-Full-16.2.5-20904516.x86_64.bundle" ]; then
     curl --location --output "$BASE/VMware-Workstation-Full-16.2.5-20904516.x86_64.bundle" \
      "https://archive.org/download/vmware-workstation-17.0.0/VMware-Workstation-Full-16.2.5-20904516.x86_64.bundle"
   fi

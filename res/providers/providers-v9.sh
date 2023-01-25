@@ -116,81 +116,83 @@ function provide-libvirt() {
   fi
 }
 
-# function provide-vmware() {
+function provide-vmware() {
 
-#   # Ensure the VMWare Serial is Available
-#   if [ -z ${VMWARE_WORKSTATION} ]; then
-#     tput setaf 1; printf "\nError. The VMware serial number is missing. Add it to the credentials file.\n\n"; tput sgr0
-#     exit 2
-#   fi
+  # Ensure the VMWare Serial is Available
+  if [ -z ${VMWARE_WORKSTATION} ]; then
+    tput setaf 1; printf "\nError. The VMware serial number is missing. Add it to the credentials file.\n\n"; tput sgr0
+    exit 2
+  fi
 
-#   # Acquire the install bundle.
-#   if [ ! -f "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle" ]; then
-#     curl --location --output "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle" \
-#      "https://archive.org/download/vmware-workstation-17.0.0/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle"
-#   fi
+  # Acquire the install bundle.
+  if [ ! -f "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle" ]; then
+    curl --location --output "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle" \
+     "https://archive.org/download/vmware-workstation-17.0.0/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle"
+  fi
 
-#   # Verify the installer bundle.
-#   (printf "9014e87066f5b60e62f9dbd698e68f7cf507c6b59c5fcfe86de2aa44647e9910  VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle\n" | sha256sum -c) || \
-#     { tput setaf 1 ; printf "\nError downloading the install bundle.\n\n" ; tput sgr0 ; exit 2 ; }
+  # Verify the installer bundle.
+  (printf "9014e87066f5b60e62f9dbd698e68f7cf507c6b59c5fcfe86de2aa44647e9910  VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle\n" | sha256sum -c) || \
+    { tput setaf 1 ; printf "\nError downloading the install bundle.\n\n" ; tput sgr0 ; exit 2 ; }
 
-#   # Acquire the FreeBSD / Darwin / Solaris guest tools.
-#   if [ ! -f "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" ]; then
-#     curl --location --output "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
-#      "https://archive.org/download/vmwaretools10.1.15other6677369.tar/VMware-Tools-10.1.15-other-6677369.tar.gz"
-#   fi
+  # Acquire the FreeBSD / Darwin / Solaris guest tools.
+  if [ ! -f "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" ]; then
+    curl --location --output "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
+     "https://archive.org/download/vmwaretools10.1.15other6677369.tar/VMware-Tools-10.1.15-other-6677369.tar.gz"
+  fi
 
-#   # Verify the tools bundle.
-#   (printf "b0ae1ba296f6be60a49e748f0aac48b629a0612d98d2c7c5cff072b5f5bbdb2a  VMware-Tools-10.1.15-other-6677369.tar.gz\n" | sha256sum -c) || \
-#     { tput setaf 1 ; printf "\nError downloading the alternative operating system guest additions.\n\n" ; tput sgr0 ; exit 2 ; }
+  # Verify the tools bundle.
+  (printf "b0ae1ba296f6be60a49e748f0aac48b629a0612d98d2c7c5cff072b5f5bbdb2a  VMware-Tools-10.1.15-other-6677369.tar.gz\n" | sha256sum -c) || \
+    { tput setaf 1 ; printf "\nError downloading the alternative operating system guest additions.\n\n" ; tput sgr0 ; exit 2 ; }
 
-#   # VMware Workstation Install
-#   chmod +x "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle"
-#   printf "yes\n" | bash "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle" --console \
-#     --required --eulas-agreed --set-setting vmware-workstation serialNumber "${VMWARE_WORKSTATION}"
+  # VMware Workstation Install
+  chmod +x "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle"
+  printf "yes\n" | bash "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle" --console \
+    --required --eulas-agreed --set-setting vmware-workstation serialNumber "${VMWARE_WORKSTATION}"
 
-#   # Install the alternative operating system ISOs.
-#   tar --extract --gzip --to-stdout --file="$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
-#     "VMware-Tools-10.1.15-other-6677369/vmtools/darwin.iso" > "/usr/lib/vmware/isoimages/darwin.iso"
-#   chown root:root "/usr/lib/vmware/isoimages/darwin.iso"
-#   chmod 644 "/usr/lib/vmware/isoimages/darwin.iso"
-#   chcon unconfined_u:object_r:lib_t:s0 "/usr/lib/vmware/isoimages/darwin.iso"
+  # Install the alternative operating system ISOs.
+  tar --extract --gzip --to-stdout --file="$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
+    "VMware-Tools-10.1.15-other-6677369/vmtools/darwin.iso" > "/usr/lib/vmware/isoimages/darwin.iso"
+  chown root:root "/usr/lib/vmware/isoimages/darwin.iso"
+  chmod 644 "/usr/lib/vmware/isoimages/darwin.iso"
+  chcon unconfined_u:object_r:lib_t:s0 "/usr/lib/vmware/isoimages/darwin.iso"
 
-#   tar --extract --gzip --to-stdout --file="$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
-#     "VMware-Tools-10.1.15-other-6677369/vmtools/freebsd.iso" > "/usr/lib/vmware/isoimages/freebsd.iso"
-#   chown root:root "/usr/lib/vmware/isoimages/freebsd.iso"
-#   chmod 644 "/usr/lib/vmware/isoimages/freebsd.iso"
-#   chcon unconfined_u:object_r:lib_t:s0 "/usr/lib/vmware/isoimages/freebsd.iso"
+  tar --extract --gzip --to-stdout --file="$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
+    "VMware-Tools-10.1.15-other-6677369/vmtools/freebsd.iso" > "/usr/lib/vmware/isoimages/freebsd.iso"
+  chown root:root "/usr/lib/vmware/isoimages/freebsd.iso"
+  chmod 644 "/usr/lib/vmware/isoimages/freebsd.iso"
+  chcon unconfined_u:object_r:lib_t:s0 "/usr/lib/vmware/isoimages/freebsd.iso"
 
-#   tar --extract --gzip --to-stdout --file="$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
-#     "VMware-Tools-10.1.15-other-6677369/vmtools/solaris.iso" > "/usr/lib/vmware/isoimages/solaris.iso"
-#   chown root:root "/usr/lib/vmware/isoimages/solaris.iso"
-#   chmod 644 "/usr/lib/vmware/isoimages/solaris.iso"
-#   chcon unconfined_u:object_r:lib_t:s0 "/usr/lib/vmware/isoimages/solaris.iso"
+  tar --extract --gzip --to-stdout --file="$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz" \
+    "VMware-Tools-10.1.15-other-6677369/vmtools/solaris.iso" > "/usr/lib/vmware/isoimages/solaris.iso"
+  chown root:root "/usr/lib/vmware/isoimages/solaris.iso"
+  chmod 644 "/usr/lib/vmware/isoimages/solaris.iso"
+  chcon unconfined_u:object_r:lib_t:s0 "/usr/lib/vmware/isoimages/solaris.iso"
 
-#   # Disable VMWare Automatic Startup
-#   systemctl disable vmware.service
-#   systemctl disable vmware-USBArbitrator.service
-#   systemctl disable vmware-workstation-server.service
- 
-#   # Add dependency info so the systemd generator knows how these services relate.
-#   sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware-workstation-server\n### END INIT INFO\n' /etc/rc.d/init.d/vmware-workstation-server
-#   sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware\n# Required-Start: vmware-workstation-server\n# Required-Stop:\n### END INIT INFO\n' /etc/rc.d/init.d/vmware
- 
-#   # Setup the Virtual Interfaces as Trusted
-#   if [ -f /usr/bin/firewall-cmd ]; then
-#     firewall-cmd --zone=trusted --add-interface=vmnet1
-#     firewall-cmd --zone=trusted --add-interface=vmnet8
-#     firewall-cmd --permanent --zone=trusted --add-interface=vmnet1
-#     firewall-cmd --permanent --zone=trusted --add-interface=vmnet8
-#   fi
+  # Disable VMWare Automatic Startup
+  systemctl daemon-reload
+  systemctl disable vmware.service
+  systemctl disable vmware-USBArbitrator.service
+  # systemctl disable vmware-workstation-server.service
+  
+  # Add dependency info so the systemd generator knows how these services relate.
+  # sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware-workstation-server\n### END INIT INFO\n' /etc/rc.d/init.d/vmware-workstation-server
+  sed -i '/description.*/a \### BEGIN INIT INFO\n# Provides:       vmware\n# Required-Start: vmware-workstation-server\n# Required-Stop:\n### END INIT INFO\n' /etc/rc.d/init.d/vmware
 
-#   rm --force "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz"
-#   rm --force "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle"
+  # Setup the Virtual Interfaces as Trusted
+  if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --zone=trusted --add-interface=vmnet1
+    firewall-cmd --zone=trusted --add-interface=vmnet8
+    firewall-cmd --permanent --zone=trusted --add-interface=vmnet1
+    firewall-cmd --permanent --zone=trusted --add-interface=vmnet8
+  fi
 
-#   # Install the dependencies.
-#   dnf --assumeyes install pcsc-lite-libs
-# }
+  rm --force "$BASE/VMware-Tools-10.1.15-other-6677369.tar.gz"
+  rm --force "$BASE/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle"
+
+  # Install the dependencies.
+  dnf --assumeyes install pcsc-lite-libs
+}
+
 
 # function provide-vbox() {
 

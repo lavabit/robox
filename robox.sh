@@ -515,6 +515,12 @@ RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-j
 RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb" )
 RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb" )
 
+# These files are used by the providers install script.
+RESOURCES+=( "https://archive.org/download/vmwaretools10.1.15other6677369.tar/VMware-Tools-10.1.15-other-6677369.tar.gz" )
+RESOURCES+=( "https://archive.org/download/vmware-workstation-17.0.0/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle" )
+RESOURCES+=( "https://archive.org/download/vmware-workstation-17.0.0/VMware-Workstation-Full-16.2.5-20904516.x86_64.bundle" )
+RESOURCES+=( "https://archive.org/download/vmware-workstation-17.0.0/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle" )
+
 # Detect Windows subsystem for Linux.
 if [ -z $OS ]; then
   if [[ "`uname -r`" =~ -Microsoft$ ]]; then

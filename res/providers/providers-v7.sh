@@ -121,7 +121,7 @@ function provide-vmware() {
   # Acquire the install bundle.
   if [ ! -f "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle" ]; then
     curl --location --output "$BASE/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle" \
-     "https://archive.org/download/vmware-workstation-full-15.5.7-17171714.x-86-64/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle"
+     "https://archive.org/download/vmware-workstation-17.0.0/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle"
   fi
 
   # Verify the installer bundle.
