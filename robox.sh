@@ -644,22 +644,21 @@ function start() {
   # fi
 
   # # Confirm the VMware modules loaded.
-  # if [ -f /usr/bin/vmware-modconfig ]; then
-  #   MODS=`sudo /etc/init.d/vmware status | grep --color=none --extended-regexp "Module vmmon loaded|Module vmnet loaded" | wc -l`
-  #   if [ "$MODS" != "2" ]; then
-  #      printf "Compiling the VMWare kernel modules.\n";
-  #     sudo vmware-modconfig --console --install-all &> /dev/null
-  #     if [ $? != 0 ]; then
-  #       tput setaf 1; tput bold; printf "\n\nThe vmware kernel modules failed to load properly...\n\n"; tput sgr0
-  #       for i in 1 2 3; do printf "\a"; sleep 1; done
-  #       exit 1
-  #     fi
-  #   fi
-  # fi
-
-  # if [ -f /etc/init.d/vmware ]; then sudo /etc/init.d/vmware start ; fi
-  # if [ -f /etc/init.d/vmware-USBArbitrator ]; then sudo /etc/init.d/vmware-USBArbitrator start ; fi
-  # if [ -f /etc/init.d/vmware-workstation-server ]; then sudo /etc/init.d/vmware-workstation-server start ; fi
+  if [ -f /usr/bin/vmware-modconfig ]; then
+    MODS=`sudo /etc/init.d/vmware status | grep --color=none --extended-regexp "Module vmmon loaded|Module vmnet loaded" | wc -l`
+    if [ "$MODS" != "2" ]; then
+      printf "Compiling the VMWare kernel modules.\n";
+      sudo vmware-modconfig --console --install-all &> /dev/null
+      if [ $? != 0 ]; then
+        tput setaf 1; tput bold; printf "\n\nThe vmware kernel modules failed to load properly...\n\n"; tput sgr0
+        for i in 1 2 3; do printf "\a"; sleep 1; done
+        exit 1
+      fi
+    else
+      if [ -f /etc/init.d/vmware ]; then sudo /etc/init.d/vmware start ; fi
+      if [ -f /etc/init.d/vmware-USBArbitrator ]; then sudo /etc/init.d/vmware-USBArbitrator start ; fi
+    fi
+  fi
 
 }
 
