@@ -20,14 +20,14 @@ https://quay.io/organization/lavabit
 
 ## Upcoming Additions
 
-Oct 20th, 2022 / OpenBSD 7.2 \*  
-Oct 20th, 2022 / Ubuntu 22.10 \*  
-Nov  1st, 2022 / Alpine 3.17 \*\* 
-Nov 15th, 2022 / Fedora 37 \*\*  
-Dec  7th, 2022 / FreeBSD 12.4  
 Mar 27th, 2023 / FreeBSD 13.2  
+Apr 18th, 2023 / Fedora 38  
+Apr 27th, 2023 / Ubuntu 23.04 (Lunar Lobster)  
 Jul 17th, 2023 / FreeBSD 14.0  
   
+Mid 2023 / Debian 12.0  
+Mid 2023 / Devuan 5.0  
+
 \* Repo updated.
 \*\* Beta/pre-prerelease added.  
 
