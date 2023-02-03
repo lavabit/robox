@@ -820,9 +820,9 @@ function iso() {
     # URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/"
     
     # Alternate server (update in two places).
-    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/"
+    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/"
     
-    BUILD=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]{3}/\"" | grep --extended-regexp --only-matching "build\-[0-9]{3}" | sort -r | uniq | head -1`
+    BUILD=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]*/\"" | grep --extended-regexp --only-matching "build\-[0-9]*" | sort -r | uniq | head -1`
     if [ $? != 0 ] || [ "$BUILD" == "" ]; then
       tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
       return 1
@@ -832,7 +832,7 @@ function iso() {
     # URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
     
     # Alternate server (update in two places).
-    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
+    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/${BUILD}/disc1.iso"
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
