@@ -817,7 +817,7 @@ function iso() {
     ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"hardenedbsd13\")) | .iso_checksum" 2>/dev/null`
 
     # Find the HardenedBSD URL.
-    # URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/"
+    # URL="https://installers.hardenedbsd.org/pub/13-stable/amd64/amd64/installer/"
     
     # Alternate server (update in two places).
     URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/"
@@ -829,7 +829,7 @@ function iso() {
     fi
 
     # Calculate the new URL.
-    # URL="https://ci-01.nyi.hardenedbsd.org/pub/hardenedbsd/13-stable/amd64/amd64/${BUILD}/disc1.iso"
+    # URL="https://installers.hardenedbsd.org/pub/13-stable/amd64/amd64/installer/${BUILD}/disc1.iso"
     
     # Alternate server (update in two places).
     URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/${BUILD}/disc1.iso"
