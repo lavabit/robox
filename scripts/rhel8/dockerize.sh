@@ -16,9 +16,9 @@ systemctl --quiet is-active mariadb.service && systemctl stop mariadb.service
 systemctl --quiet is-active postfix.service && systemctl stop postfix.service
 
 awk '(NF==0&&!done){print "override_install_langs='$LANG'\ntsflags=nodocs";done=1}{print}' \
-    < /etc/yum.conf > /etc/yum.conf.new
-mv /etc/yum.conf.new /etc/yum.conf
-echo 'container' > /etc/yum/vars/infra
+    < /etc/dnf/dnf.conf > /etc/dnf/dnf.conf.new
+mv /etc/dnf/dnf.conf.new /etc/dnf/dnf.conf
+echo 'container' > /etc/dnf/vars/infra
 
 rm -f /usr/lib/locale/locale-archive
 
@@ -30,7 +30,7 @@ fi
 # Add a profile directive to send docker logins to the home directory.
 printf "if [ \"\$PS1\" ]; then\n  cd \$HOME\nfi\n" > /etc/profile.d/home.sh
 
-rm -rf /var/cache/yum/*
+rm -rf /var/cache/dnf/*
 rm -f /tmp/ks-script*
 rm -rf /var/log/*
 rm -rf /tmp/*
@@ -65,15 +65,15 @@ find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type b -print 1>>/tmp/excludes
 find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type c -print 1>>/tmp/excludes 2>/dev/null
 find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type p -print 1>>/tmp/excludes 2>/dev/null
 find -L $(ls -1 -d /* | grep -Ev "sys|dev|proc") -type s -print 1>>/tmp/excludes 2>/dev/null
-find -L /var/log/ -type f -print 1>>/tmp/excludes 2>/dev/null
-find -L /lib/modules/ -mindepth 1 -print 1>>/tmp/excludes 2>/dev/null
-find -L /usr/src/kernels/ -mindepth 1 -print 1>>/tmp/excludes 2>/dev/null
-find -L /var/lib/yum/yumdb/ -mindepth 1 -print 1>>/tmp/excludes 2>/dev/null
-find -L /etc/sysconfig/network-scripts/ -name "ifcfg-*" -print 1>>/tmp/excludes 2>/dev/null
-find -L /tmp -type f -or -type d -print | grep --invert-match --extended-regexp "^/tmp/$|^/tmp$" >> /tmp/excludes
+find /var/log/ -type f -print 1>>/tmp/excludes 2>/dev/null
+find /lib/modules/ -mindepth 1 -print 1>>/tmp/excludes 2>/dev/null
+find /usr/src/kernels/ -mindepth 1 -print 1>>/tmp/excludes 2>/dev/null
+find /var/lib/dnf/dnfdb/ -mindepth 1 -print 1>>/tmp/excludes 2>/dev/null
+find /etc/sysconfig/network-scripts/ -name "ifcfg-*" -print 1>>/tmp/excludes 2>/dev/null
+find /tmp -type f -or -type d -print | grep --invert-match --extended-regexp "^/tmp/$|^/tmp$" >> /tmp/excludes
 
 # Remove the files associated with these packages since containers don't need them.
-PACKAGES=`rpm -q kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs bind-libs bind-libs-lite dhclient dhcp-common dhcp-libs dracut-network e2fsprogs e2fsprogs-libs ebtables ethtool firewalld grub2 grub2-tools grubby initscripts iproute iptables kexec-tools libmnl libnetfilter_conntrack libnfnetlink python-slip python-slip-dbus snappy sysvinit-tools linux-firmware | grep --invert "not installed"`
+PACKAGES=`rpm -q kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs bind-libs bind-libs-lite dhclient dhcp-common dhcp-libs dracut-network e2fsprogs e2fsprogs-libs ebtables ethtool firewalld grub2 grub2-tools grubby initscripts iproute iptables kexec-tools libmnl libnetfilter_conntrack libnfnetlink libselinux-python python-slip python-slip-dbus snappy sysvinit-tools linux-firmware | grep --invert "not installed"`
 
 # Manually exclude certain files/directories from the list.
 rpm -q --list $PACKAGES | grep --invert "/usr/share/bash-completion/completions" | \
@@ -82,8 +82,8 @@ rpm -q --list $PACKAGES | grep --invert "/usr/share/bash-completion/completions"
 # Remove the leading slash so the names match up with tar.
 sed --in-place "s/^\///g" /tmp/excludes
 
-cat /tmp/excludes | sort | uniq
-printf "\n\n\n\n\n-----------------------------------------------------\n\n\n\n\n"
+# cat /tmp/excludes | sort | uniq
+# printf "\n\n\n\n\n-----------------------------------------------------\n\n\n\n\n"
 
 # Tarball the filesystem.
 tar --create --numeric-owner --preserve-permissions --one-file-system \
