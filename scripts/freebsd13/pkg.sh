@@ -13,7 +13,7 @@ echo 'FreeBSD: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest" }' > /usr/local
 # Install the packages needed to update the CA bundle.
 pkg bootstrap
 pkg-static update -f
-pkg-static install -y perl5 p5-MIME-Base64 p5-Carp curl ca_root_nss
+pkg-static upgrade --yes perl5 p5-MIME-Base64 p5-Carp curl ca_root_nss
 
 # Download the bundle generator.
 curl --silent --location --output $HOME/mk-ca-bundle.pl https://raw.githubusercontent.com/curl/curl/85f91248cffb22d151d5983c32f0dbf6b1de572a/lib/mk-ca-bundle.pl
