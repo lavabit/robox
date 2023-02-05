@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-# Configure fetch so it retries  temprorary failures.
+# Configure fetch so it retries  temporary failures.
 export FETCH_RETRY=5
 export FETCH_TIMEOUT=30
 export ASSUME_ALWAYS_YES=yes
@@ -14,7 +14,7 @@ echo 'FreeBSD: { url: "pkg+http://mirrors.xtom.com/freebsd-pkg/FreeBSD%3A11%3Aam
 # Install the packages needed to update the CA bundle.
 pkg bootstrap
 pkg-static update -f
-pkg-static install -y perl5 p5-MIME-Base64 p5-Carp curl ca_root_nss
+pkg-static upgrade --yes perl5 p5-MIME-Base64 p5-Carp curl ca_root_nss
 
 # Download the bundle generator.
 curl --silent --location --output $HOME/mk-ca-bundle.pl https://raw.githubusercontent.com/curl/curl/85f91248cffb22d151d5983c32f0dbf6b1de572a/lib/mk-ca-bundle.pl

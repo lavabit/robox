@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-# Configure fetch so it retries  temprorary failures.
+# Configure fetch so it retries  temporary failures.
 export FETCH_RETRY=5
 export FETCH_TIMEOUT=30
 export ASSUME_ALWAYS_YES=yes
@@ -38,7 +38,7 @@ pkg-static update -f
 pkg-static upgrade --yes
 
 # Generic system utils.
-pkg install --yes vim curl wget sudo bash gnuls gnugrep psmisc
+pkg-static upgrade --yes vim curl wget sudo bash gnuls gnugrep psmisc
 
 # Since most scripts expect bash to be in the bin directory, create a symlink.
 ln -s /usr/local/bin/bash /bin/bash
