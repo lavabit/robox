@@ -1558,7 +1558,7 @@ function public() {
       fi
 
       # Limit requests to ~100 per minute to avoid stalls.
-      sleep 1.2 &> /dev/null || echo "" &> /dev/null
+      sleep 2 &> /dev/null || echo "" &> /dev/null
 
     done
 
@@ -1633,7 +1633,7 @@ function ppublic() {
 
     export -f curltry ; export -f verify_availability ; export CURL ;
     # parallel --jobs $JOBS --keep-order --xapply verify_availability {1} {2} {3} {4} ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
-    parallel --jobs $JOBS --delay 1 --keep-order --line-buffer --xapply verify_availability {1} {2} {3} {4} '||' let MISSING+=1 ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
+    parallel --jobs $JOBS --delay 0.25 --keep-order --line-buffer --xapply verify_availability {1} {2} {3} {4} '||' let MISSING+=1 ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}" ":::" "${V[@]}"
     # Get the totla number of boxes.
     let TOTAL=${#B[@]}
     let FOUND=${TOTAL}-${MISSING}
