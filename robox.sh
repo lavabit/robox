@@ -750,7 +750,7 @@ function iso() {
 
     # Find the CentOS 8 stream URL.
     URL="https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "CentOS\-Stream\-8\-x86\_64\-[0-9]{8}\-boot\.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match sha256 | grep --extended-regexp --only-matching --max-count=1 "CentOS\-Stream\-8\-[0-9\.]*\-x86\_64\-boot\.iso" | uniq`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe CentOS 8 stream ISO update failed.\n\n"; tput sgr0
       return 1
