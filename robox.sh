@@ -241,10 +241,10 @@ REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/ceres/InRelease" )
 REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/daedalus/InRelease" )
 
 # Debian 8
-REPOS+=( "https://ftp.debian.org/debian/dists/jessie/Release" )
+REPOS+=( "http://archive.debian.org/debian/dists/jessie/" )
 
 # Debian 9
-REPOS+=( "http://ftp.debian.org/debian/dists/stretch/Release" )
+REPOS+=( "https://ftp.debian.org/debian/dists/stretch/Release" )
 
 # Debian 10
 REPOS+=( "https://ftp.debian.org/debian/dists/buster/InRelease" )

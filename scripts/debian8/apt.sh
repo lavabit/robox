@@ -55,9 +55,9 @@ fi
 
 # Setup the source list.
 cat <<-EOF > /etc/apt/sources.list
-deb http://ftp.debian.org/debian/ jessie main
-deb http://security.debian.org/debian-security jessie/updates main
-deb http://ftp.debian.org/debian/ jessie-updates main
+deb http://archive.debian.org/debian/ jessie main
+deb http://archive.debian.org/debian-security jessie/updates main
+deb http://archive.debian.org/debian/ jessie-updates main
 EOF
 
 # Trick the system into using expired keys by using a fake system time. This change
