@@ -64,33 +64,33 @@ EOF
 date -s 20200701
 
 # Ensure the server includes any necessary updates.
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
-retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
+retry apt-get --assume-yes --force-yes -o Dpkg::Options::="--force-confnew" update; error
+retry apt-get --assume-yes --force-yes -o Dpkg::Options::="--force-confnew" upgrade; error
+retry apt-get --assume-yes --force-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
 
 # The packages users expect on a sane system.
-retry apt-get --assume-yes install vim net-tools mlocate psmisc; error
+retry apt-get --assume-yes --force-yes install vim net-tools mlocate psmisc; error
 
 # The packages needed to compile magma.
-retry apt-get --assume-yes install gcc g++ gawk gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
+retry apt-get --assume-yes --force-yes install gcc g++ gawk gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
 
 # The memcached server.
-retry apt-get --assume-yes install memcached libevent-dev; error
+retry apt-get --assume-yes --force-yes install memcached libevent-dev; error
 
 # The postfix server for message relays.
-retry apt-get --assume-yes install postfix postfix-cdb libcdb1 ssl-cert; error
+retry apt-get --assume-yes --force-yes install postfix postfix-cdb libcdb1 ssl-cert; error
 
 # Need to retrieve the source code.
-retry apt-get --assume-yes install git git-man liberror-perl rsync wget; error
+retry apt-get --assume-yes --force-yes install git git-man liberror-perl rsync wget; error
 
 # Needed to run the watcher and status scripts.
-retry apt-get --assume-yes install sysstat inotify-tools; error
+retry apt-get --assume-yes --force-yes install sysstat inotify-tools; error
 
 # Needed to run the stacie script.
-retry apt-get --assume-yes install python-crypto python-cryptography; error
+retry apt-get --assume-yes --force-yes install python-crypto python-cryptography; error
 
 # Boosts the available entropy which allows magma to start faster.
-retry apt-get --assume-yes install haveged; error
+retry apt-get --assume-yes --force-yes install haveged; error
 
 # Populate the mlocate database during boot.
 printf "@reboot root command bash -c '/etc/cron.daily/mlocate'\n" > /etc/cron.d/mlocate
