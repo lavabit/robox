@@ -241,22 +241,28 @@ REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/ceres/InRelease" )
 REPOS+=( "https://pkgmaster.devuan.org/devuan/dists/daedalus/InRelease" )
 
 # Debian 8
-REPOS+=( "http://archive.debian.org/debian/dists/jessie/" )
+REPOS+=( "http://archive.debian.org/debian/dists/jessie/Release" )
+REPOS+=( "http://archive.debian.org/debian-security/dists/jessie/updates/Release" )
 
 # Debian 9
 REPOS+=( "https://ftp.debian.org/debian/dists/stretch/Release" )
+REPOS+=( "https://security.debian.org/debian-security/dists/stretch/updates/Release" )
 
 # Debian 10
 REPOS+=( "https://ftp.debian.org/debian/dists/buster/InRelease" )
+REPOS+=( "https://security.debian.org/debian-security/dists/buster/updates/Release" )
 
 # Debian 11
 REPOS+=( "https://ftp.debian.org/debian/dists/bullseye/InRelease" )
+REPOS+=( "https://security.debian.org/debian-security/dists/bullseye-security/updates/InRelease" )
 
 # Debian 12
 REPOS+=( "https://ftp.debian.org/debian/dists/bookworm/InRelease" )
+REPOS+=( "https://security.debian.org/debian-security/dists/bookworm-security/updates/InRelease" )
 
 # Debian 13
 FUTURE+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
+FUTURE+=( "https://security.debian.org/debian-security/dists/trixie/updates/Release" )
 
 # FreeBSD 11
 REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
