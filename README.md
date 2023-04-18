@@ -18,13 +18,16 @@ or
 https://quay.io/organization/roboxes  
 https://quay.io/organization/lavabit  
 
+## Pending Additions/Updates
+
+FreeBSD 13.2  
+Fedora 38  
+Ubuntu 23.04 (Lunar Lobster)  
+OpenBSD 7.3  
+
 ## Upcoming Additions
 
-Mar 27th, 2023 / FreeBSD 13.2  
-Apr 18th, 2023 / Fedora 38  
-Apr 27th, 2023 / Ubuntu 23.04 (Lunar Lobster)  
 Jul 17th, 2023 / FreeBSD 14.0  
-  
 Mid 2023 / Debian 12.0  
 Mid 2023 / Devuan 5.0  
 
