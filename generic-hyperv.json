@@ -3031,6 +3031,42 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/ubuntu2304/apt.sh",
+        "scripts/ubuntu2304/floppy.sh",
+        "scripts/ubuntu2304/fixkvp.sh",
+        "scripts/ubuntu2304/network.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2304-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/ubuntu2304/vagrant.sh",
+        "scripts/ubuntu2304/profile.sh",
+        "scripts/ubuntu2304/motd.sh",
+        "scripts/ubuntu2304/fixtty.sh",
+        "scripts/ubuntu2304/virtualbox.sh",
+        "scripts/ubuntu2304/parallels.sh",
+        "scripts/ubuntu2304/vmware.sh",
+        "scripts/ubuntu2304/qemu.sh",
+        "scripts/ubuntu2304/cleanup.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2304-hyperv"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -6454,6 +6490,44 @@
       "ssh_port": 22,
       "ssh_timeout": "7200s",
       "shutdown_command": "/sbin/poweroff",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": false,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-ubuntu2304-hyperv",
+      "vm_name": "generic-ubuntu2304-hyperv",
+      "temp_path": "output/",
+      "output_directory": "output/generic-ubuntu2304-hyperv",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait10>",
+        "c<wait10>",
+        "set gfxpayload=keep<enter><wait10>",
+        "linux /casper/vmlinuz autoinstall quiet net.ifnames=0 biosdevname=0 ",
+        "ds=\"nocloud-net;s=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2304.vagrant\" --- <enter><wait10>",
+        "initrd /casper/initrd<enter><wait10>",
+        "boot<enter>"
+      ],
+      "disk_size": 131072,
+      "memory": 2048,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://releases.ubuntu.com/23.04/ubuntu-23.04-live-server-amd64.iso",
+      "iso_checksum": "sha256:c7cda48494a6d7d9665964388a3fc9c824b3bef0c9ea3818a1be982bc80d346b",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
       "communicator": "ssh",
