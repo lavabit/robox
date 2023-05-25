@@ -1278,8 +1278,8 @@
     {
       "name": "centos9s",
       "output_directory": "output/centos9s",
-      "iso_url": "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20230516.0-x86_64-boot.iso",
-      "iso_checksum": "sha256:d514fabe47bb96bd6cea3272d93c6a677968685d531527631935c985b9700348",
+      "iso_url": "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20230523.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:65fa3b54d6510a671ad2db011bbd8543ec0f153efa27161554e3135c858327c8",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
