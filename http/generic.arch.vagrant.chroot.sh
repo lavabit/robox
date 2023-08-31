@@ -45,7 +45,7 @@ nameserver 4.2.2.2
 nameserver 208.67.220.220
 EOF
 
-systemctl enable dhcpcd
+#systemctl enable dhcpcd
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 rm --force /run/systemd/generator.early/sshd.service && systemctl enable sshd
