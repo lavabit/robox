@@ -362,7 +362,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://cdimage.debian.org/cdimage/release/11.6.0/i386/iso-cd/debian-11.6.0-i386-netinst.iso",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/11.6.0/i386/iso-cd/debian-11.6.0-i386-netinst.iso",
       "iso_checksum": "sha256:e6369838b9a59db641246fbb134840b84f2d315b89bd2f912d69a5f7c08c2197",
       "ssh_username": "root",
       "ssh_password": "vagrant",
