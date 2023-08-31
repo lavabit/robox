@@ -3099,6 +3099,43 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine318/network.sh",
+        "scripts/alpine318/apk.sh"
+      ],
+      "execute_command": "/bin/sh '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine318-vmware"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alpine318/hostname.sh",
+        "scripts/alpine318/lsb.sh",
+        "scripts/alpine318/floppy.sh",
+        "scripts/alpine318/vagrant.sh",
+        "scripts/alpine318/sshd.sh",
+        "scripts/alpine318/virtualbox.sh",
+        "scripts/alpine318/parallels.sh",
+        "scripts/alpine318/vmware.sh",
+        "scripts/alpine318/qemu.sh",
+        "scripts/alpine318/cache.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alpine318-vmware"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -5952,8 +5989,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.14/releases/x86_64/alpine-virt-3.14.9-x86_64.iso",
-      "iso_checksum": "sha256:27a3924c514fdf6459353d2ad12da864892ac9b51130e20f7898b5887c86be21",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.14/releases/x86_64/alpine-virt-3.14.10-x86_64.iso",
+      "iso_checksum": "sha256:5e0cd8432e256f75463f464de83ded2dde47d6fd40da77c1217b0f8103bbcf0d",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -6518,8 +6555,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.15/releases/x86_64/alpine-virt-3.15.7-x86_64.iso",
-      "iso_checksum": "sha256:3c71a2cf95b419d73471c6e6e0d856750f3d3e74114771e4bd32b89b15a2cca9",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.15/releases/x86_64/alpine-virt-3.15.8-x86_64.iso",
+      "iso_checksum": "sha256:5d14f2cb237d213c5055d9df5655f475ec7a5077252994693192154b9217b346",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -6891,8 +6928,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.16/releases/x86_64/alpine-virt-3.16.4-x86_64.iso",
-      "iso_checksum": "sha256:dc8163713532f9025a12f0956a0070e325b1c0f0618080f8ba54ee05d62bd8b3",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.16/releases/x86_64/alpine-virt-3.16.5-x86_64.iso",
+      "iso_checksum": "sha256:bf98c7a0fe722a8419222e5ac4e933768cf50e053af8bc53bfd748c99c7d952f",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -7280,8 +7317,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.17/releases/x86_64/alpine-virt-3.17.2-x86_64.iso",
-      "iso_checksum": "sha256:96cd5a0a372b75e9d8607d2df8c3e604326f5c314c8c4f760ff901447a9a7746",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.17/releases/x86_64/alpine-virt-3.17.3-x86_64.iso",
+      "iso_checksum": "sha256:3ae1f6304346ce99e5eafddf0132c86c0fc7136ffad767a2c725501d8a9d5c04",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -7386,6 +7423,65 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-alpine318-vmware",
+      "vm_name": "generic-alpine318-vmware",
+      "vmdk_name": "generic-alpine318-vmware",
+      "output_directory": "output/generic-alpine318-vmware",
+      "boot_wait": "60s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<enter><wait10>",
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine318.vagrant.cfg<enter><wait>",
+        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+        "source generic.alpine318.vagrant.cfg<enter><wait>",
+        "printf \"vagrant\\nvagrant\\ny\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine318.vagrant.cfg && ",
+        "mount /dev/sda2 /mnt && ",
+        "sed -E -i '/#? ?PasswordAuthentication/d' /mnt/etc/ssh/sshd_config && ",
+        "sed -E -i '/#? ?PermitRootLogin/d' /mnt/etc/ssh/sshd_config && ",
+        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data": {
+        "softpoweroff": "FALSE",
+        "powertype.poweroff": "hard",
+        "powertype.poweron": "hard",
+        "powertype.reset": "hard",
+        "powertype.suspend": "hard"
+      },
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "otherlinux-64",
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.18/releases/x86_64/alpine-virt-3.18.3-x86_64.iso",
+      "iso_checksum": "sha256:925f6bc1039a0abcd0548d2c3054d54dce31cfa03c7eeba22d10d85dc5817c98",
+      "skip_compaction": false,
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "/sbin/poweroff",
       "tools_upload_flavor": "linux"
     }
   ],

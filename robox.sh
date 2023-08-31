@@ -189,11 +189,15 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/main/x86_64/APKINDEX.tar.
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz" )
 
 # Alpine 3.18
-FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz" )
-FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz" )
+
+# Alpine 3.19
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/main/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/community/x86_64/APKINDEX.tar.gz" )
 
 # When the release ISO becomes available, update the JSON files, and remove this URL.
-FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.18/releases/x86_64/alpine-virt-3.18.0-x86_64.iso" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/releases/x86_64/alpine-virt-3.19.0-x86_64.iso" )
 
 # CentOS 6
 REPOS+=( "https://vault.centos.org/6.10/os/x86_64/repodata/repomd.xml" )
@@ -479,15 +483,17 @@ REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/kinetic/InRelease" )
 # Ubuntu 23.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/lunar/InRelease" )
 
-# When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://releases.ubuntu.com/23.04/ubuntu-23.04-live-server-amd64.iso" )
+# Ubuntu 23.10 (Mantic Minotaur)
+REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/mantic/InRelease" )
 
-# Ubuntu 23.10
-# This means the 23.10 repository is available.
-# REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/UNKNOWN/InRelease" )
-
-# When this link becomes available, update the JSON files and remove it from here.
+# This means the 23.10 ISO is available.
 FUTURE+=( "https://releases.ubuntu.com/23.10/ubuntu-23.10-live-server-amd64.iso" )
+
+# Ubuntu 24.04 (Unkown Unkown)
+# This means the 24.04 ISO is available.
+FUTURE+=( "https://releases.ubuntu.com/24.04/ubuntu-24.04-live-server-amd64.iso" )
+# This means the 24.04 repository is available.
+# FUTURE+=( "https://mirrors.edge.kernel.org/ubuntu/dists/UNKOWN/InRelease" )
 
 # EPEL
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/epel/6/x86_64/repodata/repomd.xml" )
