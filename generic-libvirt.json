@@ -3028,6 +3028,42 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/ubuntu2304/apt.sh",
+        "scripts/ubuntu2304/floppy.sh",
+        "scripts/ubuntu2304/fixkvp.sh",
+        "scripts/ubuntu2304/network.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2304-libvirt"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/ubuntu2304/vagrant.sh",
+        "scripts/ubuntu2304/profile.sh",
+        "scripts/ubuntu2304/motd.sh",
+        "scripts/ubuntu2304/fixtty.sh",
+        "scripts/ubuntu2304/virtualbox.sh",
+        "scripts/ubuntu2304/parallels.sh",
+        "scripts/ubuntu2304/vmware.sh",
+        "scripts/ubuntu2304/qemu.sh",
+        "scripts/ubuntu2304/cleanup.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2304-libvirt"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -6459,6 +6495,45 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-ubuntu2304-libvirt",
+      "vm_name": "generic-ubuntu2304-libvirt",
+      "output_directory": "output/generic-ubuntu2304-libvirt",
+      "qemu_binary": "qemu-system-x86_64",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait10>",
+        "c<wait10>",
+        "set gfxpayload=keep<enter><wait10>",
+        "linux /casper/vmlinuz autoinstall quiet net.ifnames=0 biosdevname=0 ",
+        "ds=\"nocloud-net;s=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2304.vagrant\" --- <enter><wait10>",
+        "initrd /casper/initrd<enter><wait10>",
+        "boot<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "on",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://releases.ubuntu.com/23.04/ubuntu-23.04-live-server-amd64.iso",
+      "iso_checksum": "sha256:c7cda48494a6d7d9665964388a3fc9c824b3bef0c9ea3818a1be982bc80d346b",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "ssh_handshake_attempts": "10000",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     }
   ],
   "post-processors": [

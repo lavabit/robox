@@ -3020,6 +3020,42 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/ubuntu2304/apt.sh",
+        "scripts/ubuntu2304/floppy.sh",
+        "scripts/ubuntu2304/fixkvp.sh",
+        "scripts/ubuntu2304/network.sh"
+      ],
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2304-parallels"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/ubuntu2304/vagrant.sh",
+        "scripts/ubuntu2304/profile.sh",
+        "scripts/ubuntu2304/motd.sh",
+        "scripts/ubuntu2304/fixtty.sh",
+        "scripts/ubuntu2304/virtualbox.sh",
+        "scripts/ubuntu2304/parallels.sh",
+        "scripts/ubuntu2304/vmware.sh",
+        "scripts/ubuntu2304/qemu.sh",
+        "scripts/ubuntu2304/cleanup.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2304-parallels"
+      ]
+    },
+    {
       "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
@@ -8819,6 +8855,73 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "/sbin/poweroff",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-ubuntu2304-parallels",
+      "vm_name": "generic-ubuntu2304-parallels",
+      "output_directory": "output/generic-ubuntu2304-parallels",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait10>",
+        "c<wait10>",
+        "set gfxpayload=keep<enter><wait10>",
+        "linux /casper/vmlinuz autoinstall quiet net.ifnames=0 biosdevname=0 ",
+        "ds=\"nocloud-net;s=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2304.vagrant\" --- <enter><wait10>",
+        "initrd /casper/initrd<enter><wait10>",
+        "boot<enter>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "ubuntu",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "iso_url": "https://releases.ubuntu.com/23.04/ubuntu-23.04-live-server-amd64.iso",
+      "iso_checksum": "sha256:c7cda48494a6d7d9665964388a3fc9c824b3bef0c9ea3818a1be982bc80d346b",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
       "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
