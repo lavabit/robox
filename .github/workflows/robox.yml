@@ -42,6 +42,9 @@ jobs:
         sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
         sudo apt-get update
         sudo apt-get --assume-yes install packer
+        packer plugins install github.com/hashicorp/vagrant
+        packer plugins install github.com/hashicorp/hyperv
+        packer plugins install github.com/hashicorp/parallels
     - name: Validate Generic Box Configurations
       env:
         GOGC: 50
