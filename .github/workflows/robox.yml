@@ -44,6 +44,8 @@ jobs:
         sudo apt-get --assume-yes install packer
         packer plugins install github.com/hashicorp/vagrant
         packer plugins install github.com/hashicorp/hyperv
+        packer plugins install github.com/hashicorp/docker
+        packer plugins install github.com/hashicorp/vmware
         packer plugins install github.com/hashicorp/parallels
     - name: Validate Generic Box Configurations
       env:
