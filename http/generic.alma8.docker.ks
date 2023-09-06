@@ -24,7 +24,7 @@ authconfig --enableshadow --passalgo=sha512
 reboot --eject
 
 # repo --name=BaseOS
-url --url=https://dfw.mirror.rackspace.com/almalinux/8.7/BaseOS/x86_64/os/
+url --url=https://dfw.mirror.rackspace.com/almalinux/8.8/BaseOS/x86_64/os/
 
 %packages --instLangs=en_US.utf8
 @core

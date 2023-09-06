@@ -115,22 +115,22 @@ export EXCEPTIONS=""
 # The repository URLs, so we can catch any which might disappeared since the last build.
 
 # Alma 8
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.7/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/isos/x86_64/AlmaLinux-8.8-x86_64-boot.iso" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/isos/x86_64/AlmaLinux-8.9-x86_64-boot.iso" )
 
 # Alma 9
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.1/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/isos/x86_64/AlmaLinux-9.2-x86_64-boot.iso" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/x86_64/AlmaLinux-9.3-x86_64-boot.iso" )
 
 # Alpine Edge
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
@@ -357,6 +357,9 @@ REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.2/SHA512.bz2
 # NetBSD 9.3
 REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.3/SHA512.bz2" )
 
+# NetBSD 9.4
+FUTURE+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.4/SHA512.bz2" )
+
 # OpenBSD 6.9
 REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/index.txt" )
 REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/amd64/SHA256" )
@@ -392,15 +395,16 @@ REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/repod
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repomd.xml" )
 
-# When Oracle 8.8 is available this URL will become active. Update the JSON files and remove from here.
-FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL8/u8/x86_64/x86_64-boot-uek.iso" )
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL8/u9/x86_64/x86_64-boot-uek.iso" )
 
 # Oracle 9
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
 
-# When Oracle 9.2 is available this URL will become active. Update the JSON files and start looking for the 9,3 update.
-FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL9/u2/x86_64/OracleLinux-R9-U2-x86_64-boot.iso" )
+# When this link becomes available, update the JSON files and remove it from here.
+FUTURE+=( "https://yum.oracle.com/ISOS/Ora\
+  cleLinux/OL9/u3/x86_64/OracleLinux-R9-U3-x86_64-boot.iso" )
 
 # OpenSUSE 42.3
 REPOS+=( "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
@@ -409,34 +413,34 @@ REPOS+=( "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/
 REPOS+=( "https://download.opensuse.org/distribution/leap/15.4/repo/oss/INDEX.gz" )
 
 # Rocky 8
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.7/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/isos/x86_64/Rocky-8.8-x86_64-boot.iso" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/isos/x86_64/Rocky-8.9-x86_64-boot.iso" )
 
-# When 8.8 is released, these will replace the 8.7 URLs above.
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/BaseOS/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/AppStream/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+# When 8.9 is released, these will replace the 8.8 URLs above.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Rocky 9
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.1/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/isos/x86_64/Rocky-9.2-x86_64-boot.iso" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/isos/x86_64/Rocky-9.3-x86_64-boot.iso" )
 
-# When 9.2 is released, these will replace the 9.1 URLs above.
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/AppStream/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+# When 9.3 is released, these will replace the 9.2 URLs above.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Ubuntu 16.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
