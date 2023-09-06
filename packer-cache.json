@@ -1141,6 +1141,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "debian12-x32",
+      "output_directory": "output/debian12-x32",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.1.0/i386/iso-cd/debian-12.1.0-i386-netinst.iso",
+      "iso_checksum": "sha256:668c436aef2cc9c4f2092f6ecae8d76d1c681dd5d79def48916d735ba21030d8",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "openbsd7",
       "output_directory": "output/openbsd7",
       "iso_url": "https://ftp.nluug.nl/OpenBSD/7.2/amd64/cd72.iso",

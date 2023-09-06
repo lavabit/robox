@@ -144,6 +144,42 @@
         "generic-debian11-x32-libvirt"
       ]
     },
+
+    {
+      "scripts": [
+        "scripts/debian12/apt.sh",
+        "scripts/debian12/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian12-x32-libvirt"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian12/floppy.sh",
+        "scripts/debian12/profile.sh",
+        "scripts/debian12/vagrant.sh",
+        "scripts/debian12/motd.sh",
+        "scripts/debian12/fixtty.sh",
+        "scripts/debian12/virtualbox.sh",
+        "scripts/debian12/parallels.sh",
+        "scripts/debian12/vmware.sh",
+        "scripts/debian12/qemu.sh",
+        "scripts/debian12/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian12-x32-libvirt"
+      ]
+    },
     {
       "scripts": [
         "scripts/common/motd.sh",
@@ -336,7 +372,51 @@
       "ssh_port": 22,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
-    }
+    },
+    {
+      "type": "qemu",
+      "name": "generic-debian12-x32-libvirt",
+      "vm_name": "generic-debian12-x32-libvirt",
+      "output_directory": "output/generic-debian12-x32-libvirt",
+      "qemu_binary": "qemu-system-i386",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "/install.386/vmlinuz auto=true priority=critical vga=788 initrd=/install.386/gtk/initrd.gz --- quiet ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.cfg ",
+        "<enter>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.1.0/i386/iso-cd/debian-12.1.0-i386-netinst.iso",
+      "iso_checksum": "sha256:668c436aef2cc9c4f2092f6ecae8d76d1c681dd5d79def48916d735ba21030d8",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    } 
   ],
   "post-processors": [
     [
