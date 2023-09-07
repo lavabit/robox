@@ -20,7 +20,6 @@ https://quay.io/organization/lavabit
 
 ## Pending Additions/Updates
 
-FreeBSD 13.2  
 Fedora 38  
 OpenBSD 7.3  
 
