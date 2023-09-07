@@ -27,14 +27,14 @@ retry() {
   return "${RESULT}"
 }
 
-# Configure fetch so it retries  temprorary failures.
+# Configure fetch so it retries temporary failures.
 export FETCH_RETRY=5
 export FETCH_TIMEOUT=30
 export ASSUME_ALWAYS_YES=yes
 
 # Force the use of HTTPS for package updates.
 mkdir -p /usr/local/etc/pkg/repos/
-echo 'HardenedBSD: { url: "pkg+https://pkg.hardenedbsd.org/HardenedBSD/pkg/${ABI}" }' > /usr/local/etc/pkg/repos/HardenedBSD.conf
+echo 'HardenedBSD: { url: "pkg+https://mirrors.lavabit.com/freebsd-packages/${ABI}" }' > /usr/local/etc/pkg/repos/HardenedBSD.conf
 
 retry pkg bootstrap
 retry pkg-static update --force

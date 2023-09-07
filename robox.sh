@@ -249,8 +249,8 @@ REPOS+=( "http://archive.debian.org/debian/dists/jessie/Release" )
 REPOS+=( "http://archive.debian.org/debian-security/dists/jessie/updates/Release" )
 
 # Debian 9
-REPOS+=( "https://ftp.debian.org/debian/dists/stretch/Release" )
-REPOS+=( "https://security.debian.org/debian-security/dists/stretch/updates/Release" )
+REPOS+=( "https://archive.debian.org/debian/dists/stretch/Release" )
+REPOS+=( "https://archive.debian.org/debian-security/dists/stretch/updates/Release" )
 
 # Debian 10
 REPOS+=( "https://ftp.debian.org/debian/dists/buster/InRelease" )
@@ -265,14 +265,14 @@ REPOS+=( "https://ftp.debian.org/debian/dists/bookworm/InRelease" )
 REPOS+=( "https://security.debian.org/debian-security/dists/bookworm-security/updates/InRelease" )
 
 # Debian 13
-FUTURE+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
-FUTURE+=( "https://security.debian.org/debian-security/dists/trixie/updates/Release" )
+REPOS+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
+REPOS+=( "https://security.debian.org/debian-security/dists/trixie-security/updates/Release" )
 
 # FreeBSD 11
-REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
+REPOS+=( "https://mirrors.lavabit.com/freebsd-packages/FreeBSD:11:amd64/latest/packagesite.txz" )
 
 # FreeBSD 12
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
+REPOS+=( "https://mirrors.lavabit.com/freebsd-packages/FreeBSD:12:amd64/latest/packagesite.txz" )
 
 # FreeBSD 13
 REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
@@ -308,13 +308,13 @@ REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/3
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/35/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 36
-REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/36/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 37
 REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 38
-FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 39
 FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_64/os/repodata/repomd.xml" )
@@ -322,11 +322,14 @@ FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_
 # Fedora 40
 FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/40/Server/x86_64/os/repodata/repomd.xml" )
 
+# Fedora 41
+FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Server/x86_64/os/repodata/repomd.xml" )
+
 # FreeBSD 11
-REPOS+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/packagesite.txz" )
+REPOS+=( "https://mirrors.lavabit.com/freebsd-packages/FreeBSD:11:amd64/latest/packagesite.txz" )
 
 # FreeBSD 12
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:12:amd64/latest/packagesite.txz" )
+REPOS+=( "https://mirrors.lavabit.com/freebsd-packages/FreeBSD:12:amd64/latest/packagesite.txz" )
 
 # FreeBSD 13
 REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
@@ -343,7 +346,7 @@ REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.xz.gpgs
 REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.xz.md5sum" )
 
 # HardenedBSD 12
-REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:12:amd64/packagesite.txz" )
+REPOS+=( "https://mirrors.lavabit.com/freebsd-packages/FreeBSD:12:amd64/latest/packagesite.txz" )
 
 # HardenedBSD 13
 REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
@@ -521,7 +524,7 @@ RESOURCES+=( "https://files.pythonhosted.org/packages/97/8d/77b8cedcfbf936761485
 RESOURCES+=( "https://files.pythonhosted.org/packages/bf/3e/31d502c25302814a7c2f1d3959d2a3b3f78e509002ba91aea64993936876/enum34-1.1.6.tar.gz" )
 RESOURCES+=( "https://files.pythonhosted.org/packages/e7/a7/4cd50e57cc6f436f1cc3a7e8fa700ff9b8b4d471620629074913e3735fb2/cffi-1.11.5.tar.gz" )
 RESOURCES+=( "http://archive.debian.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb" )
-RESOURCES+=( "https://mirrors.xtom.com/freebsd-pkg/FreeBSD:11:amd64/latest/All/open-vm-tools-nox11-11.3.0,2.pkg" )
+RESOURCES+=( "https://mirrors.lavabit.com/freebsd-packages/FreeBSD:11:amd64/latest/All/open-vm-tools-nox11-11.3.0,2.pkg" )
 RESOURCES+=( "https://raw.githubusercontent.com/curl/curl/85f91248cffb22d151d5983c32f0dbf6b1de572a/lib/mk-ca-bundle.pl" )
 RESOURCES+=( "https://sourceware.org/pub/valgrind/valgrind-3.15.0.tar.bz2" )
 RESOURCES+=( "https://storage.googleapis.com/git-repo-downloads/repo" )

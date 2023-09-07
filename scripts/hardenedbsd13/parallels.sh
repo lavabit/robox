@@ -27,7 +27,7 @@ retry() {
   return "${RESULT}"
 }
 
-# Configure fetch so it retries  temprorary failures.
+# Configure fetch so it retries temporary failures.
 export FETCH_RETRY=5
 export FETCH_TIMEOUT=30
 export ASSUME_ALWAYS_YES=yes

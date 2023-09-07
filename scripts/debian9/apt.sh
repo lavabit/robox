@@ -52,6 +52,12 @@ printf "APT::Acquire::Retries \"0\";\n" >> /etc/apt/apt.conf.d/20retries
 
 fi
 
+# Setup the source list.
+cat <<-EOF > /etc/apt/sources.list
+deb https://archive.debian.org/debian/ stretch main
+deb https://archive.debian.org/debian-security/ stretch/updates main
+EOF
+
 # Keep the daily apt updater from deadlocking our installs.
 systemctl stop apt-daily.service apt-daily.timer
 
