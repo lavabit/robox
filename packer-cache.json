@@ -1486,6 +1486,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "devuan5",
+      "output_directory": "output/devuan5",
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_daedalus/installer-iso/devuan_daedalus_5.0.0_amd64_netinstall.iso",
+      "iso_checksum": "sha256:34003ad127caf1b9ce45c44ef56b4f42d02df517dd51490474d3ec5b5d6d1513",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "dragonflybsd6",
       "output_directory": "output/dragonflybsd6",
       "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.4.0_REL.iso",
