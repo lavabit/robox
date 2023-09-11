@@ -121,6 +121,7 @@
       "ssh_username": "root",
       "ssh_password": "locked",
       "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -h now"
     },
@@ -155,6 +156,7 @@
       "ssh_username": "root",
       "ssh_password": "locked",
       "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -h now"
     },
@@ -189,6 +191,7 @@
       "ssh_username": "root",
       "ssh_password": "locked",
       "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -h now"
     },
@@ -223,6 +226,7 @@
       "ssh_username": "root",
       "ssh_password": "locked",
       "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
       "shutdown_command": "shutdown -h now"
     }
