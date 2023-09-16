@@ -347,6 +347,14 @@ function provide-packer() {
   rm --force "$BASE/packer"
   rm --force "$BASE/packer_${PACKER_VERSION}_linux_amd64.zip"
 
+  PACKER_PLUGIN_PATH=/usr/local/bin/ /usr/local/bin/packer plugins install github.com/hashicorp/qemu
+  PACKER_PLUGIN_PATH=/usr/local/bin/ /usr/local/bin/packer plugins install github.com/hashicorp/hyperv
+  PACKER_PLUGIN_PATH=/usr/local/bin/ /usr/local/bin/packer plugins install github.com/hashicorp/docker
+  PACKER_PLUGIN_PATH=/usr/local/bin/ /usr/local/bin/packer plugins install github.com/hashicorp/vmware
+  PACKER_PLUGIN_PATH=/usr/local/bin/ /usr/local/bin/packer plugins install github.com/hashicorp/vagrant
+  PACKER_PLUGIN_PATH=/usr/local/bin/ /usr/local/bin/packer plugins install github.com/hashicorp/parallels
+  PACKER_PLUGIN_PATH=/usr/local/bin/ /usr/local/bin/packer plugins install github.com/hashicorp/virtualbox
+
 }
 
 function provide-setup() {
