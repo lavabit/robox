@@ -1488,8 +1488,8 @@
     {
       "name": "devuan5",
       "output_directory": "output/devuan5",
-      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_daedalus/installer-iso/devuan_daedalus_5.0.0_amd64_netinstall.iso",
-      "iso_checksum": "sha256:34003ad127caf1b9ce45c44ef56b4f42d02df517dd51490474d3ec5b5d6d1513",
+      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_daedalus/installer-iso/devuan_daedalus_5.0.1_amd64_netinstall.iso",
+      "iso_checksum": "sha256:722af7905595d9a1417f48f783d43dd40fe7da7a2e1d7998a8ea47df2d26941b",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
