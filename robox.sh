@@ -485,7 +485,7 @@ REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/impish/InRelease" )
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/jammy/InRelease" )
 
 # Ubuntu 22.10
-REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/kinetic/InRelease" )
+REPOS+=( "https://old-releases.ubuntu.com/ubuntu/dists/kinetic/InRelease" )
 
 # Ubuntu 23.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/lunar/InRelease" )

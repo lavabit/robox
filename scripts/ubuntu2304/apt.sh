@@ -130,15 +130,15 @@ apt-get --assume-yes update ; error
 # # Write out a nice and compact sources list.
 # cat <<-EOF > /etc/apt/sources.list
 # 
-# deb https://old-releases.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
-# deb https://old-releases.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
-# deb https://old-releases.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
-# deb https://old-releases.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ lunar main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ lunar-updates main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ lunar-backports main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ lunar-security main restricted universe multiverse
 # 
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
-# # deb-src https://old-releases.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ lunar main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ lunar-updates main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ lunar-backports main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ lunar-security main restricted universe multiverse
 # 
 # EOF
 # 
