@@ -59,9 +59,10 @@ deb http://archive.debian.org/debian/ jessie main
 deb http://archive.debian.org/debian-security/ jessie/updates main
 EOF
 
-# Trick the system into using expired keys by using a fake system time. This change
-# is reversed by the cleanup module.
-date -s 20200701
+# Trick the system into using expired keys by setting a fake system time. This change
+# is reversed by the cleanup module. Note the GPG key appears to have expired on
+# April 25, 2020 aT 7:08:37 PM or at 1587841717 in unix time.
+date -s 20200301
 
 # Ensure the server includes any necessary updates.
 retry apt-get --assume-yes --force-yes -o Dpkg::Options::="--force-confnew" update; error
