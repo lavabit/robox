@@ -54,20 +54,40 @@ fi
 
 # Setup the source list.
 cat <<-EOF > /etc/apt/sources.list
-deb https://archive.debian.org/debian/ stretch main
-deb https://archive.debian.org/debian-security/ stretch/updates main
+deb http://archive.debian.org/debian/ stretch main
+deb http://archive.debian.org/debian-security/ stretch/updates main
 EOF
 
 # Keep the daily apt updater from deadlocking our installs.
 systemctl stop apt-daily.service apt-daily.timer
 
-# Remove the CDROM as a media source.
-sed -i -e "/cdrom:/d" /etc/apt/sources.list
+
+## We tried updating the ca-certificate package but that didn't work. It seems that one
+## these packages must also be updated:
+##  apt apt-transport-https apt-utils busybox cron debian-archive-keyring dpkg e2fslibs e2fsprogs gzip
+##  isc-dhcp-client isc-dhcp-common klibc-utils libapt-inst2.0 libapt-pkg5.0 libbsd0 libcomerr2 libcurl3-gnutls
+##  libdns-export162 libelf1 libexpat1 libfreetype6 libgcrypt20 libgmp10 libgnutls30 libgssapi-krb5-2
+##  libhogweed4 libisc-export160 libk5crypto3 libklibc libkrb5-3 libkrb5support0 libldap-2.4-2 libldap-common
+##  liblz4-1 liblzma5 libnettle6 libnghttp2-14 libp11-kit0 libpam-systemd libpython3.5-minimal
+##  libpython3.5-stdlib libsasl2-2 libsasl2-modules-db libsqlite3-0 libss2 libssh2-1 libssl1.0.2 libssl1.1
+##  libsystemd0 libudev1 libx11-6 libx11-data login openssl passwd python-apt-common python3-apt python3-urllib3
+##  python3.5 python3.5-minimal rsyslog sudo systemd systemd-sysv tar tzdata udev vim-common vim-tiny xxd zlib1g  
+
+## Template for a manual package download and install.
+# wget --quiet --no-check-certificate --output-document ca-certificates_20200601-deb9u2_all.deb "https://archive.debian.org/debian-security/pool/updates/main/c/ca-certificates/ca-certificates_20200601~deb9u2_all.deb"
+# echo "6cb3ce4329229d71a6f06b9f13c710457c05a469012ea31853ac300873d5a3e1  ca-certificates_20200601-deb9u2_all.deb" | sha256sum -c || exit 1
+# dpkg -i ca-certificates_20200601-deb9u2_all.deb 
 
 # Ensure the server includes any necessary updates.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
+
+# Setup the source list to use HTTPS.
+cat <<-EOF > /etc/apt/sources.list
+deb http://archive.debian.org/debian/ stretch main
+deb http://archive.debian.org/debian-security/ stretch/updates main
+EOF
 
 # The packages users expect on a sane system.
 retry apt-get --assume-yes install vim net-tools mlocate psmisc; error
