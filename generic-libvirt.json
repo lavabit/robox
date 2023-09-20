@@ -5914,7 +5914,7 @@
         "/bin/sh<enter><wait10>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd6.vagrant.cfg<enter><wait10>",
-        "sh /tmp/installerconfig && reboot<enter><wait>"
+        "sh -ex /tmp/installerconfig<enter><wait>"
       ],
       "format": "qcow2",
       "disk_size": "131072",
