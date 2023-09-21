@@ -3594,6 +3594,8 @@
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<spacebar>net.ifnames=0 biosdevname=0 systemd.mask=sshd.service<enter>",
         "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
         "sed -i 's/[#]\\?DNSSEC=.*/DNSSEC=false/g' /etc/systemd/resolved.conf<enter><wait>",
         "systemctl restart systemd-resolved<enter><wait>",
         "systemctl restart dhcpcd<enter><wait>",
@@ -4507,7 +4509,7 @@
         "/bin/sh<enter><wait10>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd5.vagrant.cfg<enter><wait10>",
-        "sh /tmp/installerconfig && reboot<enter><wait>"
+        "sh /tmp/installerconfig | tee /tmp/installerconfig.log && reboot<enter><wait>"
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -5914,7 +5916,7 @@
         "/bin/sh<enter><wait10>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd6.vagrant.cfg<enter><wait10>",
-        "sh -ex /tmp/installerconfig | tee /tmp/installerconfig.log<enter><wait>"
+        "sh /tmp/installerconfig | tee /tmp/installerconfig.log && reboot<enter><wait>"
       ],
       "format": "qcow2",
       "disk_size": "131072",
