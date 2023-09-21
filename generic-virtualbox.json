@@ -3170,6 +3170,29 @@
     },
     {
       "scripts": [
+        "scripts/hardenedbsd/pkg.sh",
+        "scripts/hardenedbsd/hostname.sh",
+        "scripts/hardenedbsd/kernel.sh",
+        "scripts/hardenedbsd/firstboot.sh",
+        "scripts/hardenedbsd/motd.sh",
+        "scripts/hardenedbsd/vagrant.sh",
+        "scripts/hardenedbsd/virtualbox.sh",
+        "scripts/hardenedbsd/parallels.sh",
+        "scripts/hardenedbsd/vmware.sh",
+        "scripts/hardenedbsd/qemu.sh",
+        "scripts/hardenedbsd/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd-virtualbox"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -6333,8 +6356,8 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/build-9/disc1.iso",
-      "iso_checksum": "sha256:51a4883c1a628fb13c33a9c5c6806a1f5bf527501c69a0668f4a1fa4b2f7892c",
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer//build-21/disc1.iso",
+      "iso_checksum": "sha256:815ca31ca6740211983abc2c91aca0140db29ff708c3484163e5c64db0108548",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -7741,6 +7764,62 @@
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
       "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.46/VBoxGuestAdditions_6.1.46.iso",
       "guest_additions_sha256": "a65927369c852895e827c6d6d5be3d14c2da1dfd4e7a4b9ca7479320e5121ffc",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    },
+    {
+      "type": "virtualbox-iso",
+      "name": "generic-hardenedbsd-virtualbox",
+      "vm_name": "generic-hardenedbsd-virtualbox",
+      "output_directory": "output/generic-hardenedbsd-virtualbox",
+      "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait5>",
+        "mdmfs -s 100m md2 /mnt<enter><wait5>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig | tee /tmp/installer.log && reboot<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
+      "hard_drive_interface": "sata",
+      "guest_os_type": "FreeBSD_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer//build-3/disc1.iso",
+      "iso_checksum": "sha256:3cead81bd289c921768fc2aa22ccdcb705543c58abbc1929464af36969c1bfe9",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"

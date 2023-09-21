@@ -3170,6 +3170,29 @@
     },
     {
       "scripts": [
+        "scripts/hardenedbsd/pkg.sh",
+        "scripts/hardenedbsd/hostname.sh",
+        "scripts/hardenedbsd/kernel.sh",
+        "scripts/hardenedbsd/firstboot.sh",
+        "scripts/hardenedbsd/motd.sh",
+        "scripts/hardenedbsd/vagrant.sh",
+        "scripts/hardenedbsd/virtualbox.sh",
+        "scripts/hardenedbsd/parallels.sh",
+        "scripts/hardenedbsd/vmware.sh",
+        "scripts/hardenedbsd/qemu.sh",
+        "scripts/hardenedbsd/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd-vmware"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -6350,7 +6373,7 @@
         "mdmfs -s 100m md1 /tmp<enter><wait>",
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
-                "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd13.vagrant.cfg<enter><wait10>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd13.vagrant.cfg<enter><wait10>",
         "bsdinstall script /tmp/installerconfig | tee /tmp/installer.log && reboot<enter><wait>"
       ],
       "disk_size": 131072,
@@ -6373,8 +6396,8 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/build-9/disc1.iso",
-      "iso_checksum": "sha256:51a4883c1a628fb13c33a9c5c6806a1f5bf527501c69a0668f4a1fa4b2f7892c",
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer//build-21/disc1.iso",
+      "iso_checksum": "sha256:815ca31ca6740211983abc2c91aca0140db29ff708c3484163e5c64db0108548",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -7665,6 +7688,61 @@
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
       "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-hardenedbsd-vmware",
+      "vm_name": "generic-hardenedbsd-vmware",
+      "vmdk_name": "generic-hardenedbsd-vmware",
+      "output_directory": "output/generic-hardenedbsd-vmware",
+      "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig | tee /tmp/installer.log && reboot<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "freebsd-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer//build-3/disc1.iso",
+      "iso_checksum": "sha256:3cead81bd289c921768fc2aa22ccdcb705543c58abbc1929464af36969c1bfe9",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "tools_upload_flavor": "freebsd"
     }
   ],
   "post-processors": [

@@ -350,9 +350,18 @@ REPOS+=( "https://mirrors.lavabit.com/freebsd-packages/FreeBSD:12:amd64/latest/p
 
 # HardenedBSD 13
 REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
+REPOS+=( "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/index.txt" )
+REPOS+=( "https://mirrors.lavabit.com/hardenedbsd/13-stable/amd64/amd64/installer/index.txt" )
 
 # HardenedBSD 14
 REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesite.txz" )
+REPOS+=( "https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer/index.txt" )
+REPOS+=( "https://mirrors.lavabit.com/hardenedbsd/14-stable/amd64/amd64/installer/index.txt" )
+
+# HardenedBSD 15
+FUTURE+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:15:amd64/packagesite.txz" )
+FUTURE+=( "https://mirror.laylo.io/pub/hardenedbsd/15-stable/amd64/amd64/installer/index.txt" )
+FUTURE+=( "https://mirrors.lavabit.com/hardenedbsd/15-stable/amd64/amd64/installer/index.txt" )
 
 # NetBSD 8.2
 REPOS+=( "https://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/8.2/SHA512.bz2" )
@@ -829,29 +838,31 @@ function iso() {
     sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
     
-  elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
+  elif [ "$1" == "hardened13" ] || [ "$1" == "hardenedbsd13" ]; then
 
     # Find the existing HardenedBSD URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"hardenedbsd13\")) | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"hardenedbsd13\")) | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd13\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd13\") | .iso_checksum" 2>/dev/null`
 
     # Find the HardenedBSD URL.
     # URL="https://installers.hardenedbsd.org/pub/13-stable/amd64/amd64/installer/"
     
-    # Alternate server (update in two places).
+    # Alternate server.
     URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/"
     
-    BUILD=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]*/\"" | grep --extended-regexp --only-matching "build\-[0-9]*" | sort -r | uniq | head -1`
+    # Old method, where we use sort the directory listing for the latest build.
+    # BUILD=`curl --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]*/\"" | grep --extended-regexp --only-matching "[0-9]*" | sort -n -r | uniq | head -1`
+
+    # New method, which relies on the index.txt file telling us the latest build number.
+    BUILD=`${CURL} --fail --silent "${URL}/index.txt" | grep --extended-regexp --only-matching "[0-9]*" | sort -n -r | head -1`
+    
     if [ $? != 0 ] || [ "$BUILD" == "" ]; then
       tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
       return 1
     fi
 
-    # Calculate the new URL.
-    # URL="https://installers.hardenedbsd.org/pub/13-stable/amd64/amd64/installer/${BUILD}/disc1.iso"
-    
-    # Alternate server (update in two places).
-    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/${BUILD}/disc1.iso"
+    # Calculate the new disc1.iso URL.
+    URL="${URL}/build-${BUILD}/disc1.iso"
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
@@ -869,7 +880,54 @@ function iso() {
     # Replace the existing ISO and hash values with the update values.
     sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
-  elif [ "$1" == "stream" ] || [ "$1" == "streams" ]; then
+
+  elif [ "$1" == "hardened14" ] || [ "$1" == "hardenedbsd14" ]; then
+
+    # Find the existing HardenedBSD URL and hash values.
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd\") | .iso_checksum" 2>/dev/null`
+
+    # Find the HardenedBSD URL.
+    # URL="https://installers.hardenedbsd.org/pub/14-stable/amd64/amd64/installer/"
+    
+    # Alternate server.
+    URL="https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer/"
+    
+    # Old method, where we use sort the directory listing for the latest build.
+    # BUILD=`curl --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]*/\"" | grep --extended-regexp --only-matching "[0-9]*" | sort -n -r | uniq | head -1`
+
+    # New method, which relies on the index.txt file telling us the latest build number.
+    BUILD=`${CURL} --fail --silent "${URL}/index.txt" | grep --extended-regexp --only-matching "[0-9]*" | sort -n -r | head -1`
+    
+    if [ $? != 0 ] || [ "$BUILD" == "" ]; then
+      tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
+      return 1
+    fi
+
+    # Calculate the disc1.iso URL.
+    URL="${URL}/build-${BUILD}/disc1.iso"
+
+    # Download the ISO file and calculate the new hash value.
+    set -o pipefail
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    if [ $? != 0 ] || [ "$SHA" == "" ]; then
+        tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
+        return 1
+    fi
+    set +o pipefail
+
+    # Escape the URL strings.
+    URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
+    ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
+
+    # Replace the existing ISO and hash values with the update values.
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES  
+
+  elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
+    iso hardenedbsd13
+    iso hardenedbsd14
+ elif [ "$1" == "stream" ] || [ "$1" == "streams" ]; then
     iso centos8s
     iso centos9s
   elif [ "$1" == "all" ]; then

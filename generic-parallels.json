@@ -3162,6 +3162,29 @@
     },
     {
       "scripts": [
+        "scripts/hardenedbsd/pkg.sh",
+        "scripts/hardenedbsd/hostname.sh",
+        "scripts/hardenedbsd/kernel.sh",
+        "scripts/hardenedbsd/firstboot.sh",
+        "scripts/hardenedbsd/motd.sh",
+        "scripts/hardenedbsd/vagrant.sh",
+        "scripts/hardenedbsd/virtualbox.sh",
+        "scripts/hardenedbsd/parallels.sh",
+        "scripts/hardenedbsd/vmware.sh",
+        "scripts/hardenedbsd/qemu.sh",
+        "scripts/hardenedbsd/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-hardenedbsd-parallels"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -7629,8 +7652,8 @@
       "guest_os_type": "freebsd",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/build-9/disc1.iso",
-      "iso_checksum": "sha256:51a4883c1a628fb13c33a9c5c6806a1f5bf527501c69a0668f4a1fa4b2f7892c",
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer//build-21/disc1.iso",
+      "iso_checksum": "sha256:815ca31ca6740211983abc2c91aca0140db29ff708c3484163e5c64db0108548",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -9424,6 +9447,88 @@
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "upload",
       "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-hardenedbsd-parallels",
+      "vm_name": "generic-hardenedbsd-parallels",
+      "output_directory": "output/generic-hardenedbsd-parallels",
+      "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig | tee /tmp/installer.log && reboot<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--efi-boot",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "freebsd",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer//build-3/disc1.iso",
+      "iso_checksum": "sha256:3cead81bd289c921768fc2aa22ccdcb705543c58abbc1929464af36969c1bfe9",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "parallels_tools_flavor": "other",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-other.iso",
       "prlctl_version_file": "/root/parallels-tools-version.txt"
     }
   ],

@@ -960,11 +960,10 @@
       "ssh_username": "root",
       "type": "vmware-iso"
     },
-
     {
       "name": "virtualbox-6-1-46",
       "output_directory": "output/virtualbox-6-1-46",
-      "iso_url": "https://download.virtualbox.org/virtualbox/6.1.46/VBoxGuestAdditions_6.1.46.iso|",
+      "iso_url": "https://download.virtualbox.org/virtualbox/6.1.46/VBoxGuestAdditions_6.1.46.iso",
       "iso_checksum": "a65927369c852895e827c6d6d5be3d14c2da1dfd4e7a4b9ca7479320e5121ffc",
       "boot_wait": "5s",
       "disk_size": 1,
@@ -1114,8 +1113,8 @@
     {
       "name": "hardenedbsd13",
       "output_directory": "output/hardenedbsd13",
-      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/build-9/disc1.iso",
-      "iso_checksum": "sha256:51a4883c1a628fb13c33a9c5c6806a1f5bf527501c69a0668f4a1fa4b2f7892c",
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer//build-21/disc1.iso",
+      "iso_checksum": "sha256:815ca31ca6740211983abc2c91aca0140db29ff708c3484163e5c64db0108548",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -1506,6 +1505,21 @@
       "output_directory": "output/devuan5",
       "iso_url": "https://mirror.leaseweb.com/devuan/devuan_daedalus/installer-iso/devuan_daedalus_5.0.1_amd64_netinstall.iso",
       "iso_checksum": "sha256:722af7905595d9a1417f48f783d43dd40fe7da7a2e1d7998a8ea47df2d26941b",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
+      "name": "hardenedbsd",
+      "output_directory": "output/hardenedbsd",
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer//build-3/disc1.iso",
+      "iso_checksum": "sha256:3cead81bd289c921768fc2aa22ccdcb705543c58abbc1929464af36969c1bfe9",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
