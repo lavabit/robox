@@ -1,12 +1,12 @@
 #!/bin/bash -eux
 
 # Randomize the root password and then lock the root account.
-if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-3]|hardenedbsd1[1-3]|openbsd[6-7])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-3]|hardenedbsd|hardenedbsd1[1-3]|openbsd[6-7])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 
   LOCKPWD=`dd if=/dev/urandom count=128 msgfmt=quiet | md5 | awk -F' ' '{print $1}'`
   printf "$LOCKPWD\n$LOCKPWD\n" | passwd root
 
-elif  [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(dragonflybsd[5-6])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+elif  [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(dragonflybsd[5-6]?)-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 
   LOCKPWD=`dd if=/dev/urandom count=128 status=value | md5 | awk -F' ' '{print $1}'`
   echo "$LOCKPWD" | pw mod user root -h 0
