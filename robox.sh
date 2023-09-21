@@ -845,10 +845,10 @@ function iso() {
     ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd13\") | .iso_checksum" 2>/dev/null`
 
     # Find the HardenedBSD URL.
-    # URL="https://installers.hardenedbsd.org/pub/13-stable/amd64/amd64/installer/"
+    # URL="https://installers.hardenedbsd.org/pub/13-stable/amd64/amd64/installer"
     
     # Alternate server.
-    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/"
+    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer"
     
     # Old method, where we use sort the directory listing for the latest build.
     # BUILD=`curl --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]*/\"" | grep --extended-regexp --only-matching "[0-9]*" | sort -n -r | uniq | head -1`
@@ -888,10 +888,10 @@ function iso() {
     ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd\") | .iso_checksum" 2>/dev/null`
 
     # Find the HardenedBSD URL.
-    # URL="https://installers.hardenedbsd.org/pub/14-stable/amd64/amd64/installer/"
+    # URL="https://installers.hardenedbsd.org/pub/14-stable/amd64/amd64/installer"
     
     # Alternate server.
-    URL="https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer/"
+    URL="https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer"
     
     # Old method, where we use sort the directory listing for the latest build.
     # BUILD=`curl --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]*/\"" | grep --extended-regexp --only-matching "[0-9]*" | sort -n -r | uniq | head -1`
