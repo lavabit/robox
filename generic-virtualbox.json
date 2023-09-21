@@ -4849,7 +4849,7 @@
         "mdmfs -s 100m md2 /mnt<enter><wait5>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait10>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+        "bsdinstall script /tmp/installerconfig | tee /tmp/installer.log && reboot<enter><wait>"
       ],
       "disk_size": 131072,
       "cpus": 2,
@@ -6313,7 +6313,7 @@
         "mdmfs -s 100m md2 /mnt<enter><wait5>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd13.vagrant.cfg<enter><wait10>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+        "bsdinstall script /tmp/installerconfig | tee /tmp/installer.log && reboot<enter><wait>"
       ],
       "disk_size": 131072,
       "cpus": 2,

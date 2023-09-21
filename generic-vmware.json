@@ -4860,8 +4860,8 @@
         "mdmfs -s 100m md1 /tmp<enter><wait>",
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
-        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait5>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig | tee /tmp/installer.log && reboot<enter><wait>"
       ],
       "disk_size": 131072,
       "disk_type_id": "0",
@@ -6350,8 +6350,8 @@
         "mdmfs -s 100m md1 /tmp<enter><wait>",
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
-        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd13.vagrant.cfg<enter><wait5>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+                "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd13.vagrant.cfg<enter><wait10>",
+        "bsdinstall script /tmp/installerconfig | tee /tmp/installer.log && reboot<enter><wait>"
       ],
       "disk_size": 131072,
       "disk_type_id": "0",
