@@ -32,7 +32,7 @@ export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # Install the missing dependencies used to compile Magma.
-retry apt-get --assume-yes install perl cmake gcc g++ gcc-multilib make autoconf autoconf-archive automake libtool flex bison gdb valgrind valgrind-mpi valgrind-dbg m4 python-pytest nasm libdigest-bcrypt-perl libdigest-crc-perl libdigest-hmac-perl libdigest-jhash-perl libdigest-md2-perl libdigest-md4-perl libdigest-sha-perl libdigest-sha3-perl libdigest-whirlpool-perl gnu-standards gettext
+retry apt-get --assume-yes install curl perl cmake gcc g++ gcc-multilib make autoconf autoconf-archive automake libtool flex bison gdb valgrind valgrind-mpi valgrind-dbg m4 python-pytest nasm libdigest-bcrypt-perl libdigest-crc-perl libdigest-hmac-perl libdigest-jhash-perl libdigest-md2-perl libdigest-md4-perl libdigest-sha-perl libdigest-sha3-perl libdigest-whirlpool-perl gnu-standards gettext
 
 # Install the SQL server.
 retry apt-get --assume-yes install mariadb-server
