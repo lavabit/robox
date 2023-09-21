@@ -33,8 +33,22 @@ export FETCH_TIMEOUT=30
 export ASSUME_ALWAYS_YES=yes
 
 # Force the use of HTTPS for package updates.
-mkdir -p /usr/local/etc/pkg/repos/
-echo 'HardenedBSD: { url: "pkg+https://mirrors.lavabit.com/freebsd-packages/${ABI}" }' > /usr/local/etc/pkg/repos/HardenedBSD.conf
+mkdir -p /usr/local/etc/pkg/repos
+cat <<-EOF > /usr/local/etc/pkg/repos/FreeBSD.conf
+
+HardenedBSD: { 
+ enabled: no
+}
+
+FreeBSD: { 
+  url: "pkg+http://pkg.freebsd.org/\${ABI}/quarterly",
+  manifests_archive = "packagesite";
+  fingerprints: "/usr/share/keys/pkg",
+  mirror_type: "srv",
+  signature_type: "fingerprints",
+  enabled: yes
+}
+EOF
 
 retry pkg bootstrap
 retry pkg-static update --force
