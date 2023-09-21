@@ -3185,6 +3185,29 @@
     },
     {
       "scripts": [
+        "scripts/dragonflybsd/pkg.sh",
+        "scripts/dragonflybsd/hostname.sh",
+        "scripts/dragonflybsd/kernel.sh",
+        "scripts/dragonflybsd/firstboot.sh",
+        "scripts/dragonflybsd/motd.sh",
+        "scripts/dragonflybsd/vagrant.sh",
+        "scripts/dragonflybsd/virtualbox.sh",
+        "scripts/dragonflybsd/parallels.sh",
+        "scripts/dragonflybsd/vmware.sh",
+        "scripts/dragonflybsd/qemu.sh",
+        "scripts/dragonflybsd/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "45m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-dragonflybsd-parallels"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -9520,6 +9543,95 @@
       "http_directory": "http",
       "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer//build-3/disc1.iso",
       "iso_checksum": "sha256:3cead81bd289c921768fc2aa22ccdcb705543c58abbc1929464af36969c1bfe9",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now",
+      "parallels_tools_flavor": "other",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-other.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-dragonflybsd-parallels",
+      "vm_name": "generic-dragonflybsd-parallels",
+      "output_directory": "output/generic-dragonflybsd-parallels",
+      "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "root<enter><wait5>",
+        "/bin/sh<enter><wait10>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd.vagrant.cfg<enter><wait10>",
+        "sh /tmp/installerconfig | tee /tmp/installerconfig.log && reboot<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "freebsd",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.4.0_REL.iso",
+      "iso_checksum": "sha256:20e4724a3cb838fec0148a4adbffd9bd57b3e6d759a6599d1149188a19c61265",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
