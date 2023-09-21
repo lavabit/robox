@@ -922,19 +922,52 @@ function iso() {
 
     # Replace the existing ISO and hash values with the update values.
     sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
-    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES  
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
+
+  elif [ "$1" == "alpine" ]; then
+
+    # Build a loop with all of the Alpine ISO names. 
+    cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"alpine\")) | .name" | grep -v alpine35-hyperv | while read NAME; do 
+      
+      ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"$NAME\") | .iso_url" 2>/dev/null`
+      ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"$NAME\") | .iso_checksum" 2>/dev/null`
+
+      # Find the new Alpine ISO URL and check whether the URL is valid.
+      URL="$(echo $ISO_URL | perl -pe 's/^((.*\d+\.)*)(\d+)(.*)$/$1.($3+1).$4/e')"
+      ISO=`${CURL} --fail --head --silent --location --output /dev/null --write-out "%{exitcode}" "${URL}"`
+      if [ "$ISO" == "0" ]; then
+        
+        # Download the ISO file and calculate the new hash value.
+        set -o pipefail
+        SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+        if [ $? != 0 ] || [ "$SHA" == "" ]; then
+            tput setaf 1; printf "\nThe Alpine ISO update failed.\n\n"; tput sgr0
+            return 1
+        fi
+        set +o pipefail
+
+        # Escape the URL strings.
+        URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
+        ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
+
+        # Replace the existing ISO and hash values with the update values.
+        sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+        sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
+      fi
+
+    done
 
   elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
     iso hardenedbsd13
     iso hardenedbsd14
- elif [ "$1" == "stream" ] || [ "$1" == "streams" ]; then
+  elif [ "$1" == "stream" ] || [ "$1" == "streams" ]; then
     iso centos8s
     iso centos9s
   elif [ "$1" == "all" ]; then
     iso arch
-    iso centos8s
-    iso centos9s
     iso gentoo
+    iso alpine
+    iso streams
     iso hardenedbsd
   fi
 

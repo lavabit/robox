@@ -387,6 +387,9 @@ function provide-packer() {
   PACKER_PLUGIN_PATH=/usr/local/bin/ /usr/local/bin/packer plugins install github.com/hashicorp/parallels
   PACKER_PLUGIN_PATH=/usr/local/bin/ /usr/local/bin/packer plugins install github.com/hashicorp/virtualbox
 
+  mv `find /usr/local/bin/github.com/ -type f` /usr/local/bin/
+  rm -rf /usr/local/bin/github.com/
+
 }
 
 function provide-setup() {
