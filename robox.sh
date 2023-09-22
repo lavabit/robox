@@ -421,8 +421,12 @@ FUTURE+=( "https://yum.oracle.com/ISOS/Ora\
 # OpenSUSE 42.3
 REPOS+=( "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
 
-# OpenSUSE 15.4
-REPOS+=( "https://download.opensuse.org/distribution/leap/15.4/repo/oss/INDEX.gz" )
+# OpenSUSE 15.5
+REPOS+=( "https://download.opensuse.org/distribution/leap/15.5/repo/oss/INDEX.gz" )
+
+# The templates are configured to use a static URL path which is more reliable. But
+# this check is enabled, it will trigger an alert when it's time to upgrade.
+# REPOS+=( "https://download.opensuse.org/distribution/openSUSE-stable/iso/openSUSE-Leap-15.5-DVD-x86_64-Build491.1-Media.iso" )
 
 # Rocky 8
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/BaseOS/x86_64/os/repodata/repomd.xml" )
