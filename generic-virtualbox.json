@@ -5270,7 +5270,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "hhttps://download.opensuse.org/distribution/leap/15.5/iso/openSUSE-Leap-15.5-DVD-x86_64-Build491.1-Media.iso",
+      "iso_url": "https://download.opensuse.org/distribution/leap/15.5/iso/openSUSE-Leap-15.5-DVD-x86_64-Build491.1-Media.iso",
       "iso_checksum": "sha256:53bcbcb82361c5261c9d0994ab0f94101bf28e61c06fe12d320984601be35a8f",
       "ssh_username": "root",
       "ssh_password": "vagrant",
