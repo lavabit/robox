@@ -32,7 +32,7 @@ export FETCH_RETRY=5
 export FETCH_TIMEOUT=30
 export ASSUME_ALWAYS_YES=yes
 
-retry pkg-static install -y firstboot-pkgs firstboot-growfs
+retry pkg-static install -y firstboot-pkgs
 
 sysrc firstboot_growfs_enable=YES
 sysrc firstboot_pkgs_enable=YES
