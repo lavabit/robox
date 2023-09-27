@@ -20,7 +20,7 @@ if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-3]|hardenedbsd|harden
 elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(netbsd[8-9])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
 
   # Whiteout root
-  dd if=/dev/zero of=/zerofill bs=1024
+  dd if=/dev/zero of=/zerofill bs=8192
   sync -f /zerofill
   rm -f /zerofill
 
