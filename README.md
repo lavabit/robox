@@ -20,14 +20,11 @@ https://quay.io/organization/lavabit
 
 ## Pending Additions/Updates
 
-Fedora 38  
-OpenBSD 7.3  
+Add support for the new "architecture" flag. This means adding "386" or "amd64" as appropriate. And it means we need to add "arm64" boxes to the pipeline.  
 
 ## Upcoming Additions
 
-Jul 17th, 2023 / FreeBSD 14.0  
-Mid 2023 / Debian 12.0  
-Mid 2023 / Devuan 5.0  
+Oct 23rd, 2023 / FreeBSD 14.0  
 
 \* Repo updated.
 \*\* Beta/pre-prerelease added.  
@@ -39,7 +36,6 @@ Generate docker variants for the Ubuntu/Debian/Alpine configurations
 Incorporate the upload/delete/release scripts into the robox.sh script as functions.  
 Add vagrant user password randomization logic to the bundled Vagrantfiles.  
 Improve the unit box validation/check script with SSH command tests/checks.
-Update VirtualBox from 5.2 to 6.1 (at a minimum this will involve changes to the NetBSD boot command/timing).  
 Start building ARM variants for some virtual machines/boxes.  
  ^-- WE NEED A HARDWARE DONATION TO MAKE ARM64 IMAGES  
  **THIS SHOULD, WE HOPE, IN THE WORKS --^**  
