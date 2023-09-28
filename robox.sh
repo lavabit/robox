@@ -383,16 +383,30 @@ REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/index.txt" )
 REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256" )
 REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256.sig" )
 
-# OpenBSD 7.2
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/index.txt" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/SHA256" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/SHA256.sig" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/man72.tgz" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/base72.tgz" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/amd64/comp72.tgz" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/index.txt" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/SHA256" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.2/packages/amd64/SHA256.sig" )
+# OpenBSD 7.3
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.3/amd64/index.txt" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.3/amd64/SHA256" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.3/amd64/SHA256.sig" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.3/amd64/man72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.3/amd64/base72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.3/amd64/comp72.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.3/packages/amd64/index.txt" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.3/packages/amd64/SHA256" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.3/packages/amd64/SHA256.sig" )
+
+# OpenBSD 7.4
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/amd64/index.txt" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/amd64/SHA256" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/amd64/SHA256.sig" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/amd64/man72.tgz" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/amd64/base72.tgz" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/amd64/comp72.tgz" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/amd64/index.txt" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/amd64/SHA256" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/amd64/SHA256.sig" )
+
+# OpenBSD 7.4 Installer
+FUTURE+=( "https://ftp.nluug.nl/OpenBSD/7.4/amd64/cd74.iso" )
 
 # Oracle 6
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/latest/x86_64/repodata/repomd.xml" )
@@ -415,8 +429,7 @@ REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repod
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
 
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://yum.oracle.com/ISOS/Ora\
-  cleLinux/OL9/u3/x86_64/OracleLinux-R9-U3-x86_64-boot.iso" )
+FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL9/u3/x86_64/OracleLinux-R9-U3-x86_64-boot.iso" )
 
 # OpenSUSE 42.3
 REPOS+=( "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
