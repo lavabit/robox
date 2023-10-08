@@ -359,7 +359,7 @@ REPOS+=( "https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installe
 REPOS+=( "https://mirrors.lavabit.com/hardenedbsd/14-stable/amd64/amd64/installer/index.txt" )
 
 # HardenedBSD 15
-FUTURE+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:15:amd64/packagesite.txz" )
+REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:15:amd64/packagesite.txz" )
 FUTURE+=( "https://mirror.laylo.io/pub/hardenedbsd/15-stable/amd64/amd64/installer/index.txt" )
 FUTURE+=( "https://mirrors.lavabit.com/hardenedbsd/15-stable/amd64/amd64/installer/index.txt" )
 
