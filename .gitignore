@@ -8,8 +8,11 @@ run.bat
 run2.bat
 
 # Resulting Files
+logs
 logs/
+output
 output/
+packer_cache
 packer_cache/
 
 # Eclipse Files
