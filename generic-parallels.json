@@ -3294,7 +3294,7 @@
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><enter><wait>",
-        "linux netsetup=dhcp install= lang=en_US  textmode=1 <wait>",
+        "linux netsetup=dhcp install=https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/ lang=en_US  textmode=1 <wait>",
         "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse42.vagrant.cfg<wait>",
         "<enter><wait>"
       ],
