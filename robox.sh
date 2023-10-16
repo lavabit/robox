@@ -726,7 +726,7 @@ function iso() {
 
     # Find the Gentoo URL.
     URL="https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match iso.sha256 | grep --invert-match iso.asc | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
       return 1
@@ -761,7 +761,7 @@ function iso() {
 
     # Find the Arch URL.
     URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match sha256 | grep --invert-match iso.sig | grep --invert-match iso.torrent | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sig|iso\.torrent|iso.sha256" | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
       return 1
