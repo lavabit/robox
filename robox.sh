@@ -91,7 +91,7 @@ GENERIC_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "g
 ROBOX_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic-" | sed "s/generic-/roboxes-/g"| sort --field-separator=- -k 3i -k 2.1,2.0`
 LINEAGE_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
 LINEAGEOS_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sed "s/lineage-/lineageos-/g"| sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
-MAGMA_BOXES=`echo $MAGMA_SPECIAL_BOXES $MAGMA_BOXES | sed 's/ /\n/g' | sort -u --field-separator=- -k 3i -k 2.1,2.0`
+MAGMA_BOXES=`echo $MAGMA_SPECIAL_BOXES $MAGMA_BOXES | tr ' ' '\n' | sort -u --field-separator=- -k 3i -k 2.1,2.0`
 BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $LINEAGEOS_BOXES"
 
 # Collect the list of box tags.
@@ -103,7 +103,7 @@ GENERIC_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "ge
 GENERIC_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)//g" | grep "generic-x32" | sort -u --field-separator=-`
 LINEAGE_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineage\/lineage-/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" |  sort -u --field-separator=-`
 LINEAGEOS_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineageos\/lineage-/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" |  sort -u --field-separator=-`
-MAGMA_TAGS=`echo $MAGMA_SPECIAL_TAGS $MAGMA_TAGS | sed 's/ /\n/g' | sort -u --field-separator=-`
+MAGMA_TAGS=`echo $MAGMA_SPECIAL_TAGS $MAGMA_TAGS | tr ' ' '\n' | sort -u --field-separator=-`
 TAGS="$GENERIC_TAGS $GENERIC_X32_TAGS $ROBOX_TAGS $ROBOX_X32_TAGS $MAGMA_TAGS $LINEAGE_TAGS $LINEAGEOS_TAGS"
 
 # These boxes aren't publicly available yet, so we filter them out of available test.
