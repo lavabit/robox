@@ -721,8 +721,13 @@ function iso() {
   if [ "$1" == "gentoo" ]; then
 
     # Find the existing Gentoo URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo\")) | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo\")) | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo-x64\")) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo-x64\")) | .iso_checksum" 2>/dev/null`
+
+    if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
+      tput setaf 1; printf "\nThe Gentoo ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+      return 1
+    fi
 
     # Find the Gentoo URL.
     URL="https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
@@ -756,8 +761,13 @@ function iso() {
   elif [ "$1" == "arch" ]; then
 
     # Find the existing Arch URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"arch\")) | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"arch\")) | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"arch-x64\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"arch-x64\") | .iso_checksum" 2>/dev/null`
+
+    if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
+      tput setaf 1; printf "\nThe Arch ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+      return 1
+    fi
 
     # Find the Arch URL.
     URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
@@ -790,8 +800,13 @@ function iso() {
   elif [ "$1" == "centos8s" ]; then
     
     # Find the existing CentOS 8 stream URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"centos8s\")) | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"centos8s\")) | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"centos8s-x64\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"centos8s-x64\") | .iso_checksum" 2>/dev/null`
+
+    if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
+      tput setaf 1; printf "\nThe CentOS 8 Stream ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+      return 1
+    fi
 
     # Find the CentOS 8 stream URL.
     URL="https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/"
@@ -824,8 +839,13 @@ function iso() {
   elif [ "$1" == "centos9s" ]; then
 
     # Find the existing CentOS 9 stream URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"centos9s\")) | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"centos9s\")) | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"centos9s-x64\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"centos9s-x64\") | .iso_checksum" 2>/dev/null`
+
+    if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
+      tput setaf 1; printf "\nThe CentOS 9 Stream ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+      return 1
+    fi
 
     # Find the CentOS 9 stream URL.
     URL="https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/"
@@ -858,8 +878,13 @@ function iso() {
   elif [ "$1" == "hardened13" ] || [ "$1" == "hardenedbsd13" ]; then
 
     # Find the existing HardenedBSD URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd13\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd13\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd13-x64\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd13-x64\") | .iso_checksum" 2>/dev/null`
+
+    if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
+      tput setaf 1; printf "\nThe HardenedBSD 13 ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+      return 1
+    fi
 
     # Find the HardenedBSD URL.
     # URL="https://installers.hardenedbsd.org/pub/13-stable/amd64/amd64/installer"
@@ -901,8 +926,13 @@ function iso() {
   elif [ "$1" == "hardened14" ] || [ "$1" == "hardenedbsd14" ]; then
 
     # Find the existing HardenedBSD URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd-x64\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd-x64\") | .iso_checksum" 2>/dev/null`
+
+    if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
+      tput setaf 1; printf "\nThe HardenedBSD 14 ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+      return 1
+    fi
 
     # Find the HardenedBSD URL.
     # URL="https://installers.hardenedbsd.org/pub/14-stable/amd64/amd64/installer"
@@ -948,6 +978,11 @@ function iso() {
       
       ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"$NAME\") | .iso_url" 2>/dev/null`
       ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"$NAME\") | .iso_checksum" 2>/dev/null`
+
+      if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
+        tput setaf 1; printf "\nThe Alpine ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+        return 1
+      fi
 
       # Find the new Alpine ISO URL and check whether the URL is valid.
       URL="$(echo $ISO_URL | perl -pe 's/^((.*\d+\.)*)(\d+)(.*)$/$1.($3+1).$4/e')"
