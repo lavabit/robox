@@ -918,7 +918,7 @@
     {
       "name": "hardenedbsd11-x64",
       "output_directory": "output/hardenedbsd11-x64",
-      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
+      "iso_url": "https://mirrors.lavabit.com/hardenedbsd-archive/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
       "iso_checksum": "sha256:8b2c90dc41ec68b561028af885eecb66bfd36223970d1c594923d1d54bf83467",
       "boot_wait": "5s",
       "disk_size": 1,
@@ -933,7 +933,7 @@
     {
       "name": "hardenedbsd12-x64",
       "output_directory": "output/hardenedbsd12-x64",
-      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
+      "iso_url": "https://mirrors.lavabit.com/hardenedbsd-archive/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
       "iso_checksum": "sha256:029225eaf92ba8e7ed7a7395f45492d09bc9a949488ecb9a5ca54df7c9f89661",
       "boot_wait": "5s",
       "disk_size": 1,

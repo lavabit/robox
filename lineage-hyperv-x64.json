@@ -13,7 +13,7 @@
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-hyperv"
+                "lineage-hyperv-x64"
             ]
         },
         {
@@ -36,7 +36,7 @@
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-hyperv"
+                "lineage-hyperv-x64"
             ]
         },
         {
@@ -48,7 +48,7 @@
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-hyperv"
+                "lineage-hyperv-x64"
             ]
         },
         {
@@ -72,10 +72,10 @@
     "builders": [
         {
             "type": "hyperv-iso",
-            "name": "lineage-hyperv",
-            "vm_name": "lineage-hyperv",
+            "name": "lineage-hyperv-x64",
+            "vm_name": "lineage-hyperv-x64",
             "temp_path": "output/",
-            "output_directory": "output/lineage-hyperv",
+            "output_directory": "output/lineage-hyperv-x64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [

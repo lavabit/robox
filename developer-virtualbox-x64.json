@@ -14,7 +14,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-virtualbox"
+                "magma-developer-virtualbox-x64"
             ]
         },
         {
@@ -40,7 +40,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-virtualbox"
+                "magma-developer-virtualbox-x64"
             ]
         },
         {
@@ -62,9 +62,9 @@
     "builders": [
         {
             "type": "virtualbox-iso",
-            "name": "magma-developer-virtualbox",
-            "vm_name": "magma-developer-virtualbox",
-            "output_directory": "output/magma-developer-virtualbox",
+            "name": "magma-developer-virtualbox-x64",
+            "vm_name": "magma-developer-virtualbox-x64",
+            "output_directory": "output/magma-developer-virtualbox-x64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -113,7 +113,7 @@
                     "tpl/lavabit/info.json"
                 ],
                 "only": [
-                    "magma-developer-virtualbox"
+                    "magma-developer-virtualbox-x64"
                 ]
             },
             {

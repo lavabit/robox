@@ -14,7 +14,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle7-virtualbox"
+        "generic-oracle7-virtualbox-x64"
       ]
     },
     {
@@ -37,7 +37,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle7-virtualbox"
+        "generic-oracle7-virtualbox-x64"
       ]
     },
     {
@@ -58,7 +58,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse42-virtualbox"
+        "generic-opensuse42-virtualbox-x64"
       ]
     },
     {
@@ -72,7 +72,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine35-virtualbox"
+        "generic-alpine35-virtualbox-x64"
       ]
     },
     {
@@ -95,7 +95,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine35-virtualbox"
+        "generic-alpine35-virtualbox-x64"
       ]
     },
     {
@@ -109,7 +109,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine36-virtualbox"
+        "generic-alpine36-virtualbox-x64"
       ]
     },
     {
@@ -132,7 +132,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine36-virtualbox"
+        "generic-alpine36-virtualbox-x64"
       ]
     },
     {
@@ -146,7 +146,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine37-virtualbox"
+        "generic-alpine37-virtualbox-x64"
       ]
     },
     {
@@ -169,7 +169,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine37-virtualbox"
+        "generic-alpine37-virtualbox-x64"
       ]
     },
     {
@@ -183,7 +183,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine38-virtualbox"
+        "generic-alpine38-virtualbox-x64"
       ]
     },
     {
@@ -206,7 +206,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine38-virtualbox"
+        "generic-alpine38-virtualbox-x64"
       ]
     },
     {
@@ -221,7 +221,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos6-virtualbox"
+        "generic-centos6-virtualbox-x64"
       ]
     },
     {
@@ -246,7 +246,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos6-virtualbox"
+        "generic-centos6-virtualbox-x64"
       ]
     },
     {
@@ -262,7 +262,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos7-virtualbox"
+        "generic-centos7-virtualbox-x64"
       ]
     },
     {
@@ -289,7 +289,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos7-virtualbox"
+        "generic-centos7-virtualbox-x64"
       ]
     },
     {
@@ -305,7 +305,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel7-virtualbox"
+        "generic-rhel7-virtualbox-x64"
       ]
     },
     {
@@ -332,7 +332,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel7-virtualbox"
+        "generic-rhel7-virtualbox-x64"
       ]
     },
     {
@@ -345,7 +345,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-gentoo-virtualbox"
+        "generic-gentoo-virtualbox-x64"
       ]
     },
     {
@@ -362,7 +362,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-gentoo-virtualbox"
+        "generic-gentoo-virtualbox-x64"
       ]
     },
     {
@@ -374,7 +374,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-arch-virtualbox"
+        "generic-arch-virtualbox-x64"
       ]
     },
     {
@@ -392,7 +392,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-arch-virtualbox"
+        "generic-arch-virtualbox-x64"
       ]
     },
     {
@@ -405,7 +405,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian8-virtualbox"
+        "generic-debian8-virtualbox-x64"
       ]
     },
     {
@@ -427,7 +427,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian8-virtualbox"
+        "generic-debian8-virtualbox-x64"
       ]
     },
     {
@@ -440,7 +440,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian9-virtualbox"
+        "generic-debian9-virtualbox-x64"
       ]
     },
     {
@@ -463,7 +463,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian9-virtualbox"
+        "generic-debian9-virtualbox-x64"
       ]
     },
     {
@@ -477,7 +477,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-virtualbox"
+        "generic-fedora25-virtualbox-x64"
       ]
     },
     {
@@ -491,7 +491,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-virtualbox"
+        "generic-fedora25-virtualbox-x64"
       ]
     },
     {
@@ -512,7 +512,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-virtualbox"
+        "generic-fedora25-virtualbox-x64"
       ]
     },
     {
@@ -526,7 +526,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-virtualbox"
+        "generic-fedora26-virtualbox-x64"
       ]
     },
     {
@@ -540,7 +540,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-virtualbox"
+        "generic-fedora26-virtualbox-x64"
       ]
     },
     {
@@ -561,7 +561,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-virtualbox"
+        "generic-fedora26-virtualbox-x64"
       ]
     },
     {
@@ -575,7 +575,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-virtualbox"
+        "generic-fedora27-virtualbox-x64"
       ]
     },
     {
@@ -589,7 +589,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-virtualbox"
+        "generic-fedora27-virtualbox-x64"
       ]
     },
     {
@@ -610,7 +610,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-virtualbox"
+        "generic-fedora27-virtualbox-x64"
       ]
     },
     {
@@ -624,7 +624,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-virtualbox"
+        "generic-fedora28-virtualbox-x64"
       ]
     },
     {
@@ -638,7 +638,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-virtualbox"
+        "generic-fedora28-virtualbox-x64"
       ]
     },
     {
@@ -659,7 +659,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-virtualbox"
+        "generic-fedora28-virtualbox-x64"
       ]
     },
     {
@@ -673,7 +673,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-virtualbox"
+        "generic-fedora29-virtualbox-x64"
       ]
     },
     {
@@ -687,7 +687,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-virtualbox"
+        "generic-fedora29-virtualbox-x64"
       ]
     },
     {
@@ -708,7 +708,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-virtualbox"
+        "generic-fedora29-virtualbox-x64"
       ]
     },
     {
@@ -731,7 +731,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd11-virtualbox"
+        "generic-freebsd11-virtualbox-x64"
       ]
     },
     {
@@ -744,7 +744,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-openbsd6-virtualbox"
+        "generic-openbsd6-virtualbox-x64"
       ]
     },
     {
@@ -765,7 +765,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-openbsd6-virtualbox"
+        "generic-openbsd6-virtualbox-x64"
       ]
     },
     {
@@ -778,7 +778,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1604-virtualbox"
+        "generic-ubuntu1604-virtualbox-x64"
       ]
     },
     {
@@ -800,7 +800,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1604-virtualbox"
+        "generic-ubuntu1604-virtualbox-x64"
       ]
     },
     {
@@ -813,7 +813,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1610-virtualbox"
+        "generic-ubuntu1610-virtualbox-x64"
       ]
     },
     {
@@ -835,7 +835,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1610-virtualbox"
+        "generic-ubuntu1610-virtualbox-x64"
       ]
     },
     {
@@ -848,7 +848,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1704-virtualbox"
+        "generic-ubuntu1704-virtualbox-x64"
       ]
     },
     {
@@ -870,7 +870,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1704-virtualbox"
+        "generic-ubuntu1704-virtualbox-x64"
       ]
     },
     {
@@ -883,7 +883,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1710-virtualbox"
+        "generic-ubuntu1710-virtualbox-x64"
       ]
     },
     {
@@ -905,7 +905,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1710-virtualbox"
+        "generic-ubuntu1710-virtualbox-x64"
       ]
     },
     {
@@ -918,7 +918,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1804-virtualbox"
+        "generic-ubuntu1804-virtualbox-x64"
       ]
     },
     {
@@ -940,7 +940,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1804-virtualbox"
+        "generic-ubuntu1804-virtualbox-x64"
       ]
     },
     {
@@ -953,7 +953,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1810-virtualbox"
+        "generic-ubuntu1810-virtualbox-x64"
       ]
     },
     {
@@ -975,7 +975,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1810-virtualbox"
+        "generic-ubuntu1810-virtualbox-x64"
       ]
     },
     {
@@ -998,7 +998,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd12-virtualbox"
+        "generic-freebsd12-virtualbox-x64"
       ]
     },
     {
@@ -1014,7 +1014,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel6-virtualbox"
+        "generic-rhel6-virtualbox-x64"
       ]
     },
     {
@@ -1040,7 +1040,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel6-virtualbox"
+        "generic-rhel6-virtualbox-x64"
       ]
     },
     {
@@ -1056,7 +1056,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel8-virtualbox"
+        "generic-rhel8-virtualbox-x64"
       ]
     },
     {
@@ -1082,7 +1082,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel8-virtualbox"
+        "generic-rhel8-virtualbox-x64"
       ]
     },
     {
@@ -1105,7 +1105,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd11-virtualbox"
+        "generic-hardenedbsd11-virtualbox-x64"
       ]
     },
     {
@@ -1128,7 +1128,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd5-virtualbox"
+        "generic-dragonflybsd5-virtualbox-x64"
       ]
     },
     {
@@ -1141,7 +1141,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-netbsd8-virtualbox"
+        "generic-netbsd8-virtualbox-x64"
       ]
     },
     {
@@ -1162,7 +1162,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{ .Vars }} bash {{ .Path }}",
       "only": [
-        "generic-netbsd8-virtualbox"
+        "generic-netbsd8-virtualbox-x64"
       ]
     },
     {
@@ -1185,7 +1185,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd12-virtualbox"
+        "generic-hardenedbsd12-virtualbox-x64"
       ]
     },
     {
@@ -1199,7 +1199,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine39-virtualbox"
+        "generic-alpine39-virtualbox-x64"
       ]
     },
     {
@@ -1222,7 +1222,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine39-virtualbox"
+        "generic-alpine39-virtualbox-x64"
       ]
     },
     {
@@ -1235,7 +1235,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian10-virtualbox"
+        "generic-debian10-virtualbox-x64"
       ]
     },
     {
@@ -1257,7 +1257,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian10-virtualbox"
+        "generic-debian10-virtualbox-x64"
       ]
     },
     {
@@ -1270,7 +1270,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1904-virtualbox"
+        "generic-ubuntu1904-virtualbox-x64"
       ]
     },
     {
@@ -1292,7 +1292,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1904-virtualbox"
+        "generic-ubuntu1904-virtualbox-x64"
       ]
     },
     {
@@ -1306,7 +1306,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-virtualbox"
+        "generic-fedora30-virtualbox-x64"
       ]
     },
     {
@@ -1320,7 +1320,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-virtualbox"
+        "generic-fedora30-virtualbox-x64"
       ]
     },
     {
@@ -1342,7 +1342,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-virtualbox"
+        "generic-fedora30-virtualbox-x64"
       ]
     },
     {
@@ -1356,7 +1356,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle8-virtualbox"
+        "generic-oracle8-virtualbox-x64"
       ]
     },
     {
@@ -1379,7 +1379,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle8-virtualbox"
+        "generic-oracle8-virtualbox-x64"
       ]
     },
     {
@@ -1393,7 +1393,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine310-virtualbox"
+        "generic-alpine310-virtualbox-x64"
       ]
     },
     {
@@ -1416,7 +1416,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine310-virtualbox"
+        "generic-alpine310-virtualbox-x64"
       ]
     },
     {
@@ -1429,7 +1429,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse15-virtualbox"
+        "generic-opensuse15-virtualbox-x64"
       ]
     },
     {
@@ -1450,7 +1450,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse15-virtualbox"
+        "generic-opensuse15-virtualbox-x64"
       ]
     },
     {
@@ -1466,7 +1466,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8-virtualbox"
+        "generic-centos8-virtualbox-x64"
       ]
     },
     {
@@ -1492,7 +1492,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8-virtualbox"
+        "generic-centos8-virtualbox-x64"
       ]
     },
     {
@@ -1506,7 +1506,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-virtualbox"
+        "generic-fedora31-virtualbox-x64"
       ]
     },
     {
@@ -1520,7 +1520,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-virtualbox"
+        "generic-fedora31-virtualbox-x64"
       ]
     },
     {
@@ -1542,7 +1542,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-virtualbox"
+        "generic-fedora31-virtualbox-x64"
       ]
     },
     {
@@ -1555,7 +1555,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1910-virtualbox"
+        "generic-ubuntu1910-virtualbox-x64"
       ]
     },
     {
@@ -1577,7 +1577,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1910-virtualbox"
+        "generic-ubuntu1910-virtualbox-x64"
       ]
     },
     {
@@ -1591,7 +1591,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine311-virtualbox"
+        "generic-alpine311-virtualbox-x64"
       ]
     },
     {
@@ -1614,7 +1614,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine311-virtualbox"
+        "generic-alpine311-virtualbox-x64"
       ]
     },
     {
@@ -1627,7 +1627,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2004-virtualbox"
+        "generic-ubuntu2004-virtualbox-x64"
       ]
     },
     {
@@ -1649,7 +1649,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2004-virtualbox"
+        "generic-ubuntu2004-virtualbox-x64"
       ]
     },
     {
@@ -1663,7 +1663,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-virtualbox"
+        "generic-fedora32-virtualbox-x64"
       ]
     },
     {
@@ -1677,7 +1677,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-virtualbox"
+        "generic-fedora32-virtualbox-x64"
       ]
     },
     {
@@ -1699,7 +1699,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-virtualbox"
+        "generic-fedora32-virtualbox-x64"
       ]
     },
     {
@@ -1712,7 +1712,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-netbsd9-virtualbox"
+        "generic-netbsd9-virtualbox-x64"
       ]
     },
     {
@@ -1733,7 +1733,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{ .Vars }} bash {{ .Path }}",
       "only": [
-        "generic-netbsd9-virtualbox"
+        "generic-netbsd9-virtualbox-x64"
       ]
     },
     {
@@ -1747,7 +1747,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine312-virtualbox"
+        "generic-alpine312-virtualbox-x64"
       ]
     },
     {
@@ -1770,7 +1770,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine312-virtualbox"
+        "generic-alpine312-virtualbox-x64"
       ]
     },
     {
@@ -1783,7 +1783,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan1-virtualbox"
+        "generic-devuan1-virtualbox-x64"
       ]
     },
     {
@@ -1803,7 +1803,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan1-virtualbox"
+        "generic-devuan1-virtualbox-x64"
       ]
     },
     {
@@ -1816,7 +1816,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan2-virtualbox"
+        "generic-devuan2-virtualbox-x64"
       ]
     },
     {
@@ -1836,7 +1836,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan2-virtualbox"
+        "generic-devuan2-virtualbox-x64"
       ]
     },
     {
@@ -1849,7 +1849,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan3-virtualbox"
+        "generic-devuan3-virtualbox-x64"
       ]
     },
     {
@@ -1869,7 +1869,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan3-virtualbox"
+        "generic-devuan3-virtualbox-x64"
       ]
     },
     {
@@ -1884,7 +1884,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2010-virtualbox"
+        "generic-ubuntu2010-virtualbox-x64"
       ]
     },
     {
@@ -1905,7 +1905,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2010-virtualbox"
+        "generic-ubuntu2010-virtualbox-x64"
       ]
     },
     {
@@ -1919,7 +1919,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-virtualbox"
+        "generic-fedora33-virtualbox-x64"
       ]
     },
     {
@@ -1933,7 +1933,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-virtualbox"
+        "generic-fedora33-virtualbox-x64"
       ]
     },
     {
@@ -1955,7 +1955,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-virtualbox"
+        "generic-fedora33-virtualbox-x64"
       ]
     },
     {
@@ -1969,7 +1969,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine313-virtualbox"
+        "generic-alpine313-virtualbox-x64"
       ]
     },
     {
@@ -1992,7 +1992,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine313-virtualbox"
+        "generic-alpine313-virtualbox-x64"
       ]
     },
     {
@@ -2006,7 +2006,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine314-virtualbox"
+        "generic-alpine314-virtualbox-x64"
       ]
     },
     {
@@ -2029,7 +2029,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine314-virtualbox"
+        "generic-alpine314-virtualbox-x64"
       ]
     },
     {
@@ -2044,7 +2044,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2104-virtualbox"
+        "generic-ubuntu2104-virtualbox-x64"
       ]
     },
     {
@@ -2065,7 +2065,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2104-virtualbox"
+        "generic-ubuntu2104-virtualbox-x64"
       ]
     },
     {
@@ -2081,7 +2081,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky8-virtualbox"
+        "generic-rocky8-virtualbox-x64"
       ]
     },
     {
@@ -2108,7 +2108,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky8-virtualbox"
+        "generic-rocky8-virtualbox-x64"
       ]
     },
     {
@@ -2124,7 +2124,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma8-virtualbox"
+        "generic-alma8-virtualbox-x64"
       ]
     },
     {
@@ -2151,7 +2151,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma8-virtualbox"
+        "generic-alma8-virtualbox-x64"
       ]
     },
     {
@@ -2165,7 +2165,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-virtualbox"
+        "generic-fedora34-virtualbox-x64"
       ]
     },
     {
@@ -2179,7 +2179,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-virtualbox"
+        "generic-fedora34-virtualbox-x64"
       ]
     },
     {
@@ -2201,7 +2201,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-virtualbox"
+        "generic-fedora34-virtualbox-x64"
       ]
     },
     {
@@ -2224,7 +2224,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd13-virtualbox"
+        "generic-freebsd13-virtualbox-x64"
       ]
     },
     {
@@ -2247,7 +2247,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd13-virtualbox"
+        "generic-hardenedbsd13-virtualbox-x64"
       ]
     },
     {
@@ -2270,7 +2270,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd6-virtualbox"
+        "generic-dragonflybsd6-virtualbox-x64"
       ]
     },
     {
@@ -2283,7 +2283,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian11-virtualbox"
+        "generic-debian11-virtualbox-x64"
       ]
     },
     {
@@ -2305,7 +2305,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian11-virtualbox"
+        "generic-debian11-virtualbox-x64"
       ]
     },
     {
@@ -2318,7 +2318,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-openbsd7-virtualbox"
+        "generic-openbsd7-virtualbox-x64"
       ]
     },
     {
@@ -2339,7 +2339,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-openbsd7-virtualbox"
+        "generic-openbsd7-virtualbox-x64"
       ]
     },
     {
@@ -2354,7 +2354,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2110-virtualbox"
+        "generic-ubuntu2110-virtualbox-x64"
       ]
     },
     {
@@ -2375,7 +2375,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2110-virtualbox"
+        "generic-ubuntu2110-virtualbox-x64"
       ]
     },
     {
@@ -2389,7 +2389,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine315-virtualbox"
+        "generic-alpine315-virtualbox-x64"
       ]
     },
     {
@@ -2412,7 +2412,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine315-virtualbox"
+        "generic-alpine315-virtualbox-x64"
       ]
     },
     {
@@ -2426,7 +2426,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-virtualbox"
+        "generic-fedora35-virtualbox-x64"
       ]
     },
     {
@@ -2440,7 +2440,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-virtualbox"
+        "generic-fedora35-virtualbox-x64"
       ]
     },
     {
@@ -2462,7 +2462,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-virtualbox"
+        "generic-fedora35-virtualbox-x64"
       ]
     },
     {
@@ -2475,7 +2475,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan4-virtualbox"
+        "generic-devuan4-virtualbox-x64"
       ]
     },
     {
@@ -2495,7 +2495,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan4-virtualbox"
+        "generic-devuan4-virtualbox-x64"
       ]
     },
     {
@@ -2510,7 +2510,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2204-virtualbox"
+        "generic-ubuntu2204-virtualbox-x64"
       ]
     },
     {
@@ -2531,7 +2531,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2204-virtualbox"
+        "generic-ubuntu2204-virtualbox-x64"
       ]
     },
     {
@@ -2545,7 +2545,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-virtualbox"
+        "generic-fedora36-virtualbox-x64"
       ]
     },
     {
@@ -2559,7 +2559,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-virtualbox"
+        "generic-fedora36-virtualbox-x64"
       ]
     },
     {
@@ -2581,7 +2581,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-virtualbox"
+        "generic-fedora36-virtualbox-x64"
       ]
     },
     {
@@ -2597,7 +2597,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel9-virtualbox"
+        "generic-rhel9-virtualbox-x64"
       ]
     },
     {
@@ -2623,7 +2623,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel9-virtualbox"
+        "generic-rhel9-virtualbox-x64"
       ]
     },
     {
@@ -2639,7 +2639,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8s-virtualbox"
+        "generic-centos8s-virtualbox-x64"
       ]
     },
     {
@@ -2665,7 +2665,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8s-virtualbox"
+        "generic-centos8s-virtualbox-x64"
       ]
     },
     {
@@ -2681,7 +2681,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos9s-virtualbox"
+        "generic-centos9s-virtualbox-x64"
       ]
     },
     {
@@ -2706,7 +2706,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos9s-virtualbox"
+        "generic-centos9s-virtualbox-x64"
       ]
     },
     {
@@ -2720,7 +2720,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine316-virtualbox"
+        "generic-alpine316-virtualbox-x64"
       ]
     },
     {
@@ -2743,7 +2743,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine316-virtualbox"
+        "generic-alpine316-virtualbox-x64"
       ]
     },
     {
@@ -2759,7 +2759,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma9-virtualbox"
+        "generic-alma9-virtualbox-x64"
       ]
     },
     {
@@ -2785,7 +2785,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma9-virtualbox"
+        "generic-alma9-virtualbox-x64"
       ]
     },
     {
@@ -2801,7 +2801,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle9-virtualbox"
+        "generic-oracle9-virtualbox-x64"
       ]
     },
     {
@@ -2823,7 +2823,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle9-virtualbox"
+        "generic-oracle9-virtualbox-x64"
       ]
     },
     {
@@ -2839,7 +2839,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky9-virtualbox"
+        "generic-rocky9-virtualbox-x64"
       ]
     },
     {
@@ -2865,7 +2865,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky9-virtualbox"
+        "generic-rocky9-virtualbox-x64"
       ]
     },
     {
@@ -2879,7 +2879,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle6-virtualbox"
+        "generic-oracle6-virtualbox-x64"
       ]
     },
     {
@@ -2901,7 +2901,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle6-virtualbox"
+        "generic-oracle6-virtualbox-x64"
       ]
     },
     {
@@ -2916,7 +2916,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2210-virtualbox"
+        "generic-ubuntu2210-virtualbox-x64"
       ]
     },
     {
@@ -2937,7 +2937,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2210-virtualbox"
+        "generic-ubuntu2210-virtualbox-x64"
       ]
     },
     {
@@ -2951,7 +2951,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-virtualbox"
+        "generic-fedora37-virtualbox-x64"
       ]
     },
     {
@@ -2965,7 +2965,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-virtualbox"
+        "generic-fedora37-virtualbox-x64"
       ]
     },
     {
@@ -2987,7 +2987,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-virtualbox"
+        "generic-fedora37-virtualbox-x64"
       ]
     },
     {
@@ -3001,7 +3001,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine317-virtualbox"
+        "generic-alpine317-virtualbox-x64"
       ]
     },
     {
@@ -3024,7 +3024,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine317-virtualbox"
+        "generic-alpine317-virtualbox-x64"
       ]
     },
     {
@@ -3039,7 +3039,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2304-virtualbox"
+        "generic-ubuntu2304-virtualbox-x64"
       ]
     },
     {
@@ -3060,7 +3060,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2304-virtualbox"
+        "generic-ubuntu2304-virtualbox-x64"
       ]
     },
     {
@@ -3073,7 +3073,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian12-virtualbox"
+        "generic-debian12-virtualbox-x64"
       ]
     },
     {
@@ -3095,7 +3095,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian12-virtualbox"
+        "generic-debian12-virtualbox-x64"
       ]
     },
     {
@@ -3109,7 +3109,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine318-virtualbox"
+        "generic-alpine318-virtualbox-x64"
       ]
     },
     {
@@ -3132,7 +3132,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine318-virtualbox"
+        "generic-alpine318-virtualbox-x64"
       ]
     },
     {
@@ -3145,7 +3145,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan5-virtualbox"
+        "generic-devuan5-virtualbox-x64"
       ]
     },
     {
@@ -3165,7 +3165,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan5-virtualbox"
+        "generic-devuan5-virtualbox-x64"
       ]
     },
     {
@@ -3188,7 +3188,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd-virtualbox"
+        "generic-hardenedbsd-virtualbox-x64"
       ]
     },
     {
@@ -3211,7 +3211,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd-virtualbox"
+        "generic-dragonflybsd-virtualbox-x64"
       ]
     },
     {
@@ -3233,9 +3233,9 @@
   "builders": [
     {
       "type": "virtualbox-iso",
-      "name": "generic-oracle7-virtualbox",
-      "vm_name": "generic-oracle7-virtualbox",
-      "output_directory": "output/generic-oracle7-virtualbox",
+      "name": "generic-oracle7-virtualbox-x64",
+      "vm_name": "generic-oracle7-virtualbox-x64",
+      "output_directory": "output/generic-oracle7-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3275,9 +3275,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-opensuse42-virtualbox",
-      "vm_name": "generic-opensuse42-virtualbox",
-      "output_directory": "output/generic-opensuse42-virtualbox",
+      "name": "generic-opensuse42-virtualbox-x64",
+      "vm_name": "generic-opensuse42-virtualbox-x64",
+      "output_directory": "output/generic-opensuse42-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3320,9 +3320,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine35-virtualbox",
-      "vm_name": "generic-alpine35-virtualbox",
-      "output_directory": "output/generic-alpine35-virtualbox",
+      "name": "generic-alpine35-virtualbox-x64",
+      "vm_name": "generic-alpine35-virtualbox-x64",
+      "output_directory": "output/generic-alpine35-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3371,9 +3371,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine36-virtualbox",
-      "vm_name": "generic-alpine36-virtualbox",
-      "output_directory": "output/generic-alpine36-virtualbox",
+      "name": "generic-alpine36-virtualbox-x64",
+      "vm_name": "generic-alpine36-virtualbox-x64",
+      "output_directory": "output/generic-alpine36-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3422,9 +3422,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine37-virtualbox",
-      "vm_name": "generic-alpine37-virtualbox",
-      "output_directory": "output/generic-alpine37-virtualbox",
+      "name": "generic-alpine37-virtualbox-x64",
+      "vm_name": "generic-alpine37-virtualbox-x64",
+      "output_directory": "output/generic-alpine37-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3473,9 +3473,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine38-virtualbox",
-      "vm_name": "generic-alpine38-virtualbox",
-      "output_directory": "output/generic-alpine38-virtualbox",
+      "name": "generic-alpine38-virtualbox-x64",
+      "vm_name": "generic-alpine38-virtualbox-x64",
+      "output_directory": "output/generic-alpine38-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3524,9 +3524,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-centos6-virtualbox",
-      "vm_name": "generic-centos6-virtualbox",
-      "output_directory": "output/generic-centos6-virtualbox",
+      "name": "generic-centos6-virtualbox-x64",
+      "vm_name": "generic-centos6-virtualbox-x64",
+      "output_directory": "output/generic-centos6-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3566,9 +3566,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-centos7-virtualbox",
-      "vm_name": "generic-centos7-virtualbox",
-      "output_directory": "output/generic-centos7-virtualbox",
+      "name": "generic-centos7-virtualbox-x64",
+      "vm_name": "generic-centos7-virtualbox-x64",
+      "output_directory": "output/generic-centos7-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3608,9 +3608,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-rhel7-virtualbox",
-      "vm_name": "generic-rhel7-virtualbox",
-      "output_directory": "output/generic-rhel7-virtualbox",
+      "name": "generic-rhel7-virtualbox-x64",
+      "vm_name": "generic-rhel7-virtualbox-x64",
+      "output_directory": "output/generic-rhel7-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3650,9 +3650,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-arch-virtualbox",
-      "vm_name": "generic-arch-virtualbox",
-      "output_directory": "output/generic-arch-virtualbox",
+      "name": "generic-arch-virtualbox-x64",
+      "vm_name": "generic-arch-virtualbox-x64",
+      "output_directory": "output/generic-arch-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3712,9 +3712,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora25-virtualbox",
-      "vm_name": "generic-fedora25-virtualbox",
-      "output_directory": "output/generic-fedora25-virtualbox",
+      "name": "generic-fedora25-virtualbox-x64",
+      "vm_name": "generic-fedora25-virtualbox-x64",
+      "output_directory": "output/generic-fedora25-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3758,9 +3758,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora26-virtualbox",
-      "vm_name": "generic-fedora26-virtualbox",
-      "output_directory": "output/generic-fedora26-virtualbox",
+      "name": "generic-fedora26-virtualbox-x64",
+      "vm_name": "generic-fedora26-virtualbox-x64",
+      "output_directory": "output/generic-fedora26-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3804,9 +3804,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora27-virtualbox",
-      "vm_name": "generic-fedora27-virtualbox",
-      "output_directory": "output/generic-fedora27-virtualbox",
+      "name": "generic-fedora27-virtualbox-x64",
+      "vm_name": "generic-fedora27-virtualbox-x64",
+      "output_directory": "output/generic-fedora27-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3850,9 +3850,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora28-virtualbox",
-      "vm_name": "generic-fedora28-virtualbox",
-      "output_directory": "output/generic-fedora28-virtualbox",
+      "name": "generic-fedora28-virtualbox-x64",
+      "vm_name": "generic-fedora28-virtualbox-x64",
+      "output_directory": "output/generic-fedora28-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3896,9 +3896,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora29-virtualbox",
-      "vm_name": "generic-fedora29-virtualbox",
-      "output_directory": "output/generic-fedora29-virtualbox",
+      "name": "generic-fedora29-virtualbox-x64",
+      "vm_name": "generic-fedora29-virtualbox-x64",
+      "output_directory": "output/generic-fedora29-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3942,9 +3942,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-debian8-virtualbox",
-      "vm_name": "generic-debian8-virtualbox",
-      "output_directory": "output/generic-debian8-virtualbox",
+      "name": "generic-debian8-virtualbox-x64",
+      "vm_name": "generic-debian8-virtualbox-x64",
+      "output_directory": "output/generic-debian8-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3996,9 +3996,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-debian9-virtualbox",
-      "vm_name": "generic-debian9-virtualbox",
-      "output_directory": "output/generic-debian9-virtualbox",
+      "name": "generic-debian9-virtualbox-x64",
+      "vm_name": "generic-debian9-virtualbox-x64",
+      "output_directory": "output/generic-debian9-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4050,9 +4050,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu1604-virtualbox",
-      "vm_name": "generic-ubuntu1604-virtualbox",
-      "output_directory": "output/generic-ubuntu1604-virtualbox",
+      "name": "generic-ubuntu1604-virtualbox-x64",
+      "vm_name": "generic-ubuntu1604-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu1604-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4108,9 +4108,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu1610-virtualbox",
-      "vm_name": "generic-ubuntu1610-virtualbox",
-      "output_directory": "output/generic-ubuntu1610-virtualbox",
+      "name": "generic-ubuntu1610-virtualbox-x64",
+      "vm_name": "generic-ubuntu1610-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu1610-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4158,9 +4158,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu1704-virtualbox",
-      "vm_name": "generic-ubuntu1704-virtualbox",
-      "output_directory": "output/generic-ubuntu1704-virtualbox",
+      "name": "generic-ubuntu1704-virtualbox-x64",
+      "vm_name": "generic-ubuntu1704-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu1704-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4208,9 +4208,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu1710-virtualbox",
-      "vm_name": "generic-ubuntu1710-virtualbox",
-      "output_directory": "output/generic-ubuntu1710-virtualbox",
+      "name": "generic-ubuntu1710-virtualbox-x64",
+      "vm_name": "generic-ubuntu1710-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu1710-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4258,9 +4258,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu1804-virtualbox",
-      "vm_name": "generic-ubuntu1804-virtualbox",
-      "output_directory": "output/generic-ubuntu1804-virtualbox",
+      "name": "generic-ubuntu1804-virtualbox-x64",
+      "vm_name": "generic-ubuntu1804-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu1804-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4320,9 +4320,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu1810-virtualbox",
-      "vm_name": "generic-ubuntu1810-virtualbox",
-      "output_directory": "output/generic-ubuntu1810-virtualbox",
+      "name": "generic-ubuntu1810-virtualbox-x64",
+      "vm_name": "generic-ubuntu1810-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu1810-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4382,9 +4382,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-gentoo-virtualbox",
-      "vm_name": "generic-gentoo-virtualbox",
-      "output_directory": "output/generic-gentoo-virtualbox",
+      "name": "generic-gentoo-virtualbox-x64",
+      "vm_name": "generic-gentoo-virtualbox-x64",
+      "output_directory": "output/generic-gentoo-virtualbox-x64",
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4429,9 +4429,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-freebsd11-virtualbox",
-      "vm_name": "generic-freebsd11-virtualbox",
-      "output_directory": "output/generic-freebsd11-virtualbox",
+      "name": "generic-freebsd11-virtualbox-x64",
+      "vm_name": "generic-freebsd11-virtualbox-x64",
+      "output_directory": "output/generic-freebsd11-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4487,9 +4487,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-openbsd6-virtualbox",
-      "vm_name": "generic-openbsd6-virtualbox",
-      "output_directory": "output/generic-openbsd6-virtualbox",
+      "name": "generic-openbsd6-virtualbox-x64",
+      "vm_name": "generic-openbsd6-virtualbox-x64",
+      "output_directory": "output/generic-openbsd6-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4533,9 +4533,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-freebsd12-virtualbox",
-      "vm_name": "generic-freebsd12-virtualbox",
-      "output_directory": "output/generic-freebsd12-virtualbox",
+      "name": "generic-freebsd12-virtualbox-x64",
+      "vm_name": "generic-freebsd12-virtualbox-x64",
+      "output_directory": "output/generic-freebsd12-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4591,9 +4591,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-rhel6-virtualbox",
-      "vm_name": "generic-rhel6-virtualbox",
-      "output_directory": "output/generic-rhel6-virtualbox",
+      "name": "generic-rhel6-virtualbox-x64",
+      "vm_name": "generic-rhel6-virtualbox-x64",
+      "output_directory": "output/generic-rhel6-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4633,9 +4633,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-rhel8-virtualbox",
-      "vm_name": "generic-rhel8-virtualbox",
-      "output_directory": "output/generic-rhel8-virtualbox",
+      "name": "generic-rhel8-virtualbox-x64",
+      "vm_name": "generic-rhel8-virtualbox-x64",
+      "output_directory": "output/generic-rhel8-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4675,9 +4675,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-hardenedbsd11-virtualbox",
-      "vm_name": "generic-hardenedbsd11-virtualbox",
-      "output_directory": "output/generic-hardenedbsd11-virtualbox",
+      "name": "generic-hardenedbsd11-virtualbox-x64",
+      "vm_name": "generic-hardenedbsd11-virtualbox-x64",
+      "output_directory": "output/generic-hardenedbsd11-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4715,7 +4715,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
+      "iso_url": "https://mirrors.lavabit.com/hardenedbsd-archive/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
       "iso_checksum": "sha256:8b2c90dc41ec68b561028af885eecb66bfd36223970d1c594923d1d54bf83467",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -4731,9 +4731,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-dragonflybsd5-virtualbox",
-      "vm_name": "generic-dragonflybsd5-virtualbox",
-      "output_directory": "output/generic-dragonflybsd5-virtualbox",
+      "name": "generic-dragonflybsd5-virtualbox-x64",
+      "vm_name": "generic-dragonflybsd5-virtualbox-x64",
+      "output_directory": "output/generic-dragonflybsd5-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4800,9 +4800,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-netbsd8-virtualbox",
-      "vm_name": "generic-netbsd8-virtualbox",
-      "output_directory": "output/generic-netbsd8-virtualbox",
+      "name": "generic-netbsd8-virtualbox-x64",
+      "vm_name": "generic-netbsd8-virtualbox-x64",
+      "output_directory": "output/generic-netbsd8-virtualbox-x64",
       "boot_wait": "180s",
       "cpus": 2,
       "memory": 2048,
@@ -4886,9 +4886,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-hardenedbsd12-virtualbox",
-      "vm_name": "generic-hardenedbsd12-virtualbox",
-      "output_directory": "output/generic-hardenedbsd12-virtualbox",
+      "name": "generic-hardenedbsd12-virtualbox-x64",
+      "vm_name": "generic-hardenedbsd12-virtualbox-x64",
+      "output_directory": "output/generic-hardenedbsd12-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4926,7 +4926,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
+      "iso_url": "https://mirrors.lavabit.com/hardenedbsd-archive/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
       "iso_checksum": "sha256:029225eaf92ba8e7ed7a7395f45492d09bc9a949488ecb9a5ca54df7c9f89661",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -4942,9 +4942,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine39-virtualbox",
-      "vm_name": "generic-alpine39-virtualbox",
-      "output_directory": "output/generic-alpine39-virtualbox",
+      "name": "generic-alpine39-virtualbox-x64",
+      "vm_name": "generic-alpine39-virtualbox-x64",
+      "output_directory": "output/generic-alpine39-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4994,9 +4994,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-debian10-virtualbox",
-      "vm_name": "generic-debian10-virtualbox",
-      "output_directory": "output/generic-debian10-virtualbox",
+      "name": "generic-debian10-virtualbox-x64",
+      "vm_name": "generic-debian10-virtualbox-x64",
+      "output_directory": "output/generic-debian10-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5048,9 +5048,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu1904-virtualbox",
-      "vm_name": "generic-ubuntu1904-virtualbox",
-      "output_directory": "output/generic-ubuntu1904-virtualbox",
+      "name": "generic-ubuntu1904-virtualbox-x64",
+      "vm_name": "generic-ubuntu1904-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu1904-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5110,9 +5110,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora30-virtualbox",
-      "vm_name": "generic-fedora30-virtualbox",
-      "output_directory": "output/generic-fedora30-virtualbox",
+      "name": "generic-fedora30-virtualbox-x64",
+      "vm_name": "generic-fedora30-virtualbox-x64",
+      "output_directory": "output/generic-fedora30-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5156,9 +5156,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-oracle8-virtualbox",
-      "vm_name": "generic-oracle8-virtualbox",
-      "output_directory": "output/generic-oracle8-virtualbox",
+      "name": "generic-oracle8-virtualbox-x64",
+      "vm_name": "generic-oracle8-virtualbox-x64",
+      "output_directory": "output/generic-oracle8-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5198,9 +5198,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine310-virtualbox",
-      "vm_name": "generic-alpine310-virtualbox",
-      "output_directory": "output/generic-alpine310-virtualbox",
+      "name": "generic-alpine310-virtualbox-x64",
+      "vm_name": "generic-alpine310-virtualbox-x64",
+      "output_directory": "output/generic-alpine310-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5252,9 +5252,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-opensuse15-virtualbox",
-      "vm_name": "generic-opensuse15-virtualbox",
-      "output_directory": "output/generic-opensuse15-virtualbox",
+      "name": "generic-opensuse15-virtualbox-x64",
+      "vm_name": "generic-opensuse15-virtualbox-x64",
+      "output_directory": "output/generic-opensuse15-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5297,9 +5297,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-centos8-virtualbox",
-      "vm_name": "generic-centos8-virtualbox",
-      "output_directory": "output/generic-centos8-virtualbox",
+      "name": "generic-centos8-virtualbox-x64",
+      "vm_name": "generic-centos8-virtualbox-x64",
+      "output_directory": "output/generic-centos8-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5339,9 +5339,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora31-virtualbox",
-      "vm_name": "generic-fedora31-virtualbox",
-      "output_directory": "output/generic-fedora31-virtualbox",
+      "name": "generic-fedora31-virtualbox-x64",
+      "vm_name": "generic-fedora31-virtualbox-x64",
+      "output_directory": "output/generic-fedora31-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5385,9 +5385,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu1910-virtualbox",
-      "vm_name": "generic-ubuntu1910-virtualbox",
-      "output_directory": "output/generic-ubuntu1910-virtualbox",
+      "name": "generic-ubuntu1910-virtualbox-x64",
+      "vm_name": "generic-ubuntu1910-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu1910-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5447,9 +5447,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine311-virtualbox",
-      "vm_name": "generic-alpine311-virtualbox",
-      "output_directory": "output/generic-alpine311-virtualbox",
+      "name": "generic-alpine311-virtualbox-x64",
+      "vm_name": "generic-alpine311-virtualbox-x64",
+      "output_directory": "output/generic-alpine311-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5501,9 +5501,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu2004-virtualbox",
-      "vm_name": "generic-ubuntu2004-virtualbox",
-      "output_directory": "output/generic-ubuntu2004-virtualbox",
+      "name": "generic-ubuntu2004-virtualbox-x64",
+      "vm_name": "generic-ubuntu2004-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu2004-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5563,9 +5563,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora32-virtualbox",
-      "vm_name": "generic-fedora32-virtualbox",
-      "output_directory": "output/generic-fedora32-virtualbox",
+      "name": "generic-fedora32-virtualbox-x64",
+      "vm_name": "generic-fedora32-virtualbox-x64",
+      "output_directory": "output/generic-fedora32-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5608,9 +5608,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-netbsd9-virtualbox",
-      "vm_name": "generic-netbsd9-virtualbox",
-      "output_directory": "output/generic-netbsd9-virtualbox",
+      "name": "generic-netbsd9-virtualbox-x64",
+      "vm_name": "generic-netbsd9-virtualbox-x64",
+      "output_directory": "output/generic-netbsd9-virtualbox-x64",
       "boot_wait": "180s",
       "cpus": 2,
       "memory": 2048,
@@ -5691,9 +5691,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine312-virtualbox",
-      "vm_name": "generic-alpine312-virtualbox",
-      "output_directory": "output/generic-alpine312-virtualbox",
+      "name": "generic-alpine312-virtualbox-x64",
+      "vm_name": "generic-alpine312-virtualbox-x64",
+      "output_directory": "output/generic-alpine312-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5745,9 +5745,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-devuan1-virtualbox",
-      "vm_name": "generic-devuan1-virtualbox",
-      "output_directory": "output/generic-devuan1-virtualbox",
+      "name": "generic-devuan1-virtualbox-x64",
+      "vm_name": "generic-devuan1-virtualbox-x64",
+      "output_directory": "output/generic-devuan1-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5799,9 +5799,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-devuan2-virtualbox",
-      "vm_name": "generic-devuan2-virtualbox",
-      "output_directory": "output/generic-devuan2-virtualbox",
+      "name": "generic-devuan2-virtualbox-x64",
+      "vm_name": "generic-devuan2-virtualbox-x64",
+      "output_directory": "output/generic-devuan2-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5853,9 +5853,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-devuan3-virtualbox",
-      "vm_name": "generic-devuan3-virtualbox",
-      "output_directory": "output/generic-devuan3-virtualbox",
+      "name": "generic-devuan3-virtualbox-x64",
+      "vm_name": "generic-devuan3-virtualbox-x64",
+      "output_directory": "output/generic-devuan3-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5907,9 +5907,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu2010-virtualbox",
-      "vm_name": "generic-ubuntu2010-virtualbox",
-      "output_directory": "output/generic-ubuntu2010-virtualbox",
+      "name": "generic-ubuntu2010-virtualbox-x64",
+      "vm_name": "generic-ubuntu2010-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu2010-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5964,9 +5964,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora33-virtualbox",
-      "vm_name": "generic-fedora33-virtualbox",
-      "output_directory": "output/generic-fedora33-virtualbox",
+      "name": "generic-fedora33-virtualbox-x64",
+      "vm_name": "generic-fedora33-virtualbox-x64",
+      "output_directory": "output/generic-fedora33-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6009,9 +6009,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine313-virtualbox",
-      "vm_name": "generic-alpine313-virtualbox",
-      "output_directory": "output/generic-alpine313-virtualbox",
+      "name": "generic-alpine313-virtualbox-x64",
+      "vm_name": "generic-alpine313-virtualbox-x64",
+      "output_directory": "output/generic-alpine313-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6063,9 +6063,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine314-virtualbox",
-      "vm_name": "generic-alpine314-virtualbox",
-      "output_directory": "output/generic-alpine314-virtualbox",
+      "name": "generic-alpine314-virtualbox-x64",
+      "vm_name": "generic-alpine314-virtualbox-x64",
+      "output_directory": "output/generic-alpine314-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6117,9 +6117,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu2104-virtualbox",
-      "vm_name": "generic-ubuntu2104-virtualbox",
-      "output_directory": "output/generic-ubuntu2104-virtualbox",
+      "name": "generic-ubuntu2104-virtualbox-x64",
+      "vm_name": "generic-ubuntu2104-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu2104-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6174,9 +6174,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-rocky8-virtualbox",
-      "vm_name": "generic-rocky8-virtualbox",
-      "output_directory": "output/generic-rocky8-virtualbox",
+      "name": "generic-rocky8-virtualbox-x64",
+      "vm_name": "generic-rocky8-virtualbox-x64",
+      "output_directory": "output/generic-rocky8-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6216,9 +6216,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alma8-virtualbox",
-      "vm_name": "generic-alma8-virtualbox",
-      "output_directory": "output/generic-alma8-virtualbox",
+      "name": "generic-alma8-virtualbox-x64",
+      "vm_name": "generic-alma8-virtualbox-x64",
+      "output_directory": "output/generic-alma8-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6258,9 +6258,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora34-virtualbox",
-      "vm_name": "generic-fedora34-virtualbox",
-      "output_directory": "output/generic-fedora34-virtualbox",
+      "name": "generic-fedora34-virtualbox-x64",
+      "vm_name": "generic-fedora34-virtualbox-x64",
+      "output_directory": "output/generic-fedora34-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6303,9 +6303,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-freebsd13-virtualbox",
-      "vm_name": "generic-freebsd13-virtualbox",
-      "output_directory": "output/generic-freebsd13-virtualbox",
+      "name": "generic-freebsd13-virtualbox-x64",
+      "vm_name": "generic-freebsd13-virtualbox-x64",
+      "output_directory": "output/generic-freebsd13-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6361,9 +6361,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-hardenedbsd13-virtualbox",
-      "vm_name": "generic-hardenedbsd13-virtualbox",
-      "output_directory": "output/generic-hardenedbsd13-virtualbox",
+      "name": "generic-hardenedbsd13-virtualbox-x64",
+      "vm_name": "generic-hardenedbsd13-virtualbox-x64",
+      "output_directory": "output/generic-hardenedbsd13-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6417,9 +6417,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-dragonflybsd6-virtualbox",
-      "vm_name": "generic-dragonflybsd6-virtualbox",
-      "output_directory": "output/generic-dragonflybsd6-virtualbox",
+      "name": "generic-dragonflybsd6-virtualbox-x64",
+      "vm_name": "generic-dragonflybsd6-virtualbox-x64",
+      "output_directory": "output/generic-dragonflybsd6-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6486,9 +6486,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-debian11-virtualbox",
-      "vm_name": "generic-debian11-virtualbox",
-      "output_directory": "output/generic-debian11-virtualbox",
+      "name": "generic-debian11-virtualbox-x64",
+      "vm_name": "generic-debian11-virtualbox-x64",
+      "output_directory": "output/generic-debian11-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6540,9 +6540,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-openbsd7-virtualbox",
-      "vm_name": "generic-openbsd7-virtualbox",
-      "output_directory": "output/generic-openbsd7-virtualbox",
+      "name": "generic-openbsd7-virtualbox-x64",
+      "vm_name": "generic-openbsd7-virtualbox-x64",
+      "output_directory": "output/generic-openbsd7-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6587,9 +6587,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu2110-virtualbox",
-      "vm_name": "generic-ubuntu2110-virtualbox",
-      "output_directory": "output/generic-ubuntu2110-virtualbox",
+      "name": "generic-ubuntu2110-virtualbox-x64",
+      "vm_name": "generic-ubuntu2110-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu2110-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6644,9 +6644,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine315-virtualbox",
-      "vm_name": "generic-alpine315-virtualbox",
-      "output_directory": "output/generic-alpine315-virtualbox",
+      "name": "generic-alpine315-virtualbox-x64",
+      "vm_name": "generic-alpine315-virtualbox-x64",
+      "output_directory": "output/generic-alpine315-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6698,9 +6698,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora35-virtualbox",
-      "vm_name": "generic-fedora35-virtualbox",
-      "output_directory": "output/generic-fedora35-virtualbox",
+      "name": "generic-fedora35-virtualbox-x64",
+      "vm_name": "generic-fedora35-virtualbox-x64",
+      "output_directory": "output/generic-fedora35-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6743,9 +6743,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-devuan4-virtualbox",
-      "vm_name": "generic-devuan4-virtualbox",
-      "output_directory": "output/generic-devuan4-virtualbox",
+      "name": "generic-devuan4-virtualbox-x64",
+      "vm_name": "generic-devuan4-virtualbox-x64",
+      "output_directory": "output/generic-devuan4-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6797,9 +6797,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu2204-virtualbox",
-      "vm_name": "generic-ubuntu2204-virtualbox",
-      "output_directory": "output/generic-ubuntu2204-virtualbox",
+      "name": "generic-ubuntu2204-virtualbox-x64",
+      "vm_name": "generic-ubuntu2204-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu2204-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6854,9 +6854,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora36-virtualbox",
-      "vm_name": "generic-fedora36-virtualbox",
-      "output_directory": "output/generic-fedora36-virtualbox",
+      "name": "generic-fedora36-virtualbox-x64",
+      "vm_name": "generic-fedora36-virtualbox-x64",
+      "output_directory": "output/generic-fedora36-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6899,9 +6899,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-rhel9-virtualbox",
-      "vm_name": "generic-rhel9-virtualbox",
-      "output_directory": "output/generic-rhel9-virtualbox",
+      "name": "generic-rhel9-virtualbox-x64",
+      "vm_name": "generic-rhel9-virtualbox-x64",
+      "output_directory": "output/generic-rhel9-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6965,9 +6965,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-centos8s-virtualbox",
-      "vm_name": "generic-centos8s-virtualbox",
-      "output_directory": "output/generic-centos8s-virtualbox",
+      "name": "generic-centos8s-virtualbox-x64",
+      "vm_name": "generic-centos8s-virtualbox-x64",
+      "output_directory": "output/generic-centos8s-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7007,9 +7007,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-centos9s-virtualbox",
-      "vm_name": "generic-centos9s-virtualbox",
-      "output_directory": "output/generic-centos9s-virtualbox",
+      "name": "generic-centos9s-virtualbox-x64",
+      "vm_name": "generic-centos9s-virtualbox-x64",
+      "output_directory": "output/generic-centos9s-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7073,9 +7073,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine316-virtualbox",
-      "vm_name": "generic-alpine316-virtualbox",
-      "output_directory": "output/generic-alpine316-virtualbox",
+      "name": "generic-alpine316-virtualbox-x64",
+      "vm_name": "generic-alpine316-virtualbox-x64",
+      "output_directory": "output/generic-alpine316-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7127,9 +7127,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alma9-virtualbox",
-      "vm_name": "generic-alma9-virtualbox",
-      "output_directory": "output/generic-alma9-virtualbox",
+      "name": "generic-alma9-virtualbox-x64",
+      "vm_name": "generic-alma9-virtualbox-x64",
+      "output_directory": "output/generic-alma9-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7193,9 +7193,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-oracle9-virtualbox",
-      "vm_name": "generic-oracle9-virtualbox",
-      "output_directory": "output/generic-oracle9-virtualbox",
+      "name": "generic-oracle9-virtualbox-x64",
+      "vm_name": "generic-oracle9-virtualbox-x64",
+      "output_directory": "output/generic-oracle9-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7259,9 +7259,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-rocky9-virtualbox",
-      "vm_name": "generic-rocky9-virtualbox",
-      "output_directory": "output/generic-rocky9-virtualbox",
+      "name": "generic-rocky9-virtualbox-x64",
+      "vm_name": "generic-rocky9-virtualbox-x64",
+      "output_directory": "output/generic-rocky9-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7325,9 +7325,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-oracle6-virtualbox",
-      "vm_name": "generic-oracle6-virtualbox",
-      "output_directory": "output/generic-oracle6-virtualbox",
+      "name": "generic-oracle6-virtualbox-x64",
+      "vm_name": "generic-oracle6-virtualbox-x64",
+      "output_directory": "output/generic-oracle6-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7367,9 +7367,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu2210-virtualbox",
-      "vm_name": "generic-ubuntu2210-virtualbox",
-      "output_directory": "output/generic-ubuntu2210-virtualbox",
+      "name": "generic-ubuntu2210-virtualbox-x64",
+      "vm_name": "generic-ubuntu2210-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu2210-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7424,9 +7424,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora37-virtualbox",
-      "vm_name": "generic-fedora37-virtualbox",
-      "output_directory": "output/generic-fedora37-virtualbox",
+      "name": "generic-fedora37-virtualbox-x64",
+      "vm_name": "generic-fedora37-virtualbox-x64",
+      "output_directory": "output/generic-fedora37-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7483,9 +7483,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-fedora38-virtualbox",
-      "vm_name": "generic-fedora38-virtualbox",
-      "output_directory": "output/generic-fedora38-virtualbox",
+      "name": "generic-fedora38-virtualbox-x64",
+      "vm_name": "generic-fedora38-virtualbox-x64",
+      "output_directory": "output/generic-fedora38-virtualbox-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7542,9 +7542,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine317-virtualbox",
-      "vm_name": "generic-alpine317-virtualbox",
-      "output_directory": "output/generic-alpine317-virtualbox",
+      "name": "generic-alpine317-virtualbox-x64",
+      "vm_name": "generic-alpine317-virtualbox-x64",
+      "output_directory": "output/generic-alpine317-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7596,9 +7596,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-ubuntu2304-virtualbox",
-      "vm_name": "generic-ubuntu2304-virtualbox",
-      "output_directory": "output/generic-ubuntu2304-virtualbox",
+      "name": "generic-ubuntu2304-virtualbox-x64",
+      "vm_name": "generic-ubuntu2304-virtualbox-x64",
+      "output_directory": "output/generic-ubuntu2304-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7653,9 +7653,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-debian12-virtualbox",
-      "vm_name": "generic-debian12-virtualbox",
-      "output_directory": "output/generic-debian12-virtualbox",
+      "name": "generic-debian12-virtualbox-x64",
+      "vm_name": "generic-debian12-virtualbox-x64",
+      "output_directory": "output/generic-debian12-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7707,9 +7707,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-alpine318-virtualbox",
-      "vm_name": "generic-alpine318-virtualbox",
-      "output_directory": "output/generic-alpine318-virtualbox",
+      "name": "generic-alpine318-virtualbox-x64",
+      "vm_name": "generic-alpine318-virtualbox-x64",
+      "output_directory": "output/generic-alpine318-virtualbox-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7761,9 +7761,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-devuan5-virtualbox",
-      "vm_name": "generic-devuan5-virtualbox",
-      "output_directory": "output/generic-devuan5-virtualbox",
+      "name": "generic-devuan5-virtualbox-x64",
+      "vm_name": "generic-devuan5-virtualbox-x64",
+      "output_directory": "output/generic-devuan5-virtualbox-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7815,9 +7815,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-hardenedbsd-virtualbox",
-      "vm_name": "generic-hardenedbsd-virtualbox",
-      "output_directory": "output/generic-hardenedbsd-virtualbox",
+      "name": "generic-hardenedbsd-virtualbox-x64",
+      "vm_name": "generic-hardenedbsd-virtualbox-x64",
+      "output_directory": "output/generic-hardenedbsd-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7871,9 +7871,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-dragonflybsd-virtualbox",
-      "vm_name": "generic-dragonflybsd-virtualbox",
-      "output_directory": "output/generic-dragonflybsd-virtualbox",
+      "name": "generic-dragonflybsd-virtualbox-x64",
+      "vm_name": "generic-dragonflybsd-virtualbox-x64",
+      "output_directory": "output/generic-dragonflybsd-virtualbox-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [

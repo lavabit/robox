@@ -14,7 +14,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-alpine36-libvirt"
+        "magma-alpine36-libvirt-x64"
       ]
     },
     {
@@ -43,7 +43,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-alpine36-libvirt"
+        "magma-alpine36-libvirt-x64"
       ]
     },
     {
@@ -58,7 +58,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos6-libvirt"
+        "magma-centos6-libvirt-x64"
       ]
     },
     {
@@ -85,7 +85,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos6-libvirt"
+        "magma-centos6-libvirt-x64"
       ]
     },
     {
@@ -101,7 +101,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos7-libvirt"
+        "magma-centos7-libvirt-x64"
       ]
     },
     {
@@ -132,7 +132,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos7-libvirt"
+        "magma-centos7-libvirt-x64"
       ]
     },
     {
@@ -145,7 +145,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-gentoo-libvirt"
+        "magma-gentoo-libvirt-x64"
       ]
     },
     {
@@ -163,7 +163,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-gentoo-libvirt"
+        "magma-gentoo-libvirt-x64"
       ]
     },
     {
@@ -175,7 +175,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-arch-libvirt"
+        "magma-arch-libvirt-x64"
       ]
     },
     {
@@ -198,7 +198,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-arch-libvirt"
+        "magma-arch-libvirt-x64"
       ]
     },
     {
@@ -211,7 +211,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian8-libvirt"
+        "magma-debian8-libvirt-x64"
       ]
     },
     {
@@ -238,7 +238,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian8-libvirt"
+        "magma-debian8-libvirt-x64"
       ]
     },
     {
@@ -252,7 +252,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora27-libvirt"
+        "magma-fedora27-libvirt-x64"
       ]
     },
     {
@@ -266,7 +266,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora27-libvirt"
+        "magma-fedora27-libvirt-x64"
       ]
     },
     {
@@ -290,7 +290,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora27-libvirt"
+        "magma-fedora27-libvirt-x64"
       ]
     },
     {
@@ -314,7 +314,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "magma-freebsd11-libvirt"
+        "magma-freebsd11-libvirt-x64"
       ]
     },
     {
@@ -327,7 +327,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "magma-openbsd6-libvirt"
+        "magma-openbsd6-libvirt-x64"
       ]
     },
     {
@@ -349,7 +349,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "magma-openbsd6-libvirt"
+        "magma-openbsd6-libvirt-x64"
       ]
     },
     {
@@ -362,7 +362,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1604-libvirt"
+        "magma-ubuntu1604-libvirt-x64"
       ]
     },
     {
@@ -389,7 +389,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1604-libvirt"
+        "magma-ubuntu1604-libvirt-x64"
       ]
     },
     {
@@ -402,7 +402,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1610-libvirt"
+        "magma-ubuntu1610-libvirt-x64"
       ]
     },
     {
@@ -429,7 +429,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1610-libvirt"
+        "magma-ubuntu1610-libvirt-x64"
       ]
     },
     {
@@ -442,7 +442,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1704-libvirt"
+        "magma-ubuntu1704-libvirt-x64"
       ]
     },
     {
@@ -469,7 +469,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1704-libvirt"
+        "magma-ubuntu1704-libvirt-x64"
       ]
     },
     {
@@ -482,7 +482,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian9-libvirt"
+        "magma-debian9-libvirt-x64"
       ]
     },
     {
@@ -510,7 +510,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian9-libvirt"
+        "magma-debian9-libvirt-x64"
       ]
     },
     {
@@ -523,7 +523,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian10-libvirt"
+        "magma-debian10-libvirt-x64"
       ]
     },
     {
@@ -550,7 +550,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian10-libvirt"
+        "magma-debian10-libvirt-x64"
       ]
     },
     {
@@ -563,7 +563,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian11-libvirt"
+        "magma-debian11-libvirt-x64"
       ]
     },
     {
@@ -590,7 +590,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian11-libvirt"
+        "magma-debian11-libvirt-x64"
       ]
     },
     {
@@ -604,7 +604,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora28-libvirt"
+        "magma-fedora28-libvirt-x64"
       ]
     },
     {
@@ -618,7 +618,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora28-libvirt"
+        "magma-fedora28-libvirt-x64"
       ]
     },
     {
@@ -642,7 +642,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora28-libvirt"
+        "magma-fedora28-libvirt-x64"
       ]
     },
     {
@@ -656,7 +656,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora29-libvirt"
+        "magma-fedora29-libvirt-x64"
       ]
     },
     {
@@ -670,7 +670,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora29-libvirt"
+        "magma-fedora29-libvirt-x64"
       ]
     },
     {
@@ -694,7 +694,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora29-libvirt"
+        "magma-fedora29-libvirt-x64"
       ]
     },
     {
@@ -708,7 +708,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora30-libvirt"
+        "magma-fedora30-libvirt-x64"
       ]
     },
     {
@@ -722,7 +722,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora30-libvirt"
+        "magma-fedora30-libvirt-x64"
       ]
     },
     {
@@ -746,7 +746,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora30-libvirt"
+        "magma-fedora30-libvirt-x64"
       ]
     },
     {
@@ -760,7 +760,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora31-libvirt"
+        "magma-fedora31-libvirt-x64"
       ]
     },
     {
@@ -774,7 +774,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora31-libvirt"
+        "magma-fedora31-libvirt-x64"
       ]
     },
     {
@@ -798,7 +798,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora31-libvirt"
+        "magma-fedora31-libvirt-x64"
       ]
     },
     {
@@ -811,7 +811,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1710-libvirt"
+        "magma-ubuntu1710-libvirt-x64"
       ]
     },
     {
@@ -838,7 +838,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1710-libvirt"
+        "magma-ubuntu1710-libvirt-x64"
       ]
     },
     {
@@ -851,7 +851,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1804-libvirt"
+        "magma-ubuntu1804-libvirt-x64"
       ]
     },
     {
@@ -878,7 +878,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1804-libvirt"
+        "magma-ubuntu1804-libvirt-x64"
       ]
     },
     {
@@ -891,7 +891,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1810-libvirt"
+        "magma-ubuntu1810-libvirt-x64"
       ]
     },
     {
@@ -918,7 +918,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1810-libvirt"
+        "magma-ubuntu1810-libvirt-x64"
       ]
     },
     {
@@ -931,7 +931,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1904-libvirt"
+        "magma-ubuntu1904-libvirt-x64"
       ]
     },
     {
@@ -958,7 +958,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1904-libvirt"
+        "magma-ubuntu1904-libvirt-x64"
       ]
     },
     {
@@ -971,7 +971,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1910-libvirt"
+        "magma-ubuntu1910-libvirt-x64"
       ]
     },
     {
@@ -998,7 +998,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1910-libvirt"
+        "magma-ubuntu1910-libvirt-x64"
       ]
     },
     {
@@ -1011,7 +1011,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu2004-libvirt"
+        "magma-ubuntu2004-libvirt-x64"
       ]
     },
     {
@@ -1038,7 +1038,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu2004-libvirt"
+        "magma-ubuntu2004-libvirt-x64"
       ]
     },
     {
@@ -1054,7 +1054,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos8-libvirt"
+        "magma-centos8-libvirt-x64"
       ]
     },
     {
@@ -1084,7 +1084,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos8-libvirt"
+        "magma-centos8-libvirt-x64"
       ]
     },
     {
@@ -1098,7 +1098,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora32-libvirt"
+        "magma-fedora32-libvirt-x64"
       ]
     },
     {
@@ -1112,7 +1112,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora32-libvirt"
+        "magma-fedora32-libvirt-x64"
       ]
     },
     {
@@ -1136,7 +1136,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora32-libvirt"
+        "magma-fedora32-libvirt-x64"
       ]
     },
     {
@@ -1150,7 +1150,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora33-libvirt"
+        "magma-fedora33-libvirt-x64"
       ]
     },
     {
@@ -1164,7 +1164,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora33-libvirt"
+        "magma-fedora33-libvirt-x64"
       ]
     },
     {
@@ -1188,7 +1188,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora33-libvirt"
+        "magma-fedora33-libvirt-x64"
       ]
     },
     {
@@ -1202,7 +1202,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora34-libvirt"
+        "magma-fedora34-libvirt-x64"
       ]
     },
     {
@@ -1216,7 +1216,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora34-libvirt"
+        "magma-fedora34-libvirt-x64"
       ]
     },
     {
@@ -1240,7 +1240,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora34-libvirt"
+        "magma-fedora34-libvirt-x64"
       ]
     },
     {
@@ -1254,7 +1254,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora35-libvirt"
+        "magma-fedora35-libvirt-x64"
       ]
     },
     {
@@ -1268,7 +1268,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora35-libvirt"
+        "magma-fedora35-libvirt-x64"
       ]
     },
     {
@@ -1292,7 +1292,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora35-libvirt"
+        "magma-fedora35-libvirt-x64"
       ]
     },
     {
@@ -1306,7 +1306,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora36-libvirt"
+        "magma-fedora36-libvirt-x64"
       ]
     },
     {
@@ -1320,7 +1320,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora36-libvirt"
+        "magma-fedora36-libvirt-x64"
       ]
     },
     {
@@ -1344,7 +1344,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora36-libvirt"
+        "magma-fedora36-libvirt-x64"
       ]
     },
     {
@@ -1366,9 +1366,9 @@
   "builders": [
     {
       "type": "qemu",
-      "name": "magma-alpine36-libvirt",
-      "vm_name": "magma-alpine36-libvirt",
-      "output_directory": "output/magma-alpine36-libvirt",
+      "name": "magma-alpine36-libvirt-x64",
+      "vm_name": "magma-alpine36-libvirt-x64",
+      "output_directory": "output/magma-alpine36-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
@@ -1408,9 +1408,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-centos6-libvirt",
-      "vm_name": "magma-centos6-libvirt",
-      "output_directory": "output/magma-centos6-libvirt",
+      "name": "magma-centos6-libvirt-x64",
+      "vm_name": "magma-centos6-libvirt-x64",
+      "output_directory": "output/magma-centos6-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -1441,9 +1441,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-centos7-libvirt",
-      "vm_name": "magma-centos7-libvirt",
-      "output_directory": "output/magma-centos7-libvirt",
+      "name": "magma-centos7-libvirt-x64",
+      "vm_name": "magma-centos7-libvirt-x64",
+      "output_directory": "output/magma-centos7-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -1474,9 +1474,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-arch-libvirt",
-      "vm_name": "magma-arch-libvirt",
-      "output_directory": "output/magma-arch-libvirt",
+      "name": "magma-arch-libvirt-x64",
+      "vm_name": "magma-arch-libvirt-x64",
+      "output_directory": "output/magma-arch-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
@@ -1537,9 +1537,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-fedora27-libvirt",
-      "vm_name": "magma-fedora27-libvirt",
-      "output_directory": "output/magma-fedora27-libvirt",
+      "name": "magma-fedora27-libvirt-x64",
+      "vm_name": "magma-fedora27-libvirt-x64",
+      "output_directory": "output/magma-fedora27-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -1574,9 +1574,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-debian8-libvirt",
-      "vm_name": "magma-debian8-libvirt",
-      "output_directory": "output/magma-debian8-libvirt",
+      "name": "magma-debian8-libvirt-x64",
+      "vm_name": "magma-debian8-libvirt-x64",
+      "output_directory": "output/magma-debian8-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
@@ -1619,9 +1619,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-ubuntu1604-libvirt",
-      "vm_name": "magma-ubuntu1604-libvirt",
-      "output_directory": "output/magma-ubuntu1604-libvirt",
+      "name": "magma-ubuntu1604-libvirt-x64",
+      "vm_name": "magma-ubuntu1604-libvirt-x64",
+      "output_directory": "output/magma-ubuntu1604-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -1668,9 +1668,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-ubuntu1610-libvirt",
-      "vm_name": "magma-ubuntu1610-libvirt",
-      "output_directory": "output/magma-ubuntu1610-libvirt",
+      "name": "magma-ubuntu1610-libvirt-x64",
+      "vm_name": "magma-ubuntu1610-libvirt-x64",
+      "output_directory": "output/magma-ubuntu1610-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -1709,9 +1709,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-ubuntu1704-libvirt",
-      "vm_name": "magma-ubuntu1704-libvirt",
-      "output_directory": "output/magma-ubuntu1704-libvirt",
+      "name": "magma-ubuntu1704-libvirt-x64",
+      "vm_name": "magma-ubuntu1704-libvirt-x64",
+      "output_directory": "output/magma-ubuntu1704-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -1750,9 +1750,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-gentoo-libvirt",
-      "vm_name": "magma-gentoo-libvirt",
-      "output_directory": "output/magma-gentoo-libvirt",
+      "name": "magma-gentoo-libvirt-x64",
+      "vm_name": "magma-gentoo-libvirt-x64",
+      "output_directory": "output/magma-gentoo-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
@@ -1788,9 +1788,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-freebsd11-libvirt",
-      "vm_name": "magma-freebsd11-libvirt",
-      "output_directory": "output/magma-freebsd11-libvirt",
+      "name": "magma-freebsd11-libvirt-x64",
+      "vm_name": "magma-freebsd11-libvirt-x64",
+      "output_directory": "output/magma-freebsd11-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
@@ -1837,9 +1837,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-openbsd6-libvirt",
-      "vm_name": "magma-openbsd6-libvirt",
-      "output_directory": "output/magma-openbsd6-libvirt",
+      "name": "magma-openbsd6-libvirt-x64",
+      "vm_name": "magma-openbsd6-libvirt-x64",
+      "output_directory": "output/magma-openbsd6-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
@@ -1874,9 +1874,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-debian9-libvirt",
-      "vm_name": "magma-debian9-libvirt",
-      "output_directory": "output/magma-debian9-libvirt",
+      "name": "magma-debian9-libvirt-x64",
+      "vm_name": "magma-debian9-libvirt-x64",
+      "output_directory": "output/magma-debian9-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
@@ -1919,9 +1919,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-debian10-libvirt",
-      "vm_name": "magma-debian10-libvirt",
-      "output_directory": "output/magma-debian10-libvirt",
+      "name": "magma-debian10-libvirt-x64",
+      "vm_name": "magma-debian10-libvirt-x64",
+      "output_directory": "output/magma-debian10-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
@@ -1964,9 +1964,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-debian11-libvirt",
-      "vm_name": "magma-debian11-libvirt",
-      "output_directory": "output/magma-debian11-libvirt",
+      "name": "magma-debian11-libvirt-x64",
+      "vm_name": "magma-debian11-libvirt-x64",
+      "output_directory": "output/magma-debian11-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
@@ -2009,9 +2009,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-fedora28-libvirt",
-      "vm_name": "magma-fedora28-libvirt",
-      "output_directory": "output/magma-fedora28-libvirt",
+      "name": "magma-fedora28-libvirt-x64",
+      "vm_name": "magma-fedora28-libvirt-x64",
+      "output_directory": "output/magma-fedora28-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2046,9 +2046,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-fedora29-libvirt",
-      "vm_name": "magma-fedora29-libvirt",
-      "output_directory": "output/magma-fedora29-libvirt",
+      "name": "magma-fedora29-libvirt-x64",
+      "vm_name": "magma-fedora29-libvirt-x64",
+      "output_directory": "output/magma-fedora29-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2083,9 +2083,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-fedora30-libvirt",
-      "vm_name": "magma-fedora30-libvirt",
-      "output_directory": "output/magma-fedora30-libvirt",
+      "name": "magma-fedora30-libvirt-x64",
+      "vm_name": "magma-fedora30-libvirt-x64",
+      "output_directory": "output/magma-fedora30-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2120,9 +2120,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-fedora31-libvirt",
-      "vm_name": "magma-fedora31-libvirt",
-      "output_directory": "output/magma-fedora31-libvirt",
+      "name": "magma-fedora31-libvirt-x64",
+      "vm_name": "magma-fedora31-libvirt-x64",
+      "output_directory": "output/magma-fedora31-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2157,9 +2157,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-ubuntu1710-libvirt",
-      "vm_name": "magma-ubuntu1710-libvirt",
-      "output_directory": "output/magma-ubuntu1710-libvirt",
+      "name": "magma-ubuntu1710-libvirt-x64",
+      "vm_name": "magma-ubuntu1710-libvirt-x64",
+      "output_directory": "output/magma-ubuntu1710-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2198,9 +2198,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-ubuntu1804-libvirt",
-      "vm_name": "magma-ubuntu1804-libvirt",
-      "output_directory": "output/magma-ubuntu1804-libvirt",
+      "name": "magma-ubuntu1804-libvirt-x64",
+      "vm_name": "magma-ubuntu1804-libvirt-x64",
+      "output_directory": "output/magma-ubuntu1804-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2239,9 +2239,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-ubuntu1810-libvirt",
-      "vm_name": "magma-ubuntu1810-libvirt",
-      "output_directory": "output/magma-ubuntu1810-libvirt",
+      "name": "magma-ubuntu1810-libvirt-x64",
+      "vm_name": "magma-ubuntu1810-libvirt-x64",
+      "output_directory": "output/magma-ubuntu1810-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2280,9 +2280,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-ubuntu1904-libvirt",
-      "vm_name": "magma-ubuntu1904-libvirt",
-      "output_directory": "output/magma-ubuntu1904-libvirt",
+      "name": "magma-ubuntu1904-libvirt-x64",
+      "vm_name": "magma-ubuntu1904-libvirt-x64",
+      "output_directory": "output/magma-ubuntu1904-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2321,9 +2321,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-ubuntu1910-libvirt",
-      "vm_name": "magma-ubuntu1910-libvirt",
-      "output_directory": "output/magma-ubuntu1910-libvirt",
+      "name": "magma-ubuntu1910-libvirt-x64",
+      "vm_name": "magma-ubuntu1910-libvirt-x64",
+      "output_directory": "output/magma-ubuntu1910-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2362,9 +2362,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-ubuntu2004-libvirt",
-      "vm_name": "magma-ubuntu2004-libvirt",
-      "output_directory": "output/magma-ubuntu2004-libvirt",
+      "name": "magma-ubuntu2004-libvirt-x64",
+      "vm_name": "magma-ubuntu2004-libvirt-x64",
+      "output_directory": "output/magma-ubuntu2004-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2403,9 +2403,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-centos8-libvirt",
-      "vm_name": "magma-centos8-libvirt",
-      "output_directory": "output/magma-centos8-libvirt",
+      "name": "magma-centos8-libvirt-x64",
+      "vm_name": "magma-centos8-libvirt-x64",
+      "output_directory": "output/magma-centos8-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2436,9 +2436,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-fedora32-libvirt",
-      "vm_name": "magma-fedora32-libvirt",
-      "output_directory": "output/magma-fedora32-libvirt",
+      "name": "magma-fedora32-libvirt-x64",
+      "vm_name": "magma-fedora32-libvirt-x64",
+      "output_directory": "output/magma-fedora32-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2473,9 +2473,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-fedora33-libvirt",
-      "vm_name": "magma-fedora33-libvirt",
-      "output_directory": "output/magma-fedora33-libvirt",
+      "name": "magma-fedora33-libvirt-x64",
+      "vm_name": "magma-fedora33-libvirt-x64",
+      "output_directory": "output/magma-fedora33-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2510,9 +2510,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-fedora34-libvirt",
-      "vm_name": "magma-fedora34-libvirt",
-      "output_directory": "output/magma-fedora34-libvirt",
+      "name": "magma-fedora34-libvirt-x64",
+      "vm_name": "magma-fedora34-libvirt-x64",
+      "output_directory": "output/magma-fedora34-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2547,9 +2547,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-fedora35-libvirt",
-      "vm_name": "magma-fedora35-libvirt",
-      "output_directory": "output/magma-fedora35-libvirt",
+      "name": "magma-fedora35-libvirt-x64",
+      "vm_name": "magma-fedora35-libvirt-x64",
+      "output_directory": "output/magma-fedora35-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2584,9 +2584,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-fedora36-libvirt",
-      "vm_name": "magma-fedora36-libvirt",
-      "output_directory": "output/magma-fedora36-libvirt",
+      "name": "magma-fedora36-libvirt-x64",
+      "vm_name": "magma-fedora36-libvirt-x64",
+      "output_directory": "output/magma-fedora36-libvirt-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -2632,9 +2632,9 @@
           "tpl/lavabit/info.json"
         ],
         "except": [
-          "magma-alpine36-libvirt",
-          "magma-openbsd6-libvirt",
-          "magma-freebsd11-libvirt"
+          "magma-alpine36-libvirt-x64",
+          "magma-openbsd6-libvirt-x64",
+          "magma-freebsd11-libvirt-x64"
         ]
       },
       {
@@ -2645,9 +2645,9 @@
         "keep_input_artifact": false,
         "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
         "except": [
-          "magma-alpine36-libvirt",
-          "magma-openbsd6-libvirt",
-          "magma-freebsd11-libvirt"
+          "magma-alpine36-libvirt-x64",
+          "magma-openbsd6-libvirt-x64",
+          "magma-freebsd11-libvirt-x64"
         ]
       }
     ],
@@ -2662,7 +2662,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-alpine36-libvirt"
+          "magma-alpine36-libvirt-x64"
         ]
       },
       {
@@ -2673,7 +2673,7 @@
         "keep_input_artifact": false,
         "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-alpine36-libvirt"
+          "magma-alpine36-libvirt-x64"
         ]
       }
     ],
@@ -2688,8 +2688,8 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-openbsd6-libvirt",
-          "magma-freebsd11-libvirt"
+          "magma-openbsd6-libvirt-x64",
+          "magma-freebsd11-libvirt-x64"
         ]
       },
       {
@@ -2700,8 +2700,8 @@
         "keep_input_artifact": false,
         "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-openbsd6-libvirt",
-          "magma-freebsd11-libvirt"
+          "magma-openbsd6-libvirt-x64",
+          "magma-freebsd11-libvirt-x64"
         ]
       }
     ],
@@ -2716,7 +2716,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-centos6-libvirt"
+          "magma-centos6-libvirt-x64"
         ]
       },
       {
@@ -2727,7 +2727,7 @@
         "keep_input_artifact": false,
         "output": "output/{{ replace_all \"-centos6\" \"\" build_name }}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-centos6-libvirt"
+          "magma-centos6-libvirt-x64"
         ]
       }
     ],
@@ -2742,7 +2742,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-centos6-libvirt"
+          "magma-centos6-libvirt-x64"
         ]
       },
       {
@@ -2753,7 +2753,7 @@
         "keep_input_artifact": false,
         "output": "output/{{ replace_all \"centos6\" \"centos\" build_name }}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-centos6-libvirt"
+          "magma-centos6-libvirt-x64"
         ]
       }
     ],
@@ -2768,7 +2768,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-ubuntu1604-libvirt"
+          "magma-ubuntu1604-libvirt-x64"
         ]
       },
       {
@@ -2779,7 +2779,7 @@
         "keep_input_artifact": false,
         "output": "output/{{ replace_all \"ubuntu1604\" \"ubuntu\" build_name }}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-ubuntu1604-libvirt"
+          "magma-ubuntu1604-libvirt-x64"
         ]
       }
     ],
@@ -2794,7 +2794,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-debian8-libvirt"
+          "magma-debian8-libvirt-x64"
         ]
       },
       {
@@ -2805,7 +2805,7 @@
         "keep_input_artifact": false,
         "output": "output/{{ replace_all \"debian8\" \"debian\" build_name }}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-debian8-libvirt"
+          "magma-debian8-libvirt-x64"
         ]
       }
     ],
@@ -2820,7 +2820,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-fedora27-libvirt"
+          "magma-fedora27-libvirt-x64"
         ]
       },
       {
@@ -2831,7 +2831,7 @@
         "keep_input_artifact": false,
         "output": "output/{{ replace_all \"fedora27\" \"fedora\" build_name }}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-fedora27-libvirt"
+          "magma-fedora27-libvirt-x64"
         ]
       }
     ]

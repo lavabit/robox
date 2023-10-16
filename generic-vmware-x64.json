@@ -14,7 +14,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle7-vmware"
+        "generic-oracle7-vmware-x64"
       ]
     },
     {
@@ -37,7 +37,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle7-vmware"
+        "generic-oracle7-vmware-x64"
       ]
     },
     {
@@ -58,7 +58,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse42-vmware"
+        "generic-opensuse42-vmware-x64"
       ]
     },
     {
@@ -72,7 +72,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine35-vmware"
+        "generic-alpine35-vmware-x64"
       ]
     },
     {
@@ -95,7 +95,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine35-vmware"
+        "generic-alpine35-vmware-x64"
       ]
     },
     {
@@ -109,7 +109,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine36-vmware"
+        "generic-alpine36-vmware-x64"
       ]
     },
     {
@@ -132,7 +132,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine36-vmware"
+        "generic-alpine36-vmware-x64"
       ]
     },
     {
@@ -146,7 +146,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine37-vmware"
+        "generic-alpine37-vmware-x64"
       ]
     },
     {
@@ -169,7 +169,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine37-vmware"
+        "generic-alpine37-vmware-x64"
       ]
     },
     {
@@ -183,7 +183,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine38-vmware"
+        "generic-alpine38-vmware-x64"
       ]
     },
     {
@@ -206,7 +206,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine38-vmware"
+        "generic-alpine38-vmware-x64"
       ]
     },
     {
@@ -221,7 +221,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos6-vmware"
+        "generic-centos6-vmware-x64"
       ]
     },
     {
@@ -246,7 +246,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos6-vmware"
+        "generic-centos6-vmware-x64"
       ]
     },
     {
@@ -262,7 +262,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos7-vmware"
+        "generic-centos7-vmware-x64"
       ]
     },
     {
@@ -289,7 +289,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos7-vmware"
+        "generic-centos7-vmware-x64"
       ]
     },
     {
@@ -305,7 +305,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel7-vmware"
+        "generic-rhel7-vmware-x64"
       ]
     },
     {
@@ -332,7 +332,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel7-vmware"
+        "generic-rhel7-vmware-x64"
       ]
     },
     {
@@ -345,7 +345,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-gentoo-vmware"
+        "generic-gentoo-vmware-x64"
       ]
     },
     {
@@ -362,7 +362,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-gentoo-vmware"
+        "generic-gentoo-vmware-x64"
       ]
     },
     {
@@ -374,7 +374,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-arch-vmware"
+        "generic-arch-vmware-x64"
       ]
     },
     {
@@ -392,7 +392,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-arch-vmware"
+        "generic-arch-vmware-x64"
       ]
     },
     {
@@ -405,7 +405,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian8-vmware"
+        "generic-debian8-vmware-x64"
       ]
     },
     {
@@ -427,7 +427,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian8-vmware"
+        "generic-debian8-vmware-x64"
       ]
     },
     {
@@ -440,7 +440,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian9-vmware"
+        "generic-debian9-vmware-x64"
       ]
     },
     {
@@ -463,7 +463,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian9-vmware"
+        "generic-debian9-vmware-x64"
       ]
     },
     {
@@ -477,7 +477,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-vmware"
+        "generic-fedora25-vmware-x64"
       ]
     },
     {
@@ -491,7 +491,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-vmware"
+        "generic-fedora25-vmware-x64"
       ]
     },
     {
@@ -512,7 +512,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-vmware"
+        "generic-fedora25-vmware-x64"
       ]
     },
     {
@@ -526,7 +526,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-vmware"
+        "generic-fedora26-vmware-x64"
       ]
     },
     {
@@ -540,7 +540,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-vmware"
+        "generic-fedora26-vmware-x64"
       ]
     },
     {
@@ -561,7 +561,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-vmware"
+        "generic-fedora26-vmware-x64"
       ]
     },
     {
@@ -575,7 +575,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-vmware"
+        "generic-fedora27-vmware-x64"
       ]
     },
     {
@@ -589,7 +589,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-vmware"
+        "generic-fedora27-vmware-x64"
       ]
     },
     {
@@ -610,7 +610,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-vmware"
+        "generic-fedora27-vmware-x64"
       ]
     },
     {
@@ -624,7 +624,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-vmware"
+        "generic-fedora28-vmware-x64"
       ]
     },
     {
@@ -638,7 +638,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-vmware"
+        "generic-fedora28-vmware-x64"
       ]
     },
     {
@@ -659,7 +659,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-vmware"
+        "generic-fedora28-vmware-x64"
       ]
     },
     {
@@ -673,7 +673,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-vmware"
+        "generic-fedora29-vmware-x64"
       ]
     },
     {
@@ -687,7 +687,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-vmware"
+        "generic-fedora29-vmware-x64"
       ]
     },
     {
@@ -708,7 +708,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-vmware"
+        "generic-fedora29-vmware-x64"
       ]
     },
     {
@@ -731,7 +731,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd11-vmware"
+        "generic-freebsd11-vmware-x64"
       ]
     },
     {
@@ -744,7 +744,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-openbsd6-vmware"
+        "generic-openbsd6-vmware-x64"
       ]
     },
     {
@@ -765,7 +765,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-openbsd6-vmware"
+        "generic-openbsd6-vmware-x64"
       ]
     },
     {
@@ -778,7 +778,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1604-vmware"
+        "generic-ubuntu1604-vmware-x64"
       ]
     },
     {
@@ -800,7 +800,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1604-vmware"
+        "generic-ubuntu1604-vmware-x64"
       ]
     },
     {
@@ -813,7 +813,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1610-vmware"
+        "generic-ubuntu1610-vmware-x64"
       ]
     },
     {
@@ -835,7 +835,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1610-vmware"
+        "generic-ubuntu1610-vmware-x64"
       ]
     },
     {
@@ -848,7 +848,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1704-vmware"
+        "generic-ubuntu1704-vmware-x64"
       ]
     },
     {
@@ -870,7 +870,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1704-vmware"
+        "generic-ubuntu1704-vmware-x64"
       ]
     },
     {
@@ -883,7 +883,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1710-vmware"
+        "generic-ubuntu1710-vmware-x64"
       ]
     },
     {
@@ -905,7 +905,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1710-vmware"
+        "generic-ubuntu1710-vmware-x64"
       ]
     },
     {
@@ -918,7 +918,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1804-vmware"
+        "generic-ubuntu1804-vmware-x64"
       ]
     },
     {
@@ -940,7 +940,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1804-vmware"
+        "generic-ubuntu1804-vmware-x64"
       ]
     },
     {
@@ -953,7 +953,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1810-vmware"
+        "generic-ubuntu1810-vmware-x64"
       ]
     },
     {
@@ -975,7 +975,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1810-vmware"
+        "generic-ubuntu1810-vmware-x64"
       ]
     },
     {
@@ -998,7 +998,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd12-vmware"
+        "generic-freebsd12-vmware-x64"
       ]
     },
     {
@@ -1014,7 +1014,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel6-vmware"
+        "generic-rhel6-vmware-x64"
       ]
     },
     {
@@ -1040,7 +1040,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel6-vmware"
+        "generic-rhel6-vmware-x64"
       ]
     },
     {
@@ -1056,7 +1056,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel8-vmware"
+        "generic-rhel8-vmware-x64"
       ]
     },
     {
@@ -1082,7 +1082,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel8-vmware"
+        "generic-rhel8-vmware-x64"
       ]
     },
     {
@@ -1105,7 +1105,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd11-vmware"
+        "generic-hardenedbsd11-vmware-x64"
       ]
     },
     {
@@ -1128,7 +1128,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd5-vmware"
+        "generic-dragonflybsd5-vmware-x64"
       ]
     },
     {
@@ -1141,7 +1141,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-netbsd8-vmware"
+        "generic-netbsd8-vmware-x64"
       ]
     },
     {
@@ -1162,7 +1162,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{ .Vars }} bash {{ .Path }}",
       "only": [
-        "generic-netbsd8-vmware"
+        "generic-netbsd8-vmware-x64"
       ]
     },
     {
@@ -1185,7 +1185,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd12-vmware"
+        "generic-hardenedbsd12-vmware-x64"
       ]
     },
     {
@@ -1199,7 +1199,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine39-vmware"
+        "generic-alpine39-vmware-x64"
       ]
     },
     {
@@ -1222,7 +1222,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine39-vmware"
+        "generic-alpine39-vmware-x64"
       ]
     },
     {
@@ -1235,7 +1235,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian10-vmware"
+        "generic-debian10-vmware-x64"
       ]
     },
     {
@@ -1257,7 +1257,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian10-vmware"
+        "generic-debian10-vmware-x64"
       ]
     },
     {
@@ -1270,7 +1270,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1904-vmware"
+        "generic-ubuntu1904-vmware-x64"
       ]
     },
     {
@@ -1292,7 +1292,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1904-vmware"
+        "generic-ubuntu1904-vmware-x64"
       ]
     },
     {
@@ -1306,7 +1306,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-vmware"
+        "generic-fedora30-vmware-x64"
       ]
     },
     {
@@ -1320,7 +1320,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-vmware"
+        "generic-fedora30-vmware-x64"
       ]
     },
     {
@@ -1342,7 +1342,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-vmware"
+        "generic-fedora30-vmware-x64"
       ]
     },
     {
@@ -1356,7 +1356,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle8-vmware"
+        "generic-oracle8-vmware-x64"
       ]
     },
     {
@@ -1379,7 +1379,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle8-vmware"
+        "generic-oracle8-vmware-x64"
       ]
     },
     {
@@ -1393,7 +1393,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine310-vmware"
+        "generic-alpine310-vmware-x64"
       ]
     },
     {
@@ -1416,7 +1416,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine310-vmware"
+        "generic-alpine310-vmware-x64"
       ]
     },
     {
@@ -1429,7 +1429,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse15-vmware"
+        "generic-opensuse15-vmware-x64"
       ]
     },
     {
@@ -1450,7 +1450,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse15-vmware"
+        "generic-opensuse15-vmware-x64"
       ]
     },
     {
@@ -1466,7 +1466,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8-vmware"
+        "generic-centos8-vmware-x64"
       ]
     },
     {
@@ -1492,7 +1492,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8-vmware"
+        "generic-centos8-vmware-x64"
       ]
     },
     {
@@ -1506,7 +1506,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-vmware"
+        "generic-fedora31-vmware-x64"
       ]
     },
     {
@@ -1520,7 +1520,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-vmware"
+        "generic-fedora31-vmware-x64"
       ]
     },
     {
@@ -1542,7 +1542,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-vmware"
+        "generic-fedora31-vmware-x64"
       ]
     },
     {
@@ -1555,7 +1555,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1910-vmware"
+        "generic-ubuntu1910-vmware-x64"
       ]
     },
     {
@@ -1577,7 +1577,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1910-vmware"
+        "generic-ubuntu1910-vmware-x64"
       ]
     },
     {
@@ -1591,7 +1591,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine311-vmware"
+        "generic-alpine311-vmware-x64"
       ]
     },
     {
@@ -1614,7 +1614,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine311-vmware"
+        "generic-alpine311-vmware-x64"
       ]
     },
     {
@@ -1627,7 +1627,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2004-vmware"
+        "generic-ubuntu2004-vmware-x64"
       ]
     },
     {
@@ -1649,7 +1649,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2004-vmware"
+        "generic-ubuntu2004-vmware-x64"
       ]
     },
     {
@@ -1663,7 +1663,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-vmware"
+        "generic-fedora32-vmware-x64"
       ]
     },
     {
@@ -1677,7 +1677,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-vmware"
+        "generic-fedora32-vmware-x64"
       ]
     },
     {
@@ -1699,7 +1699,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-vmware"
+        "generic-fedora32-vmware-x64"
       ]
     },
     {
@@ -1712,7 +1712,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-netbsd9-vmware"
+        "generic-netbsd9-vmware-x64"
       ]
     },
     {
@@ -1733,7 +1733,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{ .Vars }} bash {{ .Path }}",
       "only": [
-        "generic-netbsd9-vmware"
+        "generic-netbsd9-vmware-x64"
       ]
     },
     {
@@ -1747,7 +1747,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine312-vmware"
+        "generic-alpine312-vmware-x64"
       ]
     },
     {
@@ -1770,7 +1770,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine312-vmware"
+        "generic-alpine312-vmware-x64"
       ]
     },
     {
@@ -1783,7 +1783,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan1-vmware"
+        "generic-devuan1-vmware-x64"
       ]
     },
     {
@@ -1803,7 +1803,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan1-vmware"
+        "generic-devuan1-vmware-x64"
       ]
     },
     {
@@ -1816,7 +1816,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan2-vmware"
+        "generic-devuan2-vmware-x64"
       ]
     },
     {
@@ -1836,7 +1836,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan2-vmware"
+        "generic-devuan2-vmware-x64"
       ]
     },
     {
@@ -1849,7 +1849,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan3-vmware"
+        "generic-devuan3-vmware-x64"
       ]
     },
     {
@@ -1869,7 +1869,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan3-vmware"
+        "generic-devuan3-vmware-x64"
       ]
     },
     {
@@ -1884,7 +1884,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2010-vmware"
+        "generic-ubuntu2010-vmware-x64"
       ]
     },
     {
@@ -1905,7 +1905,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2010-vmware"
+        "generic-ubuntu2010-vmware-x64"
       ]
     },
     {
@@ -1919,7 +1919,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-vmware"
+        "generic-fedora33-vmware-x64"
       ]
     },
     {
@@ -1933,7 +1933,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-vmware"
+        "generic-fedora33-vmware-x64"
       ]
     },
     {
@@ -1955,7 +1955,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-vmware"
+        "generic-fedora33-vmware-x64"
       ]
     },
     {
@@ -1969,7 +1969,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine313-vmware"
+        "generic-alpine313-vmware-x64"
       ]
     },
     {
@@ -1992,7 +1992,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine313-vmware"
+        "generic-alpine313-vmware-x64"
       ]
     },
     {
@@ -2006,7 +2006,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine314-vmware"
+        "generic-alpine314-vmware-x64"
       ]
     },
     {
@@ -2029,7 +2029,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine314-vmware"
+        "generic-alpine314-vmware-x64"
       ]
     },
     {
@@ -2044,7 +2044,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2104-vmware"
+        "generic-ubuntu2104-vmware-x64"
       ]
     },
     {
@@ -2065,7 +2065,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2104-vmware"
+        "generic-ubuntu2104-vmware-x64"
       ]
     },
     {
@@ -2081,7 +2081,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky8-vmware"
+        "generic-rocky8-vmware-x64"
       ]
     },
     {
@@ -2108,7 +2108,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky8-vmware"
+        "generic-rocky8-vmware-x64"
       ]
     },
     {
@@ -2124,7 +2124,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma8-vmware"
+        "generic-alma8-vmware-x64"
       ]
     },
     {
@@ -2151,7 +2151,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma8-vmware"
+        "generic-alma8-vmware-x64"
       ]
     },
     {
@@ -2165,7 +2165,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-vmware"
+        "generic-fedora34-vmware-x64"
       ]
     },
     {
@@ -2179,7 +2179,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-vmware"
+        "generic-fedora34-vmware-x64"
       ]
     },
     {
@@ -2201,7 +2201,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-vmware"
+        "generic-fedora34-vmware-x64"
       ]
     },
     {
@@ -2224,7 +2224,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd13-vmware"
+        "generic-freebsd13-vmware-x64"
       ]
     },
     {
@@ -2247,7 +2247,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd13-vmware"
+        "generic-hardenedbsd13-vmware-x64"
       ]
     },
     {
@@ -2270,7 +2270,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd6-vmware"
+        "generic-dragonflybsd6-vmware-x64"
       ]
     },
     {
@@ -2283,7 +2283,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian11-vmware"
+        "generic-debian11-vmware-x64"
       ]
     },
     {
@@ -2305,7 +2305,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian11-vmware"
+        "generic-debian11-vmware-x64"
       ]
     },
     {
@@ -2318,7 +2318,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-openbsd7-vmware"
+        "generic-openbsd7-vmware-x64"
       ]
     },
     {
@@ -2339,7 +2339,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-openbsd7-vmware"
+        "generic-openbsd7-vmware-x64"
       ]
     },
     {
@@ -2354,7 +2354,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2110-vmware"
+        "generic-ubuntu2110-vmware-x64"
       ]
     },
     {
@@ -2375,7 +2375,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2110-vmware"
+        "generic-ubuntu2110-vmware-x64"
       ]
     },
     {
@@ -2389,7 +2389,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine315-vmware"
+        "generic-alpine315-vmware-x64"
       ]
     },
     {
@@ -2412,7 +2412,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine315-vmware"
+        "generic-alpine315-vmware-x64"
       ]
     },
     {
@@ -2426,7 +2426,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-vmware"
+        "generic-fedora35-vmware-x64"
       ]
     },
     {
@@ -2440,7 +2440,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-vmware"
+        "generic-fedora35-vmware-x64"
       ]
     },
     {
@@ -2462,7 +2462,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-vmware"
+        "generic-fedora35-vmware-x64"
       ]
     },
     {
@@ -2475,7 +2475,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan4-vmware"
+        "generic-devuan4-vmware-x64"
       ]
     },
     {
@@ -2495,7 +2495,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan4-vmware"
+        "generic-devuan4-vmware-x64"
       ]
     },
     {
@@ -2510,7 +2510,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2204-vmware"
+        "generic-ubuntu2204-vmware-x64"
       ]
     },
     {
@@ -2531,7 +2531,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2204-vmware"
+        "generic-ubuntu2204-vmware-x64"
       ]
     },
     {
@@ -2545,7 +2545,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-vmware"
+        "generic-fedora36-vmware-x64"
       ]
     },
     {
@@ -2559,7 +2559,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-vmware"
+        "generic-fedora36-vmware-x64"
       ]
     },
     {
@@ -2581,7 +2581,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-vmware"
+        "generic-fedora36-vmware-x64"
       ]
     },
     {
@@ -2597,7 +2597,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel9-vmware"
+        "generic-rhel9-vmware-x64"
       ]
     },
     {
@@ -2623,7 +2623,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel9-vmware"
+        "generic-rhel9-vmware-x64"
       ]
     },
     {
@@ -2639,7 +2639,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8s-vmware"
+        "generic-centos8s-vmware-x64"
       ]
     },
     {
@@ -2665,7 +2665,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8s-vmware"
+        "generic-centos8s-vmware-x64"
       ]
     },
     {
@@ -2681,7 +2681,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos9s-vmware"
+        "generic-centos9s-vmware-x64"
       ]
     },
     {
@@ -2706,7 +2706,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos9s-vmware"
+        "generic-centos9s-vmware-x64"
       ]
     },
     {
@@ -2720,7 +2720,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine316-vmware"
+        "generic-alpine316-vmware-x64"
       ]
     },
     {
@@ -2743,7 +2743,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine316-vmware"
+        "generic-alpine316-vmware-x64"
       ]
     },
     {
@@ -2759,7 +2759,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma9-vmware"
+        "generic-alma9-vmware-x64"
       ]
     },
     {
@@ -2785,7 +2785,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma9-vmware"
+        "generic-alma9-vmware-x64"
       ]
     },
     {
@@ -2801,7 +2801,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle9-vmware"
+        "generic-oracle9-vmware-x64"
       ]
     },
     {
@@ -2823,7 +2823,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle9-vmware"
+        "generic-oracle9-vmware-x64"
       ]
     },
     {
@@ -2839,7 +2839,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky9-vmware"
+        "generic-rocky9-vmware-x64"
       ]
     },
     {
@@ -2865,7 +2865,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky9-vmware"
+        "generic-rocky9-vmware-x64"
       ]
     },
     {
@@ -2879,7 +2879,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle6-vmware"
+        "generic-oracle6-vmware-x64"
       ]
     },
     {
@@ -2901,7 +2901,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle6-vmware"
+        "generic-oracle6-vmware-x64"
       ]
     },
     {
@@ -2916,7 +2916,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2210-vmware"
+        "generic-ubuntu2210-vmware-x64"
       ]
     },
     {
@@ -2937,7 +2937,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2210-vmware"
+        "generic-ubuntu2210-vmware-x64"
       ]
     },
     {
@@ -2951,7 +2951,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-vmware"
+        "generic-fedora37-vmware-x64"
       ]
     },
     {
@@ -2965,7 +2965,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-vmware"
+        "generic-fedora37-vmware-x64"
       ]
     },
     {
@@ -2987,7 +2987,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-vmware"
+        "generic-fedora37-vmware-x64"
       ]
     },
     {
@@ -3001,7 +3001,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine317-vmware"
+        "generic-alpine317-vmware-x64"
       ]
     },
     {
@@ -3024,7 +3024,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine317-vmware"
+        "generic-alpine317-vmware-x64"
       ]
     },
     {
@@ -3039,7 +3039,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2304-vmware"
+        "generic-ubuntu2304-vmware-x64"
       ]
     },
     {
@@ -3060,7 +3060,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2304-vmware"
+        "generic-ubuntu2304-vmware-x64"
       ]
     },
     {
@@ -3073,7 +3073,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian12-vmware"
+        "generic-debian12-vmware-x64"
       ]
     },
     {
@@ -3095,7 +3095,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian12-vmware"
+        "generic-debian12-vmware-x64"
       ]
     },
     {
@@ -3109,7 +3109,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine318-vmware"
+        "generic-alpine318-vmware-x64"
       ]
     },
     {
@@ -3132,7 +3132,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine318-vmware"
+        "generic-alpine318-vmware-x64"
       ]
     },
     {
@@ -3145,7 +3145,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan5-vmware"
+        "generic-devuan5-vmware-x64"
       ]
     },
     {
@@ -3165,7 +3165,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan5-vmware"
+        "generic-devuan5-vmware-x64"
       ]
     },
     {
@@ -3188,7 +3188,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd-vmware"
+        "generic-hardenedbsd-vmware-x64"
       ]
     },
     {
@@ -3211,7 +3211,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd-vmware"
+        "generic-dragonflybsd-vmware-x64"
       ]
     },
     {
@@ -3233,10 +3233,10 @@
   "builders": [
     {
       "type": "vmware-iso",
-      "name": "generic-oracle7-vmware",
-      "vm_name": "generic-oracle7-vmware",
-      "vmdk_name": "generic-oracle7-vmware",
-      "output_directory": "output/generic-oracle7-vmware",
+      "name": "generic-oracle7-vmware-x64",
+      "vm_name": "generic-oracle7-vmware-x64",
+      "vmdk_name": "generic-oracle7-vmware-x64",
+      "output_directory": "output/generic-oracle7-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3274,10 +3274,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-opensuse42-vmware",
-      "vm_name": "generic-opensuse42-vmware",
-      "vmdk_name": "generic-opensuse42-vmware",
-      "output_directory": "output/generic-opensuse42-vmware",
+      "name": "generic-opensuse42-vmware-x64",
+      "vm_name": "generic-opensuse42-vmware-x64",
+      "vmdk_name": "generic-opensuse42-vmware-x64",
+      "output_directory": "output/generic-opensuse42-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3318,10 +3318,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine35-vmware",
-      "vm_name": "generic-alpine35-vmware",
-      "vmdk_name": "generic-alpine35-vmware",
-      "output_directory": "output/generic-alpine35-vmware",
+      "name": "generic-alpine35-vmware-x64",
+      "vm_name": "generic-alpine35-vmware-x64",
+      "vmdk_name": "generic-alpine35-vmware-x64",
+      "output_directory": "output/generic-alpine35-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3375,10 +3375,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine36-vmware",
-      "vm_name": "generic-alpine36-vmware",
-      "vmdk_name": "generic-alpine36-vmware",
-      "output_directory": "output/generic-alpine36-vmware",
+      "name": "generic-alpine36-vmware-x64",
+      "vm_name": "generic-alpine36-vmware-x64",
+      "vmdk_name": "generic-alpine36-vmware-x64",
+      "output_directory": "output/generic-alpine36-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3432,10 +3432,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine37-vmware",
-      "vm_name": "generic-alpine37-vmware",
-      "vmdk_name": "generic-alpine37-vmware",
-      "output_directory": "output/generic-alpine37-vmware",
+      "name": "generic-alpine37-vmware-x64",
+      "vm_name": "generic-alpine37-vmware-x64",
+      "vmdk_name": "generic-alpine37-vmware-x64",
+      "output_directory": "output/generic-alpine37-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3489,10 +3489,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine38-vmware",
-      "vm_name": "generic-alpine38-vmware",
-      "vmdk_name": "generic-alpine38-vmware",
-      "output_directory": "output/generic-alpine38-vmware",
+      "name": "generic-alpine38-vmware-x64",
+      "vm_name": "generic-alpine38-vmware-x64",
+      "vmdk_name": "generic-alpine38-vmware-x64",
+      "output_directory": "output/generic-alpine38-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3546,10 +3546,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-centos6-vmware",
-      "vm_name": "generic-centos6-vmware",
-      "vmdk_name": "generic-centos6-vmware",
-      "output_directory": "output/generic-centos6-vmware",
+      "name": "generic-centos6-vmware-x64",
+      "vm_name": "generic-centos6-vmware-x64",
+      "vmdk_name": "generic-centos6-vmware-x64",
+      "output_directory": "output/generic-centos6-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3587,10 +3587,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-centos7-vmware",
-      "vm_name": "generic-centos7-vmware",
-      "vmdk_name": "generic-centos7-vmware",
-      "output_directory": "output/generic-centos7-vmware",
+      "name": "generic-centos7-vmware-x64",
+      "vm_name": "generic-centos7-vmware-x64",
+      "vmdk_name": "generic-centos7-vmware-x64",
+      "output_directory": "output/generic-centos7-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3628,10 +3628,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-rhel7-vmware",
-      "vm_name": "generic-rhel7-vmware",
-      "vmdk_name": "generic-rhel7-vmware",
-      "output_directory": "output/generic-rhel7-vmware",
+      "name": "generic-rhel7-vmware-x64",
+      "vm_name": "generic-rhel7-vmware-x64",
+      "vmdk_name": "generic-rhel7-vmware-x64",
+      "output_directory": "output/generic-rhel7-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3669,10 +3669,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-arch-vmware",
-      "vm_name": "generic-arch-vmware",
-      "vmdk_name": "generic-arch-vmware",
-      "output_directory": "output/generic-arch-vmware",
+      "name": "generic-arch-vmware-x64",
+      "vm_name": "generic-arch-vmware-x64",
+      "vmdk_name": "generic-arch-vmware-x64",
+      "output_directory": "output/generic-arch-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3730,10 +3730,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora25-vmware",
-      "vm_name": "generic-fedora25-vmware",
-      "vmdk_name": "generic-fedora25-vmware",
-      "output_directory": "output/generic-fedora25-vmware",
+      "name": "generic-fedora25-vmware-x64",
+      "vm_name": "generic-fedora25-vmware-x64",
+      "vmdk_name": "generic-fedora25-vmware-x64",
+      "output_directory": "output/generic-fedora25-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3775,10 +3775,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora26-vmware",
-      "vm_name": "generic-fedora26-vmware",
-      "vmdk_name": "generic-fedora26-vmware",
-      "output_directory": "output/generic-fedora26-vmware",
+      "name": "generic-fedora26-vmware-x64",
+      "vm_name": "generic-fedora26-vmware-x64",
+      "vmdk_name": "generic-fedora26-vmware-x64",
+      "output_directory": "output/generic-fedora26-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3820,10 +3820,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora27-vmware",
-      "vm_name": "generic-fedora27-vmware",
-      "vmdk_name": "generic-fedora27-vmware",
-      "output_directory": "output/generic-fedora27-vmware",
+      "name": "generic-fedora27-vmware-x64",
+      "vm_name": "generic-fedora27-vmware-x64",
+      "vmdk_name": "generic-fedora27-vmware-x64",
+      "output_directory": "output/generic-fedora27-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3865,10 +3865,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora28-vmware",
-      "vm_name": "generic-fedora28-vmware",
-      "vmdk_name": "generic-fedora28-vmware",
-      "output_directory": "output/generic-fedora28-vmware",
+      "name": "generic-fedora28-vmware-x64",
+      "vm_name": "generic-fedora28-vmware-x64",
+      "vmdk_name": "generic-fedora28-vmware-x64",
+      "output_directory": "output/generic-fedora28-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3910,10 +3910,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora29-vmware",
-      "vm_name": "generic-fedora29-vmware",
-      "vmdk_name": "generic-fedora29-vmware",
-      "output_directory": "output/generic-fedora29-vmware",
+      "name": "generic-fedora29-vmware-x64",
+      "vm_name": "generic-fedora29-vmware-x64",
+      "vmdk_name": "generic-fedora29-vmware-x64",
+      "output_directory": "output/generic-fedora29-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3955,10 +3955,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-debian8-vmware",
-      "vm_name": "generic-debian8-vmware",
-      "vmdk_name": "generic-debian8-vmware",
-      "output_directory": "output/generic-debian8-vmware",
+      "name": "generic-debian8-vmware-x64",
+      "vm_name": "generic-debian8-vmware-x64",
+      "vmdk_name": "generic-debian8-vmware-x64",
+      "output_directory": "output/generic-debian8-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4008,10 +4008,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-debian9-vmware",
-      "vm_name": "generic-debian9-vmware",
-      "vmdk_name": "generic-debian9-vmware",
-      "output_directory": "output/generic-debian9-vmware",
+      "name": "generic-debian9-vmware-x64",
+      "vm_name": "generic-debian9-vmware-x64",
+      "vmdk_name": "generic-debian9-vmware-x64",
+      "output_directory": "output/generic-debian9-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4061,10 +4061,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu1604-vmware",
-      "vm_name": "generic-ubuntu1604-vmware",
-      "vmdk_name": "generic-ubuntu1604-vmware",
-      "output_directory": "output/generic-ubuntu1604-vmware",
+      "name": "generic-ubuntu1604-vmware-x64",
+      "vm_name": "generic-ubuntu1604-vmware-x64",
+      "vmdk_name": "generic-ubuntu1604-vmware-x64",
+      "output_directory": "output/generic-ubuntu1604-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4118,10 +4118,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu1610-vmware",
-      "vm_name": "generic-ubuntu1610-vmware",
-      "vmdk_name": "generic-ubuntu1610-vmware",
-      "output_directory": "output/generic-ubuntu1610-vmware",
+      "name": "generic-ubuntu1610-vmware-x64",
+      "vm_name": "generic-ubuntu1610-vmware-x64",
+      "vmdk_name": "generic-ubuntu1610-vmware-x64",
+      "output_directory": "output/generic-ubuntu1610-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4167,10 +4167,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu1704-vmware",
-      "vm_name": "generic-ubuntu1704-vmware",
-      "vmdk_name": "generic-ubuntu1704-vmware",
-      "output_directory": "output/generic-ubuntu1704-vmware",
+      "name": "generic-ubuntu1704-vmware-x64",
+      "vm_name": "generic-ubuntu1704-vmware-x64",
+      "vmdk_name": "generic-ubuntu1704-vmware-x64",
+      "output_directory": "output/generic-ubuntu1704-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4216,10 +4216,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu1710-vmware",
-      "vm_name": "generic-ubuntu1710-vmware",
-      "vmdk_name": "generic-ubuntu1710-vmware",
-      "output_directory": "output/generic-ubuntu1710-vmware",
+      "name": "generic-ubuntu1710-vmware-x64",
+      "vm_name": "generic-ubuntu1710-vmware-x64",
+      "vmdk_name": "generic-ubuntu1710-vmware-x64",
+      "output_directory": "output/generic-ubuntu1710-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4265,10 +4265,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu1804-vmware",
-      "vm_name": "generic-ubuntu1804-vmware",
-      "vmdk_name": "generic-ubuntu1804-vmware",
-      "output_directory": "output/generic-ubuntu1804-vmware",
+      "name": "generic-ubuntu1804-vmware-x64",
+      "vm_name": "generic-ubuntu1804-vmware-x64",
+      "vmdk_name": "generic-ubuntu1804-vmware-x64",
+      "output_directory": "output/generic-ubuntu1804-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4326,10 +4326,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu1810-vmware",
-      "vm_name": "generic-ubuntu1810-vmware",
-      "vmdk_name": "generic-ubuntu1810-vmware",
-      "output_directory": "output/generic-ubuntu1810-vmware",
+      "name": "generic-ubuntu1810-vmware-x64",
+      "vm_name": "generic-ubuntu1810-vmware-x64",
+      "vmdk_name": "generic-ubuntu1810-vmware-x64",
+      "output_directory": "output/generic-ubuntu1810-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4387,10 +4387,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-gentoo-vmware",
-      "vm_name": "generic-gentoo-vmware",
-      "vmdk_name": "generic-gentoo-vmware",
-      "output_directory": "output/generic-gentoo-vmware",
+      "name": "generic-gentoo-vmware-x64",
+      "vm_name": "generic-gentoo-vmware-x64",
+      "vmdk_name": "generic-gentoo-vmware-x64",
+      "output_directory": "output/generic-gentoo-vmware-x64",
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4436,10 +4436,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-freebsd11-vmware",
-      "vm_name": "generic-freebsd11-vmware",
-      "vmdk_name": "generic-freebsd11-vmware",
-      "output_directory": "output/generic-freebsd11-vmware",
+      "name": "generic-freebsd11-vmware-x64",
+      "vm_name": "generic-freebsd11-vmware-x64",
+      "vmdk_name": "generic-freebsd11-vmware-x64",
+      "output_directory": "output/generic-freebsd11-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4493,10 +4493,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-openbsd6-vmware",
-      "vm_name": "generic-openbsd6-vmware",
-      "vmdk_name": "generic-openbsd6-vmware",
-      "output_directory": "output/generic-openbsd6-vmware",
+      "name": "generic-openbsd6-vmware-x64",
+      "vm_name": "generic-openbsd6-vmware-x64",
+      "vmdk_name": "generic-openbsd6-vmware-x64",
+      "output_directory": "output/generic-openbsd6-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4538,10 +4538,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-freebsd12-vmware",
-      "vm_name": "generic-freebsd12-vmware",
-      "vmdk_name": "generic-freebsd12-vmware",
-      "output_directory": "output/generic-freebsd12-vmware",
+      "name": "generic-freebsd12-vmware-x64",
+      "vm_name": "generic-freebsd12-vmware-x64",
+      "vmdk_name": "generic-freebsd12-vmware-x64",
+      "output_directory": "output/generic-freebsd12-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4595,10 +4595,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-rhel6-vmware",
-      "vm_name": "generic-rhel6-vmware",
-      "vmdk_name": "generic-rhel6-vmware",
-      "output_directory": "output/generic-rhel6-vmware",
+      "name": "generic-rhel6-vmware-x64",
+      "vm_name": "generic-rhel6-vmware-x64",
+      "vmdk_name": "generic-rhel6-vmware-x64",
+      "output_directory": "output/generic-rhel6-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4636,10 +4636,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-rhel8-vmware",
-      "vm_name": "generic-rhel8-vmware",
-      "vmdk_name": "generic-rhel8-vmware",
-      "output_directory": "output/generic-rhel8-vmware",
+      "name": "generic-rhel8-vmware-x64",
+      "vm_name": "generic-rhel8-vmware-x64",
+      "vmdk_name": "generic-rhel8-vmware-x64",
+      "output_directory": "output/generic-rhel8-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4678,10 +4678,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-hardenedbsd11-vmware",
-      "vm_name": "generic-hardenedbsd11-vmware",
-      "vmdk_name": "generic-hardenedbsd11-vmware",
-      "output_directory": "output/generic-hardenedbsd11-vmware",
+      "name": "generic-hardenedbsd11-vmware-x64",
+      "vm_name": "generic-hardenedbsd11-vmware-x64",
+      "vmdk_name": "generic-hardenedbsd11-vmware-x64",
+      "output_directory": "output/generic-hardenedbsd11-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4721,7 +4721,7 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
+      "iso_url": "https://mirrors.lavabit.com/hardenedbsd-archive/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
       "iso_checksum": "sha256:8b2c90dc41ec68b561028af885eecb66bfd36223970d1c594923d1d54bf83467",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -4733,10 +4733,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-dragonflybsd5-vmware",
-      "vm_name": "generic-dragonflybsd5-vmware",
-      "vmdk_name": "generic-dragonflybsd5-vmware",
-      "output_directory": "output/generic-dragonflybsd5-vmware",
+      "name": "generic-dragonflybsd5-vmware-x64",
+      "vm_name": "generic-dragonflybsd5-vmware-x64",
+      "vmdk_name": "generic-dragonflybsd5-vmware-x64",
+      "output_directory": "output/generic-dragonflybsd5-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4801,10 +4801,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-netbsd8-vmware",
-      "vm_name": "generic-netbsd8-vmware",
-      "vmdk_name": "generic-netbsd8-vmware",
-      "output_directory": "output/generic-netbsd8-vmware",
+      "name": "generic-netbsd8-vmware-x64",
+      "vm_name": "generic-netbsd8-vmware-x64",
+      "vmdk_name": "generic-netbsd8-vmware-x64",
+      "output_directory": "output/generic-netbsd8-vmware-x64",
       "boot_wait": "40s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4886,10 +4886,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-hardenedbsd12-vmware",
-      "vm_name": "generic-hardenedbsd12-vmware",
-      "vmdk_name": "generic-hardenedbsd12-vmware",
-      "output_directory": "output/generic-hardenedbsd12-vmware",
+      "name": "generic-hardenedbsd12-vmware-x64",
+      "vm_name": "generic-hardenedbsd12-vmware-x64",
+      "vmdk_name": "generic-hardenedbsd12-vmware-x64",
+      "output_directory": "output/generic-hardenedbsd12-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4929,7 +4929,7 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
+      "iso_url": "https://mirrors.lavabit.com/hardenedbsd-archive/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
       "iso_checksum": "sha256:029225eaf92ba8e7ed7a7395f45492d09bc9a949488ecb9a5ca54df7c9f89661",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -4941,10 +4941,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine39-vmware",
-      "vm_name": "generic-alpine39-vmware",
-      "vmdk_name": "generic-alpine39-vmware",
-      "output_directory": "output/generic-alpine39-vmware",
+      "name": "generic-alpine39-vmware-x64",
+      "vm_name": "generic-alpine39-vmware-x64",
+      "vmdk_name": "generic-alpine39-vmware-x64",
+      "output_directory": "output/generic-alpine39-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4999,10 +4999,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-debian10-vmware",
-      "vm_name": "generic-debian10-vmware",
-      "vmdk_name": "generic-debian10-vmware",
-      "output_directory": "output/generic-debian10-vmware",
+      "name": "generic-debian10-vmware-x64",
+      "vm_name": "generic-debian10-vmware-x64",
+      "vmdk_name": "generic-debian10-vmware-x64",
+      "output_directory": "output/generic-debian10-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5052,10 +5052,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu1904-vmware",
-      "vm_name": "generic-ubuntu1904-vmware",
-      "vmdk_name": "generic-ubuntu1904-vmware",
-      "output_directory": "output/generic-ubuntu1904-vmware",
+      "name": "generic-ubuntu1904-vmware-x64",
+      "vm_name": "generic-ubuntu1904-vmware-x64",
+      "vmdk_name": "generic-ubuntu1904-vmware-x64",
+      "output_directory": "output/generic-ubuntu1904-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5113,10 +5113,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora30-vmware",
-      "vm_name": "generic-fedora30-vmware",
-      "vmdk_name": "generic-fedora30-vmware",
-      "output_directory": "output/generic-fedora30-vmware",
+      "name": "generic-fedora30-vmware-x64",
+      "vm_name": "generic-fedora30-vmware-x64",
+      "vmdk_name": "generic-fedora30-vmware-x64",
+      "output_directory": "output/generic-fedora30-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5158,10 +5158,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-oracle8-vmware",
-      "vm_name": "generic-oracle8-vmware",
-      "vmdk_name": "generic-oracle8-vmware",
-      "output_directory": "output/generic-oracle8-vmware",
+      "name": "generic-oracle8-vmware-x64",
+      "vm_name": "generic-oracle8-vmware-x64",
+      "vmdk_name": "generic-oracle8-vmware-x64",
+      "output_directory": "output/generic-oracle8-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5200,10 +5200,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine310-vmware",
-      "vm_name": "generic-alpine310-vmware",
-      "vmdk_name": "generic-alpine310-vmware",
-      "output_directory": "output/generic-alpine310-vmware",
+      "name": "generic-alpine310-vmware-x64",
+      "vm_name": "generic-alpine310-vmware-x64",
+      "vmdk_name": "generic-alpine310-vmware-x64",
+      "output_directory": "output/generic-alpine310-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5260,10 +5260,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-opensuse15-vmware",
-      "vm_name": "generic-opensuse15-vmware",
-      "vmdk_name": "generic-opensuse15-vmware",
-      "output_directory": "output/generic-opensuse15-vmware",
+      "name": "generic-opensuse15-vmware-x64",
+      "vm_name": "generic-opensuse15-vmware-x64",
+      "vmdk_name": "generic-opensuse15-vmware-x64",
+      "output_directory": "output/generic-opensuse15-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5304,10 +5304,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-centos8-vmware",
-      "vm_name": "generic-centos8-vmware",
-      "vmdk_name": "generic-centos8-vmware",
-      "output_directory": "output/generic-centos8-vmware",
+      "name": "generic-centos8-vmware-x64",
+      "vm_name": "generic-centos8-vmware-x64",
+      "vmdk_name": "generic-centos8-vmware-x64",
+      "output_directory": "output/generic-centos8-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5345,10 +5345,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora31-vmware",
-      "vm_name": "generic-fedora31-vmware",
-      "vmdk_name": "generic-fedora31-vmware",
-      "output_directory": "output/generic-fedora31-vmware",
+      "name": "generic-fedora31-vmware-x64",
+      "vm_name": "generic-fedora31-vmware-x64",
+      "vmdk_name": "generic-fedora31-vmware-x64",
+      "output_directory": "output/generic-fedora31-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5390,10 +5390,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu1910-vmware",
-      "vm_name": "generic-ubuntu1910-vmware",
-      "vmdk_name": "generic-ubuntu1910-vmware",
-      "output_directory": "output/generic-ubuntu1910-vmware",
+      "name": "generic-ubuntu1910-vmware-x64",
+      "vm_name": "generic-ubuntu1910-vmware-x64",
+      "vmdk_name": "generic-ubuntu1910-vmware-x64",
+      "output_directory": "output/generic-ubuntu1910-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5451,10 +5451,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine311-vmware",
-      "vm_name": "generic-alpine311-vmware",
-      "vmdk_name": "generic-alpine311-vmware",
-      "output_directory": "output/generic-alpine311-vmware",
+      "name": "generic-alpine311-vmware-x64",
+      "vm_name": "generic-alpine311-vmware-x64",
+      "vmdk_name": "generic-alpine311-vmware-x64",
+      "output_directory": "output/generic-alpine311-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5511,10 +5511,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu2004-vmware",
-      "vm_name": "generic-ubuntu2004-vmware",
-      "vmdk_name": "generic-ubuntu2004-vmware",
-      "output_directory": "output/generic-ubuntu2004-vmware",
+      "name": "generic-ubuntu2004-vmware-x64",
+      "vm_name": "generic-ubuntu2004-vmware-x64",
+      "vmdk_name": "generic-ubuntu2004-vmware-x64",
+      "output_directory": "output/generic-ubuntu2004-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5572,10 +5572,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora32-vmware",
-      "vm_name": "generic-fedora32-vmware",
-      "vmdk_name": "generic-fedora32-vmware",
-      "output_directory": "output/generic-fedora32-vmware",
+      "name": "generic-fedora32-vmware-x64",
+      "vm_name": "generic-fedora32-vmware-x64",
+      "vmdk_name": "generic-fedora32-vmware-x64",
+      "output_directory": "output/generic-fedora32-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5616,10 +5616,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-netbsd9-vmware",
-      "vm_name": "generic-netbsd9-vmware",
-      "vmdk_name": "generic-netbsd9-vmware",
-      "output_directory": "output/generic-netbsd9-vmware",
+      "name": "generic-netbsd9-vmware-x64",
+      "vm_name": "generic-netbsd9-vmware-x64",
+      "vmdk_name": "generic-netbsd9-vmware-x64",
+      "output_directory": "output/generic-netbsd9-vmware-x64",
       "boot_wait": "40s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5698,10 +5698,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine312-vmware",
-      "vm_name": "generic-alpine312-vmware",
-      "vmdk_name": "generic-alpine312-vmware",
-      "output_directory": "output/generic-alpine312-vmware",
+      "name": "generic-alpine312-vmware-x64",
+      "vm_name": "generic-alpine312-vmware-x64",
+      "vmdk_name": "generic-alpine312-vmware-x64",
+      "output_directory": "output/generic-alpine312-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5758,10 +5758,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-devuan1-vmware",
-      "vm_name": "generic-devuan1-vmware",
-      "vmdk_name": "generic-devuan1-vmware",
-      "output_directory": "output/generic-devuan1-vmware",
+      "name": "generic-devuan1-vmware-x64",
+      "vm_name": "generic-devuan1-vmware-x64",
+      "vmdk_name": "generic-devuan1-vmware-x64",
+      "output_directory": "output/generic-devuan1-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5811,10 +5811,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-devuan2-vmware",
-      "vm_name": "generic-devuan2-vmware",
-      "vmdk_name": "generic-devuan2-vmware",
-      "output_directory": "output/generic-devuan2-vmware",
+      "name": "generic-devuan2-vmware-x64",
+      "vm_name": "generic-devuan2-vmware-x64",
+      "vmdk_name": "generic-devuan2-vmware-x64",
+      "output_directory": "output/generic-devuan2-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5864,10 +5864,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-devuan3-vmware",
-      "vm_name": "generic-devuan3-vmware",
-      "vmdk_name": "generic-devuan3-vmware",
-      "output_directory": "output/generic-devuan3-vmware",
+      "name": "generic-devuan3-vmware-x64",
+      "vm_name": "generic-devuan3-vmware-x64",
+      "vmdk_name": "generic-devuan3-vmware-x64",
+      "output_directory": "output/generic-devuan3-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5917,10 +5917,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu2010-vmware",
-      "vm_name": "generic-ubuntu2010-vmware",
-      "vmdk_name": "generic-ubuntu2010-vmware",
-      "output_directory": "output/generic-ubuntu2010-vmware",
+      "name": "generic-ubuntu2010-vmware-x64",
+      "vm_name": "generic-ubuntu2010-vmware-x64",
+      "vmdk_name": "generic-ubuntu2010-vmware-x64",
+      "output_directory": "output/generic-ubuntu2010-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5973,10 +5973,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora33-vmware",
-      "vm_name": "generic-fedora33-vmware",
-      "vmdk_name": "generic-fedora33-vmware",
-      "output_directory": "output/generic-fedora33-vmware",
+      "name": "generic-fedora33-vmware-x64",
+      "vm_name": "generic-fedora33-vmware-x64",
+      "vmdk_name": "generic-fedora33-vmware-x64",
+      "output_directory": "output/generic-fedora33-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6017,10 +6017,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine313-vmware",
-      "vm_name": "generic-alpine313-vmware",
-      "vmdk_name": "generic-alpine313-vmware",
-      "output_directory": "output/generic-alpine313-vmware",
+      "name": "generic-alpine313-vmware-x64",
+      "vm_name": "generic-alpine313-vmware-x64",
+      "vmdk_name": "generic-alpine313-vmware-x64",
+      "output_directory": "output/generic-alpine313-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6077,10 +6077,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine314-vmware",
-      "vm_name": "generic-alpine314-vmware",
-      "vmdk_name": "generic-alpine314-vmware",
-      "output_directory": "output/generic-alpine314-vmware",
+      "name": "generic-alpine314-vmware-x64",
+      "vm_name": "generic-alpine314-vmware-x64",
+      "vmdk_name": "generic-alpine314-vmware-x64",
+      "output_directory": "output/generic-alpine314-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6137,10 +6137,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu2104-vmware",
-      "vm_name": "generic-ubuntu2104-vmware",
-      "vmdk_name": "generic-ubuntu2104-vmware",
-      "output_directory": "output/generic-ubuntu2104-vmware",
+      "name": "generic-ubuntu2104-vmware-x64",
+      "vm_name": "generic-ubuntu2104-vmware-x64",
+      "vmdk_name": "generic-ubuntu2104-vmware-x64",
+      "output_directory": "output/generic-ubuntu2104-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6193,10 +6193,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-rocky8-vmware",
-      "vm_name": "generic-rocky8-vmware",
-      "vmdk_name": "generic-rocky8-vmware",
-      "output_directory": "output/generic-rocky8-vmware",
+      "name": "generic-rocky8-vmware-x64",
+      "vm_name": "generic-rocky8-vmware-x64",
+      "vmdk_name": "generic-rocky8-vmware-x64",
+      "output_directory": "output/generic-rocky8-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6234,10 +6234,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alma8-vmware",
-      "vm_name": "generic-alma8-vmware",
-      "vmdk_name": "generic-alma8-vmware",
-      "output_directory": "output/generic-alma8-vmware",
+      "name": "generic-alma8-vmware-x64",
+      "vm_name": "generic-alma8-vmware-x64",
+      "vmdk_name": "generic-alma8-vmware-x64",
+      "output_directory": "output/generic-alma8-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6275,10 +6275,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora34-vmware",
-      "vm_name": "generic-fedora34-vmware",
-      "vmdk_name": "generic-fedora34-vmware",
-      "output_directory": "output/generic-fedora34-vmware",
+      "name": "generic-fedora34-vmware-x64",
+      "vm_name": "generic-fedora34-vmware-x64",
+      "vmdk_name": "generic-fedora34-vmware-x64",
+      "output_directory": "output/generic-fedora34-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6319,10 +6319,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-freebsd13-vmware",
-      "vm_name": "generic-freebsd13-vmware",
-      "vmdk_name": "generic-freebsd13-vmware",
-      "output_directory": "output/generic-freebsd13-vmware",
+      "name": "generic-freebsd13-vmware-x64",
+      "vm_name": "generic-freebsd13-vmware-x64",
+      "vmdk_name": "generic-freebsd13-vmware-x64",
+      "output_directory": "output/generic-freebsd13-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6376,10 +6376,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-hardenedbsd13-vmware",
-      "vm_name": "generic-hardenedbsd13-vmware",
-      "vmdk_name": "generic-hardenedbsd13-vmware",
-      "output_directory": "output/generic-hardenedbsd13-vmware",
+      "name": "generic-hardenedbsd13-vmware-x64",
+      "vm_name": "generic-hardenedbsd13-vmware-x64",
+      "vmdk_name": "generic-hardenedbsd13-vmware-x64",
+      "output_directory": "output/generic-hardenedbsd13-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6431,10 +6431,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-dragonflybsd6-vmware",
-      "vm_name": "generic-dragonflybsd6-vmware",
-      "vmdk_name": "generic-dragonflybsd6-vmware",
-      "output_directory": "output/generic-dragonflybsd6-vmware",
+      "name": "generic-dragonflybsd6-vmware-x64",
+      "vm_name": "generic-dragonflybsd6-vmware-x64",
+      "vmdk_name": "generic-dragonflybsd6-vmware-x64",
+      "output_directory": "output/generic-dragonflybsd6-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6499,10 +6499,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-debian11-vmware",
-      "vm_name": "generic-debian11-vmware",
-      "vmdk_name": "generic-debian11-vmware",
-      "output_directory": "output/generic-debian11-vmware",
+      "name": "generic-debian11-vmware-x64",
+      "vm_name": "generic-debian11-vmware-x64",
+      "vmdk_name": "generic-debian11-vmware-x64",
+      "output_directory": "output/generic-debian11-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6552,10 +6552,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-openbsd7-vmware",
-      "vm_name": "generic-openbsd7-vmware",
-      "vmdk_name": "generic-openbsd7-vmware",
-      "output_directory": "output/generic-openbsd7-vmware",
+      "name": "generic-openbsd7-vmware-x64",
+      "vm_name": "generic-openbsd7-vmware-x64",
+      "vmdk_name": "generic-openbsd7-vmware-x64",
+      "output_directory": "output/generic-openbsd7-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6598,10 +6598,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu2110-vmware",
-      "vm_name": "generic-ubuntu2110-vmware",
-      "vmdk_name": "generic-ubuntu2110-vmware",
-      "output_directory": "output/generic-ubuntu2110-vmware",
+      "name": "generic-ubuntu2110-vmware-x64",
+      "vm_name": "generic-ubuntu2110-vmware-x64",
+      "vmdk_name": "generic-ubuntu2110-vmware-x64",
+      "output_directory": "output/generic-ubuntu2110-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6654,10 +6654,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine315-vmware",
-      "vm_name": "generic-alpine315-vmware",
-      "vmdk_name": "generic-alpine315-vmware",
-      "output_directory": "output/generic-alpine315-vmware",
+      "name": "generic-alpine315-vmware-x64",
+      "vm_name": "generic-alpine315-vmware-x64",
+      "vmdk_name": "generic-alpine315-vmware-x64",
+      "output_directory": "output/generic-alpine315-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6714,10 +6714,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora35-vmware",
-      "vm_name": "generic-fedora35-vmware",
-      "vmdk_name": "generic-fedora35-vmware",
-      "output_directory": "output/generic-fedora35-vmware",
+      "name": "generic-fedora35-vmware-x64",
+      "vm_name": "generic-fedora35-vmware-x64",
+      "vmdk_name": "generic-fedora35-vmware-x64",
+      "output_directory": "output/generic-fedora35-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6758,10 +6758,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-devuan4-vmware",
-      "vm_name": "generic-devuan4-vmware",
-      "vmdk_name": "generic-devuan4-vmware",
-      "output_directory": "output/generic-devuan4-vmware",
+      "name": "generic-devuan4-vmware-x64",
+      "vm_name": "generic-devuan4-vmware-x64",
+      "vmdk_name": "generic-devuan4-vmware-x64",
+      "output_directory": "output/generic-devuan4-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6811,10 +6811,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu2204-vmware",
-      "vm_name": "generic-ubuntu2204-vmware",
-      "vmdk_name": "generic-ubuntu2204-vmware",
-      "output_directory": "output/generic-ubuntu2204-vmware",
+      "name": "generic-ubuntu2204-vmware-x64",
+      "vm_name": "generic-ubuntu2204-vmware-x64",
+      "vmdk_name": "generic-ubuntu2204-vmware-x64",
+      "output_directory": "output/generic-ubuntu2204-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6867,10 +6867,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora36-vmware",
-      "vm_name": "generic-fedora36-vmware",
-      "vmdk_name": "generic-fedora36-vmware",
-      "output_directory": "output/generic-fedora36-vmware",
+      "name": "generic-fedora36-vmware-x64",
+      "vm_name": "generic-fedora36-vmware-x64",
+      "vmdk_name": "generic-fedora36-vmware-x64",
+      "output_directory": "output/generic-fedora36-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6911,10 +6911,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-rhel9-vmware",
-      "vm_name": "generic-rhel9-vmware",
-      "vmdk_name": "generic-rhel9-vmware",
-      "output_directory": "output/generic-rhel9-vmware",
+      "name": "generic-rhel9-vmware-x64",
+      "vm_name": "generic-rhel9-vmware-x64",
+      "vmdk_name": "generic-rhel9-vmware-x64",
+      "output_directory": "output/generic-rhel9-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6953,10 +6953,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-centos8s-vmware",
-      "vm_name": "generic-centos8s-vmware",
-      "vmdk_name": "generic-centos8s-vmware",
-      "output_directory": "output/generic-centos8s-vmware",
+      "name": "generic-centos8s-vmware-x64",
+      "vm_name": "generic-centos8s-vmware-x64",
+      "vmdk_name": "generic-centos8s-vmware-x64",
+      "output_directory": "output/generic-centos8s-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6994,10 +6994,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-centos9s-vmware",
-      "vm_name": "generic-centos9s-vmware",
-      "vmdk_name": "generic-centos9s-vmware",
-      "output_directory": "output/generic-centos9s-vmware",
+      "name": "generic-centos9s-vmware-x64",
+      "vm_name": "generic-centos9s-vmware-x64",
+      "vmdk_name": "generic-centos9s-vmware-x64",
+      "output_directory": "output/generic-centos9s-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7035,10 +7035,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine316-vmware",
-      "vm_name": "generic-alpine316-vmware",
-      "vmdk_name": "generic-alpine316-vmware",
-      "output_directory": "output/generic-alpine316-vmware",
+      "name": "generic-alpine316-vmware-x64",
+      "vm_name": "generic-alpine316-vmware-x64",
+      "vmdk_name": "generic-alpine316-vmware-x64",
+      "output_directory": "output/generic-alpine316-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7095,10 +7095,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alma9-vmware",
-      "vm_name": "generic-alma9-vmware",
-      "vmdk_name": "generic-alma9-vmware",
-      "output_directory": "output/generic-alma9-vmware",
+      "name": "generic-alma9-vmware-x64",
+      "vm_name": "generic-alma9-vmware-x64",
+      "vmdk_name": "generic-alma9-vmware-x64",
+      "output_directory": "output/generic-alma9-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7136,10 +7136,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-oracle9-vmware",
-      "vm_name": "generic-oracle9-vmware",
-      "vmdk_name": "generic-oracle9-vmware",
-      "output_directory": "output/generic-oracle9-vmware",
+      "name": "generic-oracle9-vmware-x64",
+      "vm_name": "generic-oracle9-vmware-x64",
+      "vmdk_name": "generic-oracle9-vmware-x64",
+      "output_directory": "output/generic-oracle9-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7178,10 +7178,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-rocky9-vmware",
-      "vm_name": "generic-rocky9-vmware",
-      "vmdk_name": "generic-rocky9-vmware",
-      "output_directory": "output/generic-rocky9-vmware",
+      "name": "generic-rocky9-vmware-x64",
+      "vm_name": "generic-rocky9-vmware-x64",
+      "vmdk_name": "generic-rocky9-vmware-x64",
+      "output_directory": "output/generic-rocky9-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7219,10 +7219,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-oracle6-vmware",
-      "vm_name": "generic-oracle6-vmware",
-      "vmdk_name": "generic-oracle6-vmware",
-      "output_directory": "output/generic-oracle6-vmware",
+      "name": "generic-oracle6-vmware-x64",
+      "vm_name": "generic-oracle6-vmware-x64",
+      "vmdk_name": "generic-oracle6-vmware-x64",
+      "output_directory": "output/generic-oracle6-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7260,10 +7260,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu2210-vmware",
-      "vm_name": "generic-ubuntu2210-vmware",
-      "vmdk_name": "generic-ubuntu2210-vmware",
-      "output_directory": "output/generic-ubuntu2210-vmware",
+      "name": "generic-ubuntu2210-vmware-x64",
+      "vm_name": "generic-ubuntu2210-vmware-x64",
+      "vmdk_name": "generic-ubuntu2210-vmware-x64",
+      "output_directory": "output/generic-ubuntu2210-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7316,10 +7316,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora37-vmware",
-      "vm_name": "generic-fedora37-vmware",
-      "vmdk_name": "generic-fedora37-vmware",
-      "output_directory": "output/generic-fedora37-vmware",
+      "name": "generic-fedora37-vmware-x64",
+      "vm_name": "generic-fedora37-vmware-x64",
+      "vmdk_name": "generic-fedora37-vmware-x64",
+      "output_directory": "output/generic-fedora37-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7374,10 +7374,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-fedora38-vmware",
-      "vm_name": "generic-fedora38-vmware",
-      "vmdk_name": "generic-fedora38-vmware",
-      "output_directory": "output/generic-fedora38-vmware",
+      "name": "generic-fedora38-vmware-x64",
+      "vm_name": "generic-fedora38-vmware-x64",
+      "vmdk_name": "generic-fedora38-vmware-x64",
+      "output_directory": "output/generic-fedora38-vmware-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7432,10 +7432,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine317-vmware",
-      "vm_name": "generic-alpine317-vmware",
-      "vmdk_name": "generic-alpine317-vmware",
-      "output_directory": "output/generic-alpine317-vmware",
+      "name": "generic-alpine317-vmware-x64",
+      "vm_name": "generic-alpine317-vmware-x64",
+      "vmdk_name": "generic-alpine317-vmware-x64",
+      "output_directory": "output/generic-alpine317-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7492,10 +7492,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-ubuntu2304-vmware",
-      "vm_name": "generic-ubuntu2304-vmware",
-      "vmdk_name": "generic-ubuntu2304-vmware",
-      "output_directory": "output/generic-ubuntu2304-vmware",
+      "name": "generic-ubuntu2304-vmware-x64",
+      "vm_name": "generic-ubuntu2304-vmware-x64",
+      "vmdk_name": "generic-ubuntu2304-vmware-x64",
+      "output_directory": "output/generic-ubuntu2304-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7548,10 +7548,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-debian12-vmware",
-      "vm_name": "generic-debian12-vmware",
-      "vmdk_name": "generic-debian12-vmware",
-      "output_directory": "output/generic-debian12-vmware",
+      "name": "generic-debian12-vmware-x64",
+      "vm_name": "generic-debian12-vmware-x64",
+      "vmdk_name": "generic-debian12-vmware-x64",
+      "output_directory": "output/generic-debian12-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7601,10 +7601,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-alpine318-vmware",
-      "vm_name": "generic-alpine318-vmware",
-      "vmdk_name": "generic-alpine318-vmware",
-      "output_directory": "output/generic-alpine318-vmware",
+      "name": "generic-alpine318-vmware-x64",
+      "vm_name": "generic-alpine318-vmware-x64",
+      "vmdk_name": "generic-alpine318-vmware-x64",
+      "output_directory": "output/generic-alpine318-vmware-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7661,10 +7661,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-devuan5-vmware",
-      "vm_name": "generic-devuan5-vmware",
-      "vmdk_name": "generic-devuan5-vmware",
-      "output_directory": "output/generic-devuan5-vmware",
+      "name": "generic-devuan5-vmware-x64",
+      "vm_name": "generic-devuan5-vmware-x64",
+      "vmdk_name": "generic-devuan5-vmware-x64",
+      "output_directory": "output/generic-devuan5-vmware-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7714,10 +7714,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-hardenedbsd-vmware",
-      "vm_name": "generic-hardenedbsd-vmware",
-      "vmdk_name": "generic-hardenedbsd-vmware",
-      "output_directory": "output/generic-hardenedbsd-vmware",
+      "name": "generic-hardenedbsd-vmware-x64",
+      "vm_name": "generic-hardenedbsd-vmware-x64",
+      "vmdk_name": "generic-hardenedbsd-vmware-x64",
+      "output_directory": "output/generic-hardenedbsd-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7769,10 +7769,10 @@
     },
     {
       "type": "vmware-iso",
-      "name": "generic-dragonflybsd-vmware",
-      "vm_name": "generic-dragonflybsd-vmware",
-      "vmdk_name": "generic-dragonflybsd-vmware",
-      "output_directory": "output/generic-dragonflybsd-vmware",
+      "name": "generic-dragonflybsd-vmware-x64",
+      "vm_name": "generic-dragonflybsd-vmware-x64",
+      "vmdk_name": "generic-dragonflybsd-vmware-x64",
+      "output_directory": "output/generic-dragonflybsd-vmware-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [

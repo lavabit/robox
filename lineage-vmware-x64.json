@@ -13,7 +13,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-vmware"
+                "lineage-vmware-x64"
             ]
         },
         {
@@ -36,7 +36,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-vmware"
+                "lineage-vmware-x64"
             ]
         },
         {
@@ -48,7 +48,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-vmware"
+                "lineage-vmware-x64"
             ]
         },
         {
@@ -72,10 +72,10 @@
     "builders": [
         {
             "type": "vmware-iso",
-            "name": "lineage-vmware",
-            "vm_name": "lineage-vmware",
-            "vmdk_name": "lineage-vmware",
-            "output_directory": "output/lineage-vmware",
+            "name": "lineage-vmware-x64",
+            "vm_name": "lineage-vmware-x64",
+            "vmdk_name": "lineage-vmware-x64",
+            "output_directory": "output/lineage-vmware-x64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [

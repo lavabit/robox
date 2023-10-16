@@ -14,7 +14,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle7-parallels"
+        "generic-oracle7-parallels-x64"
       ]
     },
     {
@@ -37,7 +37,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle7-parallels"
+        "generic-oracle7-parallels-x64"
       ]
     },
     {
@@ -58,7 +58,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse42-parallels"
+        "generic-opensuse42-parallels-x64"
       ]
     },
     {
@@ -72,7 +72,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine35-parallels"
+        "generic-alpine35-parallels-x64"
       ]
     },
     {
@@ -95,7 +95,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine35-parallels"
+        "generic-alpine35-parallels-x64"
       ]
     },
     {
@@ -109,7 +109,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine36-parallels"
+        "generic-alpine36-parallels-x64"
       ]
     },
     {
@@ -132,7 +132,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine36-parallels"
+        "generic-alpine36-parallels-x64"
       ]
     },
     {
@@ -146,7 +146,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine37-parallels"
+        "generic-alpine37-parallels-x64"
       ]
     },
     {
@@ -169,7 +169,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine37-parallels"
+        "generic-alpine37-parallels-x64"
       ]
     },
     {
@@ -183,7 +183,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine38-parallels"
+        "generic-alpine38-parallels-x64"
       ]
     },
     {
@@ -206,7 +206,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine38-parallels"
+        "generic-alpine38-parallels-x64"
       ]
     },
     {
@@ -221,7 +221,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos6-parallels"
+        "generic-centos6-parallels-x64"
       ]
     },
     {
@@ -246,7 +246,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos6-parallels"
+        "generic-centos6-parallels-x64"
       ]
     },
     {
@@ -262,7 +262,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos7-parallels"
+        "generic-centos7-parallels-x64"
       ]
     },
     {
@@ -289,7 +289,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos7-parallels"
+        "generic-centos7-parallels-x64"
       ]
     },
     {
@@ -305,7 +305,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel7-parallels"
+        "generic-rhel7-parallels-x64"
       ]
     },
     {
@@ -332,7 +332,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel7-parallels"
+        "generic-rhel7-parallels-x64"
       ]
     },
     {
@@ -345,7 +345,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-gentoo-parallels"
+        "generic-gentoo-parallels-x64"
       ]
     },
     {
@@ -362,7 +362,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-gentoo-parallels"
+        "generic-gentoo-parallels-x64"
       ]
     },
     {
@@ -374,7 +374,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-arch-parallels"
+        "generic-arch-parallels-x64"
       ]
     },
     {
@@ -392,7 +392,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-arch-parallels"
+        "generic-arch-parallels-x64"
       ]
     },
     {
@@ -405,7 +405,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian8-parallels"
+        "generic-debian8-parallels-x64"
       ]
     },
     {
@@ -427,7 +427,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian8-parallels"
+        "generic-debian8-parallels-x64"
       ]
     },
     {
@@ -440,7 +440,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian9-parallels"
+        "generic-debian9-parallels-x64"
       ]
     },
     {
@@ -463,7 +463,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian9-parallels"
+        "generic-debian9-parallels-x64"
       ]
     },
     {
@@ -477,7 +477,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-parallels"
+        "generic-fedora25-parallels-x64"
       ]
     },
     {
@@ -491,7 +491,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-parallels"
+        "generic-fedora25-parallels-x64"
       ]
     },
     {
@@ -512,7 +512,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-parallels"
+        "generic-fedora25-parallels-x64"
       ]
     },
     {
@@ -526,7 +526,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-parallels"
+        "generic-fedora26-parallels-x64"
       ]
     },
     {
@@ -540,7 +540,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-parallels"
+        "generic-fedora26-parallels-x64"
       ]
     },
     {
@@ -561,7 +561,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-parallels"
+        "generic-fedora26-parallels-x64"
       ]
     },
     {
@@ -575,7 +575,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-parallels"
+        "generic-fedora27-parallels-x64"
       ]
     },
     {
@@ -589,7 +589,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-parallels"
+        "generic-fedora27-parallels-x64"
       ]
     },
     {
@@ -610,7 +610,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-parallels"
+        "generic-fedora27-parallels-x64"
       ]
     },
     {
@@ -624,7 +624,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-parallels"
+        "generic-fedora28-parallels-x64"
       ]
     },
     {
@@ -638,7 +638,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-parallels"
+        "generic-fedora28-parallels-x64"
       ]
     },
     {
@@ -659,7 +659,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-parallels"
+        "generic-fedora28-parallels-x64"
       ]
     },
     {
@@ -673,7 +673,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-parallels"
+        "generic-fedora29-parallels-x64"
       ]
     },
     {
@@ -687,7 +687,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-parallels"
+        "generic-fedora29-parallels-x64"
       ]
     },
     {
@@ -708,7 +708,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-parallels"
+        "generic-fedora29-parallels-x64"
       ]
     },
     {
@@ -731,7 +731,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd11-parallels"
+        "generic-freebsd11-parallels-x64"
       ]
     },
     {
@@ -744,7 +744,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-openbsd6-parallels"
+        "generic-openbsd6-parallels-x64"
       ]
     },
     {
@@ -765,7 +765,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-openbsd6-parallels"
+        "generic-openbsd6-parallels-x64"
       ]
     },
     {
@@ -778,7 +778,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1604-parallels"
+        "generic-ubuntu1604-parallels-x64"
       ]
     },
     {
@@ -800,7 +800,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1604-parallels"
+        "generic-ubuntu1604-parallels-x64"
       ]
     },
     {
@@ -813,7 +813,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1610-parallels"
+        "generic-ubuntu1610-parallels-x64"
       ]
     },
     {
@@ -835,7 +835,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1610-parallels"
+        "generic-ubuntu1610-parallels-x64"
       ]
     },
     {
@@ -848,7 +848,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1704-parallels"
+        "generic-ubuntu1704-parallels-x64"
       ]
     },
     {
@@ -870,7 +870,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1704-parallels"
+        "generic-ubuntu1704-parallels-x64"
       ]
     },
     {
@@ -883,7 +883,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1710-parallels"
+        "generic-ubuntu1710-parallels-x64"
       ]
     },
     {
@@ -905,7 +905,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1710-parallels"
+        "generic-ubuntu1710-parallels-x64"
       ]
     },
     {
@@ -918,7 +918,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1804-parallels"
+        "generic-ubuntu1804-parallels-x64"
       ]
     },
     {
@@ -940,7 +940,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1804-parallels"
+        "generic-ubuntu1804-parallels-x64"
       ]
     },
     {
@@ -953,7 +953,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1810-parallels"
+        "generic-ubuntu1810-parallels-x64"
       ]
     },
     {
@@ -975,7 +975,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1810-parallels"
+        "generic-ubuntu1810-parallels-x64"
       ]
     },
     {
@@ -998,7 +998,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd12-parallels"
+        "generic-freebsd12-parallels-x64"
       ]
     },
     {
@@ -1014,7 +1014,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel6-parallels"
+        "generic-rhel6-parallels-x64"
       ]
     },
     {
@@ -1040,7 +1040,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel6-parallels"
+        "generic-rhel6-parallels-x64"
       ]
     },
     {
@@ -1056,7 +1056,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel8-parallels"
+        "generic-rhel8-parallels-x64"
       ]
     },
     {
@@ -1082,7 +1082,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel8-parallels"
+        "generic-rhel8-parallels-x64"
       ]
     },
     {
@@ -1105,7 +1105,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd11-parallels"
+        "generic-hardenedbsd11-parallels-x64"
       ]
     },
     {
@@ -1128,7 +1128,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd5-parallels"
+        "generic-dragonflybsd5-parallels-x64"
       ]
     },
     {
@@ -1141,7 +1141,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-netbsd8-parallels"
+        "generic-netbsd8-parallels-x64"
       ]
     },
     {
@@ -1162,7 +1162,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{ .Vars }} bash {{ .Path }}",
       "only": [
-        "generic-netbsd8-parallels"
+        "generic-netbsd8-parallels-x64"
       ]
     },
     {
@@ -1185,7 +1185,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd12-parallels"
+        "generic-hardenedbsd12-parallels-x64"
       ]
     },
     {
@@ -1199,7 +1199,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine39-parallels"
+        "generic-alpine39-parallels-x64"
       ]
     },
     {
@@ -1222,7 +1222,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine39-parallels"
+        "generic-alpine39-parallels-x64"
       ]
     },
     {
@@ -1235,7 +1235,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian10-parallels"
+        "generic-debian10-parallels-x64"
       ]
     },
     {
@@ -1257,7 +1257,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian10-parallels"
+        "generic-debian10-parallels-x64"
       ]
     },
     {
@@ -1270,7 +1270,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1904-parallels"
+        "generic-ubuntu1904-parallels-x64"
       ]
     },
     {
@@ -1292,7 +1292,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1904-parallels"
+        "generic-ubuntu1904-parallels-x64"
       ]
     },
     {
@@ -1306,7 +1306,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-parallels"
+        "generic-fedora30-parallels-x64"
       ]
     },
     {
@@ -1320,7 +1320,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-parallels"
+        "generic-fedora30-parallels-x64"
       ]
     },
     {
@@ -1341,7 +1341,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-parallels"
+        "generic-fedora30-parallels-x64"
       ]
     },
     {
@@ -1355,7 +1355,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle8-parallels"
+        "generic-oracle8-parallels-x64"
       ]
     },
     {
@@ -1378,7 +1378,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle8-parallels"
+        "generic-oracle8-parallels-x64"
       ]
     },
     {
@@ -1392,7 +1392,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine310-parallels"
+        "generic-alpine310-parallels-x64"
       ]
     },
     {
@@ -1415,7 +1415,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine310-parallels"
+        "generic-alpine310-parallels-x64"
       ]
     },
     {
@@ -1428,7 +1428,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse15-parallels"
+        "generic-opensuse15-parallels-x64"
       ]
     },
     {
@@ -1449,7 +1449,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse15-parallels"
+        "generic-opensuse15-parallels-x64"
       ]
     },
     {
@@ -1465,7 +1465,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8-parallels"
+        "generic-centos8-parallels-x64"
       ]
     },
     {
@@ -1491,7 +1491,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8-parallels"
+        "generic-centos8-parallels-x64"
       ]
     },
     {
@@ -1505,7 +1505,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-parallels"
+        "generic-fedora31-parallels-x64"
       ]
     },
     {
@@ -1519,7 +1519,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-parallels"
+        "generic-fedora31-parallels-x64"
       ]
     },
     {
@@ -1540,7 +1540,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-parallels"
+        "generic-fedora31-parallels-x64"
       ]
     },
     {
@@ -1553,7 +1553,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1910-parallels"
+        "generic-ubuntu1910-parallels-x64"
       ]
     },
     {
@@ -1575,7 +1575,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1910-parallels"
+        "generic-ubuntu1910-parallels-x64"
       ]
     },
     {
@@ -1589,7 +1589,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine311-parallels"
+        "generic-alpine311-parallels-x64"
       ]
     },
     {
@@ -1612,7 +1612,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine311-parallels"
+        "generic-alpine311-parallels-x64"
       ]
     },
     {
@@ -1625,7 +1625,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2004-parallels"
+        "generic-ubuntu2004-parallels-x64"
       ]
     },
     {
@@ -1647,7 +1647,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2004-parallels"
+        "generic-ubuntu2004-parallels-x64"
       ]
     },
     {
@@ -1661,7 +1661,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-parallels"
+        "generic-fedora32-parallels-x64"
       ]
     },
     {
@@ -1675,7 +1675,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-parallels"
+        "generic-fedora32-parallels-x64"
       ]
     },
     {
@@ -1696,7 +1696,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-parallels"
+        "generic-fedora32-parallels-x64"
       ]
     },
     {
@@ -1709,7 +1709,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-netbsd9-parallels"
+        "generic-netbsd9-parallels-x64"
       ]
     },
     {
@@ -1730,7 +1730,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{ .Vars }} bash {{ .Path }}",
       "only": [
-        "generic-netbsd9-parallels"
+        "generic-netbsd9-parallels-x64"
       ]
     },
     {
@@ -1744,7 +1744,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine312-parallels"
+        "generic-alpine312-parallels-x64"
       ]
     },
     {
@@ -1767,7 +1767,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine312-parallels"
+        "generic-alpine312-parallels-x64"
       ]
     },
     {
@@ -1780,7 +1780,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan1-parallels"
+        "generic-devuan1-parallels-x64"
       ]
     },
     {
@@ -1800,7 +1800,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan1-parallels"
+        "generic-devuan1-parallels-x64"
       ]
     },
     {
@@ -1813,7 +1813,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan2-parallels"
+        "generic-devuan2-parallels-x64"
       ]
     },
     {
@@ -1833,7 +1833,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan2-parallels"
+        "generic-devuan2-parallels-x64"
       ]
     },
     {
@@ -1846,7 +1846,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan3-parallels"
+        "generic-devuan3-parallels-x64"
       ]
     },
     {
@@ -1866,7 +1866,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan3-parallels"
+        "generic-devuan3-parallels-x64"
       ]
     },
     {
@@ -1881,7 +1881,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2010-parallels"
+        "generic-ubuntu2010-parallels-x64"
       ]
     },
     {
@@ -1902,7 +1902,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2010-parallels"
+        "generic-ubuntu2010-parallels-x64"
       ]
     },
     {
@@ -1916,7 +1916,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-parallels"
+        "generic-fedora33-parallels-x64"
       ]
     },
     {
@@ -1930,7 +1930,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-parallels"
+        "generic-fedora33-parallels-x64"
       ]
     },
     {
@@ -1951,7 +1951,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-parallels"
+        "generic-fedora33-parallels-x64"
       ]
     },
     {
@@ -1965,7 +1965,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine313-parallels"
+        "generic-alpine313-parallels-x64"
       ]
     },
     {
@@ -1988,7 +1988,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine313-parallels"
+        "generic-alpine313-parallels-x64"
       ]
     },
     {
@@ -2002,7 +2002,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine314-parallels"
+        "generic-alpine314-parallels-x64"
       ]
     },
     {
@@ -2025,7 +2025,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine314-parallels"
+        "generic-alpine314-parallels-x64"
       ]
     },
     {
@@ -2040,7 +2040,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2104-parallels"
+        "generic-ubuntu2104-parallels-x64"
       ]
     },
     {
@@ -2061,7 +2061,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2104-parallels"
+        "generic-ubuntu2104-parallels-x64"
       ]
     },
     {
@@ -2077,7 +2077,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky8-parallels"
+        "generic-rocky8-parallels-x64"
       ]
     },
     {
@@ -2104,7 +2104,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky8-parallels"
+        "generic-rocky8-parallels-x64"
       ]
     },
     {
@@ -2120,7 +2120,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma8-parallels"
+        "generic-alma8-parallels-x64"
       ]
     },
     {
@@ -2147,7 +2147,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma8-parallels"
+        "generic-alma8-parallels-x64"
       ]
     },
     {
@@ -2161,7 +2161,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-parallels"
+        "generic-fedora34-parallels-x64"
       ]
     },
     {
@@ -2175,7 +2175,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-parallels"
+        "generic-fedora34-parallels-x64"
       ]
     },
     {
@@ -2196,7 +2196,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-parallels"
+        "generic-fedora34-parallels-x64"
       ]
     },
     {
@@ -2219,7 +2219,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd13-parallels"
+        "generic-freebsd13-parallels-x64"
       ]
     },
     {
@@ -2242,7 +2242,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd13-parallels"
+        "generic-hardenedbsd13-parallels-x64"
       ]
     },
     {
@@ -2265,7 +2265,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd6-parallels"
+        "generic-dragonflybsd6-parallels-x64"
       ]
     },
     {
@@ -2278,7 +2278,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian11-parallels"
+        "generic-debian11-parallels-x64"
       ]
     },
     {
@@ -2300,7 +2300,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian11-parallels"
+        "generic-debian11-parallels-x64"
       ]
     },
     {
@@ -2313,7 +2313,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-openbsd7-parallels"
+        "generic-openbsd7-parallels-x64"
       ]
     },
     {
@@ -2334,7 +2334,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-openbsd7-parallels"
+        "generic-openbsd7-parallels-x64"
       ]
     },
     {
@@ -2349,7 +2349,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2110-parallels"
+        "generic-ubuntu2110-parallels-x64"
       ]
     },
     {
@@ -2370,7 +2370,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2110-parallels"
+        "generic-ubuntu2110-parallels-x64"
       ]
     },
     {
@@ -2384,7 +2384,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine315-parallels"
+        "generic-alpine315-parallels-x64"
       ]
     },
     {
@@ -2407,7 +2407,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine315-parallels"
+        "generic-alpine315-parallels-x64"
       ]
     },
     {
@@ -2421,7 +2421,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-parallels"
+        "generic-fedora35-parallels-x64"
       ]
     },
     {
@@ -2435,7 +2435,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-parallels"
+        "generic-fedora35-parallels-x64"
       ]
     },
     {
@@ -2456,7 +2456,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-parallels"
+        "generic-fedora35-parallels-x64"
       ]
     },
     {
@@ -2469,7 +2469,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan4-parallels"
+        "generic-devuan4-parallels-x64"
       ]
     },
     {
@@ -2489,7 +2489,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan4-parallels"
+        "generic-devuan4-parallels-x64"
       ]
     },
     {
@@ -2504,7 +2504,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2204-parallels"
+        "generic-ubuntu2204-parallels-x64"
       ]
     },
     {
@@ -2525,7 +2525,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2204-parallels"
+        "generic-ubuntu2204-parallels-x64"
       ]
     },
     {
@@ -2539,7 +2539,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-parallels"
+        "generic-fedora36-parallels-x64"
       ]
     },
     {
@@ -2553,7 +2553,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-parallels"
+        "generic-fedora36-parallels-x64"
       ]
     },
     {
@@ -2574,7 +2574,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-parallels"
+        "generic-fedora36-parallels-x64"
       ]
     },
     {
@@ -2590,7 +2590,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel9-parallels"
+        "generic-rhel9-parallels-x64"
       ]
     },
     {
@@ -2616,7 +2616,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel9-parallels"
+        "generic-rhel9-parallels-x64"
       ]
     },
     {
@@ -2632,7 +2632,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8s-parallels"
+        "generic-centos8s-parallels-x64"
       ]
     },
     {
@@ -2658,7 +2658,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8s-parallels"
+        "generic-centos8s-parallels-x64"
       ]
     },
     {
@@ -2674,7 +2674,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos9s-parallels"
+        "generic-centos9s-parallels-x64"
       ]
     },
     {
@@ -2699,7 +2699,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos9s-parallels"
+        "generic-centos9s-parallels-x64"
       ]
     },
     {
@@ -2713,7 +2713,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine316-parallels"
+        "generic-alpine316-parallels-x64"
       ]
     },
     {
@@ -2736,7 +2736,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine316-parallels"
+        "generic-alpine316-parallels-x64"
       ]
     },
     {
@@ -2752,7 +2752,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma9-parallels"
+        "generic-alma9-parallels-x64"
       ]
     },
     {
@@ -2778,7 +2778,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma9-parallels"
+        "generic-alma9-parallels-x64"
       ]
     },
     {
@@ -2794,7 +2794,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle9-parallels"
+        "generic-oracle9-parallels-x64"
       ]
     },
     {
@@ -2816,7 +2816,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle9-parallels"
+        "generic-oracle9-parallels-x64"
       ]
     },
     {
@@ -2832,7 +2832,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky9-parallels"
+        "generic-rocky9-parallels-x64"
       ]
     },
     {
@@ -2858,7 +2858,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky9-parallels"
+        "generic-rocky9-parallels-x64"
       ]
     },
     {
@@ -2872,7 +2872,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle6-parallels"
+        "generic-oracle6-parallels-x64"
       ]
     },
     {
@@ -2894,7 +2894,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle6-parallels"
+        "generic-oracle6-parallels-x64"
       ]
     },
     {
@@ -2909,7 +2909,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2210-parallels"
+        "generic-ubuntu2210-parallels-x64"
       ]
     },
     {
@@ -2930,7 +2930,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2210-parallels"
+        "generic-ubuntu2210-parallels-x64"
       ]
     },
     {
@@ -2944,7 +2944,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-parallels"
+        "generic-fedora37-parallels-x64"
       ]
     },
     {
@@ -2958,7 +2958,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-parallels"
+        "generic-fedora37-parallels-x64"
       ]
     },
     {
@@ -2979,7 +2979,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-parallels"
+        "generic-fedora37-parallels-x64"
       ]
     },
     {
@@ -2993,7 +2993,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine317-parallels"
+        "generic-alpine317-parallels-x64"
       ]
     },
     {
@@ -3016,7 +3016,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine317-parallels"
+        "generic-alpine317-parallels-x64"
       ]
     },
     {
@@ -3031,7 +3031,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2304-parallels"
+        "generic-ubuntu2304-parallels-x64"
       ]
     },
     {
@@ -3052,7 +3052,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2304-parallels"
+        "generic-ubuntu2304-parallels-x64"
       ]
     },
     {
@@ -3065,7 +3065,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian12-parallels"
+        "generic-debian12-parallels-x64"
       ]
     },
     {
@@ -3087,7 +3087,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian12-parallels"
+        "generic-debian12-parallels-x64"
       ]
     },
     {
@@ -3101,7 +3101,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine318-parallels"
+        "generic-alpine318-parallels-x64"
       ]
     },
     {
@@ -3124,7 +3124,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine318-parallels"
+        "generic-alpine318-parallels-x64"
       ]
     },
     {
@@ -3137,7 +3137,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan5-parallels"
+        "generic-devuan5-parallels-x64"
       ]
     },
     {
@@ -3157,7 +3157,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan5-parallels"
+        "generic-devuan5-parallels-x64"
       ]
     },
     {
@@ -3180,7 +3180,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd-parallels"
+        "generic-hardenedbsd-parallels-x64"
       ]
     },
     {
@@ -3203,7 +3203,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd-parallels"
+        "generic-dragonflybsd-parallels-x64"
       ]
     },
     {
@@ -3225,9 +3225,9 @@
   "builders": [
     {
       "type": "parallels-iso",
-      "name": "generic-oracle7-parallels",
-      "vm_name": "generic-oracle7-parallels",
-      "output_directory": "output/generic-oracle7-parallels",
+      "name": "generic-oracle7-parallels-x64",
+      "vm_name": "generic-oracle7-parallels-x64",
+      "output_directory": "output/generic-oracle7-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3287,9 +3287,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-opensuse42-parallels",
-      "vm_name": "generic-opensuse42-parallels",
-      "output_directory": "output/generic-opensuse42-parallels",
+      "name": "generic-opensuse42-parallels-x64",
+      "vm_name": "generic-opensuse42-parallels-x64",
+      "output_directory": "output/generic-opensuse42-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3352,9 +3352,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine35-parallels",
-      "vm_name": "generic-alpine35-parallels",
-      "output_directory": "output/generic-alpine35-parallels",
+      "name": "generic-alpine35-parallels-x64",
+      "vm_name": "generic-alpine35-parallels-x64",
+      "output_directory": "output/generic-alpine35-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3423,9 +3423,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine36-parallels",
-      "vm_name": "generic-alpine36-parallels",
-      "output_directory": "output/generic-alpine36-parallels",
+      "name": "generic-alpine36-parallels-x64",
+      "vm_name": "generic-alpine36-parallels-x64",
+      "output_directory": "output/generic-alpine36-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3494,9 +3494,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine37-parallels",
-      "vm_name": "generic-alpine37-parallels",
-      "output_directory": "output/generic-alpine37-parallels",
+      "name": "generic-alpine37-parallels-x64",
+      "vm_name": "generic-alpine37-parallels-x64",
+      "output_directory": "output/generic-alpine37-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3565,9 +3565,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine38-parallels",
-      "vm_name": "generic-alpine38-parallels",
-      "output_directory": "output/generic-alpine38-parallels",
+      "name": "generic-alpine38-parallels-x64",
+      "vm_name": "generic-alpine38-parallels-x64",
+      "output_directory": "output/generic-alpine38-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3636,9 +3636,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-centos6-parallels",
-      "vm_name": "generic-centos6-parallels",
-      "output_directory": "output/generic-centos6-parallels",
+      "name": "generic-centos6-parallels-x64",
+      "vm_name": "generic-centos6-parallels-x64",
+      "output_directory": "output/generic-centos6-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3698,9 +3698,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-centos7-parallels",
-      "vm_name": "generic-centos7-parallels",
-      "output_directory": "output/generic-centos7-parallels",
+      "name": "generic-centos7-parallels-x64",
+      "vm_name": "generic-centos7-parallels-x64",
+      "output_directory": "output/generic-centos7-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3760,9 +3760,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-rhel7-parallels",
-      "vm_name": "generic-rhel7-parallels",
-      "output_directory": "output/generic-rhel7-parallels",
+      "name": "generic-rhel7-parallels-x64",
+      "vm_name": "generic-rhel7-parallels-x64",
+      "output_directory": "output/generic-rhel7-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3828,9 +3828,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-arch-parallels",
-      "vm_name": "generic-arch-parallels",
-      "output_directory": "output/generic-arch-parallels",
+      "name": "generic-arch-parallels-x64",
+      "vm_name": "generic-arch-parallels-x64",
+      "output_directory": "output/generic-arch-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3910,9 +3910,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora25-parallels",
-      "vm_name": "generic-fedora25-parallels",
-      "output_directory": "output/generic-fedora25-parallels",
+      "name": "generic-fedora25-parallels-x64",
+      "vm_name": "generic-fedora25-parallels-x64",
+      "output_directory": "output/generic-fedora25-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3976,9 +3976,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora26-parallels",
-      "vm_name": "generic-fedora26-parallels",
-      "output_directory": "output/generic-fedora26-parallels",
+      "name": "generic-fedora26-parallels-x64",
+      "vm_name": "generic-fedora26-parallels-x64",
+      "output_directory": "output/generic-fedora26-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4042,9 +4042,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora27-parallels",
-      "vm_name": "generic-fedora27-parallels",
-      "output_directory": "output/generic-fedora27-parallels",
+      "name": "generic-fedora27-parallels-x64",
+      "vm_name": "generic-fedora27-parallels-x64",
+      "output_directory": "output/generic-fedora27-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4108,9 +4108,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora28-parallels",
-      "vm_name": "generic-fedora28-parallels",
-      "output_directory": "output/generic-fedora28-parallels",
+      "name": "generic-fedora28-parallels-x64",
+      "vm_name": "generic-fedora28-parallels-x64",
+      "output_directory": "output/generic-fedora28-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4174,9 +4174,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora29-parallels",
-      "vm_name": "generic-fedora29-parallels",
-      "output_directory": "output/generic-fedora29-parallels",
+      "name": "generic-fedora29-parallels-x64",
+      "vm_name": "generic-fedora29-parallels-x64",
+      "output_directory": "output/generic-fedora29-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4240,9 +4240,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-debian8-parallels",
-      "vm_name": "generic-debian8-parallels",
-      "output_directory": "output/generic-debian8-parallels",
+      "name": "generic-debian8-parallels-x64",
+      "vm_name": "generic-debian8-parallels-x64",
+      "output_directory": "output/generic-debian8-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4314,9 +4314,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-debian9-parallels",
-      "vm_name": "generic-debian9-parallels",
-      "output_directory": "output/generic-debian9-parallels",
+      "name": "generic-debian9-parallels-x64",
+      "vm_name": "generic-debian9-parallels-x64",
+      "output_directory": "output/generic-debian9-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4388,9 +4388,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu1604-parallels",
-      "vm_name": "generic-ubuntu1604-parallels",
-      "output_directory": "output/generic-ubuntu1604-parallels",
+      "name": "generic-ubuntu1604-parallels-x64",
+      "vm_name": "generic-ubuntu1604-parallels-x64",
+      "output_directory": "output/generic-ubuntu1604-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4466,9 +4466,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu1610-parallels",
-      "vm_name": "generic-ubuntu1610-parallels",
-      "output_directory": "output/generic-ubuntu1610-parallels",
+      "name": "generic-ubuntu1610-parallels-x64",
+      "vm_name": "generic-ubuntu1610-parallels-x64",
+      "output_directory": "output/generic-ubuntu1610-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4536,9 +4536,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu1704-parallels",
-      "vm_name": "generic-ubuntu1704-parallels",
-      "output_directory": "output/generic-ubuntu1704-parallels",
+      "name": "generic-ubuntu1704-parallels-x64",
+      "vm_name": "generic-ubuntu1704-parallels-x64",
+      "output_directory": "output/generic-ubuntu1704-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4606,9 +4606,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu1710-parallels",
-      "vm_name": "generic-ubuntu1710-parallels",
-      "output_directory": "output/generic-ubuntu1710-parallels",
+      "name": "generic-ubuntu1710-parallels-x64",
+      "vm_name": "generic-ubuntu1710-parallels-x64",
+      "output_directory": "output/generic-ubuntu1710-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4676,9 +4676,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu1804-parallels",
-      "vm_name": "generic-ubuntu1804-parallels",
-      "output_directory": "output/generic-ubuntu1804-parallels",
+      "name": "generic-ubuntu1804-parallels-x64",
+      "vm_name": "generic-ubuntu1804-parallels-x64",
+      "output_directory": "output/generic-ubuntu1804-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4758,9 +4758,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu1810-parallels",
-      "vm_name": "generic-ubuntu1810-parallels",
-      "output_directory": "output/generic-ubuntu1810-parallels",
+      "name": "generic-ubuntu1810-parallels-x64",
+      "vm_name": "generic-ubuntu1810-parallels-x64",
+      "output_directory": "output/generic-ubuntu1810-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4840,9 +4840,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-gentoo-parallels",
-      "vm_name": "generic-gentoo-parallels",
-      "output_directory": "output/generic-gentoo-parallels",
+      "name": "generic-gentoo-parallels-x64",
+      "vm_name": "generic-gentoo-parallels-x64",
+      "output_directory": "output/generic-gentoo-parallels-x64",
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4907,9 +4907,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-freebsd11-parallels",
-      "vm_name": "generic-freebsd11-parallels",
-      "output_directory": "output/generic-freebsd11-parallels",
+      "name": "generic-freebsd11-parallels-x64",
+      "vm_name": "generic-freebsd11-parallels-x64",
+      "output_directory": "output/generic-freebsd11-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4991,9 +4991,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-openbsd6-parallels",
-      "vm_name": "generic-openbsd6-parallels",
-      "output_directory": "output/generic-openbsd6-parallels",
+      "name": "generic-openbsd6-parallels-x64",
+      "vm_name": "generic-openbsd6-parallels-x64",
+      "output_directory": "output/generic-openbsd6-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5057,9 +5057,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-freebsd12-parallels",
-      "vm_name": "generic-freebsd12-parallels",
-      "output_directory": "output/generic-freebsd12-parallels",
+      "name": "generic-freebsd12-parallels-x64",
+      "vm_name": "generic-freebsd12-parallels-x64",
+      "output_directory": "output/generic-freebsd12-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5141,9 +5141,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-rhel6-parallels",
-      "vm_name": "generic-rhel6-parallels",
-      "output_directory": "output/generic-rhel6-parallels",
+      "name": "generic-rhel6-parallels-x64",
+      "vm_name": "generic-rhel6-parallels-x64",
+      "output_directory": "output/generic-rhel6-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5209,9 +5209,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-rhel8-parallels",
-      "vm_name": "generic-rhel8-parallels",
-      "output_directory": "output/generic-rhel8-parallels",
+      "name": "generic-rhel8-parallels-x64",
+      "vm_name": "generic-rhel8-parallels-x64",
+      "output_directory": "output/generic-rhel8-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5277,9 +5277,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-hardenedbsd11-parallels",
-      "vm_name": "generic-hardenedbsd11-parallels",
-      "output_directory": "output/generic-hardenedbsd11-parallels",
+      "name": "generic-hardenedbsd11-parallels-x64",
+      "vm_name": "generic-hardenedbsd11-parallels-x64",
+      "output_directory": "output/generic-hardenedbsd11-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5338,7 +5338,7 @@
       "guest_os_type": "freebsd",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
+      "iso_url": "https://mirrors.lavabit.com/hardenedbsd-archive/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
       "iso_checksum": "sha256:8b2c90dc41ec68b561028af885eecb66bfd36223970d1c594923d1d54bf83467",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -5353,9 +5353,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-dragonflybsd5-parallels",
-      "vm_name": "generic-dragonflybsd5-parallels",
-      "output_directory": "output/generic-dragonflybsd5-parallels",
+      "name": "generic-dragonflybsd5-parallels-x64",
+      "vm_name": "generic-dragonflybsd5-parallels-x64",
+      "output_directory": "output/generic-dragonflybsd5-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5442,9 +5442,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-netbsd8-parallels",
-      "vm_name": "generic-netbsd8-parallels",
-      "output_directory": "output/generic-netbsd8-parallels",
+      "name": "generic-netbsd8-parallels-x64",
+      "vm_name": "generic-netbsd8-parallels-x64",
+      "output_directory": "output/generic-netbsd8-parallels-x64",
       "boot_wait": "40s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5558,9 +5558,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-hardenedbsd12-parallels",
-      "vm_name": "generic-hardenedbsd12-parallels",
-      "output_directory": "output/generic-hardenedbsd12-parallels",
+      "name": "generic-hardenedbsd12-parallels-x64",
+      "vm_name": "generic-hardenedbsd12-parallels-x64",
+      "output_directory": "output/generic-hardenedbsd12-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5625,7 +5625,7 @@
       "guest_os_type": "freebsd",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
+      "iso_url": "https://mirrors.lavabit.com/hardenedbsd-archive/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
       "iso_checksum": "sha256:029225eaf92ba8e7ed7a7395f45492d09bc9a949488ecb9a5ca54df7c9f89661",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -5640,9 +5640,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine39-parallels",
-      "vm_name": "generic-alpine39-parallels",
-      "output_directory": "output/generic-alpine39-parallels",
+      "name": "generic-alpine39-parallels-x64",
+      "vm_name": "generic-alpine39-parallels-x64",
+      "output_directory": "output/generic-alpine39-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5712,9 +5712,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-debian10-parallels",
-      "vm_name": "generic-debian10-parallels",
-      "output_directory": "output/generic-debian10-parallels",
+      "name": "generic-debian10-parallels-x64",
+      "vm_name": "generic-debian10-parallels-x64",
+      "output_directory": "output/generic-debian10-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5786,9 +5786,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu1904-parallels",
-      "vm_name": "generic-ubuntu1904-parallels",
-      "output_directory": "output/generic-ubuntu1904-parallels",
+      "name": "generic-ubuntu1904-parallels-x64",
+      "vm_name": "generic-ubuntu1904-parallels-x64",
+      "output_directory": "output/generic-ubuntu1904-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5868,9 +5868,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora30-parallels",
-      "vm_name": "generic-fedora30-parallels",
-      "output_directory": "output/generic-fedora30-parallels",
+      "name": "generic-fedora30-parallels-x64",
+      "vm_name": "generic-fedora30-parallels-x64",
+      "output_directory": "output/generic-fedora30-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5934,9 +5934,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-oracle8-parallels",
-      "vm_name": "generic-oracle8-parallels",
-      "output_directory": "output/generic-oracle8-parallels",
+      "name": "generic-oracle8-parallels-x64",
+      "vm_name": "generic-oracle8-parallels-x64",
+      "output_directory": "output/generic-oracle8-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5996,9 +5996,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine310-parallels",
-      "vm_name": "generic-alpine310-parallels",
-      "output_directory": "output/generic-alpine310-parallels",
+      "name": "generic-alpine310-parallels-x64",
+      "vm_name": "generic-alpine310-parallels-x64",
+      "output_directory": "output/generic-alpine310-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6070,9 +6070,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-opensuse15-parallels",
-      "vm_name": "generic-opensuse15-parallels",
-      "output_directory": "output/generic-opensuse15-parallels",
+      "name": "generic-opensuse15-parallels-x64",
+      "vm_name": "generic-opensuse15-parallels-x64",
+      "output_directory": "output/generic-opensuse15-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6135,9 +6135,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-centos8-parallels",
-      "vm_name": "generic-centos8-parallels",
-      "output_directory": "output/generic-centos8-parallels",
+      "name": "generic-centos8-parallels-x64",
+      "vm_name": "generic-centos8-parallels-x64",
+      "output_directory": "output/generic-centos8-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6197,9 +6197,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora31-parallels",
-      "vm_name": "generic-fedora31-parallels",
-      "output_directory": "output/generic-fedora31-parallels",
+      "name": "generic-fedora31-parallels-x64",
+      "vm_name": "generic-fedora31-parallels-x64",
+      "output_directory": "output/generic-fedora31-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6263,9 +6263,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu1910-parallels",
-      "vm_name": "generic-ubuntu1910-parallels",
-      "output_directory": "output/generic-ubuntu1910-parallels",
+      "name": "generic-ubuntu1910-parallels-x64",
+      "vm_name": "generic-ubuntu1910-parallels-x64",
+      "output_directory": "output/generic-ubuntu1910-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6345,9 +6345,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine311-parallels",
-      "vm_name": "generic-alpine311-parallels",
-      "output_directory": "output/generic-alpine311-parallels",
+      "name": "generic-alpine311-parallels-x64",
+      "vm_name": "generic-alpine311-parallels-x64",
+      "output_directory": "output/generic-alpine311-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6419,9 +6419,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu2004-parallels",
-      "vm_name": "generic-ubuntu2004-parallels",
-      "output_directory": "output/generic-ubuntu2004-parallels",
+      "name": "generic-ubuntu2004-parallels-x64",
+      "vm_name": "generic-ubuntu2004-parallels-x64",
+      "output_directory": "output/generic-ubuntu2004-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6501,9 +6501,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora32-parallels",
-      "vm_name": "generic-fedora32-parallels",
-      "output_directory": "output/generic-fedora32-parallels",
+      "name": "generic-fedora32-parallels-x64",
+      "vm_name": "generic-fedora32-parallels-x64",
+      "output_directory": "output/generic-fedora32-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6566,9 +6566,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-netbsd9-parallels",
-      "vm_name": "generic-netbsd9-parallels",
-      "output_directory": "output/generic-netbsd9-parallels",
+      "name": "generic-netbsd9-parallels-x64",
+      "vm_name": "generic-netbsd9-parallels-x64",
+      "output_directory": "output/generic-netbsd9-parallels-x64",
       "boot_wait": "40s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6672,9 +6672,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine312-parallels",
-      "vm_name": "generic-alpine312-parallels",
-      "output_directory": "output/generic-alpine312-parallels",
+      "name": "generic-alpine312-parallels-x64",
+      "vm_name": "generic-alpine312-parallels-x64",
+      "output_directory": "output/generic-alpine312-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6746,9 +6746,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-devuan1-parallels",
-      "vm_name": "generic-devuan1-parallels",
-      "output_directory": "output/generic-devuan1-parallels",
+      "name": "generic-devuan1-parallels-x64",
+      "vm_name": "generic-devuan1-parallels-x64",
+      "output_directory": "output/generic-devuan1-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6820,9 +6820,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-devuan2-parallels",
-      "vm_name": "generic-devuan2-parallels",
-      "output_directory": "output/generic-devuan2-parallels",
+      "name": "generic-devuan2-parallels-x64",
+      "vm_name": "generic-devuan2-parallels-x64",
+      "output_directory": "output/generic-devuan2-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6894,9 +6894,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-devuan3-parallels",
-      "vm_name": "generic-devuan3-parallels",
-      "output_directory": "output/generic-devuan3-parallels",
+      "name": "generic-devuan3-parallels-x64",
+      "vm_name": "generic-devuan3-parallels-x64",
+      "output_directory": "output/generic-devuan3-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6968,9 +6968,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu2010-parallels",
-      "vm_name": "generic-ubuntu2010-parallels",
-      "output_directory": "output/generic-ubuntu2010-parallels",
+      "name": "generic-ubuntu2010-parallels-x64",
+      "vm_name": "generic-ubuntu2010-parallels-x64",
+      "output_directory": "output/generic-ubuntu2010-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7045,9 +7045,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora33-parallels",
-      "vm_name": "generic-fedora33-parallels",
-      "output_directory": "output/generic-fedora33-parallels",
+      "name": "generic-fedora33-parallels-x64",
+      "vm_name": "generic-fedora33-parallels-x64",
+      "output_directory": "output/generic-fedora33-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7110,9 +7110,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine313-parallels",
-      "vm_name": "generic-alpine313-parallels",
-      "output_directory": "output/generic-alpine313-parallels",
+      "name": "generic-alpine313-parallels-x64",
+      "vm_name": "generic-alpine313-parallels-x64",
+      "output_directory": "output/generic-alpine313-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7184,9 +7184,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine314-parallels",
-      "vm_name": "generic-alpine314-parallels",
-      "output_directory": "output/generic-alpine314-parallels",
+      "name": "generic-alpine314-parallels-x64",
+      "vm_name": "generic-alpine314-parallels-x64",
+      "output_directory": "output/generic-alpine314-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7258,9 +7258,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu2104-parallels",
-      "vm_name": "generic-ubuntu2104-parallels",
-      "output_directory": "output/generic-ubuntu2104-parallels",
+      "name": "generic-ubuntu2104-parallels-x64",
+      "vm_name": "generic-ubuntu2104-parallels-x64",
+      "output_directory": "output/generic-ubuntu2104-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7335,9 +7335,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-rocky8-parallels",
-      "vm_name": "generic-rocky8-parallels",
-      "output_directory": "output/generic-rocky8-parallels",
+      "name": "generic-rocky8-parallels-x64",
+      "vm_name": "generic-rocky8-parallels-x64",
+      "output_directory": "output/generic-rocky8-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7397,9 +7397,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alma8-parallels",
-      "vm_name": "generic-alma8-parallels",
-      "output_directory": "output/generic-alma8-parallels",
+      "name": "generic-alma8-parallels-x64",
+      "vm_name": "generic-alma8-parallels-x64",
+      "output_directory": "output/generic-alma8-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7459,9 +7459,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora34-parallels",
-      "vm_name": "generic-fedora34-parallels",
-      "output_directory": "output/generic-fedora34-parallels",
+      "name": "generic-fedora34-parallels-x64",
+      "vm_name": "generic-fedora34-parallels-x64",
+      "output_directory": "output/generic-fedora34-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7524,9 +7524,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-freebsd13-parallels",
-      "vm_name": "generic-freebsd13-parallels",
-      "output_directory": "output/generic-freebsd13-parallels",
+      "name": "generic-freebsd13-parallels-x64",
+      "vm_name": "generic-freebsd13-parallels-x64",
+      "output_directory": "output/generic-freebsd13-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7608,9 +7608,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-hardenedbsd13-parallels",
-      "vm_name": "generic-hardenedbsd13-parallels",
-      "output_directory": "output/generic-hardenedbsd13-parallels",
+      "name": "generic-hardenedbsd13-parallels-x64",
+      "vm_name": "generic-hardenedbsd13-parallels-x64",
+      "output_directory": "output/generic-hardenedbsd13-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7690,9 +7690,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-dragonflybsd6-parallels",
-      "vm_name": "generic-dragonflybsd6-parallels",
-      "output_directory": "output/generic-dragonflybsd6-parallels",
+      "name": "generic-dragonflybsd6-parallels-x64",
+      "vm_name": "generic-dragonflybsd6-parallels-x64",
+      "output_directory": "output/generic-dragonflybsd6-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7779,9 +7779,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-debian11-parallels",
-      "vm_name": "generic-debian11-parallels",
-      "output_directory": "output/generic-debian11-parallels",
+      "name": "generic-debian11-parallels-x64",
+      "vm_name": "generic-debian11-parallels-x64",
+      "output_directory": "output/generic-debian11-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7853,9 +7853,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-openbsd7-parallels",
-      "vm_name": "generic-openbsd7-parallels",
-      "output_directory": "output/generic-openbsd7-parallels",
+      "name": "generic-openbsd7-parallels-x64",
+      "vm_name": "generic-openbsd7-parallels-x64",
+      "output_directory": "output/generic-openbsd7-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7920,9 +7920,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu2110-parallels",
-      "vm_name": "generic-ubuntu2110-parallels",
-      "output_directory": "output/generic-ubuntu2110-parallels",
+      "name": "generic-ubuntu2110-parallels-x64",
+      "vm_name": "generic-ubuntu2110-parallels-x64",
+      "output_directory": "output/generic-ubuntu2110-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7997,9 +7997,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine315-parallels",
-      "vm_name": "generic-alpine315-parallels",
-      "output_directory": "output/generic-alpine315-parallels",
+      "name": "generic-alpine315-parallels-x64",
+      "vm_name": "generic-alpine315-parallels-x64",
+      "output_directory": "output/generic-alpine315-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8071,9 +8071,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora35-parallels",
-      "vm_name": "generic-fedora35-parallels",
-      "output_directory": "output/generic-fedora35-parallels",
+      "name": "generic-fedora35-parallels-x64",
+      "vm_name": "generic-fedora35-parallels-x64",
+      "output_directory": "output/generic-fedora35-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8136,9 +8136,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-devuan4-parallels",
-      "vm_name": "generic-devuan4-parallels",
-      "output_directory": "output/generic-devuan4-parallels",
+      "name": "generic-devuan4-parallels-x64",
+      "vm_name": "generic-devuan4-parallels-x64",
+      "output_directory": "output/generic-devuan4-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8210,9 +8210,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu2204-parallels",
-      "vm_name": "generic-ubuntu2204-parallels",
-      "output_directory": "output/generic-ubuntu2204-parallels",
+      "name": "generic-ubuntu2204-parallels-x64",
+      "vm_name": "generic-ubuntu2204-parallels-x64",
+      "output_directory": "output/generic-ubuntu2204-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8287,9 +8287,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora36-parallels",
-      "vm_name": "generic-fedora36-parallels",
-      "output_directory": "output/generic-fedora36-parallels",
+      "name": "generic-fedora36-parallels-x64",
+      "vm_name": "generic-fedora36-parallels-x64",
+      "output_directory": "output/generic-fedora36-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8352,9 +8352,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-rhel9-parallels",
-      "vm_name": "generic-rhel9-parallels",
-      "output_directory": "output/generic-rhel9-parallels",
+      "name": "generic-rhel9-parallels-x64",
+      "vm_name": "generic-rhel9-parallels-x64",
+      "output_directory": "output/generic-rhel9-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8420,9 +8420,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-centos8s-parallels",
-      "vm_name": "generic-centos8s-parallels",
-      "output_directory": "output/generic-centos8s-parallels",
+      "name": "generic-centos8s-parallels-x64",
+      "vm_name": "generic-centos8s-parallels-x64",
+      "output_directory": "output/generic-centos8s-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8482,9 +8482,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-centos9s-parallels",
-      "vm_name": "generic-centos9s-parallels",
-      "output_directory": "output/generic-centos9s-parallels",
+      "name": "generic-centos9s-parallels-x64",
+      "vm_name": "generic-centos9s-parallels-x64",
+      "output_directory": "output/generic-centos9s-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8544,9 +8544,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine316-parallels",
-      "vm_name": "generic-alpine316-parallels",
-      "output_directory": "output/generic-alpine316-parallels",
+      "name": "generic-alpine316-parallels-x64",
+      "vm_name": "generic-alpine316-parallels-x64",
+      "output_directory": "output/generic-alpine316-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8618,9 +8618,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alma9-parallels",
-      "vm_name": "generic-alma9-parallels",
-      "output_directory": "output/generic-alma9-parallels",
+      "name": "generic-alma9-parallels-x64",
+      "vm_name": "generic-alma9-parallels-x64",
+      "output_directory": "output/generic-alma9-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8680,9 +8680,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-oracle9-parallels",
-      "vm_name": "generic-oracle9-parallels",
-      "output_directory": "output/generic-oracle9-parallels",
+      "name": "generic-oracle9-parallels-x64",
+      "vm_name": "generic-oracle9-parallels-x64",
+      "output_directory": "output/generic-oracle9-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8742,9 +8742,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-rocky9-parallels",
-      "vm_name": "generic-rocky9-parallels",
-      "output_directory": "output/generic-rocky9-parallels",
+      "name": "generic-rocky9-parallels-x64",
+      "vm_name": "generic-rocky9-parallels-x64",
+      "output_directory": "output/generic-rocky9-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8804,9 +8804,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-oracle6-parallels",
-      "vm_name": "generic-oracle6-parallels",
-      "output_directory": "output/generic-oracle6-parallels",
+      "name": "generic-oracle6-parallels-x64",
+      "vm_name": "generic-oracle6-parallels-x64",
+      "output_directory": "output/generic-oracle6-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8866,9 +8866,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu2210-parallels",
-      "vm_name": "generic-ubuntu2210-parallels",
-      "output_directory": "output/generic-ubuntu2210-parallels",
+      "name": "generic-ubuntu2210-parallels-x64",
+      "vm_name": "generic-ubuntu2210-parallels-x64",
+      "output_directory": "output/generic-ubuntu2210-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -8943,9 +8943,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora37-parallels",
-      "vm_name": "generic-fedora37-parallels",
-      "output_directory": "output/generic-fedora37-parallels",
+      "name": "generic-fedora37-parallels-x64",
+      "vm_name": "generic-fedora37-parallels-x64",
+      "output_directory": "output/generic-fedora37-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -9022,9 +9022,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-fedora38-parallels",
-      "vm_name": "generic-fedora38-parallels",
-      "output_directory": "output/generic-fedora38-parallels",
+      "name": "generic-fedora38-parallels-x64",
+      "vm_name": "generic-fedora38-parallels-x64",
+      "output_directory": "output/generic-fedora38-parallels-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -9101,9 +9101,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine317-parallels",
-      "vm_name": "generic-alpine317-parallels",
-      "output_directory": "output/generic-alpine317-parallels",
+      "name": "generic-alpine317-parallels-x64",
+      "vm_name": "generic-alpine317-parallels-x64",
+      "output_directory": "output/generic-alpine317-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -9175,9 +9175,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-ubuntu2304-parallels",
-      "vm_name": "generic-ubuntu2304-parallels",
-      "output_directory": "output/generic-ubuntu2304-parallels",
+      "name": "generic-ubuntu2304-parallels-x64",
+      "vm_name": "generic-ubuntu2304-parallels-x64",
+      "output_directory": "output/generic-ubuntu2304-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -9252,9 +9252,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-debian12-parallels",
-      "vm_name": "generic-debian12-parallels",
-      "output_directory": "output/generic-debian12-parallels",
+      "name": "generic-debian12-parallels-x64",
+      "vm_name": "generic-debian12-parallels-x64",
+      "output_directory": "output/generic-debian12-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -9326,9 +9326,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-alpine318-parallels",
-      "vm_name": "generic-alpine318-parallels",
-      "output_directory": "output/generic-alpine318-parallels",
+      "name": "generic-alpine318-parallels-x64",
+      "vm_name": "generic-alpine318-parallels-x64",
+      "output_directory": "output/generic-alpine318-parallels-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -9400,9 +9400,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-devuan5-parallels",
-      "vm_name": "generic-devuan5-parallels",
-      "output_directory": "output/generic-devuan5-parallels",
+      "name": "generic-devuan5-parallels-x64",
+      "vm_name": "generic-devuan5-parallels-x64",
+      "output_directory": "output/generic-devuan5-parallels-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -9474,9 +9474,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-hardenedbsd-parallels",
-      "vm_name": "generic-hardenedbsd-parallels",
-      "output_directory": "output/generic-hardenedbsd-parallels",
+      "name": "generic-hardenedbsd-parallels-x64",
+      "vm_name": "generic-hardenedbsd-parallels-x64",
+      "output_directory": "output/generic-hardenedbsd-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -9556,9 +9556,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "generic-dragonflybsd-parallels",
-      "vm_name": "generic-dragonflybsd-parallels",
-      "output_directory": "output/generic-dragonflybsd-parallels",
+      "name": "generic-dragonflybsd-parallels-x64",
+      "vm_name": "generic-dragonflybsd-parallels-x64",
+      "output_directory": "output/generic-dragonflybsd-parallels-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [

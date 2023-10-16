@@ -14,7 +14,7 @@
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-hyperv"
+                "magma-developer-hyperv-x64"
             ]
         },
         {
@@ -40,7 +40,7 @@
             "start_retry_timeout": "45m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-hyperv"
+                "magma-developer-hyperv-x64"
             ]
         },
         {
@@ -62,10 +62,10 @@
     "builders": [
         {
             "type": "hyperv-iso",
-            "name": "magma-developer-hyperv",
-            "vm_name": "magma-developer-hyperv",
+            "name": "magma-developer-hyperv-x64",
+            "vm_name": "magma-developer-hyperv-x64",
             "temp_path": "output/",
-            "output_directory": "output/magma-developer-hyperv",
+            "output_directory": "output/magma-developer-hyperv-x64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -105,7 +105,7 @@
                     "tpl/lavabit/info.json"
                 ],
                 "only": [
-                    "magma-developer-hyperv"
+                    "magma-developer-hyperv-x64"
                 ]
             },
             {

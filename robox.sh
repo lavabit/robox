@@ -66,14 +66,14 @@ ROBOX_PROVIDERS="docker hyperv libvirt parallels virtualbox vmware"
 ROBOX_NAMESPACES="generic magma developer lineage"
 
 # The iso update functions.
-ROBOX_ISOS="all arch centos centos8s centos9s gentoo hardenedbsd"
+ROBOX_ISOS="all alpine arch centos centos8s centos9s gentoo hardenedbsd hardenedbsd13 hardenedbsd14"
 
 # The list of packer config files.
 ROBOX_FILES="packer-cache.json "\
-"magma-docker.json magma-hyperv.json magma-vmware.json magma-libvirt.json magma-virtualbox.json "\
-"generic-docker.json generic-hyperv.json generic-vmware.json generic-libvirt.json generic-libvirt-x32.json generic-parallels.json generic-virtualbox.json generic-virtualbox-x32.json "\
-"lineage-hyperv.json lineage-vmware.json lineage-libvirt.json lineage-virtualbox.json "\
-"developer-ova.json developer-hyperv.json developer-vmware.json developer-libvirt.json developer-virtualbox.json"
+"magma-docker-x64.json magma-hyperv-x64.json magma-vmware-x64.json magma-libvirt-x64.json magma-virtualbox-x64.json "\
+"generic-docker-x64.json generic-hyperv-x64.json generic-vmware-x64.json generic-libvirt-x64.json generic-libvirt-x32.json generic-parallels-x64.json generic-virtualbox-x64.json generic-virtualbox-x32.json "\
+"lineage-hyperv-x64.json lineage-vmware-x64.json lineage-libvirt-x64.json lineage-virtualbox-x64.json "\
+"developer-ova-x64.json developer-hyperv-x64.json developer-vmware-x64.json developer-libvirt-x64.json developer-virtualbox-x64.json"
 
 # Collect the list of ISO urls.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $ROBOX_FILES | awk -F'"' '{print $4}'`)
@@ -82,11 +82,11 @@ UNIQURLS=(`grep -E "iso_url|guest_additions_url" $ROBOX_FILES | awk -F'"' '{prin
 
 # Collect the list of box names.
 MAGMA_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "magma-" | sort --field-separator=- -k 3i -k 2.1,2.0`
-MAGMA_SPECIAL_BOXES="magma-hyperv magma-vmware magma-libvirt magma-virtualbox magma-docker "\
-"magma-centos-hyperv magma-centos-vmware magma-centos-libvirt magma-centos-virtualbox magma-centos-docker "\
-"magma-debian-hyperv magma-debian-vmware magma-debian-libvirt magma-debian-virtualbox "\
-"magma-fedora-hyperv magma-fedora-vmware magma-fedora-libvirt magma-fedora-virtualbox "\
-"magma-ubuntu-hyperv magma-ubuntu-vmware magma-ubuntu-libvirt magma-ubuntu-virtualbox "
+MAGMA_SPECIAL_BOXES="magma-hyperv-x64 magma-vmware-x64 magma-libvirt-x64 magma-virtualbox-x64 magma-docker-x64 "\
+"magma-centos-hyperv-x64 magma-centos-vmware-x64 magma-centos-libvirt-x64 magma-centos-virtualbox-x64 magma-centos-docker-x64 "\
+"magma-debian-hyperv-x64 magma-debian-vmware-x64 magma-debian-libvirt-x64 magma-debian-virtualbox-x64 "\
+"magma-fedora-hyperv-x64 magma-fedora-vmware-x64 magma-fedora-libvirt-x64 magma-fedora-virtualbox-x64 "\
+"magma-ubuntu-hyperv-x64 magma-ubuntu-vmware-x64 magma-ubuntu-libvirt-x64 magma-ubuntu-virtualbox-x64 "
 GENERIC_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic-" | sort --field-separator=- -k 3i -k 2.1,2.0`
 ROBOX_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic-" | sed "s/generic-/roboxes-/g"| sort --field-separator=- -k 3i -k 2.1,2.0`
 LINEAGE_BOXES=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep -E "lineage-" | sort --field-separator=- -k 1i,1.8 -k 3i -k 2i,2.4`
@@ -95,14 +95,14 @@ MAGMA_BOXES=`echo $MAGMA_SPECIAL_BOXES $MAGMA_BOXES | sed 's/ /\n/g' | sort -u -
 BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $LINEAGEOS_BOXES"
 
 # Collect the list of box tags.
-MAGMA_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | sort -u --field-separator=-`
+MAGMA_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova-x64" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" | sort -u --field-separator=-`
 MAGMA_SPECIAL_TAGS="lavabit/magma lavabit/magma-centos lavabit/magma-debian lavabit/magma-fedora lavabit/magma-ubuntu"
-ROBOX_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep -v "roboxes-x32" |sort -u --field-separator=-`
-ROBOX_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" | grep "roboxes-x32" |sort -u --field-separator=-`
-GENERIC_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | grep -v "generic-x32" | sort -u --field-separator=-`
-GENERIC_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)//g" | grep "generic-x32" | sort -u --field-separator=-`
-LINEAGE_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineage\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
-LINEAGEOS_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineageos\/lineage-/g" | sed "s/\(-hyperv\|-vmware\|-libvirt\|-parallels\|-virtualbox\|-docker\)\$//g" |  sort -u --field-separator=-`
+ROBOX_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" | grep -v "roboxes-x32" |sort -u --field-separator=-`
+ROBOX_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" | grep "roboxes-x32" |sort -u --field-separator=-`
+GENERIC_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)//g" | grep -v "generic-x32" | sort -u --field-separator=-`
+GENERIC_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)//g" | grep "generic-x32" | sort -u --field-separator=-`
+LINEAGE_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineage\/lineage-/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" |  sort -u --field-separator=-`
+LINEAGEOS_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineageos\/lineage-/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" |  sort -u --field-separator=-`
 MAGMA_TAGS=`echo $MAGMA_SPECIAL_TAGS $MAGMA_TAGS | sed 's/ /\n/g' | sort -u --field-separator=-`
 TAGS="$GENERIC_TAGS $GENERIC_X32_TAGS $ROBOX_TAGS $ROBOX_X32_TAGS $MAGMA_TAGS $LINEAGE_TAGS $LINEAGEOS_TAGS"
 
@@ -944,7 +944,7 @@ function iso() {
   elif [ "$1" == "alpine" ]; then
 
     # Build a loop with all of the Alpine ISO names. 
-    cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"alpine\")) | .name" | grep -v alpine35-hyperv | while read NAME; do 
+    cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"alpine\")) | .name" | grep -v alpine35-hyperv-x64 | while read NAME; do 
       
       ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"$NAME\") | .iso_url" 2>/dev/null`
       ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"$NAME\") | .iso_checksum" 2>/dev/null`
@@ -977,7 +977,7 @@ function iso() {
   elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
     iso hardenedbsd13
     iso hardenedbsd14
-  elif [ "$1" == "stream" ] || [ "$1" == "streams" ]; then
+  elif [ "$1" == "centos" ] || [ "$1" == "stream" ] || [ "$1" == "streams" ]; then
     iso centos8s
     iso centos9s
   elif [ "$1" == "all" ]; then
@@ -1204,69 +1204,69 @@ function box() {
 
   if [[ $OS == "Windows_NT" ]]; then
 
-      export PACKER_LOG_PATH="$BASE/logs/magma-hyperv-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-hyperv.json
-      export PACKER_LOG_PATH="$BASE/logs/generic-hyperv-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-hyperv.json
-      export PACKER_LOG_PATH="$BASE/logs/lineage-hyperv-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-hyperv.json
-      export PACKER_LOG_PATH="$BASE/logs/developer-hyperv-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-hyperv.json
+      export PACKER_LOG_PATH="$BASE/logs/magma-hyperv-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-hyperv-x64.json
+      export PACKER_LOG_PATH="$BASE/logs/generic-hyperv-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-hyperv-x64.json
+      export PACKER_LOG_PATH="$BASE/logs/lineage-hyperv-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-hyperv-x64.json
+      export PACKER_LOG_PATH="$BASE/logs/developer-hyperv-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*hyperv.*$ ]] && packer.exe build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-hyperv-x64.json
 
   fi
 
   if [[ "$(uname)" == "Darwin" ]]; then
 
-      export PACKER_LOG_PATH="$BASE/logs/generic-parallels-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*parallels.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-parallels.json
+      export PACKER_LOG_PATH="$BASE/logs/generic-parallels-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*parallels.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-parallels-x64.json
 
   fi
 
   if [[ "$(uname)" == "Linux" ]]; then
 
-      export PACKER_LOG_PATH="$BASE/logs/magma-docker-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker.json; container-registry-logout)
-      export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-libvirt.json
+      export PACKER_LOG_PATH="$BASE/logs/magma-docker-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker-x64.json; container-registry-logout)
+      export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-libvirt-x64.json
 
-      export PACKER_LOG_PATH="$BASE/logs/generic-docker-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker.json; container-registry-logout)
+      export PACKER_LOG_PATH="$BASE/logs/generic-docker-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker-x64.json; container-registry-logout)
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*x32-libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x32.json
-      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt-x32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x32.json
+      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x64.json
 
-      export PACKER_LOG_PATH="$BASE/logs/developer-ova-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-ova.json
-      export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-libvirt.json
+      export PACKER_LOG_PATH="$BASE/logs/developer-ova-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-ova-x64.json
+      export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-libvirt-x64.json
 
-      export PACKER_LOG_PATH="$BASE/logs/lineage-libvirt-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-libvirt.json
+      export PACKER_LOG_PATH="$BASE/logs/lineage-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-libvirt-x64.json
 
   fi
 
-  export PACKER_LOG_PATH="$BASE/logs/magma-vmware-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-vmware.json
-  export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-virtualbox.json
+  export PACKER_LOG_PATH="$BASE/logs/magma-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-vmware-x64.json
+  export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-virtualbox-x64.json
 
-  export PACKER_LOG_PATH="$BASE/logs/generic-vmware-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-vmware.json
+  export PACKER_LOG_PATH="$BASE/logs/generic-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-vmware-x64.json
   export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*x32-virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox-x32.json
-  export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox.json
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox-x32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox-x32.json
+  export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox-x64.json
 
-  export PACKER_LOG_PATH="$BASE/logs/developer-vmware-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-vmware.json
-  export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-virtualbox.json
+  export PACKER_LOG_PATH="$BASE/logs/developer-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-vmware-x64.json
+  export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-virtualbox-x64.json
 
-  export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-vmware.json
-  export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-virtualbox.json
+  export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-vmware-x64.json
+  export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-virtualbox-x64.json
 
   return 0
 }
@@ -1330,28 +1330,28 @@ function sums() {
 
 function validate() {
   verify_json packer-cache && printf "The packer-cache.json file is valid.\n"
-  verify_json magma-docker && printf "The magma-docker.json file is valid.\n"
-  verify_json magma-hyperv && printf "The magma-hyperv.json file is valid.\n"
-  verify_json magma-vmware && printf "The magma-vmware.json file is valid.\n"
-  verify_json magma-libvirt && printf "The magma-libvirt.json file is valid.\n"
-  verify_json magma-virtualbox && printf "The magma-virtualbox.json file is valid.\n"
-  verify_json generic-docker && printf "The generic-docker.json file is valid.\n"
-  verify_json generic-hyperv && printf "The generic-hyperv.json file is valid.\n"
-  verify_json generic-vmware && printf "The generic-vmware.json file is valid.\n"
-  verify_json generic-libvirt && printf "The generic-libvirt.json file is valid.\n"
+  verify_json magma-docker-x64 && printf "The magma-docker-x64.json file is valid.\n"
+  verify_json magma-hyperv-x64 && printf "The magma-hyperv-x64.json file is valid.\n"
+  verify_json magma-vmware-x64 && printf "The magma-vmware-x64.json file is valid.\n"
+  verify_json magma-libvirt-x64 && printf "The magma-libvirt-x64.json file is valid.\n"
+  verify_json magma-virtualbox-x64 && printf "The magma-virtualbox-x64.json file is valid.\n"
+  verify_json generic-docker-x64 && printf "The generic-docker-x64.json file is valid.\n"
+  verify_json generic-hyperv-x64 && printf "The generic-hyperv-x64.json file is valid.\n"
+  verify_json generic-vmware-x64 && printf "The generic-vmware-x64.json file is valid.\n"
+  verify_json generic-libvirt-x64 && printf "The generic-libvirt-x64.json file is valid.\n"
   verify_json generic-libvirt-x32 && printf "The generic-libvirt-x32.json file is valid.\n"
-  verify_json generic-parallels && printf "The generic-parallels.json file is valid.\n"
-  verify_json generic-virtualbox && printf "The generic-virtualbox.json file is valid.\n"
+  verify_json generic-parallels-x64 && printf "The generic-parallels-x64.json file is valid.\n"
+  verify_json generic-virtualbox-x64 && printf "The generic-virtualbox-x64.json file is valid.\n"
   verify_json generic-virtualbox-x32 && printf "The generic-virtualbox-x32.json file is valid.\n"
-  verify_json developer-ova && printf "The developer-ova.json file is valid.\n"
-  verify_json developer-hyperv && printf "The developer-hyperv.json file is valid.\n"
-  verify_json developer-vmware && printf "The developer-vmware.json file is valid.\n"
-  verify_json developer-libvirt && printf "The developer-libvirt.json file is valid.\n"
-  verify_json developer-virtualbox && printf "The developer-virtualbox.json file is valid.\n"
-  verify_json lineage-hyperv && printf "The lineage-hyperv.json file is valid.\n"
-  verify_json lineage-vmware && printf "The lineage-vmware.json file is valid.\n"
-  verify_json lineage-libvirt && printf "The lineage-libvirt.json file is valid.\n"
-  verify_json lineage-virtualbox && printf "The lineage-virtualbox.json file is valid.\n"
+  verify_json developer-ova-x64 && printf "The developer-ova-x64.json file is valid.\n"
+  verify_json developer-hyperv-x64 && printf "The developer-hyperv-x64.json file is valid.\n"
+  verify_json developer-vmware-x64 && printf "The developer-vmware-x64.json file is valid.\n"
+  verify_json developer-libvirt-x64 && printf "The developer-libvirt-x64.json file is valid.\n"
+  verify_json developer-virtualbox-x64 && printf "The developer-virtualbox-x64.json file is valid.\n"
+  verify_json lineage-hyperv-x64 && printf "The lineage-hyperv-x64.json file is valid.\n"
+  verify_json lineage-vmware-x64 && printf "The lineage-vmware-x64.json file is valid.\n"
+  verify_json lineage-libvirt-x64 && printf "The lineage-libvirt-x64.json file is valid.\n"
+  verify_json lineage-virtualbox-x64 && printf "The lineage-virtualbox-x64.json file is valid.\n"
 }
 
 function missing() {
@@ -1361,8 +1361,8 @@ function missing() {
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
         # With OVA boxes we need to parse the box name and convert it to a filename.
-        if [[ "${LIST[$i]}" =~ ^.*-ova$ ]]; then
-          FILENAME=`echo "${LIST[$i]}" | sed "s/\([a-z]*-[a-z0-9-]*\)-ova/\1-${VERSION}.ova/g"`
+        if [[ "${LIST[$i]}" =~ ^.*-ova-x64$ ]]; then
+          FILENAME=`echo "${LIST[$i]}" | sed "s/\([a-z]*-[a-z0-9-]*\)-ova-x64/\1-${VERSION}.ova/g"`
           if [ ! -f $BASE/output/"$FILENAME" ]; then
             let MISSING+=1
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]}\n"; tput sgr0
@@ -1370,7 +1370,7 @@ function missing() {
             printf "Box  +  "; tput setaf 2; printf "${LIST[$i]}\n"; tput sgr0
           fi
         # With Docker boxes we need to look for a tarball and a box file.
-        elif [[ "${LIST[$i]}" =~ ^.*-docker$ ]]; then
+        elif [[ "${LIST[$i]}" =~ ^.*-docker-x64$ ]]; then
           if [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.tar.gz" ] || [ ! -f $BASE/output/"${LIST[$i]}-${VERSION}.box" ]; then
             let MISSING+=1
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]}\n"; tput sgr0
@@ -1970,7 +1970,7 @@ function distclean() {
     virsh --connect=qemu:///system vol-list default | awk -F' ' '{print $2}' | grep -vE "^\$|^Path\$" | while read VOLNAME ; do
       if [ "$(echo $VOLNAME | grep -E '\/(generic|roboxes|lavabit|lineage|lineageos)\-VAGRANTSLASH\-.*\_box\.img$')" ]; then
         virsh --connect=qemu:///system vol-delete --pool default $VOLNAME &> /dev/null
-      elif [ "$(echo $VOLNAME | grep -E '\/(generic|roboxes|lavabit\-magma|lineage|lineageos)\-.*\-libvirt\_default\.img')" ]; then
+      elif [ "$(echo $VOLNAME | grep -E '\/(generic|roboxes|lavabit\-magma|lineage|lineageos)\-.*\-libvirt-x64\_default\.img')" ]; then
         virsh --connect=qemu:///system vol-delete --pool default $VOLNAME &> /dev/null
       fi
     done
@@ -2023,24 +2023,24 @@ function distclean() {
   if [ -f /usr/lib/systemd/system/vboxdrv.service ]; then sudo systemctl restart vboxdrv.service ; fi
   if [ -f /usr/lib/systemd/system/libvirtd.service ]; then sudo systemctl restart libvirtd.service ; fi
   if [ -f /usr/lib/systemd/system/docker.service ]; then sudo systemctl restart docker.service ; fi
-  if [ -f /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility ]; then
-    sudo systemctl stop vagrant-vmware-utility.service &> /dev/null
-    sudo /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility service uninstall &> /dev/null
+  if [ -f /opt/vagrant-vmware-x64-desktop/bin/vagrant-vmware-x64-utility ]; then
+    sudo systemctl stop vagrant-vmware-x64-utility.service &> /dev/null
+    sudo /opt/vagrant-vmware-x64-desktop/bin/vagrant-vmware-x64-utility service uninstall &> /dev/null
 
-    [ -f /opt/vagrant-vmware-desktop/settings/nat.json ] && sudo rm -f /opt/vagrant-vmware-desktop/settings/nat.json
-    [ -f /opt/vagrant-vmware-desktop/settings/portforwarding.json ] && sudo rm -f /opt/vagrant-vmware-desktop/settings/portforwarding.json
-    [ -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.client.crt ] && sudo rm -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.client.crt
-    [ -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.client.key ] && sudo rm -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.client.key
-    [ -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.crt ] && sudo rm -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.crt
-    [ -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.key ] && sudo rm -f /opt/vagrant-vmware-desktop/certificates/vagrant-utility.key
+    [ -f /opt/vagrant-vmware-x64-desktop/settings/nat.json ] && sudo rm -f /opt/vagrant-vmware-x64-desktop/settings/nat.json
+    [ -f /opt/vagrant-vmware-x64-desktop/settings/portforwarding.json ] && sudo rm -f /opt/vagrant-vmware-x64-desktop/settings/portforwarding.json
+    [ -f /opt/vagrant-vmware-x64-desktop/certificates/vagrant-utility.client.crt ] && sudo rm -f /opt/vagrant-vmware-x64-desktop/certificates/vagrant-utility.client.crt
+    [ -f /opt/vagrant-vmware-x64-desktop/certificates/vagrant-utility.client.key ] && sudo rm -f /opt/vagrant-vmware-x64-desktop/certificates/vagrant-utility.client.key
+    [ -f /opt/vagrant-vmware-x64-desktop/certificates/vagrant-utility.crt ] && sudo rm -f /opt/vagrant-vmware-x64-desktop/certificates/vagrant-utility.crt
+    [ -f /opt/vagrant-vmware-x64-desktop/certificates/vagrant-utility.key ] && sudo rm -f /opt/vagrant-vmware-x64-desktop/certificates/vagrant-utility.key
 
-    sudo /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility certificate generate &> /dev/null
-    sudo /opt/vagrant-vmware-desktop/bin/vagrant-vmware-utility service install &> /dev/null
-    sudo systemctl restart vagrant-vmware-utility.service &> /dev/null
-  elif [ -f /etc/systemd/system/vagrant-vmware-utility.service ]; then
-    sudo systemctl restart vagrant-vmware-utility.service &> /dev/null
-  elif [ -f /etc/init.d/vagrant-vmware-utility ]; then
-    sudo /etc/init.d/vagrant-vmware-utility restart &> /dev/null
+    sudo /opt/vagrant-vmware-x64-desktop/bin/vagrant-vmware-x64-utility certificate generate &> /dev/null
+    sudo /opt/vagrant-vmware-x64-desktop/bin/vagrant-vmware-x64-utility service install &> /dev/null
+    sudo systemctl restart vagrant-vmware-x64-utility.service &> /dev/null
+  elif [ -f /etc/systemd/system/vagrant-vmware-x64-utility.service ]; then
+    sudo systemctl restart vagrant-vmware-x64-utility.service &> /dev/null
+  elif [ -f /etc/init.d/vagrant-vmware-x64-utility ]; then
+    sudo /etc/init.d/vagrant-vmware-x64-utility restart &> /dev/null
   fi
 
 }
@@ -2191,7 +2191,7 @@ function container-registry-logout() {
   [ ! -f $REGISTRY_AUTH_FILE ] && printf '{"auths":{}}' > $REGISTRY_AUTH_FILE
   [ "`wc -c $REGISTRY_AUTH_FILE |  awk -F' ' '{print $1}'`" == "0" ] && printf '{"auths":{}}' > $REGISTRY_AUTH_FILE
 
-  RUNNING=`ps -ef | grep --invert grep | grep --count --extended-regexp "packer build.*generic-docker.json|packer build.*magma-docker.json"`
+  RUNNING=`ps -ef | grep --invert grep | grep --count --extended-regexp "packer build.*generic-docker-x64.json|packer build.*magma-docker-x64.json"`
 
   if [ $RUNNING == 0 ]; then
     ${DOCKER} logout registry.docker.com &> /dev/null
@@ -2209,69 +2209,69 @@ function container-registry-logout() {
 
 function magma() {
   if [[ $OS == "Windows_NT" ]]; then
-    build magma-hyperv
+    build magma-hyperv-x64
   else
-    build magma-vmware
-    build magma-libvirt
-    build magma-virtualbox
+    build magma-vmware-x64
+    build magma-libvirt-x64
+    build magma-virtualbox-x64
 
-    container-registry-login ; build magma-docker; container-registry-logout
+    container-registry-login ; build magma-docker-x64; container-registry-logout
   fi
 }
 
 function generic() {
   if [[ $OS == "Windows_NT" ]]; then
-    build generic-hyperv
+    build generic-hyperv-x64
   elif [[ "$(uname)" == "Darwin" ]]; then
-    build generic-parallels
+    build generic-parallels-x64
   else
-    build generic-vmware
-    build generic-libvirt
+    build generic-vmware-x64
+    build generic-libvirt-x64
     build generic-libvirt-x32
-    build generic-virtualbox
+    build generic-virtualbox-x64
     build generic-virtualbox-x32
 
-    container-registry-login ; build generic-docker; container-registry-logout
+    container-registry-login ; build generic-docker-x64; container-registry-logout
   fi
 }
 
 function lineage() {
   if [[ $OS == "Windows_NT" ]]; then
-    build lineage-hyperv
+    build lineage-hyperv-x64
   else
-    build lineage-vmware
-    build lineage-libvirt
-    build lineage-virtualbox
+    build lineage-vmware-x64
+    build lineage-libvirt-x64
+    build lineage-virtualbox-x64
   fi
 }
 
 function developer() {
   if [[ $OS == "Windows_NT" ]]; then
-    build developer-hyperv
+    build developer-hyperv-x64
   else
-    build developer-ova
-    build developer-vmware
-    build developer-libvirt
-    build developer-virtualbox
+    build developer-ova-x64
+    build developer-vmware-x64
+    build developer-libvirt-x64
+    build developer-virtualbox-x64
   fi
 }
 
 function ova() {
-  verify_json developer-ova
+  verify_json developer-ova-x64
 
-  build developer-ova
+  build developer-ova-x64
 }
 
 function vmware() {
-  verify_json generic-vmware
-  verify_json magma-vmware
-  verify_json developer-vmware
-  verify_json lineage-vmware
+  verify_json generic-vmware-x64
+  verify_json magma-vmware-x64
+  verify_json developer-vmware-x64
+  verify_json lineage-vmware-x64
 
-  build generic-vmware
-  build magma-vmware
-  build developer-vmware
-  build lineage-vmware
+  build generic-vmware-x64
+  build magma-vmware-x64
+  build developer-vmware-x64
+  build lineage-vmware-x64
 }
 
 function hyperv() {
@@ -2282,44 +2282,44 @@ function hyperv() {
 
     LIST=($BOXES)
 
-    verify_json generic-hyperv
-    verify_json magma-hyperv
-    verify_json developer-hyperv
-    verify_json lineage-hyperv
+    verify_json generic-hyperv-x64
+    verify_json magma-hyperv-x64
+    verify_json developer-hyperv-x64
+    verify_json lineage-hyperv-x64
 
     # Build the generic boxes first.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^generic-[a-z0-9]*-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv.json
+      if [[ "${LIST[$i]}" =~ ^generic-[a-z0-9]*-hyperv-x64$ ]]; then
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" generic-hyperv-x64.json
       fi
     done
 
     # Build the magma boxes second.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^magma-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
+      if [[ "${LIST[$i]}" =~ ^magma-hyperv-x64$ ]]; then
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv-x64.json
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^magma-[a-z0-9]*-hyperv$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv.json
+      if [[ "${LIST[$i]}" =~ ^magma-[a-z0-9]*-hyperv-x64$ ]] && [[ "${LIST[$i]}" != ^magma-developer-hyperv-x64$ ]]; then
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" magma-hyperv-x64.json
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^magma-developer-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv.json
+      if [[ "${LIST[$i]}" =~ ^magma-developer-hyperv-x64$ ]]; then
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" developer-hyperv-x64.json
       fi
     done
 
     # Build the Lineage boxes fourth.
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
+      if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-hyperv-x64$ ]]; then
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv-x64.json
       fi
     done
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
-      if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z0-9]*-hyperv$ ]]; then
-        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv.json
+      if [[ "${LIST[$i]}" =~ ^(lineage|lineageos)-[a-z0-9]*-hyperv-x64$ ]]; then
+        packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" lineage-hyperv-x64.json
       fi
     done
 
@@ -2329,17 +2329,17 @@ function hyperv() {
 }
 
 function libvirt() {
-  verify_json generic-libvirt
+  verify_json generic-libvirt-x64
   verify_json generic-libvirt-x32
-  verify_json magma-libvirt
-  verify_json developer-libvirt
-  verify_json lineage-libvirt
+  verify_json magma-libvirt-x64
+  verify_json developer-libvirt-x64
+  verify_json lineage-libvirt-x64
 
-  build generic-libvirt
+  build generic-libvirt-x64
   build generic-libvirt-x32
-  build magma-libvirt
-  build developer-libvirt
-  build lineage-libvirt
+  build magma-libvirt-x64
+  build developer-libvirt-x64
+  build lineage-libvirt-x64
 }
 
 function parallels() {
@@ -2357,7 +2357,7 @@ function parallels() {
 
     LIST=($BOXES)
 
-    verify_json generic-parallels
+    verify_json generic-parallels-x64
 
     # Keep the system awake so it can finish building the boxes.
     if [ -f /usr/bin/caffeinate ]; then
@@ -2368,7 +2368,7 @@ function parallels() {
       # Ensure there is enough disk space.
       if [[ `df -m . | tail -1 |  awk -F' ' '{print $4}'` -lt 8192 ]]; then
         tput setaf 1; tput bold; printf "\n\nSkipping ${LIST[$i]} because the system is low on disk space.\n\n"; tput sgr0
-      elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z0-9]*-parallels$ ]]; then
+      elif [[ "${LIST[$i]}" =~ ^(generic|magma)-[a-z0-9]*-parallels-x64$ ]]; then
 
         # Enable logging and ensure the log path exists.
         export PACKER_LOG="1"
@@ -2376,10 +2376,10 @@ function parallels() {
 
         # Build the box. If the first attempt fails, try building the box a second time.
         if [ ! -f "$BASE/output/${LIST[$i]}-$VERSION.box" ]; then
-          PACKER_LOG_PATH="$BASE/logs/generic-parallels-log-`date +'%Y%m%d.%H.%M.%S'`.txt" \
-            packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" "$BASE/generic-parallels.json" \
-            || (PACKER_LOG_PATH="$BASE/logs/generic-parallels-log-`date +'%Y%m%d.%H.%M.%S'`.txt" \
-            packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" "$BASE/generic-parallels.json")
+          PACKER_LOG_PATH="$BASE/logs/generic-parallels-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt" \
+            packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" "$BASE/generic-parallels-x64.json" \
+            || (PACKER_LOG_PATH="$BASE/logs/generic-parallels-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt" \
+            packer build -parallel-builds=$PACKER_MAX_PROCS -except="${EXCEPTIONS}" -only="${LIST[$i]}" "$BASE/generic-parallels-x64.json")
         fi
       fi
     done
@@ -2390,17 +2390,17 @@ function parallels() {
 }
 
 function virtualbox() {
-  verify_json generic-virtualbox
+  verify_json generic-virtualbox-x64
   verify_json generic-virtualbox-x32
-  verify_json magma-virtualbox
-  verify_json developer-virtualbox
-  verify_json lineage-virtualbox
+  verify_json magma-virtualbox-x64
+  verify_json developer-virtualbox-x64
+  verify_json lineage-virtualbox-x64
 
-  build generic-virtualbox
+  build generic-virtualbox-x64
   build generic-virtualbox-x32
-  build magma-virtualbox
-  build developer-virtualbox
-  build lineage-virtualbox
+  build magma-virtualbox-x64
+  build developer-virtualbox-x64
+  build lineage-virtualbox-x64
 }
 
 function builder() {
@@ -2449,7 +2449,7 @@ elif [[ $1 == "parallels" ]]; then parallels
 elif [[ $1 == "virtualbox" ]]; then virtualbox
 
 # Docker is a command, so to avoid name space issues, we use an inline function instead calling a function called "docker."
-elif [[ $1 == "docker" ]]; then verify_json generic-docker ; verify_json magma-docker ; container-registry-login ; build generic-docker ; build magma-docker ; container-registry-logout
+elif [[ $1 == "docker" ]]; then verify_json generic-docker-x64 ; verify_json magma-docker-x64 ; container-registry-login ; build generic-docker-x64 ; build magma-docker-x64 ; container-registry-logout
 
 # The helper functions.
 elif [[ $1 == "isos" ]]; then isos
@@ -2471,30 +2471,30 @@ elif [[ $1 == "lineage" ]]; then lineage
 elif [[ $1 == "developer" ]]; then developer
 
 # The file builders.
-elif [[ $1 == "magma-vmware" || $1 == "magma-vmware.json" ]]; then build magma-vmware
-elif [[ $1 == "magma-hyperv" || $1 == "magma-hyperv.json" ]]; then build magma-hyperv
-elif [[ $1 == "magma-libvirt" || $1 == "magma-libvirt.json" ]]; then build magma-libvirt
-elif [[ $1 == "magma-virtualbox" || $1 == "magma-virtualbox.json" ]]; then build magma-virtualbox
-elif [[ $1 == "magma-docker" || $1 == "magma-docker.json" ]]; then build magma-docker
+elif [[ $1 == "magma-vmware-x64" || $1 == "magma-vmware-x64.json" ]]; then build magma-vmware-x64
+elif [[ $1 == "magma-hyperv-x64" || $1 == "magma-hyperv-x64.json" ]]; then build magma-hyperv-x64
+elif [[ $1 == "magma-libvirt-x64" || $1 == "magma-libvirt-x64.json" ]]; then build magma-libvirt-x64
+elif [[ $1 == "magma-virtualbox-x64" || $1 == "magma-virtualbox-x64.json" ]]; then build magma-virtualbox-x64
+elif [[ $1 == "magma-docker-x64" || $1 == "magma-docker-x64.json" ]]; then build magma-docker-x64
 
-elif [[ $1 == "developer-vmware" || $1 == "developer-vmware.json" ]]; then build developer-vmware
-elif [[ $1 == "developer-hyperv" || $1 == "developer-hyperv.json" ]]; then build developer-hyperv
-elif [[ $1 == "developer-libvirt" || $1 == "developer-libvirt.json" ]]; then build developer-libvirt
-elif [[ $1 == "developer-virtualbox" || $1 == "developer-virtualbox.json" ]]; then build developer-virtualbox
+elif [[ $1 == "developer-vmware-x64" || $1 == "developer-vmware-x64.json" ]]; then build developer-vmware-x64
+elif [[ $1 == "developer-hyperv-x64" || $1 == "developer-hyperv-x64.json" ]]; then build developer-hyperv-x64
+elif [[ $1 == "developer-libvirt-x64" || $1 == "developer-libvirt-x64.json" ]]; then build developer-libvirt-x64
+elif [[ $1 == "developer-virtualbox-x64" || $1 == "developer-virtualbox-x64.json" ]]; then build developer-virtualbox-x64
 
-elif [[ $1 == "generic-vmware" || $1 == "generic-vmware.json" ]]; then build generic-vmware
-elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv.json" ]]; then build generic-hyperv
-elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt.json" ]]; then build generic-libvirt
+elif [[ $1 == "generic-vmware-x64" || $1 == "generic-vmware-x64.json" ]]; then build generic-vmware-x64
+elif [[ $1 == "generic-hyperv-x64" || $1 == "generic-hyperv-x64.json" ]]; then build generic-hyperv-x64
+elif [[ $1 == "generic-libvirt-x64" || $1 == "generic-libvirt-x64.json" ]]; then build generic-libvirt-x64
 elif [[ $1 == "generic-libvirt-x32" || $1 == "generic-libvirt-x32.json" ]]; then build generic-libvirt-x32
-elif [[ $1 == "generic-parallels" || $1 == "generic-parallels.json" ]]; then build generic-parallels
-elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox.json" ]]; then build generic-virtualbox
+elif [[ $1 == "generic-parallels-x64" || $1 == "generic-parallels-x64.json" ]]; then build generic-parallels-x64
+elif [[ $1 == "generic-virtualbox-x64" || $1 == "generic-virtualbox-x64.json" ]]; then build generic-virtualbox-x64
 elif [[ $1 == "generic-virtualbox-x32" || $1 == "generic-virtualbox-x32.json" ]]; then build generic-virtualbox-x32
-elif [[ $1 == "generic-docker" || $1 == "generic-docker.json" ]]; then build generic-docker
+elif [[ $1 == "generic-docker-x64" || $1 == "generic-docker-x64.json" ]]; then build generic-docker-x64
 
-elif [[ $1 == "lineage-vmware" || $1 == "lineage-vmware.json" ]]; then build lineage-vmware
-elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv.json" ]]; then build lineage-hyperv
-elif [[ $1 == "lineage-libvirt" || $1 == "lineage-libvirt.json" ]]; then build lineage-libvirt
-elif [[ $1 == "lineage-virtualbox" || $1 == "lineage-virtualbox.json" ]]; then build lineage-virtualbox
+elif [[ $1 == "lineage-vmware-x64" || $1 == "lineage-vmware-x64.json" ]]; then build lineage-vmware-x64
+elif [[ $1 == "lineage-hyperv-x64" || $1 == "lineage-hyperv-x64.json" ]]; then build lineage-hyperv-x64
+elif [[ $1 == "lineage-libvirt-x64" || $1 == "lineage-libvirt-x64.json" ]]; then build lineage-libvirt-x64
+elif [[ $1 == "lineage-virtualbox-x64" || $1 == "lineage-virtualbox-x64.json" ]]; then build lineage-virtualbox-x64
 
 # Build a specific box.
 elif [[ $1 == "box" ]]; then box $2

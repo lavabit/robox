@@ -13,7 +13,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-ova"
+                "magma-developer-ova-x64"
             ]
         },
         {
@@ -38,7 +38,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-ova"
+                "magma-developer-ova-x64"
             ]
         },
         {
@@ -59,10 +59,10 @@
     "builders": [
         {
             "type": "vmware-iso",
-            "name": "magma-developer-ova",
-            "vm_name": "magma-developer",
-            "vmdk_name": "magma-developer",
-            "output_directory": "output/magma-developer-ova",
+            "name": "magma-developer-ova-x64",
+            "vm_name": "magma-developer-ova-x64",
+            "vmdk_name": "magma-developer-ova-x64",
+            "output_directory": "output/magma-developer-ova-x64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -103,11 +103,11 @@
             {
                 "type": "shell-local",
                 "inline": [
-                    "ovftool --diskMode=thin --compress=9 --name=\"magma.local\" --prop:vendor=\"Lavabit\" --prop:vendorUrl=\"https://lavabit.com\" --prop:product=\"magma.local\" --prop:productUrl=\"https://lavabit.com\" --prop:version=\"{{user `box_version`}}\" --prop:fullVersion=\"{{user `box_version`}}\" --annotation=\"The magma encrypted mail daemon desktop development environment.\" \"output/magma-developer-ova/magma-developer.vmx\" \"output/magma-developer-{{user `box_version`}}.ova\"",
-                    "rm --recursive --force  \"output/magma-developer-ova/\""
+                    "ovftool --diskMode=thin --compress=9 --name=\"magma.local\" --prop:vendor=\"Lavabit\" --prop:vendorUrl=\"https://lavabit.com\" --prop:product=\"magma.local\" --prop:productUrl=\"https://lavabit.com\" --prop:version=\"{{user `box_version`}}\" --prop:fullVersion=\"{{user `box_version`}}\" --annotation=\"The magma encrypted mail daemon desktop development environment.\" \"output/magma-developer-ova-x64/magma-developer.vmx\" \"output/magma-developer-{{user `box_version`}}.ova\"",
+                    "rm --recursive --force  \"output/magma-developer-ova-x64/\""
                 ],
                 "only": [
-                    "magma-developer-ova"
+                    "magma-developer-ova-x64"
                 ]
             }
         ]

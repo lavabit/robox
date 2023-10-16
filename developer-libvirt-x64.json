@@ -14,7 +14,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-libvirt"
+                "magma-developer-libvirt-x64"
             ]
         },
         {
@@ -40,7 +40,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-libvirt"
+                "magma-developer-libvirt-x64"
             ]
         },
         {
@@ -62,9 +62,9 @@
     "builders": [
         {
             "type": "qemu",
-            "name": "magma-developer-libvirt",
-            "vm_name": "magma-developer-libvirt",
-            "output_directory": "output/magma-developer-libvirt",
+            "name": "magma-developer-libvirt-x64",
+            "vm_name": "magma-developer-libvirt-x64",
+            "output_directory": "output/magma-developer-libvirt-x64",
             "qemu_binary": "qemu-system-x86_64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
@@ -105,7 +105,7 @@
                     "tpl/lavabit/info.json"
                 ],
                 "only": [
-                    "magma-developer-libvirt"
+                    "magma-developer-libvirt-x64"
                 ]
             },
             {

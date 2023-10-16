@@ -14,7 +14,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-vmware"
+                "magma-developer-vmware-x64"
             ]
         },
         {
@@ -40,7 +40,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "magma-developer-vmware"
+                "magma-developer-vmware-x64"
             ]
         },
         {
@@ -62,10 +62,10 @@
     "builders": [
         {
             "type": "vmware-iso",
-            "name": "magma-developer-vmware",
-            "vm_name": "magma-developer-vmware",
-            "vmdk_name": "magma-developer-vmware",
-            "output_directory": "output/magma-developer-vmware",
+            "name": "magma-developer-vmware-x64",
+            "vm_name": "magma-developer-vmware-x64",
+            "vmdk_name": "magma-developer-vmware-x64",
+            "output_directory": "output/magma-developer-vmware-x64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -113,7 +113,7 @@
                     "tpl/lavabit/info.json"
                 ],
                 "only": [
-                    "magma-developer-vmware"
+                    "magma-developer-vmware-x64"
                 ]
             },
             {

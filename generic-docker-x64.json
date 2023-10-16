@@ -20,7 +20,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos6-docker"
+                "generic-centos6-docker-x64"
             ]
         },
         {
@@ -36,7 +36,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos6-docker"
+                "generic-centos6-docker-x64"
             ]
         },
         {
@@ -52,7 +52,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos7-docker"
+                "generic-centos7-docker-x64"
             ]
         },
         {
@@ -69,7 +69,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos7-docker"
+                "generic-centos7-docker-x64"
             ]
         },
         {
@@ -85,7 +85,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos8-docker"
+                "generic-centos8-docker-x64"
             ]
         },
         {
@@ -101,7 +101,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos8-docker"
+                "generic-centos8-docker-x64"
             ]
         },
         {
@@ -117,7 +117,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rhel6-docker"
+            "generic-rhel6-docker-x64"
           ]
         },
         {
@@ -135,7 +135,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rhel6-docker"
+            "generic-rhel6-docker-x64"
           ]
         },
         {
@@ -151,7 +151,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rhel7-docker"
+            "generic-rhel7-docker-x64"
           ]
         },
         {
@@ -169,7 +169,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rhel7-docker"
+            "generic-rhel7-docker-x64"
           ]
         },
         {
@@ -185,7 +185,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rhel8-docker"
+            "generic-rhel8-docker-x64"
           ]
         },
         {
@@ -203,7 +203,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rhel8-docker"
+            "generic-rhel8-docker-x64"
           ]
         },
         {
@@ -219,7 +219,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rhel9-docker"
+            "generic-rhel9-docker-x64"
           ]
         },
         {
@@ -237,7 +237,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rhel9-docker"
+            "generic-rhel9-docker-x64"
           ]
         },
         {
@@ -251,7 +251,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-oracle7-docker"
+            "generic-oracle7-docker-x64"
           ]
         },
         {
@@ -267,7 +267,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-oracle7-docker"
+            "generic-oracle7-docker-x64"
           ]
         },
         {
@@ -281,7 +281,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-oracle8-docker"
+            "generic-oracle8-docker-x64"
           ]
         },
         {
@@ -297,7 +297,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-oracle8-docker"
+            "generic-oracle8-docker-x64"
           ]
         },
         {
@@ -311,7 +311,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-oracle9-docker"
+            "generic-oracle9-docker-x64"
           ]
         },
         {
@@ -327,7 +327,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-oracle9-docker"
+            "generic-oracle9-docker-x64"
           ]
         },
         {
@@ -343,7 +343,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-alma8-docker"
+            "generic-alma8-docker-x64"
           ]
         },
         {
@@ -361,7 +361,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-alma8-docker"
+            "generic-alma8-docker-x64"
           ]
         },
         {
@@ -377,7 +377,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-alma9-docker"
+            "generic-alma9-docker-x64"
           ]
         },
         {
@@ -395,7 +395,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-alma9-docker"
+            "generic-alma9-docker-x64"
           ]
         },
         {
@@ -411,7 +411,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rocky8-docker"
+            "generic-rocky8-docker-x64"
           ]
         },
         {
@@ -429,7 +429,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rocky8-docker"
+            "generic-rocky8-docker-x64"
           ]
         },
         {
@@ -445,7 +445,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rocky9-docker"
+            "generic-rocky9-docker-x64"
           ]
         },
         {
@@ -463,7 +463,7 @@
           "start_retry_timeout": "15m",
           "expect_disconnect": "true",
           "only": [
-            "generic-rocky9-docker"
+            "generic-rocky9-docker-x64"
           ]
         },
         {
@@ -476,9 +476,9 @@
     "builders": [
         {
             "type": "qemu",
-            "name": "generic-centos6-docker",
-            "vm_name": "generic-centos6-docker",
-            "output_directory": "output/generic-centos6-docker",
+            "name": "generic-centos6-docker-x64",
+            "vm_name": "generic-centos6-docker-x64",
+            "output_directory": "output/generic-centos6-docker-x64",
             "qemu_binary": "qemu-system-x86_64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
@@ -511,9 +511,9 @@
         },
         {
             "type": "qemu",
-            "name": "generic-centos7-docker",
-            "vm_name": "generic-centos7-docker",
-            "output_directory": "output/generic-centos7-docker",
+            "name": "generic-centos7-docker-x64",
+            "vm_name": "generic-centos7-docker-x64",
+            "output_directory": "output/generic-centos7-docker-x64",
             "qemu_binary": "qemu-system-x86_64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
@@ -546,9 +546,9 @@
         },
         {
             "type": "qemu",
-            "name": "generic-centos8-docker",
-            "vm_name": "generic-centos8-docker",
-            "output_directory": "output/generic-centos8-docker",
+            "name": "generic-centos8-docker-x64",
+            "vm_name": "generic-centos8-docker-x64",
+            "output_directory": "output/generic-centos8-docker-x64",
             "qemu_binary": "qemu-system-x86_64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
@@ -581,9 +581,9 @@
         },
         {
           "type": "qemu",
-          "name": "generic-oracle7-docker",
-          "vm_name": "generic-oracle7-docker",
-          "output_directory": "output/generic-oracle7-docker",
+          "name": "generic-oracle7-docker-x64",
+          "vm_name": "generic-oracle7-docker-x64",
+          "output_directory": "output/generic-oracle7-docker-x64",
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
@@ -615,9 +615,9 @@
         },
         {
           "type": "qemu",
-          "name": "generic-oracle8-docker",
-          "vm_name": "generic-oracle8-docker",
-          "output_directory": "output/generic-oracle8-docker",
+          "name": "generic-oracle8-docker-x64",
+          "vm_name": "generic-oracle8-docker-x64",
+          "output_directory": "output/generic-oracle8-docker-x64",
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
@@ -648,9 +648,9 @@
         },
         {
           "type": "qemu",
-          "name": "generic-rhel6-docker",
-          "vm_name": "generic-rhel6-docker",
-          "output_directory": "output/generic-rhel6-docker",
+          "name": "generic-rhel6-docker-x64",
+          "vm_name": "generic-rhel6-docker-x64",
+          "output_directory": "output/generic-rhel6-docker-x64",
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
@@ -681,9 +681,9 @@
         },
         {
           "type": "qemu",
-          "name": "generic-rhel7-docker",
-          "vm_name": "generic-rhel7-docker",
-          "output_directory": "output/generic-rhel7-docker",
+          "name": "generic-rhel7-docker-x64",
+          "vm_name": "generic-rhel7-docker-x64",
+          "output_directory": "output/generic-rhel7-docker-x64",
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
@@ -714,9 +714,9 @@
         },
         {
           "type": "qemu",
-          "name": "generic-rhel8-docker",
-          "vm_name": "generic-rhel8-docker",
-          "output_directory": "output/generic-rhel8-docker",
+          "name": "generic-rhel8-docker-x64",
+          "vm_name": "generic-rhel8-docker-x64",
+          "output_directory": "output/generic-rhel8-docker-x64",
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
@@ -747,9 +747,9 @@
         },
         {
           "type": "qemu",
-          "name": "generic-rhel9-docker",
-          "vm_name": "generic-rhel9-docker",
-          "output_directory": "output/generic-rhel9-docker",
+          "name": "generic-rhel9-docker-x64",
+          "vm_name": "generic-rhel9-docker-x64",
+          "output_directory": "output/generic-rhel9-docker-x64",
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
@@ -786,9 +786,9 @@
         },
         {
           "type": "qemu",
-          "name": "generic-oracle9-docker",
-          "vm_name": "generic-oracle9-docker",
-          "output_directory": "output/generic-oracle9-docker",
+          "name": "generic-oracle9-docker-x64",
+          "vm_name": "generic-oracle9-docker-x64",
+          "output_directory": "output/generic-oracle9-docker-x64",
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
@@ -825,9 +825,9 @@
         },
         {
           "type": "qemu",
-          "name": "generic-alma8-docker",
-          "vm_name": "generic-alma8-docker",
-          "output_directory": "output/generic-alma8-docker",
+          "name": "generic-alma8-docker-x64",
+          "vm_name": "generic-alma8-docker-x64",
+          "output_directory": "output/generic-alma8-docker-x64",
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
@@ -858,9 +858,9 @@
         },
         {
           "type": "qemu",
-          "name": "generic-alma9-docker",
-          "vm_name": "generic-alma9-docker",
-          "output_directory": "output/generic-alma9-docker",
+          "name": "generic-alma9-docker-x64",
+          "vm_name": "generic-alma9-docker-x64",
+          "output_directory": "output/generic-alma9-docker-x64",
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
@@ -897,9 +897,9 @@
         },
         {
           "type": "qemu",
-          "name": "generic-rocky8-docker",
-          "vm_name": "generic-rocky8-docker",
-          "output_directory": "output/generic-rocky8-docker",
+          "name": "generic-rocky8-docker-x64",
+          "vm_name": "generic-rocky8-docker-x64",
+          "output_directory": "output/generic-rocky8-docker-x64",
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",
@@ -930,9 +930,9 @@
         },
         {
           "type": "qemu",
-          "name": "generic-rocky9-docker",
-          "vm_name": "generic-rocky9-docker",
-          "output_directory": "output/generic-rocky9-docker",
+          "name": "generic-rocky9-docker-x64",
+          "vm_name": "generic-rocky9-docker-x64",
+          "output_directory": "output/generic-rocky9-docker-x64",
           "accelerator": "kvm",
           "qemu_binary": "/usr/libexec/qemu-kvm",
           "boot_wait": "20s",

@@ -13,7 +13,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-virtualbox"
+                "lineage-virtualbox-x64"
             ]
         },
         {
@@ -36,7 +36,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-virtualbox"
+                "lineage-virtualbox-x64"
             ]
         },
         {
@@ -48,7 +48,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-virtualbox"
+                "lineage-virtualbox-x64"
             ]
         },
         {
@@ -72,9 +72,9 @@
     "builders": [
         {
             "type": "virtualbox-iso",
-            "name": "lineage-virtualbox",
-            "vm_name": "lineage-virtualbox",
-            "output_directory": "output/lineage-virtualbox",
+            "name": "lineage-virtualbox-x64",
+            "vm_name": "lineage-virtualbox-x64",
+            "output_directory": "output/lineage-virtualbox-x64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [

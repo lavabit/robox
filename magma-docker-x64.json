@@ -19,9 +19,9 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-docker",
-        "magma-centos-docker",
-        "magma-centos6-docker"
+        "magma-docker-x64",
+        "magma-centos-docker-x64",
+        "magma-centos6-docker-x64"
       ]
     },
     {
@@ -39,9 +39,9 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-docker",
-        "magma-centos-docker",
-        "magma-centos6-docker"
+        "magma-docker-x64",
+        "magma-centos-docker-x64",
+        "magma-centos6-docker-x64"
       ]
     },
     {
@@ -57,7 +57,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos7-docker"
+        "magma-centos7-docker-x64"
       ]
     },
     {
@@ -79,7 +79,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos7-docker"
+        "magma-centos7-docker-x64"
       ]
     },
     {
@@ -92,9 +92,9 @@
   "builders": [
     {
       "type": "qemu",
-      "name": "magma-docker",
-      "vm_name": "magma-docker",
-      "output_directory": "output/magma-docker",
+      "name": "magma-docker-x64",
+      "vm_name": "magma-docker-x64",
+      "output_directory": "output/magma-docker-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -127,9 +127,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-centos-docker",
-      "vm_name": "magma-centos-docker",
-      "output_directory": "output/magma-centos-docker",
+      "name": "magma-centos-docker-x64",
+      "vm_name": "magma-centos-docker-x64",
+      "output_directory": "output/magma-centos-docker-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -162,9 +162,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-centos6-docker",
-      "vm_name": "magma-centos6-docker",
-      "output_directory": "output/magma-centos6-docker",
+      "name": "magma-centos6-docker-x64",
+      "vm_name": "magma-centos6-docker-x64",
+      "output_directory": "output/magma-centos6-docker-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -197,9 +197,9 @@
     },
     {
       "type": "qemu",
-      "name": "magma-centos7-docker",
-      "vm_name": "magma-centos7-docker",
-      "output_directory": "output/magma-centos7-docker",
+      "name": "magma-centos7-docker-x64",
+      "vm_name": "magma-centos7-docker-x64",
+      "output_directory": "output/magma-centos7-docker-x64",
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
@@ -290,7 +290,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-docker"
+          "magma-docker-x64"
         ]
       },
       {
@@ -303,7 +303,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos-docker"
+          "magma-centos-docker-x64"
         ]
       },
       {
@@ -316,7 +316,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos6-docker"
+          "magma-centos6-docker-x64"
         ]
       },
       {
@@ -329,7 +329,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos7-docker"
+          "magma-centos7-docker-x64"
         ]
       },
       {
@@ -374,7 +374,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-docker"
+          "magma-docker-x64"
         ]
       },
       {
@@ -387,7 +387,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos-docker"
+          "magma-centos-docker-x64"
         ]
       },
       {
@@ -400,7 +400,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos6-docker"
+          "magma-centos6-docker-x64"
         ]
       },
       {
@@ -413,7 +413,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos7-docker"
+          "magma-centos7-docker-x64"
         ]
       },
       {
@@ -441,7 +441,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-docker"
+          "magma-docker-x64"
         ]
       },
       {
@@ -454,7 +454,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos-docker"
+          "magma-centos-docker-x64"
         ]
       },
       {
@@ -467,7 +467,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos6-docker"
+          "magma-centos6-docker-x64"
         ]
       },
       {
@@ -480,7 +480,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos7-docker"
+          "magma-centos7-docker-x64"
         ]
       },
       {
@@ -508,7 +508,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-docker"
+          "magma-docker-x64"
         ]
       },
       {
@@ -521,7 +521,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos-docker"
+          "magma-centos-docker-x64"
         ]
       },
       {
@@ -534,7 +534,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos6-docker"
+          "magma-centos6-docker-x64"
         ]
       },
       {
@@ -547,7 +547,7 @@
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ],
         "only": [
-          "magma-centos7-docker"
+          "magma-centos7-docker-x64"
         ]
       },
       {

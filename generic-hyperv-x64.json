@@ -14,7 +14,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle7-hyperv"
+        "generic-oracle7-hyperv-x64"
       ]
     },
     {
@@ -37,7 +37,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle7-hyperv"
+        "generic-oracle7-hyperv-x64"
       ]
     },
     {
@@ -58,7 +58,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse42-hyperv"
+        "generic-opensuse42-hyperv-x64"
       ]
     },
     {
@@ -72,7 +72,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine35-hyperv"
+        "generic-alpine35-hyperv-x64"
       ]
     },
     {
@@ -95,7 +95,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine35-hyperv"
+        "generic-alpine35-hyperv-x64"
       ]
     },
     {
@@ -109,7 +109,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine36-hyperv"
+        "generic-alpine36-hyperv-x64"
       ]
     },
     {
@@ -132,7 +132,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine36-hyperv"
+        "generic-alpine36-hyperv-x64"
       ]
     },
     {
@@ -146,7 +146,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine37-hyperv"
+        "generic-alpine37-hyperv-x64"
       ]
     },
     {
@@ -169,7 +169,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine37-hyperv"
+        "generic-alpine37-hyperv-x64"
       ]
     },
     {
@@ -183,7 +183,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine38-hyperv"
+        "generic-alpine38-hyperv-x64"
       ]
     },
     {
@@ -206,7 +206,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine38-hyperv"
+        "generic-alpine38-hyperv-x64"
       ]
     },
     {
@@ -221,7 +221,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos6-hyperv"
+        "generic-centos6-hyperv-x64"
       ]
     },
     {
@@ -246,7 +246,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos6-hyperv"
+        "generic-centos6-hyperv-x64"
       ]
     },
     {
@@ -262,7 +262,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos7-hyperv"
+        "generic-centos7-hyperv-x64"
       ]
     },
     {
@@ -289,7 +289,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos7-hyperv"
+        "generic-centos7-hyperv-x64"
       ]
     },
     {
@@ -305,7 +305,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel7-hyperv"
+        "generic-rhel7-hyperv-x64"
       ]
     },
     {
@@ -332,7 +332,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel7-hyperv"
+        "generic-rhel7-hyperv-x64"
       ]
     },
     {
@@ -345,7 +345,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-gentoo-hyperv"
+        "generic-gentoo-hyperv-x64"
       ]
     },
     {
@@ -362,7 +362,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-gentoo-hyperv"
+        "generic-gentoo-hyperv-x64"
       ]
     },
     {
@@ -374,7 +374,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-arch-hyperv"
+        "generic-arch-hyperv-x64"
       ]
     },
     {
@@ -392,7 +392,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-arch-hyperv"
+        "generic-arch-hyperv-x64"
       ]
     },
     {
@@ -405,7 +405,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian8-hyperv"
+        "generic-debian8-hyperv-x64"
       ]
     },
     {
@@ -427,7 +427,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian8-hyperv"
+        "generic-debian8-hyperv-x64"
       ]
     },
     {
@@ -440,7 +440,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian9-hyperv"
+        "generic-debian9-hyperv-x64"
       ]
     },
     {
@@ -463,7 +463,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian9-hyperv"
+        "generic-debian9-hyperv-x64"
       ]
     },
     {
@@ -477,7 +477,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-hyperv"
+        "generic-fedora25-hyperv-x64"
       ]
     },
     {
@@ -491,7 +491,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-hyperv"
+        "generic-fedora25-hyperv-x64"
       ]
     },
     {
@@ -512,7 +512,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora25-hyperv"
+        "generic-fedora25-hyperv-x64"
       ]
     },
     {
@@ -526,7 +526,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-hyperv"
+        "generic-fedora26-hyperv-x64"
       ]
     },
     {
@@ -540,7 +540,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-hyperv"
+        "generic-fedora26-hyperv-x64"
       ]
     },
     {
@@ -561,7 +561,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora26-hyperv"
+        "generic-fedora26-hyperv-x64"
       ]
     },
     {
@@ -575,7 +575,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-hyperv"
+        "generic-fedora27-hyperv-x64"
       ]
     },
     {
@@ -589,7 +589,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-hyperv"
+        "generic-fedora27-hyperv-x64"
       ]
     },
     {
@@ -610,7 +610,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora27-hyperv"
+        "generic-fedora27-hyperv-x64"
       ]
     },
     {
@@ -624,7 +624,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-hyperv"
+        "generic-fedora28-hyperv-x64"
       ]
     },
     {
@@ -638,7 +638,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-hyperv"
+        "generic-fedora28-hyperv-x64"
       ]
     },
     {
@@ -659,7 +659,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora28-hyperv"
+        "generic-fedora28-hyperv-x64"
       ]
     },
     {
@@ -673,7 +673,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-hyperv"
+        "generic-fedora29-hyperv-x64"
       ]
     },
     {
@@ -687,7 +687,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-hyperv"
+        "generic-fedora29-hyperv-x64"
       ]
     },
     {
@@ -708,7 +708,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora29-hyperv"
+        "generic-fedora29-hyperv-x64"
       ]
     },
     {
@@ -731,7 +731,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd11-hyperv"
+        "generic-freebsd11-hyperv-x64"
       ]
     },
     {
@@ -744,7 +744,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-openbsd6-hyperv"
+        "generic-openbsd6-hyperv-x64"
       ]
     },
     {
@@ -765,7 +765,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-openbsd6-hyperv"
+        "generic-openbsd6-hyperv-x64"
       ]
     },
     {
@@ -778,7 +778,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1604-hyperv"
+        "generic-ubuntu1604-hyperv-x64"
       ]
     },
     {
@@ -800,7 +800,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1604-hyperv"
+        "generic-ubuntu1604-hyperv-x64"
       ]
     },
     {
@@ -813,7 +813,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1610-hyperv"
+        "generic-ubuntu1610-hyperv-x64"
       ]
     },
     {
@@ -835,7 +835,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1610-hyperv"
+        "generic-ubuntu1610-hyperv-x64"
       ]
     },
     {
@@ -848,7 +848,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1704-hyperv"
+        "generic-ubuntu1704-hyperv-x64"
       ]
     },
     {
@@ -870,7 +870,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1704-hyperv"
+        "generic-ubuntu1704-hyperv-x64"
       ]
     },
     {
@@ -883,7 +883,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1710-hyperv"
+        "generic-ubuntu1710-hyperv-x64"
       ]
     },
     {
@@ -905,7 +905,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1710-hyperv"
+        "generic-ubuntu1710-hyperv-x64"
       ]
     },
     {
@@ -918,7 +918,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1804-hyperv"
+        "generic-ubuntu1804-hyperv-x64"
       ]
     },
     {
@@ -940,7 +940,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1804-hyperv"
+        "generic-ubuntu1804-hyperv-x64"
       ]
     },
     {
@@ -953,7 +953,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1810-hyperv"
+        "generic-ubuntu1810-hyperv-x64"
       ]
     },
     {
@@ -975,7 +975,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1810-hyperv"
+        "generic-ubuntu1810-hyperv-x64"
       ]
     },
     {
@@ -998,7 +998,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd12-hyperv"
+        "generic-freebsd12-hyperv-x64"
       ]
     },
     {
@@ -1014,7 +1014,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel6-hyperv"
+        "generic-rhel6-hyperv-x64"
       ]
     },
     {
@@ -1040,7 +1040,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel6-hyperv"
+        "generic-rhel6-hyperv-x64"
       ]
     },
     {
@@ -1056,7 +1056,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel8-hyperv"
+        "generic-rhel8-hyperv-x64"
       ]
     },
     {
@@ -1082,7 +1082,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel8-hyperv"
+        "generic-rhel8-hyperv-x64"
       ]
     },
     {
@@ -1105,7 +1105,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd11-hyperv"
+        "generic-hardenedbsd11-hyperv-x64"
       ]
     },
     {
@@ -1128,7 +1128,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd5-hyperv"
+        "generic-dragonflybsd5-hyperv-x64"
       ]
     },
     {
@@ -1141,7 +1141,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-netbsd8-hyperv"
+        "generic-netbsd8-hyperv-x64"
       ]
     },
     {
@@ -1162,7 +1162,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{ .Vars }} bash {{ .Path }}",
       "only": [
-        "generic-netbsd8-hyperv"
+        "generic-netbsd8-hyperv-x64"
       ]
     },
     {
@@ -1185,7 +1185,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd12-hyperv"
+        "generic-hardenedbsd12-hyperv-x64"
       ]
     },
     {
@@ -1199,7 +1199,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine39-hyperv"
+        "generic-alpine39-hyperv-x64"
       ]
     },
     {
@@ -1222,7 +1222,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine39-hyperv"
+        "generic-alpine39-hyperv-x64"
       ]
     },
     {
@@ -1235,7 +1235,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian10-hyperv"
+        "generic-debian10-hyperv-x64"
       ]
     },
     {
@@ -1257,7 +1257,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian10-hyperv"
+        "generic-debian10-hyperv-x64"
       ]
     },
     {
@@ -1270,7 +1270,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1904-hyperv"
+        "generic-ubuntu1904-hyperv-x64"
       ]
     },
     {
@@ -1292,7 +1292,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1904-hyperv"
+        "generic-ubuntu1904-hyperv-x64"
       ]
     },
     {
@@ -1306,7 +1306,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-hyperv"
+        "generic-fedora30-hyperv-x64"
       ]
     },
     {
@@ -1320,7 +1320,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-hyperv"
+        "generic-fedora30-hyperv-x64"
       ]
     },
     {
@@ -1342,7 +1342,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora30-hyperv"
+        "generic-fedora30-hyperv-x64"
       ]
     },
     {
@@ -1356,7 +1356,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle8-hyperv"
+        "generic-oracle8-hyperv-x64"
       ]
     },
     {
@@ -1379,7 +1379,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle8-hyperv"
+        "generic-oracle8-hyperv-x64"
       ]
     },
     {
@@ -1393,7 +1393,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine310-hyperv"
+        "generic-alpine310-hyperv-x64"
       ]
     },
     {
@@ -1416,7 +1416,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine310-hyperv"
+        "generic-alpine310-hyperv-x64"
       ]
     },
     {
@@ -1429,7 +1429,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse15-hyperv"
+        "generic-opensuse15-hyperv-x64"
       ]
     },
     {
@@ -1450,7 +1450,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-opensuse15-hyperv"
+        "generic-opensuse15-hyperv-x64"
       ]
     },
     {
@@ -1466,7 +1466,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8-hyperv"
+        "generic-centos8-hyperv-x64"
       ]
     },
     {
@@ -1492,7 +1492,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8-hyperv"
+        "generic-centos8-hyperv-x64"
       ]
     },
     {
@@ -1506,7 +1506,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-hyperv"
+        "generic-fedora31-hyperv-x64"
       ]
     },
     {
@@ -1520,7 +1520,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-hyperv"
+        "generic-fedora31-hyperv-x64"
       ]
     },
     {
@@ -1542,7 +1542,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora31-hyperv"
+        "generic-fedora31-hyperv-x64"
       ]
     },
     {
@@ -1555,7 +1555,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1910-hyperv"
+        "generic-ubuntu1910-hyperv-x64"
       ]
     },
     {
@@ -1577,7 +1577,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu1910-hyperv"
+        "generic-ubuntu1910-hyperv-x64"
       ]
     },
     {
@@ -1591,7 +1591,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine311-hyperv"
+        "generic-alpine311-hyperv-x64"
       ]
     },
     {
@@ -1614,7 +1614,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine311-hyperv"
+        "generic-alpine311-hyperv-x64"
       ]
     },
     {
@@ -1627,7 +1627,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2004-hyperv"
+        "generic-ubuntu2004-hyperv-x64"
       ]
     },
     {
@@ -1649,7 +1649,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2004-hyperv"
+        "generic-ubuntu2004-hyperv-x64"
       ]
     },
     {
@@ -1663,7 +1663,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-hyperv"
+        "generic-fedora32-hyperv-x64"
       ]
     },
     {
@@ -1677,7 +1677,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-hyperv"
+        "generic-fedora32-hyperv-x64"
       ]
     },
     {
@@ -1699,7 +1699,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora32-hyperv"
+        "generic-fedora32-hyperv-x64"
       ]
     },
     {
@@ -1712,7 +1712,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-netbsd9-hyperv"
+        "generic-netbsd9-hyperv-x64"
       ]
     },
     {
@@ -1733,7 +1733,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{ .Vars }} bash {{ .Path }}",
       "only": [
-        "generic-netbsd9-hyperv"
+        "generic-netbsd9-hyperv-x64"
       ]
     },
     {
@@ -1747,7 +1747,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine312-hyperv"
+        "generic-alpine312-hyperv-x64"
       ]
     },
     {
@@ -1770,7 +1770,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine312-hyperv"
+        "generic-alpine312-hyperv-x64"
       ]
     },
     {
@@ -1783,7 +1783,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan1-hyperv"
+        "generic-devuan1-hyperv-x64"
       ]
     },
     {
@@ -1803,7 +1803,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan1-hyperv"
+        "generic-devuan1-hyperv-x64"
       ]
     },
     {
@@ -1816,7 +1816,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan2-hyperv"
+        "generic-devuan2-hyperv-x64"
       ]
     },
     {
@@ -1836,7 +1836,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan2-hyperv"
+        "generic-devuan2-hyperv-x64"
       ]
     },
     {
@@ -1849,7 +1849,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan3-hyperv"
+        "generic-devuan3-hyperv-x64"
       ]
     },
     {
@@ -1869,7 +1869,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan3-hyperv"
+        "generic-devuan3-hyperv-x64"
       ]
     },
     {
@@ -1884,7 +1884,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2010-hyperv"
+        "generic-ubuntu2010-hyperv-x64"
       ]
     },
     {
@@ -1905,7 +1905,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2010-hyperv"
+        "generic-ubuntu2010-hyperv-x64"
       ]
     },
     {
@@ -1919,7 +1919,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-hyperv"
+        "generic-fedora33-hyperv-x64"
       ]
     },
     {
@@ -1933,7 +1933,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-hyperv"
+        "generic-fedora33-hyperv-x64"
       ]
     },
     {
@@ -1955,7 +1955,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora33-hyperv"
+        "generic-fedora33-hyperv-x64"
       ]
     },
     {
@@ -1969,7 +1969,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine313-hyperv"
+        "generic-alpine313-hyperv-x64"
       ]
     },
     {
@@ -1992,7 +1992,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine313-hyperv"
+        "generic-alpine313-hyperv-x64"
       ]
     },
     {
@@ -2006,7 +2006,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine314-hyperv"
+        "generic-alpine314-hyperv-x64"
       ]
     },
     {
@@ -2029,7 +2029,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine314-hyperv"
+        "generic-alpine314-hyperv-x64"
       ]
     },
     {
@@ -2044,7 +2044,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2104-hyperv"
+        "generic-ubuntu2104-hyperv-x64"
       ]
     },
     {
@@ -2065,7 +2065,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2104-hyperv"
+        "generic-ubuntu2104-hyperv-x64"
       ]
     },
     {
@@ -2081,7 +2081,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky8-hyperv"
+        "generic-rocky8-hyperv-x64"
       ]
     },
     {
@@ -2108,7 +2108,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky8-hyperv"
+        "generic-rocky8-hyperv-x64"
       ]
     },
     {
@@ -2124,7 +2124,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma8-hyperv"
+        "generic-alma8-hyperv-x64"
       ]
     },
     {
@@ -2151,7 +2151,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma8-hyperv"
+        "generic-alma8-hyperv-x64"
       ]
     },
     {
@@ -2165,7 +2165,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-hyperv"
+        "generic-fedora34-hyperv-x64"
       ]
     },
     {
@@ -2179,7 +2179,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-hyperv"
+        "generic-fedora34-hyperv-x64"
       ]
     },
     {
@@ -2201,7 +2201,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora34-hyperv"
+        "generic-fedora34-hyperv-x64"
       ]
     },
     {
@@ -2224,7 +2224,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-freebsd13-hyperv"
+        "generic-freebsd13-hyperv-x64"
       ]
     },
     {
@@ -2247,7 +2247,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd13-hyperv"
+        "generic-hardenedbsd13-hyperv-x64"
       ]
     },
     {
@@ -2270,7 +2270,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd6-hyperv"
+        "generic-dragonflybsd6-hyperv-x64"
       ]
     },
     {
@@ -2283,7 +2283,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian11-hyperv"
+        "generic-debian11-hyperv-x64"
       ]
     },
     {
@@ -2305,7 +2305,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian11-hyperv"
+        "generic-debian11-hyperv-x64"
       ]
     },
     {
@@ -2318,7 +2318,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "generic-openbsd7-hyperv"
+        "generic-openbsd7-hyperv-x64"
       ]
     },
     {
@@ -2339,7 +2339,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-openbsd7-hyperv"
+        "generic-openbsd7-hyperv-x64"
       ]
     },
     {
@@ -2354,7 +2354,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2110-hyperv"
+        "generic-ubuntu2110-hyperv-x64"
       ]
     },
     {
@@ -2375,7 +2375,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2110-hyperv"
+        "generic-ubuntu2110-hyperv-x64"
       ]
     },
     {
@@ -2389,7 +2389,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine315-hyperv"
+        "generic-alpine315-hyperv-x64"
       ]
     },
     {
@@ -2412,7 +2412,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine315-hyperv"
+        "generic-alpine315-hyperv-x64"
       ]
     },
     {
@@ -2426,7 +2426,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-hyperv"
+        "generic-fedora35-hyperv-x64"
       ]
     },
     {
@@ -2440,7 +2440,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-hyperv"
+        "generic-fedora35-hyperv-x64"
       ]
     },
     {
@@ -2462,7 +2462,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora35-hyperv"
+        "generic-fedora35-hyperv-x64"
       ]
     },
     {
@@ -2475,7 +2475,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan4-hyperv"
+        "generic-devuan4-hyperv-x64"
       ]
     },
     {
@@ -2495,7 +2495,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan4-hyperv"
+        "generic-devuan4-hyperv-x64"
       ]
     },
     {
@@ -2510,7 +2510,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2204-hyperv"
+        "generic-ubuntu2204-hyperv-x64"
       ]
     },
     {
@@ -2531,7 +2531,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2204-hyperv"
+        "generic-ubuntu2204-hyperv-x64"
       ]
     },
     {
@@ -2545,7 +2545,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-hyperv"
+        "generic-fedora36-hyperv-x64"
       ]
     },
     {
@@ -2559,7 +2559,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-hyperv"
+        "generic-fedora36-hyperv-x64"
       ]
     },
     {
@@ -2581,7 +2581,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora36-hyperv"
+        "generic-fedora36-hyperv-x64"
       ]
     },
     {
@@ -2597,7 +2597,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel9-hyperv"
+        "generic-rhel9-hyperv-x64"
       ]
     },
     {
@@ -2623,7 +2623,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rhel9-hyperv"
+        "generic-rhel9-hyperv-x64"
       ]
     },
     {
@@ -2639,7 +2639,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8s-hyperv"
+        "generic-centos8s-hyperv-x64"
       ]
     },
     {
@@ -2665,7 +2665,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos8s-hyperv"
+        "generic-centos8s-hyperv-x64"
       ]
     },
     {
@@ -2681,7 +2681,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos9s-hyperv"
+        "generic-centos9s-hyperv-x64"
       ]
     },
     {
@@ -2706,7 +2706,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-centos9s-hyperv"
+        "generic-centos9s-hyperv-x64"
       ]
     },
     {
@@ -2720,7 +2720,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine316-hyperv"
+        "generic-alpine316-hyperv-x64"
       ]
     },
     {
@@ -2743,7 +2743,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine316-hyperv"
+        "generic-alpine316-hyperv-x64"
       ]
     },
     {
@@ -2759,7 +2759,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma9-hyperv"
+        "generic-alma9-hyperv-x64"
       ]
     },
     {
@@ -2785,7 +2785,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma9-hyperv"
+        "generic-alma9-hyperv-x64"
       ]
     },
     {
@@ -2801,7 +2801,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle9-hyperv"
+        "generic-oracle9-hyperv-x64"
       ]
     },
     {
@@ -2823,7 +2823,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle9-hyperv"
+        "generic-oracle9-hyperv-x64"
       ]
     },
     {
@@ -2839,7 +2839,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky9-hyperv"
+        "generic-rocky9-hyperv-x64"
       ]
     },
     {
@@ -2865,7 +2865,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-rocky9-hyperv"
+        "generic-rocky9-hyperv-x64"
       ]
     },
     {
@@ -2879,7 +2879,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle6-hyperv"
+        "generic-oracle6-hyperv-x64"
       ]
     },
     {
@@ -2901,7 +2901,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-oracle6-hyperv"
+        "generic-oracle6-hyperv-x64"
       ]
     },
     {
@@ -2916,7 +2916,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2210-hyperv"
+        "generic-ubuntu2210-hyperv-x64"
       ]
     },
     {
@@ -2937,7 +2937,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2210-hyperv"
+        "generic-ubuntu2210-hyperv-x64"
       ]
     },
     {
@@ -2951,7 +2951,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-hyperv"
+        "generic-fedora37-hyperv-x64"
       ]
     },
     {
@@ -2965,7 +2965,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-hyperv"
+        "generic-fedora37-hyperv-x64"
       ]
     },
     {
@@ -2987,7 +2987,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora37-hyperv"
+        "generic-fedora37-hyperv-x64"
       ]
     },
     {
@@ -3001,7 +3001,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora38-hyperv"
+        "generic-fedora38-hyperv-x64"
       ]
     },
     {
@@ -3015,7 +3015,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora38-hyperv"
+        "generic-fedora38-hyperv-x64"
       ]
     },
     {
@@ -3037,7 +3037,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora38-hyperv"
+        "generic-fedora38-hyperv-x64"
       ]
     },
     {
@@ -3051,7 +3051,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine317-hyperv"
+        "generic-alpine317-hyperv-x64"
       ]
     },
     {
@@ -3074,7 +3074,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine317-hyperv"
+        "generic-alpine317-hyperv-x64"
       ]
     },
     {
@@ -3089,7 +3089,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2304-hyperv"
+        "generic-ubuntu2304-hyperv-x64"
       ]
     },
     {
@@ -3110,7 +3110,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-ubuntu2304-hyperv"
+        "generic-ubuntu2304-hyperv-x64"
       ]
     },
     {
@@ -3123,7 +3123,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian12-hyperv"
+        "generic-debian12-hyperv-x64"
       ]
     },
     {
@@ -3145,7 +3145,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian12-hyperv"
+        "generic-debian12-hyperv-x64"
       ]
     },
     {
@@ -3159,7 +3159,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine318-hyperv"
+        "generic-alpine318-hyperv-x64"
       ]
     },
     {
@@ -3182,7 +3182,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alpine318-hyperv"
+        "generic-alpine318-hyperv-x64"
       ]
     },
     {
@@ -3195,7 +3195,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan5-hyperv"
+        "generic-devuan5-hyperv-x64"
       ]
     },
     {
@@ -3215,7 +3215,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-devuan5-hyperv"
+        "generic-devuan5-hyperv-x64"
       ]
     },
     {
@@ -3238,7 +3238,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-hardenedbsd-hyperv"
+        "generic-hardenedbsd-hyperv-x64"
       ]
     },
     {
@@ -3261,7 +3261,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "generic-dragonflybsd-hyperv"
+        "generic-dragonflybsd-hyperv-x64"
       ]
     },
     {
@@ -3283,10 +3283,10 @@
   "builders": [
     {
       "type": "hyperv-iso",
-      "name": "generic-oracle7-hyperv",
-      "vm_name": "generic-oracle7-hyperv",
+      "name": "generic-oracle7-hyperv-x64",
+      "vm_name": "generic-oracle7-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-oracle7-hyperv",
+      "output_directory": "output/generic-oracle7-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3316,10 +3316,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-opensuse42-hyperv",
-      "vm_name": "generic-opensuse42-hyperv",
+      "name": "generic-opensuse42-hyperv-x64",
+      "vm_name": "generic-opensuse42-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-opensuse42-hyperv",
+      "output_directory": "output/generic-opensuse42-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3352,10 +3352,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine35-hyperv",
-      "vm_name": "generic-alpine35-hyperv",
+      "name": "generic-alpine35-hyperv-x64",
+      "vm_name": "generic-alpine35-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine35-hyperv",
+      "output_directory": "output/generic-alpine35-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3395,10 +3395,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine36-hyperv",
-      "vm_name": "generic-alpine36-hyperv",
+      "name": "generic-alpine36-hyperv-x64",
+      "vm_name": "generic-alpine36-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine36-hyperv",
+      "output_directory": "output/generic-alpine36-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3438,10 +3438,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine37-hyperv",
-      "vm_name": "generic-alpine37-hyperv",
+      "name": "generic-alpine37-hyperv-x64",
+      "vm_name": "generic-alpine37-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine37-hyperv",
+      "output_directory": "output/generic-alpine37-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3481,10 +3481,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine38-hyperv",
-      "vm_name": "generic-alpine38-hyperv",
+      "name": "generic-alpine38-hyperv-x64",
+      "vm_name": "generic-alpine38-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine38-hyperv",
+      "output_directory": "output/generic-alpine38-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3524,10 +3524,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-centos6-hyperv",
-      "vm_name": "generic-centos6-hyperv",
+      "name": "generic-centos6-hyperv-x64",
+      "vm_name": "generic-centos6-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-centos6-hyperv",
+      "output_directory": "output/generic-centos6-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3557,10 +3557,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-centos7-hyperv",
-      "vm_name": "generic-centos7-hyperv",
+      "name": "generic-centos7-hyperv-x64",
+      "vm_name": "generic-centos7-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-centos7-hyperv",
+      "output_directory": "output/generic-centos7-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3590,10 +3590,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-rhel7-hyperv",
-      "vm_name": "generic-rhel7-hyperv",
+      "name": "generic-rhel7-hyperv-x64",
+      "vm_name": "generic-rhel7-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-rhel7-hyperv",
+      "output_directory": "output/generic-rhel7-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3623,10 +3623,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-arch-hyperv",
-      "vm_name": "generic-arch-hyperv",
+      "name": "generic-arch-hyperv-x64",
+      "vm_name": "generic-arch-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-arch-hyperv",
+      "output_directory": "output/generic-arch-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3676,10 +3676,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora25-hyperv",
-      "vm_name": "generic-fedora25-hyperv",
+      "name": "generic-fedora25-hyperv-x64",
+      "vm_name": "generic-fedora25-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora25-hyperv",
+      "output_directory": "output/generic-fedora25-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3713,10 +3713,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora26-hyperv",
-      "vm_name": "generic-fedora26-hyperv",
+      "name": "generic-fedora26-hyperv-x64",
+      "vm_name": "generic-fedora26-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora26-hyperv",
+      "output_directory": "output/generic-fedora26-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3750,10 +3750,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora27-hyperv",
-      "vm_name": "generic-fedora27-hyperv",
+      "name": "generic-fedora27-hyperv-x64",
+      "vm_name": "generic-fedora27-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora27-hyperv",
+      "output_directory": "output/generic-fedora27-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3787,10 +3787,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora28-hyperv",
-      "vm_name": "generic-fedora28-hyperv",
+      "name": "generic-fedora28-hyperv-x64",
+      "vm_name": "generic-fedora28-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora28-hyperv",
+      "output_directory": "output/generic-fedora28-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3824,10 +3824,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora29-hyperv",
-      "vm_name": "generic-fedora29-hyperv",
+      "name": "generic-fedora29-hyperv-x64",
+      "vm_name": "generic-fedora29-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora29-hyperv",
+      "output_directory": "output/generic-fedora29-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3861,10 +3861,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-debian8-hyperv",
-      "vm_name": "generic-debian8-hyperv",
+      "name": "generic-debian8-hyperv-x64",
+      "vm_name": "generic-debian8-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-debian8-hyperv",
+      "output_directory": "output/generic-debian8-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3906,10 +3906,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-debian9-hyperv",
-      "vm_name": "generic-debian9-hyperv",
+      "name": "generic-debian9-hyperv-x64",
+      "vm_name": "generic-debian9-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-debian9-hyperv",
+      "output_directory": "output/generic-debian9-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3951,10 +3951,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu1604-hyperv",
-      "vm_name": "generic-ubuntu1604-hyperv",
+      "name": "generic-ubuntu1604-hyperv-x64",
+      "vm_name": "generic-ubuntu1604-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu1604-hyperv",
+      "output_directory": "output/generic-ubuntu1604-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -3998,10 +3998,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu1610-hyperv",
-      "vm_name": "generic-ubuntu1610-hyperv",
+      "name": "generic-ubuntu1610-hyperv-x64",
+      "vm_name": "generic-ubuntu1610-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu1610-hyperv",
+      "output_directory": "output/generic-ubuntu1610-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4037,10 +4037,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu1704-hyperv",
-      "vm_name": "generic-ubuntu1704-hyperv",
+      "name": "generic-ubuntu1704-hyperv-x64",
+      "vm_name": "generic-ubuntu1704-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu1704-hyperv",
+      "output_directory": "output/generic-ubuntu1704-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4076,10 +4076,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu1710-hyperv",
-      "vm_name": "generic-ubuntu1710-hyperv",
+      "name": "generic-ubuntu1710-hyperv-x64",
+      "vm_name": "generic-ubuntu1710-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu1710-hyperv",
+      "output_directory": "output/generic-ubuntu1710-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4115,10 +4115,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu1804-hyperv",
-      "vm_name": "generic-ubuntu1804-hyperv",
+      "name": "generic-ubuntu1804-hyperv-x64",
+      "vm_name": "generic-ubuntu1804-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu1804-hyperv",
+      "output_directory": "output/generic-ubuntu1804-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4168,10 +4168,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu1810-hyperv",
-      "vm_name": "generic-ubuntu1810-hyperv",
+      "name": "generic-ubuntu1810-hyperv-x64",
+      "vm_name": "generic-ubuntu1810-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu1810-hyperv",
+      "output_directory": "output/generic-ubuntu1810-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4221,10 +4221,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-gentoo-hyperv",
-      "vm_name": "generic-gentoo-hyperv",
+      "name": "generic-gentoo-hyperv-x64",
+      "vm_name": "generic-gentoo-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-gentoo-hyperv",
+      "output_directory": "output/generic-gentoo-hyperv-x64",
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4259,10 +4259,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-freebsd11-hyperv",
-      "vm_name": "generic-freebsd11-hyperv",
+      "name": "generic-freebsd11-hyperv-x64",
+      "vm_name": "generic-freebsd11-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-freebsd11-hyperv",
+      "output_directory": "output/generic-freebsd11-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4308,10 +4308,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-openbsd6-hyperv",
-      "vm_name": "generic-openbsd6-hyperv",
+      "name": "generic-openbsd6-hyperv-x64",
+      "vm_name": "generic-openbsd6-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-openbsd6-hyperv",
+      "output_directory": "output/generic-openbsd6-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4345,10 +4345,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-freebsd12-hyperv",
-      "vm_name": "generic-freebsd12-hyperv",
+      "name": "generic-freebsd12-hyperv-x64",
+      "vm_name": "generic-freebsd12-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-freebsd12-hyperv",
+      "output_directory": "output/generic-freebsd12-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4394,10 +4394,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-rhel6-hyperv",
-      "vm_name": "generic-rhel6-hyperv",
+      "name": "generic-rhel6-hyperv-x64",
+      "vm_name": "generic-rhel6-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-rhel6-hyperv",
+      "output_directory": "output/generic-rhel6-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4427,10 +4427,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-rhel8-hyperv",
-      "vm_name": "generic-rhel8-hyperv",
+      "name": "generic-rhel8-hyperv-x64",
+      "vm_name": "generic-rhel8-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-rhel8-hyperv",
+      "output_directory": "output/generic-rhel8-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4460,10 +4460,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-hardenedbsd11-hyperv",
-      "vm_name": "generic-hardenedbsd11-hyperv",
+      "name": "generic-hardenedbsd11-hyperv-x64",
+      "vm_name": "generic-hardenedbsd11-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-hardenedbsd11-hyperv",
+      "output_directory": "output/generic-hardenedbsd11-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4487,7 +4487,7 @@
       "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
-      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
+      "iso_url": "https://mirrors.lavabit.com/hardenedbsd-archive/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-11-stable-20190205-1/HardenedBSD-11-STABLE-v1100056.13-amd64-disc1.iso",
       "iso_checksum": "sha256:8b2c90dc41ec68b561028af885eecb66bfd36223970d1c594923d1d54bf83467",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -4507,10 +4507,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-dragonflybsd5-hyperv",
-      "vm_name": "generic-dragonflybsd5-hyperv",
+      "name": "generic-dragonflybsd5-hyperv-x64",
+      "vm_name": "generic-dragonflybsd5-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-dragonflybsd5-hyperv",
+      "output_directory": "output/generic-dragonflybsd5-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4570,10 +4570,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-netbsd8-hyperv",
-      "vm_name": "generic-netbsd8-hyperv",
+      "name": "generic-netbsd8-hyperv-x64",
+      "vm_name": "generic-netbsd8-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-netbsd8-hyperv",
+      "output_directory": "output/generic-netbsd8-hyperv-x64",
       "boot_wait": "40s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4664,10 +4664,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-hardenedbsd12-hyperv",
-      "vm_name": "generic-hardenedbsd12-hyperv",
+      "name": "generic-hardenedbsd12-hyperv-x64",
+      "vm_name": "generic-hardenedbsd12-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-hardenedbsd12-hyperv",
+      "output_directory": "output/generic-hardenedbsd12-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4691,7 +4691,7 @@
       "memory": 2048,
       "cpus": 2,
       "http_directory": "http",
-      "iso_url": "https://dk-01.installer.hardenedbsd.org/pub/HardenedBSD/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
+      "iso_url": "https://mirrors.lavabit.com/hardenedbsd-archive/releases/amd64/amd64/ISO-IMAGES/hardenedbsd-12-stable-20190807-1/HardenedBSD-12-STABLE-v1200059.3-amd64-disc1.iso",
       "iso_checksum": "sha256:029225eaf92ba8e7ed7a7395f45492d09bc9a949488ecb9a5ca54df7c9f89661",
       "ssh_username": "root",
       "ssh_password": "vagrant",
@@ -4711,10 +4711,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine39-hyperv",
-      "vm_name": "generic-alpine39-hyperv",
+      "name": "generic-alpine39-hyperv-x64",
+      "vm_name": "generic-alpine39-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine39-hyperv",
+      "output_directory": "output/generic-alpine39-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4755,10 +4755,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-debian10-hyperv",
-      "vm_name": "generic-debian10-hyperv",
+      "name": "generic-debian10-hyperv-x64",
+      "vm_name": "generic-debian10-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-debian10-hyperv",
+      "output_directory": "output/generic-debian10-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4800,10 +4800,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu1904-hyperv",
-      "vm_name": "generic-ubuntu1904-hyperv",
+      "name": "generic-ubuntu1904-hyperv-x64",
+      "vm_name": "generic-ubuntu1904-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu1904-hyperv",
+      "output_directory": "output/generic-ubuntu1904-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4853,10 +4853,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora30-hyperv",
-      "vm_name": "generic-fedora30-hyperv",
+      "name": "generic-fedora30-hyperv-x64",
+      "vm_name": "generic-fedora30-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora30-hyperv",
+      "output_directory": "output/generic-fedora30-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4890,10 +4890,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-oracle8-hyperv",
-      "vm_name": "generic-oracle8-hyperv",
+      "name": "generic-oracle8-hyperv-x64",
+      "vm_name": "generic-oracle8-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-oracle8-hyperv",
+      "output_directory": "output/generic-oracle8-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4923,10 +4923,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine310-hyperv",
-      "vm_name": "generic-alpine310-hyperv",
+      "name": "generic-alpine310-hyperv-x64",
+      "vm_name": "generic-alpine310-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine310-hyperv",
+      "output_directory": "output/generic-alpine310-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -4969,10 +4969,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-opensuse15-hyperv",
-      "vm_name": "generic-opensuse15-hyperv",
+      "name": "generic-opensuse15-hyperv-x64",
+      "vm_name": "generic-opensuse15-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-opensuse15-hyperv",
+      "output_directory": "output/generic-opensuse15-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5005,10 +5005,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-centos8-hyperv",
-      "vm_name": "generic-centos8-hyperv",
+      "name": "generic-centos8-hyperv-x64",
+      "vm_name": "generic-centos8-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-centos8-hyperv",
+      "output_directory": "output/generic-centos8-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5038,10 +5038,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora31-hyperv",
-      "vm_name": "generic-fedora31-hyperv",
+      "name": "generic-fedora31-hyperv-x64",
+      "vm_name": "generic-fedora31-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora31-hyperv",
+      "output_directory": "output/generic-fedora31-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5075,10 +5075,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu1910-hyperv",
-      "vm_name": "generic-ubuntu1910-hyperv",
+      "name": "generic-ubuntu1910-hyperv-x64",
+      "vm_name": "generic-ubuntu1910-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu1910-hyperv",
+      "output_directory": "output/generic-ubuntu1910-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5128,10 +5128,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine311-hyperv",
-      "vm_name": "generic-alpine311-hyperv",
+      "name": "generic-alpine311-hyperv-x64",
+      "vm_name": "generic-alpine311-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine311-hyperv",
+      "output_directory": "output/generic-alpine311-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5174,10 +5174,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu2004-hyperv",
-      "vm_name": "generic-ubuntu2004-hyperv",
+      "name": "generic-ubuntu2004-hyperv-x64",
+      "vm_name": "generic-ubuntu2004-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu2004-hyperv",
+      "output_directory": "output/generic-ubuntu2004-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5227,10 +5227,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora32-hyperv",
-      "vm_name": "generic-fedora32-hyperv",
+      "name": "generic-fedora32-hyperv-x64",
+      "vm_name": "generic-fedora32-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora32-hyperv",
+      "output_directory": "output/generic-fedora32-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5263,10 +5263,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-netbsd9-hyperv",
-      "vm_name": "generic-netbsd9-hyperv",
+      "name": "generic-netbsd9-hyperv-x64",
+      "vm_name": "generic-netbsd9-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-netbsd9-hyperv",
+      "output_directory": "output/generic-netbsd9-hyperv-x64",
       "boot_wait": "40s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5354,10 +5354,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine312-hyperv",
-      "vm_name": "generic-alpine312-hyperv",
+      "name": "generic-alpine312-hyperv-x64",
+      "vm_name": "generic-alpine312-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine312-hyperv",
+      "output_directory": "output/generic-alpine312-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5400,10 +5400,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-devuan1-hyperv",
-      "vm_name": "generic-devuan1-hyperv",
+      "name": "generic-devuan1-hyperv-x64",
+      "vm_name": "generic-devuan1-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-devuan1-hyperv",
+      "output_directory": "output/generic-devuan1-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5445,10 +5445,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-devuan2-hyperv",
-      "vm_name": "generic-devuan2-hyperv",
+      "name": "generic-devuan2-hyperv-x64",
+      "vm_name": "generic-devuan2-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-devuan2-hyperv",
+      "output_directory": "output/generic-devuan2-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5490,10 +5490,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-devuan3-hyperv",
-      "vm_name": "generic-devuan3-hyperv",
+      "name": "generic-devuan3-hyperv-x64",
+      "vm_name": "generic-devuan3-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-devuan3-hyperv",
+      "output_directory": "output/generic-devuan3-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5535,10 +5535,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu2010-hyperv",
-      "vm_name": "generic-ubuntu2010-hyperv",
+      "name": "generic-ubuntu2010-hyperv-x64",
+      "vm_name": "generic-ubuntu2010-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu2010-hyperv",
+      "output_directory": "output/generic-ubuntu2010-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5583,10 +5583,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora33-hyperv",
-      "vm_name": "generic-fedora33-hyperv",
+      "name": "generic-fedora33-hyperv-x64",
+      "vm_name": "generic-fedora33-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora33-hyperv",
+      "output_directory": "output/generic-fedora33-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5619,10 +5619,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine313-hyperv",
-      "vm_name": "generic-alpine313-hyperv",
+      "name": "generic-alpine313-hyperv-x64",
+      "vm_name": "generic-alpine313-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine313-hyperv",
+      "output_directory": "output/generic-alpine313-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5665,10 +5665,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine314-hyperv",
-      "vm_name": "generic-alpine314-hyperv",
+      "name": "generic-alpine314-hyperv-x64",
+      "vm_name": "generic-alpine314-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine314-hyperv",
+      "output_directory": "output/generic-alpine314-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5711,10 +5711,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu2104-hyperv",
-      "vm_name": "generic-ubuntu2104-hyperv",
+      "name": "generic-ubuntu2104-hyperv-x64",
+      "vm_name": "generic-ubuntu2104-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu2104-hyperv",
+      "output_directory": "output/generic-ubuntu2104-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5759,10 +5759,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-rocky8-hyperv",
-      "vm_name": "generic-rocky8-hyperv",
+      "name": "generic-rocky8-hyperv-x64",
+      "vm_name": "generic-rocky8-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-rocky8-hyperv",
+      "output_directory": "output/generic-rocky8-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5792,10 +5792,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alma8-hyperv",
-      "vm_name": "generic-alma8-hyperv",
+      "name": "generic-alma8-hyperv-x64",
+      "vm_name": "generic-alma8-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alma8-hyperv",
+      "output_directory": "output/generic-alma8-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5825,10 +5825,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora34-hyperv",
-      "vm_name": "generic-fedora34-hyperv",
+      "name": "generic-fedora34-hyperv-x64",
+      "vm_name": "generic-fedora34-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora34-hyperv",
+      "output_directory": "output/generic-fedora34-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5861,10 +5861,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-freebsd13-hyperv",
-      "vm_name": "generic-freebsd13-hyperv",
+      "name": "generic-freebsd13-hyperv-x64",
+      "vm_name": "generic-freebsd13-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-freebsd13-hyperv",
+      "output_directory": "output/generic-freebsd13-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5910,10 +5910,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-hardenedbsd13-hyperv",
-      "vm_name": "generic-hardenedbsd13-hyperv",
+      "name": "generic-hardenedbsd13-hyperv-x64",
+      "vm_name": "generic-hardenedbsd13-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-hardenedbsd13-hyperv",
+      "output_directory": "output/generic-hardenedbsd13-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -5957,10 +5957,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-dragonflybsd6-hyperv",
-      "vm_name": "generic-dragonflybsd6-hyperv",
+      "name": "generic-dragonflybsd6-hyperv-x64",
+      "vm_name": "generic-dragonflybsd6-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-dragonflybsd6-hyperv",
+      "output_directory": "output/generic-dragonflybsd6-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6020,10 +6020,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-debian11-hyperv",
-      "vm_name": "generic-debian11-hyperv",
+      "name": "generic-debian11-hyperv-x64",
+      "vm_name": "generic-debian11-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-debian11-hyperv",
+      "output_directory": "output/generic-debian11-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6065,10 +6065,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-openbsd7-hyperv",
-      "vm_name": "generic-openbsd7-hyperv",
+      "name": "generic-openbsd7-hyperv-x64",
+      "vm_name": "generic-openbsd7-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-openbsd7-hyperv",
+      "output_directory": "output/generic-openbsd7-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6103,10 +6103,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu2110-hyperv",
-      "vm_name": "generic-ubuntu2110-hyperv",
+      "name": "generic-ubuntu2110-hyperv-x64",
+      "vm_name": "generic-ubuntu2110-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu2110-hyperv",
+      "output_directory": "output/generic-ubuntu2110-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6151,10 +6151,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine315-hyperv",
-      "vm_name": "generic-alpine315-hyperv",
+      "name": "generic-alpine315-hyperv-x64",
+      "vm_name": "generic-alpine315-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine315-hyperv",
+      "output_directory": "output/generic-alpine315-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6198,10 +6198,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora35-hyperv",
-      "vm_name": "generic-fedora35-hyperv",
+      "name": "generic-fedora35-hyperv-x64",
+      "vm_name": "generic-fedora35-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora35-hyperv",
+      "output_directory": "output/generic-fedora35-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6234,10 +6234,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-devuan4-hyperv",
-      "vm_name": "generic-devuan4-hyperv",
+      "name": "generic-devuan4-hyperv-x64",
+      "vm_name": "generic-devuan4-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-devuan4-hyperv",
+      "output_directory": "output/generic-devuan4-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6279,10 +6279,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu2204-hyperv",
-      "vm_name": "generic-ubuntu2204-hyperv",
+      "name": "generic-ubuntu2204-hyperv-x64",
+      "vm_name": "generic-ubuntu2204-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu2204-hyperv",
+      "output_directory": "output/generic-ubuntu2204-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6327,10 +6327,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora36-hyperv",
-      "vm_name": "generic-fedora36-hyperv",
+      "name": "generic-fedora36-hyperv-x64",
+      "vm_name": "generic-fedora36-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora36-hyperv",
+      "output_directory": "output/generic-fedora36-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6363,10 +6363,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-rhel9-hyperv",
-      "vm_name": "generic-rhel9-hyperv",
+      "name": "generic-rhel9-hyperv-x64",
+      "vm_name": "generic-rhel9-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-rhel9-hyperv",
+      "output_directory": "output/generic-rhel9-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6396,10 +6396,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-centos8s-hyperv",
-      "vm_name": "generic-centos8s-hyperv",
+      "name": "generic-centos8s-hyperv-x64",
+      "vm_name": "generic-centos8s-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-centos8s-hyperv",
+      "output_directory": "output/generic-centos8s-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6429,10 +6429,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-centos9s-hyperv",
-      "vm_name": "generic-centos9s-hyperv",
+      "name": "generic-centos9s-hyperv-x64",
+      "vm_name": "generic-centos9s-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-centos9s-hyperv",
+      "output_directory": "output/generic-centos9s-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6462,10 +6462,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine316-hyperv",
-      "vm_name": "generic-alpine316-hyperv",
+      "name": "generic-alpine316-hyperv-x64",
+      "vm_name": "generic-alpine316-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine316-hyperv",
+      "output_directory": "output/generic-alpine316-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6509,10 +6509,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alma9-hyperv",
-      "vm_name": "generic-alma9-hyperv",
+      "name": "generic-alma9-hyperv-x64",
+      "vm_name": "generic-alma9-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alma9-hyperv",
+      "output_directory": "output/generic-alma9-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6542,10 +6542,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-oracle9-hyperv",
-      "vm_name": "generic-oracle9-hyperv",
+      "name": "generic-oracle9-hyperv-x64",
+      "vm_name": "generic-oracle9-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-oracle9-hyperv",
+      "output_directory": "output/generic-oracle9-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6575,10 +6575,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-rocky9-hyperv",
-      "vm_name": "generic-rocky9-hyperv",
+      "name": "generic-rocky9-hyperv-x64",
+      "vm_name": "generic-rocky9-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-rocky9-hyperv",
+      "output_directory": "output/generic-rocky9-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6608,10 +6608,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-oracle6-hyperv",
-      "vm_name": "generic-oracle6-hyperv",
+      "name": "generic-oracle6-hyperv-x64",
+      "vm_name": "generic-oracle6-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-oracle6-hyperv",
+      "output_directory": "output/generic-oracle6-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6641,10 +6641,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu2210-hyperv",
-      "vm_name": "generic-ubuntu2210-hyperv",
+      "name": "generic-ubuntu2210-hyperv-x64",
+      "vm_name": "generic-ubuntu2210-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu2210-hyperv",
+      "output_directory": "output/generic-ubuntu2210-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6689,10 +6689,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora37-hyperv",
-      "vm_name": "generic-fedora37-hyperv",
+      "name": "generic-fedora37-hyperv-x64",
+      "vm_name": "generic-fedora37-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora37-hyperv",
+      "output_directory": "output/generic-fedora37-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6739,10 +6739,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-fedora38-hyperv",
-      "vm_name": "generic-fedora38-hyperv",
+      "name": "generic-fedora38-hyperv-x64",
+      "vm_name": "generic-fedora38-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-fedora38-hyperv",
+      "output_directory": "output/generic-fedora38-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6789,10 +6789,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine317-hyperv",
-      "vm_name": "generic-alpine317-hyperv",
+      "name": "generic-alpine317-hyperv-x64",
+      "vm_name": "generic-alpine317-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine317-hyperv",
+      "output_directory": "output/generic-alpine317-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6836,10 +6836,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-ubuntu2304-hyperv",
-      "vm_name": "generic-ubuntu2304-hyperv",
+      "name": "generic-ubuntu2304-hyperv-x64",
+      "vm_name": "generic-ubuntu2304-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-ubuntu2304-hyperv",
+      "output_directory": "output/generic-ubuntu2304-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6884,10 +6884,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-debian12-hyperv",
-      "vm_name": "generic-debian12-hyperv",
+      "name": "generic-debian12-hyperv-x64",
+      "vm_name": "generic-debian12-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-debian12-hyperv",
+      "output_directory": "output/generic-debian12-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6929,10 +6929,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-alpine318-hyperv",
-      "vm_name": "generic-alpine318-hyperv",
+      "name": "generic-alpine318-hyperv-x64",
+      "vm_name": "generic-alpine318-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-alpine318-hyperv",
+      "output_directory": "output/generic-alpine318-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -6976,10 +6976,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-devuan5-hyperv",
-      "vm_name": "generic-devuan5-hyperv",
+      "name": "generic-devuan5-hyperv-x64",
+      "vm_name": "generic-devuan5-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-devuan5-hyperv",
+      "output_directory": "output/generic-devuan5-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7021,10 +7021,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-hardenedbsd-hyperv",
-      "vm_name": "generic-hardenedbsd-hyperv",
+      "name": "generic-hardenedbsd-hyperv-x64",
+      "vm_name": "generic-hardenedbsd-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-hardenedbsd-hyperv",
+      "output_directory": "output/generic-hardenedbsd-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -7068,10 +7068,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "generic-dragonflybsd-hyperv",
-      "vm_name": "generic-dragonflybsd-hyperv",
+      "name": "generic-dragonflybsd-hyperv-x64",
+      "vm_name": "generic-dragonflybsd-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/generic-dragonflybsd-hyperv",
+      "output_directory": "output/generic-dragonflybsd-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [

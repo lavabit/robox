@@ -13,7 +13,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-libvirt"
+                "lineage-libvirt-x64"
             ]
         },
         {
@@ -36,7 +36,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-libvirt"
+                "lineage-libvirt-x64"
             ]
         },
         {
@@ -48,7 +48,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "lineage-libvirt"
+                "lineage-libvirt-x64"
             ]
         },
         {
@@ -72,9 +72,9 @@
     "builders": [
         {
             "type": "qemu",
-            "name": "lineage-libvirt",
-            "vm_name": "lineage-libvirt",
-            "output_directory": "output/lineage-libvirt",
+            "name": "lineage-libvirt-x64",
+            "vm_name": "lineage-libvirt-x64",
+            "output_directory": "output/lineage-libvirt-x64",
             "qemu_binary": "qemu-system-x86_64",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",

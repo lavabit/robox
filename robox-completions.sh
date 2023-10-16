@@ -13,13 +13,13 @@ _robox()
     providers=`./robox.sh list-providers`
     namespaces=`./robox.sh list-namespaces`
 
-    # Complete action names
+    # Complete the action names.
     if ((COMP_CWORD == 1)); then
         COMPREPLY=( $(compgen -W "${actions} ${namespaces} ${providers} ${configs}" -- ${cur}) )
         return 0;
     fi
 
-    # # If there is command or separator in arguments then stop completion
+    # # If there is command or separator in arguments then stop completion.
     # if ((COMP_CWORD > 3)); then
     #     for word in "${COMP_WORDS[@]}"; do
     #         if [[ ${word} == \'* || ${word} == \"* || ${word} == "--" ]] ; then
@@ -28,7 +28,7 @@ _robox()
     #     done
     # fi
 
-    # Complete one or none action argument
+    # Complete one or none action argument.
     if ((COMP_CWORD = 2)); then
         cur_action="${COMP_WORDS[1]}"
 

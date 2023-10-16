@@ -14,7 +14,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-alpine36-hyperv"
+        "magma-alpine36-hyperv-x64"
       ]
     },
     {
@@ -43,7 +43,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-alpine36-hyperv"
+        "magma-alpine36-hyperv-x64"
       ]
     },
     {
@@ -58,7 +58,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos6-hyperv"
+        "magma-centos6-hyperv-x64"
       ]
     },
     {
@@ -85,7 +85,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos6-hyperv"
+        "magma-centos6-hyperv-x64"
       ]
     },
     {
@@ -101,7 +101,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos7-hyperv"
+        "magma-centos7-hyperv-x64"
       ]
     },
     {
@@ -132,7 +132,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos7-hyperv"
+        "magma-centos7-hyperv-x64"
       ]
     },
     {
@@ -145,7 +145,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-gentoo-hyperv"
+        "magma-gentoo-hyperv-x64"
       ]
     },
     {
@@ -163,7 +163,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-gentoo-hyperv"
+        "magma-gentoo-hyperv-x64"
       ]
     },
     {
@@ -175,7 +175,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-arch-hyperv"
+        "magma-arch-hyperv-x64"
       ]
     },
     {
@@ -198,7 +198,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-arch-hyperv"
+        "magma-arch-hyperv-x64"
       ]
     },
     {
@@ -211,7 +211,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian8-hyperv"
+        "magma-debian8-hyperv-x64"
       ]
     },
     {
@@ -238,7 +238,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian8-hyperv"
+        "magma-debian8-hyperv-x64"
       ]
     },
     {
@@ -252,7 +252,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora27-hyperv"
+        "magma-fedora27-hyperv-x64"
       ]
     },
     {
@@ -266,7 +266,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora27-hyperv"
+        "magma-fedora27-hyperv-x64"
       ]
     },
     {
@@ -290,7 +290,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora27-hyperv"
+        "magma-fedora27-hyperv-x64"
       ]
     },
     {
@@ -314,7 +314,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "magma-freebsd11-hyperv"
+        "magma-freebsd11-hyperv-x64"
       ]
     },
     {
@@ -327,7 +327,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
       "only": [
-        "magma-openbsd6-hyperv"
+        "magma-openbsd6-hyperv-x64"
       ]
     },
     {
@@ -349,7 +349,7 @@
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
       "only": [
-        "magma-openbsd6-hyperv"
+        "magma-openbsd6-hyperv-x64"
       ]
     },
     {
@@ -362,7 +362,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1604-hyperv"
+        "magma-ubuntu1604-hyperv-x64"
       ]
     },
     {
@@ -389,7 +389,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1604-hyperv"
+        "magma-ubuntu1604-hyperv-x64"
       ]
     },
     {
@@ -402,7 +402,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1610-hyperv"
+        "magma-ubuntu1610-hyperv-x64"
       ]
     },
     {
@@ -429,7 +429,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1610-hyperv"
+        "magma-ubuntu1610-hyperv-x64"
       ]
     },
     {
@@ -442,7 +442,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1704-hyperv"
+        "magma-ubuntu1704-hyperv-x64"
       ]
     },
     {
@@ -469,7 +469,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1704-hyperv"
+        "magma-ubuntu1704-hyperv-x64"
       ]
     },
     {
@@ -482,7 +482,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian9-hyperv"
+        "magma-debian9-hyperv-x64"
       ]
     },
     {
@@ -510,7 +510,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian9-hyperv"
+        "magma-debian9-hyperv-x64"
       ]
     },
     {
@@ -523,7 +523,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian10-hyperv"
+        "magma-debian10-hyperv-x64"
       ]
     },
     {
@@ -550,7 +550,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian10-hyperv"
+        "magma-debian10-hyperv-x64"
       ]
     },
     {
@@ -563,7 +563,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian11-hyperv"
+        "magma-debian11-hyperv-x64"
       ]
     },
     {
@@ -590,7 +590,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-debian11-hyperv"
+        "magma-debian11-hyperv-x64"
       ]
     },
     {
@@ -604,7 +604,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora28-hyperv"
+        "magma-fedora28-hyperv-x64"
       ]
     },
     {
@@ -618,7 +618,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora28-hyperv"
+        "magma-fedora28-hyperv-x64"
       ]
     },
     {
@@ -642,7 +642,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora28-hyperv"
+        "magma-fedora28-hyperv-x64"
       ]
     },
     {
@@ -656,7 +656,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora29-hyperv"
+        "magma-fedora29-hyperv-x64"
       ]
     },
     {
@@ -670,7 +670,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora29-hyperv"
+        "magma-fedora29-hyperv-x64"
       ]
     },
     {
@@ -694,7 +694,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora29-hyperv"
+        "magma-fedora29-hyperv-x64"
       ]
     },
     {
@@ -708,7 +708,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora30-hyperv"
+        "magma-fedora30-hyperv-x64"
       ]
     },
     {
@@ -722,7 +722,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora30-hyperv"
+        "magma-fedora30-hyperv-x64"
       ]
     },
     {
@@ -746,7 +746,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora30-hyperv"
+        "magma-fedora30-hyperv-x64"
       ]
     },
     {
@@ -760,7 +760,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora31-hyperv"
+        "magma-fedora31-hyperv-x64"
       ]
     },
     {
@@ -774,7 +774,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora31-hyperv"
+        "magma-fedora31-hyperv-x64"
       ]
     },
     {
@@ -798,7 +798,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora31-hyperv"
+        "magma-fedora31-hyperv-x64"
       ]
     },
     {
@@ -811,7 +811,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1710-hyperv"
+        "magma-ubuntu1710-hyperv-x64"
       ]
     },
     {
@@ -838,7 +838,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1710-hyperv"
+        "magma-ubuntu1710-hyperv-x64"
       ]
     },
     {
@@ -851,7 +851,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1804-hyperv"
+        "magma-ubuntu1804-hyperv-x64"
       ]
     },
     {
@@ -878,7 +878,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1804-hyperv"
+        "magma-ubuntu1804-hyperv-x64"
       ]
     },
     {
@@ -891,7 +891,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1810-hyperv"
+        "magma-ubuntu1810-hyperv-x64"
       ]
     },
     {
@@ -918,7 +918,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1810-hyperv"
+        "magma-ubuntu1810-hyperv-x64"
       ]
     },
     {
@@ -931,7 +931,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1904-hyperv"
+        "magma-ubuntu1904-hyperv-x64"
       ]
     },
     {
@@ -958,7 +958,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1904-hyperv"
+        "magma-ubuntu1904-hyperv-x64"
       ]
     },
     {
@@ -971,7 +971,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1910-hyperv"
+        "magma-ubuntu1910-hyperv-x64"
       ]
     },
     {
@@ -998,7 +998,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu1910-hyperv"
+        "magma-ubuntu1910-hyperv-x64"
       ]
     },
     {
@@ -1011,7 +1011,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu2004-hyperv"
+        "magma-ubuntu2004-hyperv-x64"
       ]
     },
     {
@@ -1038,7 +1038,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-ubuntu2004-hyperv"
+        "magma-ubuntu2004-hyperv-x64"
       ]
     },
     {
@@ -1054,7 +1054,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos8-hyperv"
+        "magma-centos8-hyperv-x64"
       ]
     },
     {
@@ -1084,7 +1084,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-centos8-hyperv"
+        "magma-centos8-hyperv-x64"
       ]
     },
     {
@@ -1098,7 +1098,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora32-hyperv"
+        "magma-fedora32-hyperv-x64"
       ]
     },
     {
@@ -1112,7 +1112,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora32-hyperv"
+        "magma-fedora32-hyperv-x64"
       ]
     },
     {
@@ -1136,7 +1136,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora32-hyperv"
+        "magma-fedora32-hyperv-x64"
       ]
     },
     {
@@ -1150,7 +1150,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora33-hyperv"
+        "magma-fedora33-hyperv-x64"
       ]
     },
     {
@@ -1164,7 +1164,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora33-hyperv"
+        "magma-fedora33-hyperv-x64"
       ]
     },
     {
@@ -1188,7 +1188,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora33-hyperv"
+        "magma-fedora33-hyperv-x64"
       ]
     },
     {
@@ -1202,7 +1202,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora34-hyperv"
+        "magma-fedora34-hyperv-x64"
       ]
     },
     {
@@ -1216,7 +1216,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora34-hyperv"
+        "magma-fedora34-hyperv-x64"
       ]
     },
     {
@@ -1240,7 +1240,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora34-hyperv"
+        "magma-fedora34-hyperv-x64"
       ]
     },
     {
@@ -1254,7 +1254,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora35-hyperv"
+        "magma-fedora35-hyperv-x64"
       ]
     },
     {
@@ -1268,7 +1268,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora35-hyperv"
+        "magma-fedora35-hyperv-x64"
       ]
     },
     {
@@ -1292,7 +1292,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora35-hyperv"
+        "magma-fedora35-hyperv-x64"
       ]
     },
     {
@@ -1306,7 +1306,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora36-hyperv"
+        "magma-fedora36-hyperv-x64"
       ]
     },
     {
@@ -1320,7 +1320,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora36-hyperv"
+        "magma-fedora36-hyperv-x64"
       ]
     },
     {
@@ -1344,7 +1344,7 @@
       "start_retry_timeout": "45m",
       "expect_disconnect": "true",
       "only": [
-        "magma-fedora36-hyperv"
+        "magma-fedora36-hyperv-x64"
       ]
     },
     {
@@ -1366,10 +1366,10 @@
   "builders": [
     {
       "type": "hyperv-iso",
-      "name": "magma-centos6-hyperv",
-      "vm_name": "magma-centos6-hyperv",
+      "name": "magma-centos6-hyperv-x64",
+      "vm_name": "magma-centos6-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-centos6-hyperv",
+      "output_directory": "output/magma-centos6-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1399,10 +1399,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-centos7-hyperv",
-      "vm_name": "magma-centos7-hyperv",
+      "name": "magma-centos7-hyperv-x64",
+      "vm_name": "magma-centos7-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-centos7-hyperv",
+      "output_directory": "output/magma-centos7-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1432,10 +1432,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-alpine36-hyperv",
-      "vm_name": "magma-alpine36-hyperv",
+      "name": "magma-alpine36-hyperv-x64",
+      "vm_name": "magma-alpine36-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-alpine36-hyperv",
+      "output_directory": "output/magma-alpine36-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1475,10 +1475,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-arch-hyperv",
-      "vm_name": "magma-arch-hyperv",
+      "name": "magma-arch-hyperv-x64",
+      "vm_name": "magma-arch-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-arch-hyperv",
+      "output_directory": "output/magma-arch-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1528,10 +1528,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-fedora27-hyperv",
-      "vm_name": "magma-fedora27-hyperv",
+      "name": "magma-fedora27-hyperv-x64",
+      "vm_name": "magma-fedora27-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-fedora27-hyperv",
+      "output_directory": "output/magma-fedora27-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1565,10 +1565,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-debian8-hyperv",
-      "vm_name": "magma-debian8-hyperv",
+      "name": "magma-debian8-hyperv-x64",
+      "vm_name": "magma-debian8-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-debian8-hyperv",
+      "output_directory": "output/magma-debian8-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1610,10 +1610,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-ubuntu1604-hyperv",
-      "vm_name": "magma-ubuntu1604-hyperv",
+      "name": "magma-ubuntu1604-hyperv-x64",
+      "vm_name": "magma-ubuntu1604-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-ubuntu1604-hyperv",
+      "output_directory": "output/magma-ubuntu1604-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1657,10 +1657,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-ubuntu1610-hyperv",
-      "vm_name": "magma-ubuntu1610-hyperv",
+      "name": "magma-ubuntu1610-hyperv-x64",
+      "vm_name": "magma-ubuntu1610-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-ubuntu1610-hyperv",
+      "output_directory": "output/magma-ubuntu1610-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1696,10 +1696,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-ubuntu1704-hyperv",
-      "vm_name": "magma-ubuntu1704-hyperv",
+      "name": "magma-ubuntu1704-hyperv-x64",
+      "vm_name": "magma-ubuntu1704-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-ubuntu1704-hyperv",
+      "output_directory": "output/magma-ubuntu1704-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1735,10 +1735,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-gentoo-hyperv",
-      "vm_name": "magma-gentoo-hyperv",
+      "name": "magma-gentoo-hyperv-x64",
+      "vm_name": "magma-gentoo-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-gentoo-hyperv",
+      "output_directory": "output/magma-gentoo-hyperv-x64",
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1773,10 +1773,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-freebsd11-hyperv",
-      "vm_name": "magma-freebsd11-hyperv",
+      "name": "magma-freebsd11-hyperv-x64",
+      "vm_name": "magma-freebsd11-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-freebsd11-hyperv",
+      "output_directory": "output/magma-freebsd11-hyperv-x64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1822,10 +1822,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-openbsd6-hyperv",
-      "vm_name": "magma-openbsd6-hyperv",
+      "name": "magma-openbsd6-hyperv-x64",
+      "vm_name": "magma-openbsd6-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-openbsd6-hyperv",
+      "output_directory": "output/magma-openbsd6-hyperv-x64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1859,10 +1859,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-debian9-hyperv",
-      "vm_name": "magma-debian9-hyperv",
+      "name": "magma-debian9-hyperv-x64",
+      "vm_name": "magma-debian9-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-debian9-hyperv",
+      "output_directory": "output/magma-debian9-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1904,10 +1904,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-debian10-hyperv",
-      "vm_name": "magma-debian10-hyperv",
+      "name": "magma-debian10-hyperv-x64",
+      "vm_name": "magma-debian10-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-debian10-hyperv",
+      "output_directory": "output/magma-debian10-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1949,10 +1949,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-debian11-hyperv",
-      "vm_name": "magma-debian11-hyperv",
+      "name": "magma-debian11-hyperv-x64",
+      "vm_name": "magma-debian11-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-debian11-hyperv",
+      "output_directory": "output/magma-debian11-hyperv-x64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1994,10 +1994,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-fedora28-hyperv",
-      "vm_name": "magma-fedora28-hyperv",
+      "name": "magma-fedora28-hyperv-x64",
+      "vm_name": "magma-fedora28-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-fedora28-hyperv",
+      "output_directory": "output/magma-fedora28-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2031,10 +2031,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-fedora29-hyperv",
-      "vm_name": "magma-fedora29-hyperv",
+      "name": "magma-fedora29-hyperv-x64",
+      "vm_name": "magma-fedora29-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-fedora29-hyperv",
+      "output_directory": "output/magma-fedora29-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2068,10 +2068,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-fedora30-hyperv",
-      "vm_name": "magma-fedora30-hyperv",
+      "name": "magma-fedora30-hyperv-x64",
+      "vm_name": "magma-fedora30-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-fedora30-hyperv",
+      "output_directory": "output/magma-fedora30-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2105,10 +2105,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-fedora31-hyperv",
-      "vm_name": "magma-fedora31-hyperv",
+      "name": "magma-fedora31-hyperv-x64",
+      "vm_name": "magma-fedora31-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-fedora31-hyperv",
+      "output_directory": "output/magma-fedora31-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2142,10 +2142,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-ubuntu1710-hyperv",
-      "vm_name": "magma-ubuntu1710-hyperv",
+      "name": "magma-ubuntu1710-hyperv-x64",
+      "vm_name": "magma-ubuntu1710-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-ubuntu1710-hyperv",
+      "output_directory": "output/magma-ubuntu1710-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2181,10 +2181,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-ubuntu1804-hyperv",
-      "vm_name": "magma-ubuntu1804-hyperv",
+      "name": "magma-ubuntu1804-hyperv-x64",
+      "vm_name": "magma-ubuntu1804-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-ubuntu1804-hyperv",
+      "output_directory": "output/magma-ubuntu1804-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2220,10 +2220,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-ubuntu1810-hyperv",
-      "vm_name": "magma-ubuntu1810-hyperv",
+      "name": "magma-ubuntu1810-hyperv-x64",
+      "vm_name": "magma-ubuntu1810-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-ubuntu1810-hyperv",
+      "output_directory": "output/magma-ubuntu1810-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2259,10 +2259,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-ubuntu1904-hyperv",
-      "vm_name": "magma-ubuntu1904-hyperv",
+      "name": "magma-ubuntu1904-hyperv-x64",
+      "vm_name": "magma-ubuntu1904-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-ubuntu1904-hyperv",
+      "output_directory": "output/magma-ubuntu1904-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2298,10 +2298,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-ubuntu1910-hyperv",
-      "vm_name": "magma-ubuntu1910-hyperv",
+      "name": "magma-ubuntu1910-hyperv-x64",
+      "vm_name": "magma-ubuntu1910-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-ubuntu1910-hyperv",
+      "output_directory": "output/magma-ubuntu1910-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2337,10 +2337,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-ubuntu2004-hyperv",
-      "vm_name": "magma-ubuntu2004-hyperv",
+      "name": "magma-ubuntu2004-hyperv-x64",
+      "vm_name": "magma-ubuntu2004-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-ubuntu2004-hyperv",
+      "output_directory": "output/magma-ubuntu2004-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2376,10 +2376,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-centos8-hyperv",
-      "vm_name": "magma-centos8-hyperv",
+      "name": "magma-centos8-hyperv-x64",
+      "vm_name": "magma-centos8-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-centos8-hyperv",
+      "output_directory": "output/magma-centos8-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2409,10 +2409,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-fedora32-hyperv",
-      "vm_name": "magma-fedora32-hyperv",
+      "name": "magma-fedora32-hyperv-x64",
+      "vm_name": "magma-fedora32-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-fedora32-hyperv",
+      "output_directory": "output/magma-fedora32-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2446,10 +2446,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-fedora33-hyperv",
-      "vm_name": "magma-fedora33-hyperv",
+      "name": "magma-fedora33-hyperv-x64",
+      "vm_name": "magma-fedora33-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-fedora33-hyperv",
+      "output_directory": "output/magma-fedora33-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2483,10 +2483,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-fedora34-hyperv",
-      "vm_name": "magma-fedora34-hyperv",
+      "name": "magma-fedora34-hyperv-x64",
+      "vm_name": "magma-fedora34-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-fedora34-hyperv",
+      "output_directory": "output/magma-fedora34-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2520,10 +2520,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-fedora35-hyperv",
-      "vm_name": "magma-fedora35-hyperv",
+      "name": "magma-fedora35-hyperv-x64",
+      "vm_name": "magma-fedora35-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-fedora35-hyperv",
+      "output_directory": "output/magma-fedora35-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2557,10 +2557,10 @@
     },
     {
       "type": "hyperv-iso",
-      "name": "magma-fedora36-hyperv",
-      "vm_name": "magma-fedora36-hyperv",
+      "name": "magma-fedora36-hyperv-x64",
+      "vm_name": "magma-fedora36-hyperv-x64",
       "temp_path": "output/",
-      "output_directory": "output/magma-fedora36-hyperv",
+      "output_directory": "output/magma-fedora36-hyperv-x64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -2605,9 +2605,9 @@
           "tpl/lavabit/info.json"
         ],
         "except": [
-          "magma-alpine36-hyperv",
-          "magma-openbsd6-hyperv",
-          "magma-freebsd11-hyperv"
+          "magma-alpine36-hyperv-x64",
+          "magma-openbsd6-hyperv-x64",
+          "magma-freebsd11-hyperv-x64"
         ]
       },
       {
@@ -2618,9 +2618,9 @@
         "keep_input_artifact": false,
         "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
         "except": [
-          "magma-alpine36-hyperv",
-          "magma-openbsd6-hyperv",
-          "magma-freebsd11-hyperv"
+          "magma-alpine36-hyperv-x64",
+          "magma-openbsd6-hyperv-x64",
+          "magma-freebsd11-hyperv-x64"
         ]
       }
     ],
@@ -2635,7 +2635,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-alpine36-hyperv"
+          "magma-alpine36-hyperv-x64"
         ]
       },
       {
@@ -2646,7 +2646,7 @@
         "keep_input_artifact": false,
         "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-alpine36-hyperv"
+          "magma-alpine36-hyperv-x64"
         ]
       }
     ],
@@ -2661,8 +2661,8 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-openbsd6-hyperv",
-          "magma-freebsd11-hyperv"
+          "magma-openbsd6-hyperv-x64",
+          "magma-freebsd11-hyperv-x64"
         ]
       },
       {
@@ -2673,8 +2673,8 @@
         "keep_input_artifact": false,
         "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-openbsd6-hyperv",
-          "magma-freebsd11-hyperv"
+          "magma-openbsd6-hyperv-x64",
+          "magma-freebsd11-hyperv-x64"
         ]
       }
     ],
@@ -2689,7 +2689,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-centos6-hyperv"
+          "magma-centos6-hyperv-x64"
         ]
       },
       {
@@ -2700,7 +2700,7 @@
         "keep_input_artifact": false,
         "output": "output/{{ replace_all \"-centos6\" \"\" build_name }}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-centos6-hyperv"
+          "magma-centos6-hyperv-x64"
         ]
       }
     ],
@@ -2715,7 +2715,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-centos6-hyperv"
+          "magma-centos6-hyperv-x64"
         ]
       },
       {
@@ -2726,7 +2726,7 @@
         "keep_input_artifact": false,
         "output": "output/{{ replace_all \"centos6\" \"centos\" build_name }}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-centos6-hyperv"
+          "magma-centos6-hyperv-x64"
         ]
       }
     ],
@@ -2741,7 +2741,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-ubuntu1604-hyperv"
+          "magma-ubuntu1604-hyperv-x64"
         ]
       },
       {
@@ -2752,7 +2752,7 @@
         "keep_input_artifact": false,
         "output": "output/{{ replace_all \"ubuntu1604\" \"ubuntu\" build_name }}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-ubuntu1604-hyperv"
+          "magma-ubuntu1604-hyperv-x64"
         ]
       }
     ],
@@ -2767,7 +2767,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-debian8-hyperv"
+          "magma-debian8-hyperv-x64"
         ]
       },
       {
@@ -2778,7 +2778,7 @@
         "keep_input_artifact": false,
         "output": "output/{{ replace_all \"debian8\" \"debian\" build_name }}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-debian8-hyperv"
+          "magma-debian8-hyperv-x64"
         ]
       }
     ],
@@ -2793,7 +2793,7 @@
           "tpl/lavabit/info.json"
         ],
         "only": [
-          "magma-fedora27-hyperv"
+          "magma-fedora27-hyperv-x64"
         ]
       },
       {
@@ -2804,7 +2804,7 @@
         "keep_input_artifact": false,
         "output": "output/{{ replace_all \"fedora27\" \"fedora\" build_name }}-{{user `box_version`}}.box.sha256",
         "only": [
-          "magma-fedora27-hyperv"
+          "magma-fedora27-hyperv-x64"
         ]
       }
     ]
