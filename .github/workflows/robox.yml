@@ -114,7 +114,7 @@ jobs:
         date +"%nStarting cache box validation at %r on %x%n"
         sudo prlimit --pid $$ --nproc=65536:65536
         sudo prlimit --pid $$ --nofile=500000:500000
-        export PACKER_LOG_PATH=packer-cache.txt ; packer validate packer-cache-x64.json &>> packer-validate.txt && printf "File  + packer-cache-x64.json\n" || { printf "File  - packer-cache-x64.json\n\n\n" ; unset PACKER_LOG ; unset PACKER_LOG_PATH ; packer validate packer-cache-x64.json ; exit 1 ; }
+        export PACKER_LOG_PATH=packer-cache.txt ; packer validate packer-cache.json &>> packer-validate.txt && printf "File  + packer-cache.json\n" || { printf "File  - packer-cache.json\n\n\n" ; unset PACKER_LOG ; unset PACKER_LOG_PATH ; packer validate packer-cache.json ; exit 1 ; }
         date +"%nFinished Cache box validation at %r on %x%n"
     - name: Archive Log Files
       uses: actions/upload-artifact@v3
