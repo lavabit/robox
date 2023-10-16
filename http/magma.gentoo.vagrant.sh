@@ -951,7 +951,7 @@ cd /mnt/gentoo
 echo 'Downloading Image Overlay'
 # host="https://gentoo.osuosl.org"
 host="https://mirrors.edge.kernel.org/gentoo"
-tarball=$(wget -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-openrc/ -O - | grep -E -o -e "stage3-amd64-nomultilib-openrc-[0-9]{8}T[0-9]{6}Z.tar.xz" | uniq)
+tarball=$(wget -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-openrc/ -O - | grep -E -v "tar\.xz\.asc|tar\.xz\.CONTENTS\.gz|tar\.xz\.DIGESTS|tar\.xz\.sha256" | grep -E -o -e "stage3-amd64-nomultilib-openrc-[0-9]{8}T[0-9]{6}Z.tar.xz" | sort -V | uniq | tail -1)
 wget --tries=5 --progress=dot:binary $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-openrc/$tarball || exit 1
 wget --tries=5 -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-openrc/$tarball.asc || exit 1
 wget --tries=5 -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-openrc/$tarball.DIGESTS || exit 1
