@@ -1364,6 +1364,8 @@ function sums() {
 }
 
 function validate() {
+  # Try and make the jobs nice. Ignore failures when adjusting the process priority.
+  renice -n +19 $$ &> /dev/null || echo > /dev/null
   verify_json packer-cache && printf "The packer-cache.json file is valid.\n"
   verify_json magma-docker-x64 && printf "The magma-docker-x64.json file is valid.\n"
   verify_json magma-hyperv-x64 && printf "The magma-hyperv-x64.json file is valid.\n"
