@@ -1,6 +1,6 @@
 #!/bin/bash -ux
 
-if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-3]|hardenedbsd|hardenedbsd1[1-3]|openbsd[6-7]|alpine3[5-9]|alpine31[0-8])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then 
+if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-3]|hardenedbsd|hardenedbsd1[1-3]|openbsd[6-7]|alpine3[5-9]|alpine31[0-8])-(vmware|hyperv|libvirt|parallels|virtualbox)-(x64|x32|a64)$ ]]; then 
 
   # We fill until full so don't abort on error.
   # set -ux
@@ -17,14 +17,14 @@ if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-3]|hardenedbsd|harden
     rm -f /boot/zerofill
   fi
 
-elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(netbsd[8-9])-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(netbsd[8-9])-(vmware|hyperv|libvirt|parallels|virtualbox)-(x64|x32|a64)$ ]]; then
 
   # Whiteout root
   dd if=/dev/zero of=/zerofill bs=8192
   sync -f /zerofill
   rm -f /zerofill
 
-elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(dragonflybsd[5-6]?)-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(dragonflybsd[5-6]?)-(vmware|hyperv|libvirt|parallels|virtualbox)-(x64|x32|a64)$ ]]; then
 
   AVAIL=`df -m / | tail -1 | awk -F' ' '{print $4}'`
   let FILL=${AVAIL}-256

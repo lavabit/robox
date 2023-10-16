@@ -13,7 +13,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian8-x32-virtualbox"
+        "generic-debian8-virtualbox-x32"
       ]
     },
     {
@@ -35,7 +35,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian8-x32-virtualbox"
+        "generic-debian8-virtualbox-x32"
       ]
     },
     {
@@ -48,7 +48,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian9-x32-virtualbox"
+        "generic-debian9-virtualbox-x32"
       ]
     },
     {
@@ -71,7 +71,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian9-x32-virtualbox"
+        "generic-debian9-virtualbox-x32"
       ]
     },
     {
@@ -84,7 +84,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian10-x32-virtualbox"
+        "generic-debian10-virtualbox-x32"
       ]
     },
     {
@@ -106,7 +106,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian10-x32-virtualbox"
+        "generic-debian10-virtualbox-x32"
       ]
     },
     {
@@ -119,7 +119,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian11-x32-virtualbox"
+        "generic-debian11-virtualbox-x32"
       ]
     },
     {
@@ -141,7 +141,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian11-x32-virtualbox"
+        "generic-debian11-virtualbox-x32"
       ]
     },
     {
@@ -154,7 +154,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian12-x32-virtualbox"
+        "generic-debian12-virtualbox-x32"
       ]
     },
     {
@@ -176,7 +176,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-debian12-x32-virtualbox"
+        "generic-debian12-virtualbox-x32"
       ]
     },
     {
@@ -198,9 +198,9 @@
   "builders": [
     {
       "type": "virtualbox-iso",
-      "name": "generic-debian8-x32-virtualbox",
-      "vm_name": "generic-debian8-x32-virtualbox",
-      "output_directory": "output/generic-debian8-x32-virtualbox",
+      "name": "generic-debian8-virtualbox-x32",
+      "vm_name": "generic-debian8-virtualbox-x32",
+      "output_directory": "output/generic-debian8-virtualbox-x32",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -252,9 +252,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-debian9-x32-virtualbox",
-      "vm_name": "generic-debian9-x32-virtualbox",
-      "output_directory": "output/generic-debian9-x32-virtualbox",
+      "name": "generic-debian9-virtualbox-x32",
+      "vm_name": "generic-debian9-virtualbox-x32",
+      "output_directory": "output/generic-debian9-virtualbox-x32",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -306,9 +306,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-debian10-x32-virtualbox",
-      "vm_name": "generic-debian10-x32-virtualbox",
-      "output_directory": "output/generic-debian10-x32-virtualbox",
+      "name": "generic-debian10-virtualbox-x32",
+      "vm_name": "generic-debian10-virtualbox-x32",
+      "output_directory": "output/generic-debian10-virtualbox-x32",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -360,9 +360,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-debian11-x32-virtualbox",
-      "vm_name": "generic-debian11-x32-virtualbox",
-      "output_directory": "output/generic-debian11-x32-virtualbox",
+      "name": "generic-debian11-virtualbox-x32",
+      "vm_name": "generic-debian11-virtualbox-x32",
+      "output_directory": "output/generic-debian11-virtualbox-x32",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -416,9 +416,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "name": "generic-debian12-x32-virtualbox",
-      "vm_name": "generic-debian12-x32-virtualbox",
-      "output_directory": "output/generic-debian12-x32-virtualbox",
+      "name": "generic-debian12-virtualbox-x32",
+      "vm_name": "generic-debian12-virtualbox-x32",
+      "output_directory": "output/generic-debian12-virtualbox-x32",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -464,8 +464,8 @@
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.46/VBoxGuestAdditions_6.1.46.iso",
-      "guest_additions_sha256": "a65927369c852895e827c6d6d5be3d14c2da1dfd4e7a4b9ca7479320e5121ffc",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/7.0.10/VBoxGuestAdditions_7.0.10.iso",
+      "guest_additions_sha256": "bbabd89b8fff38a257bab039a278f0c4dc4426eff6e4238c1db01edb7284186a",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
