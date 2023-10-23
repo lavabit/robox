@@ -14,7 +14,7 @@ if [[ `dmidecode -s system-product-name` != "VMware Virtual Platform" ]]; then
 fi
 
 # Dpownload the FreeBSD package beacause Dragonfly doesn't have one.
-curl -o open-vm-tools-nox11-11.3.0.pkg "https://mirrors.lavabit.com/freebsd-packages/FreeBSD:11:amd64/latest/All/open-vm-tools-nox11-11.3.0,2.pkg"
+curl -o open-vm-tools-nox11-11.3.0.pkg "https://mirrors.lavabit.com/freebsd-archive/FreeBSD:11:amd64/latest/All/open-vm-tools-nox11-11.3.0,2.pkg"
 
 # Fuse libraries are required.
 pkg-static install --yes fuse fuse-utils

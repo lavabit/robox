@@ -5,18 +5,49 @@ export FETCH_RETRY=5
 export FETCH_TIMEOUT=30
 export ASSUME_ALWAYS_YES=yes
 
+pkg-static install --yes perl5 p5-MIME-Base64 p5-Carp curl ca_root_nss
+
+# Download the bundle generator.
+curl --silent --location --output $HOME/mk-ca-bundle.pl https://raw.githubusercontent.com/curl/curl/85f91248cffb22d151d5983c32f0dbf6b1de572a/lib/mk-ca-bundle.pl
+sha256 $HOME/mk-ca-bundle.pl | grep -q "SHA256 ($HOME/mk-ca-bundle.pl) = f819e5844935bad3d7eebab566b55066f21bd7138097d2baab7842bd04fd92d2" || exit 1
+chmod +x $HOME/mk-ca-bundle.pl
+
+# To ensure we save the certdata.txt file in a predictable place we change directory first.
+cd $HOME && $HOME/mk-ca-bundle.pl $HOME/ca-bundle.crt
+
+# Move the updated bundle to all the places it might be needed.
+cp $HOME/ca-bundle.crt /etc/ssl/cert.pem
+cp $HOME/ca-bundle.crt /usr/local/openssl/cert.pem
+cp $HOME/ca-bundle.crt /usr/local/etc/ssl/cert.pem
+cp $HOME/ca-bundle.crt /usr/local/share/certs/ca-root-nss.crt
+
+cp $HOME/ca-bundle.crt /etc/ssl/cert.pem.backup
+cp $HOME/ca-bundle.crt /usr/local/openssl/cert.pem.backup
+cp $HOME/ca-bundle.crt /usr/local/etc/ssl/cert.pem.backup
+cp $HOME/ca-bundle.crt /usr/local/share/certs/ca-root-nss.crt.backup
+
+# Cleanup the downloaded files and clear the cached repo data.
+rm $HOME/ca-bundle.crt $HOME/certdata.txt $HOME/mk-ca-bundle.pl
+
 # Force the use of HTTPS for package updates.
+rm -f /var/db/pkg/Avalon.meta /var/db/pkg/repo-Avalon.sqlite /var/db/pkg/repo-Avalon.sqlite-journal
 sed -i -f "s/http:\/\//https:\/\//g" /usr/local/etc/pkg/repos/df-latest.conf
 
-pkg-static clean --yes --all
 pkg-static update --force
 pkg-static upgrade --yes --force
+
+# Move the updated bundle to all the places it might be needed.
+cp /etc/ssl/cert.pem.backup/etc/ssl/cert.pem
+cp /usr/local/openssl/cert.pem.backup /usr/local/openssl/cert.pem
+cp /usr/local/etc/ssl/cert.pem.backup /usr/local/etc/ssl/cert.pem
+cp /usr/local/share/certs/ca-root-nss.crt.backup /usr/local/share/certs/ca-root-nss.crt
 
 # Generic system utils.
 pkg install --yes vim curl wget sudo bash gnuls gnugrep psmisc
 
 # Since most scripts expect bash to be in the bin directory, create a symlink.
-ln -s /usr/local/bin/bash /bin/bash
+[ ! -f /bin/bash ] && [ -f  /usr/local/bin/bash ] && ln -s /usr/local/bin/bash /bin/bash
+[ ! -f /usr/bin/bash ] && [ -f  /usr/local/bin/bash ] && ln -s /usr/local/bin/bash /usr/bin/bash
 
 # Disable fortunate cookies.
 sed -i -e "/fortune/d" /usr/share/skel/dot.login

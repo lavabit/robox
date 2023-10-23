@@ -6,6 +6,7 @@ export FETCH_TIMEOUT=30
 export ASSUME_ALWAYS_YES=yes
 
 # Force the use of HTTPS for package updates.
+# rm -f /var/db/pkg/Avalon.meta /var/db/pkg/repo-Avalon.sqlite /var/db/pkg/repo-Avalon.sqlite-journal
 sed -i -f "s/http:\/\//https:\/\//g" /usr/local/etc/pkg/repos/df-latest.conf
 
 pkg-static clean --yes --all
@@ -16,7 +17,8 @@ pkg-static upgrade --yes --force
 pkg install --yes vim curl wget sudo bash gnuls gnugrep psmisc
 
 # Since most scripts expect bash to be in the bin directory, create a symlink.
-ln -s /usr/local/bin/bash /bin/bash
+[ ! -f /bin/bash ] && [ -f  /usr/local/bin/bash ] && ln -s /usr/local/bin/bash /bin/bash
+[ ! -f /usr/bin/bash ] && [ -f  /usr/local/bin/bash ] && ln -s /usr/local/bin/bash /usr/bin/bash
 
 # Disable fortunate cookies.
 sed -i -e "/fortune/d" /usr/share/skel/dot.login

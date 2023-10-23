@@ -9,7 +9,7 @@ export ASSUME_ALWAYS_YES=yes
 # pkg add -i firstboot_freebsd_update
 # sysrc firstboot_freebsd_update=NO
 
-pkg-static install -y firstboot-pkgs firstboot-growfs
+pkg-static install -y firstboot-pkgs
 
 sysrc firstboot-growfs=YES
 sysrc firstboot_pkgs=YES

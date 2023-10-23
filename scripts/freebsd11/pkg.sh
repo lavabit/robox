@@ -7,14 +7,14 @@ export ASSUME_ALWAYS_YES=yes
 
 # We need to use HTTP until the CA bundle has been updated.
 mkdir -p /usr/local/etc/pkg/repos/
-rm /var/db/pkg/FreeBSD.meta /var/db/pkg/repo-FreeBSD.sqlite
+rm -f /var/db/pkg/FreeBSD.meta /var/db/pkg/repo-FreeBSD.sqlite /var/db/pkg/repo-FreeBSD.sqlite-journal
 # echo 'FreeBSD: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
-echo 'FreeBSD: { url: "pkg+http://mirrors.lavabit.com/freebsd-packages/FreeBSD%3A11%3Aamd64/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+echo 'FreeBSD: { url: "pkg+http://mirrors.lavabit.com/freebsd-packages/${}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 
 # Install the packages needed to update the CA bundle.
 pkg bootstrap
 pkg-static update -f
-pkg-static upgrade --yes perl5 p5-MIME-Base64 p5-Carp curl ca_root_nss
+pkg-static install --yes perl5 p5-MIME-Base64 p5-Carp curl ca_root_nss
 
 # Download the bundle generator.
 curl --silent --location --output $HOME/mk-ca-bundle.pl https://raw.githubusercontent.com/curl/curl/85f91248cffb22d151d5983c32f0dbf6b1de572a/lib/mk-ca-bundle.pl
@@ -34,7 +34,9 @@ cp $HOME/ca-bundle.crt /usr/local/share/certs/ca-root-nss.crt
 rm $HOME/ca-bundle.crt $HOME/certdata.txt $HOME/mk-ca-bundle.pl /var/db/pkg/FreeBSD.meta /var/db/pkg/repo-FreeBSD.sqlite
 
 # Switch to using HTTPS and perform the system upgrade.
-echo 'FreeBSD: { url: "pkg+https://pkg.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+rm -f /var/db/pkg/FreeBSD.meta /var/db/pkg/repo-FreeBSD.sqlite /var/db/pkg/repo-FreeBSD.sqlite-journal
+echo 'FreeBSD: { url: "pkg+https://mirrors.lavabit.com/freebsd-packages/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+
 pkg-static update -f
 pkg-static upgrade --yes
 
@@ -42,7 +44,8 @@ pkg-static upgrade --yes
 pkg install --yes vim curl wget sudo bash gnuls gnugrep psmisc
 
 # Since most scripts expect bash to be in the bin directory, create a symlink.
-ln -s /usr/local/bin/bash /bin/bash
+[ ! -f /bin/bash ] && [ -f  /usr/local/bin/bash ] && ln -s /usr/local/bin/bash /bin/bash
+[ ! -f /usr/bin/bash ] && [ -f  /usr/local/bin/bash ] && ln -s /usr/local/bin/bash /usr/bin/bash
 
 # Disable fortunate cookies.
 sed -i "" -e "/fortune/d" /usr/share/skel/dot.login

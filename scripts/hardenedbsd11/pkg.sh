@@ -44,7 +44,8 @@ retry pkg-static upgrade --yes --force
 retry pkg install --yes curl wget sudo bash gnuls gnugrep psmisc vim
 
 # Since most scripts expect bash to be in the bin directory, create a symlink.
-ln -s /usr/local/bin/bash /bin/bash
+[ ! -f /bin/bash ] && [ -f  /usr/local/bin/bash ] && ln -s /usr/local/bin/bash /bin/bash
+[ ! -f /usr/bin/bash ] && [ -f  /usr/local/bin/bash ] && ln -s /usr/local/bin/bash /usr/bin/bash
 
 # Disable fortunate cookies.
 sed -i -e "/fortune/d" /usr/share/skel/dot.login
