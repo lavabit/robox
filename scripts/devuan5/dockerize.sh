@@ -32,7 +32,8 @@ rm /var/run/nologin
 date --utc > /etc/docker_box_build_time
 
 # Randomize the root password and then lock the root account.
-dd if=/dev/urandom count=128 | md5sum | awk -F' ' '{print $1}' | passwd --stdin root
+LOCKPWD=`dd if=/dev/urandom count=128 status=none | md5sum | awk -F' ' '{print $1}'`
+printf "$LOCKPWD\n$LOCKPWD\n" | passwd root
 passwd --lock root
 
 if [ -f /var/lib/dbus/machine-id ]; then
@@ -84,5 +85,5 @@ else
   printf "\nTarball generation succeeded.\n"
 fi
 
-printf "locked\n" | passwd --stdin root
+printf "locked\nlocked\n" | passwd root
 passwd --unlock root
