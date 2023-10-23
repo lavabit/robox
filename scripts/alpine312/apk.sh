@@ -1,4 +1,4 @@
-#!/bin/sh -eux
+#!/bin/sh -x
 
 retry() {
   local COUNT=1
@@ -36,7 +36,7 @@ retry apk update --no-cache
 retry apk upgrade
 
 # Install various basic system utilities.
-retry apk add vim man-pages bash gawk wget curl sudo lsof file grep readline rsync sysstat findutils sysfsutils dmidecode libmagic sqlite-libs ca-certificates ncurses-libs ncurses-terminfo ncurses-terminfo-base psmisc
+retry apk add vim less groff man-db man-pages bash gawk wget curl sudo lsof file grep readline rsync sysstat findutils sysfsutils dmidecode libmagic sqlite-libs ca-certificates ncurses-libs ncurses-terminfo ncurses-terminfo-base psmisc
 
 # Setup vim as the default editor.
 printf "alias vi=vim\n" >> /etc/profile.d/vim.sh

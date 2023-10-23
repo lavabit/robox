@@ -1,4 +1,4 @@
-#!/bin/bash -eux
+#!/bin/bash -x
 retry() {
   local COUNT=1
   local DELAY=0
