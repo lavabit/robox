@@ -80,5 +80,5 @@ else
   printf "\nTarball generation succeeded.\n"
 fi
 
-printf "locked\n" | passwd --stdin root
-passwd --unlock root
+printf "locked\nlocked\n" | passwd root
+passwd -u root
