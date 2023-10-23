@@ -169,10 +169,11 @@ fi
 FILENAME="$(basename "$1")"
 FILEPATH="$(realpath "$1")"
 
-ORG="$(echo "$FILENAME" | sed "s/\([a-z]*\)[\-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\1/g")"
-BOX="$(echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\2/g")"
-PROVIDER="$(echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\3/g")"
-VERSION="$(echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\4/g")"
+ORG="$(echo "$FILENAME" | sed "s/\([a-z]*\)[\-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\1/g")"
+BOX="$(echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\2/g")"
+PROVIDER="$(echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\3/g")"
+ARCH="$(echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\4/g")"
+VERSION="$(echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\5/g")"
 
 # Handle the Lavabit boxes.
 if [ "$ORG" == "magma" ]; then
@@ -204,10 +205,35 @@ if [ "$PROVIDER" == "vmware" ]; then
   PROVIDER="vmware_desktop"
 fi
 
-# Modify the org/box for 32 bit variants.
-if [[ "$BOX" =~ ^.*-x32$ ]]; then
-  ORG="${ORG}-x32"
-  BOX="$(echo $BOX | sed 's/-x32//g')"
+# Handle the arch types.
+if [ "$ARCH" == "x64" ] || [ "$ARCH" == "x86_64" ] || [ "$ARCH" == "amd64" ]; then
+  ARCH="amd64"
+elif [ "$PROVIDER" == "x32" ] || [ "$ARCH" == "x86" ] || [ "$ARCH" == "i386" ] || [ "$ARCH" == "i686" ]; then
+  ARCH="386"
+elif [ "$PROVIDER" == "a64" ] || [ "$ARCH" == "aarch64" ] || [ "$ARCH" == "arm64" ] || [ "$ARCH" == "arm64eb" ]|| [ "$ARCH" == "arm64le" ]; then
+  ARCH="arm64"
+elif [ "$PROVIDER" == "a32" ] || [ "$ARCH" == "armv7" ] || [ "$ARCH" == "armv6" ] || [ "$ARCH" == "arm" ] || [ "$ARCH" == "armeb" ] || [ "$ARCH" == "armle" ]; then
+  ARCH="arm"
+elif  [ "$PROVIDER" == "ppc64le" ]; then
+  ARCH="ppc64le"
+elif [ "$PROVIDER" == "p64" ] || [ "$PROVIDER" == "ppc64" ] || [ "$ARCH" == "power64" ] || [ "$ARCH" == "powerpc64" ]; then
+  ARCH="ppc64"
+elif [ "$PROVIDER" == "p32" ] || [ "$PROVIDER" == "ppc32" ] || [ "$ARCH" == "power" ] || [ "$ARCH" == "power32" ] || [ "$ARCH" == "powerpc" ] || [ "$ARCH" == "powerpc32" ] || [ "$ARCH" == "powerpcspe" ]; then
+  ARCH="ppc"
+elif [ "$PROVIDER" == "r64" ] || [ "$PROVIDER" == "riscv64" ] || [ "$ARCH" == "riscv64sf" ]; then
+  ARCH="riscv64"
+elif [ "$PROVIDER" == "r32" ] || [ "$PROVIDER" == "riscv" ] || [ "$ARCH" == "riscv32" ]; then
+  ARCH="riscv32"
+elif [ "$PROVIDER" == "mips64le" ] || [ "$PROVIDER" == "mips64le" ] || [ "$ARCH" == "mips64elhf" ]; then
+  ARCH="mips64le"
+elif [ "$PROVIDER" == "m64" ] || [ "$PROVIDER" == "mips64" ] || [ "$PROVIDER" == "mips64hf" ] ; then
+  ARCH="mips64"
+elif [ "$PROVIDER" == "mips64le" ] || [ "$PROVIDER" == "mips64le" ] || [ "$ARCH" == "mips64elhf" ]; then
+ARCH="mipsle"
+elif [ "$PROVIDER" == "m32" ] || [ "$PROVIDER" == "mips" ] || [ "$PROVIDER" == "mips32" ] || [ "$PROVIDER" == "mipsn32" ] || [ "$ARCH" == "mipsel" ] || [ "$PROVIDER" == "mipshf" ] || [ "$ARCH" == "mipshfel" ]; then
+  ARCH="mips"
+else
+  printf "\n${T_YEL}  The architecture is unrecognized. Passing it verbatim to the cloud. [ arch = ${ARCH} ]${T_RESET}\n\n" >&2
 fi
 
 # Find the box checksum.
@@ -241,6 +267,11 @@ fi
 
 if [ "$VERSION" == "" ]; then
   printf "\n${T_RED}  The version couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
+  exit 1
+fi
+
+if [ "$ARCH" == "" ]; then
+  printf "\n${T_RED}  The architecture couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
   exit 1
 fi
 
@@ -287,7 +318,7 @@ ${CURL} \
   --output /dev/null \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  "https://app.vagrantup.com/api/v1/box/$ORG/$BOX/versions" \
+  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/versions" \
   --data "
     {
       \"version\": {
@@ -296,7 +327,7 @@ ${CURL} \
       }
     }
   " || \
-  { printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $VERSION ]${T_RESET}\n" >&2 ; }
+  { printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
 
 ${CURL} \
   --silent \
@@ -306,8 +337,8 @@ ${CURL} \
   --output /dev/null \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   --request DELETE \
-  "https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}" || \
-  { printf "${T_BYEL}  Unable to delete an existing version of the box. [ $ORG $BOX $PROVIDER $VERSION ]${T_RESET}\n" >&2 ; }
+  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}" || \
+  { printf "${T_BYEL}  Unable to delete an existing version of the box. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
 
 # Sleep to let the deletion propagate.
 sleep 1
@@ -321,9 +352,9 @@ ${CURL} \
   --output /dev/null \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  "https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/providers" \
-  --data "{ \"provider\": { \"name\": \"$PROVIDER\", \"checksum\": \"$HASH\", \"checksum_type\": \"SHA256\" } }" || \
-  { printf "${T_BYEL}  Unable to create a provider for this box version. [ $ORG $BOX $PROVIDER $VERSION ]${T_RESET}\n" >&2 ; }
+  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/providers" \
+  --data "{ \"provider\": { \"name\": \"$PROVIDER\", \"checksum\": \"$HASH\", \"architecture\": \"$ARCH\", \"checksum_type\": \"SHA256\" } }" || \
+  { printf "${T_BYEL}  Unable to create a provider for this box version. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
 
 UPLOAD_RESPONSE=$( ${CURL} \
   --fail \
@@ -332,7 +363,7 @@ UPLOAD_RESPONSE=$( ${CURL} \
   --silent \
   --max-time 180 \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  "https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/upload/direct" )
+  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH/upload/direct" )
 
 UPLOAD_PATH="$(echo "$UPLOAD_RESPONSE" | jq -r .upload_path)"
 UPLOAD_CALLBACK="$(echo "$UPLOAD_RESPONSE" | jq -r .callback)"
