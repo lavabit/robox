@@ -1,19 +1,16 @@
 {
-  "variables":
-  {
+  "variables": {
     "box_version": "{{env `VERSION`}}",
     "quay-user": "{{env `QUAY_USER`}}",
     "docker-user": "{{env `DOCKER_USER`}}",
     "quay-password": "{{env `QUAY_PASSWORD`}}",
     "docker-password": "{{env `DOCKER_PASSWORD`}}"
   },
-  "provisioners":
-  [
+  "provisioners": [
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/centos6/yum.sh",
         "scripts/centos6/base.sh",
         "scripts/centos6/network.sh",
@@ -22,16 +19,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-centos6-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/centos6/updatedb.sh",
         "scripts/centos6/cleanup.sh",
         "scripts/centos6/dockerize.sh"
@@ -40,16 +35,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-centos6-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/centos7/network.sh",
         "scripts/centos7/yum.sh",
         "scripts/centos7/base.sh",
@@ -58,16 +51,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-centos7-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/centos7/floppy.sh",
         "scripts/centos7/cleanup.sh",
         "scripts/centos7/unyum.sh",
@@ -77,16 +68,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-centos7-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/centos8/network.sh",
         "scripts/centos8/dnf.sh",
         "scripts/centos8/base.sh",
@@ -95,16 +84,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-centos8-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/centos8/floppy.sh",
         "scripts/centos8/cleanup.sh",
         "scripts/centos8/dockerize.sh"
@@ -113,16 +100,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-centos8-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rhel6/network.sh",
         "scripts/rhel6/yum.sh",
         "scripts/rhel6/base.sh",
@@ -131,16 +116,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rhel6-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rhel6/vga.sh",
         "scripts/rhel6/updatedb.sh",
         "scripts/rhel6/cleanup.sh",
@@ -151,16 +134,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rhel6-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rhel7/network.sh",
         "scripts/rhel7/yum.sh",
         "scripts/rhel7/base.sh",
@@ -169,16 +150,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rhel7-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rhel7/floppy.sh",
         "scripts/rhel7/updatedb.sh",
         "scripts/rhel7/cleanup.sh",
@@ -189,16 +168,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rhel7-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rhel8/network.sh",
         "scripts/rhel8/dnf.sh",
         "scripts/rhel8/base.sh",
@@ -207,16 +184,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rhel8-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rhel8/floppy.sh",
         "scripts/rhel8/updatedb.sh",
         "scripts/rhel8/cleanup.sh",
@@ -227,16 +202,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rhel8-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rhel9/network.sh",
         "scripts/rhel9/dnf.sh",
         "scripts/rhel9/base.sh",
@@ -245,16 +218,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rhel9-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rhel9/floppy.sh",
         "scripts/rhel9/updatedb.sh",
         "scripts/rhel9/cleanup.sh",
@@ -265,32 +236,28 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rhel9-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/oracle7/network.sh",
         "scripts/oracle7/yum.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-oracle7-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/oracle7/floppy.sh",
         "scripts/oracle7/cleanup.sh",
         "scripts/oracle7/dockerize.sh"
@@ -299,32 +266,28 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-oracle7-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/oracle8/network.sh",
         "scripts/oracle8/dnf.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-oracle8-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/oracle8/floppy.sh",
         "scripts/oracle8/cleanup.sh",
         "scripts/oracle8/dockerize.sh"
@@ -333,32 +296,28 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-oracle8-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/oracle9/network.sh",
         "scripts/oracle9/dnf.sh"
       ],
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-oracle9-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/oracle9/floppy.sh",
         "scripts/oracle9/cleanup.sh",
         "scripts/oracle9/dockerize.sh"
@@ -367,16 +326,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-oracle9-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/alma8/network.sh",
         "scripts/alma8/dnf.sh",
         "scripts/alma8/base.sh",
@@ -385,16 +342,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-alma8-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/alma8/floppy.sh",
         "scripts/alma8/updatedb.sh",
         "scripts/alma8/cleanup.sh",
@@ -405,16 +360,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-alma8-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/alma9/network.sh",
         "scripts/alma9/dnf.sh",
         "scripts/alma9/base.sh",
@@ -423,16 +376,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-alma9-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/alma9/floppy.sh",
         "scripts/alma9/updatedb.sh",
         "scripts/alma9/cleanup.sh",
@@ -443,48 +394,42 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-alma9-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/fedora38/fixdns.sh",
         "scripts/fedora38/hostname.sh",
         "scripts/fedora38/dnf.sh"
       ],
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-fedora38-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/fedora38/fixtmp.sh",
         "scripts/fedora38/base.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-fedora38-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/fedora38/kernel.sh",
         "scripts/fedora38/updatedb.sh",
         "scripts/fedora38/vga.sh",
@@ -494,14 +439,12 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-fedora38-docker-x64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/debian12/apt.sh",
         "scripts/debian12/network.sh"
       ],
@@ -509,14 +452,12 @@
       "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-debian12-docker-x64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/debian12/floppy.sh",
         "scripts/debian12/profile.sh",
         "scripts/debian12/motd.sh",
@@ -529,32 +470,28 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-debian12-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/alpine318/network.sh",
         "scripts/alpine318/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-alpine318-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/alpine318/hostname.sh",
         "scripts/alpine318/lsb.sh",
         "scripts/alpine318/floppy.sh",
@@ -566,14 +503,12 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-alpine318-docker-x64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/devuan5/apt.sh",
         "scripts/devuan5/network.sh"
       ],
@@ -581,14 +516,12 @@
       "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-devuan5-docker-x64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/devuan5/floppy.sh",
         "scripts/devuan5/motd.sh",
         "scripts/devuan5/cleanup.sh",
@@ -599,16 +532,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-devuan5-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rocky8/network.sh",
         "scripts/rocky8/dnf.sh",
         "scripts/rocky8/base.sh",
@@ -617,16 +548,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rocky8-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rocky8/floppy.sh",
         "scripts/rocky8/updatedb.sh",
         "scripts/rocky8/cleanup.sh",
@@ -637,16 +566,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rocky8-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rocky9/network.sh",
         "scripts/rocky9/dnf.sh",
         "scripts/rocky9/base.sh",
@@ -655,16 +582,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rocky9-docker-x64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rocky9/floppy.sh",
         "scripts/rocky9/updatedb.sh",
         "scripts/rocky9/cleanup.sh",
@@ -675,14 +600,12 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rocky9-docker-x64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/gentoo/network.sh",
         "scripts/gentoo/emerge.sh"
       ],
@@ -690,14 +613,12 @@
       "timeout": "720m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-gentoo-docker-x64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/gentoo/dockerize.sh"
       ],
       "type": "shell",
@@ -705,28 +626,24 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-gentoo-docker-x64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/arch/pacman.sh"
       ],
       "type": "shell",
       "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-arch-docker-x64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/arch/cleanup.sh",
         "scripts/arch/dockerize.sh"
       ],
@@ -735,8 +652,7 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-arch-docker-x64"
       ]
     },
@@ -747,8 +663,7 @@
       "destination": "output/{{build_name}}-{{user `box_version`}}.tar"
     }
   ],
-  "builders":
-  [
+  "builders": [
     {
       "type": "qemu",
       "name": "generic-arch-docker-x64",
@@ -757,8 +672,7 @@
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -781,8 +695,7 @@
         "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.docker{,.chroot}.sh'<enter><wait>",
         "bash generic.arch.docker.sh < generic.arch.docker.chroot.sh && systemctl reboot<enter>"
       ],
-      "qemuargs":
-      [
+      "qemuargs": [
         [
           "-device",
           "virtio-serial"
@@ -822,8 +735,7 @@
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf<enter><wait>",
         "passwd root<enter><wait><wait><wait>",
         "locked<enter><wait>",
@@ -862,8 +774,7 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma8.docker.ks vga=792 <enter><wait>"
       ],
       "format": "qcow2",
@@ -897,12 +808,10 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.docker.ks vga=792 <enter><wait>"
       ],
-      "qemuargs":
-      [
+      "qemuargs": [
         [
           "-cpu",
           "max"
@@ -938,8 +847,7 @@
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
         "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
@@ -984,8 +892,7 @@
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.docker.ks<enter><wait>"
       ],
       "format": "qcow2",
@@ -1020,8 +927,7 @@
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.docker.ks<enter><wait>"
       ],
       "format": "qcow2",
@@ -1056,8 +962,7 @@
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.docker.ks<enter><wait>"
       ],
       "format": "qcow2",
@@ -1092,8 +997,7 @@
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -1138,8 +1042,7 @@
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -1184,8 +1087,7 @@
       "qemu_binary": "qemu-system-x86_64",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "c<wait>",
         "insmod all_video<enter><wait>",
         "set gfxpayload=keep<enter><wait>",
@@ -1236,8 +1138,7 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.docker.ks<enter><wait>"
       ],
       "format": "qcow2",
@@ -1271,8 +1172,7 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.docker.ks<enter><wait>"
       ],
       "format": "qcow2",
@@ -1306,12 +1206,10 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle9.docker.ks vga=792 <enter><wait>"
       ],
-      "qemuargs":
-      [
+      "qemuargs": [
         [
           "-cpu",
           "max"
@@ -1348,8 +1246,7 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.docker.ks<enter><wait>"
       ],
       "format": "qcow2",
@@ -1383,8 +1280,7 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.docker.ks<enter><wait>"
       ],
       "format": "qcow2",
@@ -1418,8 +1314,7 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.docker.ks<enter><wait>"
       ],
       "format": "qcow2",
@@ -1453,12 +1348,10 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.docker.ks vga=792 <enter><wait>"
       ],
-      "qemuargs":
-      [
+      "qemuargs": [
         [
           "-cpu",
           "max"
@@ -1495,8 +1388,7 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky8.docker.ks vga=792 <enter><wait>"
       ],
       "format": "qcow2",
@@ -1530,12 +1422,10 @@
       "qemu_binary": "/usr/libexec/qemu-kvm",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky9.docker.ks vga=792 <enter><wait>"
       ],
-      "qemuargs":
-      [
+      "qemuargs": [
         [
           "-cpu",
           "max"
@@ -1564,18 +1454,15 @@
       "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
     }
   ],
-  "post-processors":
-  [
+  "post-processors": [
     [
       {
         "type": "shell-local",
-        "environment_vars":
-        [
+        "environment_vars": [
           "NAME={{build_name}}",
           "BOX={{split build_name \"-\" 1}}"
         ],
-        "inline":
-        [
+        "inline": [
           "[ `docker images quay.io/generic/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/generic/$BOX`",
           "[ `docker images quay.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/roboxes/$BOX`",
           "[ `docker images docker.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet docker.io/roboxes/$BOX`",
@@ -1588,8 +1475,7 @@
       {
         "type": "artifice",
         "keep_input_artifact": false,
-        "files":
-        [
+        "files": [
           "output/{{build_name}}-{{user `box_version`}}.tar"
         ]
       },
@@ -1602,8 +1488,7 @@
       },
       {
         "type": "checksum",
-        "checksum_types":
-        [
+        "checksum_types": [
           "sha256"
         ],
         "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz.sha256",
@@ -1614,8 +1499,7 @@
       {
         "type": "artifice",
         "keep_input_artifact": false,
-        "files":
-        [
+        "files": [
           "output/{{build_name}}-{{user `box_version`}}.tar"
         ]
       },
@@ -1628,8 +1512,7 @@
       },
       {
         "type": "checksum",
-        "checksum_types":
-        [
+        "checksum_types": [
           "sha256"
         ],
         "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz.sha256",
@@ -1639,12 +1522,10 @@
     [
       {
         "type": "shell-local",
-        "environment_vars":
-        [
+        "environment_vars": [
           "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ],
-        "inline":
-        [
+        "inline": [
           "[ -f $FILENAME ] && touch $FILENAME",
           "exit 0"
         ]
@@ -1652,8 +1533,7 @@
       {
         "type": "artifice",
         "keep_input_artifact": true,
-        "files":
-        [
+        "files": [
           "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ]
       },
@@ -1662,8 +1542,7 @@
         "keep_input_artifact": true,
         "tag": "{{user `box_version`}}",
         "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
-        "changes":
-        [
+        "changes": [
           "CMD [\"/bin/bash\"]",
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ]
@@ -1678,12 +1557,10 @@
     [
       {
         "type": "shell-local",
-        "environment_vars":
-        [
+        "environment_vars": [
           "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ],
-        "inline":
-        [
+        "inline": [
           "[ -f $FILENAME ] && touch $FILENAME",
           "exit 0"
         ]
@@ -1691,8 +1568,7 @@
       {
         "type": "artifice",
         "keep_input_artifact": true,
-        "files":
-        [
+        "files": [
           "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ]
       },
@@ -1701,8 +1577,7 @@
         "keep_input_artifact": true,
         "tag": "latest",
         "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
-        "changes":
-        [
+        "changes": [
           "CMD [\"/bin/bash\"]",
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ]
@@ -1717,12 +1592,10 @@
     [
       {
         "type": "shell-local",
-        "environment_vars":
-        [
+        "environment_vars": [
           "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ],
-        "inline":
-        [
+        "inline": [
           "[ -f $FILENAME ] && touch $FILENAME",
           "exit 0"
         ]
@@ -1730,8 +1603,7 @@
       {
         "type": "artifice",
         "keep_input_artifact": true,
-        "files":
-        [
+        "files": [
           "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ]
       },
@@ -1740,8 +1612,7 @@
         "keep_input_artifact": true,
         "tag": "{{user `box_version`}}",
         "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes":
-        [
+        "changes": [
           "CMD [\"/bin/bash\"]",
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ]
@@ -1756,12 +1627,10 @@
     [
       {
         "type": "shell-local",
-        "environment_vars":
-        [
+        "environment_vars": [
           "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ],
-        "inline":
-        [
+        "inline": [
           "[ -f $FILENAME ] && touch $FILENAME",
           "exit 0"
         ]
@@ -1769,8 +1638,7 @@
       {
         "type": "artifice",
         "keep_input_artifact": true,
-        "files":
-        [
+        "files": [
           "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ]
       },
@@ -1779,8 +1647,7 @@
         "keep_input_artifact": true,
         "tag": "latest",
         "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes":
-        [
+        "changes": [
           "CMD [\"/bin/bash\"]",
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ]
@@ -1795,12 +1662,10 @@
     [
       {
         "type": "shell-local",
-        "environment_vars":
-        [
+        "environment_vars": [
           "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ],
-        "inline":
-        [
+        "inline": [
           "[ -f $FILENAME ] && touch $FILENAME",
           "exit 0"
         ]
@@ -1808,8 +1673,7 @@
       {
         "type": "artifice",
         "keep_input_artifact": true,
-        "files":
-        [
+        "files": [
           "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ]
       },
@@ -1818,8 +1682,7 @@
         "keep_input_artifact": true,
         "tag": "{{user `box_version`}}",
         "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes":
-        [
+        "changes": [
           "CMD [\"/bin/bash\"]",
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ]
@@ -1835,15 +1698,13 @@
         "compression_level": 9,
         "keep_input_artifact": true,
         "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
-        "include":
-        [
+        "include": [
           "tpl/roboxes/info.json"
         ]
       },
       {
         "type": "checksum",
-        "checksum_types":
-        [
+        "checksum_types": [
           "sha256"
         ],
         "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
@@ -1853,12 +1714,10 @@
     [
       {
         "type": "shell-local",
-        "environment_vars":
-        [
+        "environment_vars": [
           "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ],
-        "inline":
-        [
+        "inline": [
           "[ -f $FILENAME ] && touch $FILENAME",
           "exit 0"
         ]
@@ -1866,8 +1725,7 @@
       {
         "type": "artifice",
         "keep_input_artifact": true,
-        "files":
-        [
+        "files": [
           "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
         ]
       },
@@ -1876,8 +1734,7 @@
         "keep_input_artifact": true,
         "tag": "latest",
         "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes":
-        [
+        "changes": [
           "CMD [\"/bin/bash\"]",
           "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         ]
@@ -1893,15 +1750,13 @@
         "compression_level": 9,
         "keep_input_artifact": true,
         "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
-        "include":
-        [
+        "include": [
           "tpl/generic/info.json"
         ]
       },
       {
         "type": "checksum",
-        "checksum_types":
-        [
+        "checksum_types": [
           "sha256"
         ],
         "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",

@@ -3268,6 +3268,42 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/ubuntu2310/apt.sh",
+        "scripts/ubuntu2310/floppy.sh",
+        "scripts/ubuntu2310/fixkvp.sh",
+        "scripts/ubuntu2310/network.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2310-hyperv-x64"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/ubuntu2310/vagrant.sh",
+        "scripts/ubuntu2310/profile.sh",
+        "scripts/ubuntu2310/motd.sh",
+        "scripts/ubuntu2310/fixtty.sh",
+        "scripts/ubuntu2310/virtualbox.sh",
+        "scripts/ubuntu2310/parallels.sh",
+        "scripts/ubuntu2310/vmware.sh",
+        "scripts/ubuntu2310/qemu.sh",
+        "scripts/ubuntu2310/cleanup.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-ubuntu2310-hyperv-x64"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -7127,6 +7163,54 @@
       "enable_dynamic_memory": false,
       "guest_additions_mode": "disable",
       "use_legacy_network_adapter": true,
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-ubuntu2310-hyperv-x64",
+      "vm_name": "generic-ubuntu2310-hyperv-x64",
+      "temp_path": "output/",
+      "output_directory": "output/generic-ubuntu2310-hyperv-x64",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+        "c<wait10>",
+        "set gfxpayload=keep<enter><wait10>",
+        "linux /casper/vmlinuz autoinstall quiet net.ifnames=0 biosdevname=0 ",
+        "cloud-config-url=\"http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2310.vagrant.cfg\" --- <enter><wait10>",
+        "initrd /casper/initrd<enter><wait10>",
+        "boot<enter>"
+      ],
+      "disk_size": 131072,
+      "memory": 2048,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://releases.ubuntu.com/23.10.1/ubuntu-23.10-live-server-amd64.iso",
+      "iso_checksum": "sha256:d2fb80d9ce77511ed500bcc1f813e6f676d4a3577009dfebce24269ca23346a5",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": false,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
       "enable_virtualization_extensions": false
     }
   ],

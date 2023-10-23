@@ -117,7 +117,7 @@ systemctl --quiet is-enabled apt-daily-upgrade.service && systemctl mask apt-dai
 systemctl --quiet is-enabled update-notifier-download.service && systemctl mask update-notifier-download.service
 
 # Truncate the sources list in order to force a status purge.
-truncate --size=0 /etc/apt/sources.list
+# truncate --size=0 /etc/apt/sources.list
 
 # Run clean/autoclean/purge/update first, this will work around problems with ghost packages, and/or
 # conflicting data in the repo index cache. After the cleanup is complete, we can proceed with the 
@@ -126,23 +126,24 @@ apt-get --assume-yes clean ; error
 apt-get --assume-yes autoclean ; error
 apt-get --assume-yes update ; error
 
-# Write out a nice and compact sources list.
-cat <<-EOF > /etc/apt/sources.list
-
-deb https://old-releases.ubuntu.com/ubuntu/ groovy main restricted universe multiverse
-deb https://old-releases.ubuntu.com/ubuntu/ groovy-updates main restricted universe multiverse
-deb https://old-releases.ubuntu.com/ubuntu/ groovy-backports main restricted universe multiverse
-deb https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted universe multiverse
-
-# deb-src https://old-releases.ubuntu.com/ubuntu/ groovy main restricted universe multiverse
-# deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-updates main restricted universe multiverse
-# deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-backports main restricted universe multiverse
-# deb-src https://old-releases.ubuntu.com/ubuntu/ groovy-security main restricted universe multiverse
-
-EOF
-
-# Some of the ubuntu archive servers appear to be missing files/packages..
-printf "\n91.189.91.124 old-releases.ubuntu.com\n" >> /etc/hosts
+# # Enable this once 23.04 reaches the end of its life.
+# # Write out a nice and compact sources list.
+# cat <<-EOF > /etc/apt/sources.list
+# 
+# deb https://old-releases.ubuntu.com/ubuntu/ lunar main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ lunar-updates main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ lunar-backports main restricted universe multiverse
+# deb https://old-releases.ubuntu.com/ubuntu/ lunar-security main restricted universe multiverse
+# 
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ lunar main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ lunar-updates main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ lunar-backports main restricted universe multiverse
+# # deb-src https://old-releases.ubuntu.com/ubuntu/ lunar-security main restricted universe multiverse
+# 
+# EOF
+# 
+# # Some of the ubuntu archive servers appear to be missing files/packages..
+# printf "\n91.189.91.124 old-releases.ubuntu.com\n" >> /etc/hosts
 
 # Update the package database.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update ; error
@@ -155,7 +156,7 @@ retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade ; error
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade ; error
 
 # Needed to retrieve source code, and other misc system tools.
-retry apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg mlocate sudo sysstat lsof pciutils usbutils lsb-release psmisc ; error
+retry apt-get --assume-yes install vim vim-nox gawk git git-man liberror-perl wget curl rsync gnupg plocate sudo sysstat lsof pciutils usbutils lsb-release psmisc ; error
 
 # Enable the sysstat collection service.
 sed -i -e "s|.*ENABLED=\".*\"|ENABLED=\"true\"|g" /etc/default/sysstat

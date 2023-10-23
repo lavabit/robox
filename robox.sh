@@ -51,7 +51,7 @@ source $BASE/.credentialsrc
 
 # Version Information
 [ ! -n "$VERSION" ] && export VERSION="4.3.4"
-export AGENT="Vagrant/2.3.4 (+https://www.vagrantup.com; ruby2.7.6)"
+export AGENT="Vagrant/2.4.0 (+https://www.vagrantup.com; ruby3.1.4)"
 
 # Limit the number of cpus packer will use and control how errors are handled.
 [ ! -n "$GOMAXPROCS" ] && export GOMAXPROCS="2"
@@ -519,14 +519,13 @@ REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/lunar/InRelease" )
 # Ubuntu 23.10 (Mantic Minotaur)
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/mantic/InRelease" )
 
-# This means the 23.10 ISO is available.
-FUTURE+=( "https://releases.ubuntu.com/23.10/ubuntu-23.10-live-server-amd64.iso" )
-
 # Ubuntu 24.04 (Unkown Unkown)
 # This means the 24.04 ISO is available.
 FUTURE+=( "https://releases.ubuntu.com/24.04/ubuntu-24.04-live-server-amd64.iso" )
+
+# https://wiki.ubuntu.com/Releases
 # This means the 24.04 repository is available.
-# FUTURE+=( "https://mirrors.edge.kernel.org/ubuntu/dists/UNKOWN/InRelease" )
+# FUTURE+=( "https://mirrors.edge.kernel.org/ubuntu/dists/`%%UNKOWN%%`/InRelease" )
 
 # EPEL
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/epel/6/x86_64/repodata/repomd.xml" )
@@ -534,6 +533,16 @@ REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/7/x86_64/repodata/repomd.x
 REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/8/Everything/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/8/Modular/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/9/Everything/x86_64/repodata/repomd.xml" )
+
+# EPEL / Testing
+REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/testing/7/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/testing/8/Everything/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/testing/8/Modular/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/testing/9/Everything/x86_64/repodata/repomd.xml" )
+
+# EPEL / Next
+REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/next/8/Everything/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/next/9/Everything/x86_64/repodata/repomd.xml" )
 
 # Other URls Embedded inside configuration modules
 RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/libpython3.6-minimal_3.6.13-1%2Bxenial2_amd64.deb" )

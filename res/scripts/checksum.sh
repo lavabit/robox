@@ -57,7 +57,7 @@ if [ ! -f /usr/bin/sha256sum ]; then
   exit 1
 fi
 
-AGENT="Vagrant/2.2.9 (+https://www.vagrantup.com; ruby2.6.6)"
+AGENT="Vagrant/2.4.0 (+https://www.vagrantup.com; ruby3.1.4)"
 
 FILENAME=`basename "$1"`
 FILEPATH=`realpath "$1"`

@@ -333,6 +333,7 @@ function generic-virtualbox() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine315" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine316" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine317" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine318" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "arch" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "centos6" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "centos7" ); P=( "${P[@]}" "virtualbox" );
@@ -343,12 +344,15 @@ function generic-virtualbox() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian10" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian11" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian12" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan1" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan2" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan3" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan4" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan5" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd5" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd6" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora25" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora26" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora27" ); P=( "${P[@]}" "virtualbox" );
@@ -362,6 +366,7 @@ function generic-virtualbox() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora35" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora36" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora37" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora38" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd11" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd12" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd13" ); P=( "${P[@]}" "virtualbox" );
@@ -369,6 +374,7 @@ function generic-virtualbox() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd11" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd12" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd13" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "netbsd8" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "netbsd9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd6" ); P=( "${P[@]}" "virtualbox" );
@@ -399,6 +405,8 @@ function generic-virtualbox() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2110" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2210" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2304" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2310" ); P=( "${P[@]}" "virtualbox" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
   parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -424,6 +432,7 @@ function generic-libvirt() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine315" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine316" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine317" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine318" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "arch" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "centos6" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "centos7" ); P=( "${P[@]}" "libvirt" );
@@ -434,12 +443,15 @@ function generic-libvirt() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian10" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian11" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian12" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan1" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan2" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan3" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan4" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan5" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd5" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd6" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora25" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora26" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora27" ); P=( "${P[@]}" "libvirt" );
@@ -453,6 +465,7 @@ function generic-libvirt() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora35" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora36" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora37" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora38" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd11" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd12" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd13" ); P=( "${P[@]}" "libvirt" );
@@ -460,6 +473,7 @@ function generic-libvirt() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd11" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd12" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd13" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "netbsd8" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "netbsd9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd6" ); P=( "${P[@]}" "libvirt" );
@@ -490,6 +504,8 @@ function generic-libvirt() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2110" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2210" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2304" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2310" ); P=( "${P[@]}" "libvirt" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
   plugin-libvirt && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -515,6 +531,7 @@ function generic-vmware() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine315" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine316" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine317" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine318" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "arch" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "centos6" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "centos7" ); P=( "${P[@]}" "vmware" );
@@ -525,12 +542,15 @@ function generic-vmware() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian10" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian11" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian12" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan1" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan2" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan3" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan4" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan5" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd5" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd6" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora25" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora26" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora27" ); P=( "${P[@]}" "vmware" );
@@ -544,6 +564,7 @@ function generic-vmware() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora35" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora36" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora37" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora38" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd11" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd12" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd13" ); P=( "${P[@]}" "vmware" );
@@ -551,6 +572,7 @@ function generic-vmware() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd11" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd12" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd13" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "netbsd8" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "netbsd9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd6" ); P=( "${P[@]}" "vmware" );
@@ -581,6 +603,8 @@ function generic-vmware() {
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2110" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2210" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2304" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2310" ); P=( "${P[@]}" "vmware" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
   plugin-vmware && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -607,6 +631,7 @@ function generic-hyperv() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine315" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine316" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine317" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine318" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "arch" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "centos6" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "centos7" ); P=( "${P[@]}" "hyperv" );
@@ -617,12 +642,15 @@ function generic-hyperv() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian10" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian11" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian12" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan1" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan2" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan3" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan4" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan5" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd5" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd6" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora25" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora26" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora27" ); P=( "${P[@]}" "hyperv" );
@@ -636,6 +664,7 @@ function generic-hyperv() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora35" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora36" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora37" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora38" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd11" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd12" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd13" ); P=( "${P[@]}" "hyperv" );
@@ -643,6 +672,7 @@ function generic-hyperv() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd11" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd12" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd13" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "netbsd8" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "netbsd9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd6" ); P=( "${P[@]}" "hyperv" );
@@ -673,6 +703,8 @@ function generic-hyperv() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2110" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2210" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2304" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2310" ); P=( "${P[@]}" "hyperv" );
 
     export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
     parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -702,6 +734,7 @@ function generic-parallels() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine315" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine316" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine317" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "alpine318" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "arch" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "centos6" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "centos7" ); P=( "${P[@]}" "parallels" );
@@ -712,12 +745,15 @@ function generic-parallels() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian10" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian11" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "debian12" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan1" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan2" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan3" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan4" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "devuan5" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd5" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd6" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "dragonflybsd" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora25" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora26" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora27" ); P=( "${P[@]}" "parallels" );
@@ -731,6 +767,7 @@ function generic-parallels() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora35" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora36" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora37" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "fedora38" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd11" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd12" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "freebsd13" ); P=( "${P[@]}" "parallels" );
@@ -738,6 +775,7 @@ function generic-parallels() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd11" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd12" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd13" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "hardenedbsd" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "netbsd8" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "netbsd9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "openbsd6" ); P=( "${P[@]}" "parallels" );
@@ -768,6 +806,8 @@ function generic-parallels() {
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2110" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2210" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2304" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "generic" ); B=( "${B[@]}" "ubuntu2310" ); P=( "${P[@]}" "parallels" );
 
     export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
     parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -796,6 +836,7 @@ function robox-virtualbox() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine315" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine316" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine317" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine318" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "arch" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "centos6" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "centos7" ); P=( "${P[@]}" "virtualbox" );
@@ -806,12 +847,15 @@ function robox-virtualbox() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian10" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian11" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian12" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan1" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan2" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan3" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan4" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan5" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd5" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd6" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora25" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora26" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora27" ); P=( "${P[@]}" "virtualbox" );
@@ -825,6 +869,7 @@ function robox-virtualbox() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora35" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora36" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora37" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora38" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd11" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd12" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd13" ); P=( "${P[@]}" "virtualbox" );
@@ -832,6 +877,7 @@ function robox-virtualbox() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd11" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd12" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd13" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "netbsd8" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "netbsd9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd6" ); P=( "${P[@]}" "virtualbox" );
@@ -862,6 +908,8 @@ function robox-virtualbox() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2110" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2210" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2304" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2310" ); P=( "${P[@]}" "virtualbox" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
   parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -887,6 +935,7 @@ function robox-libvirt() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine315" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine316" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine317" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine318" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "arch" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "centos6" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "centos7" ); P=( "${P[@]}" "libvirt" );
@@ -897,12 +946,15 @@ function robox-libvirt() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian10" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian11" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian12" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan1" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan2" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan3" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan4" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan5" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd5" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd6" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora25" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora26" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora27" ); P=( "${P[@]}" "libvirt" );
@@ -916,6 +968,7 @@ function robox-libvirt() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora35" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora36" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora37" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora38" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd11" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd12" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd13" ); P=( "${P[@]}" "libvirt" );
@@ -923,6 +976,7 @@ function robox-libvirt() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd11" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd12" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd13" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "netbsd8" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "netbsd9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd6" ); P=( "${P[@]}" "libvirt" );
@@ -953,6 +1007,8 @@ function robox-libvirt() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2110" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2210" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2304" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2310" ); P=( "${P[@]}" "libvirt" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
   plugin-libvirt && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -978,6 +1034,7 @@ function robox-vmware() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine315" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine316" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine317" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine318" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "arch" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "centos6" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "centos7" ); P=( "${P[@]}" "vmware" );
@@ -988,12 +1045,15 @@ function robox-vmware() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian10" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian11" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian12" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan1" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan2" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan3" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan4" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan5" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd5" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd6" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora25" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora26" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora27" ); P=( "${P[@]}" "vmware" );
@@ -1007,6 +1067,7 @@ function robox-vmware() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora35" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora36" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora37" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora38" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd11" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd12" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd13" ); P=( "${P[@]}" "vmware" );
@@ -1014,6 +1075,7 @@ function robox-vmware() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd11" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd12" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd13" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "netbsd8" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "netbsd9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd6" ); P=( "${P[@]}" "vmware" );
@@ -1044,6 +1106,8 @@ function robox-vmware() {
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2110" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2210" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2304" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2310" ); P=( "${P[@]}" "vmware" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
   plugin-vmware && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -1070,6 +1134,7 @@ function robox-hyperv() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine315" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine316" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine317" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine318" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "arch" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "centos6" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "centos7" ); P=( "${P[@]}" "hyperv" );
@@ -1080,12 +1145,15 @@ function robox-hyperv() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian10" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian11" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian12" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan1" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan2" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan3" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan4" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan5" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd5" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd6" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora25" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora26" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora27" ); P=( "${P[@]}" "hyperv" );
@@ -1099,6 +1167,7 @@ function robox-hyperv() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora35" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora36" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora37" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora38" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd11" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd12" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd13" ); P=( "${P[@]}" "hyperv" );
@@ -1106,6 +1175,7 @@ function robox-hyperv() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd11" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd12" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd13" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "netbsd8" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "netbsd9" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd6" ); P=( "${P[@]}" "hyperv" );
@@ -1136,6 +1206,8 @@ function robox-hyperv() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2110" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "hyperv" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2210" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2304" ); P=( "${P[@]}" "hyperv" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2310" ); P=( "${P[@]}" "hyperv" );
 
     export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
     parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -1165,6 +1237,7 @@ function robox-parallels() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine315" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine316" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine317" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "alpine318" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "arch" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "centos6" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "centos7" ); P=( "${P[@]}" "parallels" );
@@ -1175,12 +1248,15 @@ function robox-parallels() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian10" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian11" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "debian12" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan1" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan2" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan3" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan4" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "devuan5" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd5" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd6" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "dragonflybsd" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora25" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora26" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora27" ); P=( "${P[@]}" "parallels" );
@@ -1194,6 +1270,7 @@ function robox-parallels() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora35" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora36" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora37" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "fedora38" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd11" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd12" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "freebsd13" ); P=( "${P[@]}" "parallels" );
@@ -1201,6 +1278,7 @@ function robox-parallels() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd11" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd12" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd13" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "hardenedbsd" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "netbsd8" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "netbsd9" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "openbsd6" ); P=( "${P[@]}" "parallels" );
@@ -1231,6 +1309,8 @@ function robox-parallels() {
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2110" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2204" ); P=( "${P[@]}" "parallels" );
     O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2210" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2304" ); P=( "${P[@]}" "parallels" );
+    O=( "${O[@]}" "roboxes" ); B=( "${B[@]}" "ubuntu2310" ); P=( "${P[@]}" "parallels" );
 
     export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
     parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -1265,12 +1345,15 @@ function magma-virtualbox() {
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "virtualbox" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "virtualbox" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2304" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2310" ); P=( "${P[@]}" "virtualbox" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian8" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian9" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian10" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian11" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian12" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-developer" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora27" ); P=( "${P[@]}" "virtualbox" );
@@ -1284,6 +1367,7 @@ function magma-virtualbox() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora35" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora36" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora37" ); P=( "${P[@]}" "virtualbox" );
+  O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora38" ); P=( "${P[@]}" "virtualbox" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-arch" ); P=( "${P[@]}" "virtualbox" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-gentoo" ); P=( "${P[@]}" "virtualbox" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-freebsd" ); P=( "${P[@]}" "virtualbox" );
@@ -1319,12 +1403,15 @@ function magma-libvirt() {
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "libvirt" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "libvirt" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2304" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2310" ); P=( "${P[@]}" "libvirt" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian8" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian9" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian10" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian11" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian12" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-developer" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora27" ); P=( "${P[@]}" "libvirt" );
@@ -1338,6 +1425,7 @@ function magma-libvirt() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora35" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora36" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora37" ); P=( "${P[@]}" "libvirt" );
+  O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora38" ); P=( "${P[@]}" "libvirt" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-arch" ); P=( "${P[@]}" "libvirt" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-gentoo" ); P=( "${P[@]}" "libvirt" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-freebsd" ); P=( "${P[@]}" "libvirt" );
@@ -1373,12 +1461,15 @@ function magma-vmware() {
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "vmware" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "vmware" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "vmware" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2304" ); P=( "${P[@]}" "vmware" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2310" ); P=( "${P[@]}" "vmware" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian8" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian9" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian10" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian11" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian12" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-developer" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora27" ); P=( "${P[@]}" "vmware" );
@@ -1392,6 +1483,7 @@ function magma-vmware() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora35" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora36" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora37" ); P=( "${P[@]}" "vmware" );
+  O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora38" ); P=( "${P[@]}" "vmware" );
 #   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-arch" ); P=( "${P[@]}" "vmware" );
 #   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-gentoo" ); P=( "${P[@]}" "vmware" );
 #   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-freebsd" ); P=( "${P[@]}" "vmware" );
@@ -1427,12 +1519,15 @@ function magma-hyperv() {
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "hyperv" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "hyperv" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2304" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2310" ); P=( "${P[@]}" "hyperv" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian8" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian9" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian10" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian11" ); P=( "${P[@]}" "hyperv" );
+  O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian12" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-developer" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora27" ); P=( "${P[@]}" "hyperv" );
@@ -1446,6 +1541,7 @@ function magma-hyperv() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora35" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora36" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora37" ); P=( "${P[@]}" "hyperv" );
+  O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora38" ); P=( "${P[@]}" "hyperv" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-arch" ); P=( "${P[@]}" "hyperv" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-gentoo" ); P=( "${P[@]}" "hyperv" );
 # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-freebsd" ); P=( "${P[@]}" "hyperv" );
@@ -1600,6 +1696,7 @@ function cleanup() {
   rm --recursive --force $BASE/{generic,roboxes}-alpine315-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-alpine316-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-alpine317-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-alpine318-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-arch-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-centos6-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-centos7-{hyperv,libvirt,parallels,virtualbox,vmware}
@@ -1610,12 +1707,15 @@ function cleanup() {
   rm --recursive --force $BASE/{generic,roboxes}-debian9-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-debian10-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-debian11-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-debian12-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-devuan1-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-devuan2-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-devuan3-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-devuan4-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-devuan5-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-dragonflybsd5-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-dragonflybsd6-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-dragonflybsd-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-fedora25-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-fedora26-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-fedora27-{hyperv,libvirt,parallels,virtualbox,vmware}
@@ -1629,6 +1729,7 @@ function cleanup() {
   rm --recursive --force $BASE/{generic,roboxes}-fedora35-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-fedora36-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-fedora37-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-fedora38-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-freebsd11-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-freebsd12-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-freebsd13-{hyperv,libvirt,parallels,virtualbox,vmware}
@@ -1636,6 +1737,7 @@ function cleanup() {
   rm --recursive --force $BASE/{generic,roboxes}-hardenedbsd11-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-hardenedbsd12-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-hardenedbsd13-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-hardenedbsd-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-netbsd8-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-netbsd9-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-openbsd6-{hyperv,libvirt,parallels,virtualbox,vmware}
@@ -1666,6 +1768,8 @@ function cleanup() {
   rm --recursive --force $BASE/{generic,roboxes}-ubuntu2110-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-ubuntu2204-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{generic,roboxes}-ubuntu2210-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-ubuntu2304-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{generic,roboxes}-ubuntu2310-{hyperv,libvirt,parallels,virtualbox,vmware}
 
   rm --recursive --force $BASE/{lavabit-magma,magma}-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-alpine-{hyperv,libvirt,parallels,virtualbox,vmware}
@@ -1681,6 +1785,7 @@ function cleanup() {
   rm --recursive --force $BASE/{lavabit-magma,magma}-debian9-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-debian10-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-debian11-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{lavabit-magma,magma}-debian12-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-developer-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-fedora-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-fedora27-{hyperv,libvirt,parallels,virtualbox,vmware}
@@ -1694,6 +1799,7 @@ function cleanup() {
   rm --recursive --force $BASE/{lavabit-magma,magma}-fedora35-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-fedora36-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-fedora37-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{lavabit-magma,magma}-fedora38-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-freebsd-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-gentoo-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-openbsd-{hyperv,libvirt,parallels,virtualbox,vmware}
@@ -1712,6 +1818,8 @@ function cleanup() {
   rm --recursive --force $BASE/{lavabit-magma,magma}-ubuntu2110-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-ubuntu2204-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lavabit-magma,magma}-ubuntu2210-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{lavabit-magma,magma}-ubuntu2304-{hyperv,libvirt,parallels,virtualbox,vmware}
+  rm --recursive --force $BASE/{lavabit-magma,magma}-ubuntu2310-{hyperv,libvirt,parallels,virtualbox,vmware}
   
   rm --recursive --force $BASE/{lineage,lineageos}-{hyperv,libvirt,parallels,virtualbox,vmware}
   rm --recursive --force $BASE/{lineage,lineageos}-lineage-{hyperv,libvirt,parallels,virtualbox,vmware}
