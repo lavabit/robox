@@ -1248,8 +1248,8 @@ function magma-virtualbox() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos6" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos7" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8" ); P=( "${P[@]}" "virtualbox" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8s" ); P=( "${P[@]}" "virtualbox" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos9s" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8s" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos9s" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1604" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1610" ); P=( "${P[@]}" "virtualbox" );
@@ -1260,12 +1260,12 @@ function magma-virtualbox() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1904" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1910" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2004" ); P=( "${P[@]}" "virtualbox" );
-#       # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2010" ); P=( "${P[@]}" "virtualbox" );
-#       # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2104" ); P=( "${P[@]}" "virtualbox" );
-#       # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "virtualbox" );
-#       # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "virtualbox" );
-#       # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "virtualbox" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2010" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2104" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian8" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian9" ); P=( "${P[@]}" "virtualbox" );
@@ -1284,10 +1284,10 @@ function magma-virtualbox() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora35" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora36" ); P=( "${P[@]}" "virtualbox" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora37" ); P=( "${P[@]}" "virtualbox" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-arch" ); P=( "${P[@]}" "virtualbox" );
-  # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-gentoo" ); P=( "${P[@]}" "virtualbox" );
-  # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-freebsd" ); P=( "${P[@]}" "virtualbox" );
-  # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-openbsd" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-arch" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-gentoo" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-freebsd" ); P=( "${P[@]}" "virtualbox" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-openbsd" ); P=( "${P[@]}" "virtualbox" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
   parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -1302,8 +1302,8 @@ function magma-libvirt() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos6" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos7" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8" ); P=( "${P[@]}" "libvirt" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8s" ); P=( "${P[@]}" "libvirt" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos9s" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8s" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos9s" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1604" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1610" ); P=( "${P[@]}" "libvirt" );
@@ -1314,12 +1314,12 @@ function magma-libvirt() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1904" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1910" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2004" ); P=( "${P[@]}" "libvirt" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2010" ); P=( "${P[@]}" "libvirt" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2104" ); P=( "${P[@]}" "libvirt" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "libvirt" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "libvirt" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "libvirt" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2010" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2104" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian8" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian9" ); P=( "${P[@]}" "libvirt" );
@@ -1338,10 +1338,10 @@ function magma-libvirt() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora35" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora36" ); P=( "${P[@]}" "libvirt" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora37" ); P=( "${P[@]}" "libvirt" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-arch" ); P=( "${P[@]}" "libvirt" );
-  # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-gentoo" ); P=( "${P[@]}" "libvirt" );
-  # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-freebsd" ); P=( "${P[@]}" "libvirt" );
-  # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-openbsd" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-arch" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-gentoo" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-freebsd" ); P=( "${P[@]}" "libvirt" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-openbsd" ); P=( "${P[@]}" "libvirt" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
   plugin-libvirt && parallel --jobs 1 --delay 60 --will-cite --line-buffer --keep-order --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
@@ -1356,8 +1356,8 @@ function magma-vmware() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos6" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos7" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8" ); P=( "${P[@]}" "vmware" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8s" ); P=( "${P[@]}" "vmware" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos9s" ); P=( "${P[@]}" "vmware" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8s" ); P=( "${P[@]}" "vmware" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos9s" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1604" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1610" ); P=( "${P[@]}" "vmware" );
@@ -1368,12 +1368,12 @@ function magma-vmware() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1904" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1910" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2004" ); P=( "${P[@]}" "vmware" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2010" ); P=( "${P[@]}" "vmware" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2104" ); P=( "${P[@]}" "vmware" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "vmware" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "vmware" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "vmware" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "vmware" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2010" ); P=( "${P[@]}" "vmware" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2104" ); P=( "${P[@]}" "vmware" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "vmware" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "vmware" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "vmware" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian8" ); P=( "${P[@]}" "vmware" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian9" ); P=( "${P[@]}" "vmware" );
@@ -1410,8 +1410,8 @@ function magma-hyperv() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos6" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos7" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8" ); P=( "${P[@]}" "hyperv" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8s" ); P=( "${P[@]}" "hyperv" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos9s" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos8s" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-centos9s" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1604" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1610" ); P=( "${P[@]}" "hyperv" );
@@ -1422,12 +1422,12 @@ function magma-hyperv() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1904" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu1910" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2004" ); P=( "${P[@]}" "hyperv" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2010" ); P=( "${P[@]}" "hyperv" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2104" ); P=( "${P[@]}" "hyperv" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "hyperv" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "hyperv" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "hyperv" );
-#       O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2010" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2104" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2110" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2204" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-ubuntu2210" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-alpine" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian8" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-debian9" ); P=( "${P[@]}" "hyperv" );
@@ -1446,10 +1446,10 @@ function magma-hyperv() {
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora35" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora36" ); P=( "${P[@]}" "hyperv" );
   O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-fedora37" ); P=( "${P[@]}" "hyperv" );
-  # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-arch" ); P=( "${P[@]}" "hyperv" );
-  # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-gentoo" ); P=( "${P[@]}" "hyperv" );
-  # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-freebsd" ); P=( "${P[@]}" "hyperv" );
-  # O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-openbsd" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-arch" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-gentoo" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-freebsd" ); P=( "${P[@]}" "hyperv" );
+# O=( "${O[@]}" "lavabit" ); B=( "${B[@]}" "magma-openbsd" ); P=( "${P[@]}" "hyperv" );
 
   export -f box ; export -f warn ; export -f error ; export -f outcome ; export -f testcase ; export -f plugin-vmware ; export -f plugin-libvirt
   parallel --jobs 1 --delay 60 --will-cite --line-buffer --xapply 'box {1} {2} {3} ; outcome {1} {2} {3}' ":::" "${O[@]}" ":::" "${B[@]}" ":::" "${P[@]}"
