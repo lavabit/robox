@@ -259,6 +259,11 @@ generic-freebsd13-libvirt/
 generic-freebsd13-parallels/
 generic-freebsd13-virtualbox/
 generic-freebsd13-vmware/
+generic-freebsd14-hyperv/
+generic-freebsd14-libvirt/
+generic-freebsd14-parallels/
+generic-freebsd14-virtualbox/
+generic-freebsd14-vmware/
 generic-gentoo-hyperv/
 generic-gentoo-libvirt/
 generic-gentoo-parallels/
@@ -1081,6 +1086,11 @@ roboxes-freebsd13-libvirt/
 roboxes-freebsd13-parallels/
 roboxes-freebsd13-virtualbox/
 roboxes-freebsd13-vmware/
+roboxes-freebsd14-hyperv/
+roboxes-freebsd14-libvirt/
+roboxes-freebsd14-parallels/
+roboxes-freebsd14-virtualbox/
+roboxes-freebsd14-vmware/
 roboxes-gentoo-hyperv/
 roboxes-gentoo-libvirt/
 roboxes-gentoo-parallels/

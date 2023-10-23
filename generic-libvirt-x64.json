@@ -3302,6 +3302,29 @@
     },
     {
       "scripts": [
+        "scripts/freebsd14/pkg.sh",
+        "scripts/freebsd14/hostname.sh",
+        "scripts/freebsd14/kernel.sh",
+        "scripts/freebsd14/firstboot.sh",
+        "scripts/freebsd14/motd.sh",
+        "scripts/freebsd14/vagrant.sh",
+        "scripts/freebsd14/virtualbox.sh",
+        "scripts/freebsd14/parallels.sh",
+        "scripts/freebsd14/vmware.sh",
+        "scripts/freebsd14/qemu.sh",
+        "scripts/freebsd14/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+      "only": [
+        "generic-freebsd14-libvirt-x64"
+      ]
+    },
+    {
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -7198,6 +7221,55 @@
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-freebsd14-libvirt-x64",
+      "vm_name": "generic-freebsd14-libvirt-x64",
+      "output_directory": "output/generic-freebsd14-libvirt-x64",
+      "qemu_binary": "qemu-system-x86_64",
+      "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "boot -s<enter>",
+        "<wait10><wait10><wait10>",
+        "/bin/sh<enter><wait10>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd14.vagrant.cfg<enter><wait5>",
+        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "on",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "http://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/14.0/FreeBSD-14.0-RC2-amd64-disc1.iso",
+      "iso_checksum": "sha256:743a6015fe1b9525343fb4b9ce1abba8727ca58d230372ce66f8a4b592cfafb4",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "shutdown -p now"
     }
   ],
   "post-processors": [
