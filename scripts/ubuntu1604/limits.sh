@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # Determine what type of box this will become, and if we should increase the default user limits.
-if [[ "$PACKER_BUILD_NAME" =~ ^(lineage|lineageos)-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^(lineage|lineageos)-(vmware|hyperv|libvirt|parallels|virtualbox)-(x64|x32|a64|a32|p64|p32|m64|m32)$ ]]; then
   export LIMIT_FILE="50-lineage.conf"
 elif [[ "$PACKER_BUILD_NAME" =~ ^magma-.*$ ]]; then
   export LIMIT_FILE="50-magma.conf"

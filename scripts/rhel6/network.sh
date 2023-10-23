@@ -15,7 +15,7 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 printf "\n\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
 
 # Set the hostname, and then ensure it will resolve properly.
-if [[ "$PACKER_BUILD_NAME" =~ ^generic-(rhel|rhel6)-(vmware|hyperv|docker|libvirt|parallels|virtualbox)$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^generic-(rhel|rhel6)-(vmware|hyperv|docker|libvirt|parallels|virtualbox)-(x64|x32|a64|a32|p64|p32|m64|m32)$ ]]; then
   sed -i -e "/HOSTNAME/d" /etc/sysconfig/network
   printf "HOSTNAME=rhel6.localdomain\n" >> /etc/sysconfig/network
 

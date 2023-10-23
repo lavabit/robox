@@ -44,7 +44,7 @@ fi
 printf "Installing the VMWare Tools.\n"
 
 # The developer desktop builds need the desktop tools/drivers.
-if [[ "$PACKER_BUILD_NAME" =~ ^magma-developer-(vmware|hyperv|libvirt|parallels|virtualbox)$ ]]; then
+if [[ "$PACKER_BUILD_NAME" =~ ^magma-developer-(vmware|hyperv|libvirt|parallels|virtualbox)-(x64|x32|a64|a32|p64|p32|m64|m32)$ ]]; then
   yum --quiet --assumeyes install open-vm-tools open-vm-tools-desktop fuse-libs libdnet libicu libmspack
 else
   yum --quiet --assumeyes install open-vm-tools fuse-libs libdnet libicu libmspack
