@@ -9,7 +9,7 @@ export ASSUME_ALWAYS_YES=yes
 mkdir -p /usr/local/etc/pkg/repos/
 rm -f /var/db/pkg/FreeBSD.meta /var/db/pkg/repo-FreeBSD.sqlite /var/db/pkg/repo-FreeBSD.sqlite-journal
 # echo 'FreeBSD: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
-echo 'FreeBSD: { url: "pkg+http://mirrors.lavabit.com/freebsd-packages/${}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+echo 'FreeBSD: { url: "pkg+http://mirrors.lavabit.com/freebsd-archive/${}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 
 # Install the packages needed to update the CA bundle.
 pkg bootstrap
@@ -35,7 +35,7 @@ rm $HOME/ca-bundle.crt $HOME/certdata.txt $HOME/mk-ca-bundle.pl /var/db/pkg/Free
 
 # Switch to using HTTPS and perform the system upgrade.
 rm -f /var/db/pkg/FreeBSD.meta /var/db/pkg/repo-FreeBSD.sqlite /var/db/pkg/repo-FreeBSD.sqlite-journal
-echo 'FreeBSD: { url: "pkg+https://mirrors.lavabit.com/freebsd-packages/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+echo 'FreeBSD: { url: "pkg+https://mirrors.lavabit.com/freebsd-archive/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 
 pkg-static update -f
 pkg-static upgrade --yes
