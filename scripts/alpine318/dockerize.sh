@@ -21,7 +21,7 @@ rm -rf /tmp/*
 umount /run
 
 # Make sure login works
-rm /var/run/nologin
+[ -f /var/run/nologin ] && rm /var/run/nologin
 
 # Mark the docker box build time.
 date --utc > /etc/docker_box_build_time
@@ -73,12 +73,12 @@ tar --create --numeric-owner --preserve-permissions --one-file-system \
 
 if [ $? != 0 ] || [ ! -f /tmp/$PACKER_BUILD_NAME.tar ]; then
   printf "\n\nTarball generation failed.\n\n"
-  printf "locked\n" | passwd --stdin root
-  passwd --unlock root
+  passwd -u root
+  printf "locked\nlocked\n" | passwd root
   exit 1
 else
   printf "\nTarball generation succeeded.\n"
 fi
 
-printf "locked\nlocked\n" | passwd root
 passwd -u root
+printf "locked\nlocked\n" | passwd root

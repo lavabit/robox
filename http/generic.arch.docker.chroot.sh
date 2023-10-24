@@ -11,6 +11,7 @@ sed -i -e 's/^#default_options=""/default_options="-S autodetect"/g' /etc/mkinit
 mkinitcpio -p linux
 
 echo -e 'locked\nlocked' | passwd
+sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
 mkdir -p /etc/systemd/network
 ln -sf /dev/null /etc/systemd/network/99-default.link

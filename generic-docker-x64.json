@@ -854,7 +854,7 @@
         "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine318.docker.cfg<enter><wait>",
         "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
         "source generic.alpine318.vagrant.cfg<enter><wait>",
-        "printf \"vagrant\\nvagrant\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine318.docker.cfg && ",
+        "printf \"locked\\nlocked\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine318.docker.cfg && ",
         "mount /dev/sda2 /mnt && ",
         "sed -E -i '/#? ?PasswordAuthentication/d' /mnt/etc/ssh/sshd_config && ",
         "sed -E -i '/#? ?PermitRootLogin/d' /mnt/etc/ssh/sshd_config && ",
