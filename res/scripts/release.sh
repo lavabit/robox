@@ -73,10 +73,11 @@ fi
 FILENAME=`basename "$1"`
 FILEPATH=`realpath "$1"`
 
-ORG=`echo "$FILENAME" | sed "s/\([a-z]*\)[\-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\1/g"`
-BOX=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\2/g"`
-PROVIDER=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\3/g"`
-VERSION=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([0-9\.]*\).box/\4/g"`
+ORG=`echo "$FILENAME" | sed "s/\([a-z]*\)[\-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\1/g"`
+BOX=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\2/g"`
+PROVIDER=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\3/g"`
+ARCH=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\4/g"`
+VERSION=`echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\5/g"`
 
 # Handle the Lavabit boxes.
 if [ "$ORG" == "magma" ]; then
@@ -108,10 +109,35 @@ if [ "$PROVIDER" == "vmware" ]; then
   PROVIDER="vmware_desktop"
 fi
 
-# Modify the org/box for 32 bit variants.
-if [[ "$BOX" =~ ^.*-x32$ ]]; then
-  ORG="${ORG}-x32"
-  BOX="`echo $BOX | sed s/-x32//g`"
+# Handle the arch types.
+if [ "$ARCH" == "x64" ] || [ "$ARCH" == "x86_64" ] || [ "$ARCH" == "amd64" ]; then
+  ARCH="amd64"
+elif [ "$ARCH" == "x32" ] || [ "$ARCH" == "x86" ] || [ "$ARCH" == "i386" ] || [ "$ARCH" == "i686" ]; then
+  ARCH="i386"
+elif [ "$ARCH" == "a64" ] || [ "$ARCH" == "aarch64" ] || [ "$ARCH" == "arm64" ] || [ "$ARCH" == "arm64eb" ]|| [ "$ARCH" == "arm64le" ]; then
+  ARCH="arm64"
+elif [ "$ARCH" == "a32" ] || [ "$ARCH" == "armv7" ] || [ "$ARCH" == "armv6" ] || [ "$ARCH" == "arm" ] || [ "$ARCH" == "armeb" ] || [ "$ARCH" == "armle" ]; then
+  ARCH="arm"
+elif [ "$ARCH" == "p64" ] || [ "$ARCH" == "ppc64" ] || [ "$ARCH" == "power64" ] || [ "$ARCH" == "powerpc64" ]; then
+  ARCH="ppc64"
+elif [ "$ARCH" == "p32" ] || [ "$ARCH" == "ppc32" ] || [ "$ARCH" == "power" ] || [ "$ARCH" == "power32" ] || [ "$ARCH" == "powerpc" ] || [ "$ARCH" == "powerpc32" ] || [ "$ARCH" == "powerpcspe" ]; then
+  ARCH="ppc"
+elif [ "$ARCH" == "r64" ] || [ "$ARCH" == "riscv64" ] || [ "$ARCH" == "riscv64sf" ]; then
+  ARCH="riscv64"
+elif [ "$ARCH" == "r32" ] || [ "$ARCH" == "riscv" ] || [ "$ARCH" == "riscv32" ]; then
+  ARCH="riscv32"
+elif [ "$ARCH" == "m64" ] || [ "$ARCH" == "mips64" ] || [ "$ARCH" == "mips64hf" ] ; then
+  ARCH="mips64"
+elif [ "$ARCH" == "m32" ] || [ "$ARCH" == "mips" ] || [ "$ARCH" == "mips32" ] || [ "$ARCH" == "mipsn32" ] || [ "$ARCH" == "mipshf" ] ; then
+  ARCH="mips"
+elif  [ "$ARCH" == "ppc64le" ]; then
+  ARCH="ppc64le"
+elif [ "$ARCH" == "mips64le" ] || [ "$ARCH" == "mips64el" ] || [ "$ARCH" == "mips64hfel" ]; then
+  ARCH="mips64le"
+elif [ "$ARCH" == "mipsle" ] || [ "$ARCH" == "mipsel" ] || [ "$ARCH" == "mipselhf" ]; then
+  ARCH="mipsle"
+else
+  printf "\n${T_YEL}  The architecture is unrecognized. Passing it verbatim to the cloud. [ arch = ${ARCH} ]${T_RESET}\n\n" >&2
 fi
 
 # Verify the values were all parsed properly.
@@ -127,6 +153,11 @@ fi
 
 if [ "$PROVIDER" == "" ]; then
   tput setaf 1; printf "\n\nThe provider couldn't be parsed from the file name.\n\n\n"; tput sgr0
+  exit 1
+fi
+
+if [ "$ARCH" == "" ]; then
+  printf "\n${T_RED}  The architecture couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
   exit 1
 fi
 
@@ -159,10 +190,45 @@ retry() {
   return "${RESULT}"
 }
 
+
+function release_box() {
+
 tput setaf 5; printf "Release the version.\n"; tput sgr0
 retry ${CURL} \
   --tlsv1.2 \
   --silent \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  https://app.vagrantup.com/api/v1/box/$ORG/$BOX/version/$VERSION/release \
+  https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/release \
   --request PUT | jq  --color-output '.status,.version,.providers[]' | grep -vE "hosted|hosted_token|original_url|created_at|updated_at|\}|\{"
+
+}
+
+release_box
+
+if [ "$ORG" == "generic" ] && [ "$ARCH" == "amd64" ]; then
+  ORG="generic-x64"
+  release_box
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "i386" ]; then
+  ORG="generic-x32"
+  release_box
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm64" ]; then
+  ORG="generic-a64"
+  release_box
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm" ]; then
+  ORG="generic-a32"
+  release_box
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "amd64" ]; then
+  ORG="roboxes-x64"
+  release_box
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "i386" ]; then
+  ORG="roboxes-x32"
+  release_box
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm64" ]; then
+  ORG="roboxes-a64"
+  release_box
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm" ]; then
+  ORG="roboxes-a32"
+  release_box
+fi
+
+

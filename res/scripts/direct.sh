@@ -265,13 +265,13 @@ if [ "$PROVIDER" == "" ]; then
   exit 1
 fi
 
-if [ "$VERSION" == "" ]; then
-  printf "\n${T_RED}  The version couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
+if [ "$ARCH" == "" ]; then
+  printf "\n${T_RED}  The architecture couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
   exit 1
 fi
 
-if [ "$ARCH" == "" ]; then
-  printf "\n${T_RED}  The architecture couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
+if [ "$VERSION" == "" ]; then
+  printf "\n${T_RED}  The version couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
   exit 1
 fi
 
@@ -309,7 +309,7 @@ retry() {
   return "${RESULT}"
 }
 
-function direct_upload() {
+function upload_box() {
 
   ${CURL} \
     --tlsv1.2 \
@@ -438,32 +438,32 @@ function direct_upload() {
 
 }
 
-direct_upload
+upload_box
 
 if [ "$ORG" == "generic" ] && [ "$ARCH" == "amd64" ]; then
   ORG="generic-x64"
-  direct_upload
+  upload_box
 elif [ "$ORG" == "generic" ] && [ "$ARCH" == "i386" ]; then
   ORG="generic-x32"
-  direct_upload
+  upload_box
 elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm64" ]; then
   ORG="generic-a64"
-  direct_upload
+  upload_box
 elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm" ]; then
   ORG="generic-a32"
-  direct_upload
+  upload_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "amd64" ]; then
   ORG="roboxes-x64"
-  direct_upload
+  upload_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "i386" ]; then
   ORG="roboxes-x32"
-  direct_upload
+  upload_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm64" ]; then
   ORG="roboxes-a64"
-  direct_upload
+  upload_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm" ]; then
   ORG="roboxes-a32"
-  direct_upload
+  upload_box
 fi
 
 
