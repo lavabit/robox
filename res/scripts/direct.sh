@@ -208,30 +208,30 @@ fi
 # Handle the arch types.
 if [ "$ARCH" == "x64" ] || [ "$ARCH" == "x86_64" ] || [ "$ARCH" == "amd64" ]; then
   ARCH="amd64"
-elif [ "$PROVIDER" == "x32" ] || [ "$ARCH" == "x86" ] || [ "$ARCH" == "i386" ] || [ "$ARCH" == "i686" ]; then
-  ARCH="386"
-elif [ "$PROVIDER" == "a64" ] || [ "$ARCH" == "aarch64" ] || [ "$ARCH" == "arm64" ] || [ "$ARCH" == "arm64eb" ]|| [ "$ARCH" == "arm64le" ]; then
+elif [ "$ARCH" == "x32" ] || [ "$ARCH" == "x86" ] || [ "$ARCH" == "i386" ] || [ "$ARCH" == "i686" ]; then
+  ARCH="i386"
+elif [ "$ARCH" == "a64" ] || [ "$ARCH" == "aarch64" ] || [ "$ARCH" == "arm64" ] || [ "$ARCH" == "arm64eb" ]|| [ "$ARCH" == "arm64le" ]; then
   ARCH="arm64"
-elif [ "$PROVIDER" == "a32" ] || [ "$ARCH" == "armv7" ] || [ "$ARCH" == "armv6" ] || [ "$ARCH" == "arm" ] || [ "$ARCH" == "armeb" ] || [ "$ARCH" == "armle" ]; then
+elif [ "$ARCH" == "a32" ] || [ "$ARCH" == "armv7" ] || [ "$ARCH" == "armv6" ] || [ "$ARCH" == "arm" ] || [ "$ARCH" == "armeb" ] || [ "$ARCH" == "armle" ]; then
   ARCH="arm"
-elif  [ "$PROVIDER" == "ppc64le" ]; then
-  ARCH="ppc64le"
-elif [ "$PROVIDER" == "p64" ] || [ "$PROVIDER" == "ppc64" ] || [ "$ARCH" == "power64" ] || [ "$ARCH" == "powerpc64" ]; then
+elif [ "$ARCH" == "p64" ] || [ "$ARCH" == "ppc64" ] || [ "$ARCH" == "power64" ] || [ "$ARCH" == "powerpc64" ]; then
   ARCH="ppc64"
-elif [ "$PROVIDER" == "p32" ] || [ "$PROVIDER" == "ppc32" ] || [ "$ARCH" == "power" ] || [ "$ARCH" == "power32" ] || [ "$ARCH" == "powerpc" ] || [ "$ARCH" == "powerpc32" ] || [ "$ARCH" == "powerpcspe" ]; then
+elif [ "$ARCH" == "p32" ] || [ "$ARCH" == "ppc32" ] || [ "$ARCH" == "power" ] || [ "$ARCH" == "power32" ] || [ "$ARCH" == "powerpc" ] || [ "$ARCH" == "powerpc32" ] || [ "$ARCH" == "powerpcspe" ]; then
   ARCH="ppc"
-elif [ "$PROVIDER" == "r64" ] || [ "$PROVIDER" == "riscv64" ] || [ "$ARCH" == "riscv64sf" ]; then
+elif [ "$ARCH" == "r64" ] || [ "$ARCH" == "riscv64" ] || [ "$ARCH" == "riscv64sf" ]; then
   ARCH="riscv64"
-elif [ "$PROVIDER" == "r32" ] || [ "$PROVIDER" == "riscv" ] || [ "$ARCH" == "riscv32" ]; then
+elif [ "$ARCH" == "r32" ] || [ "$ARCH" == "riscv" ] || [ "$ARCH" == "riscv32" ]; then
   ARCH="riscv32"
-elif [ "$PROVIDER" == "mips64le" ] || [ "$PROVIDER" == "mips64le" ] || [ "$ARCH" == "mips64elhf" ]; then
-  ARCH="mips64le"
-elif [ "$PROVIDER" == "m64" ] || [ "$PROVIDER" == "mips64" ] || [ "$PROVIDER" == "mips64hf" ] ; then
+elif [ "$ARCH" == "m64" ] || [ "$ARCH" == "mips64" ] || [ "$ARCH" == "mips64hf" ] ; then
   ARCH="mips64"
-elif [ "$PROVIDER" == "mips64le" ] || [ "$PROVIDER" == "mips64le" ] || [ "$ARCH" == "mips64elhf" ]; then
-ARCH="mipsle"
-elif [ "$PROVIDER" == "m32" ] || [ "$PROVIDER" == "mips" ] || [ "$PROVIDER" == "mips32" ] || [ "$PROVIDER" == "mipsn32" ] || [ "$ARCH" == "mipsel" ] || [ "$PROVIDER" == "mipshf" ] || [ "$ARCH" == "mipshfel" ]; then
+elif [ "$ARCH" == "m32" ] || [ "$ARCH" == "mips" ] || [ "$ARCH" == "mips32" ] || [ "$ARCH" == "mipsn32" ] || [ "$ARCH" == "mipshf" ] ; then
   ARCH="mips"
+elif  [ "$ARCH" == "ppc64le" ]; then
+  ARCH="ppc64le"
+elif [ "$ARCH" == "mips64le" ] || [ "$ARCH" == "mips64el" ] || [ "$ARCH" == "mips64hfel" ]; then
+  ARCH="mips64le"
+elif [ "$ARCH" == "mipsle" ] || [ "$ARCH" == "mipsel" ] || [ "$ARCH" == "mipselhf" ]; then
+  ARCH="mipsle"
 else
   printf "\n${T_YEL}  The architecture is unrecognized. Passing it verbatim to the cloud. [ arch = ${ARCH} ]${T_RESET}\n\n" >&2
 fi
@@ -309,110 +309,98 @@ retry() {
   return "${RESULT}"
 }
 
-${CURL} \
-  --tlsv1.2 \
-  --silent \
-  --retry 16 \
-  --retry-delay 60 \
-  --max-time 180 \
-  --output /dev/null \
-  --header "Content-Type: application/json" \
-  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/versions" \
-  --data "
-    {
-      \"version\": {
-        \"version\": \"$VERSION\",
-        \"description\": \"A build environment for use in cross platform development.\"
+function direct_upload() {
+
+  ${CURL} \
+    --tlsv1.2 \
+    --silent \
+    --retry 16 \
+    --retry-delay 60 \
+    --max-time 180 \
+    --output /dev/null \
+    --header "Content-Type: application/json" \
+    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/versions" \
+    --data "
+      {
+        \"version\": {
+          \"version\": \"$VERSION\",
+          \"description\": \"A build environment for use in cross platform development.\"
+        }
       }
-    }
-  " || \
-  { printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
+    " || \
+    { printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
 
-${CURL} \
-  --silent \
-  --retry 16 \
-  --retry-delay 60 \
-  --max-time 180 \
-  --output /dev/null \
-  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  --request DELETE \
-  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}" || \
-  { printf "${T_BYEL}  Unable to delete an existing version of the box. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
+  ${CURL} \
+    --silent \
+    --retry 16 \
+    --retry-delay 60 \
+    --max-time 180 \
+    --output /dev/null \
+    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+    --request DELETE \
+    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}" || \
+    { printf "${T_BYEL}  Unable to delete an existing version of the box. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
 
-# Sleep to let the deletion propagate.
-sleep 1
-
-${CURL} \
-  --tlsv1.2 \
-  --silent \
-  --retry 16 \
-  --retry-delay 60 \
-  --max-time 180 \
-  --output /dev/null \
-  --header "Content-Type: application/json" \
-  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/providers" \
-  --data "{ \"provider\": { \"name\": \"$PROVIDER\", \"checksum\": \"$HASH\", \"architecture\": \"$ARCH\", \"checksum_type\": \"SHA256\" } }" || \
-  { printf "${T_BYEL}  Unable to create a provider for this box version. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
-
-UPLOAD_RESPONSE=$( ${CURL} \
-  --fail \
-  --show-error \
-  --tlsv1.2 \
-  --silent \
-  --max-time 180 \
-  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH/upload/direct" )
-
-UPLOAD_PATH="$(echo "$UPLOAD_RESPONSE" | jq -r .upload_path)"
-UPLOAD_CALLBACK="$(echo "$UPLOAD_RESPONSE" | jq -r .callback)"
-
-if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "echo" ] || [ "$UPLOAD_CALLBACK" == "" ] || [ "$UPLOAD_CALLBACK" == "echo" ]; then
-   printf "\n${T_BYEL}  The $FILENAME file failed to upload. Restarting. [ $ORG $BOX $PROVIDER $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
-   exec "$0" "$1" $RECURSION
-   exit $?
-fi
-
-# Sleep to give the cloud time to get setup.
-sleep 1
-
-retry ${CURL} --tlsv1.2 \
-  --fail \
-  --silent \
-  --show-error \
-  --request PUT \
-  --max-time 7200 \
-  --speed-time 60 \
-  --speed-limit 16384 \
-  --expect100-timeout 7200 \
-  --header "Connection: keep-alive" \
-  --write-out "FILE: $FILENAME\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n\n" \
-  --upload-file "$FILEPATH" "$UPLOAD_PATH" || \
-  {
-    printf "\n${T_BYEL}  The $FILENAME file failed to upload. Restarting. [ $ORG $BOX $PROVIDER $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
-    exec "$0" "$1" $RECURSION
-    exit $?
-  }
-
-# Sleep to before trying the callback so the cloud can finish digestion.
-sleep 1
-
-# Submit the callback twice. hopefully this will reduce the number of boxes without valid download URLs.
-${CURL} --tlsv1.2 \
-  --silent \
-  --output "/dev/null" \
-  --show-error \
-  --request PUT \
-  --max-time 180 \
-  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  "$UPLOAD_CALLBACK"
-
-RESULT=$?
-if [ "$RESULT" -ne 0 ]; then
-  printf "${T_BYEL}  Upload failed. The callback returned an error. Retrying. [ $ORG $BOX $PROVIDER $VERSION / RESULT = $RESULT ]${T_RESET}\n" >&2 
-  
+  # Sleep to let the deletion propagate.
   sleep 1
+
+  ${CURL} \
+    --tlsv1.2 \
+    --silent \
+    --retry 16 \
+    --retry-delay 60 \
+    --max-time 180 \
+    --output /dev/null \
+    --header "Content-Type: application/json" \
+    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/providers" \
+    --data "{ \"provider\": { \"name\": \"$PROVIDER\", \"checksum\": \"$HASH\", \"architecture\": \"$ARCH\", \"checksum_type\": \"SHA256\" } }" || \
+    { printf "${T_BYEL}  Unable to create a provider for this box version. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
+
+  UPLOAD_RESPONSE=$( ${CURL} \
+    --fail \
+    --show-error \
+    --tlsv1.2 \
+    --silent \
+    --max-time 180 \
+    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH/upload/direct" )
+
+  UPLOAD_PATH="$(echo "$UPLOAD_RESPONSE" | jq -r .upload_path)"
+  UPLOAD_CALLBACK="$(echo "$UPLOAD_RESPONSE" | jq -r .callback)"
+
+  if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "echo" ] || [ "$UPLOAD_CALLBACK" == "" ] || [ "$UPLOAD_CALLBACK" == "echo" ]; then
+     printf "\n${T_BYEL}  The $FILENAME file failed to upload. Restarting. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
+     exec "$0" "$1" $RECURSION
+     exit $?
+  fi
+
+  # Sleep to give the cloud time to get setup.
+  sleep 1
+
+  retry ${CURL} --tlsv1.2 \
+    --fail \
+    --silent \
+    --show-error \
+    --request PUT \
+    --max-time 7200 \
+    --speed-time 60 \
+    --speed-limit 16384 \
+    --expect100-timeout 7200 \
+    --header "Connection: keep-alive" \
+    --write-out "FILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n\n" \
+    --upload-file "$FILEPATH" "$UPLOAD_PATH" || \
+    {
+      printf "\n${T_BYEL}  The $FILENAME file failed to upload. Restarting. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
+      exec "$0" "$1" $RECURSION
+      exit $?
+    }
+
+  # Sleep to before trying the callback so the cloud can finish digestion.
+  sleep 1
+
+  # Submit the callback twice. hopefully this will reduce the number of boxes without valid download URLs.
   ${CURL} --tlsv1.2 \
     --silent \
     --output "/dev/null" \
@@ -424,12 +412,58 @@ if [ "$RESULT" -ne 0 ]; then
 
   RESULT=$?
   if [ "$RESULT" -ne 0 ]; then
-    printf "${T_BYEL}  Upload failed. The callback returned an error. Restarting. [ $ORG $BOX $PROVIDER $VERSION / RESULT = $RESULT / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
-    exec "$0" "$1" $RECURSION
-    exit $?
+    printf "${T_BYEL}  Upload failed. The callback returned an error. Retrying. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RESULT = $RESULT ]${T_RESET}\n" >&2 
+    
+    sleep 1
+    ${CURL} --tlsv1.2 \
+      --silent \
+      --output "/dev/null" \
+      --show-error \
+      --request PUT \
+      --max-time 180 \
+      --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+      "$UPLOAD_CALLBACK"
+
+    RESULT=$?
+    if [ "$RESULT" -ne 0 ]; then
+      printf "${T_BYEL}  Upload failed. The callback returned an error. Restarting. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RESULT = $RESULT / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
+      exec "$0" "$1" $RECURSION
+      exit $?
+    fi
   fi
+
+  # # Add a short pause, with the duration determined by the size of the file uploaded.
+  # PAUSE="`du -b $FILEPATH | awk -F' ' '{print $1}'`"
+  # bash -c "usleep $(($PAUSE/20))"
+
+}
+
+direct_upload
+
+if [ "$ORG" == "generic" ] && [ "$ARCH" == "amd64" ]; then
+  ORG="generic-x64"
+  direct_upload
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "i386" ]; then
+  ORG="generic-x32"
+  direct_upload
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm64" ]; then
+  ORG="generic-a64"
+  direct_upload
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm" ]; then
+  ORG="generic-a32"
+  direct_upload
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "amd64" ]; then
+  ORG="roboxes-x64"
+  direct_upload
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "i386" ]; then
+  ORG="roboxes-x32"
+  direct_upload
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm64" ]; then
+  ORG="roboxes-a64"
+  direct_upload
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm" ]; then
+  ORG="roboxes-a32"
+  direct_upload
 fi
 
-# # Add a short pause, with the duration determined by the size of the file uploaded.
-# PAUSE="`du -b $FILEPATH | awk -F' ' '{print $1}'`"
-# bash -c "usleep $(($PAUSE/20))"
+
