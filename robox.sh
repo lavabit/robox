@@ -95,16 +95,38 @@ MAGMA_BOXES=`echo $MAGMA_SPECIAL_BOXES $MAGMA_BOXES | tr ' ' '\n' | sort -u --fi
 BOXES="$GENERIC_BOXES $ROBOX_BOXES $MAGMA_BOXES $LINEAGE_BOXES $LINEAGEOS_BOXES"
 
 # Collect the list of box tags.
-MAGMA_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova-x64" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" | sort -V -u --field-separator=-`
+MAGMA_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "magma" | grep -v "magma-developer-ova-x64" | sed "s/magma-/lavabit\/magma-/g" | sed "s/alpine36/alpine/g" | sed "s/freebsd11/freebsd/g" | sed "s/openbsd6/openbsd/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | sort -V -u --field-separator=-`
 MAGMA_SPECIAL_TAGS="lavabit/magma lavabit/magma-centos lavabit/magma-debian lavabit/magma-fedora lavabit/magma-ubuntu"
-ROBOX_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" | grep -v "roboxes-x32" | sort -V -u --field-separator=-`
-ROBOX_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" | grep "roboxes-x32" | sort -V -u --field-separator=-`
-GENERIC_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)//g" | grep -v "generic-x32" | sort -V -u --field-separator=-`
-GENERIC_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)//g" | grep "generic-x32" | sort -V -u --field-separator=-`
-LINEAGE_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineage\/lineage-/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" | sort -V -u --field-separator=-`
-LINEAGEOS_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineageos\/lineage-/g" | sed "s/\(-hyperv-x64\|-vmware-x64\|-libvirt-x64\|-parallels-x64\|-virtualbox-x64\|-docker-x64\)\$//g" | sort -V -u --field-separator=-`
+
+GENERIC_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | sort -V -u --field-separator=-`
+GENERIC_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x32/generic-x32\1-x32/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "generic-x32" | sort -V -u --field-separator=-`
+GENERIC_X64_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-x64/generic-x64\1-x64/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "generic-x64" | sort -V -u --field-separator=-`
+GENERIC_A32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-a32/generic-a32\1-a32/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "generic-a32" | sort -V -u --field-separator=-`
+GENERIC_A64_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-a64/generic-a64\1-a64/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "generic-a64" | sort -V -u --field-separator=-`
+GENERIC_P32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-p32/generic-p32\1-p32/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "generic-p32" | sort -V -u --field-separator=-`
+GENERIC_P64_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-p64/generic-p64\1-p64/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "generic-p64" | sort -V -u --field-separator=-`
+GENERIC_R32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-r32/generic-r32\1-r32/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "generic-r32" | sort -V -u --field-separator=-`
+GENERIC_R64_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-r64/generic-r64\1-r64/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "generic-r64" | sort -V -u --field-separator=-`
+GENERIC_M32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-m32/generic-m32\1-m32/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "generic-m32" | sort -V -u --field-separator=-`
+GENERIC_M64_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/generic\//g" | sed "s/generic\(.*\)-m64/generic-m64\1-m64/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "generic-m64" | sort -V -u --field-separator=-`
+
+ROBOX_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | sort -V -u --field-separator=-`
+ROBOX_X32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x32/roboxes-x32\1-x32/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "roboxes-x32" | sort -V -u --field-separator=-`
+ROBOX_X64_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-x64/roboxes-x64\1-x64/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "roboxes-x64" | sort -V -u --field-separator=-`
+ROBOX_A32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-a32/roboxes-a32\1-a32/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "roboxes-a32" | sort -V -u --field-separator=-`
+ROBOX_A64_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-a64/roboxes-a64\1-a64/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "roboxes-a64" | sort -V -u --field-separator=-`
+ROBOX_P32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-p32/roboxes-p32\1-p32/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "roboxes-p32" | sort -V -u --field-separator=-`
+ROBOX_P64_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-p64/roboxes-p64\1-p64/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "roboxes-p64" | sort -V -u --field-separator=-`
+ROBOX_R32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-r32/roboxes-r32\1-r32/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "roboxes-r32" | sort -V -u --field-separator=-`
+ROBOX_R64_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-r64/roboxes-r64\1-r64/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "roboxes-r64" | sort -V -u --field-separator=-`
+ROBOX_M32_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-m32/roboxes-m32\1-m32/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "roboxes-m32" | sort -V -u --field-separator=-`
+ROBOX_M64_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "generic" | sed "s/generic-/roboxes\//g" | sed "s/roboxes\(.*\)-m64/roboxes-m64\1-m64/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | grep "roboxes-m64" | sort -V -u --field-separator=-`
+
+
+LINEAGE_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineage\/lineage-/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | sort -V -u --field-separator=-`
+LINEAGEOS_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "lineage" | sed "s/lineage-/lineageos\/lineage-/g" | sed "s/\-\(hyperv\|vmware\|libvirt\|parallels\|virtualbox\|docker\)\-\(x32\|x64\|a32\|a64\|p32\|p64\|r32\|r64\|m32\|m64\)\$//g" | sort -V -u --field-separator=-`
 MAGMA_TAGS=`echo $MAGMA_SPECIAL_TAGS $MAGMA_TAGS | tr ' ' '\n' | sort -u --field-separator=-`
-TAGS="$GENERIC_TAGS $GENERIC_X32_TAGS $ROBOX_TAGS $ROBOX_X32_TAGS $MAGMA_TAGS $LINEAGE_TAGS $LINEAGEOS_TAGS"
+TAGS="$GENERIC_TAGS $GENERIC_X32_TAGS $GENERIC_X64_TAGS $GENERIC_A32_TAGS $GENERIC_A64_TAGS $GENERIC_P32_TAGS $GENERIC_P64_TAGS $GENERIC_R32_TAGS $GENERIC_R64_TAGS $GENERIC_M32_TAGS $GENERIC_M64_TAGS $ROBOX_TAGS $ROBOX_X32_TAGS $ROBOX_X64_TAGS $ROBOX_A32_TAGS $ROBOX_A64_TAGS $ROBOX_P32_TAGS $ROBOX_P64_TAGS $ROBOX_R32_TAGS $ROBOX_R64_TAGS $ROBOX_M32_TAGS $ROBOX_M64_TAGS $MAGMA_TAGS $LINEAGE_TAGS $LINEAGEOS_TAGS"
 
 # These boxes aren't publicly available yet, so we filter them out of available test.
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
@@ -192,12 +214,19 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz" )
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz" )
 
-# Alpine 3.19
-FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/main/x86_64/APKINDEX.tar.gz" )
+# Alpine 3.19 
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.19/main/x86_64/APKINDEX.tar.gz" )
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/community/x86_64/APKINDEX.tar.gz" )
 
 # When the release ISO becomes available, update the JSON files, and remove this URL.
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/releases/x86_64/alpine-virt-3.19.0-x86_64.iso" )
+
+# Alpine 3.20
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz" )
+
+# When the release ISO becomes available, update the JSON files, and remove this URL.
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/releases/x86_64/alpine-virt-3.20.0-x86_64.iso" )
 
 # CentOS 6
 REPOS+=( "https://vault.centos.org/6.10/os/x86_64/repodata/repomd.xml" )
@@ -267,18 +296,6 @@ REPOS+=( "https://security.debian.org/debian-security/dists/bookworm-security/up
 # Debian 13
 REPOS+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
 REPOS+=( "https://security.debian.org/debian-security/dists/trixie-security/updates/Release" )
-
-# FreeBSD 11
-REPOS+=( "https://mirrors.lavabit.com/freebsd-archive/FreeBSD:11:amd64/latest/packagesite.txz" )
-
-# FreeBSD 12
-REPOS+=( "https://mirrors.lavabit.com/freebsd-archive/FreeBSD:12:amd64/latest/packagesite.txz" )
-
-# FreeBSD 13
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
-
-# FreeBSD 14
-REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
 
 # Fedora 27
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/repodata/repomd.xml" )
@@ -544,6 +561,14 @@ REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/testing/9/Everything/x86_6
 REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/next/8/Everything/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/next/9/Everything/x86_64/repodata/repomd.xml" )
 
+# VirtualBox Tools
+FUTURE+=( "https://download.virtualbox.org/virtualbox/7.0.14/VBoxGuestAdditions_7.0.14.iso" )
+FUTURE+=( "https://download.virtualbox.org/virtualbox/6.1.50/VBoxGuestAdditions_6.1.50.iso" )
+
+# There likely won't be anymore 5.2.x releases, but just in case we check, because if
+# there is a release, it's probably important.
+FUTURE+=( "https://download.virtualbox.org/virtualbox/5.2.46/VBoxGuestAdditions_5.2.46.iso" )
+
 # Other URls Embedded inside configuration modules
 RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/libpython3.6-minimal_3.6.13-1%2Bxenial2_amd64.deb" )
 RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/libpython3.6-stdlib_3.6.13-1%2Bxenial2_amd64.deb" )
@@ -569,7 +594,7 @@ RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-j
 RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb" )
 RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb" )
 
-# These files are used by the providers install script.
+# These files are used by the provider install script.
 RESOURCES+=( "https://archive.org/download/vmwaretools10.1.15other6677369.tar/VMware-Tools-10.1.15-other-6677369.tar.gz" )
 RESOURCES+=( "https://archive.org/download/vmware-workstation-17.0.0/VMware-Workstation-Full-15.5.7-17171714.x86_64.bundle" )
 RESOURCES+=( "https://archive.org/download/vmware-workstation-17.0.0/VMware-Workstation-Full-16.2.5-20904516.x86_64.bundle" )
@@ -1671,7 +1696,7 @@ function public() {
       fi
 
       PROVIDER="libvirt" ; ARCH="i386"
-      if [[ "${ORGANIZATION}" =~ ^(generic(-32)?|roboxes(-x32)?)$ ]]; then
+      if [[ "${ORGANIZATION}" =~ ^(generic(-x32)?|roboxes(-x32)?)$ ]]; then
         if [[ "${BOX}" =~ ^debian([8,9]|1[0-2])$ ]]; then
           curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
           if [ $? != 0 ]; then
@@ -1730,7 +1755,7 @@ function public() {
       fi
 
       PROVIDER="virtualbox" ; ARCH="i386"
-      if [[ "${ORGANIZATION}" =~ ^(generic(-32)?|roboxes(-x32)?)$ ]]; then
+      if [[ "${ORGANIZATION}" =~ ^(generic(-x32)?|roboxes(-x32)?)$ ]]; then
         if [[ "${BOX}" =~ ^debian([8,9]|1[0-2])$ ]]; then
           curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
           if [ $? != 0 ]; then
