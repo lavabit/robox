@@ -1811,7 +1811,8 @@
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait5>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+        "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
+
       ],
       "format": "qcow2",
       "disk_size": "131072",

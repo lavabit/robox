@@ -37,7 +37,7 @@ pkg-static update --force
 pkg-static upgrade --yes --force
 
 # Move the updated bundle to all the places it might be needed.
-cp /etc/ssl/cert.pem.backup/etc/ssl/cert.pem
+cp /etc/ssl/cert.pem.backup /etc/ssl/cert.pem
 cp /usr/local/openssl/cert.pem.backup /usr/local/openssl/cert.pem
 cp /usr/local/etc/ssl/cert.pem.backup /usr/local/etc/ssl/cert.pem
 cp /usr/local/share/certs/ca-root-nss.crt.backup /usr/local/share/certs/ca-root-nss.crt

@@ -4355,7 +4355,8 @@
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd11.vagrant.cfg<enter><wait5>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+        "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
+
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -4441,7 +4442,8 @@
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd12.vagrant.cfg<enter><wait5>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+        "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
+
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -4554,7 +4556,8 @@
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd11.vagrant.cfg<enter><wait5>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+        "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
+
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -4614,7 +4617,7 @@
         "/bin/sh<enter><wait10>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd5.vagrant.cfg<enter><wait10>",
-        "sh /tmp/installerconfig | tee /tmp/installerconfig.log && reboot<enter><wait>"
+        "sh -c ' { sh -ex /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -4738,7 +4741,8 @@
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait10>",
-        "bsdinstall script /tmp/installerconfig | tee /tmp/installer.log && reboot<enter><wait>"
+        "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
+
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -5914,7 +5918,8 @@
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd13.vagrant.cfg<enter><wait5>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+        "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
+
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -5961,7 +5966,8 @@
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd13.vagrant.cfg<enter><wait10>",
-        "bsdinstall script /tmp/installerconfig | tee /tmp/installer.log && reboot<enter><wait>"
+        "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
+
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -6021,7 +6027,7 @@
         "/bin/sh<enter><wait10>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd6.vagrant.cfg<enter><wait10>",
-        "sh /tmp/installerconfig | tee /tmp/installerconfig.log && reboot<enter><wait>"
+        "sh -c ' { sh -ex /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -7090,7 +7096,8 @@
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd.vagrant.cfg<enter><wait10>",
-        "bsdinstall script /tmp/installerconfig | tee /tmp/installer.log && reboot<enter><wait>"
+        "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
+
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -7150,7 +7157,7 @@
         "/bin/sh<enter><wait10>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd.vagrant.cfg<enter><wait10>",
-        "sh /tmp/installerconfig | tee /tmp/installerconfig.log && reboot<enter><wait>"
+        "sh -c ' { sh -ex /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -7247,7 +7254,8 @@
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd14.vagrant.cfg<enter><wait5>",
-        "bsdinstall script /tmp/installerconfig && reboot<enter><wait>"
+        "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
+
       ],
       "format": "qcow2",
       "disk_size": "131072",
