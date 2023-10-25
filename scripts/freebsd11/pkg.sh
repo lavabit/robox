@@ -9,7 +9,7 @@ export ASSUME_ALWAYS_YES=yes
 mkdir -p /usr/local/etc/pkg/repos/
 rm -f /var/db/pkg/FreeBSD.meta /var/db/pkg/repo-FreeBSD.sqlite /var/db/pkg/repo-FreeBSD.sqlite-journal
 # echo 'FreeBSD: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
-echo 'FreeBSD: { url: "pkg+http://mirrors.lavabit.com/freebsd-archive/${}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+echo 'FreeBSD: { url: "pkg+http://mirrors.lavabit.com/freebsd-archive/${ABI}/latest/" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 
 # Install the packages needed to update the CA bundle.
 pkg bootstrap
