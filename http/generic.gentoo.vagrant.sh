@@ -33,7 +33,6 @@ mount /dev/sda1 /mnt/gentoo/boot/efi
 wget -O - https://qa-reports.gentoo.org/output/service-keys.gpg | gpg --import
 
 # Remove expired keys
-# Courtesy https://github.com/infertux/bin-scripts/blob/master/gpg-remove-expired-keys
 expired_keys="$(gpg --list-keys --fixed-list-mode --with-colons | grep "^pub:e:" | cut -f5 -d":")"
 for key in ${expired_keys} ; do gpg --no-greeting --batch --yes --delete-key "${key}" ; done
 
@@ -59,7 +58,6 @@ grep --after-context=1 SHA512 $tarball.DIGESTS | grep -vE "CONTENTS|^#|^\-\-$" |
 
 echo 'Extracting Gentoo Tarball'
 tar xJpf $tarball && rm -f $tarball $tarball.asc $tarball.DIGESTS
-
 
 echo 'Extracting Portage Tarball'
 tar xjpf portage-latest.tar.bz2 -C '/mnt/gentoo/usr' && rm -f portage-latest.tar.bz2 portage-latest.tar.bz2.gpgsig
