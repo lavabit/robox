@@ -15,12 +15,7 @@ systemctl --quiet is-active dbus.service && systemctl stop dbus.service
 systemctl --quiet is-active mariadb.service && systemctl stop mariadb.service
 systemctl --quiet is-active postfix.service && systemctl stop postfix.service
 
-awk '(NF==0&&!done){print "override_install_langs='$LANG'\ntsflags=nodocs";done=1}{print}' \
-    < /etc/dnf/dnf.conf > /etc/dnf/dnf.conf.new
-mv /etc/dnf/dnf.conf.new /etc/dnf/dnf.conf
 echo 'container' > /etc/dnf/vars/infra
-
-rm -f /usr/lib/locale/locale-archive
 
 # Setup the login message instructions.
 if [[ ! "$PACKER_BUILD_NAME" =~ ^generic-.*$ ]]; then

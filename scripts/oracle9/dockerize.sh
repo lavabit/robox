@@ -10,12 +10,7 @@ systemctl --quiet is-active mariadb.service && systemctl stop mariadb.service
 systemctl --quiet is-active postfix.service && systemctl stop postfix.service
 systemctl --quiet is-active dbus-broker.service && systemctl stop dbus-broker.service
 
-awk '(NF==0&&!done){print "override_install_langs='$LANG'\ntsflags=nodocs";done=1}{print}' \
-    < /etc/yum.conf > /etc/yum.conf.new
-mv /etc/yum.conf.new /etc/yum.conf
-echo 'container' > /etc/yum/vars/infra
-
-rm -f /usr/lib/locale/locale-archive
+echo 'container' > /etc/dnf/vars/infra
 
 # Setup the login message instructions.
 if [[ ! "$PACKER_BUILD_NAME" =~ ^generic-.*$ ]]; then

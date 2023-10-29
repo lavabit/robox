@@ -9,12 +9,7 @@ systemctl --quiet is-active abrt.service && systemctl stop abrt.service
 systemctl --quiet is-active postfix.service && systemctl stop postfix.service
 systemctl --quiet is-active dbus-broker.service && systemctl stop dbus-broker.service
 
-awk '(NF==0&&!done){print "override_install_langs='$LANG'\ntsflags=nodocs";done=1}{print}' \
-    < /etc/dnf/dnf.conf > /etc/dnf/dnf.conf.new
-mv /etc/dnf/dnf.conf.new /etc/dnf/dnf.conf
 echo 'container' > /etc/dnf/vars/infra
-
-rm -f /usr/lib/locale/locale-archive
 
 # Setup the login message instructions.
 if [[ ! "$PACKER_BUILD_NAME" =~ ^generic-.*$ ]]; then
