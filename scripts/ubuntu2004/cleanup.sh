@@ -11,10 +11,6 @@ error() {
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
-# Keep the daily apt updater from deadlocking our installs.
-systemctl stop apt-daily.service apt-daily.timer
-systemctl stop snapd.service snapd.socket snapd.refresh.timer
-
 # We should be able to run the following, but removing popularity-contest also removes the ubuntu-standard
 # package. The latter package contents are trivial, as it only contains a copyright notice, but its
 # presence signifies that the system is a "standard" Ubuntu installation, so we leave it be.
@@ -34,3 +30,13 @@ apt-get --assume-yes purge; error
 # Removethe random seed so a unique value is used the first time the box is booted.
 systemctl --quiet is-active systemd-random-seed.service && systemctl stop systemd-random-seed.service
 [ -f /var/lib/systemd/random-seed ] && rm --force /var/lib/systemd/random-seed
+
+# *Unmask anything we might have masked in the apt module.
+[ "$(systemctl is-enabled apt-news.service)" == "masked" ] && systemctl unmask apt-news.service
+[ "$(systemctl is-enabled apt-daily.service)" == "masked" ] && systemctl unmask apt-daily.service
+# [ "$(systemctl is-enabled apt-daily-upgrade.service)" == "masked" ] && systemctl unmask apt-daily-upgrade.service
+
+[ "$(systemctl is-enabled packagekit.service)" == "masked" ] && systemctl unmask packagekit.service
+[ "$(systemctl is-enabled packagekit-offline-update.service)" == "masked" ] && systemctl unmask packagekit-offline-update.service
+
+[ "$(systemctl is-enabled snapd.service)" == "masked" ] && systemctl unmask snapd.service

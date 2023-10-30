@@ -60,9 +60,40 @@ printf "APT::Periodic::Enable \"0\";\n" >> /etc/apt/apt.conf.d/10periodic
 printf "APT::Acquire::Retries \"0\";\n" >> /etc/apt/apt.conf.d/20retries
 
 fi
-# Keep the daily apt updater from deadlocking our installs.
-systemctl stop apt-daily.service apt-daily.timer
-systemctl stop snapd.service snapd.socket
+
+# Stop the active services/timers.
+systemctl --quiet is-active apt-daily.timer && systemctl stop apt-daily.timer
+systemctl --quiet is-active apt-daily-upgrade.timer && systemctl stop apt-daily-upgrade.timer
+systemctl --quiet is-active update-notifier-download.timer && systemctl stop update-notifier-download.timer
+
+systemctl --quiet is-active apt-news.service && systemctl stop apt-news.service
+systemctl --quiet is-active apt-daily.service && systemctl stop apt-daily.service
+systemctl --quiet is-active apt-daily-upgrade.service && systemctl stop apt-daily-upgrade.service
+
+systemctl --quiet is-active snapd.service && systemctl stop snapd.service
+
+systemctl --quiet is-active packagekit.service && systemctl stop packagekit.service
+systemctl --quiet is-active packagekit-offline-update.service && systemctl stop packagekit.service
+
+systemctl --quiet is-active unattended-upgrades.service && systemctl stop unattended-upgrades.service
+systemctl --quiet is-active update-notifier-download.service && systemctl stop update-notifier-download.service
+
+# Disable them so they don't restart.
+systemctl --quiet is-enabled apt-daily.timer && systemctl disable apt-daily.timer
+systemctl --quiet is-enabled apt-daily-upgrade.timer && systemctl disable apt-daily-upgrade.timer
+systemctl --quiet is-enabled update-notifier-download.timer && systemctl disable update-notifier-download.timer
+
+systemctl --quiet is-enabled apt-news.service && systemctl mask apt-news.service
+systemctl --quiet is-enabled apt-daily.service && systemctl mask apt-daily.service
+systemctl --quiet is-enabled apt-daily-upgrade.service && systemctl mask apt-daily-upgrade.service
+
+systemctl --quiet is-enabled packagekit.service && systemctl mask packagekit.service
+systemctl --quiet is-enabled packagekit-offline-update.service && systemctl mask packagekit-offline-update.service
+
+systemctl --quiet is-enabled snapd.service && systemctl mask snapd.service
+
+systemctl --quiet is-enabled unattended-upgrades.service && systemctl mask unattended-upgrades.service
+systemctl --quiet is-enabled update-notifier-download.service && systemctl mask update-notifier-download.service
 
 # Update the package database.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
