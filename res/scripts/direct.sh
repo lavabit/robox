@@ -226,7 +226,7 @@ elif [ "$ARCH" == "m64" ] || [ "$ARCH" == "mips64" ] || [ "$ARCH" == "mips64hf" 
   ARCH="mips64"
 elif [ "$ARCH" == "m32" ] || [ "$ARCH" == "mips" ] || [ "$ARCH" == "mips32" ] || [ "$ARCH" == "mipsn32" ] || [ "$ARCH" == "mipshf" ] ; then
   ARCH="mips"
-elif  [ "$ARCH" == "ppc64le" ]; then
+elif [ "$ARCH" == "ppc64le" ]; then
   ARCH="ppc64le"
 elif [ "$ARCH" == "mips64le" ] || [ "$ARCH" == "mips64el" ] || [ "$ARCH" == "mips64hfel" ]; then
   ARCH="mips64le"
@@ -340,7 +340,6 @@ function upload_box() {
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     --request DELETE \
     "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}/${ARCH}" || \
-     https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/virtualbox/amd64
     { printf "${T_BYEL}  Unable to delete an existing version of the box. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
 
   # Sleep to let the deletion propagate.
@@ -372,9 +371,9 @@ function upload_box() {
   UPLOAD_CALLBACK="$(echo "$UPLOAD_RESPONSE" | jq -r .callback)"
 
   if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "echo" ] || [ "$UPLOAD_CALLBACK" == "" ] || [ "$UPLOAD_CALLBACK" == "echo" ]; then
-     printf "\n${T_BYEL}  The $FILENAME file failed to upload. Restarting. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
-     exec "$0" "$1" $RECURSION
-     exit $?
+    printf "\n${T_BYEL}  The $FILENAME file failed to upload. Restarting. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
+    exec "$0" "$1" $RECURSION
+    exit $?
   fi
 
   # Sleep to give the cloud time to get setup.
