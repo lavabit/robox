@@ -757,7 +757,7 @@ function print_iso() {
 
 function iso() {
 
-  if [ "$1" == "gentoo" ]; then
+  if [ "$1" == "gentoo-x64" ]; then
 
     # Find the existing Gentoo URL and hash values.
     ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo-x64\")) | .iso_url" 2>/dev/null`
@@ -771,6 +771,44 @@ function iso() {
     # Find the Gentoo URL.
     URL="https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
     ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
+    if [ $? != 0 ] || [ "$ISO" == "" ]; then
+      tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
+      return 1
+    fi
+
+    # Calculate the new URL.
+    URL="${URL}${ISO}"
+
+    # Download the ISO file and calculate the new hash value.
+    set -o pipefail
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    if [ $? != 0 ] || [ "$SHA" == "" ]; then
+        tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
+        return 1
+    fi
+    set +o pipefail
+
+    # Escape the URL strings.
+    URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
+    ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
+
+    # Replace the existing ISO and hash values with the update values.
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
+  elif [ "$1" == "gentoo-a64" ]; then
+
+    # Find the existing Gentoo URL and hash values.
+    ISO_URL=`cat "$BASE/packer-cache-a64.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo-a64\")) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo-a64\")) | .iso_checksum" 2>/dev/null`
+
+    if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
+      tput setaf 1; printf "\nThe Gentoo ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+      return 1
+    fi
+
+    # Find the Gentoo URL.
+    URL="https://mirrors.edge.kernel.org/gentoo/releases/arm64/autobuilds/current-install-arm64-minimal/"
+    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching --max-count=1 "install\-arm64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
       return 1
@@ -1013,10 +1051,10 @@ function iso() {
   elif [ "$1" == "alpine" ]; then
 
     # Build a loop with all of the Alpine ISO names. 
-    cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name | contains(\"alpine\")) | .name" | grep -v alpine35-hyperv-x64 | while read NAME; do 
+    cat "$BASE/packer-cache-a64.json" "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name | contains(\"alpine\")) | .name" | grep -v alpine35-hyperv-x64 | while read NAME; do 
       
-      ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"$NAME\") | .iso_url" 2>/dev/null`
-      ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"$NAME\") | .iso_checksum" 2>/dev/null`
+      ISO_URL=`cat "$BASE/packer-cache-a64.json" "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"$NAME\") | .iso_url" 2>/dev/null`
+      ISO_CHECKSUM=`cat "$BASE/packer-cache-a64.json" "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"$NAME\") | .iso_checksum" 2>/dev/null`
 
       if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
         tput setaf 1; printf "\nThe Alpine ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -1047,13 +1085,15 @@ function iso() {
       fi
 
     done
-
+  elif [ "$1" == "gentoo" ]; then
+    iso gentoo-x64
+    iso gentoo-a64
   elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
-    iso hardenedbsd13
     iso hardenedbsd14
+    iso hardenedbsd13
   elif [ "$1" == "centos" ] || [ "$1" == "stream" ] || [ "$1" == "streams" ]; then
-    iso centos8s
     iso centos9s
+    iso centos8s
   elif [ "$1" == "all" ]; then
     iso arch
     iso gentoo
