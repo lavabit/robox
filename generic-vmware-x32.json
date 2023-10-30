@@ -1,0 +1,507 @@
+{
+  "variables": {
+    "box_version": "{{env `VERSION`}}"
+  },
+ "provisioners": [
+    {
+      "scripts": [
+        "scripts/debian8/apt.sh",
+        "scripts/debian8/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian8-vmware-x32"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian8/floppy.sh",
+        "scripts/debian8/profile.sh",
+        "scripts/debian8/vagrant.sh",
+        "scripts/debian8/motd.sh",
+        "scripts/debian8/fixtty.sh",
+        "scripts/debian8/virtualbox.sh",
+        "scripts/debian8/parallels.sh",
+        "scripts/debian8/vmware.sh",
+        "scripts/debian8/qemu.sh",
+        "scripts/debian8/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian8-vmware-x32"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian9/apt.sh",
+        "scripts/debian9/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian9-vmware-x32"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian9/floppy.sh",
+        "scripts/debian9/profile.sh",
+        "scripts/debian9/vagrant.sh",
+        "scripts/debian9/motd.sh",
+        "scripts/debian9/fixtty.sh",
+        "scripts/debian9/fixuuid.sh",
+        "scripts/debian9/virtualbox.sh",
+        "scripts/debian9/parallels.sh",
+        "scripts/debian9/vmware.sh",
+        "scripts/debian9/qemu.sh",
+        "scripts/debian9/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian9-vmware-x32"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian10/apt.sh",
+        "scripts/debian10/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian10-vmware-x32"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian10/floppy.sh",
+        "scripts/debian10/profile.sh",
+        "scripts/debian10/vagrant.sh",
+        "scripts/debian10/motd.sh",
+        "scripts/debian10/fixtty.sh",
+        "scripts/debian10/virtualbox.sh",
+        "scripts/debian10/parallels.sh",
+        "scripts/debian10/vmware.sh",
+        "scripts/debian10/qemu.sh",
+        "scripts/debian10/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian10-vmware-x32"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian11/apt.sh",
+        "scripts/debian11/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian11-vmware-x32"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian11/floppy.sh",
+        "scripts/debian11/profile.sh",
+        "scripts/debian11/vagrant.sh",
+        "scripts/debian11/motd.sh",
+        "scripts/debian11/fixtty.sh",
+        "scripts/debian11/virtualbox.sh",
+        "scripts/debian11/parallels.sh",
+        "scripts/debian11/vmware.sh",
+        "scripts/debian11/qemu.sh",
+        "scripts/debian11/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian11-vmware-x32"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian12/apt.sh",
+        "scripts/debian12/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian12-vmware-x32"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/debian12/floppy.sh",
+        "scripts/debian12/profile.sh",
+        "scripts/debian12/vagrant.sh",
+        "scripts/debian12/motd.sh",
+        "scripts/debian12/fixtty.sh",
+        "scripts/debian12/virtualbox.sh",
+        "scripts/debian12/parallels.sh",
+        "scripts/debian12/vmware.sh",
+        "scripts/debian12/qemu.sh",
+        "scripts/debian12/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-debian12-vmware-x32"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/common/motd.sh",
+        "scripts/common/keys.sh",
+        "scripts/common/machine.sh",
+        "scripts/common/leases.sh",
+        "scripts/common/localtime.sh",
+        "scripts/common/zerodisk.sh",
+        "scripts/common/lockout.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
+    }
+  ],
+  "builders": [
+    {
+      "type": "vmware-iso",
+      "name": "generic-debian8-vmware-x32",
+      "vm_name": "generic-debian8-vmware-x32",
+      "vmdk_name": "generic-debian8-vmware-x32",
+      "output_directory": "output/generic-debian8-vmware-x32",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian8.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "debian8-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/amd64/iso-dvd/debian-8.11.1-amd64-DVD-1.iso",
+      "iso_checksum": "sha256:06b6faafa5c2c74a2bbaa398589a0448ff0c2755fe9bab4c1013f40781fb4a2a",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-debian9-vmware-x32",
+      "vm_name": "generic-debian9-vmware-x32",
+      "vmdk_name": "generic-debian9-vmware-x32",
+      "output_directory": "output/generic-debian9-vmware-x32",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian9.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "debian8-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/9.13.0/i386/iso-cd/debian-9.13.0-i386-netinst.iso",
+      "iso_checksum": "sha256:27de998af87007bf5daa3030d3863d3ef801b948c29f5bbce232be4f928eedba",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-debian10-vmware-x32",
+      "vm_name": "generic-debian10-vmware-x32",
+      "vmdk_name": "generic-debian10-vmware-x32",
+      "output_directory": "output/generic-debian10-vmware-x32",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "/install.386/vmlinuz auto=true priority=critical vga=788 initrd=/install.386/gtk/initrd.gz --- quiet ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian10.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "debian8-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/10.13.0/i386/iso-cd/debian-10.13.0-i386-netinst.iso",
+      "iso_checksum": "sha256:af48af8142c6a162e15d70d1f7c77d205ab86e070270939961d0c3021557179f",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-debian11-vmware-x32",
+      "vm_name": "generic-debian11-vmware-x32",
+      "vmdk_name": "generic-debian11-vmware-x32",
+      "output_directory": "output/generic-debian11-vmware-x32",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "/install.386/vmlinuz auto=true priority=critical vga=788 initrd=/install.386/gtk/initrd.gz --- quiet ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian11.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "debian8-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/11.8.0/i386/iso-cd/debian-11.8.0-i386-netinst.iso",
+      "iso_checksum": "sha256:89dce72e2a9310ad307485171c3fb6ce99d27ff93c74bf3319d94890a42b607e",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    },
+    {
+      "type": "vmware-iso",
+      "name": "generic-debian12-vmware-x32",
+      "vm_name": "generic-debian12-vmware-x32",
+      "vmdk_name": "generic-debian12-vmware-x32",
+      "output_directory": "output/generic-debian12-vmware-x32",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "/install.386/vmlinuz auto=true priority=critical vga=788 initrd=/install.386/gtk/initrd.gz --- quiet ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "disk_type_id": "0",
+      "cpus": 2,
+      "memory": 2048,
+      "version": "12",
+      "vmx_data_post": {
+        "virtualHW.version": "12",
+        "cleanShutdown": "TRUE",
+        "softPowerOff": "FALSE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.wakeonpcktrcv": "false"
+      },
+      "guest_os_type": "debian8-64",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "headless": true,
+      "vnc_disable_password": true,
+      "vnc_bind_address": "127.0.0.1",
+      "vmx_remove_ethernet_interfaces": true,
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/i386/iso-cd/debian-12.2.0-i386-netinst.iso",
+      "iso_checksum": "sha256:16b8b990de9ddea6a4cf1cfc6f6c11436c31d87094db9b662f96cc4d7f3d6a96",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/generic-{{split build_name \"-\" 1}}.rb",
+        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/generic/info.json"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256"
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/roboxes-{{split build_name \"-\" 1}}.rb",
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/roboxes/info.json"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256"
+      }
+    ]
+  ]
+}

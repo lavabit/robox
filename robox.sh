@@ -74,7 +74,7 @@ ROBOX_FILES="packer-cache-x64.json packer-cache-x32.json "\
 "packer-cache-p64.json packer-cache-m64.json "\
 "magma-docker-x64.json magma-hyperv-x64.json magma-vmware-x64.json magma-libvirt-x64.json magma-virtualbox-x64.json "\
 "generic-docker-x64.json generic-hyperv-x64.json generic-vmware-x64.json generic-libvirt-x64.json generic-virtualbox-x64.json generic-parallels-x64.json "\
-"generic-libvirt-x32.json generic-virtualbox-x32.json "\
+"generic-libvirt-x32.json generic-vmware-x32.json generic-virtualbox-x32.json "\
 "generic-libvirt-a64.json generic-libvirt-a32.json "\
 "generic-libvirt-p64.json generic-libvirt-m64.json "\
 "lineage-hyperv-x64.json lineage-vmware-x64.json lineage-libvirt-x64.json lineage-virtualbox-x64.json "\
@@ -1394,6 +1394,9 @@ function box() {
 
   export PACKER_LOG_PATH="$BASE/logs/generic-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
   [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-vmware-x64.json
+  export PACKER_LOG_PATH="$BASE/logs/generic-vmware-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware-x32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-vmware-x32.json
+
   export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
   [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox-x64.json
   export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
@@ -1490,16 +1493,17 @@ function validate() {
   verify_json magma-virtualbox-x64 && printf "The magma-virtualbox-x64.json file is valid.\n"
   verify_json generic-docker-x64 && printf "The generic-docker-x64.json file is valid.\n"
   verify_json generic-hyperv-x64 && printf "The generic-hyperv-x64.json file is valid.\n"
+  verify_json generic-parallels-x64 && printf "The generic-parallels-x64.json file is valid.\n"
+  verify_json generic-virtualbox-x64 && printf "The generic-virtualbox-x64.json file is valid.\n"
+  verify_json generic-virtualbox-x32 && printf "The generic-virtualbox-x32.json file is valid.\n"
   verify_json generic-vmware-x64 && printf "The generic-vmware-x64.json file is valid.\n"
+  verify_json generic-vmware-x32 && printf "The generic-vmware-x32.json file is valid.\n"
   verify_json generic-libvirt-x64 && printf "The generic-libvirt-x64.json file is valid.\n"
   verify_json generic-libvirt-x32 && printf "The generic-libvirt-x32.json file is valid.\n"
   verify_json generic-libvirt-a64 && printf "The generic-libvirt-a64.json file is valid.\n"
   verify_json generic-libvirt-a32 && printf "The generic-libvirt-a32.json file is valid.\n"
   verify_json generic-libvirt-p64 && printf "The generic-libvirt-p64.json file is valid.\n"
   verify_json generic-libvirt-m64 && printf "The generic-libvirt-m64.json file is valid.\n"
-  verify_json generic-parallels-x64 && printf "The generic-parallels-x64.json file is valid.\n"
-  verify_json generic-virtualbox-x64 && printf "The generic-virtualbox-x64.json file is valid.\n"
-  verify_json generic-virtualbox-x32 && printf "The generic-virtualbox-x32.json file is valid.\n"
   verify_json developer-ova-x64 && printf "The developer-ova-x64.json file is valid.\n"
   verify_json developer-hyperv-x64 && printf "The developer-hyperv-x64.json file is valid.\n"
   verify_json developer-vmware-x64 && printf "The developer-vmware-x64.json file is valid.\n"
@@ -1875,6 +1879,27 @@ function public() {
               printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
             else
               printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
+            fi
+          fi
+        fi
+      fi
+
+      PROVIDER="vmware_desktop" ; ARCH="i386"
+      if [[ "${ORGANIZATION}" =~ ^(generic(-x32)?|roboxes(-x32)?)$ ]]; then
+        if [[ "${BOX}" =~ ^debian([8,9]|1[0-2])$ ]]; then
+          curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
+          if [ $? != 0 ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x32\n"; tput sgr0
+          else
+            let FOUND+=1
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+              if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
+                let UNRELEASED+=1
+                printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x32\n"; tput sgr0
+              else
+                printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/x32\n"; tput sgr0
+              fi
             fi
           fi
         fi
@@ -2477,6 +2502,7 @@ function generic() {
     build generic-libvirt-a32
   else
     build generic-vmware-x64
+    build generic-vmware-x32
     build generic-libvirt-x64
     build generic-libvirt-x32
     build generic-virtualbox-x64
@@ -2515,11 +2541,13 @@ function ova() {
 
 function vmware() {
   verify_json generic-vmware-x64
+  verify_json generic-vmware-x32
   verify_json magma-vmware-x64
   verify_json developer-vmware-x64
   verify_json lineage-vmware-x64
 
   build generic-vmware-x64
+  build generic-vmware-x32
   build magma-vmware-x64
   build developer-vmware-x64
   build lineage-vmware-x64
@@ -2754,6 +2782,7 @@ elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox-x64" || $1 == "g
 elif [[ $1 == "generic-docker" || $1 == "generic-docker-x64" || $1 == "generic-docker,json" || $1 == "generic-docker-x64.json" ]]; then build generic-docker-x64
 elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt-x64" || $1 == "generic-libvirt,json" || $1 == "generic-libvirt-x64.json" ]]; then build generic-libvirt-x64
 
+elif [[ $1 == "generic-vmware-x32" || $1 == "generic-vmware-x32.json" ]]; then build generic-vmware-x32
 elif [[ $1 == "generic-libvirt-x32" || $1 == "generic-libvirt-x32.json" ]]; then build generic-libvirt-x32
 elif [[ $1 == "generic-virtualbox-x32" || $1 == "generic-virtualbox-x32.json" ]]; then build generic-virtualbox-x32
 
