@@ -87,7 +87,7 @@ sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 rc-update add sshd default
 
-# Disable the possword checks so we can use the defautl password.
+# Disable the password checks so we can use the default password.
 sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf
 
 echo 'Configuring Users'
@@ -98,7 +98,8 @@ echo 'vagrant:vagrant' | chpasswd
 # If we're running on Hyper-V, setup the daemons.
 if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
   echo 'Configuring Hyper-V'
-  cd /usr/src/linux/tools/hv && make
+  emerge sys-kernel/gentoo-sources
+  cd /usr/src/linux-*-gentoo/tools/hv && makes
   install -t /usr/sbin/ hv_fcopy_daemon hv_vss_daemon hv_kvp_daemon
 
 tee /etc/init.d/hv_fcopy_daemon <<-EOF
