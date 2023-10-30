@@ -345,7 +345,6 @@
       "ssh_username": "root",
       "type": "vmware-iso"
     },
-    
     {
       "name": "debian10-x64",
       "output_directory": "output/debian10-x64",
@@ -360,7 +359,7 @@
       "ssh_timeout": "10s",
       "ssh_username": "root",
       "type": "vmware-iso"
-    }
+    },
     {
       "name": "debian11-x64",
       "output_directory": "output/debian11-x64",
