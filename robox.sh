@@ -776,6 +776,17 @@ function iso() {
       return 1
     fi
 
+    # Extract the ISO name from the PGP signature file, and print a warning if it doesn't match. 
+    LATEST="$(${CURL} --fail -s ${URL}/latest-install-amd64-minimal.txt | \
+    head -n $(${CURL}  -s ${URL}/latest-install-amd64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1-1}') | \
+    tail -n +$(${CURL}  --fail -s ${URL}/latest-install-amd64-minimal.txt | head -n $(${CURL}  --fail -s ${URL}/latest-install-amd64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1}') | grep -En '^$'| head -1 | awk -F':' '{print $1+1}') | \
+    grep -Ev '^#|^ ' | grep --extended-regexp --only-matching --max-count=1 'install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso')"
+
+    if [ "$ISO" != "$LATEST" ]; then
+      tput setaf 3; printf "\n  The Gentoo installer doesn't match the signature file.\n"; tput sgr0
+      printf "    $ISO != $LATEST\n\n"
+    fi
+
     # Calculate the new URL.
     URL="${URL}${ISO}"
 
@@ -799,7 +810,7 @@ function iso() {
 
     # Find the existing Gentoo URL and hash values.
     ISO_URL=`cat "$BASE/packer-cache-a64.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo-a64\")) | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo-a64\")) | .iso_checksum" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-a64.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo-a64\")) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -812,6 +823,17 @@ function iso() {
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
       return 1
+    fi
+
+    # Extract the ISO name from the PGP signature file, and print a warning if it doesn't match. 
+    LATEST="$(${CURL} --fail -s ${URL}/latest-install-arm64-minimal.txt | \
+    head -n $(${CURL}  -s ${URL}/latest-install-arm64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1-1}') | \
+    tail -n +$(${CURL} --fail -s ${URL}/latest-install-arm64-minimal.txt | head -n $(${CURL} --fail -s ${URL}/latest-install-arm64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1}') | grep -En '^$'| head -1 | awk -F':' '{print $1+1}') | \
+    grep -Ev '^#|^ ' | grep --extended-regexp --only-matching --max-count=1 'install\-arm64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso')"
+
+    if [ "$ISO" != "$LATEST" ]; then
+      tput setaf 3; printf "\n  The Gentoo installer doesn't match the signature file.\n"; tput sgr0
+      printf "    $ISO != $LATEST\n\n"
     fi
 
     # Calculate the new URL.
