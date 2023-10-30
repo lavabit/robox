@@ -375,16 +375,23 @@
       "disk_compression": true,
       "net_device": "virtio-net",
       "qemuargs": [
-        ["-boot","strict=off,order=cd"]
+        ["-no-user-config"],
+        ["-machine", "virt,accel=tcg"],
+        ["-boot","strict=off,menu=off"],
+        ["-tpmdev", "emulator,id=tpm-tpm0,chardev=chrtpm"],
+        ["-device", "driver=virtio-scsi-pci,id=scsi0"],
+        ["-blockdev", "driver=file,filename=/var/lib/libvirt/images/alpine-virt-3.18.4-aarch64.iso,node-name=libvirt-1-storage,auto-read-only=true"],
+        ["-blockdev", "node-name=libvirt-1-format,read-only=true,driver=raw,file=libvirt-1-storage"],
+        ["-device", "driver=scsi-cd,bus=scsi0.0,channel=0,scsi-id=0,device_id=drive-scsi0-00-0,drive=libvirt-1-format,id=scsi0-0-0-0,bootindex=1"]
+        
+        
       ],
-      "machine_type": "virt",
       "disk_interface": "virtio",
-      "accelerator": "tcg",
       "headless": false,
       "disk_image": false,
-      "efi_boot": true,
-      "efi_firmware_code": "/usr/share/edk2/arm/QEMU_EFI-pflash.raw",
-      "efi_firmware_vars": "/usr/share/edk2/arm/vars-template-pflash.raw",
+      "efi_boot": false,
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
+      "efi_firmware_vars": "/home/ladar/Data/robox.priv/GENERIC-AARCH64-VARS.raw",
       "boot_wait": "600s",
       "format": "raw",
 
@@ -801,7 +808,7 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "http://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/14.0/FreeBSD-14.0-RC3-arm64-aarch64-disc1.iso",
+      "iso_url": "https://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/14.0/FreeBSD-14.0-RC3-arm64-aarch64-disc1.iso",
       "iso_checksum": "sha256:a3529368ea3ffb060ea5e206c1113ef948c645a7952399b94e7f4afb941ac42b",
       "ssh_username": "root",
       "ssh_password": "vagrant",
