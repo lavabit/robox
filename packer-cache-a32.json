@@ -1,0 +1,19 @@
+{
+  "builders": [
+    {
+      "name": "debian12-a32",
+      "output_directory": "output/debian12-a32",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/armhf/iso-cd/debian-12.2.0-armhf-netinst.iso",
+      "iso_checksum": "sha256:392f6384fdb3db29b728b9c53e2512550af2afbf15e691d79a419eccc0606b9c",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    }
+  ]
+}

@@ -69,9 +69,14 @@ ROBOX_NAMESPACES="generic magma developer lineage"
 ROBOX_ISOS="all alpine arch centos centos8s centos9s gentoo hardenedbsd hardenedbsd13 hardenedbsd14"
 
 # The list of packer config files.
-ROBOX_FILES="packer-cache.json "\
+ROBOX_FILES="packer-cache-x64.json packer-cache-x32.json "\
+"packer-cache-a64.json packer-cache-a32.json "\
+"packer-cache-p64.json packer-cache-m64.json "\
 "magma-docker-x64.json magma-hyperv-x64.json magma-vmware-x64.json magma-libvirt-x64.json magma-virtualbox-x64.json "\
-"generic-docker-x64.json generic-hyperv-x64.json generic-vmware-x64.json generic-libvirt-a64.json generic-libvirt-x64.json generic-libvirt-x32.json generic-parallels-x64.json generic-virtualbox-x64.json generic-virtualbox-x32.json "\
+"generic-docker-x64.json generic-hyperv-x64.json generic-vmware-x64.json generic-libvirt-x64.json generic-virtualbox-x64.json generic-parallels-x64.json "\
+"generic-libvirt-x32.json generic-virtualbox-x32.json "\
+"generic-libvirt-a64.json generic-libvirt-a32.json "\
+"generic-libvirt-p64.json generic-libvirt-m64.json "\
 "lineage-hyperv-x64.json lineage-vmware-x64.json lineage-libvirt-x64.json lineage-virtualbox-x64.json "\
 "developer-ova-x64.json developer-hyperv-x64.json developer-vmware-x64.json developer-libvirt-x64.json developer-virtualbox-x64.json"
 
@@ -755,8 +760,8 @@ function iso() {
   if [ "$1" == "gentoo" ]; then
 
     # Find the existing Gentoo URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo-x64\")) | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo-x64\")) | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo-x64\")) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo-x64\")) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -795,8 +800,8 @@ function iso() {
   elif [ "$1" == "arch" ]; then
 
     # Find the existing Arch URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"arch-x64\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"arch-x64\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"arch-x64\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"arch-x64\") | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe Arch ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -834,8 +839,8 @@ function iso() {
   elif [ "$1" == "centos8s" ]; then
     
     # Find the existing CentOS 8 stream URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"centos8s-x64\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"centos8s-x64\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"centos8s-x64\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"centos8s-x64\") | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe CentOS 8 Stream ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -873,8 +878,8 @@ function iso() {
   elif [ "$1" == "centos9s" ]; then
 
     # Find the existing CentOS 9 stream URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"centos9s-x64\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"centos9s-x64\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"centos9s-x64\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"centos9s-x64\") | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe CentOS 9 Stream ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -912,8 +917,8 @@ function iso() {
   elif [ "$1" == "hardened13" ] || [ "$1" == "hardenedbsd13" ]; then
 
     # Find the existing HardenedBSD URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd13-x64\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd13-x64\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd13-x64\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd13-x64\") | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe HardenedBSD 13 ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -960,8 +965,8 @@ function iso() {
   elif [ "$1" == "hardened14" ] || [ "$1" == "hardenedbsd14" ]; then
 
     # Find the existing HardenedBSD URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd-x64\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd-x64\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd-x64\") | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd-x64\") | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe HardenedBSD 14 ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -1008,10 +1013,10 @@ function iso() {
   elif [ "$1" == "alpine" ]; then
 
     # Build a loop with all of the Alpine ISO names. 
-    cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name | contains(\"alpine\")) | .name" | grep -v alpine35-hyperv-x64 | while read NAME; do 
+    cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name | contains(\"alpine\")) | .name" | grep -v alpine35-hyperv-x64 | while read NAME; do 
       
-      ISO_URL=`cat "$BASE/packer-cache.json" | jq -r -c ".builders[] | select( .name == \"$NAME\") | .iso_url" 2>/dev/null`
-      ISO_CHECKSUM=`cat "$BASE/packer-cache.json" | jq  -r -c ".builders[] | select( .name == \"$NAME\") | .iso_checksum" 2>/dev/null`
+      ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"$NAME\") | .iso_url" 2>/dev/null`
+      ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"$NAME\") | .iso_checksum" 2>/dev/null`
 
       if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
         tput setaf 1; printf "\nThe Alpine ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -1064,9 +1069,9 @@ function cache {
   unset PACKER_LOG ; unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
 
   if [[ $OS == "Windows_NT" ]]; then
-    packer.exe build -on-error=cleanup -color=false -parallel-builds=$PACKER_MAX_PROCS -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+    packer.exe build -on-error=cleanup -color=false -parallel-builds=$PACKER_MAX_PROCS -except= packer-cache-x64.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
   else
-    packer build -on-error=cleanup -color=false -parallel-builds=$PACKER_MAX_PROCS -except= packer-cache.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+    packer build -on-error=cleanup -color=false -parallel-builds=$PACKER_MAX_PROCS -except= packer-cache-x64.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
   fi
 
   if [[ $? != 0 ]]; then
@@ -1293,46 +1298,54 @@ function box() {
 
   if [[ "$(uname)" == "Linux" ]]; then
 
-      export PACKER_LOG_PATH="$BASE/logs/magma-docker-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker-x64.json; container-registry-logout)
-      export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-libvirt-x64.json
-
+      
       export PACKER_LOG_PATH="$BASE/logs/generic-docker-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker-x64.json; container-registry-logout)
-      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt-x32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x32.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x64.json
+     export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt-x32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x32.json
+      
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-a64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-a64.json
+      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-a32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-a32.json
+      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-p64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-p64.json
+      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-m64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-m64.json
 
       export PACKER_LOG_PATH="$BASE/logs/developer-ova-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-ova-x64.json
       export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-libvirt-x64.json
 
+      export PACKER_LOG_PATH="$BASE/logs/magma-docker-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker-x64.json; container-registry-logout)
+      export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-libvirt-x64.json
+
       export PACKER_LOG_PATH="$BASE/logs/lineage-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-libvirt-x64.json
 
   fi
 
-  export PACKER_LOG_PATH="$BASE/logs/magma-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-vmware-x64.json
-  export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-virtualbox-x64.json
-
   export PACKER_LOG_PATH="$BASE/logs/generic-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
   [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-vmware-x64.json
-  export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox-x32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox-x32.json
   export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
   [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox-x64.json
+  export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox-x32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox-x32.json
 
   export PACKER_LOG_PATH="$BASE/logs/developer-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
   [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-vmware-x64.json
   export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
   [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-virtualbox-x64.json
+
+  export PACKER_LOG_PATH="$BASE/logs/magma-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-vmware-x64.json
+  export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-virtualbox-x64.json
 
   export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
   [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-vmware-x64.json
@@ -1367,9 +1380,9 @@ function links() {
   # Wait until the children are done working.
   wait
 
-  # Detect downloads that aren't being fetched by the packer-cache.json file.
+  # Detect downloads that aren't being fetched by the packer-cache-x64.json file.
   for ((i = 0; i < ${#ISOURLS[@]}; ++i)); do
-    grep --silent "${ISOURLS[$i]}" packer-cache.json || \
+    grep --silent "${ISOURLS[$i]}" packer-cache-x64.json packer-cache-x32.json packer-cache-a64.json packer-cache-a32.json packer-cache-p64.json packer-cache-m64.json || \
     echo "Cache Failure:  ${ISOURLS[$i]}"
   done
   
@@ -1402,7 +1415,12 @@ function sums() {
 function validate() {
   # Try and make the jobs nice. Ignore failures when adjusting the process priority.
   renice -n +19 $$ &> /dev/null || echo > /dev/null
-  verify_json packer-cache && printf "The packer-cache.json file is valid.\n"
+  verify_json packer-cache-x64 && printf "The packer-cache-x64.json file is valid.\n"
+  verify_json packer-cache-x32 && printf "The packer-cache-x32.json file is valid.\n"
+  verify_json packer-cache-a64 && printf "The packer-cache-a64.json file is valid.\n"
+  verify_json packer-cache-a32 && printf "The packer-cache-a32.json file is valid.\n"
+  verify_json packer-cache-p64 && printf "The packer-cache-p64.json file is valid.\n"
+  verify_json packer-cache-m64 && printf "The packer-cache-m64.json file is valid.\n"
   verify_json magma-docker-x64 && printf "The magma-docker-x64.json file is valid.\n"
   verify_json magma-hyperv-x64 && printf "The magma-hyperv-x64.json file is valid.\n"
   verify_json magma-vmware-x64 && printf "The magma-vmware-x64.json file is valid.\n"
@@ -1411,9 +1429,12 @@ function validate() {
   verify_json generic-docker-x64 && printf "The generic-docker-x64.json file is valid.\n"
   verify_json generic-hyperv-x64 && printf "The generic-hyperv-x64.json file is valid.\n"
   verify_json generic-vmware-x64 && printf "The generic-vmware-x64.json file is valid.\n"
-  verify_json generic-libvirt-a64 && printf "The generic-libvirt-a64.json file is valid.\n"
   verify_json generic-libvirt-x64 && printf "The generic-libvirt-x64.json file is valid.\n"
   verify_json generic-libvirt-x32 && printf "The generic-libvirt-x32.json file is valid.\n"
+  verify_json generic-libvirt-a64 && printf "The generic-libvirt-a64.json file is valid.\n"
+  verify_json generic-libvirt-a32 && printf "The generic-libvirt-a32.json file is valid.\n"
+  verify_json generic-libvirt-p64 && printf "The generic-libvirt-p64.json file is valid.\n"
+  verify_json generic-libvirt-m64 && printf "The generic-libvirt-m64.json file is valid.\n"
   verify_json generic-parallels-x64 && printf "The generic-parallels-x64.json file is valid.\n"
   verify_json generic-virtualbox-x64 && printf "The generic-virtualbox-x64.json file is valid.\n"
   verify_json generic-virtualbox-x32 && printf "The generic-virtualbox-x32.json file is valid.\n"
@@ -2391,6 +2412,7 @@ function generic() {
     build generic-parallels-x64
   elif [[ "$(name -m)" == "arm64" ]] || [[ "$(name -m)" == "aarch64" ]]; then
     build generic-libvirt-a64
+    build generic-libvirt-a32
   else
     build generic-vmware-x64
     build generic-libvirt-x64
@@ -2499,7 +2521,10 @@ function libvirt() {
 
   if [[ "$(name -m)" == "arm64" ]] || [[ "$(name -m)" == "aarch64" ]]; then
     verify_json generic-libvirt-a64
+    verify_json generic-libvirt-a32
+
     build generic-libvirt-a64
+    build generic-libvirt-a32
   else
     verify_json generic-libvirt-x64
     verify_json generic-libvirt-x32
@@ -2655,21 +2680,26 @@ elif [[ $1 == "developer-hyperv" || $1 == "developer-hyperv-x64" || $1 == "devel
 elif [[ $1 == "developer-libvirt" || $1 == "developer-libvirt-x64" || $1 == "developer-libvirt,json" || $1 == "developer-libvirt-x64.json" ]]; then build developer-libvirt-x64
 elif [[ $1 == "developer-virtualbox" || $1 == "developer-virtualbox-x64" || $1 == "developer-virtualbox,json" || $1 == "developer-virtualbox-x64.json" ]]; then build developer-virtualbox-x64
 
-elif [[ $1 == "generic-vmware" || $1 == "generic-vmware-x64" || $1 == "generic-vmware,json" || $1 == "generic-vmware-x64.json" ]]; then build generic-vmware-x64
-elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv-x64" || $1 == "generic-hyperv,json" || $1 == "generic-hyperv-x64.json" ]]; then build generic-hyperv-x64
-elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt-x64" || $1 == "generic-libvirt,json" || $1 == "generic-libvirt-x64.json" ]]; then build generic-libvirt-x64
-elif [[ $1 == "generic-parallels" || $1 == "generic-parallels-x64" || $1 == "generic-parallels,json" || $1 == "generic-parallels-x64.json" ]]; then build generic-parallels-x64
-elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox-x64" || $1 == "generic-virtualbox,json" || $1 == "generic-virtualbox-x64.json" ]]; then build generic-virtualbox-x64
-elif [[ $1 == "generic-docker" || $1 == "generic-docker-x64" || $1 == "generic-docker,json" || $1 == "generic-docker-x64.json" ]]; then build generic-docker-x64
-
 elif [[ $1 == "lineage-vmware" || $1 == "lineage-vmware-x64" || $1 == "lineage-vmware,json" || $1 == "lineage-vmware-x64.json" ]]; then build lineage-vmware-x64
 elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv-x64" || $1 == "lineage-hyperv,json" || $1 == "lineage-hyperv-x64.json" ]]; then build lineage-hyperv-x64
 elif [[ $1 == "lineage-libvirt" || $1 == "lineage-libvirt-x64" || $1 == "lineage-libvirt,json" || $1 == "lineage-libvirt-x64.json" ]]; then build lineage-libvirt-x64
 elif [[ $1 == "lineage-virtualbox" || $1 == "lineage-virtualbox-x64" || $1 == "lineage-virtualbox,json" || $1 == "lineage-virtualbox-x64.json" ]]; then build lineage-virtualbox-x64
 
-elif [[ $1 == "generic-libvirt-a64" || $1 == "generic-libvirt-a64.json" ]]; then build generic-libvirt-a64
+elif [[ $1 == "generic-vmware" || $1 == "generic-vmware-x64" || $1 == "generic-vmware,json" || $1 == "generic-vmware-x64.json" ]]; then build generic-vmware-x64
+elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv-x64" || $1 == "generic-hyperv,json" || $1 == "generic-hyperv-x64.json" ]]; then build generic-hyperv-x64
+elif [[ $1 == "generic-parallels" || $1 == "generic-parallels-x64" || $1 == "generic-parallels,json" || $1 == "generic-parallels-x64.json" ]]; then build generic-parallels-x64
+elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox-x64" || $1 == "generic-virtualbox,json" || $1 == "generic-virtualbox-x64.json" ]]; then build generic-virtualbox-x64
+elif [[ $1 == "generic-docker" || $1 == "generic-docker-x64" || $1 == "generic-docker,json" || $1 == "generic-docker-x64.json" ]]; then build generic-docker-x64
+elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt-x64" || $1 == "generic-libvirt,json" || $1 == "generic-libvirt-x64.json" ]]; then build generic-libvirt-x64
+
 elif [[ $1 == "generic-libvirt-x32" || $1 == "generic-libvirt-x32.json" ]]; then build generic-libvirt-x32
 elif [[ $1 == "generic-virtualbox-x32" || $1 == "generic-virtualbox-x32.json" ]]; then build generic-virtualbox-x32
+
+elif [[ $1 == "generic-libvirt-a64" || $1 == "generic-libvirt-a64.json" ]]; then build generic-libvirt-a64
+elif [[ $1 == "generic-libvirt-a32" || $1 == "generic-libvirt-a32.json" ]]; then build generic-libvirt-a32
+
+elif [[ $1 == "generic-libvirt-p64" || $1 == "generic-libvirt-p64.json" ]]; then build generic-libvirt-p64
+elif [[ $1 == "generic-libvirt-m64" || $1 == "generic-libvirt-m64.json" ]]; then build generic-libvirt-m64
 
 # Build a specific box.
 elif [[ $1 == "box" ]]; then box $2

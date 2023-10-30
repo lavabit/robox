@@ -1,0 +1,19 @@
+{
+  "builders": [
+    {
+      "name": "debian12-a64",
+      "output_directory": "output/debian12-a64",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/i386/iso-cd/debian-12.2.0-i386-netinst.iso",
+      "iso_checksum": "sha256:16b8b990de9ddea6a4cf1cfc6f6c11436c31d87094db9b662f96cc4d7f3d6a96",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    }
+  ]
+}

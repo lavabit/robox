@@ -1,0 +1,79 @@
+{
+  "builders": [
+    {
+      "name": "debian8-x32",
+      "output_directory": "output/debian8-x32",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/i386/iso-dvd/debian-8.11.1-i386-DVD-1.iso",
+      "iso_checksum": "sha256:06b6faafa5c2c74a2bbaa398589a0448ff0c2755fe9bab4c1013f40781fb4a2a",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
+      "name": "debian9-x32",
+      "output_directory": "output/debian9-x32",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/9.13.0/i386/iso-cd/debian-9.13.0-i386-netinst.iso",
+      "iso_checksum": "sha256:27de998af87007bf5daa3030d3863d3ef801b948c29f5bbce232be4f928eedba",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
+      "name": "debian10-x32",
+      "output_directory": "output/debian10-x32",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/10.13.0/i386/iso-cd/debian-10.13.0-i386-netinst.iso",
+      "iso_checksum": "sha256:af48af8142c6a162e15d70d1f7c77d205ab86e070270939961d0c3021557179f",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
+      "name": "debian11-x32",
+      "output_directory": "output/debian11-x32",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/11.8.0/i386/iso-cd/debian-11.8.0-i386-netinst.iso",
+      "iso_checksum": "sha256:89dce72e2a9310ad307485171c3fb6ce99d27ff93c74bf3319d94890a42b607e",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
+      "name": "debian12-x32",
+      "output_directory": "output/debian12-x32",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/i386/iso-cd/debian-12.2.0-i386-netinst.iso",
+      "iso_checksum": "sha256:16b8b990de9ddea6a4cf1cfc6f6c11436c31d87094db9b662f96cc4d7f3d6a96",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    }
+  ]
+}

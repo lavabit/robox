@@ -1,0 +1,19 @@
+{
+  "builders": [
+    {
+      "name": "debian12-p64",
+      "output_directory": "output/debian12-p64",
+      "iso_url": "//cdimage.debian.org/cdimage/release/12.2.0/ppc64el/iso-cd/debian-12.2.0-ppc64el-netinst.iso",
+      "iso_checksum": "sha256:80cff556b0d26caa5e3f3069d084e3f0cf9e94830ce69c4eb20a5e535e858ead",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    }
+  ]
+}
