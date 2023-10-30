@@ -1,4 +1,4 @@
-s{
+{
   "builders": [
     {
       "name": "alma8-x64",
