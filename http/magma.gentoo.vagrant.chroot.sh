@@ -99,7 +99,7 @@ echo 'vagrant:vagrant' | chpasswd
 if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
   echo 'Configuring Hyper-V'
   emerge sys-kernel/gentoo-sources
-  cd /usr/src/linux-*-gentoo/tools/hv && makes
+  cd /usr/src/linux-*-gentoo/tools/hv && make
   install -t /usr/sbin/ hv_fcopy_daemon hv_vss_daemon hv_kvp_daemon
 
 tee /etc/init.d/hv_fcopy_daemon <<-EOF
