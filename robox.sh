@@ -71,7 +71,7 @@ ROBOX_ISOS="all alpine arch centos centos8s centos9s gentoo hardenedbsd hardened
 # The list of packer config files.
 ROBOX_FILES="packer-cache.json "\
 "magma-docker-x64.json magma-hyperv-x64.json magma-vmware-x64.json magma-libvirt-x64.json magma-virtualbox-x64.json "\
-"generic-docker-x64.json generic-hyperv-x64.json generic-vmware-x64.json generic-libvirt-x64.json generic-libvirt-x32.json generic-parallels-x64.json generic-virtualbox-x64.json generic-virtualbox-x32.json "\
+"generic-docker-x64.json generic-hyperv-x64.json generic-vmware-x64.json generic-libvirt-a64.json generic-libvirt-x64.json generic-libvirt-x32.json generic-parallels-x64.json generic-virtualbox-x64.json generic-virtualbox-x32.json "\
 "lineage-hyperv-x64.json lineage-vmware-x64.json lineage-libvirt-x64.json lineage-virtualbox-x64.json "\
 "developer-ova-x64.json developer-hyperv-x64.json developer-vmware-x64.json developer-libvirt-x64.json developer-virtualbox-x64.json"
 
@@ -1304,6 +1304,8 @@ function box() {
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt-x32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x32.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x64.json
+      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-a64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-a64.json
 
       export PACKER_LOG_PATH="$BASE/logs/developer-ova-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-ova-x64.json
@@ -1409,6 +1411,7 @@ function validate() {
   verify_json generic-docker-x64 && printf "The generic-docker-x64.json file is valid.\n"
   verify_json generic-hyperv-x64 && printf "The generic-hyperv-x64.json file is valid.\n"
   verify_json generic-vmware-x64 && printf "The generic-vmware-x64.json file is valid.\n"
+  verify_json generic-libvirt-a64 && printf "The generic-libvirt-a64.json file is valid.\n"
   verify_json generic-libvirt-x64 && printf "The generic-libvirt-x64.json file is valid.\n"
   verify_json generic-libvirt-x32 && printf "The generic-libvirt-x32.json file is valid.\n"
   verify_json generic-parallels-x64 && printf "The generic-parallels-x64.json file is valid.\n"
@@ -2388,6 +2391,8 @@ function generic() {
     build generic-hyperv-x64
   elif [[ "$(uname)" == "Darwin" ]]; then
     build generic-parallels-x64
+  elif [[ "$(name -m)" == "arm64" ]] || [[ "$(name -m)" == "aarch64" ]]; then
+    build generic-libvirt-a64
   else
     build generic-vmware-x64
     build generic-libvirt-x64
@@ -2493,17 +2498,23 @@ function hyperv() {
 }
 
 function libvirt() {
-  verify_json generic-libvirt-x64
-  verify_json generic-libvirt-x32
-  verify_json magma-libvirt-x64
-  verify_json developer-libvirt-x64
-  verify_json lineage-libvirt-x64
 
-  build generic-libvirt-x64
-  build generic-libvirt-x32
-  build magma-libvirt-x64
-  build developer-libvirt-x64
-  build lineage-libvirt-x64
+  if [[ "$(name -m)" == "arm64" ]] || [[ "$(name -m)" == "aarch64" ]]; then
+    verify_json generic-libvirt-a64
+    build generic-libvirt-a64
+  else
+    verify_json generic-libvirt-x64
+    verify_json generic-libvirt-x32
+    verify_json magma-libvirt-x64
+    verify_json developer-libvirt-x64
+    verify_json lineage-libvirt-x64
+
+    build generic-libvirt-x64
+    build generic-libvirt-x32
+    build magma-libvirt-x64
+    build developer-libvirt-x64
+    build lineage-libvirt-x64
+  fi
 }
 
 function parallels() {
@@ -2635,30 +2646,32 @@ elif [[ $1 == "lineage" ]]; then lineage
 elif [[ $1 == "developer" ]]; then developer
 
 # The file builders.
-elif [[ $1 == "magma-vmware-x64" || $1 == "magma-vmware-x64.json" ]]; then build magma-vmware-x64
-elif [[ $1 == "magma-hyperv-x64" || $1 == "magma-hyperv-x64.json" ]]; then build magma-hyperv-x64
-elif [[ $1 == "magma-libvirt-x64" || $1 == "magma-libvirt-x64.json" ]]; then build magma-libvirt-x64
-elif [[ $1 == "magma-virtualbox-x64" || $1 == "magma-virtualbox-x64.json" ]]; then build magma-virtualbox-x64
-elif [[ $1 == "magma-docker-x64" || $1 == "magma-docker-x64.json" ]]; then build magma-docker-x64
+elif [[ $1 == "magma-vmware" || $1 == "magma-vmware-x64" || $1 == "magma-vmware,json" || $1 == "magma-vmware-x64.json" ]]; then build magma-vmware-x64
+elif [[ $1 == "magma-hyperv" || $1 == "magma-hyperv-x64" || $1 == "magma-hyperv,json" || $1 == "magma-hyperv-x64.json" ]]; then build magma-hyperv-x64
+elif [[ $1 == "magma-libvirt" || $1 == "magma-libvirt-x64" || $1 == "magma-libvirt,json" || $1 == "magma-libvirt-x64.json" ]]; then build magma-libvirt-x64
+elif [[ $1 == "magma-virtualbox" || $1 == "magma-virtualbox-x64" || $1 == "magma-virtualbox,json" || $1 == "magma-virtualbox-x64.json" ]]; then build magma-virtualbox-x64
+elif [[ $1 == "magma-docker" || $1 == "magma-docker-x64" || $1 == "magma-docker,json" || $1 == "magma-docker-x64.json" ]]; then build magma-docker-x64
 
-elif [[ $1 == "developer-vmware-x64" || $1 == "developer-vmware-x64.json" ]]; then build developer-vmware-x64
-elif [[ $1 == "developer-hyperv-x64" || $1 == "developer-hyperv-x64.json" ]]; then build developer-hyperv-x64
-elif [[ $1 == "developer-libvirt-x64" || $1 == "developer-libvirt-x64.json" ]]; then build developer-libvirt-x64
-elif [[ $1 == "developer-virtualbox-x64" || $1 == "developer-virtualbox-x64.json" ]]; then build developer-virtualbox-x64
+elif [[ $1 == "developer-vmware" || $1 == "developer-vmware-x64" || $1 == "developer-vmware,json" || $1 == "developer-vmware-x64.json" ]]; then build developer-vmware-x64
+elif [[ $1 == "developer-hyperv" || $1 == "developer-hyperv-x64" || $1 == "developer-hyperv,json" || $1 == "developer-hyperv-x64.json" ]]; then build developer-hyperv-x64
+elif [[ $1 == "developer-libvirt" || $1 == "developer-libvirt-x64" || $1 == "developer-libvirt,json" || $1 == "developer-libvirt-x64.json" ]]; then build developer-libvirt-x64
+elif [[ $1 == "developer-virtualbox" || $1 == "developer-virtualbox-x64" || $1 == "developer-virtualbox,json" || $1 == "developer-virtualbox-x64.json" ]]; then build developer-virtualbox-x64
 
-elif [[ $1 == "generic-vmware-x64" || $1 == "generic-vmware-x64.json" ]]; then build generic-vmware-x64
-elif [[ $1 == "generic-hyperv-x64" || $1 == "generic-hyperv-x64.json" ]]; then build generic-hyperv-x64
-elif [[ $1 == "generic-libvirt-x64" || $1 == "generic-libvirt-x64.json" ]]; then build generic-libvirt-x64
+elif [[ $1 == "generic-vmware" || $1 == "generic-vmware-x64" || $1 == "generic-vmware,json" || $1 == "generic-vmware-x64.json" ]]; then build generic-vmware-x64
+elif [[ $1 == "generic-hyperv" || $1 == "generic-hyperv-x64" || $1 == "generic-hyperv,json" || $1 == "generic-hyperv-x64.json" ]]; then build generic-hyperv-x64
+elif [[ $1 == "generic-libvirt" || $1 == "generic-libvirt-x64" || $1 == "generic-libvirt,json" || $1 == "generic-libvirt-x64.json" ]]; then build generic-libvirt-x64
+elif [[ $1 == "generic-parallels" || $1 == "generic-parallels-x64" || $1 == "generic-parallels,json" || $1 == "generic-parallels-x64.json" ]]; then build generic-parallels-x64
+elif [[ $1 == "generic-virtualbox" || $1 == "generic-virtualbox-x64" || $1 == "generic-virtualbox,json" || $1 == "generic-virtualbox-x64.json" ]]; then build generic-virtualbox-x64
+elif [[ $1 == "generic-docker" || $1 == "generic-docker-x64" || $1 == "generic-docker,json" || $1 == "generic-docker-x64.json" ]]; then build generic-docker-x64
+
+elif [[ $1 == "lineage-vmware" || $1 == "lineage-vmware-x64" || $1 == "lineage-vmware,json" || $1 == "lineage-vmware-x64.json" ]]; then build lineage-vmware-x64
+elif [[ $1 == "lineage-hyperv" || $1 == "lineage-hyperv-x64" || $1 == "lineage-hyperv,json" || $1 == "lineage-hyperv-x64.json" ]]; then build lineage-hyperv-x64
+elif [[ $1 == "lineage-libvirt" || $1 == "lineage-libvirt-x64" || $1 == "lineage-libvirt,json" || $1 == "lineage-libvirt-x64.json" ]]; then build lineage-libvirt-x64
+elif [[ $1 == "lineage-virtualbox" || $1 == "lineage-virtualbox-x64" || $1 == "lineage-virtualbox,json" || $1 == "lineage-virtualbox-x64.json" ]]; then build lineage-virtualbox-x64
+
+elif [[ $1 == "generic-libvirt-a64" || $1 == "generic-libvirt-a64.json" ]]; then build generic-libvirt-a64
 elif [[ $1 == "generic-libvirt-x32" || $1 == "generic-libvirt-x32.json" ]]; then build generic-libvirt-x32
-elif [[ $1 == "generic-parallels-x64" || $1 == "generic-parallels-x64.json" ]]; then build generic-parallels-x64
-elif [[ $1 == "generic-virtualbox-x64" || $1 == "generic-virtualbox-x64.json" ]]; then build generic-virtualbox-x64
 elif [[ $1 == "generic-virtualbox-x32" || $1 == "generic-virtualbox-x32.json" ]]; then build generic-virtualbox-x32
-elif [[ $1 == "generic-docker-x64" || $1 == "generic-docker-x64.json" ]]; then build generic-docker-x64
-
-elif [[ $1 == "lineage-vmware-x64" || $1 == "lineage-vmware-x64.json" ]]; then build lineage-vmware-x64
-elif [[ $1 == "lineage-hyperv-x64" || $1 == "lineage-hyperv-x64.json" ]]; then build lineage-hyperv-x64
-elif [[ $1 == "lineage-libvirt-x64" || $1 == "lineage-libvirt-x64.json" ]]; then build lineage-libvirt-x64
-elif [[ $1 == "lineage-virtualbox-x64" || $1 == "lineage-virtualbox-x64.json" ]]; then build lineage-virtualbox-x64
 
 # Build a specific box.
 elif [[ $1 == "box" ]]; then box $2
