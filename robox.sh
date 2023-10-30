@@ -2015,37 +2015,71 @@ function invalid() {
 
 function grab() {
 
-  if [ $# -ne 3 ]; then
-    tput setaf 1; printf "\n\n  Usage:\n    $(basename $0) grab ORG BOX PROVIDER\n\n\n"; tput sgr0
+  if [ $# -ne 4 ]; then
+    tput setaf 1; printf "\n\n  Usage:\n    $(basename $0) grab ORG BOX PROVIDER ARCH\n\n\n"; tput sgr0
     exit 1
   fi
 
-  URL=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
-    | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | .download_url ][0]" 2>/dev/null`
+  ARCH="$4"
+  if [ "$ARCH" == "x64" ] || [ "$ARCH" == "x86_64" ] || [ "$ARCH" == "amd64" ]; then
+    ARCH="amd64"
+  elif [ "$ARCH" == "x32" ] || [ "$ARCH" == "x86" ] || [ "$ARCH" == "i386" ] || [ "$ARCH" == "i686" ]; then
+    ARCH="i386"
+  elif [ "$ARCH" == "a64" ] || [ "$ARCH" == "aarch64" ] || [ "$ARCH" == "arm64" ] || [ "$ARCH" == "arm64eb" ]|| [ "$ARCH" == "arm64le" ]; then
+    ARCH="arm64"
+  elif [ "$ARCH" == "a32" ] || [ "$ARCH" == "armv7" ] || [ "$ARCH" == "armv6" ] || [ "$ARCH" == "arm" ] || [ "$ARCH" == "armeb" ] || [ "$ARCH" == "armle" ]; then
+    ARCH="arm"
+  elif [ "$ARCH" == "p64" ] || [ "$ARCH" == "ppc64" ] || [ "$ARCH" == "power64" ] || [ "$ARCH" == "powerpc64" ]; then
+    ARCH="ppc64"
+  elif [ "$ARCH" == "p32" ] || [ "$ARCH" == "ppc32" ] || [ "$ARCH" == "power" ] || [ "$ARCH" == "power32" ] || [ "$ARCH" == "powerpc" ] || [ "$ARCH" == "powerpc32" ] || [ "$ARCH" == "powerpcspe" ]; then
+    ARCH="ppc"
+  elif [ "$ARCH" == "r64" ] || [ "$ARCH" == "riscv64" ] || [ "$ARCH" == "riscv64sf" ]; then
+    ARCH="riscv64"
+  elif [ "$ARCH" == "r32" ] || [ "$ARCH" == "riscv" ] || [ "$ARCH" == "riscv32" ]; then
+    ARCH="riscv32"
+  elif [ "$ARCH" == "m64" ] || [ "$ARCH" == "mips64" ] || [ "$ARCH" == "mips64hf" ] ; then
+    ARCH="mips64"
+  elif [ "$ARCH" == "m32" ] || [ "$ARCH" == "mips" ] || [ "$ARCH" == "mips32" ] || [ "$ARCH" == "mipsn32" ] || [ "$ARCH" == "mipshf" ] ; then
+    ARCH="mips"
+  elif  [ "$ARCH" == "ppc64le" ]; then
+    ARCH="ppc64le"
+  elif [ "$ARCH" == "mips64le" ] || [ "$ARCH" == "mips64el" ] || [ "$ARCH" == "mips64hfel" ]; then
+    ARCH="mips64le"
+  elif [ "$ARCH" == "mipsle" ] || [ "$ARCH" == "mipsel" ] || [ "$ARCH" == "mipselhf" ]; then
+    ARCH="mipsle"
+  elif [ "$ARCH" != "" ]; then
+    printf "\n${T_YEL}  The architecture is unrecognized. Passing it verbatim to the cloud. [ arch = ${ARCH} ]${T_RESET}\n\n" >&2
+  elif [ "$ARCH" == "" ]; then
+    tput setaf 1; printf "\n\nThe arch couldn't be parsed correctly.\n\n\n"; tput sgr0
+    exit 1
+  fi
+
+  URL=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/$1/$2" \
+    | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | select( .architecture | contains(\"$ARCH\")) | .download_url ][0]" 2>/dev/null`
   if [ "$URL" == "" ]; then
     printf "\nA copy of " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " using the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " couldn't be found.\n\n"
     return 0
   fi
 
-  CHECKSUM=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v1/box/$1/$2" \
-    | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | .checksum ][0]" 2>/dev/null`
+  CHECKSUM=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/$1/$2" \
+    | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | select( .architecture | contains(\"$ARCH\")) | .checksum ][0]" 2>/dev/null`
 
   if [ ! -d "$BASE/output/" ]; then
     mkdir "$BASE/output/"
   fi
 
-  ${CURL} --fail --location --user-agent "${AGENT}" --output "$BASE/output/$1-$2-$3-$VERSION.box" "$URL"
+  ${CURL} --fail --location --user-agent "${AGENT}" --output "$BASE/output/$1-$2-$3-$4-$VERSION.box" "$URL"
   if [ "$?" == 0 ]; then
-    ( cd output ; printf "$CHECKSUM\t$1-$2-$3-$VERSION.box" | sha256sum --check --status )
+    ( cd output ; printf "$CHECKSUM\t$1-$2-$3-$4-$VERSION.box" | sha256sum --check --status )
     if [ "$?" != 0 ]; then
-      rm --force "$BASE/output/$1-$2-$3-$VERSION.box"
-      printf "\nThe hash check for " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " with the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " failed.\n\n"
+      rm --force "$BASE/output/$1-$2-$3-$4-$VERSION.box"
+      printf "\nThe hash check for " ; tput setaf 1 ; printf "$1 $2" ; tput sgr0 ; printf " with the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " failed.\n\n"
       return 0
     fi
-    ( cd output ; sha256sum "$1-$2-$3-$VERSION.box" | sed -E "s/(.{64})  (.*)/\1\t\2/g" ) > "$BASE/output/$1-$2-$3-$VERSION.box.sha256"
+    ( cd output ; sha256sum "$1-$2-$3-$4-$VERSION.box" | sed -E "s/(.{64})  (.*)/\1\t\2/g" ) > "$BASE/output/$1-$2-$3-$4-$VERSION.box.sha256"
   else
-    rm --force "$BASE/output/$1-$2-$3-$VERSION.box"
-    printf "\nDownloading " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " with the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " failed.\n\n"
+    rm --force "$BASE/output/$1-$2-$3-$4-$VERSION.box"
+    printf "\nDownloading " ; tput setaf 1 ; printf "$1 $2" ; tput sgr0 ; printf " with the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " failed.\n\n"
     return 0
   fi
 
@@ -2592,7 +2626,7 @@ elif [[ $1 == "available" ]]; then available
 
 # Grab and update files automatically.
 elif [[ $1 == "iso" ]]; then iso $2
-elif [[ $1 == "grab" ]]; then grab $2 $3 $4
+elif [[ $1 == "grab" ]]; then grab $2 $3 $4 $5
 
 # The group builders.
 elif [[ $1 == "magma" ]]; then magma

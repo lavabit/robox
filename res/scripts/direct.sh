@@ -339,7 +339,8 @@ function upload_box() {
     --output /dev/null \
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     --request DELETE \
-    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}" || \
+    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}/${ARCH}" || \
+     https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/virtualbox/amd64
     { printf "${T_BYEL}  Unable to delete an existing version of the box. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
 
   # Sleep to let the deletion propagate.
