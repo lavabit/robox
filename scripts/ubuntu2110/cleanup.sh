@@ -58,11 +58,11 @@ systemctl --quiet is-active systemd-random-seed.service && systemctl stop system
 [ -f /var/lib/systemd/random-seed ] && rm --force /var/lib/systemd/random-seed
 
 # *Unmask anything we might have masked in the apt module.
-[ "$(systemctl is-enabled apt-news.service)" == "masked" ] && systemctl unmask apt-news.service
-[ "$(systemctl is-enabled apt-daily.service)" == "masked" ] && systemctl unmask apt-daily.service
-# [ "$(systemctl is-enabled apt-daily-upgrade.service)" == "masked" ] && systemctl unmask apt-daily-upgrade.service
+systemctl ---quiet list-unit-files apt-news.service &>/dev/null && [ "$(systemctl is-enabled apt-news.service)" == "masked" ] && systemctl unmask apt-news.service
+systemctl ---quiet list-unit-files apt-daily.service &>/dev/null && [ "$(systemctl is-enabled apt-daily.service)" == "masked" ] && systemctl unmask apt-daily.service
+# systemctl ---quiet list-unit-files apt-daily-upgrade.service &>/dev/null && [ "$(systemctl is-enabled apt-daily-upgrade.service)" == "masked" ] && systemctl unmask apt-daily-upgrade.service
 
-[ "$(systemctl is-enabled packagekit.service)" == "masked" ] && systemctl unmask packagekit.service
-[ "$(systemctl is-enabled packagekit-offline-update.service)" == "masked" ] && systemctl unmask packagekit-offline-update.service
+systemctl ---quiet list-unit-files packagekit.service &>/dev/null && [ "$(systemctl is-enabled packagekit.service)" == "disabled" ] && systemctl enable packagekit.service
+systemctl ---quiet list-unit-files packagekit-offline-update.service &>/dev/null && [ "$(systemctl is-enabled packagekit-offline-update.service)" == "masked" ] && systemctl unmask packagekit-offline-update.service
 
-[ "$(systemctl is-enabled snapd.service)" == "masked" ] && systemctl unmask snapd.service
+systemctl ---quiet list-unit-files snapd.service &>/dev/null && [ "$(systemctl is-enabled snapd.service)" == "masked" ] && systemctl unmask snapd.service

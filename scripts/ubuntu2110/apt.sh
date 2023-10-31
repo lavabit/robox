@@ -95,38 +95,40 @@ EOF
 fi
 
 # Stop the active services/timers.
-systemctl --quiet is-active apt-daily.timer && systemctl stop apt-daily.timer
-systemctl --quiet is-active apt-daily-upgrade.timer && systemctl stop apt-daily-upgrade.timer
-systemctl --quiet is-active update-notifier-download.timer && systemctl stop update-notifier-download.timer
+systemctl --quiet list-unit-files apt-daily.timer &>/dev/null && systemctl --quiet is-active apt-daily.timer && systemctl stop apt-daily.timer
+systemctl --quiet list-unit-files apt-daily-upgrade.timer &>/dev/null && systemctl --quiet is-active apt-daily-upgrade.timer && systemctl stop apt-daily-upgrade.timer
+systemctl --quiet list-unit-files update-notifier-download.timer &>/dev/null && systemctl --quiet is-active update-notifier-download.timer && systemctl stop update-notifier-download.timer
 
-systemctl --quiet is-active apt-news.service && systemctl stop apt-news.service
-systemctl --quiet is-active apt-daily.service && systemctl stop apt-daily.service
-systemctl --quiet is-active apt-daily-upgrade.service && systemctl stop apt-daily-upgrade.service
+systemctl --quiet list-unit-files apt-news.service &>/dev/null && systemctl --quiet is-active apt-news.service && systemctl stop apt-news.service
+systemctl --quiet list-unit-files apt-daily.service &>/dev/null && systemctl --quiet is-active apt-daily.service && systemctl stop apt-daily.service
+systemctl --quiet list-unit-files apt-daily-upgrade.service &>/dev/null && systemctl --quiet is-active apt-daily-upgrade.service && systemctl stop apt-daily-upgrade.service
 
-systemctl --quiet is-active snapd.service && systemctl stop snapd.service
+systemctl --quiet list-unit-files snapd.service &>/dev/null && systemctl --quiet is-active snapd.service && systemctl stop snapd.service
 
-systemctl --quiet is-active packagekit.service && systemctl stop packagekit.service
-systemctl --quiet is-active packagekit-offline-update.service && systemctl stop packagekit.service
+systemctl --quiet list-unit-files packagekit.service &>/dev/null && systemctl --quiet is-active packagekit.service && systemctl stop packagekit.service
+systemctl --quiet list-unit-files packagekit-offline-update.service &>/dev/null && systemctl --quiet is-active packagekit-offline-update.service && systemctl stop packagekit.service
 
-systemctl --quiet is-active unattended-upgrades.service && systemctl stop unattended-upgrades.service
-systemctl --quiet is-active update-notifier-download.service && systemctl stop update-notifier-download.service
+systemctl --quiet list-unit-files unattended-upgrades.service &>/dev/null && systemctl --quiet is-active unattended-upgrades.service && systemctl stop unattended-upgrades.service
+systemctl --quiet list-unit-files update-notifier-download.service &>/dev/null && systemctl --quiet is-active update-notifier-download.service && systemctl stop update-notifier-download.service
 
 # Disable them so they don't restart.
-systemctl --quiet is-enabled apt-daily.timer && systemctl disable apt-daily.timer
-systemctl --quiet is-enabled apt-daily-upgrade.timer && systemctl disable apt-daily-upgrade.timer
-systemctl --quiet is-enabled update-notifier-download.timer && systemctl disable update-notifier-download.timer
+systemctl --quiet list-unit-files apt-daily.timer &>/dev/null && systemctl --quiet is-enabled apt-daily.timer && systemctl disable apt-daily.timer
+systemctl --quiet list-unit-files apt-daily-upgrade.timer &>/dev/null && systemctl --quiet is-enabled apt-daily-upgrade.timer && systemctl disable apt-daily-upgrade.timer
+systemctl --quiet list-unit-files update-notifier-download.timer &>/dev/null && systemctl --quiet is-enabled update-notifier-download.timer && systemctl disable update-notifier-download.timer
 
-systemctl --quiet is-enabled apt-news.service && systemctl mask apt-news.service
-systemctl --quiet is-enabled apt-daily.service && systemctl mask apt-daily.service
-systemctl --quiet is-enabled apt-daily-upgrade.service && systemctl mask apt-daily-upgrade.service
+systemctl --quiet list-unit-files apt-news.service &>/dev/null && systemctl --quiet is-enabled apt-news.service && systemctl mask apt-news.service
+systemctl --quiet list-unit-files apt-daily.service &>/dev/null && systemctl --quiet is-enabled apt-daily.service && systemctl mask apt-daily.service
+systemctl --quiet list-unit-files apt-daily-upgrade.service &>/dev/null && systemctl --quiet is-enabled apt-daily-upgrade.service && systemctl mask apt-daily-upgrade.service
 
-systemctl --quiet is-enabled packagekit.service && systemctl mask packagekit.service
-systemctl --quiet is-enabled packagekit-offline-update.service && systemctl mask packagekit-offline-update.service
+# Package install/update triggers rely on the PackageKit.service to make system changes, and these operations fail
+# if the PackageKit.service is masked. So we only disable it.
+systemctl --quiet list-unit-files packagekit.service &>/dev/null && systemctl --quiet is-enabled packagekit.service && systemctl disable packagekit.service
+systemctl --quiet list-unit-files packagekit-offline-update.service &>/dev/null && systemctl --quiet is-enabled packagekit-offline-update.service && systemctl mask packagekit-offline-update.service
 
-systemctl --quiet is-enabled snapd.service && systemctl mask snapd.service
+systemctl --quiet list-unit-files snapd.service &>/dev/null && systemctl --quiet is-enabled snapd.service && systemctl mask snapd.service
 
-systemctl --quiet is-enabled unattended-upgrades.service && systemctl mask unattended-upgrades.service
-systemctl --quiet is-enabled update-notifier-download.service && systemctl mask update-notifier-download.service
+systemctl --quiet list-unit-files unattended-upgrades.service &>/dev/null && systemctl --quiet is-enabled unattended-upgrades.service && systemctl mask unattended-upgrades.service
+systemctl --quiet list-unit-files update-notifier-download.service &>/dev/null && systemctl --quiet is-enabled update-notifier-download.service && systemctl mask update-notifier-download.service
 
 
 # Truncate the sources list in order to force a status purge.

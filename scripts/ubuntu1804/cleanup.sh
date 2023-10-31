@@ -31,6 +31,6 @@ apt-get --assume-yes purge; error
 # Restore the system default apt retry value.
 [ -f /etc/apt/apt.conf.d/20retries ] && rm --force /etc/apt/apt.conf.d/20retries
 
-# Removethe random seed so a unique value is used the first time the box is booted.
+# Remove the random seed so a unique value is used the first time the box is booted.
 systemctl --quiet is-active systemd-random-seed.service && systemctl stop systemd-random-seed.service
 [ -f /var/lib/systemd/random-seed ] && rm --force /var/lib/systemd/random-seed
