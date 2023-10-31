@@ -3,7 +3,7 @@
 # On MacOS the following utilities are needed.
 # brew install --with-default-names jq gnu-sed coreutils
 # BOXES=(`find output -type f -name "*.box"`)
-# parallel -j 4 --xapply res/scripts/silent.sh {1} ::: "${BOXES[@]}"
+# parallel -j 4 --xapply res/scripts/direct.sh {1} ::: "${BOXES[@]}"
 
 # Handle self referencing, sourcing etc.
 if [[ $0 != "${BASH_SOURCE[0]}" ]]; then
@@ -175,6 +175,8 @@ PROVIDER="$(echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmw
 ARCH="$(echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\4/g")"
 VERSION="$(echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\5/g")"
 
+DEFAULT_ARCH="false"
+
 # Handle the Lavabit boxes.
 if [ "$ORG" == "magma" ]; then
   ORG="lavabit"
@@ -309,59 +311,63 @@ retry() {
 
 function upload_box() {
 
-  ${CURL} \
-    --tlsv1.2 \
-    --silent \
-    --retry 16 \
-    --retry-delay 60 \
-    --max-time 180 \
-    --output /dev/null \
+  if [[ "${ORG}" =~ ^(generic(-x64)?|roboxes(-x64)?|lavabit|lineage|lineageos)$ ]] && [ "$ARCH" == "amd64" ]; then
+    DEFAULT_ARCH="true"
+  elif [[ "${ORG}" =~ ^(generic-x32|roboxes-x32)$ ]] && [ "$ARCH" == "i386" ]; then
+    DEFAULT_ARCH="true"
+  elif [[ "${ORG}" =~ ^(generic-a64|roboxes-a64)$ ]] && [ "$ARCH" == "arm64" ]; then
+    DEFAULT_ARCH="true"
+  elif [[ "${ORG}" =~ ^(generic-a32|roboxes-a32)$ ]] && [ "$ARCH" == "arm" ]; then
+    DEFAULT_ARCH="true"
+  elif [[ "${ORG}" =~ ^(generic-p64|roboxes-p64)$ ]] && [ "$ARCH" == "ppc64" ]; then
+    DEFAULT_ARCH="true"
+  elif [[ "${ORG}" =~ ^(generic-p64|roboxes-p64)$ ]] && [ "$ARCH" == "ppc64le" ]; then
+    DEFAULT_ARCH="true"
+  elif [[ "${ORG}" =~ ^(generic-m64|roboxes-m64)$ ]] && [ "$ARCH" == "mips64" ]; then
+    DEFAULT_ARCH="true"
+  elif [[ "${ORG}" =~ ^(generic-m64|roboxes-m64)$ ]] && [ "$ARCH" == "mips64le" ]; then
+    DEFAULT_ARCH="true"
+  fi
+
+  # Checks whether the version exists already, and creates it if necessary.
+  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request GET --fail \
+    --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" --write-out "%{http_code}" \
+    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION"`" != "200" ] || \
+  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request GET \
+    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION" | \
+    jq -e -r ' (.version)? // (.success)? '`" != "$VERSION" ] && \
+  { ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request POST --fail \
+     --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     --header "Content-Type: application/json" \
+    --data "{\"version\":{\"version\":\"4.3.3\",\"description\":\"A build environment for use in cross platform development.\"}}" \
+    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/versions" && sleep 4 || \
+  { printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; exit 1 ; } ; }
+
+ # This checks whether provider/arch exists for this box, and if so, deletes it. 
+  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request GET --fail \
+    --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" --write-out "%{http_code}" \
+    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH"`" == "200" ] || \
+  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request GET \
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/versions" \
-    --data "
-      {
-        \"version\": {
-          \"version\": \"$VERSION\",
-          \"description\": \"A build environment for use in cross platform development.\"
-        }
-      }
-    " || \
-    { printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
+    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH" | \
+    jq -e -r ' (.name)? // (.success)? '`" != "false" ] && \
+  { ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request DELETE --fail \
+  --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}/${ARCH}" && sleep 4 || \
+  { printf "${T_BYEL}  Provider delete failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; exit 1 ; } ; }
 
-  ${CURL} \
-    --silent \
-    --retry 16 \
-    --retry-delay 60 \
-    --max-time 180 \
-    --output /dev/null \
-    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-    --request DELETE \
-    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}/${ARCH}" || \
-    { printf "${T_BYEL}  Unable to delete an existing version of the box. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
-
-  # Sleep to let the deletion propagate.
-  sleep 1
-
-  ${CURL} \
-    --tlsv1.2 \
-    --silent \
-    --retry 16 \
-    --retry-delay 60 \
-    --max-time 180 \
-    --output /dev/null \
+  # Create the provider/arch.
+  ## TODO: We should be setting default_architecture to true, based on the org + arch values.
+  ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request POST --fail \
+    --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     --header "Content-Type: application/json" \
-    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/providers" \
-    --data "{ \"provider\": { \"name\": \"$PROVIDER\", \"checksum\": \"$HASH\", \"architecture\": \"$ARCH\", \"checksum_type\": \"SHA256\" } }" || \
-    { printf "${T_BYEL}  Unable to create a provider for this box version. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; }
+    --data "{\"provider\":{ \"name\":\"$PROVIDER\",\"checksum\":\"$HASH\",\"architecture\":\"$ARCH\",\"default_architecture\":\"$DEFAULT_ARCH\",\"checksum_type\":\"SHA256\"}}" \
+    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/providers" && sleep 4 || \
+  { printf "${T_BYEL}  Provider creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; exit 1 ; }
 
-  UPLOAD_RESPONSE=$( ${CURL} \
-    --fail \
-    --show-error \
-    --tlsv1.2 \
-    --silent \
-    --max-time 180 \
+  # Request a direct upload URL.
+  UPLOAD_RESPONSE=$( ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 -request GET --fail \
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH/upload/direct" )
 
@@ -369,70 +375,38 @@ function upload_box() {
   UPLOAD_CALLBACK="$(echo "$UPLOAD_RESPONSE" | jq -r .callback)"
 
   if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "echo" ] || [ "$UPLOAD_CALLBACK" == "" ] || [ "$UPLOAD_CALLBACK" == "echo" ]; then
-    printf "\n${T_BYEL}  The $FILENAME file failed to upload. Restarting. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
-    exec "$0" "$1" $RECURSION
-    exit $?
+    printf "\n${T_BYEL}  The $FILENAME file failed to upload. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
+    exit 1
   fi
 
-  # Sleep to give the cloud time to get setup.
-  sleep 1
+  # If we move to quickly, the cloud will sometimes return an error. Waiting seems to reduce the error/failure rate.
+  sleep 4
 
-  retry ${CURL} --tlsv1.2 \
-    --fail \
-    --silent \
-    --show-error \
-    --request PUT \
-    --max-time 7200 \
-    --speed-time 60 \
-    --speed-limit 16384 \
-    --expect100-timeout 7200 \
-    --header "Connection: keep-alive" \
-    --write-out "FILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n\n" \
-    --upload-file "$FILEPATH" "$UPLOAD_PATH" || \
-    {
-      printf "\n${T_BYEL}  The $FILENAME file failed to upload. Restarting. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
-      exec "$0" "$1" $RECURSION
-      exit $?
-    }
-
-  # Sleep to before trying the callback so the cloud can finish digestion.
-  sleep 1
-
-  # Submit the callback twice. hopefully this will reduce the number of boxes without valid download URLs.
-  ${CURL} --tlsv1.2 \
-    --silent \
-    --output "/dev/null" \
-    --show-error \
-    --request PUT \
-    --max-time 180 \
-    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-    "$UPLOAD_CALLBACK"
+  retry ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 7200 --request PUT --fail \
+    --speed-time 60 --speed-limit 1024 --expect100-timeout 7200 \
+    --write-out "FILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n%{onerror}ERROR: %{errormsg}\n" \
+    --header "Connection: keep-alive" --upload-file "$FILEPATH" "$UPLOAD_PATH"
 
   RESULT=$?
-  if [ "$RESULT" -ne 0 ]; then
-    printf "${T_BYEL}  Upload failed. The callback returned an error. Retrying. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RESULT = $RESULT ]${T_RESET}\n" >&2 
-    
-    sleep 1
-    ${CURL} --tlsv1.2 \
-      --silent \
-      --output "/dev/null" \
-      --show-error \
-      --request PUT \
-      --max-time 180 \
-      --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-      "$UPLOAD_CALLBACK"
+  [ "$RESULT" != "0" ] && { printf "\n${T_BYEL}  The $FILENAME file failed to upload. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2 ; exit 1 ; }
 
-    RESULT=$?
-    if [ "$RESULT" -ne 0 ]; then
-      printf "${T_BYEL}  Upload failed. The callback returned an error. Restarting. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RESULT = $RESULT / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
-      exec "$0" "$1" $RECURSION
-      exit $?
-    fi
-  fi
+  # Sleep before trying the callback URL, so the cloud can finish digestion.
+  sleep 4
 
-  # # Add a short pause, with the duration determined by the size of the file uploaded.
-  # PAUSE="`du -b $FILEPATH | awk -F' ' '{print $1}'`"
-  # bash -c "usleep $(($PAUSE/20))"
+  # Submit the callback twice. hopefully this will reduce the number of boxes without valid download URLs.
+  ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request PUT --fail \
+    --output "/dev/null" --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+    --write-out "%{onerror}FILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\nERROR: %{errormsg}\n" \
+    "$UPLOAD_CALLBACK" || \
+  { sleep 16 ; ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request PUT --fail \
+    --output "/dev/null" --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+    --write-out "%{onerror}FILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\nERROR: %{errormsg}\n" \
+    "$UPLOAD_CALLBACK" ; } || \
+  { printf "${T_BYEL}  Upload failed. The callback returned an error. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RESULT = $RESULT ]${T_RESET}\n" >&2 ; exit 1 ; }
+  
+#   # # Add a short pause, with the duration determined by the size of the file uploaded.
+#   # PAUSE="`du -b $FILEPATH | awk -F' ' '{print $1}'`"
+#   # bash -c "usleep $(($PAUSE/20))"
 
 }
 
