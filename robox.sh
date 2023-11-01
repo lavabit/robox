@@ -764,7 +764,7 @@ function iso() {
     ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo-x64\")) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
-      tput setaf 1; printf "\nThe Gentoo ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+      tput setaf 1; printf "\nThe Gentoo ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
       return 1
     fi
 
@@ -772,7 +772,7 @@ function iso() {
     URL="https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
     ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
-      tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
+      tput setaf 1; printf "\nThe Gentoo ISO updates failed.\n\n"; tput sgr0
       return 1
     fi
 
@@ -794,7 +794,7 @@ function iso() {
     set -o pipefail
     SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
-        tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
+        tput setaf 1; printf "\nThe Gentoo ISO updates failed.\n\n"; tput sgr0
         return 1
     fi
     set +o pipefail
@@ -806,6 +806,9 @@ function iso() {
     # Replace the existing ISO and hash values with the update values.
     sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
+
+    return 0
+
   elif [ "$1" == "gentoo-a64" ]; then
 
     # Find the existing Gentoo URL and hash values.
@@ -813,7 +816,7 @@ function iso() {
     ISO_CHECKSUM=`cat "$BASE/packer-cache-a64.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo-a64\")) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
-      tput setaf 1; printf "\nThe Gentoo ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+      tput setaf 1; printf "\nThe Gentoo ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
       return 1
     fi
 
@@ -856,6 +859,7 @@ function iso() {
     sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
 
+    return 0
 
   elif [ "$1" == "arch" ]; then
 
@@ -864,7 +868,7 @@ function iso() {
     ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"arch-x64\") | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
-      tput setaf 1; printf "\nThe Arch ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+      tput setaf 1; printf "\nThe Arch ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
       return 1
     fi
 
@@ -895,6 +899,8 @@ function iso() {
     # Replace the existing ISO and hash values with the update values.
     sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
+
+    return 0
 
   elif [ "$1" == "centos8s" ]; then
     
@@ -935,6 +941,8 @@ function iso() {
     sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
     
+    return 0
+
   elif [ "$1" == "centos9s" ]; then
 
     # Find the existing CentOS 9 stream URL and hash values.
@@ -973,7 +981,9 @@ function iso() {
     # Replace the existing ISO and hash values with the update values.
     sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
-    
+
+    return 0
+
   elif [ "$1" == "hardened13" ] || [ "$1" == "hardenedbsd13" ]; then
 
     # Find the existing HardenedBSD URL and hash values.
@@ -998,7 +1008,7 @@ function iso() {
     BUILD=`${CURL} --fail --silent "${URL}/index.txt" | grep --extended-regexp --only-matching "[0-9]*" | sort -n -r | head -1`
     
     if [ $? != 0 ] || [ "$BUILD" == "" ]; then
-      tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
+      tput setaf 1; printf "\nThe HardenedBSD ISO updates failed.\n\n"; tput sgr0
       return 1
     fi
 
@@ -1009,7 +1019,7 @@ function iso() {
     set -o pipefail
     SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
-        tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
+        tput setaf 1; printf "\nThe HardenedBSD ISO updates failed.\n\n"; tput sgr0
         return 1
     fi
     set +o pipefail
@@ -1022,6 +1032,8 @@ function iso() {
     sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
 
+    return 0
+
   elif [ "$1" == "hardened14" ] || [ "$1" == "hardenedbsd14" ]; then
 
     # Find the existing HardenedBSD URL and hash values.
@@ -1029,7 +1041,7 @@ function iso() {
     ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd-x64\") | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
-      tput setaf 1; printf "\nThe HardenedBSD 14 ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+      tput setaf 1; printf "\nThe HardenedBSD 14 ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
       return 1
     fi
 
@@ -1046,7 +1058,7 @@ function iso() {
     BUILD=`${CURL} --fail --silent "${URL}/index.txt" | grep --extended-regexp --only-matching "[0-9]*" | sort -n -r | head -1`
     
     if [ $? != 0 ] || [ "$BUILD" == "" ]; then
-      tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
+      tput setaf 1; printf "\nThe HardenedBSD ISO updates failed.\n\n"; tput sgr0
       return 1
     fi
 
@@ -1057,7 +1069,7 @@ function iso() {
     set -o pipefail
     SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
-        tput setaf 1; printf "\nThe HardenedBSD ISO update failed.\n\n"; tput sgr0
+        tput setaf 1; printf "\nThe HardenedBSD ISO updates failed.\n\n"; tput sgr0
         return 1
     fi
     set +o pipefail
@@ -1070,6 +1082,8 @@ function iso() {
     sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
     sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
 
+    return 0
+
   elif [ "$1" == "alpine" ]; then
 
     # Build a loop with all of the Alpine ISO names. 
@@ -1079,7 +1093,7 @@ function iso() {
       ISO_CHECKSUM=`cat "$BASE/packer-cache-a64.json" "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"$NAME\") | .iso_checksum" 2>/dev/null`
 
       if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
-        tput setaf 1; printf "\nThe Alpine ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
+        tput setaf 1; printf "\nThe Alpine ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
         return 1
       fi
 
@@ -1092,7 +1106,7 @@ function iso() {
         set -o pipefail
         SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
         if [ $? != 0 ] || [ "$SHA" == "" ]; then
-            tput setaf 1; printf "\nThe Alpine ISO update failed.\n\n"; tput sgr0
+            tput setaf 1; printf "\nThe Alpine ISO updates failed.\n\n"; tput sgr0
             return 1
         fi
         set +o pipefail
@@ -1105,25 +1119,28 @@ function iso() {
         sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
         sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
       fi
-
     done
+
+    return 0
+
   elif [ "$1" == "gentoo" ]; then
-    iso gentoo-x64
+    iso gentoo-x64 && \
     iso gentoo-a64
   elif [ "$1" == "hardened" ] || [ "$1" == "hardenedbsd" ]; then
-    iso hardenedbsd14
+    iso hardenedbsd14 && \
     iso hardenedbsd13
   elif [ "$1" == "centos" ] || [ "$1" == "stream" ] || [ "$1" == "streams" ]; then
-    iso centos9s
+    iso centos9s && \
     iso centos8s
   elif [ "$1" == "all" ]; then
-    iso arch
-    iso gentoo
-    iso alpine
-    iso streams
+    iso arch && \
+    iso gentoo && \
+    iso alpine && \
+    iso streams && \
     iso hardenedbsd
   fi
 
+  return 0
 }
 
 function cache {
