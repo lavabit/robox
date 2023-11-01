@@ -130,6 +130,14 @@ systemctl --quiet list-unit-files snapd.service &>/dev/null && systemctl --quiet
 systemctl --quiet list-unit-files unattended-upgrades.service &>/dev/null && systemctl --quiet is-enabled unattended-upgrades.service && systemctl mask unattended-upgrades.service
 systemctl --quiet list-unit-files update-notifier-download.service &>/dev/null && systemctl --quiet is-enabled update-notifier-download.service && systemctl mask update-notifier-download.service
 
+# An unattended upgrade service doesn't fit the use use case for 
+# vagrant boxes, so removal is an option, but since Ubuntu installs 
+# it by default, and we want to keep the environment close to the default,
+# we'll just leave disabled for now.
+# apt-get -qq -y purge unattended-upgrades 
+# cat <<-EOF | sudo debconf-set-selections
+# unattended-upgrades unattended-upgrades/enable_auto_updates boolean false
+# EOF
 
 # Truncate the sources list in order to force a status purge.
 # truncate --size=0 /etc/apt/sources.list
