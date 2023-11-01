@@ -11,16 +11,30 @@ if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-4]|hardenedbsd|harden
   ( dd if=/dev/zero of=/zerofill_3 bs=1M || echo "dd /zerofill_3 exited ( $? ) " ) &
   ( dd if=/dev/zero of=/zerofill_4 bs=1M || echo "dd /zerofill_4 exited ( $? ) " ) &
 
+  # ####
+  # ( dd if=/dev/zero of=/zerofill_5 bs=1M || echo "dd /zerofill_5 exited ( $? ) " ) &
+  # ( dd if=/dev/zero of=/zerofill_6 bs=1M || echo "dd /zerofill_6 exited ( $? ) " ) &
+
   wait 
 
   sync -f /zerofill_1
   sync -f /zerofill_2
   sync -f /zerofill_3
   sync -f /zerofill_4
+
+  # ####
+  # sync -f /zerofill_5
+  # sync -f /zerofill_6
+
   rm -f /zerofill_1 /zerofill_2 /zerofill_3 /zerofill_4
 
-  # Whiteout /boot
-  if [ -d "/boot" ]; then
+  # ####
+  # rm -f /zerofill_5 /zerofill_6
+
+  # Whiteout /boot. We assume if the amount of free space on /boot and / 
+  # are the same, it's the same device and we don't need to run the zerofill again.
+  if [ -d "/boot" ] && [ "$(df -m / | tail -1 | awk -F' ' '{print $4}')" != \
+    "$(df -m /boot | tail -1 | awk -F' ' '{print $4}')" ]; then
 
     ( dd if=/dev/zero of=/boot/zerofill_1 bs=1M || echo "dd /boot/zerofill_1 exited ( $? ) " ) &
     ( dd if=/dev/zero of=/boot/zerofill_2 bs=1M || echo "dd /boot/zerofill_2 exited ( $? ) " ) &
