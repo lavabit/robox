@@ -6,15 +6,35 @@ if [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(freebsd1[1-4]|hardenedbsd|harden
   # set -ux
 
   # Whiteout root
-  dd if=/dev/zero of=/zerofill bs=1M
-  sync -f /zerofill
-  rm -f /zerofill
+  ( dd if=/dev/zero of=/zerofill_1 bs=1M || echo "dd /zerofill_1 exited ( $? ) " ) &
+  ( dd if=/dev/zero of=/zerofill_2 bs=1M || echo "dd /zerofill_2 exited ( $? ) " ) &
+  ( dd if=/dev/zero of=/zerofill_3 bs=1M || echo "dd /zerofill_3 exited ( $? ) " ) &
+  ( dd if=/dev/zero of=/zerofill_4 bs=1M || echo "dd /zerofill_4 exited ( $? ) " ) &
+
+  wait 
+
+  sync -f /zerofill_1
+  sync -f /zerofill_2
+  sync -f /zerofill_3
+  sync -f /zerofill_4
+  rm -f /zerofill_1 /zerofill_2 /zerofill_3 /zerofill_4
 
   # Whiteout /boot
   if [ -d "/boot" ]; then
-    dd if=/dev/zero of=/boot/zerofill bs=1M
-    sync -f /boot/zerofill
-    rm -f /boot/zerofill
+
+    ( dd if=/dev/zero of=/boot/zerofill_1 bs=1M || echo "dd /boot/zerofill_1 exited ( $? ) " ) &
+    ( dd if=/dev/zero of=/boot/zerofill_2 bs=1M || echo "dd /boot/zerofill_2 exited ( $? ) " ) &
+    ( dd if=/dev/zero of=/boot/zerofill_3 bs=1M || echo "dd /boot/zerofill_3 exited ( $? ) " ) &
+    ( dd if=/dev/zero of=/boot/zerofill_4 bs=1M || echo "dd /boot/zerofill_4 exited ( $? ) " ) &
+
+    wait 
+  
+    sync -f /boot/zerofill_1
+    sync -f /boot/zerofill_2
+    sync -f /boot/zerofill_3
+    sync -f /boot/zerofill_4
+    rm -f /boot/zerofill_1 /boot/zerofill_2 /boot/zerofill_3 /boot/zerofill_4
+
   fi
 
 elif [[ "$PACKER_BUILD_NAME" =~ ^(generic|magma)-(netbsd[8-9])-(vmware|hyperv|libvirt|parallels|virtualbox)-(x64|x32|a64|a32|p64|p32|m64|m32)$ ]]; then
