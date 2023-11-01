@@ -1,10 +1,13 @@
 {
-  "variables": {
+  "variables":
+  {
     "box_version": "{{env `VERSION`}}"
   },
-  "provisioners": [
+  "provisioners":
+  [
     {
-      "scripts": [
+      "scripts":
+      [
         "scripts/gentoo/network.sh",
         "scripts/gentoo/emerge.sh"
       ],
@@ -12,12 +15,14 @@
       "timeout": "720m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-gentoo-libvirt-a64"
       ]
     },
     {
-      "scripts": [
+      "scripts":
+      [
         "scripts/gentoo/virtualbox.sh",
         "scripts/gentoo/parallels.sh",
         "scripts/gentoo/vmware.sh",
@@ -29,12 +34,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-gentoo-libvirt-a64"
       ]
     },
     {
-      "scripts": [
+      "scripts":
+      [
         "scripts/ubuntu2204/apt.sh",
         "scripts/ubuntu2204/floppy.sh",
         "scripts/ubuntu2204/fixkvp.sh",
@@ -44,12 +51,14 @@
       "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-ubuntu2204-libvirt-a64"
       ]
     },
     {
-      "scripts": [
+      "scripts":
+      [
         "scripts/ubuntu2204/vagrant.sh",
         "scripts/ubuntu2204/profile.sh",
         "scripts/ubuntu2204/motd.sh",
@@ -65,12 +74,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-ubuntu2204-libvirt-a64"
       ]
     },
     {
-      "scripts": [
+      "scripts":
+      [
         "scripts/openbsd7/pkg.sh"
       ],
       "type": "shell",
@@ -78,12 +89,14 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
-      "only": [
+      "only":
+      [
         "generic-openbsd7-libvirt-a64"
       ]
     },
     {
-      "scripts": [
+      "scripts":
+      [
         "scripts/openbsd7/hostname.sh",
         "scripts/openbsd7/motd.sh",
         "scripts/openbsd7/vagrant.sh",
@@ -99,14 +112,16 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
-      "only": [
+      "only":
+      [
         "generic-openbsd7-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts": [
+      "scripts":
+      [
         "scripts/rhel9/network.sh",
         "scripts/rhel9/dnf.sh",
         "scripts/rhel9/base.sh",
@@ -115,14 +130,16 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-rhel9-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts": [
+      "scripts":
+      [
         "scripts/rhel9/kernel.sh",
         "scripts/rhel9/floppy.sh",
         "scripts/rhel9/virtualbox.sh",
@@ -141,14 +158,16 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-rhel9-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts": [
+      "scripts":
+      [
         "scripts/alma9/network.sh",
         "scripts/alma9/dnf.sh",
         "scripts/alma9/base.sh",
@@ -157,14 +176,16 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-alma9-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts": [
+      "scripts":
+      [
         "scripts/alma9/kernel.sh",
         "scripts/alma9/floppy.sh",
         "scripts/alma9/virtualbox.sh",
@@ -183,42 +204,48 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-alma9-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts": [
+      "scripts":
+      [
         "scripts/fedora38/fixdns.sh",
         "scripts/fedora38/hostname.sh",
         "scripts/fedora38/dnf.sh"
       ],
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-fedora38-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts": [
+      "scripts":
+      [
         "scripts/fedora38/fixtmp.sh",
         "scripts/fedora38/base.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-fedora38-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts": [
+      "scripts":
+      [
         "scripts/fedora38/kernel.sh",
         "scripts/fedora38/updatedb.sh",
         "scripts/fedora38/vga.sh",
@@ -233,12 +260,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-fedora38-libvirt-a64"
       ]
     },
     {
-      "scripts": [
+      "scripts":
+      [
         "scripts/debian12/apt.sh",
         "scripts/debian12/network.sh"
       ],
@@ -246,12 +275,14 @@
       "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-debian12-libvirt-a64"
       ]
     },
     {
-      "scripts": [
+      "scripts":
+      [
         "scripts/debian12/floppy.sh",
         "scripts/debian12/profile.sh",
         "scripts/debian12/vagrant.sh",
@@ -268,28 +299,32 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-debian12-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts": [
+      "scripts":
+      [
         "scripts/alpine318/network.sh",
         "scripts/alpine318/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-alpine318-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts": [
+      "scripts":
+      [
         "scripts/alpine318/hostname.sh",
         "scripts/alpine318/lsb.sh",
         "scripts/alpine318/floppy.sh",
@@ -305,12 +340,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only": [
+      "only":
+      [
         "generic-alpine318-libvirt-a64"
       ]
     },
     {
-      "scripts": [
+      "scripts":
+      [
         "scripts/freebsd14/pkg.sh",
         "scripts/freebsd14/hostname.sh",
         "scripts/freebsd14/kernel.sh",
@@ -328,12 +365,14 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
-      "only": [
+      "only":
+      [
         "generic-freebsd14-libvirt-a64"
       ]
     },
     {
-      "scripts": [
+      "scripts":
+      [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -348,65 +387,8 @@
       "expect_disconnect": "true"
     }
   ],
-  "builders": [
-   {
-      "type": "qemu",
-      "name": "generic-alpine318-alt-libvirt-a64",
-      "vm_name": "alt-alpine318-alt-libvirt-a64",
-      "output_directory": "output/alt-alpine318-alt-libvirt-a64",
-      "qemu_binary": "qemu-system-aarch64",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<enter><wait10>",
-        "root<enter><wait>",
-        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
-        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine318.vagrant.cfg<enter><wait>",
-        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-        "source generic.alpine318.vagrant.cfg<enter><wait>",
-        "printf \"vagrant\\nvagrant\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine318.vagrant.cfg && ",
-        "mount /dev/sda2 /mnt && ",
-        "sed -E -i '/#? ?PasswordAuthentication/d' /mnt/etc/ssh/sshd_config && ",
-        "sed -E -i '/#? ?PermitRootLogin/d' /mnt/etc/ssh/sshd_config && ",
-        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
-        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
-      ],
-      "disk_size": "131072",
-      "disk_compression": true,
-      "net_device": "virtio-net",
-      "qemuargs": [
-        ["-no-user-config"],
-        ["-machine", "virt,accel=tcg"],
-        ["-boot","strict=off,menu=off"],
-        ["-tpmdev", "emulator,id=tpm-tpm0,chardev=chrtpm"],
-        ["-device", "driver=virtio-scsi-pci,id=scsi0"],
-        ["-blockdev", "driver=file,filename=/var/lib/libvirt/images/alpine-virt-3.18.4-aarch64.iso,node-name=libvirt-1-storage,auto-read-only=true"],
-        ["-blockdev", "node-name=libvirt-1-format,read-only=true,driver=raw,file=libvirt-1-storage"],
-        ["-device", "driver=scsi-cd,bus=scsi0.0,channel=0,scsi-id=0,device_id=drive-scsi0-00-0,drive=libvirt-1-format,id=scsi0-0-0-0,bootindex=1"]
-        
-        
-      ],
-      "disk_interface": "virtio",
-      "headless": false,
-      "disk_image": false,
-      "efi_boot": false,
-      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
-      "efi_firmware_vars": "/home/ladar/Data/robox.priv/GENERIC-AARCH64-VARS.raw",
-      "boot_wait": "600s",
-      "format": "raw",
-
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.18/releases/aarch64/alpine-virt-3.18.4-aarch64.iso",
-      "iso_checksum": "sha256:ea9dcc55ae468e29999e99d01b95ae051c7ce6aef627149337d8319a94f9f071",
-      "ssh_username": "root",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "/sbin/poweroff"
-    },
+  "builders":
+  [
     {
       "type": "qemu",
       "name": "generic-gentoo-libvirt-a64",
@@ -417,7 +399,8 @@
       "accelerator": "tcg",
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
-      "boot_command": [
+      "boot_command":
+      [
         "sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf<enter><wait>",
         "passwd root<enter><wait><wait><wait>",
         "vagrant<enter><wait>",
@@ -457,7 +440,8 @@
       "accelerator": "tcg",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
-      "boot_command": [
+      "boot_command":
+      [
         "S<enter><wait5>",
         "ifconfig vio0 group dhcp<enter><wait5>",
         "ifconfig vio0 inet autoconf<enter><wait10>",
@@ -497,7 +481,8 @@
       "accelerator": "tcg",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
-      "boot_command": [
+      "boot_command":
+      [
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -547,10 +532,12 @@
       "accelerator": "tcg",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command": [
+      "boot_command":
+      [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks vga=792 <enter><wait>"
       ],
-      "qemuargs": [
+      "qemuargs":
+      [
         [
           "-cpu",
           "max"
@@ -588,10 +575,12 @@
       "accelerator": "tcg",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command": [
+      "boot_command":
+      [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.ks vga=792 <enter><wait>"
       ],
-      "qemuargs": [
+      "qemuargs":
+      [
         [
           "-cpu",
           "max"
@@ -629,7 +618,8 @@
       "accelerator": "tcg",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command": [
+      "boot_command":
+      [
         "c<wait>",
         "insmod all_video<enter><wait>",
         "set gfxpayload=keep<enter><wait>",
@@ -681,7 +671,8 @@
       "accelerator": "tcg",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
-      "boot_command": [
+      "boot_command":
+      [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -724,11 +715,11 @@
       "vm_name": "generic-alpine318-libvirt-a64",
       "output_directory": "output/generic-alpine318-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "machine_type": "virt",
-      "accelerator": "tcg",
-      "boot_wait": "60s",
+      "cpu_model": "max",
+      "boot_wait": "240s",
       "boot_keygroup_interval": "1s",
-      "boot_command": [
+      "boot_command":
+      [
         "<enter><wait10>",
         "root<enter><wait>",
         "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
@@ -736,13 +727,47 @@
         "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
         "source generic.alpine318.vagrant.cfg<enter><wait>",
         "printf \"vagrant\\nvagrant\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine318.vagrant.cfg && ",
-        "mount /dev/sda2 /mnt && ",
+        "mount /dev/vda2 /mnt && ",
         "sed -E -i '/#? ?PasswordAuthentication/d' /mnt/etc/ssh/sshd_config && ",
         "sed -E -i '/#? ?PermitRootLogin/d' /mnt/etc/ssh/sshd_config && ",
         "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
       ],
+      "qemuargs":
+      [
+        [
+          "-device",
+          "ramfb"
+        ],
+        [
+          "-machine",
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+        ],
+        [
+          "-object",
+          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+        ],
+        [
+          "-overcommit", 
+          "mem-lock=off"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-boot",
+          "order=cd,strict=off"
+        ],
+        [
+          "-device",
+          "driver=virtio-keyboard-pci"
+        ]
+      ],
+      "efi_boot": true,
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
+      "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
@@ -750,12 +775,12 @@
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
+      "cpus": 4,
+      "memory": 4096,
       "http_directory": "http",
-      "headless": true,
+      "headless": false,
       "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.18/releases/aarch64/alpine-virt-3.18.4-aarch64.iso",
       "iso_checksum": "sha256:ea9dcc55ae468e29999e99d01b95ae051c7ce6aef627149337d8319a94f9f071",
       "ssh_username": "root",
@@ -775,7 +800,8 @@
       "accelerator": "tcg",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
-      "boot_command": [
+      "boot_command":
+      [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -793,7 +819,6 @@
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd14.vagrant.cfg<enter><wait5>",
         "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
-
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -818,7 +843,8 @@
       "shutdown_command": "shutdown -p now"
     }
   ],
-  "post-processors": [
+  "post-processors":
+  [
     [
       {
         "type": "vagrant",
@@ -826,13 +852,15 @@
         "keep_input_artifact": false,
         "vagrantfile_template": "tpl/generic-{{split build_name \"-\" 1}}.rb",
         "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
-        "include": [
+        "include":
+        [
           "tpl/generic/info.json"
         ]
       },
       {
         "type": "checksum",
-        "checksum_types": [
+        "checksum_types":
+        [
           "sha256"
         ],
         "keep_input_artifact": false,
@@ -846,13 +874,15 @@
         "keep_input_artifact": false,
         "vagrantfile_template": "tpl/roboxes-{{split build_name \"-\" 1}}.rb",
         "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
-        "include": [
+        "include":
+        [
           "tpl/roboxes/info.json"
         ]
       },
       {
         "type": "checksum",
-        "checksum_types": [
+        "checksum_types":
+        [
           "sha256"
         ],
         "keep_input_artifact": false,
