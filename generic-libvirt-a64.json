@@ -502,7 +502,7 @@
       "disk_discard": "unmap",
       "disk_detect_zeroes": "on",
       "disk_cache": "unsafe",
-      "disk_image": false,
+      "disk_image": true,
       "disk_compression": true,
       "disk_interface": "virtio",
       "net_device": "virtio-net",
