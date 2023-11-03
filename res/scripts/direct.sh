@@ -353,7 +353,7 @@ function upload_box() {
     "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/versions" && sleep 4 || \
     { 
       printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION  / RECURSION = $RECURSION ]${T_RESET}\n" >&2
-      sleep 20 ; exec "$0" "$1" $RECURSION
+      sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
       exit $?
     } 
   }
@@ -371,7 +371,7 @@ function upload_box() {
   "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}/${ARCH}" && sleep 4 || \
     { 
       printf "${T_BYEL}  Provider delete failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n" >&2
-      sleep 20 ; exec "$0" "$1" $RECURSION
+      sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
       exit $?
     } 
   }
@@ -384,7 +384,7 @@ function upload_box() {
     "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/providers" && sleep 4 || \
   { 
     printf "${T_BYEL}  Provider creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n" >&2
-    sleep 20 ; exec "$0" "$1" $RECURSION
+    sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
     exit $?
   }
 
@@ -398,7 +398,7 @@ function upload_box() {
 
   if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "echo" ] || [ "$UPLOAD_CALLBACK" == "" ] || [ "$UPLOAD_CALLBACK" == "echo" ]; then
     printf "\n${T_BYEL}  The $FILENAME file failed to upload. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
-    sleep 20 ; exec "$0" "$1" $RECURSION
+    sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
     exit $?
   fi
 
@@ -413,7 +413,7 @@ function upload_box() {
   RESULT=$?
   [ "$RESULT" != "0" ] && { 
     printf "\n${T_BYEL}  The $FILENAME file failed to upload. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2 
-    sleep 20 ; exec "$0" "$1" $RECURSION
+    sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
     exit $?
   }
     
@@ -431,7 +431,7 @@ function upload_box() {
     "$UPLOAD_CALLBACK" ; } || \
   { 
     printf "${T_BYEL}  Upload failed. The callback returned an error. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n" >&2
-    sleep 20 ; exec "$0" "$1" $RECURSION
+    sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
     exit $?
   }
   
