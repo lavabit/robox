@@ -335,7 +335,7 @@ function upload_box() {
   if [ "$(${CURL} -so /dev/null --write-out "%{onerror}" https://lavabit.com 2>&1)" ] || \
    [ "$(${CURL} -so /dev/null --write-out "%{errormsg}" https://lavabit.com 2>&1)" ]; then
     UPLOAD_FILE_WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n"
-    UPLOAD_CALLBACK_WRITEOUT="%{onerror}FILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\nERROR: %{errormsg}\n"
+    UPLOAD_CALLBACK_WRITEOUT=""
   fi
 
   # Checks whether the version exists already, and creates it if necessary.
