@@ -16,6 +16,8 @@ bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=
 url --url=https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/
 repo --name=appstream --baseurl=https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/
 
+%addon com_redhat_kdump --disable --reserve-mb=128
+%end
 %packages
 @core
 sudo

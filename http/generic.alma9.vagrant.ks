@@ -17,6 +17,8 @@ bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=
 # repo --name=BaseOS
 url --url=https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/x86_64/os/
 
+%addon com_redhat_kdump --disable --reserve-mb=128
+%end
 %packages
 @core
 sudo
