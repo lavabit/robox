@@ -329,11 +329,13 @@ function upload_box() {
     DEFAULT_ARCH="true"
   fi
 
-  WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n%{onerror}ERROR: %{errormsg}\n"
-
+  UPLOAD_FILE_WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n%{onerror}ERROR: %{errormsg}\n"
+  UPLOAD_CALLBACK_WRITEOUT="%{onerror}FILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\nERROR: %{errormsg}\n"
+  
   if [ "$(${CURL} -so /dev/null --write-out "%{onerror}" https://lavabit.com 2>&1)" ] || \
-   [ "$(${CURL} -so /dev/null --write-out "%{errormsg}" https://lavabit.com 2>&1)" ]then
-    WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n"
+   [ "$(${CURL} -so /dev/null --write-out "%{errormsg}" https://lavabit.com 2>&1)" ]; then
+    UPLOAD_FILE_WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n"
+    UPLOAD_CALLBACK_WRITEOUT="%{onerror}FILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\nERROR: %{errormsg}\n"
   fi
 
   # Checks whether the version exists already, and creates it if necessary.
@@ -390,7 +392,7 @@ function upload_box() {
 
   retry ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 7200 --request PUT --fail \
     --speed-time 60 --speed-limit 1024 --expect100-timeout 7200 \
-    --write-out "$WRITEOUT" \
+    --write-out "$UPLOAD_FILE_WRITEOUT" \
     --header "Connection: keep-alive" --upload-file "$FILEPATH" "$UPLOAD_PATH"
 
   RESULT=$?
@@ -402,11 +404,11 @@ function upload_box() {
   # Submit the callback twice. hopefully this will reduce the number of boxes without valid download URLs.
   ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request PUT --fail \
     --output "/dev/null" --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-    --write-out "$WRITEOUT" \
+    --write-out "$UPLOAD_CALLBACK_WRITEOUT" \
     "$UPLOAD_CALLBACK" || \
   { sleep 16 ; ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request PUT --fail \
     --output "/dev/null" --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-    --write-out "$WRITEOUT" \
+    --write-out "$UPLOAD_CALLBACK_WRITEOUT" \
     "$UPLOAD_CALLBACK" ; } || \
   { printf "${T_BYEL}  Upload failed. The callback returned an error. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RESULT = $RESULT ]${T_RESET}\n" >&2 ; exit 1 ; }
   
