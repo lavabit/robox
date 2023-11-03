@@ -72,15 +72,17 @@ ROBOX_ISOS="all alpine arch centos centos8s centos9s gentoo hardenedbsd hardened
 ROBOX_FILES="packer-cache-x64.json packer-cache-x32.json "\
 "packer-cache-a64.json packer-cache-a32.json "\
 "packer-cache-p64.json packer-cache-m64.json "\
-"magma-docker-x64.json magma-hyperv-x64.json magma-vmware-x64.json magma-libvirt-x64.json magma-virtualbox-x64.json "\
-"generic-docker-x64.json generic-hyperv-x64.json generic-vmware-x64.json generic-libvirt-x64.json generic-virtualbox-x64.json generic-parallels-x64.json "\
-"generic-libvirt-x32.json generic-vmware-x32.json generic-virtualbox-x32.json "\
-"generic-libvirt-a64.json generic-libvirt-a32.json "\
+"generic-docker-x64.json generic-hyperv-x64.json generic-parallels-x64.json "\
+"generic-vmware-x32.json generic-vmware-x64.json "\
+"generic-virtualbox-x32.json generic-virtualbox-x64.json "\
+"generic-libvirt-a32.json generic-libvirt-a64.json "\
+"generic-libvirt-x32.json generic-libvirt-x64.json "\
 "generic-libvirt-p64.json generic-libvirt-m64.json "\
+"magma-docker-x64.json magma-hyperv-x64.json magma-vmware-x64.json magma-libvirt-x64.json magma-virtualbox-x64.json "\
 "lineage-hyperv-x64.json lineage-vmware-x64.json lineage-libvirt-x64.json lineage-virtualbox-x64.json "\
 "developer-ova-x64.json developer-hyperv-x64.json developer-vmware-x64.json developer-libvirt-x64.json developer-virtualbox-x64.json"
 
-# Collect the list of ISO urls.
+# Collect the list of ISO URLs.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $ROBOX_FILES | awk -F'"' '{print $4}'`)
 ISOSUMS=(`grep -E "iso_checksum|guest_additions_sha256" $ROBOX_FILES | awk -F'"' '{print $4}' | sed "s/^sha256://g"`)
 UNIQURLS=(`grep -E "iso_url|guest_additions_url" $ROBOX_FILES | awk -F'"' '{print $4}' | sort | uniq`)
@@ -406,6 +408,15 @@ REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256" )
 REPOS+=( "https://mirrors.lavabit.com/openbsd/6.9/packages/amd64/SHA256.sig" )
 
 # OpenBSD 7.4
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/arm64/SHA256" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/arm64/SHA256.sig" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/arm64/man74.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/arm64/base74.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/arm64/comp74.tgz" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/arm64/index.txt" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/arm64/SHA256" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/arm64/SHA256.sig" )
+
 REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/amd64/index.txt" )
 REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/amd64/SHA256" )
 REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/amd64/SHA256.sig" )
@@ -417,6 +428,16 @@ REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/amd64/SHA256" )
 REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/amd64/SHA256.sig" )
 
 # OpenBSD 7.5
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/arm64/index.txt" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/arm64/SHA256" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/arm64/SHA256.sig" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/arm64/man75.tgz" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/arm64/base75.tgz" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/arm64/comp75.tgz" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/packages/arm64/index.txt" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/packages/arm64/SHA256" )
+FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/packages/arm64/SHA256.sig" )
+
 FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/amd64/index.txt" )
 FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/amd64/SHA256" )
 FUTURE+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.5/amd64/SHA256.sig" )

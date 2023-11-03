@@ -39,13 +39,32 @@
       ]
     },
     {
-      "scripts": [
+      "scripts":
+      [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
         "scripts/common/leases.sh",
-        "scripts/common/localtime.sh",
-        "scripts/common/zerodisk.sh",
+        "scripts/common/localtime.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
+    },
+    {
+      "scripts":
+      [
+        "scripts/common/zerodisk.sh"
+      ],
+      "type": "shell",
+      "timeout": "720m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
+    },
+    {
+      "scripts":
+      [
         "scripts/common/lockout.sh"
       ],
       "type": "shell",
@@ -61,8 +80,9 @@
       "vm_name": "generic-debian12-libvirt-a32",
       "output_directory": "output/generic-debian12-libvirt-a32",
       "qemu_binary": "qemu-system-arm",
-      "boot_wait": "10s",
+      "cpu_model": "max",
       "boot_keygroup_interval": "1s",
+      "boot_wait": "10s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -78,16 +98,53 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.cfg ",
         "<enter>"
       ],
+      "qemuargs": [
+        [
+          "-display",
+          "gtk"
+        ],
+        [
+          "-device",
+          "ramfb"
+        ],
+        [
+          "-machine",
+          "virt,gic-version=2,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+        ],
+        [
+          "-object",
+          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':2147483648}"
+        ],
+        [
+          "-overcommit",
+          "mem-lock=off"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-boot",
+          "order=cd,strict=off"
+        ],
+        [
+          "-device",
+          "driver=virtio-keyboard-pci"
+        ]
+      ],
+      "efi_boot": true,
+      "efi_firmware_code": "/usr/share/edk2/arm/QEMU_EFI-pflash.raw",
+      "efi_firmware_vars": "/usr/share/edk2/arm/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
-      "disk_detect_zeroes": "unmap",
+      "disk_detect_zeroes": "on",
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 2,
+      "cpus": 4,
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
