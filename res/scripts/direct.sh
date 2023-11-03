@@ -334,7 +334,7 @@ function upload_box() {
   
   if [ "$(${CURL} -so /dev/null --write-out "%{onerror}" https://lavabit.com 2>&1)" ] || \
    [ "$(${CURL} -so /dev/null --write-out "%{errormsg}" https://lavabit.com 2>&1)" ]; then
-    UPLOAD_FILE_WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n"w
+    UPLOAD_FILE_WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n"
     UPLOAD_CALLBACK_WRITEOUT=""
   fi
 
@@ -351,7 +351,12 @@ function upload_box() {
     --header "Content-Type: application/json" \
     --data "{\"version\":{\"version\":\"4.3.3\",\"description\":\"A build environment for use in cross platform development.\"}}" \
     "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/versions" && sleep 4 || \
-  { printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; exit 1 ; } ; }
+    { 
+      printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION  / RECURSION = $RECURSION ]${T_RESET}\n" >&2
+      sleep 20 ; exec "$0" "$1" $RECURSION
+      exit $?
+    } 
+  }
 
  # This checks whether provider/arch exists for this box, and if so, deletes it. 
   [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request GET --fail \
@@ -364,7 +369,12 @@ function upload_box() {
   { retry ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request DELETE --fail \
   --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}/${ARCH}" && sleep 4 || \
-  { printf "${T_BYEL}  Provider delete failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; exit 1 ; } ; }
+    { 
+      printf "${T_BYEL}  Provider delete failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n" >&2
+      sleep 20 ; exec "$0" "$1" $RECURSION
+      exit $?
+    } 
+  }
 
   # Create the provider/arch.
   retry ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request POST --fail \
@@ -372,7 +382,11 @@ function upload_box() {
     --header "Content-Type: application/json" \
     --data "{\"provider\":{ \"name\":\"$PROVIDER\",\"checksum\":\"$HASH\",\"architecture\":\"$ARCH\",\"default_architecture\":\"$DEFAULT_ARCH\",\"checksum_type\":\"SHA256\"}}" \
     "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/providers" && sleep 4 || \
-  { printf "${T_BYEL}  Provider creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; exit 1 ; }
+  { 
+    printf "${T_BYEL}  Provider creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n" >&2
+    sleep 20 ; exec "$0" "$1" $RECURSION
+    exit $?
+  }
 
   # Request a direct upload URL.
   UPLOAD_RESPONSE=$( ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 -request GET --fail \
@@ -384,7 +398,8 @@ function upload_box() {
 
   if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "echo" ] || [ "$UPLOAD_CALLBACK" == "" ] || [ "$UPLOAD_CALLBACK" == "echo" ]; then
     printf "\n${T_BYEL}  The $FILENAME file failed to upload. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
-    exit 1
+    sleep 20 ; exec "$0" "$1" $RECURSION
+    exit $?
   fi
 
   # If we move to quickly, the cloud will sometimes return an error. Waiting seems to reduce the error/failure rate.
@@ -396,8 +411,12 @@ function upload_box() {
     --header "Connection: keep-alive" --upload-file "$FILEPATH" "$UPLOAD_PATH"
 
   RESULT=$?
-  [ "$RESULT" != "0" ] && { printf "\n${T_BYEL}  The $FILENAME file failed to upload. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2 ; exit 1 ; }
-
+  [ "$RESULT" != "0" ] && { 
+    printf "\n${T_BYEL}  The $FILENAME file failed to upload. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2 
+    sleep 20 ; exec "$0" "$1" $RECURSION
+    exit $?
+  }
+    
   # Sleep before trying the callback URL, so the cloud can finish digestion.
   sleep 4
 
@@ -410,7 +429,11 @@ function upload_box() {
     --output "/dev/null" --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     --write-out "$UPLOAD_CALLBACK_WRITEOUT" \
     "$UPLOAD_CALLBACK" ; } || \
-  { printf "${T_BYEL}  Upload failed. The callback returned an error. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RESULT = $RESULT ]${T_RESET}\n" >&2 ; exit 1 ; }
+  { 
+    printf "${T_BYEL}  Upload failed. The callback returned an error. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n" >&2
+    sleep 20 ; exec "$0" "$1" $RECURSION
+    exit $?
+  }
   
 #   # # Add a short pause, with the duration determined by the size of the file uploaded.
 #   # PAUSE="`du -b $FILEPATH | awk -F' ' '{print $1}'`"
