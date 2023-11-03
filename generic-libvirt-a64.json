@@ -1,13 +1,10 @@
 {
-  "variables":
-  {
+  "variables": {
     "box_version": "{{env `VERSION`}}"
   },
-  "provisioners":
-  [
+  "provisioners": [
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/gentoo/network.sh",
         "scripts/gentoo/emerge.sh"
       ],
@@ -15,14 +12,12 @@
       "timeout": "720m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-gentoo-libvirt-a64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/gentoo/virtualbox.sh",
         "scripts/gentoo/parallels.sh",
         "scripts/gentoo/vmware.sh",
@@ -34,14 +29,12 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-gentoo-libvirt-a64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/ubuntu2204/apt.sh",
         "scripts/ubuntu2204/floppy.sh",
         "scripts/ubuntu2204/fixkvp.sh",
@@ -51,14 +44,12 @@
       "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-ubuntu2204-libvirt-a64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/ubuntu2204/vagrant.sh",
         "scripts/ubuntu2204/profile.sh",
         "scripts/ubuntu2204/motd.sh",
@@ -74,14 +65,12 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-ubuntu2204-libvirt-a64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/openbsd7/pkg.sh"
       ],
       "type": "shell",
@@ -89,14 +78,12 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
-      "only":
-      [
+      "only": [
         "generic-openbsd7-libvirt-a64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/openbsd7/hostname.sh",
         "scripts/openbsd7/motd.sh",
         "scripts/openbsd7/vagrant.sh",
@@ -112,16 +99,14 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
-      "only":
-      [
+      "only": [
         "generic-openbsd7-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rhel9/network.sh",
         "scripts/rhel9/dnf.sh",
         "scripts/rhel9/base.sh",
@@ -130,16 +115,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rhel9-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/rhel9/kernel.sh",
         "scripts/rhel9/floppy.sh",
         "scripts/rhel9/virtualbox.sh",
@@ -158,16 +141,14 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-rhel9-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/alma9/network.sh",
         "scripts/alma9/dnf.sh",
         "scripts/alma9/base.sh",
@@ -176,16 +157,14 @@
       "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-alma9-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/alma9/kernel.sh",
         "scripts/alma9/floppy.sh",
         "scripts/alma9/virtualbox.sh",
@@ -204,48 +183,42 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-alma9-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/fedora38/fixdns.sh",
         "scripts/fedora38/hostname.sh",
         "scripts/fedora38/dnf.sh"
       ],
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-fedora38-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/fedora38/fixtmp.sh",
         "scripts/fedora38/base.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-fedora38-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/fedora38/kernel.sh",
         "scripts/fedora38/updatedb.sh",
         "scripts/fedora38/vga.sh",
@@ -260,14 +233,12 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-fedora38-libvirt-a64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/debian12/apt.sh",
         "scripts/debian12/network.sh"
       ],
@@ -275,14 +246,12 @@
       "timeout": "120m",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-debian12-libvirt-a64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/debian12/floppy.sh",
         "scripts/debian12/profile.sh",
         "scripts/debian12/vagrant.sh",
@@ -299,32 +268,28 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-debian12-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/alpine318/network.sh",
         "scripts/alpine318/apk.sh"
       ],
       "execute_command": "/bin/sh '{{.Path}}'",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-alpine318-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
-      "scripts":
-      [
+      "scripts": [
         "scripts/alpine318/hostname.sh",
         "scripts/alpine318/lsb.sh",
         "scripts/alpine318/floppy.sh",
@@ -340,14 +305,12 @@
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
-      "only":
-      [
+      "only": [
         "generic-alpine318-libvirt-a64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/freebsd14/pkg.sh",
         "scripts/freebsd14/hostname.sh",
         "scripts/freebsd14/kernel.sh",
@@ -365,14 +328,12 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
-      "only":
-      [
+      "only": [
         "generic-freebsd14-libvirt-a64"
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -385,8 +346,7 @@
       "expect_disconnect": "true"
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/common/zerodisk.sh"
       ],
       "type": "shell",
@@ -395,8 +355,7 @@
       "expect_disconnect": "true"
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/common/lockout.sh"
       ],
       "type": "shell",
@@ -405,8 +364,7 @@
       "expect_disconnect": "true"
     }
   ],
-  "builders":
-  [
+  "builders": [
     {
       "type": "qemu",
       "name": "generic-gentoo-libvirt-a64",
@@ -417,8 +375,7 @@
       "accelerator": "tcg",
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf<enter><wait>",
         "passwd root<enter><wait><wait><wait>",
         "vagrant<enter><wait>",
@@ -426,6 +383,43 @@
         "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
         "bash generic.gentoo.vagrant.sh<enter>"
       ],
+      "qemuargs": [
+        [
+          "-display",
+          "gtk"
+        ],
+        [
+          "-device",
+          "ramfb"
+        ],
+        [
+          "-machine",
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+        ],
+        [
+          "-object",
+          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+        ],
+        [
+          "-overcommit",
+          "mem-lock=off"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-boot",
+          "order=cd,strict=off"
+        ],
+        [
+          "-device",
+          "driver=virtio-keyboard-pci"
+        ]
+      ],
+      "efi_boot": true,
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
+      "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
@@ -433,10 +427,10 @@
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 8,
-      "memory": 8192,
+      "cpus": 4,
+      "memory": 4096,
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.edge.kernel.org/gentoo/releases/arm64/autobuilds/current-install-arm64-minimal/install-arm64-minimal-20231029T231700Z.iso",
@@ -458,8 +452,7 @@
       "accelerator": "tcg",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "S<enter><wait5>",
         "ifconfig vio0 group dhcp<enter><wait5>",
         "ifconfig vio0 inet autoconf<enter><wait10>",
@@ -467,17 +460,54 @@
         "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd7.install.chroot.sh<enter><wait5>",
         "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
       ],
+      "qemuargs": [
+        [
+          "-display",
+          "gtk"
+        ],
+        [
+          "-device",
+          "ramfb"
+        ],
+        [
+          "-machine",
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+        ],
+        [
+          "-object",
+          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+        ],
+        [
+          "-overcommit",
+          "mem-lock=off"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-boot",
+          "order=cd,strict=off"
+        ],
+        [
+          "-device",
+          "driver=virtio-keyboard-pci"
+        ]
+      ],
+      "efi_boot": true,
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
+      "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
       "disk_detect_zeroes": "on",
       "disk_cache": "unsafe",
-      "disk_image": true,
+      "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
+      "cpus": 4,
+      "memory": 4096,
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://cdn.openbsd.org/pub/OpenBSD/7.4/arm64/miniroot74.img",
@@ -499,8 +529,7 @@
       "accelerator": "tcg",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
         "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
@@ -518,6 +547,43 @@
         "initrd /casper/initrd<enter><wait10>",
         "boot<enter>"
       ],
+      "qemuargs": [
+        [
+          "-display",
+          "gtk"
+        ],
+        [
+          "-device",
+          "ramfb"
+        ],
+        [
+          "-machine",
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+        ],
+        [
+          "-object",
+          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+        ],
+        [
+          "-overcommit",
+          "mem-lock=off"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-boot",
+          "order=cd,strict=off"
+        ],
+        [
+          "-device",
+          "driver=virtio-keyboard-pci"
+        ]
+      ],
+      "efi_boot": true,
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
+      "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
@@ -525,10 +591,10 @@
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
+      "cpus": 4,
+      "memory": 4096,
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://cdimage.ubuntu.com/releases/22.04.3/release/ubuntu-22.04.3-live-server-arm64.iso",
@@ -550,17 +616,46 @@
       "accelerator": "tcg",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks vga=792 <enter><wait>"
       ],
-      "qemuargs":
-      [
+      "qemuargs": [
         [
-          "-cpu",
-          "max"
+          "-display",
+          "gtk"
+        ],
+        [
+          "-device",
+          "ramfb"
+        ],
+        [
+          "-machine",
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+        ],
+        [
+          "-object",
+          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+        ],
+        [
+          "-overcommit",
+          "mem-lock=off"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-boot",
+          "order=cd,strict=off"
+        ],
+        [
+          "-device",
+          "driver=virtio-keyboard-pci"
         ]
       ],
+      "efi_boot": true,
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
+      "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
@@ -568,10 +663,10 @@
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
+      "cpus": 4,
+      "memory": 4096,
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://archive.org/download/rhel-9.2/rhel-9.2-aarch64-dvd.iso",
@@ -594,7 +689,7 @@
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.ks vga=792 <enter><wait>"
-      ],      
+      ],
       "qemuargs": [
         [
           "-display",
@@ -664,8 +759,7 @@
       "accelerator": "tcg",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "c<wait>",
         "insmod all_video<enter><wait>",
         "set gfxpayload=keep<enter><wait>",
@@ -685,6 +779,43 @@
         "initrd /images/pxeboot/initrd.img<enter><wait10>",
         "boot<enter><wait>"
       ],
+      "qemuargs": [
+        [
+          "-display",
+          "gtk"
+        ],
+        [
+          "-device",
+          "ramfb"
+        ],
+        [
+          "-machine",
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+        ],
+        [
+          "-object",
+          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+        ],
+        [
+          "-overcommit",
+          "mem-lock=off"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-boot",
+          "order=cd,strict=off"
+        ],
+        [
+          "-device",
+          "driver=virtio-keyboard-pci"
+        ]
+      ],
+      "efi_boot": true,
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
+      "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
@@ -692,10 +823,10 @@
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
+      "cpus": 4,
+      "memory": 4096,
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/iso/Fedora-Server-netinst-aarch64-38-1.6.iso",
@@ -717,8 +848,7 @@
       "accelerator": "tcg",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -733,6 +863,43 @@
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.cfg ",
         "<enter>"
       ],
+      "qemuargs": [
+        [
+          "-display",
+          "gtk"
+        ],
+        [
+          "-device",
+          "ramfb"
+        ],
+        [
+          "-machine",
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+        ],
+        [
+          "-object",
+          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+        ],
+        [
+          "-overcommit",
+          "mem-lock=off"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-boot",
+          "order=cd,strict=off"
+        ],
+        [
+          "-device",
+          "driver=virtio-keyboard-pci"
+        ]
+      ],
+      "efi_boot": true,
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
+      "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
@@ -740,10 +907,10 @@
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
+      "cpus": 4,
+      "memory": 4096,
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/arm64/iso-cd/debian-12.2.0-arm64-netinst.iso",
@@ -764,8 +931,7 @@
       "cpu_model": "max",
       "boot_wait": "240s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<enter><wait10>",
         "root<enter><wait>",
         "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
@@ -780,8 +946,7 @@
         "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
         "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
       ],
-      "qemuargs":
-      [
+      "qemuargs": [
         [
           "-display",
           "gtk"
@@ -850,8 +1015,7 @@
       "accelerator": "tcg",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
-      "boot_command":
-      [
+      "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -870,6 +1034,43 @@
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd14.vagrant.cfg<enter><wait5>",
         "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
       ],
+      "qemuargs": [
+        [
+          "-display",
+          "gtk"
+        ],
+        [
+          "-device",
+          "ramfb"
+        ],
+        [
+          "-machine",
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+        ],
+        [
+          "-object",
+          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+        ],
+        [
+          "-overcommit",
+          "mem-lock=off"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-boot",
+          "order=cd,strict=off"
+        ],
+        [
+          "-device",
+          "driver=virtio-keyboard-pci"
+        ]
+      ],
+      "efi_boot": true,
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
+      "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
@@ -877,10 +1078,10 @@
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
+      "cpus": 4,
+      "memory": 4096,
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/14.0/FreeBSD-14.0-RC3-arm64-aarch64-disc1.iso",
@@ -893,8 +1094,7 @@
       "shutdown_command": "shutdown -p now"
     }
   ],
-  "post-processors":
-  [
+  "post-processors": [
     [
       {
         "type": "vagrant",
@@ -902,15 +1102,13 @@
         "keep_input_artifact": false,
         "vagrantfile_template": "tpl/generic-{{split build_name \"-\" 1}}.rb",
         "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
-        "include":
-        [
+        "include": [
           "tpl/generic/info.json"
         ]
       },
       {
         "type": "checksum",
-        "checksum_types":
-        [
+        "checksum_types": [
           "sha256"
         ],
         "keep_input_artifact": false,
@@ -924,15 +1122,13 @@
         "keep_input_artifact": false,
         "vagrantfile_template": "tpl/roboxes-{{split build_name \"-\" 1}}.rb",
         "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
-        "include":
-        [
+        "include": [
           "tpl/roboxes/info.json"
         ]
       },
       {
         "type": "checksum",
-        "checksum_types":
-        [
+        "checksum_types": [
           "sha256"
         ],
         "keep_input_artifact": false,
