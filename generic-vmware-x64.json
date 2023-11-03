@@ -7929,6 +7929,7 @@
       ],
       "disk_size": 131072,
       "disk_type_id": "0",
+      "disk_adapter_type": "sata",
       "cpus": 2,
       "memory": 2048,
       "version": "12",
