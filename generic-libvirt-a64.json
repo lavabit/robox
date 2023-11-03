@@ -394,7 +394,7 @@
         ],
         [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
           "-object",
@@ -414,7 +414,11 @@
         ],
         [
           "-device",
-          "driver=virtio-keyboard-pci"
+          "qemu-xhci"
+        ],
+        [
+          "-device", 
+          "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
       "efi_boot": true,
@@ -471,7 +475,7 @@
         ],
         [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
           "-object",
@@ -491,7 +495,11 @@
         ],
         [
           "-device",
-          "driver=virtio-keyboard-pci"
+          "qemu-xhci"
+        ],
+        [
+          "-device", 
+          "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
       "efi_boot": true,
@@ -558,7 +566,7 @@
         ],
         [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
           "-object",
@@ -578,7 +586,11 @@
         ],
         [
           "-device",
-          "driver=virtio-keyboard-pci"
+          "qemu-xhci"
+        ],
+        [
+          "-device", 
+          "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
       "efi_boot": true,
@@ -630,7 +642,7 @@
         ],
         [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
           "-object",
@@ -650,7 +662,11 @@
         ],
         [
           "-device",
-          "driver=virtio-keyboard-pci"
+          "qemu-xhci"
+        ],
+        [
+          "-device", 
+          "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
       "efi_boot": true,
@@ -688,8 +704,13 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10> ",
-        "net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.ks vga=792 <enter><wait>"
+        "<tab><wait10><tab><wait10><tab><wait10><tab>c<wait><enter>",
+        "linux /images/pxeboot/vmlinuz ",
+        "inst.stage2=hd:LABEL=AlmaLinux-9-2-aarch64-dvd  ",
+        "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.a64.ks ",
+        "inst.text net.ifnames=0 biosdevname=0 vga=792<enter><wait10>",
+        "initrd /images/pxeboot/initrd.img<enter><wait10>",
+        "boot<enter><wait>"
       ],
       "qemuargs": [
         [
@@ -698,11 +719,11 @@
         ],
         [
           "-device",
-          "virtio-gpu-device"
+          "ramfb"
         ],
         [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
           "-object",
@@ -722,7 +743,11 @@
         ],
         [
           "-device",
-          "driver=virtio-keyboard-pci"
+          "qemu-xhci"
+        ],
+        [
+          "-device", 
+          "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
       "efi_boot": true,
@@ -791,7 +816,7 @@
         ],
         [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
           "-object",
@@ -811,7 +836,11 @@
         ],
         [
           "-device",
-          "driver=virtio-keyboard-pci"
+          "qemu-xhci"
+        ],
+        [
+          "-device", 
+          "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
       "efi_boot": true,
@@ -875,7 +904,7 @@
         ],
         [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
           "-object",
@@ -895,7 +924,11 @@
         ],
         [
           "-device",
-          "driver=virtio-keyboard-pci"
+          "qemu-xhci"
+        ],
+        [
+          "-device", 
+          "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
       "efi_boot": true,
@@ -958,7 +991,7 @@
         ],
         [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
           "-object",
@@ -978,7 +1011,11 @@
         ],
         [
           "-device",
-          "driver=virtio-keyboard-pci"
+          "qemu-xhci"
+        ],
+        [
+          "-device", 
+          "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
       "efi_boot": true,
@@ -1046,7 +1083,7 @@
         ],
         [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
           "-object",
@@ -1066,7 +1103,11 @@
         ],
         [
           "-device",
-          "driver=virtio-keyboard-pci"
+          "qemu-xhci"
+        ],
+        [
+          "-device", 
+          "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
       "efi_boot": true,

@@ -157,13 +157,20 @@ REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/x86_64/os/repoda
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/AppStream/x86_64/os/repodata/repomd.xml" )
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/aarch64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/aarch64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/AppStream/aarch64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/AppStream/aarch64/os/repodata/repomd.xml.asc" )
 
 # When this link becomes available, update the JSON files and remove it from here.
 FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/x86_64/AlmaLinux-9.3-x86_64-boot.iso" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/aarch64/AlmaLinux-9.3-aarch64-boot.iso" )
 
 # Alpine Edge
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/aarch64/APKINDEX.tar.gz" )
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/community/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/community/aarch64/APKINDEX.tar.gz" )
 
 # Alpine 3.5
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.5/main/x86_64/APKINDEX.tar.gz" )
@@ -219,21 +226,29 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.17/community/x86_64/APKINDEX
 
 # Alpine 3.18
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.18/main/aarch64/APKINDEX.tar.gz" )
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.18/community/aarch64/APKINDEX.tar.gz" )
 
 # Alpine 3.19 
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.19/main/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.19/main/aarch64/APKINDEX.tar.gz" )
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/community/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/community/aarch64/APKINDEX.tar.gz" )
 
 # When the release ISO becomes available, update the JSON files, and remove this URL.
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/releases/x86_64/alpine-virt-3.19.0-x86_64.iso" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/releases/aarch64/alpine-virt-3.19.0-aarch64.iso" )
 
 # Alpine 3.20
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz" )
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz" )
 
 # When the release ISO becomes available, update the JSON files, and remove this URL.
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/releases/x86_64/alpine-virt-3.20.0-x86_64.iso" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/releases/aarch64/alpine-virt-3.20.0-aarch64.iso" )
 
 # CentOS 6
 REPOS+=( "https://vault.centos.org/6.10/os/x86_64/repodata/repomd.xml" )
@@ -413,9 +428,9 @@ REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/arm64/SHA256.sig" )
 REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/arm64/man74.tgz" )
 REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/arm64/base74.tgz" )
 REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/arm64/comp74.tgz" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/arm64/index.txt" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/arm64/SHA256" )
-REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/arm64/SHA256.sig" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/aarch64/index.txt" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/aarch64/SHA256" )
+REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/packages/aarch64/SHA256.sig" )
 
 REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/amd64/index.txt" )
 REPOS+=( "https://ftp.usa.openbsd.org/pub/OpenBSD/7.4/amd64/SHA256" )
