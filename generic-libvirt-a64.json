@@ -698,7 +698,7 @@
         ],
         [
           "-device",
-          "VGA"
+          "virtio-gpu-device"
         ],
         [
           "-machine",
