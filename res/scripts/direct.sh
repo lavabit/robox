@@ -334,7 +334,7 @@ function upload_box() {
   
   if [ "$(${CURL} -so /dev/null --write-out "%{onerror}" https://lavabit.com 2>&1)" ] || \
    [ "$(${CURL} -so /dev/null --write-out "%{errormsg}" https://lavabit.com 2>&1)" ]; then
-    UPLOAD_FILE_WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n"
+    UPLOAD_FILE_WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n"w
     UPLOAD_CALLBACK_WRITEOUT=""
   fi
 
@@ -361,7 +361,7 @@ function upload_box() {
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH" | \
     jq -e -r ' (.name)? // (.success)? '`" != "false" ] && \
-  { ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request DELETE --fail \
+  { retry ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request DELETE --fail \
   --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}/${ARCH}" && sleep 4 || \
   { printf "${T_BYEL}  Provider delete failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION ]${T_RESET}\n" >&2 ; exit 1 ; } ; }
