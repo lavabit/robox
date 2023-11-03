@@ -8,14 +8,9 @@ user --name=vagrant --password=vagrant --plaintext
 
 zerombr
 clearpart --all --initlabel
-part /boot --fstype="xfs" --size=1024 --label=boot
-part pv.01 --fstype="lvmpv" --grow
-volgroup rocky --pesize=4096 pv.01
-logvol swap --fstype="swap" --size=2048 --name=swap --vgname=rocky
-logvol / --fstype="xfs" --percent=100 --label="root" --name=root --vgname=rocky
+autopart --type=lvm --nohome
 
 firewall --enabled --service=ssh
-authconfig --enableshadow --passalgo=sha512
 network --device eth0 --bootproto dhcp --noipv6 --hostname=rocky9.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
 

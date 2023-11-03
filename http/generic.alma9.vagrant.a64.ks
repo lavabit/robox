@@ -7,16 +7,20 @@ rootpw --plaintext vagrant
 user --name=vagrant --password=vagrant --plaintext
 
 zerombr
+clearpart --all --initlabel
 autopart --type=lvm --nohome
 
 firewall --enabled --service=ssh
-network --device eth0 --bootproto dhcp --noipv6 --hostname=rhel9.localdomain
+network --device eth0 --bootproto dhcp --noipv6 --hostname=alma9.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
+
+# repo --name=BaseOS
+url --url=https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/aarch64/os/
 
 %packages
 @core
-authconfig
 sudo
+authconfig
 -fprintd-pam
 -intltool
 -iwl*-firmware
@@ -34,20 +38,11 @@ sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/vagrant
 chmod 0440 /etc/sudoers.d/vagrant
 
-# Duplicate the install media so the DVD can be ejected.
-mount /dev/cdrom /mnt/
-cp --recursive /mnt/BaseOS/ /media/ && cp --recursive /mnt/AppStream/ /media/
-
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
 if [[ $VIRT == "Microsoft HyperV" || $VIRT == "Microsoft Hyper-V" ]]; then
-
-  HYPERV_RPMS=`find /mnt/AppStream/Packages/ -iname "hyperv*rpm" -or -iname "cifs-utils*rpm"`
-
-  dnf --assumeyes install $HYPERV_RPMS
-
-  systemctl enable hypervkvpd.service
-  systemctl enable hypervvssd.service
-
+    dnf --assumeyes install hyperv-daemons cifs-utils
+    systemctl enable hypervkvpd.service
+    systemctl enable hypervvssd.service
 fi
 
 sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
