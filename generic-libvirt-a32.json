@@ -97,7 +97,7 @@
         "setparams 'Install'<enter><wait>",
         "set background_color=black<enter><wait>",
         "linux /install.ahf/vmlinuz --- auto=true priority=critical ",
-        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.cfg ",
+        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.arm.cfg ",
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0<enter><wait>",
         "initrd /install.ahf/initrd.gz<enter><wait>",
         "boot<enter><wait>"
@@ -109,7 +109,7 @@
         ],
         [
           "-device",
-          "VGA"
+          "ramfb"
         ],
         [
           "-machine",
@@ -129,7 +129,7 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off"
+          "order=cd,strict=off,menu=off"
         ],
         [
           "-device",

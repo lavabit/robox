@@ -371,8 +371,7 @@
       "vm_name": "generic-gentoo-libvirt-a64",
       "output_directory": "output/generic-gentoo-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "machine_type": "virt",
-      "accelerator": "tcg",
+      "cpu_model": "max",
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -410,7 +409,7 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off"
+          "order=cd,strict=off,menu=off"
         ],
         [
           "-device",
@@ -422,7 +421,7 @@
         ]
       ],
       "efi_boot": true,
-      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
@@ -452,8 +451,7 @@
       "vm_name": "generic-openbsd7-libvirt-a64",
       "output_directory": "output/generic-openbsd7-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "machine_type": "virt",
-      "accelerator": "tcg",
+      "cpu_model": "max",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -491,7 +489,7 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off"
+          "order=cd,strict=off,menu=off"
         ],
         [
           "-device",
@@ -503,7 +501,7 @@
         ]
       ],
       "efi_boot": true,
-      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
@@ -533,8 +531,7 @@
       "vm_name": "generic-ubuntu2204-libvirt-a64",
       "output_directory": "output/generic-ubuntu2204-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "machine_type": "virt",
-      "accelerator": "tcg",
+      "cpu_model": "max",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -582,7 +579,7 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off"
+          "order=cd,strict=off,menu=off"
         ],
         [
           "-device",
@@ -594,7 +591,7 @@
         ]
       ],
       "efi_boot": true,
-      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
@@ -624,8 +621,7 @@
       "vm_name": "generic-rhel9-libvirt-a64",
       "output_directory": "output/generic-rhel9-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "machine_type": "virt",
-      "accelerator": "tcg",
+      "cpu_model": "max",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -658,7 +654,7 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off"
+          "order=cd,strict=off,menu=off"
         ],
         [
           "-device",
@@ -670,7 +666,7 @@
         ]
       ],
       "efi_boot": true,
-      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
@@ -706,8 +702,8 @@
       "boot_command": [
         "<tab><wait10><tab><wait10><tab><wait10><tab>c<wait><enter>",
         "linux /images/pxeboot/vmlinuz ",
-        "inst.stage2=hd:LABEL=AlmaLinux-9-2-aarch64-dvd  ",
-        "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.a64.ks ",
+        "inst.stage2=hd:LABEL=AlmaLinux-9-2-aarch64-dvd ",
+        "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.arm.ks ",
         "inst.text net.ifnames=0 biosdevname=0 vga=792<enter><wait10>",
         "initrd /images/pxeboot/initrd.img<enter><wait10>",
         "boot<enter><wait>"
@@ -739,7 +735,7 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off"
+          "order=cd,strict=off,menu=off"
         ],
         [
           "-device",
@@ -751,7 +747,7 @@
         ]
       ],
       "efi_boot": true,
-      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
@@ -781,27 +777,15 @@
       "vm_name": "generic-fedora38-libvirt-a64",
       "output_directory": "output/generic-fedora38-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "machine_type": "virt",
-      "accelerator": "tcg",
+      "cpu_model": "max",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "c<wait>",
-        "insmod all_video<enter><wait>",
-        "set gfxpayload=keep<enter><wait>",
-        "insmod increment<enter><wait>",
-        "insmod xfs<enter><wait>",
-        "insmod diskfilter<enter><wait>",
-        "insmod mdraid1x<enter><wait>",
-        "insmod fat<enter><wait>",
-        "insmod blscfg<enter><wait>",
-        "insmod gzio<enter><wait>",
-        "insmod part_gpt<enter><wait>",
-        "insmod ext2<enter><wait>",
-        "insmod chain<enter><wait>",
-        "search --no-floppy --set=root -l 'Fedora-S-dvd-x86_64-38'<enter><wait>",
-        "linux /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-38 rd.live.check ",
-        "net.ifnames=0 inst.text inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora38.vagrant.ks<enter><wait>",
+       "boot_command": [
+        "<tab><wait10><tab><wait10><tab><wait10><tab>c<wait><enter>",
+        "linux /images/pxeboot/vmlinuz ",
+        "inst.stage2=hd:LABEL=Fedora-S-dvd-aarch64k ",
+        "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora38.vagrant.ks ",
+        "inst.text net.ifnames=0 biosdevname=0 vga=792<enter><wait10>",
         "initrd /images/pxeboot/initrd.img<enter><wait10>",
         "boot<enter><wait>"
       ],
@@ -832,7 +816,7 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off"
+          "order=cd,strict=off,menu=off"
         ],
         [
           "-device",
@@ -844,7 +828,7 @@
         ]
       ],
       "efi_boot": true,
-      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
@@ -874,8 +858,7 @@
       "vm_name": "generic-debian12-libvirt-a64",
       "output_directory": "output/generic-debian12-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "machine_type": "virt",
-      "accelerator": "tcg",
+      "cpu_model": "max",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -888,10 +871,14 @@
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "/install.amd/vmlinuz auto=true priority=critical vga=788 initrd=/install.amd/gtk/initrd.gz --- quiet ",
-        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.cfg ",
-        "<enter>"
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>c<wait>",
+        "setparams 'Install'<enter><wait>",
+        "set background_color=black<enter><wait>",
+        "linux /install.a64/vmlinuz --- auto=true priority=critical ",
+        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.arm.cfg ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0<enter><wait>",
+        "initrd /install.a64/initrd.gz<enter><wait>",
+        "boot<enter><wait>"
       ],
       "qemuargs": [
         [
@@ -920,7 +907,7 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off"
+          "order=cd,strict=off,menu=off"
         ],
         [
           "-device",
@@ -932,7 +919,7 @@
         ]
       ],
       "efi_boot": true,
-      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
@@ -1007,7 +994,7 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off"
+          "order=cd,strict=off,menu=off"
         ],
         [
           "-device",
@@ -1019,7 +1006,7 @@
         ]
       ],
       "efi_boot": true,
-      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
@@ -1049,8 +1036,7 @@
       "vm_name": "generic-freebsd14-libvirt-a64",
       "output_directory": "output/generic-freebsd14-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "machine_type": "virt",
-      "accelerator": "tcg",
+      "cpu_model": "max",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1099,7 +1085,7 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off"
+          "order=cd,strict=off,menu=off"
         ],
         [
           "-device",
@@ -1111,7 +1097,7 @@
         ]
       ],
       "efi_boot": true,
-      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
