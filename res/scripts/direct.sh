@@ -341,7 +341,7 @@ function upload_box() {
   fi
 
   # Checks whether the version exists already, and creates it if necessary.
-  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request HEAD --fail \
+  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request HEAD --head --fail \
     --output /dev/null --write-out "%{http_code}" \
     "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/version/$VERSION"`" != "200" ] || \
   [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request GET \
@@ -360,7 +360,7 @@ function upload_box() {
   }
 
  # This checks whether provider/arch exists for this box, and if so, deletes it. 
-  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request HEAD --fail \
+  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request HEAD --head --fail \
     --output /dev/null --write-out "%{http_code}" \
     "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH"`" == "200" ] || \
   [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request GET \
