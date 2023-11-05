@@ -350,7 +350,7 @@ function upload_box() {
   { ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request POST --fail \
      --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     --header "Content-Type: application/json" \
-    --data "{\"version\":{\"version\":\"4.3.3\",\"description\":\"A build environment for use in cross platform development.\"}}" \
+    --data "{\"version\":{\"version\":\"${VERSION}\",\"description\":\"A build environment for use in cross platform development.\"}}" \
     "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/versions" && sleep 4 || \
     { 
       printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION  / RECURSION = $RECURSION ]${T_RESET}\n" >&2
