@@ -168,6 +168,7 @@ fi
 
 FILENAME="$(basename "$1")"
 FILEPATH="$(realpath "$1")"
+VAGRANTPATH="app.vagrantup.com"
 
 ORG="$(echo "$FILENAME" | sed "s/\([a-z]*\)[\-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\1/g")"
 BOX="$(echo "$FILENAME" | sed "s/\([a-z]*\)[-]*\([a-z0-9-]*\)-\(hyperv\|vmware\|libvirt\|docker\|parallels\|virtualbox\)-\([a-z0-9-]*\)-\([0-9\.]*\).box/\2/g")"
@@ -332,6 +333,7 @@ function upload_box() {
   UPLOAD_FILE_WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n%{onerror}ERROR: %{errormsg}\n"
   UPLOAD_CALLBACK_WRITEOUT="%{onerror}FILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\nERROR: %{errormsg}\n"
   
+  # Detect older versions of cURL and avoid using the unsupported write out macros.
   if [ "$(${CURL} -so /dev/null --write-out "%{onerror}" https://lavabit.com 2>&1)" ] || \
    [ "$(${CURL} -so /dev/null --write-out "%{errormsg}" https://lavabit.com 2>&1)" ]; then
     UPLOAD_FILE_WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n"
@@ -339,18 +341,17 @@ function upload_box() {
   fi
 
   # Checks whether the version exists already, and creates it if necessary.
-  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request GET --fail \
-    --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" --write-out "%{http_code}" \
-    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION"`" != "200" ] || \
+  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request HEAD --fail \
+    --output /dev/null --write-out "%{http_code}" \
+    "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/version/$VERSION"`" != "200" ] || \
   [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request GET \
-    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION" | \
+    "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/version/$VERSION" | \
     jq -e -r ' (.version)? // (.success)? '`" != "$VERSION" ] && \
   { ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request POST --fail \
      --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     --header "Content-Type: application/json" \
     --data "{\"version\":{\"version\":\"4.3.3\",\"description\":\"A build environment for use in cross platform development.\"}}" \
-    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/versions" && sleep 4 || \
+    "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/versions" && sleep 4 || \
     { 
       printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION  / RECURSION = $RECURSION ]${T_RESET}\n" >&2
       sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
@@ -359,16 +360,15 @@ function upload_box() {
   }
 
  # This checks whether provider/arch exists for this box, and if so, deletes it. 
-  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request GET --fail \
-    --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" --write-out "%{http_code}" \
-    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH"`" == "200" ] || \
+  [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request HEAD --fail \
+    --output /dev/null --write-out "%{http_code}" \
+    "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH"`" == "200" ] || \
   [ "`${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request GET \
-    --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH" | \
+    "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH" | \
     jq -e -r ' (.name)? // (.success)? '`" != "false" ] && \
   { retry ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request DELETE --fail \
   --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}/${ARCH}" && sleep 4 || \
+  "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}/${ARCH}" && sleep 4 || \
     { 
       printf "${T_BYEL}  Provider delete failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n" >&2
       sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
@@ -381,7 +381,7 @@ function upload_box() {
     --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
     --header "Content-Type: application/json" \
     --data "{\"provider\":{ \"name\":\"$PROVIDER\",\"checksum\":\"$HASH\",\"architecture\":\"$ARCH\",\"default_architecture\":\"$DEFAULT_ARCH\",\"checksum_type\":\"SHA256\"}}" \
-    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/providers" && sleep 4 || \
+    "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/version/$VERSION/providers" && sleep 4 || \
   { 
     printf "${T_BYEL}  Provider creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n" >&2
     sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
@@ -391,7 +391,7 @@ function upload_box() {
   # Request a direct upload URL.
   UPLOAD_RESPONSE=$( ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 -request GET --fail \
     --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-    "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH/upload/direct" )
+    "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/version/$VERSION/provider/$PROVIDER/$ARCH/upload/direct" )
 
   UPLOAD_PATH="$(echo "$UPLOAD_RESPONSE" | jq -r .upload_path)"
   UPLOAD_CALLBACK="$(echo "$UPLOAD_RESPONSE" | jq -r .callback)"
@@ -402,7 +402,7 @@ function upload_box() {
     exit $?
   fi
 
-  # If we move to quickly, the cloud will sometimes return an error. Waiting seems to reduce the error/failure rate.
+  # If we move too quickly, the cloud will sometimes return an error. Waiting seems to reduce the error/failure rate.
   sleep 4
 
   retry ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 7200 --request PUT --fail \
@@ -444,29 +444,29 @@ function upload_box() {
 upload_box
 
 if [ "$ORG" == "generic" ] && [ "$ARCH" == "amd64" ]; then
-  ORG="generic-x64"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-x64"
   upload_box
 elif [ "$ORG" == "generic" ] && [ "$ARCH" == "i386" ]; then
-  ORG="generic-x32"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-x32"
   upload_box
-elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm64" ]; then
-  ORG="generic-a64"
-  upload_box
-elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm" ]; then
-  ORG="generic-a32"
-  upload_box
+# elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm64" ]; then
+#   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-a64"
+#   upload_box
+# elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm" ]; then
+#   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-a32"
+#   upload_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "amd64" ]; then
-  ORG="roboxes-x64"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-x64"
   upload_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "i386" ]; then
-  ORG="roboxes-x32"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-x32"
   upload_box
-elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm64" ]; then
-  ORG="roboxes-a64"
-  upload_box
-elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm" ]; then
-  ORG="roboxes-a32"
-  upload_box
+# elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm64" ]; then
+#   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-a64"
+#   upload_box
+# elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm" ]; then
+#   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-a32"
+#   upload_box
 fi
 
 

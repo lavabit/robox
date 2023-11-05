@@ -1,21 +1,34 @@
 #!/bin/bash
 
 # Handle self referencing, sourcing etc.
-if [[ $0 != $BASH_SOURCE ]]; then
-  export CMD=$BASH_SOURCE
+if [[ $0 != "${BASH_SOURCE[0]}" ]]; then
+  export CMD="${BASH_SOURCE[0]}"
 else
   export CMD=$0
 fi
 
 # Ensure a consistent working directory so relative paths work.
-pushd `dirname $CMD` > /dev/null
-BASE=`pwd -P`
+pushd "$(dirname "$CMD")" > /dev/null
+BASE=$(pwd -P)
 popd > /dev/null
 
+if [ $# != 3 ] && [ $# != 5 ]; then
+  printf "  Delete an entire box version.\n  Usage:  $0 ORG BOX VERSION\n\n"
+  printf "  Delete a specific box provider.\n  Usage:  $0 ORG BOX PROVIDER ARCH VERSION\n\n"
+  exit 1
+fi
+
+if [ $# == 3 ]; then
 ORG="$1"
-NAME="$2"
+BOX="$2"
+VERSION="$3"
+elif [ $# == 5 ]; then
+ORG="$1"
+BOX="$2"
 PROVIDER="$3"
-VERSION="$4"
+ARCH="$4"
+VERSION="$5"
+fi
 
 if [ -f /opt/vagrant/embedded/bin/curl ]; then
   export CURL="/opt/vagrant/embedded/bin/curl"
@@ -56,34 +69,16 @@ if [ -z ${VAGRANT_CLOUD_TOKEN} ]; then
   exit 2
 fi
 
-printf "\n\n"
+printf "\n"
 
-# Assume the position, while you create the version.
-#${CURL} \
-#  --tlsv1.2 \
-#  --silent \
-#  --retry 16 \
-#  --retry-delay 60 \
-#  --header "Content-Type: application/json" \
-#  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-#  "https://app.vagrantup.com/api/v1/box/$ORG/$NAME/versions" \
-#  --data "
-#    {
-#      \"version\": {
-#        \"version\": \"$VERSION\",
-#        \"description\": \"A build environment for use in cross platform development.\"
-#      }
-#    }
-#  "
-#printf "\n\n"
-
-# Delete the existing provider, if it exists already.
-${CURL} \
-  --silent \
-  --retry 16 \
-  --retry-delay 60 \
+if [ $# == 5 ]; then
+  ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request DELETE --fail \
   --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
-  --request DELETE \
-  https://app.vagrantup.com/api/v1/box/$ORG/$NAME/version/$VERSION
+  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}/${ARCH}"
+else
+  ${CURL} --tlsv1.2 --silent --retry 4 --retry-delay 2 --max-time 180 --request DELETE --fail \
+  --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
+  "https://app.vagrantup.com/api/v2/box/$ORG/$BOX/version/$VERSION"
+fi
 
-printf "\n\n"
+printf "\n"
