@@ -782,6 +782,7 @@
       "boot_keygroup_interval": "1s",
        "boot_command": [
         "<tab><wait10><tab><wait10><tab><wait10><tab>c<wait><enter>",
+        "insmod all_video<enter><wait>",
         "linux /images/pxeboot/vmlinuz ",
         "inst.stage2=hd:LABEL=Fedora-S-dvd-aarch64k ",
         "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora38.vagrant.ks ",
