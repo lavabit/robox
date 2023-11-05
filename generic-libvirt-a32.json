@@ -109,7 +109,7 @@
         ],
         [
           "-machine",
-          "virt,gic-version=2,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on"
+          "virt,gic-version=2,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
           "-object",
@@ -130,6 +130,14 @@
         [
           "-device",
           "driver=virtio-keyboard-pci"
+        ],
+        [
+          "-device",
+          "qemu-xhci"
+        ],
+        [
+          "-device", 
+          "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
       "efi_boot": true,

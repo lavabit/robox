@@ -79,8 +79,8 @@
     {
       "name": "freebsd14-a64",
       "output_directory": "output/freebsd14-a64",
-      "iso_url": "https://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/14.0/FreeBSD-14.0-RC3-arm64-aarch64-disc1.iso",
-      "iso_checksum": "sha256:a3529368ea3ffb060ea5e206c1113ef948c645a7952399b94e7f4afb941ac42b",
+      "iso_url": "https://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/14.0/FreeBSD-14.0-RC4-arm64-aarch64-disc1.iso",
+      "iso_checksum": "sha256:41a9163f4adaec848319f914f23879c608fe73ef3d498f1b402494d594e86fa8",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
