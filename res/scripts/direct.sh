@@ -334,8 +334,8 @@ function upload_box() {
   UPLOAD_CALLBACK_WRITEOUT="%{onerror}FILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\nERROR: %{errormsg}\n"
   
   # Detect older versions of cURL and avoid using the unsupported write out macros.
-  if [ "$(${CURL} -so /dev/null --write-out "%{onerror}" https://lavabit.com 2>&1)" ] || \
-   [ "$(${CURL} -so /dev/null --write-out "%{errormsg}" https://lavabit.com 2>&1)" ]; then
+  if [ "$(${CURL} -so /dev/null --write-out "%{onerror}" https://mirrors.lavabit.com 2>&1)" ] || \
+   [ "$(${CURL} -so /dev/null --write-out "%{errormsg}" https://mirrors.lavabit.com 2>&1)" ]; then
     UPLOAD_FILE_WRITEOUT="\nFILE: $FILENAME\nREPO: $ORG/$BOX\nCODE: %{http_code}\nIP: %{remote_ip}\nBYTES: %{size_upload}\nRATE: %{speed_upload}\nTOTAL TIME: %{time_total}\n"
     UPLOAD_CALLBACK_WRITEOUT=""
   fi
