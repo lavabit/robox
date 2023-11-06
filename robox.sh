@@ -1179,22 +1179,70 @@ function iso() {
   return 0
 }
 
-function cache {
+function cache() {
 
-  unset PACKER_LOG ; unset LD_PRELOAD ; unset LD_LIBRARY_PATH ;
+  if [ ! -z ${CACHE_JOBS+x} ]; then CACHE_JOBS=PACKER_MAX_PROCS ; fi
 
-  if [[ $OS == "Windows_NT" ]]; then
-    packer.exe build -on-error=cleanup -color=false -parallel-builds=$PACKER_MAX_PROCS -except= packer-cache-x64.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+  unset PACKER_LOG ; unset LD_PRELOAD ; unset LD_LIBRARY_PATH ; unset PACKER_MAX_PROCS ; unset GOMAXPROCS ; 
+
+  if [ "$1" == "x64" ]; then
+    ( sudo renice -n +19 $BASHPID &>/dev/null || echo '' &>/dev/null ; sudo ionice -c 3 $BASHPID &>/dev/null || echo '' &>/dev/null ; 
+      cat "$BASE/packer-cache-x64.json" | jq -r '.builders[] | .name | @text'| sort -V | parallel --ungroup -j CACHE_JOBS --xapply \
+      packer build -only="{1}" "$BASE/packer-cache-x64.json" 2>&1 | \
+      grep --line-buffered -oE ".*: Trying.*| \=\>.*|.*: Download failed.*|.*: error downloading.*|^Build .*error.*" | \
+      grep --line-buffered -Ev 'checksum=sha25|Error creating disk' | sed --unbuffered 's/==/ =/g' | sed --unbuffered 's/vmware\-iso\.//g' ; tput sgr0 )
+      return 0
+  elif [ "$1" == "x32" ]; then
+    ( sudo renice -n +19 $BASHPID &>/dev/null || echo '' &>/dev/null ; sudo ionice -c 3 $BASHPID &>/dev/null || echo '' &>/dev/null ; 
+      cat "$BASE/packer-cache-x32.json" | jq -r '.builders[] | .name | @text'| sort -V | parallel --ungroup -j CACHE_JOBS --xapply \
+      packer build -only="{1}" "$BASE/packer-cache-x32.json" 2>&1 | \
+      grep --line-buffered -oE ".*: Trying.*| \=\>.*|.*: Download failed.*|.*: error downloading.*|^Build .*error.*" | \
+      grep --line-buffered -Ev 'checksum=sha25|Error creating disk' | sed --unbuffered 's/==/ =/g' | sed --unbuffered 's/vmware\-iso\.//g' ; tput sgr0 )
+      return 0
+  elif [ "$1" == "a64" ]; then
+    ( sudo renice -n +19 $BASHPID &>/dev/null || echo '' &>/dev/null ; sudo ionice -c 3 $BASHPID &>/dev/null || echo '' &>/dev/null ; 
+      cat "$BASE/packer-cache-a64.json" | jq -r '.builders[] | .name | @text'| sort -V | parallel --ungroup -j CACHE_JOBS --xapply \
+      packer build -only="{1}" "$BASE/packer-cache-a64.json" 2>&1 | \
+      grep --line-buffered -oE ".*: Trying.*| \=\>.*|.*: Download failed.*|.*: error downloading.*|^Build .*error.*" | \
+      grep --line-buffered -Ev 'checksum=sha25|Error creating disk' | sed --unbuffered 's/==/ =/g' | sed --unbuffered 's/vmware\-iso\.//g' ; tput sgr0 )
+      return 0
+  elif [ "$1" == "a32" ]; then
+    ( sudo renice -n +19 $BASHPID &>/dev/null || echo '' &>/dev/null ; sudo ionice -c 3 $BASHPID &>/dev/null || echo '' &>/dev/null ; 
+      cat "$BASE/packer-cache-x32.json" | jq -r '.builders[] | .name | @text'| sort -V | parallel --ungroup -j CACHE_JOBS --xapply \
+      packer build -only="{1}" "$BASE/packer-cache-a32.json" 2>&1 | \
+      grep --line-buffered -oE ".*: Trying.*| \=\>.*|.*: Download failed.*|.*: error downloading.*|^Build .*error.*" | \
+      grep --line-buffered -Ev 'checksum=sha25|Error creating disk' | sed --unbuffered 's/==/ =/g' | sed --unbuffered 's/vmware\-iso\.//g' ; tput sgr0 )
+      return 0
+  elif [ "$1" == "p64" ]; then
+    ( sudo renice -n +19 $BASHPID &>/dev/null || echo '' &>/dev/null ; sudo ionice -c 3 $BASHPID &>/dev/null || echo '' &>/dev/null ; 
+      cat "$BASE/packer-cache-p64.json" | jq -r '.builders[] | .name | @text'| sort -V | parallel --ungroup -j CACHE_JOBS --xapply \
+      packer build -only="{1}" "$BASE/packer-cache-p64.json" 2>&1 | \
+      grep --line-buffered -oE ".*: Trying.*| \=\>.*|.*: Download failed.*|.*: error downloading.*|^Build .*error.*" | \
+      grep --line-buffered -Ev 'checksum=sha25|Error creating disk' | sed --unbuffered 's/==/ =/g' | sed --unbuffered 's/vmware\-iso\.//g' ; tput sgr0 )
+      return 0
+  elif [ "$1" == "m64" ]; then
+    ( sudo renice -n +19 $BASHPID &>/dev/null || echo '' &>/dev/null ; sudo ionice -c 3 $BASHPID &>/dev/null || echo '' &>/dev/null ; 
+      cat "$BASE/packer-cache-m64.json" | jq -r '.builders[] | .name | @text'| sort -V | parallel --ungroup -j CACHE_JOBS --xapply \
+      packer build -only="{1}" "$BASE/packer-cache-m64.json" 2>&1 | \
+      grep --line-buffered -oE ".*: Trying.*| \=\>.*|.*: Download failed.*|.*: error downloading.*|^Build .*error.*" | \
+      grep --line-buffered -Ev 'checksum=sha25|Error creating disk' | sed --unbuffered 's/==/ =/g' | sed --unbuffered 's/vmware\-iso\.//g' ; tput sgr0 )
+      return 0
   else
-    packer build -on-error=cleanup -color=false -parallel-builds=$PACKER_MAX_PROCS -except= packer-cache-x64.json 2>&1 | tr -cs [:print:] [\\n*] | grep --line-buffered --color=none -E "Download progress|Downloading or copying|Found already downloaded|Transferred:|[0-9]*[[:space:]]*items:"
+    cache x64 && \
+    cache x32 && \
+    cache a64 && \
+    cache a32 && \
+    cache p64 && \
+    cache m64
   fi
 
-  if [[ $? != 0 ]]; then
-    tput setaf 1; tput bold; printf "\n\nDistro disc image download aborted...\n\n"; tput sgr0
-  else
+  # if [[ $? != 0 ]]; then
+    # tput setaf 1; tput bold; printf "\n\nDistro disc image download aborted...\n\n"; tput sgr0
+  # else
     tput setaf 2; tput bold; printf "\n\nDistro disc images have finished downloading...\n\n"; tput sgr0
-  fi
+  # fi
 
+  return 0
 }
 
 # Let us know when URLs become valid.
@@ -2765,7 +2813,6 @@ function all() {
 # The stage functions.
 if [[ $1 == "start" ]]; then start
 elif [[ $1 == "links" ]]; then links
-elif [[ $1 == "cache" ]]; then cache
 elif [[ $1 == "validate" ]]; then validate
 elif [[ $1 == "build" ]]; then builder
 elif [[ $1 == "cleanup" ]]; then cleanup
@@ -2803,6 +2850,7 @@ elif [[ $1 == "available" ]]; then available
 
 # Grab and update files automatically.
 elif [[ $1 == "iso" ]]; then iso $2
+elif [[ $1 == "cache" ]]; then cache $2
 elif [[ $1 == "grab" ]]; then grab $2 $3 $4 $5
 
 # The group builders.
