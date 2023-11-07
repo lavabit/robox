@@ -3,6 +3,21 @@
     {
       "name": "debian12-m64",
       "output_directory": "output/debian12-m64",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/mips64el/iso-dvd/debian-12.2.0-mips64el-DVD-1.iso",
+      "iso_checksum": "sha256:a10ebca630b9fde1759f7312953e09b883d8808a4f7888042acf853da8fb08b9",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
+      "name": "debian12-cd-m64",
+      "output_directory": "output/debian12-cd-m64",
       "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/mips64el/iso-cd/debian-12.2.0-mips64el-netinst.iso",
       "iso_checksum": "sha256:e78c22d010a4fc8b36b683b6b55fbc23730dc1a7138cbce9578327b8b96bf564",
       "boot_wait": "5s",

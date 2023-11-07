@@ -1797,7 +1797,6 @@
         "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/magma.freebsd11.vagrant.cfg<enter><wait10>",
         "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
-
       ],
       "disk_size": 131072,
       "memory": 2048,

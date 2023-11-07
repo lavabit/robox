@@ -61,7 +61,8 @@
       "vm_name": "generic-debian12-libvirt-p64",
       "output_directory": "output/generic-debian12-libvirt-p64",
       "qemu_binary": "qemu-system-ppc64",
-      "boot_wait": "10s",
+      "cpu_model": "power10",
+      "boot_wait": "1000s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -73,10 +74,85 @@
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "/install.ppc64el/vmlinuz auto=true priority=critical vga=788 initrd=/install.ppc64el/gtk/initrd.gz --- quiet ",
-        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.cfg ",
-        "<enter>"
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>c<wait><enter><wait>",
+        "setparams \"Automated install\"<enter><wait>",
+        "set options=\"auto=true priority=low console=tty0 console=ttyS0,115200 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.arm.cfg ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0\"<enter><wait5>",
+        "boot_one<enter><wait5>",
+        "boot<enter><wait>"
+      ],
+      "qemuargs": [
+        [
+          "-device",
+          "{'driver':'bochs-display','id':'video0','multifunction':true,'addr':'0x1'}"
+        ],
+        [
+          "-boot",
+          "strict=off,order=cd"
+        ],
+        [
+          "-display",
+          "gtk"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-vga",
+          "none"
+        ],
+        [
+          "-serial",
+          "ptr"
+        ],
+        [
+          "-g",
+          "1280x720x24"
+        ],
+        [
+          "-machine",
+          "pseries,usb=on,dump-guest-core=off,cap-ccf-assist=false,cap-ibs=broken,cap-sbbc=broken,cap-cfpc=broken,usb=on"
+        ],
+        [
+          "-chardev",
+          "socket,id=charmonitor,server=on,wait=off"
+        ],
+        [
+          "-mon",
+          "chardev=charmonitor,id=monitor,mode=control"
+        ],
+        [
+          "-device",
+          "{'driver':'qemu-xhci','p2':15,'p3':15,'id':'usb','bus':'pci.0'}"
+        ],
+        [
+          "-device",
+          "{'driver':'virtio-scsi-pci','id':'scsi0','bus':'pci.0'}"
+        ],
+        [
+          "-device",
+          "{'driver':'virtio-serial-pci','id':'virtio-serial0','bus':'pci.0'}"
+        ],
+        [
+          "-chardev",
+          "pty,id=charserial1"
+        ],
+        [
+          "-device",
+          "{'driver':'spapr-vty','chardev':'charserial1','id':'serial1'}"
+        ],
+        [
+          "-chardev",
+          "socket,id=charchannel1,server=on,wait=off"
+        ],
+        [
+          "-device",
+          "{'driver':'virtserialport','bus':'virtio-serial0.0','nr':1,'chardev':'charchannel1','id':'channel1','name':'org.qemu.guest_agent.0'}"
+        ],
+        [
+          "-device",
+          "{'driver':'virtio-keyboard','bus':'pci.0'}"
+        ]
       ],
       "format": "qcow2",
       "disk_size": "131072",
@@ -86,13 +162,14 @@
       "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio-scsi",
+      "cdrom_interface": "virtio-scsi",
       "net_device": "virtio-net",
       "cpus": 2,
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/ppc64el/iso-cd/debian-12.2.0-ppc64el-netinst.iso",
-      "iso_checksum": "sha256:80cff556b0d26caa5e3f3069d084e3f0cf9e94830ce69c4eb20a5e535e858ead",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/ppc64el/iso-dvd/debian-12.2.0-ppc64el-DVD-1.iso",
+      "iso_checksum": "sha256:fd9e05205dfe4560f0fff73b451d6fd69feeb3ea6d28d3bfda805b9a8f3da443",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

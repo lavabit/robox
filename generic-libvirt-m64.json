@@ -61,6 +61,11 @@
       "vm_name": "generic-debian12-libvirt-m64",
       "output_directory": "output/generic-debian12-libvirt-m64",
       "qemu_binary": "qemu-system-mips64el",
+      
+      "machine_type": "malta",
+      "cpu_model": "mips64dspr2",
+      "accelerator": "tcg",
+
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -91,8 +96,8 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/mips64el/iso-cd/debian-12.2.0-mips64el-netinst.iso",
-      "iso_checksum": "sha256:e78c22d010a4fc8b36b683b6b55fbc23730dc1a7138cbce9578327b8b96bf564",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/mips64el/iso-dvd/debian-12.2.0-mips64el-DVD-1.iso",
+      "iso_checksum": "sha256:a10ebca630b9fde1759f7312953e09b883d8808a4f7888042acf853da8fb08b9",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,

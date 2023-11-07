@@ -872,7 +872,7 @@
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>c<wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>c<wait><enter><wait>",
         "setparams 'Install'<enter><wait>",
         "set background_color=black<enter><wait>",
         "linux /install.a64/vmlinuz --- auto=true priority=critical ",

@@ -1,174 +1,172 @@
 {
-    "variables": {
-        "box_version": "{{env `VERSION`}}"
+  "variables": {
+    "box_version": "{{env `VERSION`}}"
+  },
+  "provisioners": [
+    {
+      "scripts": [
+        "scripts/ubuntu1604/apt.sh",
+        "scripts/ubuntu1604/network.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "lineage-virtualbox-x64"
+      ]
     },
-    "provisioners": [
-        {
-            "scripts": [
-                "scripts/ubuntu1604/apt.sh",
-                "scripts/ubuntu1604/network.sh"
-            ],
-            "type": "shell",
-            "timeout": "120m",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-virtualbox-x64"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/ubuntu1604/limits.sh",
-                "scripts/ubuntu1604/floppy.sh",
-                "scripts/ubuntu1604/vagrant.sh",
-                "scripts/ubuntu1604/profile.sh",
-                "scripts/ubuntu1604/motd.sh",
-                "scripts/ubuntu1604/fixtty.sh",
-                "scripts/ubuntu1604/virtualbox.sh",
-                "scripts/ubuntu1604/parallels.sh",
-                "scripts/ubuntu1604/vmware.sh",
-                "scripts/ubuntu1604/qemu.sh",
-                "scripts/ubuntu1604/cleanup.sh"
-            ],
-            "type": "shell",
-            "timeout": "120m",
-            "pause_before": "120s",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-virtualbox-x64"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/ubuntu1604/lineage.sh"
-            ],
-            "type": "shell",
-            "timeout": "120m",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "lineage-virtualbox-x64"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/common/keys.sh",
-                "scripts/common/machine.sh",
-                "scripts/common/leases.sh",
-                "scripts/common/localtime.sh",
-                "scripts/common/zerodisk.sh",
-                "scripts/common/lockout.sh"
-            ],
-            "type": "shell",
-            "timeout": "120m",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "except": [
-
-            ]
-        }
-    ],
-    "builders": [
-        {
-            "type": "virtualbox-iso",
-            "name": "lineage-virtualbox-x64",
-            "vm_name": "lineage-virtualbox-x64",
-            "output_directory": "output/lineage-virtualbox-x64",
-            "boot_wait": "20s",
-            "boot_keygroup_interval": "1s",
-            "boot_command": [
-                "<enter><wait>",
-                "<f6><esc>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "/install/vmlinuz ",
-                "initrd=/install/initrd.gz ",
-                "auto-install/enable=true ",
-                "debconf/priority=critical ",
-                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
-                "<enter>"
-            ],
-            "disk_size": 824634,
-            "cpus": 4,
-            "memory": 2048,
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--vram",
-                    "64"
-                ]
-            ],
-            "hard_drive_interface": "sata",
-            "guest_os_type": "Ubuntu_64",
-            "http_directory": "http",
-            "headless": true,
-            "vrdp_bind_address": "127.0.0.1",
-            "vrdp_port_min": 11000,
-            "vrdp_port_max": 12000,
-            "iso_url": "https://mirrors.edge.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",
-            "iso_checksum": "sha256:b23488689e16cad7a269eb2d3a3bf725d3457ee6b0868e00c8762d3816e25848",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_handshake_attempts": 1000,
-            "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
-            "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
-            "guest_additions_path": "VBoxGuestAdditions.iso",
-            "guest_additions_mode": "upload",
-            "virtualbox_version_file": "VBoxVersion.txt"
-        }
-    ],
-    "post-processors": [
+    {
+      "scripts": [
+        "scripts/ubuntu1604/limits.sh",
+        "scripts/ubuntu1604/floppy.sh",
+        "scripts/ubuntu1604/vagrant.sh",
+        "scripts/ubuntu1604/profile.sh",
+        "scripts/ubuntu1604/motd.sh",
+        "scripts/ubuntu1604/fixtty.sh",
+        "scripts/ubuntu1604/virtualbox.sh",
+        "scripts/ubuntu1604/parallels.sh",
+        "scripts/ubuntu1604/vmware.sh",
+        "scripts/ubuntu1604/qemu.sh",
+        "scripts/ubuntu1604/cleanup.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "lineage-virtualbox-x64"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/ubuntu1604/lineage.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "lineage-virtualbox-x64"
+      ]
+    },
+    {
+      "scripts": [
+        "scripts/common/keys.sh",
+        "scripts/common/machine.sh",
+        "scripts/common/leases.sh",
+        "scripts/common/localtime.sh",
+        "scripts/common/zerodisk.sh",
+        "scripts/common/lockout.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "except": []
+    }
+  ],
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "name": "lineage-virtualbox-x64",
+      "vm_name": "lineage-virtualbox-x64",
+      "output_directory": "output/lineage-virtualbox-x64",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<enter><wait>",
+        "<f6><esc>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz ",
+        "initrd=/install/initrd.gz ",
+        "auto-install/enable=true ",
+        "debconf/priority=critical ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/lineage.ubuntu1604.vagrant.cfg<wait> ",
+        "<enter>"
+      ],
+      "disk_size": 824634,
+      "cpus": 4,
+      "memory": 2048,
+      "vboxmanage": [
         [
-            {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/lineage.rb",
-                "output": "output/{{build_name}}-{{user `box_version`}}.box",
-                "include": [
-                    "tpl/lineage/info.json"
-                ]
-            },
-            {
-                "type": "checksum",
-                "checksum_types": [
-                    "sha256"
-                ],
-                "keep_input_artifact": false,
-                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
-            }
-        ],
-        [
-          {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/lineageos.rb",
-                "output": "output/{{ replace_all \"lineage\" \"lineageos\" build_name }}-{{user `box_version`}}.box",
-                "include": [
-                    "tpl/lineage/info.json"
-                ]
-            },
-            {
-                "type": "checksum",
-                "checksum_types": [
-                    "sha256"
-                ],
-                "keep_input_artifact": false,
-                "output": "output/{{ replace_all \"lineage\" \"lineageos\" build_name }}-{{user `box_version`}}.box.sha256"
-            }
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
         ]
+      ],
+      "hard_drive_interface": "sata",
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
+      "iso_url": "https://mirrors.edge.kernel.org/ubuntu-releases/16.04.7/ubuntu-16.04.7-server-amd64.iso",
+      "iso_checksum": "sha256:b23488689e16cad7a269eb2d3a3bf725d3457ee6b0868e00c8762d3816e25848",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
+      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "virtualbox_version_file": "VBoxVersion.txt"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/lineage.rb",
+        "output": "output/{{build_name}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lineage/info.json"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/lineageos.rb",
+        "output": "output/{{ replace_all \"lineage\" \"lineageos\" build_name }}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/lineage/info.json"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/{{ replace_all \"lineage\" \"lineageos\" build_name }}-{{user `box_version`}}.box.sha256"
+      }
     ]
+  ]
 }

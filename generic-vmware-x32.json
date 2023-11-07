@@ -2,7 +2,7 @@
   "variables": {
     "box_version": "{{env `VERSION`}}"
   },
- "provisioners": [
+  "provisioners": [
     {
       "scripts": [
         "scripts/debian8/apt.sh",
