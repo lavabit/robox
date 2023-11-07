@@ -344,25 +344,36 @@ REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/3
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/34/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 35
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/35/Server/aarch64/os/repodata/repomd.xml" )
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/35/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 36
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/36/Server/aarch64/os/repodata/repomd.xml" )
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/36/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 37
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/aarch64/os/repodata/repomd.xml" )
 REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 38
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/os/repodata/repomd.xml" )
 REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 39
-FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/aarch64/os/repodata/repomd.xml" )
+REPOS+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 40
+FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/40/Server/aarch64/os/repodata/repomd.xml" )
 FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/40/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 41
+FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Server/aarch64/os/repodata/repomd.xml" )
 FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Server/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 42
+FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/42/Server/aarch64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dl.fedoraproject.org/pub/fedora/linux/releases/42/Server/x86_64/os/repodata/repomd.xml" )
 
 # FreeBSD 11
 REPOS+=( "https://mirrors.lavabit.com/freebsd-archive/FreeBSD:11:amd64/latest/packagesite.txz" )
