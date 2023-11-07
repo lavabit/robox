@@ -19,12 +19,19 @@ if [ $# != 4 ]; then
 fi
 
 # Verify the files exist.
-if [ ! -f packer-cache.json ]; then
-  tput setaf 1; printf "\n packer-cache.json file is missing.\n\n"; tput sgr0
+if [ ! -f packer-cache-x64.json ]; then
+  tput setaf 1; printf "\n packer-cache-x64.json file is missing.\n\n"; tput sgr0
   exit 1
-elif [ ! -f generic-libvirt-x32.json ]; then
-  tput setaf 1; printf "\n generic-libvirt-x32.json file is missing.\n\n"; tput sgr0
+elif [ ! -f packer-cache-x32.json ]; then  
+  tput setaf 1; printf "\n packer-cache-x32.json file is missing.\n\n"; tput sgr0
   exit 1
+elif [ ! -f packer-cache-a64.json ]; then
+  tput setaf 1; printf "\n packer-cache-a64.json file is missing.\n\n"; tput sgr0
+  exit 1
+elif [ ! -f packer-cache-a32.json ]; then  
+  tput setaf 1; printf "\n packer-cache-a64.json file is missing.\n\n"; tput sgr0
+  exit 1
+
 elif [ ! -f generic-virtualbox-x32.json ]; then
   tput setaf 1; printf "\n generic-virtualbox-x32.json file is missing.\n\n"; tput sgr0
   exit 1
@@ -34,11 +41,23 @@ elif [ ! -f generic-hyperv-x64.json ]; then
 elif [ ! -f generic-vmware-x64.json ]; then
   tput setaf 1; printf "\n generic-vmware-x64.json file is missing.\n\n"; tput sgr0
   exit 1
+elif [ ! -f generic-vmware-x32.json ]; then
+  tput setaf 1; printf "\n generic-vmware-x32.json file is missing.\n\n"; tput sgr0
+  exit 1
 elif [ ! -f generic-docker-x64.json ]; then
   tput setaf 1; printf "\n generic-docker-x64.json file is missing.\n\n"; tput sgr0
   exit 1
 elif [ ! -f generic-libvirt-x64.json ]; then
   tput setaf 1; printf "\n generic-libvirt-x64.json file is missing.\n\n"; tput sgr0
+  exit 1
+elif [ ! -f generic-libvirt-x32.json ]; then
+  tput setaf 1; printf "\n generic-libvirt-x32.json file is missing.\n\n"; tput sgr0
+  exit 1
+elif [ ! -f generic-libvirt-a64.json ]; then
+  tput setaf 1; printf "\n generic-libvirt-a64.json file is missing.\n\n"; tput sgr0
+  exit 1
+elif [ ! -f generic-libvirt-a32.json ]; then
+  tput setaf 1; printf "\n generic-libvirt-a32.json file is missing.\n\n"; tput sgr0
   exit 1
 elif [ ! -f generic-parallels-x64.json ]; then
   tput setaf 1; printf "\n generic-parallels-x64.json file is missing.\n\n"; tput sgr0
@@ -49,41 +68,71 @@ elif [ ! -f generic-virtualbox-x64.json ]; then
 fi
 
 # Ensure we aren't overwriting unsaved changes.
-if [ `git status --short packer-cache.json | wc --lines` != 0 ]; then
-  tput setaf 1; printf "\n packer-cache.json file has uncommitted changes.\n\n"; tput sgr0
+if [ `git status --short packer-cache-x64.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n packer-cache-x64.json file has uncommitted changes.\n\n"; tput sgr0
   exit 1
-elif [ `git status --short generic-libvirt-x32.json | wc --lines` != 0 ]; then
-  tput setaf 1; printf "\n generic-libvirt-x32.json file has uncommitted changes.\n\n"; tput sgr0
+elif [ `git status --short packer-cache-x32.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n packer-cache-x32.json file has uncommitted changes.\n\n"; tput sgr0
   exit 1
-elif [ `git status --short generic-virtualbox-x32.json | wc --lines` != 0 ]; then
-  tput setaf 1; printf "\n generic-virtualbox-x32.json file has uncommitted changes.\n\n"; tput sgr0
+elif [ `git status --short packer-cache-a64.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n packer-cache-a64.json file has uncommitted changes.\n\n"; tput sgr0
   exit 1
-elif [ `git status --short generic-hyperv-x64.json | wc --lines` != 0 ]; then
-  tput setaf 1; printf "\n generic-hyperv-x64.json file has uncommitted changes.\n\n"; tput sgr0
+elif [ `git status --short packer-cache-a32.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n packer-cache-a32.json file has uncommitted changes.\n\n"; tput sgr0
   exit 1
 elif [ `git status --short generic-vmware-x64.json | wc --lines` != 0 ]; then
   tput setaf 1; printf "\n generic-vmware-x64.json file has uncommitted changes.\n\n"; tput sgr0
   exit 1
-elif [ `git status --short generic-docker-x64.json | wc --lines` != 0 ]; then
-  tput setaf 1; printf "\n generic-docker-x64.json file has uncommitted changes.\n\n"; tput sgr0
+elif [ `git status --short generic-vmware-x32.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-vmware-x32.json file has uncommitted changes.\n\n"; tput sgr0
   exit 1
 elif [ `git status --short generic-libvirt-x64.json | wc --lines` != 0 ]; then
   tput setaf 1; printf "\n generic-libvirt-x64.json file has uncommitted changes.\n\n"; tput sgr0
   exit 1
-elif [ `git status --short generic-parallels-x64.json | wc --lines` != 0 ]; then
-  tput setaf 1; printf "\n generic-parallels-x64.json file has uncommitted changes.\n\n"; tput sgr0
+elif [ `git status --short generic-libvirt-x32.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-libvirt-x32.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
+elif [ `git status --short generic-libvirt-a64.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-libvirt-a64.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
+elif [ `git status --short generic-libvirt-a32.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-libvirt-a32.json file has uncommitted changes.\n\n"; tput sgr0
   exit 1
 elif [ `git status --short generic-virtualbox-x64.json | wc --lines` != 0 ]; then
   tput setaf 1; printf "\n generic-virtualbox-x64.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
+elif [ `git status --short generic-virtualbox-x32.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-virtualbox-x32.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
+elif [ `git status --short generic-docker-x64.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-docker-x64.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
+elif [ `git status --short generic-hyperv-x64.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-hyperv-x64.json file has uncommitted changes.\n\n"; tput sgr0
+  exit 1
+elif [ `git status --short generic-parallels-x64.json | wc --lines` != 0 ]; then
+  tput setaf 1; printf "\n generic-parallels-x64.json file has uncommitted changes.\n\n"; tput sgr0
   exit 1
 fi
 
 URL=`printf "$3" | sed "s/\//\\\\\\\\\//g"`
 
 # Add a cached config.
-BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" packer-cache.json | \
+BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" packer-cache-x64.json | \
   sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
-jq --argjson new1 "${BUILDERS}" '.builders |= .[:-1] + $new1 + .[-1:]' packer-cache.json > packer-cache.new.json
+jq --argjson new1 "${BUILDERS}" '.builders |= .[:-1] + $new1 + .[-1:]' packer-cache-x64.json > packer-cache-x64.new.json
+
+BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" packer-cache-x32.json | \
+  sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
+jq --argjson new1 "${BUILDERS}" '.builders |= .[:-1] + $new1 + .[-1:]' packer-cache-x32.json > packer-cache-x32.new.json
+
+BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" packer-cache-a64.json | \
+  sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
+jq --argjson new1 "${BUILDERS}" '.builders |= .[:-1] + $new1 + .[-1:]' packer-cache-a64.json > packer-cache-a64.new.json
+
+BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" packer-cache-a32.json | \
+  sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
+jq --argjson new1 "${BUILDERS}" '.builders |= .[:-1] + $new1 + .[-1:]' packer-cache-a32.json > packer-cache-a32.new.json
 
 # Add prevision/builder configs.
 BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-hyperv-x64.json | \
@@ -96,15 +145,30 @@ BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-vmwar
 PROVISIONERS=`jq "[ .provisioners[] | select( .only[0] // \"no\" | contains(\"$1\")) ]" generic-vmware-x64.json | sed "s/$1/$2/g"`
 jq --argjson new1 "${PROVISIONERS}" --argjson new2 "${BUILDERS}" '.provisioners |= .[:-1] + $new1 + .[-1:] | .builders += $new2' generic-vmware-x64.json > generic-vmware.new-x64.json
 
-BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-libvirt-x32.json | \
+BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-vmware-x32.json | \
   sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
-PROVISIONERS=`jq "[ .provisioners[] | select( .only[0] // \"no\" | contains(\"$1\")) ]" generic-libvirt-x32.json | sed "s/$1/$2/g"`
-jq --argjson new1 "${PROVISIONERS}" --argjson new2 "${BUILDERS}" '.provisioners |= .[:-1] + $new1 + .[-1:] | .builders += $new2' generic-libvirt-x32.json > generic-libvirt.new-x32.json
+PROVISIONERS=`jq "[ .provisioners[] | select( .only[0] // \"no\" | contains(\"$1\")) ]" generic-vmware-x32.json | sed "s/$1/$2/g"`
+jq --argjson new1 "${PROVISIONERS}" --argjson new2 "${BUILDERS}" '.provisioners |= .[:-1] + $new1 + .[-1:] i| .builders += $new2' generic-vmware-x32.json > generic-vmware.new-x32.json
 
 BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-libvirt-x64.json | \
   sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
 PROVISIONERS=`jq "[ .provisioners[] | select( .only[0] // \"no\" | contains(\"$1\")) ]" generic-libvirt-x64.json | sed "s/$1/$2/g"`
 jq --argjson new1 "${PROVISIONERS}" --argjson new2 "${BUILDERS}" '.provisioners |= .[:-1] + $new1 + .[-1:] | .builders += $new2' generic-libvirt-x64.json > generic-libvirt.new-x64.json
+
+BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-libvirt-x32.json | \
+  sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
+PROVISIONERS=`jq "[ .provisioners[] | select( .only[0] // \"no\" | contains(\"$1\")) ]" generic-libvirt-x32.json | sed "s/$1/$2/g"`
+jq --argjson new1 "${PROVISIONERS}" --argjson new2 "${BUILDERS}" '.provisioners |= .[:-1] + $new1 + .[-1:] | .builders += $new2' generic-libvirt-x32.json > generic-libvirt.new-x32.json
+
+BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-libvirt-a64.json | \
+  sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
+PROVISIONERS=`jq "[ .provisioners[] | select( .only[0] // \"no\" | contains(\"$1\")) ]" generic-libvirt-a64.json | sed "s/$1/$2/g"`
+jq --argjson new1 "${PROVISIONERS}" --argjson new2 "${BUILDERS}" '.provisioners |= .[:-1] + $new1 + .[-1:] | .builders += $new2' generic-libvirt-a64.json > generic-libvirt.new-a64.json
+
+BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-libvirt-a32.json | \
+  sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
+PROVISIONERS=`jq "[ .provisioners[] | select( .only[0] // \"no\" | contains(\"$1\")) ]" generic-libvirt-a32.json | sed "s/$1/$2/g"`
+jq --argjson new1 "${PROVISIONERS}" --argjson new2 "${BUILDERS}" '.provisioners |= .[:-1] + $new1 + .[-1:] | .builders += $new2' generic-libvirt-a32.json > generic-libvirt.new-a32.json
 
 BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-docker-x64.json | \
   sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
@@ -171,48 +235,74 @@ export QUAY_PASSWORD="password"
 export DOCKER_PASSWORD="password"
 
 # We only validate these files, two at a time, because the packer validation process spawns 350+ processes.
-nice -n +19 packer validate packer-cache.new.json &> /dev/null &
+nice -n +19 packer validate packer-cache-x64.new.json &> /dev/null &
 P1=$!
-nice -n +19 packer validate generic-hyperv.new-x64.json &> /dev/null &
+nice -n +19 packer validate packer-cache-x32.new.json &> /dev/null &
 P2=$!  
-nice -n +19 packer validate generic-vmware.new-x64.json &> /dev/null &
+nice -n +19 packer validate packer-cache-a64.new.json &> /dev/null &
 P3=$!
-
-wait $P1 || { tput setaf 1; printf "\n\nThe new packer-cache template validation failed.\n\n\n"; tput sgr0; exit 1; }
-wait $P2 || { tput setaf 1; printf "\n\nThe new generic-hyperv-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-wait $P3 || { tput setaf 1; printf "\n\nThe new generic-vmware-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-
-nice -n +19 packer validate generic-libvirt.new-x64.json &> /dev/null &
-P4=$! 
-nice -n +19 packer validate generic-parallels.new-x64.json &> /dev/null &
-P5=$!
-nice -n +19 packer validate generic-virtualbox.new-x64.json &> /dev/null &
+nice -n +19 packer validate packer-cache-a32.new.json &> /dev/null &
+P4=$!  
+nice -n +19 packer validate generic-hyperv.new-x64.json &> /dev/null &
+P5=$!  
+nice -n +19 packer validate generic-docker.new-x64.json &> /dev/null &
 P6=$!
 
-wait $P4 || { tput setaf 1; printf "\n\nThe new generic-libvirt-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-wait $P5 || { tput setaf 1; printf "\n\nThe new generic-parallels-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-wait $P6 || { tput setaf 1; printf "\n\nThe new generic-virtualbox-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P1 || { tput setaf 1; printf "\n\nThe new packer-cache-x64 template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P2 || { tput setaf 1; printf "\n\nThe new packer-cache-x32 template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P3 || { tput setaf 1; printf "\n\nThe new packer-cache-a64 template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P4 || { tput setaf 1; printf "\n\nThe new packer-cache-a32 template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P5 || { tput setaf 1; printf "\n\nThe new generic-hyperv-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P6 || { tput setaf 1; printf "\n\nThe new generic-docker-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
 
-nice -n +19 packer validate generic-docker.new-x64.json &> /dev/null &
+nice -n +19 packer validate generic-libvirt.new-x64.json &> /dev/null &
 P7=$! 
-nice -n +19 packer validate generic-libvirt.new-x32.json &> /dev/null &
+nice -n +19 packer validate generic-parallels.new-x64.json &> /dev/null &
 P8=$!
-nice -n +19 packer validate generic-virtualbox.new-x32.json &> /dev/null &
+nice -n +19 packer validate generic-virtualbox.new-x64.json &> /dev/null &
 P9=$!
 
-wait $P7 || { tput setaf 1; printf "\n\nThe new generic-docker-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-wait $P8 || { tput setaf 1; printf "\n\nThe new generic-libvirt-x32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-wait $P9 || { tput setaf 1; printf "\n\nThe new generic-virtualbox-x32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P7 || { tput setaf 1; printf "\n\nThe new generic-libvirt-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P8 || { tput setaf 1; printf "\n\nThe new generic-parallels-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P9 || { tput setaf 1; printf "\n\nThe new generic-virtualbox-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
 
-mv packer-cache.new.json packer-cache.json
-mv generic-libvirt.new-x32.json generic-libvirt-x32.json
-mv generic-virtualbox.new-x32.json generic-virtualbox-x32.json
-mv generic-hyperv.new-x64.json generic-hyperv-x64.json
-mv generic-vmware.new-x64.json generic-vmware-x64.json
-mv generic-docker.new-x64.json generic-docker-x64.json
+nice -n +19 packer validate generic-vmware.new-x64.json &> /dev/null &
+P10=$! 
+nice -n +19 packer validate generic-libvirt.new-x32.json &> /dev/null &
+P11=$!
+nice -n +19 packer validate generic-virtualbox.new-x32.json &> /dev/null &
+P12=$!
+
+wait $P10 || { tput setaf 1; printf "\n\nThe new generic-vmware-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P11 || { tput setaf 1; printf "\n\nThe new generic-libvirt-x32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P12 || { tput setaf 1; printf "\n\nThe new generic-virtualbox-x32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+
+nice -n +19 packer validate generic-libvirt.new-a64.json &> /dev/null &
+P13=$!
+nice -n +19 packer validate generic-libvirt.new-a32.json &> /dev/null &
+P14=$!
+
+wait $P13 || { tput setaf 1; printf "\n\nThe new generic-libvirt-a64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P14 || { tput setaf 1; printf "\n\nThe new generic-libvirt-a32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+
+mv packer-cache-x64.new.json packer-cache-x64.json
+mv packer-cache-x32.new.json packer-cache-x32.json
+mv packer-cache-a64.new.json packer-cache-a64.json
+mv packer-cache-a32.new.json packer-cache-a32.json
+
 mv generic-libvirt.new-x64.json generic-libvirt-x64.json
-mv generic-parallels.new-x64.json generic-parallels-x64.json
+mv generic-libvirt.new-x32.json generic-libvirt-x32.json
+mv generic-libvirt.new-a64.json generic-libvirt-a64.json
+mv generic-libvirt.new-a32.json generic-libvirt-a32.json
+
 mv generic-virtualbox.new-x64.json generic-virtualbox-x64.json
+mv generic-virtualbox.new-x32.json generic-virtualbox-x32.json
+mv generic-vmware.new-x64.json generic-vmware-x64.json
+mv generic-vmware.new-x32.json generic-vmware-x32.json
+
+mv generic-hyperv.new-x64.json generic-hyperv-x64.json
+mv generic-docker.new-x64.json generic-docker-x64.json
+mv generic-parallels.new-x64.json generic-parallels-x64.json
 
 tput sgr0
 
