@@ -319,28 +319,44 @@ REPOS+=( "https://security.debian.org/debian-security/dists/bookworm-security/up
 REPOS+=( "https://ftp.debian.org/debian/dists/trixie/InRelease" )
 REPOS+=( "https://security.debian.org/debian-security/dists/trixie-security/updates/Release" )
 
+# Fedora 25
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/25/Everything/armhfp/os/repodata/repomd.xml" )
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/25/Everything/x86_64/os/repodata/repomd.xml" )
+
+# Fedora 26
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/26/Everything/armhfp/os/repodata/repomd.xml" )
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/26/Everything/x86_64/os/repodata/repomd.xml" )
+
 # Fedora 27
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/armhfp/os/repodata/repomd.xml" )
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 28
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Everything/armhfp/os/repodata/repomd.xml" )
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/28/Everything/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 29
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Everything/aarch64/os/repodata/repomd.xml" )
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/29/Everything/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 30
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/30/Everything/aarch64/os/repodata/repomd.xml" )
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/30/Everything/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 31
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/Everything/aarch64/os/repodata/repomd.xml" )
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/Everything/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 32
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/32/Everything/aarch64/os/repodata/repomd.xml" )
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/32/Everything/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 33
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/33/Everything/aarch64/os/repodata/repomd.xml" )
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/33/Everything/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 34
+REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/34/Server/aarch64/os/repodata/repomd.xml" )
 REPOS+=( "https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/34/Server/x86_64/os/repodata/repomd.xml" )
 
 # Fedora 35
@@ -481,9 +497,13 @@ FUTURE+=( "https://ftp.nluug.nl/OpenBSD/7.5/amd64/cd75.iso" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/latest/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL6/UEKR4/x86_64/repodata/repomd.xml" )
 
+FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL6/u11/x86_64/OracleLinux-R6-U11-Server-x86_64-dvd.iso" )
+
 # Oracle 7
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL7/UEKR6/x86_64/repodata/repomd.xml" )
+
+FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL7/u10/x86_64/x86_64-boot-uek.iso" )
 
 # Oracle 8
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/repodata/repomd.xml" )
