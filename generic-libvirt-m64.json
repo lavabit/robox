@@ -44,8 +44,24 @@
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
         "scripts/common/leases.sh",
-        "scripts/common/localtime.sh",
-        "scripts/common/zerodisk.sh",
+        "scripts/common/localtime.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
+    },
+    {
+      "scripts": [
+        "scripts/common/zerodisk.sh"
+      ],
+      "type": "shell",
+      "timeout": "720m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
+    },
+    {
+      "scripts": [
         "scripts/common/lockout.sh"
       ],
       "type": "shell",
@@ -61,11 +77,9 @@
       "vm_name": "generic-debian12-libvirt-m64",
       "output_directory": "output/generic-debian12-libvirt-m64",
       "qemu_binary": "qemu-system-mips64el",
-      
       "machine_type": "malta",
       "cpu_model": "mips64dspr2",
       "accelerator": "tcg",
-
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [

@@ -39,8 +39,7 @@
       ]
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -53,8 +52,7 @@
       "expect_disconnect": "true"
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/common/zerodisk.sh"
       ],
       "type": "shell",
@@ -63,8 +61,7 @@
       "expect_disconnect": "true"
     },
     {
-      "scripts":
-      [
+      "scripts": [
         "scripts/common/lockout.sh"
       ],
       "type": "shell",
@@ -140,7 +137,7 @@
           "qemu-xhci"
         ],
         [
-          "-device", 
+          "-device",
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
@@ -166,7 +163,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "9800s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     }
   ],
