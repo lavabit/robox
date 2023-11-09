@@ -77,7 +77,6 @@
       "vm_name": "generic-debian12-libvirt-a32",
       "output_directory": "output/generic-debian12-libvirt-a32",
       "qemu_binary": "qemu-system-arm",
-      "cpu_model": "max",
       "boot_keygroup_interval": "1s",
       "boot_wait": "10s",
       "boot_command": [
@@ -86,14 +85,10 @@
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>c<wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>c<wait><enter><wait>",
         "setparams 'Install'<enter><wait>",
         "set background_color=black<enter><wait>",
-        "linux /install.ahf/vmlinuz --- auto=true priority=critical ",
+        "linux /install.ahf/vmlinuz  --- console=tty1 auto=true priority=critical ",
         "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.arm.cfg ",
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0<enter><wait>",
         "initrd /install.ahf/initrd.gz<enter><wait>",
@@ -105,16 +100,20 @@
           "gtk"
         ],
         [
-          "-device",
-          "ramfb"
-        ],
-        [
           "-machine",
           "virt,gic-version=2,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
+          "-cpu",
+          "max"
+        ],
+        [
           "-object",
           "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':2147483648}"
+        ],
+        [
+          "-device",
+          "ramfb"
         ],
         [
           "-overcommit",
@@ -126,7 +125,7 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off,menu=off"
+          "strict=off,order=cd"
         ],
         [
           "-device",

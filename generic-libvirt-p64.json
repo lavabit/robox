@@ -100,10 +100,6 @@
           "none"
         ],
         [
-          "-g",
-          "1024x768x32"
-        ],
-        [
           "-device",
           "{'driver':'spapr-vscsi','id':'scsi0'}"
         ],
@@ -153,7 +149,7 @@
         ],
         [
           "-device",
-          "VGA,acpi-index=1,edid=on,xres=1280,yres=720,vgamem_mb=64,refresh_rate=60,global-vmstate=on,bus=pci.0"
+          "VGA,acpi-index=1,edid=on,xres=1024,yres=768,vgamem_mb=64,global-vmstate=on,bus=pci.0"
         ]
       ],
       "format": "qcow2",

@@ -859,23 +859,13 @@
       "vm_name": "generic-debian12-libvirt-a64",
       "output_directory": "output/generic-debian12-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "cpu_model": "max",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>c<wait><enter><wait>",
         "setparams 'Install'<enter><wait>",
         "set background_color=black<enter><wait>",
-        "linux /install.a64/vmlinuz --- auto=true priority=critical ",
+        "linux /install.a64/vmlinuz --- console=tty1 auto=true priority=critical ",
         "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.arm.cfg ",
         "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0<enter><wait>",
         "initrd /install.a64/initrd.gz<enter><wait>",
@@ -887,16 +877,20 @@
           "gtk"
         ],
         [
-          "-device",
-          "ramfb"
-        ],
-        [
           "-machine",
           "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
         ],
         [
+          "-cpu",
+          "max"
+        ],
+        [
           "-object",
           "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+        ],
+        [
+          "-device",
+          "ramfb"
         ],
         [
           "-overcommit",
@@ -908,7 +902,11 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off,menu=off"
+          "strict=off,order=cd"
+        ],
+        [
+          "-device",
+          "driver=virtio-keyboard-pci"
         ],
         [
           "-device",
@@ -920,7 +918,7 @@
         ]
       ],
       "efi_boot": true,
-      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
@@ -935,8 +933,8 @@
       "memory": 4096,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/arm64/iso-cd/debian-12.2.0-arm64-netinst.iso",
-      "iso_checksum": "sha256:7b8f2ff9bd422fc1cba7d5978bace17ecf48ba23842e7e7e13b0d8ba502a7556",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/arm64/iso-dvd/debian-12.2.0-arm64-DVD-1.iso",
+      "iso_checksum": "sha256:88aed587dbfba90d689394b99951509e3160d9cbd659f75bf4a6079c9ac0e717",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
