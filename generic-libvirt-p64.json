@@ -3,6 +3,48 @@
     "box_version": "{{env `VERSION`}}"
   },
   "provisioners": [
+     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alma9/network.sh",
+        "scripts/alma9/dnf.sh",
+        "scripts/alma9/base.sh",
+        "scripts/alma9/reboot.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma9-libvirt-a64"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/alma9/kernel.sh",
+        "scripts/alma9/floppy.sh",
+        "scripts/alma9/virtualbox.sh",
+        "scripts/alma9/parallels.sh",
+        "scripts/alma9/vmware.sh",
+        "scripts/alma9/qemu.sh",
+        "scripts/alma9/vagrant.sh",
+        "scripts/alma9/tuning.sh",
+        "scripts/alma9/sshd.sh",
+        "scripts/alma9/randomness.sh",
+        "scripts/alma9/updatedb.sh",
+        "scripts/alma9/cleanup.sh",
+        "scripts/alma9/undnf.sh"
+      ],
+      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-alma9-libvirt-a64"
+      ]
+    },
     {
       "scripts": [
         "scripts/debian12/apt.sh",
@@ -71,6 +113,110 @@
     }
   ],
   "builders": [
+    {
+      "type": "qemu",
+      "name": "generic-alma9-libvirt-p64",
+      "vm_name": "generic-alma9-libvirt-p64",
+      "output_directory": "output/generic-alma9-libvirt-p64",
+      "qemu_binary": "qemu-system-ppc64",
+      "boot_wait": "10s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        " "
+      ],
+      "qemuargs": [
+        [
+          "-boot",
+          "menu=off,strict=off,order=cd"
+        ],
+        [
+          "-display",
+          "gtk"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-vga",
+          "none"
+        ],
+        [
+          "-device",
+          "{'driver':'spapr-vscsi','id':'scsi0'}"
+        ],
+        [
+          "-device",
+          "{'driver':'virtio-scsi-pci','id':'scsi1'}"
+        ],
+        [
+          "-cpu",
+          "power10"
+        ],
+        [
+          "-machine",
+          "pseries,usb=off,dump-guest-core=off,cap-ccf-assist=false,cap-ibs=broken,cap-sbbc=broken,cap-cfpc=broken,usb=on,nvdimm=on,hmat=on,graphics=on"
+        ],
+        [
+          "-device",
+          "{'driver':'virtio-serial-pci','id':'virtio-serial0','bus':'pci.0'}"
+        ],
+        [
+          "-device",
+          "{'driver':'virtserialport','bus':'virtio-serial0.0','nr':1,'chardev':'charchannel0','id':'channel0','name':'org.qemu.guest_agent.0'}"
+        ],
+        [
+          "-chardev",
+          "socket,id=charmonitor,server=on,wait=off"
+        ],
+        [
+          "-mon",
+          "chardev=charmonitor,id=monitor,mode=control"
+        ],
+        [
+          "-chardev",
+          "pty,id=charserial0"
+        ],
+        [
+          "-device",
+          "{'driver':'spapr-vty','chardev':'charserial0','id':'serial0'}"
+        ],
+        [
+          "-chardev",
+          "socket,id=charchannel0,server=on,wait=off"
+        ],
+        [
+          "-device",
+          "{'driver':'virtio-keyboard','bus':'pci.0'}"
+        ],
+        [
+          "-device",
+          "VGA,acpi-index=1,edid=on,xres=1024,yres=768,vgamem_mb=64,global-vmstate=on,bus=pci.0"
+        ]
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio",
+      "cdrom_interface": "scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/ppc64le/AlmaLinux-9.3-ppc64le-boot.iso",
+      "iso_checksum": "sha256:ea67c57bff65dda91110611b72339052b4815128e2ba4897c2a784a6794bd985",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "9800s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
     {
       "type": "qemu",
       "name": "generic-debian12-libvirt-p64",
