@@ -1230,8 +1230,8 @@ function iso() {
 
 function cache() {
 
-  if [ ! -z ${CACHE_JOBS+x} ]; then export CACHE_JOBS=$PACKER_MAX_PROCS ; fi
-  if [ ! -z ${CACHE_JOBS+x} ]; then export CACHE_JOBS=4 ; fi
+  [ ! -n "$CACHE_JOBS" ] && export CACHE_JOBS=$PACKER_MAX_PROCS
+  [ ! -n "$CACHE_JOBS" ] && export CACHE_JOBS=1
 
   unset PACKER_LOG ; unset LD_PRELOAD ; unset LD_LIBRARY_PATH ; unset PACKER_MAX_PROCS ; unset GOMAXPROCS ; 
 
