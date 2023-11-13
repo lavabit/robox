@@ -782,7 +782,8 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab><wait10><tab><wait10><tab><wait10><tab>c<wait><enter>",
+        "<tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10>",
+        "<tab><wait10><tab><wait10><tab><wait10>c<wait><enter>",
         "insmod all_video<enter><wait>",
         "linux /images/pxeboot/vmlinuz ",
         "inst.stage2=hd:LABEL=Fedora-S-dvd-aarch64k ",
