@@ -5,7 +5,9 @@
 
 # Windows Batch Files
 run.bat
+run1.bat
 run2.bat
+run3.bat
 
 # Resulting Files
 logs

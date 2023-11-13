@@ -3327,6 +3327,56 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
+        "scripts/fedora39/fixdns.sh",
+        "scripts/fedora39/hostname.sh",
+        "scripts/fedora39/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora39-hyperv-x64"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora39/fixtmp.sh",
+        "scripts/fedora39/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora39-hyperv-x64"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/fedora39/kernel.sh",
+        "scripts/fedora39/updatedb.sh",
+        "scripts/fedora39/vga.sh",
+        "scripts/fedora39/virtualbox.sh",
+        "scripts/fedora39/parallels.sh",
+        "scripts/fedora39/vmware.sh",
+        "scripts/fedora39/qemu.sh",
+        "scripts/fedora39/vagrant.sh",
+        "scripts/fedora39/tuning.sh",
+        "scripts/fedora39/cleanup.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora39-hyperv-x64"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
         "scripts/common/motd.sh",
         "scripts/common/keys.sh",
         "scripts/common/machine.sh",
@@ -4342,7 +4392,6 @@
         "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd11.vagrant.cfg<enter><wait10>",
         "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
-
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -4429,7 +4478,6 @@
         "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd12.vagrant.cfg<enter><wait10>",
         "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
-
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -4543,7 +4591,6 @@
         "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd11.vagrant.cfg<enter><wait10>",
         "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
-
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -4748,7 +4795,6 @@
         "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd12.vagrant.cfg<enter><wait10>",
         "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
-
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -5948,7 +5994,6 @@
         "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd13.vagrant.cfg<enter><wait10>",
         "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
-
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -5996,7 +6041,6 @@
         "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd13.vagrant.cfg<enter><wait10>",
         "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
-
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -6581,7 +6625,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.ks vga=792 <enter><wait>"
+        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.x64.ks vga=792 <enter><wait>"
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -7108,7 +7152,6 @@
         "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd.vagrant.cfg<enter><wait10>",
         "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
-
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -7269,7 +7312,6 @@
         "dhclient -l /tmp/dhclient.lease.hn0 hn0<enter><wait5>",
         "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd14.vagrant.cfg<enter><wait10>",
         "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
-
       ],
       "disk_size": 131072,
       "memory": 2048,
@@ -7283,6 +7325,56 @@
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "7200s",
       "shutdown_command": "shutdown -p now",
+      "generation": 1,
+      "headless": true,
+      "communicator": "ssh",
+      "skip_compaction": false,
+      "enable_secure_boot": false,
+      "enable_mac_spoofing": false,
+      "enable_dynamic_memory": false,
+      "guest_additions_mode": "disable",
+      "enable_virtualization_extensions": false
+    },
+    {
+      "type": "hyperv-iso",
+      "name": "generic-fedora39-hyperv-x64",
+      "vm_name": "generic-fedora39-hyperv-x64",
+      "temp_path": "output/",
+      "output_directory": "output/generic-fedora39-hyperv-x64",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "c<wait>",
+        "insmod all_video<enter><wait>",
+        "set gfxpayload=keep<enter><wait>",
+        "insmod increment<enter><wait>",
+        "insmod xfs<enter><wait>",
+        "insmod diskfilter<enter><wait>",
+        "insmod mdraid1x<enter><wait>",
+        "insmod fat<enter><wait>",
+        "insmod blscfg<enter><wait>",
+        "insmod gzio<enter><wait>",
+        "insmod part_gpt<enter><wait>",
+        "insmod ext2<enter><wait>",
+        "insmod chain<enter><wait>",
+        "search --no-floppy --set=root -l 'Fedora-S-dvd-x86_64-38'<enter><wait>",
+        "linux /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-38 rd.live.check ",
+        "net.ifnames=0 inst.text inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora39.vagrant.x64.ks<enter><wait>",
+        "initrd /images/pxeboot/initrd.img<enter><wait10>",
+        "boot<enter><wait>"
+      ],
+      "disk_size": 131072,
+      "memory": 2048,
+      "cpus": 2,
+      "http_directory": "http",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_64/iso/Fedora-Server-netinst-x86_64-39-1.5.iso",
+      "iso_checksum": "sha256:61576ae7170e35210f03aae3102048f0a9e0df7868ac726908669b4ef9cc22e9",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "7200s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "generation": 1,
       "headless": true,
       "communicator": "ssh",

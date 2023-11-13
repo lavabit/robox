@@ -191,50 +191,50 @@
       "type": "shell",
       "timeout": "120m",
       "scripts": [
-        "scripts/fedora38/fixdns.sh",
-        "scripts/fedora38/hostname.sh",
-        "scripts/fedora38/dnf.sh"
+        "scripts/fedora39/fixdns.sh",
+        "scripts/fedora39/hostname.sh",
+        "scripts/fedora39/dnf.sh"
       ],
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora38-libvirt-a64"
+        "generic-fedora39-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
       "scripts": [
-        "scripts/fedora38/fixtmp.sh",
-        "scripts/fedora38/base.sh"
+        "scripts/fedora39/fixtmp.sh",
+        "scripts/fedora39/base.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora38-libvirt-a64"
+        "generic-fedora39-libvirt-a64"
       ]
     },
     {
       "type": "shell",
       "timeout": "120m",
       "scripts": [
-        "scripts/fedora38/kernel.sh",
-        "scripts/fedora38/updatedb.sh",
-        "scripts/fedora38/vga.sh",
-        "scripts/fedora38/virtualbox.sh",
-        "scripts/fedora38/parallels.sh",
-        "scripts/fedora38/vmware.sh",
-        "scripts/fedora38/qemu.sh",
-        "scripts/fedora38/vagrant.sh",
-        "scripts/fedora38/tuning.sh",
-        "scripts/fedora38/cleanup.sh"
+        "scripts/fedora39/kernel.sh",
+        "scripts/fedora39/updatedb.sh",
+        "scripts/fedora39/vga.sh",
+        "scripts/fedora39/virtualbox.sh",
+        "scripts/fedora39/parallels.sh",
+        "scripts/fedora39/vmware.sh",
+        "scripts/fedora39/qemu.sh",
+        "scripts/fedora39/vagrant.sh",
+        "scripts/fedora39/tuning.sh",
+        "scripts/fedora39/cleanup.sh"
       ],
       "pause_before": "120s",
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-fedora38-libvirt-a64"
+        "generic-fedora39-libvirt-a64"
       ]
     },
     {
@@ -409,14 +409,14 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off,menu=off"
+          "strict=off,order=cd,menu=off"
         ],
         [
           "-device",
           "qemu-xhci"
         ],
         [
-          "-device", 
+          "-device",
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
@@ -489,14 +489,14 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off,menu=off"
+          "strict=off,order=cd,menu=off"
         ],
         [
           "-device",
           "qemu-xhci"
         ],
         [
-          "-device", 
+          "-device",
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
@@ -522,7 +522,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "9800s",
       "shutdown_command": "shutdown -h -p now"
     },
     {
@@ -579,14 +579,14 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off,menu=off"
+          "strict=off,order=cd,menu=off"
         ],
         [
           "-device",
           "qemu-xhci"
         ],
         [
-          "-device", 
+          "-device",
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
@@ -612,7 +612,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "9800s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -654,14 +654,14 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off,menu=off"
+          "strict=off,order=cd,menu=off"
         ],
         [
           "-device",
           "qemu-xhci"
         ],
         [
-          "-device", 
+          "-device",
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
@@ -687,7 +687,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "9800s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -704,8 +704,8 @@
         "<tab><wait10><tab><wait10><tab><wait10>c<wait><enter>",
         "linux /images/pxeboot/vmlinuz ",
         "inst.stage2=hd:LABEL=AlmaLinux-9-3-aarch64-dvd ",
-        "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.arm.ks ",
-        "inst.text net.ifnames=0 biosdevname=0 vga=792<enter><wait10>",
+        "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.a64.ks ",
+        "inst.text net.ifnames=0 biosdevname=0 console=tty0<enter><wait10>",
         "initrd /images/pxeboot/initrd.img<enter><wait10>",
         "boot<enter><wait>"
       ],
@@ -736,14 +736,14 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off,menu=off"
+          "strict=off,order=cd,menu=off"
         ],
         [
           "-device",
           "qemu-xhci"
         ],
         [
-          "-device", 
+          "-device",
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
@@ -769,25 +769,25 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "9800s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
       "type": "qemu",
-      "name": "generic-fedora38-libvirt-a64",
-      "vm_name": "generic-fedora38-libvirt-a64",
-      "output_directory": "output/generic-fedora38-libvirt-a64",
+      "name": "generic-fedora39-libvirt-a64",
+      "vm_name": "generic-fedora39-libvirt-a64",
+      "output_directory": "output/generic-fedora39-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
       "cpu_model": "max",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
-       "boot_command": [
+      "boot_command": [
         "<tab><wait10><tab><wait10><tab><wait10><tab>c<wait><enter>",
         "insmod all_video<enter><wait>",
         "linux /images/pxeboot/vmlinuz ",
         "inst.stage2=hd:LABEL=Fedora-S-dvd-aarch64k ",
-        "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora38.vagrant.ks ",
-        "inst.text net.ifnames=0 biosdevname=0 vga=792<enter><wait10>",
+        "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora39.vagrant.a64.ks ",
+        "inst.text net.ifnames=0 biosdevname=0 console=tty0<enter><wait10>",
         "initrd /images/pxeboot/initrd.img<enter><wait10>",
         "boot<enter><wait>"
       ],
@@ -818,14 +818,14 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off,menu=off"
+          "strict=off,order=cd,menu=off"
         ],
         [
           "-device",
           "qemu-xhci"
         ],
         [
-          "-device", 
+          "-device",
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
@@ -845,13 +845,13 @@
       "memory": 4096,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/iso/Fedora-Server-netinst-aarch64-38-1.6.iso",
-      "iso_checksum": "sha256:0cbc11231f3e27b3e29c88936d0eca289546f8c7eba53f39b81ea575ceba454a",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/aarch64/iso/Fedora-Server-netinst-aarch64-39-1.5.iso",
+      "iso_checksum": "sha256:4321934397c7a296b93bd30ca1ca045af34d491f204bdaedad6cc153670a36aa",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "9800s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
     {
@@ -903,7 +903,7 @@
         ],
         [
           "-boot",
-          "strict=off,order=cd"
+          "strict=off,order=cd,menu=off"
         ],
         [
           "-device",
@@ -914,7 +914,7 @@
           "qemu-xhci"
         ],
         [
-          "-device", 
+          "-device",
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
@@ -934,8 +934,8 @@
       "memory": 4096,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/arm64/iso-dvd/debian-12.2.0-arm64-DVD-1.iso",
-      "iso_checksum": "sha256:88aed587dbfba90d689394b99951509e3160d9cbd659f75bf4a6079c9ac0e717",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/arm64/iso-cd/debian-12.2.0-arm64-netinst.iso",
+      "iso_checksum": "sha256:7b8f2ff9bd422fc1cba7d5978bace17ecf48ba23842e7e7e13b0d8ba502a7556",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -994,14 +994,14 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off,menu=off"
+          "strict=off,order=cd,menu=off"
         ],
         [
           "-device",
           "qemu-xhci"
         ],
         [
-          "-device", 
+          "-device",
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
@@ -1027,7 +1027,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "9800s",
       "shutdown_command": "/sbin/poweroff"
     },
     {
@@ -1085,14 +1085,14 @@
         ],
         [
           "-boot",
-          "order=cd,strict=off,menu=off"
+          "strict=off,order=cd,menu=off"
         ],
         [
           "-device",
           "qemu-xhci"
         ],
         [
-          "-device", 
+          "-device",
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
@@ -1118,7 +1118,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
+      "ssh_timeout": "9800s",
       "shutdown_command": "shutdown -p now"
     }
   ],

@@ -244,6 +244,11 @@ generic-fedora38-libvirt/
 generic-fedora38-parallels/
 generic-fedora38-virtualbox/
 generic-fedora38-vmware/
+generic-fedora39-hyperv/
+generic-fedora39-libvirt/
+generic-fedora39-parallels/
+generic-fedora39-virtualbox/
+generic-fedora39-vmware/
 generic-freebsd11-hyperv/
 generic-freebsd11-libvirt/
 generic-freebsd11-parallels/
@@ -579,6 +584,11 @@ lavabit-magma-fedora38-libvirt/
 lavabit-magma-fedora38-parallels/
 lavabit-magma-fedora38-virtualbox/
 lavabit-magma-fedora38-vmware/
+lavabit-magma-fedora39-hyperv/
+lavabit-magma-fedora39-libvirt/
+lavabit-magma-fedora39-parallels/
+lavabit-magma-fedora39-virtualbox/
+lavabit-magma-fedora39-vmware/
 lavabit-magma-fedora-hyperv/
 lavabit-magma-fedora-libvirt/
 lavabit-magma-fedora-parallels/
@@ -1071,6 +1081,11 @@ roboxes-fedora38-libvirt/
 roboxes-fedora38-parallels/
 roboxes-fedora38-virtualbox/
 roboxes-fedora38-vmware/
+roboxes-fedora39-hyperv/
+roboxes-fedora39-libvirt/
+roboxes-fedora39-parallels/
+roboxes-fedora39-virtualbox/
+roboxes-fedora39-vmware/
 roboxes-freebsd11-hyperv/
 roboxes-freebsd11-libvirt/
 roboxes-freebsd11-parallels/

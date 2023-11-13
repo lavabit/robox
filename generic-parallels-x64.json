@@ -8683,7 +8683,7 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.ks vga=792 <enter><wait>"
+        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.x64.ks vga=792 <enter><wait>"
       ],
       "disk_size": 32768,
       "cpus": 2,
@@ -9861,6 +9861,85 @@
       "parallels_tools_flavor": "other",
       "parallels_tools_mode": "upload",
       "parallels_tools_guest_path": "/root/parallels-tools-other.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
+    },
+    {
+      "type": "parallels-iso",
+      "name": "generic-fedora39-parallels-x64",
+      "vm_name": "generic-fedora39-parallels-x64",
+      "output_directory": "output/generic-fedora39-parallels-x64",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "c<wait>",
+        "insmod all_video<enter><wait>",
+        "set gfxpayload=keep<enter><wait>",
+        "insmod increment<enter><wait>",
+        "insmod xfs<enter><wait>",
+        "insmod diskfilter<enter><wait>",
+        "insmod mdraid1x<enter><wait>",
+        "insmod fat<enter><wait>",
+        "insmod blscfg<enter><wait>",
+        "insmod gzio<enter><wait>",
+        "insmod part_gpt<enter><wait>",
+        "insmod ext2<enter><wait>",
+        "insmod chain<enter><wait>",
+        "search --no-floppy --set=root -l 'Fedora-S-dvd-x86_64-38'<enter><wait>",
+        "linux /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-38 rd.live.check ",
+        "net.ifnames=0 inst.text inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora39.vagrant.x64.ks<enter><wait>",
+        "initrd /images/pxeboot/initrd.img<enter><wait10>",
+        "boot<enter><wait>"
+      ],
+      "disk_size": 32768,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "linux",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_64/iso/Fedora-Server-netinst-x86_64-39-1.5.iso",
+      "iso_checksum": "sha256:61576ae7170e35210f03aae3102048f0a9e0df7868ac726908669b4ef9cc22e9",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
       "prlctl_version_file": "/root/parallels-tools-version.txt"
     }
   ],

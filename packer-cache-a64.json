@@ -3,8 +3,8 @@
     {
       "name": "debian12-a64",
       "output_directory": "output/debian12-cd-a64",
-      "iso_url": "https://cdimage.debian.org/cdimage/archive/12.1.0/arm64/iso-cd/debian-12.1.0-arm64-netinst.iso",
-      "iso_checksum": "sha256:b58e02fe14a52c1dfdacc0ccd6bc9b4edf385c7e8cea1871a3b0fccb6438700b",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/arm64/iso-dvd/debian-12.2.0-arm64-DVD-1.iso",
+      "iso_checksum": "sha256:88aed587dbfba90d689394b99951509e3160d9cbd659f75bf4a6079c9ac0e717",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -91,10 +91,10 @@
       "type": "vmware-iso"
     },
     {
-      "name": "fedora38-a64",
-      "output_directory": "output/fedora38-a64",
-      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/iso/Fedora-Server-netinst-aarch64-38-1.6.iso",
-      "iso_checksum": "sha256:0cbc11231f3e27b3e29c88936d0eca289546f8c7eba53f39b81ea575ceba454a",
+      "name": "fedora39-a64",
+      "output_directory": "output/fedora39-a64",
+      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/aarch64/iso/Fedora-Server-netinst-aarch64-39-1.5.iso",
+      "iso_checksum": "sha256:4321934397c7a296b93bd30ca1ca045af34d491f204bdaedad6cc153670a36aa",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
