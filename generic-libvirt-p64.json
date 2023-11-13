@@ -16,7 +16,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma9-libvirt-a64"
+        "generic-alma9-libvirt-p64"
       ]
     },
     {
@@ -42,7 +42,7 @@
       "start_retry_timeout": "15m",
       "expect_disconnect": "true",
       "only": [
-        "generic-alma9-libvirt-a64"
+        "generic-alma9-libvirt-p64"
       ]
     },
     {
