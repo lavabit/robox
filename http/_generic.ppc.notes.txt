@@ -10,7 +10,7 @@ boot
 #### Update the HTTP port to match the Packer webserver then paste into serial0.
 
 setparams 'Install AlmaLinux 9.3'
-linux /ppc/ppc64/vmlinuz inst.stage2=hd:LABEL=AlmaLinux-9-3-ppc64le-dvd ro inst.ks=http://192.168.121.1:8631/generic.alma9.vagrant.p64.ks inst.text net.ifnames=0 biosdevname=0 console=tty0
+linux /ppc/ppc64/vmlinuz inst.stage2=hd:LABEL=AlmaLinux-9-3-ppc64le-dvd ro inst.ks=http://192.168.121.1:8662/generic.alma9.vagrant.p64.ks inst.text net.ifnames=0 biosdevname=0
 initrd /ppc/ppc64/initrd.img 
 boot
 
