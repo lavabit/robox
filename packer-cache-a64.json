@@ -108,8 +108,8 @@
     {
       "name": "alma9-a64",
       "output_directory": "output/alma9-a64",
-      "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.2/isos/aarch64/AlmaLinux-9.2-aarch64-boot.iso",
-      "iso_checksum": "sha256:13f579bc653d1d182b36b85e1762e313fc6bb9827428f0d43115e141e3c38833",
+      "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/aarch64/AlmaLinux-9.3-aarch64-boot.iso",
+      "iso_checksum": "sha256:319b131bf07f369cd2508d00a65d8f5d9423929d6cc42a5f24662f7391f90acd",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -123,8 +123,8 @@
     {
       "name": "rhel9-a64",
       "output_directory": "output/rhel9-a64",
-      "iso_url": "https://archive.org/download/rhel-9.2/rhel-9.2-aarch64-dvd.iso",
-      "iso_checksum": "sha256:e9079bb03f16da5421b62e912d7f12620d177bc0944f304645b2ecf722f5a146",
+      "iso_url": "https://archive.org/download/rhel-9.3/rhel-9.3-aarch64-dvd.iso",
+      "iso_checksum": "sha256:3ed389624e0ed8bf5dfacbc049324b83f999f335f88844621a8b6c7027d574b0",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,

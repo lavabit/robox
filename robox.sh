@@ -148,23 +148,45 @@ REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/BaseOS/x86_64/os/repoda
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/AppStream/x86_64/os/repodata/repomd.xml" )
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/BaseOS/aarch64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/BaseOS/aarch64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/AppStream/aarch64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/AppStream/aarch64/os/repodata/repomd.xml.asc" )
+
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/BaseOS/aarch64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/AppStream/aarch64/os/repodata/repomd.xml" )
 
 # When this link becomes available, update the JSON files and remove it from here.
 FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/isos/x86_64/AlmaLinux-8.9-x86_64-boot.iso" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/isos/aarch64/AlmaLinux-8.9-aarch64-boot.iso" )
 
 # Alma 9
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/AppStream/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/aarch64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/BaseOS/aarch64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/AppStream/aarch64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.2/AppStream/aarch64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/BaseOS/aarch64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/BaseOS/aarch64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/AppStream/aarch64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/AppStream/aarch64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/BaseOS/ppc64le/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/BaseOS/ppc64le/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/AppStream/ppc64le/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/AppStream/ppc64le/os/repodata/repomd.xml.asc" )
+
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.4/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.4/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.4/BaseOS/aarch64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.4/AppStream/aarch64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.4/BaseOS/ppc64le/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.4/AppStream/ppc64le/os/repodata/repomd.xml" )
 
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/x86_64/AlmaLinux-9.3-x86_64-boot.iso" )
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/aarch64/AlmaLinux-9.3-aarch64-boot.iso" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.4/isos/x86_64/AlmaLinux-9.4-x86_64-boot.iso" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.4/isos/aarch64/AlmaLinux-9.4-aarch64-boot.iso" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/9.4/isos/ppc64le/AlmaLinux-9.4-ppc64le-boot.iso" )
 
 # Alpine Edge
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" )
@@ -541,9 +563,7 @@ FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/isos/x86_64/Rocky-8.9-x86_64
 
 # When 8.9 is released, these will replace the 8.8 URLs above.
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/BaseOS/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/AppStream/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Rocky 9
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/repodata/repomd.xml" )
@@ -556,9 +576,7 @@ FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/isos/x86_64/Rocky-9.3-x86_64
 
 # When 9.3 is released, these will replace the 9.2 URLs above.
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/BaseOS/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/AppStream/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # Ubuntu 16.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )
