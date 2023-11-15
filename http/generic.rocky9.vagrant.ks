@@ -15,7 +15,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=rocky9.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
 
 # repo --name=BaseOS
-url --url=https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/
+url --url=https://ftp5.gwdg.de/pub/linux/rocky/9.3/BaseOS/x86_64/os/
 
 %addon com_redhat_kdump --disable --reserve-mb=128
 %end

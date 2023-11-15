@@ -424,6 +424,11 @@ REPOS+=( "https://pkg.freebsd.org/FreeBSD:13:amd64/latest/packagesite.txz" )
 
 # FreeBSD 14
 REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:amd64/latest/packagesite.txz" )
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:14:aarch64/latest/packagesite.txz" )
+
+# FreeBSD 15
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:15:amd64/latest/packagesite.txz" )
+REPOS+=( "https://pkg.freebsd.org/FreeBSD:15:aarch64/latest/packagesite.txz" )
 
 # Gentoo
 REPOS+=( "https://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.bz2" )
@@ -530,7 +535,7 @@ FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL7/u10/x86_64/x86_64-boot-ue
 # Oracle 8
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/repomd.xml" )
-REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR6/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR7/x86_64/repodata/repomd.xml" )
 
 # When this link becomes available, update the JSON files and remove it from here.
 FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL8/u9/x86_64/x86_64-boot-uek.iso" )
@@ -538,6 +543,7 @@ FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL8/u9/x86_64/x86_64-boot-uek
 # Oracle 9
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/UEKR7/x86_64/repodata/repomd.xml" )
 
 # When this link becomes available, update the JSON files and remove it from here.
 FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL9/u3/x86_64/OracleLinux-R9-U3-x86_64-boot.iso" )
@@ -566,17 +572,17 @@ FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/BaseOS/x86_64/os/repodata/re
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/AppStream/x86_64/os/repodata/repomd.xml" )
 
 # Rocky 9
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.2/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # When this link becomes available, update the JSON files and remove it from here.
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/isos/x86_64/Rocky-9.3-x86_64-boot.iso" )
 
 # When 9.3 is released, these will replace the 9.2 URLs above.
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/BaseOS/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.4/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.4/AppStream/x86_64/os/repodata/repomd.xml" )
 
 # Ubuntu 16.04
 REPOS+=( "https://mirrors.edge.kernel.org/ubuntu/dists/xenial/InRelease" )

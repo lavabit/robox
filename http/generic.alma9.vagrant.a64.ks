@@ -19,6 +19,7 @@ url --url=https://dfw.mirror.rackspace.com/almalinux/9.3/BaseOS/aarch64/os/
 
 %addon com_redhat_kdump --disable --reserve-mb=128
 %end
+
 %packages
 @core
 sudo
