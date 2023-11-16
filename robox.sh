@@ -1381,7 +1381,11 @@ function verify_json() {
   fi
   
   ${PACKER} validate $1.json &>/dev/null || \
-  { tput setaf 1 ; tput bold ; printf "The $1.json file failed to validate.\n" ; tput sgr0 ; exit 1 ; }
+  { 
+    tput setaf 1 ; tput bold ; printf "The $1.json file failed to validate.\n" ; tput sgr0 ; 
+    ${PACKER} validate $1.json 2>&1 | grep --color=none -B 1 -A 20 -E "^At line "
+
+  exit 1 ; }
 
 }
 
