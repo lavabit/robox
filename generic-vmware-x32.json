@@ -239,7 +239,7 @@
       "vnc_disable_password": true,
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
-      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/amd64/iso-dvd/debian-8.11.1-i386-DVD-1.iso",
+      "iso_url": "https://cdimage.debian.org/cdimage/archive/8.11.1/i386/iso-dvd/debian-8.11.1-i386-DVD-1.iso",
       "iso_checksum": "sha256:06b6faafa5c2c74a2bbaa398589a0448ff0c2755fe9bab4c1013f40781fb4a2a",
       "ssh_username": "root",
       "ssh_password": "vagrant",
