@@ -1068,8 +1068,8 @@
     {
       "name": "rhel8-x64",
       "output_directory": "output/rhel8-x64",
-      "iso_url": "https://archive.org/download/rhel-8.8/rhel-8.8-x86_64-dvd.iso",
-      "iso_checksum": "sha256:517abcc67ee3b7212f57e180f5d30be3e8269e7a99e127a3399b7935c7e00a09",
+      "iso_url": "https://archive.org/download/rhel-8.9/rhel-8.9-x86_64-dvd.iso",
+      "iso_checksum": "sha256:c4fd0632ce15a7d56e1d174176456943bd48306f9d35bcecbcb0a1dc49088e23",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
