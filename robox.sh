@@ -558,7 +558,7 @@ REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/UEKR7/x86_64/repodata/repomd.xml" )
 
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL9/u3/x86_64/OracleLinux-R9-U3-x86_64-boot.iso" )
+FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL9/u4/x86_64/OracleLinux-R9-U4-x86_64-boot.iso" )
 
 # OpenSUSE 42.3
 REPOS+=( "https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution/leap/42.3/repo/oss/INDEX.gz" )
