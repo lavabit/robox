@@ -735,6 +735,51 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rawhide/fixdns.sh",
+        "scripts/rawhide/hostname.sh",
+        "scripts/rawhide/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora-rawhide-docker-x64"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rawhide/fixtmp.sh",
+        "scripts/rawhide/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora-rawhide-docker-x64"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rawhide/kernel.sh",
+        "scripts/rawhide/updatedb.sh",
+        "scripts/rawhide/vga.sh",
+        "scripts/rawhide/cleanup.sh",
+        "scripts/rawhide/dockerize.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora-rawhide-docker-x64"
+      ]
+    },
+    {
       "type": "file",
       "direction": "download",
       "source": "/tmp/{{build_name}}.tar",
@@ -1625,306 +1670,71 @@
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'locked' | sudo -S /sbin/poweroff"
+    },
+    {
+      "type": "qemu",
+      "name": "generic-fedora-rawhide-docker-x64",
+      "vm_name": "generic-fedora-rawhide-docker-x64",
+      "output_directory": "output/generic-fedora-rawhide-docker-x64",
+      "qemu_binary": "qemu-system-x86_64",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "c<wait>",
+        "insmod all_video<enter><wait>",
+        "set gfxpayload=keep<enter><wait>",
+        "insmod increment<enter><wait>",
+        "insmod xfs<enter><wait>",
+        "insmod diskfilter<enter><wait>",
+        "insmod mdraid1x<enter><wait>",
+        "insmod fat<enter><wait>",
+        "insmod blscfg<enter><wait>",
+        "insmod gzio<enter><wait>",
+        "insmod part_gpt<enter><wait>",
+        "insmod ext2<enter><wait>",
+        "insmod chain<enter><wait>",
+        "search --no-floppy --set=root -l 'Fedora-S-dvd-x86_64-38'<enter><wait>",
+        "linux /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-38 rd.live.check ",
+        "net.ifnames=0 inst.text inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.rawhide.docker.ks<enter><wait>",
+        "initrd /images/pxeboot/initrd.img<enter><wait10>",
+        "boot<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": "32768",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "off",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": false,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "cpus": 2,
+      "memory": 2048,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "http://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/Fedora-Server-netinst-x86_64-Rawhide-20231119.n.0.iso",
+      "iso_checksum": "sha256:7575c646e84834b4efbc14c35230411be2a11e957cc1c5d691a64a5871ede235",
+      "ssh_username": "root",
+      "ssh_password": "locked",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
     }
   ],
   "post-processors": [
     [
       {
-        "type": "shell-local",
-        "environment_vars": [
-          "NAME={{build_name}}",
-          "BOX={{split build_name \"-\" 1}}"
-        ],
-        "inline": [
-          "[ `docker images quay.io/generic/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/generic/$BOX`",
-          "[ `docker images quay.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/roboxes/$BOX`",
-          "[ `docker images docker.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet docker.io/roboxes/$BOX`",
-          "rm --recursive --force output/$NAME",
-          "exit 0"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "artifice",
-        "keep_input_artifact": false,
-        "files": [
-          "output/{{build_name}}-{{user `box_version`}}.tar"
-        ]
-      },
-      {
-        "format": "gz",
-        "type": "compress",
-        "compression_level": 9,
-        "keep_input_artifact": true,
-        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-      },
-      {
-        "type": "checksum",
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz.sha256",
-        "keep_input_artifact": true
-      }
-    ],
-    [
-      {
-        "type": "artifice",
-        "keep_input_artifact": false,
-        "files": [
-          "output/{{build_name}}-{{user `box_version`}}.tar"
-        ]
-      },
-      {
-        "format": "gz",
-        "type": "compress",
-        "compression_level": 9,
-        "keep_input_artifact": false,
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-      },
-      {
-        "type": "checksum",
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz.sha256",
-        "keep_input_artifact": true
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "{{user `box_version`}}",
-        "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}"
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "latest",
-        "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}"
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "{{user `box_version`}}",
-        "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}"
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "latest",
-        "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}"
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "{{user `box_version`}}",
-        "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `docker_username`}}",
-        "login_password": "{{user `docker_password`}}"
-      },
-      {
         "type": "vagrant",
         "compression_level": 9,
-        "keep_input_artifact": true,
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
-        "include": [
-          "tpl/roboxes/info.json"
-        ]
-      },
-      {
-        "type": "checksum",
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
-        "keep_input_artifact": true
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "latest",
-        "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `docker_username`}}",
-        "login_password": "{{user `docker_password`}}"
-      },
-      {
-        "type": "vagrant",
-        "compression_level": 9,
-        "keep_input_artifact": true,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/generic-{{split build_name \"-\" 1}}.rb",
         "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
         "include": [
           "tpl/generic/info.json"
+        ],
+        "except": [
+          "generic-fedora-rawhide-docker-x64"
         ]
       },
       {
@@ -1932,8 +1742,89 @@
         "checksum_types": [
           "sha256"
         ],
+        "keep_input_artifact": false,
         "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
-        "keep_input_artifact": true
+        "except": [
+          "generic-fedora-rawhide-docker-x64"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/roboxes-{{split build_name \"-\" 1}}.rb",
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/roboxes/info.json"
+        ],
+        "except": [
+          "generic-fedora-rawhide-docker-x64"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
+        "except": [
+          "generic-fedora-rawhide-docker-x64"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}.rb",
+        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/generic/info.json"
+        ],
+        "only": [
+          "generic-fedora-rawhide-docker-x64"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "generic-fedora-rawhide-docker-x64"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}.rb",
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/roboxes/info.json"
+        ],
+        "only": [
+          "generic-fedora-rawhide-docker-x64"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "generic-fedora-rawhide-docker-x64"
+        ]
       }
     ]
   ]

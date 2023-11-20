@@ -349,6 +349,11 @@ generic-oracle9-libvirt/
 generic-oracle9-parallels/
 generic-oracle9-virtualbox/
 generic-oracle9-vmware/
+generic-fedora-rawhide-hyperv/
+generic-fedora-rawhide-libvirt/
+generic-fedora-rawhide-parallels/
+generic-fedora-rawhide-virtualbox/
+generic-fedora-rawhide-vmware/
 generic-rhel6-hyperv/
 generic-rhel6-libvirt/
 generic-rhel6-parallels/
@@ -617,6 +622,11 @@ lavabit-magma-openbsd-parallels/
 lavabit-magma-openbsd-virtualbox/
 lavabit-magma-openbsd-vmware/
 lavabit-magma-parallels/
+lavabit-magma-fedora-rawhide-hyperv/
+lavabit-magma-fedora-rawhide-libvirt/
+lavabit-magma-fedora-rawhide-parallels/
+lavabit-magma-fedora-rawhide-virtualbox/
+lavabit-magma-fedora-rawhide-vmware/
 lavabit-magma-ubuntu1604-hyperv/
 lavabit-magma-ubuntu1604-libvirt/
 lavabit-magma-ubuntu1604-parallels/
@@ -1191,6 +1201,11 @@ roboxes-oracle9-libvirt/
 roboxes-oracle9-parallels/
 roboxes-oracle9-virtualbox/
 roboxes-oracle9-vmware/
+roboxes-fedora-rawhide-hyperv/
+roboxes-fedora-rawhide-libvirt/
+roboxes-fedora-rawhide-parallels/
+roboxes-fedora-rawhide-virtualbox/
+roboxes-fedora-rawhide-vmware/
 roboxes-rhel6-hyperv/
 roboxes-rhel6-libvirt/
 roboxes-rhel6-parallels/

@@ -1546,6 +1546,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "fedora-rawhide-x64",
+      "output_directory": "output/fedora-rawhide-x64",
+      "iso_url": "http://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/Fedora-Server-netinst-x86_64-Rawhide-20231119.n.0.iso",
+      "iso_checksum": "sha256:7575c646e84834b4efbc14c35230411be2a11e957cc1c5d691a64a5871ede235",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "virtualbox-7-0-2",
       "output_directory": "output/virtualbox-7-0-2",
       "iso_url": "https://download.virtualbox.org/virtualbox/7.0.2/VBoxGuestAdditions_7.0.2.iso",
