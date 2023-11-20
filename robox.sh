@@ -559,17 +559,17 @@ REPOS+=( "https://download.opensuse.org/distribution/leap/15.5/repo/oss/INDEX.gz
 # REPOS+=( "https://download.opensuse.org/distribution/openSUSE-stable/iso/openSUSE-Leap-15.5-DVD-x86_64-Build491.1-Media.iso" )
 
 # Rocky 8
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.8/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/isos/x86_64/Rocky-8.9-x86_64-boot.iso" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.10/isos/x86_64/Rocky-8.9-x86_64-boot.iso" )
 
-# When 8.9 is released, these will replace the 8.8 URLs above.
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/BaseOS/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.9/AppStream/x86_64/os/repodata/repomd.xml" )
+# When 8.10 is released, these will replace the 8.9 URLs above.
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.10/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/8.10/AppStream/x86_64/os/repodata/repomd.xml" )
 
 # Rocky 9
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/BaseOS/x86_64/os/repodata/repomd.xml" )
@@ -580,7 +580,7 @@ REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/AppStream/x86_64/os/repodata/
 # When this link becomes available, update the JSON files and remove it from here.
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/isos/x86_64/Rocky-9.3-x86_64-boot.iso" )
 
-# When 9.3 is released, these will replace the 9.2 URLs above.
+# When 9.4 is released, these will replace the 9.3URLs above.
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.4/BaseOS/x86_64/os/repodata/repomd.xml" )
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.4/AppStream/x86_64/os/repodata/repomd.xml" )
 
