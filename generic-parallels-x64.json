@@ -9887,7 +9887,7 @@
       "guest_os_type": "freebsd",
       "skip_compaction": false,
       "http_directory": "http",
-      "iso_url": "https://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/14.0/FreeBSD-14.0-RC4-amd64-disc1.iso",
+      "iso_url": "https://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/14.0/FreeBSD-14.0-RELEASE-amd64-disc1.iso",
       "iso_checksum": "sha256:7200214030125877561e70718781b435b703180c12575966ad1c7584a3e60dc6",
       "ssh_username": "root",
       "ssh_password": "vagrant",
