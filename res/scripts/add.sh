@@ -148,7 +148,7 @@ jq --argjson new1 "${PROVISIONERS}" --argjson new2 "${BUILDERS}" '.provisioners 
 BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-vmware-x32.json | \
   sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
 PROVISIONERS=`jq "[ .provisioners[] | select( .only[0] // \"no\" | contains(\"$1\")) ]" generic-vmware-x32.json | sed "s/$1/$2/g"`
-jq --argjson new1 "${PROVISIONERS}" --argjson new2 "${BUILDERS}" '.provisioners |= .[:-1] + $new1 + .[-1:] i| .builders += $new2' generic-vmware-x32.json > generic-vmware.new-x32.json
+jq --argjson new1 "${PROVISIONERS}" --argjson new2 "${BUILDERS}" '.provisioners |= .[:-1] + $new1 + .[-1:] | .builders += $new2' generic-vmware-x32.json > generic-vmware.new-x32.json
 
 BUILDERS=`jq "[ .builders[] | select( .name | contains(\"$1\")) ]" generic-libvirt-x64.json | \
   sed "s/$1/$2/g" | sed "s/\"iso_url\": \".*\",/\"iso_url\": \"$URL\",/g" | sed "s/\"iso_checksum\": \".*\",/\"iso_checksum\": \"sha256:$4\",/g"`
@@ -255,35 +255,38 @@ wait $P4 || { tput setaf 1; printf "\n\nThe new packer-cache-a32 template valida
 wait $P5 || { tput setaf 1; printf "\n\nThe new generic-hyperv-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
 wait $P6 || { tput setaf 1; printf "\n\nThe new generic-docker-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
 
-nice -n +19 packer validate generic-libvirt.new-x64.json &> /dev/null &
-P7=$! 
-nice -n +19 packer validate generic-parallels.new-x64.json &> /dev/null &
-P8=$!
-nice -n +19 packer validate generic-virtualbox.new-x64.json &> /dev/null &
-P9=$!
-
-wait $P7 || { tput setaf 1; printf "\n\nThe new generic-libvirt-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-wait $P8 || { tput setaf 1; printf "\n\nThe new generic-parallels-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-wait $P9 || { tput setaf 1; printf "\n\nThe new generic-virtualbox-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-
 nice -n +19 packer validate generic-vmware.new-x64.json &> /dev/null &
-P10=$! 
-nice -n +19 packer validate generic-libvirt.new-x32.json &> /dev/null &
-P11=$!
-nice -n +19 packer validate generic-virtualbox.new-x32.json &> /dev/null &
-P12=$!
+P7=$! 
+nice -n +19 packer validate generic-libvirt.new-x64.json &> /dev/null &
+P8=$! 
+nice -n +19 packer validate generic-parallels.new-x64.json &> /dev/null &
+P9=$!
+nice -n +19 packer validate generic-virtualbox.new-x64.json &> /dev/null &
+P10=$!
 
-wait $P10 || { tput setaf 1; printf "\n\nThe new generic-vmware-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-wait $P11 || { tput setaf 1; printf "\n\nThe new generic-libvirt-x32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-wait $P12 || { tput setaf 1; printf "\n\nThe new generic-virtualbox-x32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P7 || { tput setaf 1; printf "\n\nThe new generic-vmware-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P8 || { tput setaf 1; printf "\n\nThe new generic-libvirt-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P9 || { tput setaf 1; printf "\n\nThe new generic-parallels-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P10 || { tput setaf 1; printf "\n\nThe new generic-virtualbox-x64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+
+nice -n +19 packer validate generic-vmware.new-x32.json &> /dev/null &
+P11=$!
+nice -n +19 packer validate generic-libvirt.new-x32.json &> /dev/null &
+P12=$!
+nice -n +19 packer validate generic-virtualbox.new-x32.json &> /dev/null &
+P13=$!
+
+wait $P11 || { tput setaf 1; printf "\n\nThe new generic-vmware-x32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P12 || { tput setaf 1; printf "\n\nThe new generic-libvirt-x32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P13 || { tput setaf 1; printf "\n\nThe new generic-virtualbox-x32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
 
 nice -n +19 packer validate generic-libvirt.new-a64.json &> /dev/null &
-P13=$!
-nice -n +19 packer validate generic-libvirt.new-a32.json &> /dev/null &
 P14=$!
+nice -n +19 packer validate generic-libvirt.new-a32.json &> /dev/null &
+P15=$!
 
-wait $P13 || { tput setaf 1; printf "\n\nThe new generic-libvirt-a64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
-wait $P14 || { tput setaf 1; printf "\n\nThe new generic-libvirt-a32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P14 || { tput setaf 1; printf "\n\nThe new generic-libvirt-a64.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
+wait $P15 || { tput setaf 1; printf "\n\nThe new generic-libvirt-a32.json template validation failed.\n\n\n"; tput sgr0; exit 1; }
 
 mv packer-cache-x64.new.json packer-cache-x64.json
 mv packer-cache-x32.new.json packer-cache-x32.json

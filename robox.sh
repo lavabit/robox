@@ -255,8 +255,20 @@ REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.18/community/aarch64/APKINDE
 # Alpine 3.19 
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.19/main/x86_64/APKINDEX.tar.gz" )
 REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.19/main/aarch64/APKINDEX.tar.gz" )
-FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/community/x86_64/APKINDEX.tar.gz" )
-FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/community/aarch64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.19/community/x86_64/APKINDEX.tar.gz" )
+REPOS+=( "https://mirrors.edge.kernel.org/alpine/v3.19/community/aarch64/APKINDEX.tar.gz" )
+
+# Alpine 3.20
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz" )
+
+# Alpine 3.21
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.21/main/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.21/main/aarch64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.21/community/x86_64/APKINDEX.tar.gz" )
+FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.21/community/aarch64/APKINDEX.tar.gz" )
 
 # When the release ISO becomes available, update the JSON files, and remove this URL.
 FUTURE+=( "https://mirrors.edge.kernel.org/alpine/v3.19/releases/x86_64/alpine-virt-3.19.0-x86_64.iso" )

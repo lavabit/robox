@@ -79,6 +79,11 @@ generic-alpine318-libvirt/
 generic-alpine318-parallels/
 generic-alpine318-virtualbox/
 generic-alpine318-vmware/
+generic-alpine319-hyperv/
+generic-alpine319-libvirt/
+generic-alpine319-parallels/
+generic-alpine319-virtualbox/
+generic-alpine319-vmware/
 generic-arch-hyperv/
 generic-arch-libvirt/
 generic-arch-parallels/
@@ -916,6 +921,11 @@ roboxes-alpine318-libvirt/
 roboxes-alpine318-parallels/
 roboxes-alpine318-virtualbox/
 roboxes-alpine318-vmware/
+roboxes-alpine319-hyperv/
+roboxes-alpine319-libvirt/
+roboxes-alpine319-parallels/
+roboxes-alpine319-virtualbox/
+roboxes-alpine319-vmware/
 roboxes-arch-hyperv/
 roboxes-arch-libvirt/
 roboxes-arch-parallels/
