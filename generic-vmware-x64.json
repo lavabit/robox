@@ -8186,7 +8186,7 @@
         "insmod ext2<enter><wait>",
         "insmod chain<enter><wait>",
         "search --no-floppy --set=root -l 'Fedora-S-dvd-x86_64-39'<enter><wait>",
-        "linux /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-39 rd.live.check ",
+        "linux /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-rawh rd.live.check ",
         "net.ifnames=0 inst.text inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.rawhide.vagrant.x64.ks<enter><wait>",
         "initrd /images/pxeboot/initrd.img<enter><wait10>",
         "boot<enter><wait>"
