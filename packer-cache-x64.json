@@ -318,8 +318,8 @@
     {
       "name": "centos8s-x64",
       "output_directory": "output/centos8s-x64",
-      "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-20231113.0-x86_64-boot.iso",
-      "iso_checksum": "sha256:cb0c8fabc08adf6671d19953e8ee542a25128e79633dcd5d43d9d34b35766e8b",
+      "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-20231120.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:83fb6025b52ba893669575f7df0048b3adc8e66b4d7c19d8f5522651f19150ba",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -333,8 +333,8 @@
     {
       "name": "centos9s-x64",
       "output_directory": "output/centos9s-x64",
-      "iso_url": "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20231113.0-x86_64-boot.iso",
-      "iso_checksum": "sha256:c6fb2810e6c695476f45bfb8fec69a31bf82b2c1845274bb6f0baf9ec42878b3",
+      "iso_url": "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20231120.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:2553e0812dba592ae4f73a06105eec1a285623c9ae790a5674456eed1ce9dc4c",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
