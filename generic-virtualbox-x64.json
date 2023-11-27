@@ -1,4 +1,4 @@
-ffr{
+{
   "variables": {
     "box_version": "{{env `VERSION`}}"
   },
