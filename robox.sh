@@ -144,23 +144,23 @@ export EXCEPTIONS=""
 # The repository URLs, so we can catch any which might disappeared since the last build.
 
 # Alma 8
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/BaseOS/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/AppStream/x86_64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/AppStream/x86_64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/BaseOS/aarch64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/BaseOS/aarch64/os/repodata/repomd.xml.asc" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/AppStream/aarch64/os/repodata/repomd.xml" )
-REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.8/AppStream/aarch64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/BaseOS/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/BaseOS/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/AppStream/x86_64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/AppStream/x86_64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/BaseOS/aarch64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/BaseOS/aarch64/os/repodata/repomd.xml.asc" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/AppStream/aarch64/os/repodata/repomd.xml" )
+REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/AppStream/aarch64/os/repodata/repomd.xml.asc" )
 
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/BaseOS/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/AppStream/x86_64/os/repodata/repomd.xml" )
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/BaseOS/aarch64/os/repodata/repomd.xml" )
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/AppStream/aarch64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.10/BaseOS/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.10/AppStream/x86_64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.10/BaseOS/aarch64/os/repodata/repomd.xml" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.10/AppStream/aarch64/os/repodata/repomd.xml" )
 
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/isos/x86_64/AlmaLinux-8.9-x86_64-boot.iso" )
-FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.9/isos/aarch64/AlmaLinux-8.9-aarch64-boot.iso" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.10/isos/x86_64/AlmaLinux-8.10-x86_64-boot.iso" )
+FUTURE+=( "https://dfw.mirror.rackspace.com/almalinux/8.10/isos/aarch64/AlmaLinux-8.10-aarch64-boot.iso" )
 
 # Alma 9
 REPOS+=( "https://dfw.mirror.rackspace.com/almalinux/9.3/BaseOS/x86_64/os/repodata/repomd.xml" )
@@ -549,13 +549,17 @@ REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/repod
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR7/x86_64/repodata/repomd.xml" )
 
+FUTure+=( "https://yum.oracle.com/repo/OracleLinux/OL8/UEKR8/x86_64/repodata/repomd.xml" )
+
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL8/u9/x86_64/x86_64-boot-uek.iso" )
+FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL8/u10/x86_64/x86_64-boot-uek.iso" )
 
 # Oracle 9
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://yum.oracle.com/repo/OracleLinux/OL9/UEKR7/x86_64/repodata/repomd.xml" )
+
+future+=( "https://yum.oracle.com/repo/OracleLinux/OL9/UEKR8/x86_64/repodata/repomd.xml" )
 
 # When this link becomes available, update the JSON files and remove it from here.
 FUTURE+=( "https://yum.oracle.com/ISOS/OracleLinux/OL9/u4/x86_64/OracleLinux-R9-U4-x86_64-boot.iso" )
@@ -590,7 +594,7 @@ REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/AppStream/x86_64/os/repodata/
 REPOS+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/AppStream/x86_64/os/repodata/repomd.xml.asc" )
 
 # When this link becomes available, update the JSON files and remove it from here.
-FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.3/isos/x86_64/Rocky-9.3-x86_64-boot.iso" )
+FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.4/isos/x86_64/Rocky-9.4-x86_64-boot.iso" )
 
 # When 9.4 is released, these will replace the 9.3URLs above.
 FUTURE+=( "https://ftp5.gwdg.de/pub/linux/rocky/9.4/BaseOS/x86_64/os/repodata/repomd.xml" )
@@ -1399,13 +1403,13 @@ function cache() {
 # Let us know when URLs become valid.
 function ready_url {
 
-    # Check whether a particular URL has become valid.
-    ${CURL} --fail --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 --max-time 120 --write-out "%{http_code}\n" --output /dev/null "$1" | grep --silent --extended-regexp "200"
+  # Check whether a particular URL has become valid.
+  ${CURL} --head --silent --location --retry 3 --retry-delay 4 --connect-timeout 60 --max-time 120 --write-out "%{http_code}\n" --output /dev/null "$1" | grep --silent --extended-regexp "200"
 
-    if [ $? == 0 ]; then
-      printf "Link Ready:    $1\n"
-      return 1
-    fi
+  if [ $? == 0 ]; then
+    printf "Link Ready:    $1\n"
+    return 1
+  fi
 
 }
 
