@@ -867,8 +867,8 @@ function iso() {
   if [ "$1" == "fedora-x64" ]; then
 
     # Find the existing Fedora Rawhide URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name | contains(\"fedora-rawhide-x64\")) | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name | contains(\"fedora-rawhide-x64\")) | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name | .name == \"fedora-rawhide-x64\" ) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name | .name == \"fedora-rawhide-x64\" ) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe Fedora Rawhide ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
@@ -906,49 +906,49 @@ function iso() {
 
   elif [ "$1" == "fedora-a64" ]; then
   
-    # # Find the existing Fedora Rawhide URL and hash values.
-    # ISO_URL=`cat "$BASE/packer-cache-a64.json" | jq -r -c ".builders[] | select( .name | contains(\"fedora-rawhide-a64\")) | .iso_url" 2>/dev/null`
-    # ISO_CHECKSUM=`cat "$BASE/packer-cache-a64.json" | jq  -r -c ".builders[] | select( .name | contains(\"fedora-rawhide-a64\")) | .iso_checksum" 2>/dev/null`
+    # Find the existing Fedora Rawhide URL and hash values.
+    ISO_URL=`cat "$BASE/packer-cache-a64.json" | jq -r -c ".builders[] | select( .name | .name == \"fedora-rawhide-a64\" ) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-a64.json" | jq  -r -c ".builders[] | select( .name | .name == \"fedora-rawhide-a64\" ) | .iso_checksum" 2>/dev/null`
 
-    # if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
-    #   tput setaf 1; printf "\nThe Fedora Rawhide ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
-    #   return 1
-    # fi
+    if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
+      tput setaf 1; printf "\nThe Fedora Rawhide ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
+      return 1
+    fi
 
-    # # Find the Fedora URL.
-    # URL="http://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/"
-    # ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching "Fedora\-Server\-netinst\-aarch64\-Rawhide\-[0-9]{8}\.n\.[0-9]*.iso" | sort -V | uniq | tail -1`
-    # if [ $? != 0 ] || [ "$ISO" == "" ]; then
-    #   tput setaf 1; printf "\nThe Fedora Rawhide ISO updates failed.\n\n"; tput sgr0
-    #   return 1
-    # fi
-    # # Calculate the new URL.
-    # URL="${URL}${ISO}"
+    # Find the Fedora URL.
+    URL="http://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/"
+    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching "Fedora\-Server\-netinst\-aarch64\-Rawhide\-[0-9]{8}\.n\.[0-9]*.iso" | sort -V | uniq | tail -1`
+    if [ $? != 0 ] || [ "$ISO" == "" ]; then
+      tput setaf 1; printf "\nThe Fedora Rawhide ISO updates failed.\n\n"; tput sgr0
+      return 1
+    fi
+    # Calculate the new URL.
+    URL="${URL}${ISO}"
 
-    # # Download the ISO file and calculate the new hash value.
-    # set -o pipefail
-    # SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
-    # if [ $? != 0 ] || [ "$SHA" == "" ]; then
-    #     tput setaf 1; printf "\nThe Fedora Rawhide ISO updates failed.\n\n"; tput sgr0
-    #     return 1
-    # fi
-    # set +o pipefail
+    # Download the ISO file and calculate the new hash value.
+    set -o pipefail
+    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    if [ $? != 0 ] || [ "$SHA" == "" ]; then
+        tput setaf 1; printf "\nThe Fedora Rawhide ISO updates failed.\n\n"; tput sgr0
+        return 1
+    fi
+    set +o pipefail
 
-    # # Escape the URL strings.
-    # URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
-    # ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
+    # Escape the URL strings.
+    URL=`echo $URL | sed "s/\//\\\\\\\\\//g"`
+    ISO_URL=`echo $ISO_URL | sed "s/\//\\\\\\\\\//g"`
 
-    # # Replace the existing ISO and hash values with the update values.
-    # sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
-    # sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
+    # Replace the existing ISO and hash values with the update values.
+    sed --in-place "s/$ISO_URL/$URL/g" $ROBOX_FILES
+    sed --in-place "s/$ISO_CHECKSUM/sha256:$SHA/g" $ROBOX_FILES
 
     return 0
 
   elif [ "$1" == "gentoo-x64" ]; then
 
     # Find the existing Gentoo URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo-x64\")) | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo-x64\")) | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name | .name == \"gentoo-x64\" ) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name | .name == \"gentoo-x64\" ) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
@@ -999,8 +999,8 @@ function iso() {
   elif [ "$1" == "gentoo-a64" ]; then
 
     # Find the existing Gentoo URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache-a64.json" | jq -r -c ".builders[] | select( .name | contains(\"gentoo-a64\")) | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache-a64.json" | jq  -r -c ".builders[] | select( .name | contains(\"gentoo-a64\")) | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-a64.json" | jq -r -c ".builders[] | select( .name | .name == \"gentoo-a64\" ) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-a64.json" | jq  -r -c ".builders[] | select( .name | .name == \"gentoo-a64\" ) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0

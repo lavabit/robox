@@ -238,6 +238,56 @@
       ]
     },
     {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rawhide/fixdns.sh",
+        "scripts/rawhide/hostname.sh",
+        "scripts/rawhide/dnf.sh"
+      ],
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora-rawhide-libvirt-a64"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rawhide/fixtmp.sh",
+        "scripts/rawhide/base.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora-rawhide-libvirt-a64"
+      ]
+    },
+    {
+      "type": "shell",
+      "timeout": "120m",
+      "scripts": [
+        "scripts/rawhide/kernel.sh",
+        "scripts/rawhide/updatedb.sh",
+        "scripts/rawhide/vga.sh",
+        "scripts/rawhide/virtualbox.sh",
+        "scripts/rawhide/parallels.sh",
+        "scripts/rawhide/vmware.sh",
+        "scripts/rawhide/qemu.sh",
+        "scripts/rawhide/vagrant.sh",
+        "scripts/rawhide/tuning.sh",
+        "scripts/rawhide/cleanup.sh"
+      ],
+      "pause_before": "120s",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true",
+      "only": [
+        "generic-fedora-rawhide-libvirt-a64"
+      ]
+    },
+    {
       "scripts": [
         "scripts/debian12/apt.sh",
         "scripts/debian12/network.sh"
@@ -901,6 +951,91 @@
     },
     {
       "type": "qemu",
+      "name": "generic-fedora-rawhide-libvirt-a64",
+      "vm_name": "generic-fedora-rawhide-libvirt-a64",
+      "output_directory": "output/generic-fedora-rawhide-libvirt-a64",
+      "qemu_binary": "qemu-system-aarch64",
+      "cpu_model": "max",
+      "boot_wait": "20s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10>",
+        "<tab><wait10><tab><wait10><tab><wait10>c<wait><enter>",
+        "setparams 'Install'<enter><wait>",
+        "linux /images/pxeboot/vmlinuz ",
+        "inst.stage2=hd:LABEL=Fedora-S-dvd-aarch64-rawh ro ",
+        "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rawhide.vagrant.a64.ks ",
+        "inst.text net.ifnames=0 biosdevname=0 console=ttyAMA0 console=tty1 ",
+        "systemd.mask=systemd-zram-setup@zram0.service <enter><wait10>",
+        "initrd /images/pxeboot/initrd.img<enter><wait10>",
+        "boot<enter><wait>"
+      ],
+      "qemuargs": [
+        [
+          "-display",
+          "gtk"
+        ],
+        [
+          "-device",
+          "ramfb"
+        ],
+        [
+          "-machine",
+          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
+        ],
+        [
+          "-object",
+          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+        ],
+        [
+          "-overcommit",
+          "mem-lock=off"
+        ],
+        [
+          "-accel",
+          "tcg"
+        ],
+        [
+          "-boot",
+          "strict=off,order=cd,menu=off"
+        ],
+        [
+          "-device",
+          "qemu-xhci"
+        ],
+        [
+          "-device",
+          "{'driver':'usb-kbd','id':'input0'}"
+        ]
+      ],
+      "efi_boot": true,
+      "efi_drop_efivars": true,
+      "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
+      "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "on",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio",
+      "net_device": "virtio-net",
+      "cpus": 4,
+      "memory": 4096,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "http://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/Fedora-Server-netinst-aarch64-Rawhide-20231127.n.0.iso",
+      "iso_checksum": "sha256:1c99fa2c423c3172841b73f7503fc977111eb6a2d7edd5b22c2d0b6ed909add0",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "9800s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+      "type": "qemu",
       "name": "generic-debian12-libvirt-a64",
       "vm_name": "generic-debian12-libvirt-a64",
       "output_directory": "output/generic-debian12-libvirt-a64",
@@ -956,7 +1091,6 @@
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
-
       "efi_boot": true,
       "efi_drop_efivars": true,
       "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
@@ -969,7 +1103,6 @@
       "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio",
-      "cdrom_interface": "virtio",
       "net_device": "e1000",
       "cpus": 4,
       "memory": 4096,
@@ -984,9 +1117,6 @@
       "ssh_timeout": "9800s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
-
-
-
     {
       "type": "qemu",
       "name": "generic-debian12-libvirt-a65",
@@ -995,9 +1125,7 @@
       "qemu_binary": "qemu-system-aarch64",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
-      "boot_command": [
-        
-      ],
+      "boot_command": [],
       "qemuargs": [
         [
           "-display",
@@ -1036,12 +1164,9 @@
           "{'driver':'usb-kbd','id':'input0'}"
         ]
       ],
-
-      
- "efi_boot": false,
- "use_pflash": false,
- "firmware": "/usr/share/uboot/aarch64/qemu_arm64/u-boot.bin",
-
+      "efi_boot": false,
+      "use_pflash": false,
+      "firmware": "/usr/share/uboot/aarch64/qemu_arm64/u-boot.bin",
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "ignore",
@@ -1065,7 +1190,6 @@
       "ssh_timeout": "9800s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     },
-
     {
       "type": "qemu",
       "name": "generic-alpine318-libvirt-a64",
@@ -1346,6 +1470,9 @@
         "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
         "include": [
           "tpl/generic/info.json"
+        ],
+        "except": [
+          "generic-fedora-rawhide-libvirt-a64"
         ]
       },
       {
@@ -1354,7 +1481,10 @@
           "sha256"
         ],
         "keep_input_artifact": false,
-        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256"
+        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
+        "except": [
+          "generic-fedora-rawhide-libvirt-a64"
+        ]
       }
     ],
     [
@@ -1366,6 +1496,9 @@
         "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
         "include": [
           "tpl/roboxes/info.json"
+        ],
+        "except": [
+          "generic-fedora-rawhide-libvirt-a64"
         ]
       },
       {
@@ -1374,7 +1507,62 @@
           "sha256"
         ],
         "keep_input_artifact": false,
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256"
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
+        "except": [
+          "generic-fedora-rawhide-libvirt-a64"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}.rb",
+        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/generic/info.json"
+        ],
+        "only": [
+          "generic-fedora-rawhide-libvirt-a64"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "generic-fedora-rawhide-libvirt-a64"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}.rb",
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box",
+        "include": [
+          "tpl/roboxes/info.json"
+        ],
+        "only": [
+          "generic-fedora-rawhide-libvirt-a64"
+        ]
+      },
+      {
+        "type": "checksum",
+        "checksum_types": [
+          "sha256"
+        ],
+        "keep_input_artifact": false,
+        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box.sha256",
+        "only": [
+          "generic-fedora-rawhide-libvirt-a64"
+        ]
       }
     ]
   ]

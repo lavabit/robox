@@ -106,6 +106,21 @@
       "type": "vmware-iso"
     },
     {
+      "name": "fedora-rawhide-a64",
+      "output_directory": "output/fedora-rawhide-a64",
+      "iso_url": "http://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/Fedora-Server-netinst-aarch64-Rawhide-20231127.n.0.iso",
+      "iso_checksum": "sha256:1c99fa2c423c3172841b73f7503fc977111eb6a2d7edd5b22c2d0b6ed909add0",
+      "boot_wait": "5s",
+      "disk_size": 1,
+      "headless": true,
+      "shutdown_command": "poweroff",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10s",
+      "ssh_username": "root",
+      "type": "vmware-iso"
+    },
+    {
       "name": "alma9-a64",
       "output_directory": "output/alma9-a64",
       "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/aarch64/AlmaLinux-9.3-aarch64-boot.iso",
