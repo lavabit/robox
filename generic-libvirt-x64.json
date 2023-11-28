@@ -6586,7 +6586,7 @@
       "memory": 2048,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-20231127.0-x86_64-boot.iso",
+      "iso_url": "https://mirror.leaseweb.net/centos/8-stream/isos/x86_64/CentOS-Stream-8-20231127.0-x86_64-boot.iso",
       "iso_checksum": "sha256:6526f0f2af45e6e53a342a609f65c6fa5a4a59b18ee0b126d0f37b412471babe",
       "ssh_username": "root",
       "ssh_password": "vagrant",

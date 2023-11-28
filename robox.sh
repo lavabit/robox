@@ -1100,8 +1100,9 @@ function iso() {
       return 1
     fi
 
-    # Find the CentOS 8 stream URL.
-    URL="https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/"
+    # Find the CentOS 8 stream URL. For some reason the kernel.org mirror is having issues. Using an alternate.
+    # URL="https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/"
+    URL="https://mirror.leaseweb.net/centos/8-stream/isos/x86_64/" 
     ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match "iso\.manifest" | grep --extended-regexp --only-matching "CentOS\-Stream\-8\-[0-9\.]*\-x86\_64\-boot\.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe CentOS 8 stream ISO update failed.\n\n"; tput sgr0

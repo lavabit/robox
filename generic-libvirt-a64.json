@@ -954,14 +954,6 @@
         [
           "-device",
           "{'driver':'usb-kbd','id':'input0'}"
-        ],
-        [
-          "-device",
-          "megasas"
-        ],
-        [
-          "-device",
-          "scsi-cd"
         ]
       ],
 
@@ -976,7 +968,7 @@
       "disk_cache": "none",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio-scsi",
+      "disk_interface": "virtio",
       "cdrom_interface": "virtio",
       "net_device": "e1000",
       "cpus": 4,
