@@ -877,7 +877,7 @@ function iso() {
 
     # Find the Fedora URL.
     URL="http://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching --max-count=1 "Fedora\-Server\-netinst\-x86\_64\-Rawhide\-[0-9]{8}\.n\.[0-9]*.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching "Fedora\-Server\-netinst\-x86\_64\-Rawhide\-[0-9]{8}\.n\.[0-9]*.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Fedora Rawhide ISO updates failed.\n\n"; tput sgr0
       return 1
@@ -917,7 +917,7 @@ function iso() {
 
     # # Find the Fedora URL.
     # URL="http://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/"
-    # ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching --max-count=1 "Fedora\-Server\-netinst\-aarch64\-Rawhide\-[0-9]{8}\.n\.[0-9]*.iso" | uniq`
+    # ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching "Fedora\-Server\-netinst\-aarch64\-Rawhide\-[0-9]{8}\.n\.[0-9]*.iso" | sort -V | uniq | tail -1`
     # if [ $? != 0 ] || [ "$ISO" == "" ]; then
     #   tput setaf 1; printf "\nThe Fedora Rawhide ISO updates failed.\n\n"; tput sgr0
     #   return 1
@@ -957,7 +957,7 @@ function iso() {
 
     # Find the Gentoo URL.
     URL="https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching --max-count=1 "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO updates failed.\n\n"; tput sgr0
       return 1
@@ -967,7 +967,7 @@ function iso() {
     LATEST="$(${CURL} --fail -s ${URL}/latest-install-amd64-minimal.txt | \
     head -n $(${CURL}  -s ${URL}/latest-install-amd64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1-1}') | \
     tail -n +$(${CURL}  --fail -s ${URL}/latest-install-amd64-minimal.txt | head -n $(${CURL}  --fail -s ${URL}/latest-install-amd64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1}') | grep -En '^$'| head -1 | awk -F':' '{print $1+1}') | \
-    grep -Ev '^#|^ ' | grep --extended-regexp --only-matching --max-count=1 'install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso')"
+    grep -Ev '^#|^ ' | grep --extended-regexp --only-matching 'install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso' | sort -V | uniq | tail -1 )"
 
     if [ "$ISO" != "$LATEST" ]; then
       tput setaf 3; printf "\n  The Gentoo installer doesn't match the signature file.\n"; tput sgr0
@@ -1009,7 +1009,7 @@ function iso() {
 
     # Find the Gentoo URL.
     URL="https://mirrors.edge.kernel.org/gentoo/releases/arm64/autobuilds/current-install-arm64-minimal/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching --max-count=1 "install\-arm64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching "install\-arm64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
       return 1
@@ -1019,7 +1019,7 @@ function iso() {
     LATEST="$(${CURL} --fail -s ${URL}/latest-install-arm64-minimal.txt | \
     head -n $(${CURL}  -s ${URL}/latest-install-arm64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1-1}') | \
     tail -n +$(${CURL} --fail -s ${URL}/latest-install-arm64-minimal.txt | head -n $(${CURL} --fail -s ${URL}/latest-install-arm64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1}') | grep -En '^$'| head -1 | awk -F':' '{print $1+1}') | \
-    grep -Ev '^#|^ ' | grep --extended-regexp --only-matching --max-count=1 'install\-arm64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso')"
+    grep -Ev '^#|^ ' | grep --extended-regexp --only-matching 'install\-arm64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso' | sort -V | uniq | tail -1 )"
 
     if [ "$ISO" != "$LATEST" ]; then
       tput setaf 3; printf "\n  The Gentoo installer doesn't match the signature file.\n"; tput sgr0
@@ -1061,7 +1061,7 @@ function iso() {
 
     # Find the Arch URL.
     URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sig|iso\.torrent|iso.sha256" | grep --extended-regexp --only-matching --max-count=1 "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sig|iso\.torrent|iso.sha256" | grep --extended-regexp --only-matching "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
       return 1
@@ -1102,7 +1102,7 @@ function iso() {
 
     # Find the CentOS 8 stream URL.
     URL="https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match "iso\.manifest" | grep --extended-regexp --only-matching --max-count=1 "CentOS\-Stream\-8\-[0-9\.]*\-x86\_64\-boot\.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --invert-match "iso\.manifest" | grep --extended-regexp --only-matching "CentOS\-Stream\-8\-[0-9\.]*\-x86\_64\-boot\.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe CentOS 8 stream ISO update failed.\n\n"; tput sgr0
       return 1
@@ -1143,7 +1143,7 @@ function iso() {
 
     # Find the CentOS 9 stream URL.
     URL="https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.manifest|iso\.MD5SUM|iso\.SHA1SUM|iso\.SHA256SUM" | grep --extended-regexp --only-matching --max-count=1 "CentOS\-Stream\-9\-[0-9]{8}\.[0-9]\-x86\_64\-boot\.iso" | uniq`
+    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.manifest|iso\.MD5SUM|iso\.SHA1SUM|iso\.SHA256SUM" | grep --extended-regexp --only-matching "CentOS\-Stream\-9\-[0-9]{8}\.[0-9]\-x86\_64\-boot\.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe CentOS 9 stream ISO update failed.\n\n"; tput sgr0
       return 1
