@@ -141,6 +141,8 @@
         ]
       ],
       "efi_boot": true,
+      "efi_drop_efivars": true,
+
       "efi_firmware_code": "/usr/share/edk2/arm/QEMU_EFI-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/arm/vars-template-pflash.raw",
       "format": "qcow2",

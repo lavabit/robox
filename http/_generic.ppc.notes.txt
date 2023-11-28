@@ -1,9 +1,38 @@
 
+
+
+
+use_pflash (bool) -false (the default), the firmware is provided using -bios, true, via a pflash drive 
+
+ "efi_boot": false,
+ "use_pflash": false,
+ "firmware": "/usr/share/uboot/aarch64/qemu_arm64/u-boot.bin",
+
+[
+"-dtb",
+"/usr/share/uboot/aarch64/qemu_arm64/dt.dtb"
+]
+
+
+set background_color=black
+
+
+linux /install.a64/vmlinuz auto=true priority=critical --- preseed/url=http://192.168.121.1:8604/generic.debian12.vagrant.arm.cfg ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0
+initrd /install.a64/initrd.gz
+boot
+
+
+
+
+
+
+
+
 #### Update the HTTP port to match the Packer webserver then paste into serial0.
 
 setparams 'Automated install'
 set background_color=black
-linux /install/vmlinux --- auto=true priority=critical preseed/url=http://192.168.121.1:8662/generic.debian12.vagrant.ppc.cfg ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 vga=792
+linux /install/vmlinux --- auto=true priority=critical preseed/url=http://192.168.121.1:8662/generic.debian12.vagrant..cfg ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 vga=792
 initrd /install/initrd.gz
 boot
 
@@ -13,6 +42,9 @@ setparams 'Install AlmaLinux 9.3'
 linux /ppc/ppc64/vmlinuz inst.stage2=hd:LABEL=AlmaLinux-9-3-ppc64le-dvd ro inst.ks=http://192.168.121.1:8662/generic.alma9.vagrant.p64.ks inst.text net.ifnames=0 biosdevname=0
 initrd /ppc/ppc64/initrd.img 
 boot
+
+
+    
 
 
 
