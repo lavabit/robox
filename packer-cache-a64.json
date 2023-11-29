@@ -3,8 +3,8 @@
     {
       "name": "debian12-a64",
       "output_directory": "output/debian12-cd-a64",
-      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/arm64/iso-dvd/debian-12.2.0-arm64-DVD-1.iso",
-      "iso_checksum": "sha256:88aed587dbfba90d689394b99951509e3160d9cbd659f75bf4a6079c9ac0e717",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/arm64/iso-cd/debian-12.2.0-arm64-netinst.iso",
+      "iso_checksum": "sha256:7b8f2ff9bd422fc1cba7d5978bace17ecf48ba23842e7e7e13b0d8ba502a7556",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
