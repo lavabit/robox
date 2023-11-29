@@ -141,7 +141,7 @@ dpkg -i `find ../* -type f -name *amd64.deb`
 cd $HOME && rm --force --recursive $HOME/git-openssl
 
 # Download the Android tools.
-retry curl  --location --output platform-tools-latest-linux.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
+retry curl  --location --output platform-tools-latest-linux.zip https://redirector.gvt1.com/edgedl/android/repository/platform-tools-latest-linux.zip
 
 # Install the platform tools.
 unzip platform-tools-latest-linux.zip -d /usr/local/

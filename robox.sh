@@ -682,11 +682,12 @@ FUTURE+=( "https://download.virtualbox.org/virtualbox/6.1.50/VBoxGuestAdditions_
 FUTURE+=( "https://download.virtualbox.org/virtualbox/5.2.46/VBoxGuestAdditions_5.2.46.iso" )
 
 # Other URls Embedded inside configuration modules
+RESOURCES+=( "https://dl.google.com/android/repository/platform-tools-latest-linux.zip" )
+
 RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/libpython3.6-minimal_3.6.13-1%2Bxenial2_amd64.deb" )
 RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/libpython3.6-stdlib_3.6.13-1%2Bxenial2_amd64.deb" )
 RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/python3.6_3.6.13-1%2Bxenial2_amd64.deb" )
 RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/python3.6-minimal_3.6.13-1%2Bxenial2_amd64.deb" )
-RESOURCES+=( "https://dl.google.com/android/repository/platform-tools-latest-linux.zip" )
 RESOURCES+=( "https://files.pythonhosted.org/packages/03/1a/60984cb85cc38c4ebdfca27b32a6df6f1914959d8790f5a349608c78be61/cryptography-1.5.2.tar.gz" )
 RESOURCES+=( "https://files.pythonhosted.org/packages/10/46/059775dc8e50f722d205452bced4b3cc965d27e8c3389156acd3b1123ae3/pyasn1-0.4.4.tar.gz" )
 RESOURCES+=( "https://files.pythonhosted.org/packages/16/d8/bc6316cf98419719bd59c91742194c111b6f2e85abac88e496adefaf7afe/six-1.11.0.tar.gz" )
