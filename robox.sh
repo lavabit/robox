@@ -682,8 +682,7 @@ FUTURE+=( "https://download.virtualbox.org/virtualbox/6.1.50/VBoxGuestAdditions_
 FUTURE+=( "https://download.virtualbox.org/virtualbox/5.2.46/VBoxGuestAdditions_5.2.46.iso" )
 
 # Other URls Embedded inside configuration modules
-RESOURCES+=( "https://dl.google.com/android/repository/platform-tools-latest-linux.zip" )
-
+RESOURCES+=( "https://redirector.gvt1.com/edgedl/android/repository/platform-tools-latest-linux.zip" )
 RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/libpython3.6-minimal_3.6.13-1%2Bxenial2_amd64.deb" )
 RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/libpython3.6-stdlib_3.6.13-1%2Bxenial2_amd64.deb" )
 RESOURCES+=( "https://archive.org/download/xenial_python3.6_deb/python3.6_3.6.13-1%2Bxenial2_amd64.deb" )
