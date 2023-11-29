@@ -1047,10 +1047,10 @@
         "<tab><wait10><tab><wait10><tab><wait10>c<wait><enter>",
         "setparams 'Install'<enter><wait>",
         "set background_color=black<enter><wait>",
-        "linux /install.a64/vmlinuz --- console=tty1 auto=true priority=critical ",
+        "linux /install.a64/gtk/vmlinuz auto=true priority=high --- console=tty1 ",
         "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.arm.cfg ",
-        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0<enter><wait>",
-        "initrd /install.a64/initrd.gz<enter><wait>",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 hostname=debian12 domain=localdomain<enter><wait>",
+        "initrd /install.a64/gtk/initrd.gz<enter><wait>",
         "boot<enter><wait>"
       ],
       "qemuargs": [
@@ -1060,7 +1060,7 @@
         ],
         [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,acpi=on,usb=on"
+          "virt,accel=kvm:tcg,gic-version=3,dump-guest-core=off,acpi=on,usb=on,ras=on"
         ],
         [
           "-cpu",
@@ -1069,10 +1069,6 @@
         [
           "-device",
           "ramfb"
-        ],
-        [
-          "-accel",
-          "tcg"
         ],
         [
           "-boot",
@@ -1089,6 +1085,24 @@
         [
           "-device",
           "{'driver':'usb-kbd','id':'input0'}"
+        ],
+        [
+          "-device",
+          "{'driver':'usb-mouse','id':'input1'}"
+        ],
+        [
+          "-overcommit",
+          "mem-lock=on"
+        ],
+
+        [
+           "-d",
+            "unimp,guest_errors"
+        ],
+
+        [
+           "-D",
+            "qemu-error-log-a64.txt"
         ]
       ],
       "efi_boot": true,
@@ -1097,15 +1111,15 @@
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
       "format": "qcow2",
       "disk_size": "131072",
-      "disk_discard": "ignore",
-      "disk_detect_zeroes": "on",
-      "disk_cache": "none",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "off",
+      "disk_cache": "writethrough",
       "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio",
       "net_device": "e1000",
       "cpus": 4,
-      "memory": 4096,
+      "memory": 8192,
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/arm64/iso-dvd/debian-12.2.0-arm64-DVD-1.iso",

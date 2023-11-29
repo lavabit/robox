@@ -14,6 +14,30 @@ use_pflash (bool) -false (the default), the firmware is provided using -bios, tr
 ]
 
 
+
+
+
+# Debian doc take on running QEMU with command line params.
+
+
+## aarch64
+# qemu-system-aarch64 -M virt -cpu max -bios /usr/share/qemu-efi-aarch64/QEMU_EFI.fd -cdrom debian-foo-arm64-netinst.iso -hda hd_image.img -m 1G -serial stdio
+
+
+## armhf
+# qemu-system-arm -M virt -cpu max -kernel /mnt/cdrom/install.ahf/vmlinuz -initrd /mnt/cdrom/install.ahf/initrd.gz -drive file=debian-foo-armhf-netinst.iso,if=none,id=cd,media=cdrom,read-only -device virtio-blk-device,drive=cd -drive file=hd_image.img,if=none,id=hd -device virtio-blk-device,drive=hd -device virtio-net-device,netdev=net0 -netdev user,id=net0 -m 1G -serial stdio
+
+
+
+## mips64el
+# qemu-system-mips64el -M malta -cpu 5KEc -kernel /mnt/cdrom/install/malta/netboot/vmlinuz-5.10.0-6-5kc-malta -initrd /mnt/cdrom/install/malta/netboot/initrd.gz -hda hd_image.img -m 1G -serial stdio
+
+
+## riscv64
+# qemu-system-riscv64 -machine virt -bios /usr/lib/riscv64-linux-gnu/opensbi/generic/fw_jump.elf -kernel vmlinux -initrd initrd.gz -device virtio-net-device,netdev=usernet -netdev user,id=usernet -device virtio-blk-device,drive=hd0 -drive file=hd_image.img,id=hd0 -serial stdio -append 'console=ttyS0' -m 1.9G
+
+
+
 set background_color=black
 
 
