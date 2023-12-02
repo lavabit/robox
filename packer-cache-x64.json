@@ -258,8 +258,8 @@
     {
       "name": "arch-x64",
       "output_directory": "output/arch-x64",
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2023.11.01-x86_64.iso",
-      "iso_checksum": "sha256:477f50617d648e46d6e326549aa56ab92115a29a97f2ca364e944cea06970608",
+      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2023.12.01-x86_64.iso",
+      "iso_checksum": "sha256:50c688670abf27345b3effa03068b0302810f8da0db80d06d11a932c3ef99056",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
