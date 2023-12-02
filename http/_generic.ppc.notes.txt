@@ -28,9 +28,19 @@ use_pflash (bool) -false (the default), the firmware is provided using -bios, tr
 # qemu-system-arm -M virt -cpu max -kernel /mnt/cdrom/install.ahf/vmlinuz -initrd /mnt/cdrom/install.ahf/initrd.gz -drive file=debian-foo-armhf-netinst.iso,if=none,id=cd,media=cdrom,read-only -device virtio-blk-device,drive=cd -drive file=hd_image.img,if=none,id=hd -device virtio-blk-device,drive=hd -device virtio-net-device,netdev=net0 -netdev user,id=net0 -m 1G -serial stdio
 
 
-
 ## mips64el
 # qemu-system-mips64el -M malta -cpu 5KEc -kernel /mnt/cdrom/install/malta/netboot/vmlinuz-5.10.0-6-5kc-malta -initrd /mnt/cdrom/install/malta/netboot/initrd.gz -hda hd_image.img -m 1G -serial stdio
+
+Build uboot for 64 bit, little endian, theng enerate NOR flash image with U-Boot binary:
+
+  make malta64el_defconfig
+  make
+  UBOOT_BIN=u-boot-swap.bin
+
+  dd if=/dev/zero bs=1M count=4 | tr '\000' '\377' > pflash.img
+  dd if=u-boot-swap.bin of=pflash.img conv=notrunc
+  
+  qemu-system-mips64el -nographic -cpu MIPS64R2-generic -m 256 -drive if=pflash,file="$(pwd)/pflash.img",format=raw -netdev user,id=net0,tftp="$(pwd)/tftproot" -device pcnet,netdev=net0
 
 
 ## riscv64

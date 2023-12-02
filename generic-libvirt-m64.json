@@ -77,7 +77,6 @@
       "vm_name": "generic-debian12-libvirt-m64",
       "output_directory": "out put/generic-debian12-libvirt-m64",
       "qemu_binary": "qemu-system-mips64el",
-      "accelerator": "tcg",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -91,19 +90,33 @@
         ],
         [
           "-machine",
-          "malta,dump-guest-core=off,usb=on"
-        ], 
+          "fuloong2e,accel=tcg,dump-guest-core=off,usb=on"
+        ],
+        [
+          "-cpu",
+          "mips64dspr2"
+        ],
+
         [
           "-overcommit",
           "mem-lock=on"
         ],
         [
+          "-boot",
+          "strict=off,order=dc,menu=on"
+        ],
+        
+        [
           "-device",
-          "virtio-gpu-pci"
+          "isa-ide"
         ],
         [
-          "-boot",
-          "strict=off,order=cd,menu=off"
+          "-drive", 
+          "file=/home/ladar/Data/robox/packer_cache/d9b244accb3303463cdfc448879b2afee443912d.iso,media=cdrom,if=ide,id=disk0"
+        ],
+        [
+          "-device",
+          "ide-cd"
         ],
         [
           "-device",
@@ -125,16 +138,20 @@
           "-device",
           "driver=usb-mouse"
         ],
+
         [
-          "-d",
-          "unimp,guest_errors"
+          "-vga",
+          "std"
         ],
         [
-          "-D",
-          "qemu-error-log-m64.txt"
+          "-device",
+          "VGA,acpi-index=1,edid=off,xres=1280,yres=720,vgamem_mb=64,refresh_rate=60,global-vmstate=on"
         ]
 
       ],
+      "efi_boot": false,
+      "firmware": "/home/ladar/Desktop/pmon-lm-a1901.bin",
+      "use_pflash": true,
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
@@ -144,8 +161,8 @@
       "disk_compression": true,
       "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 4,
-      "memory": 2048,
+      "cpus": 1,
+      "memory": 256,
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/mips64el/iso-cd/debian-12.2.0-mips64el-netinst.iso",

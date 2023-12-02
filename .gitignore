@@ -1,4 +1,4 @@
-
+qemu-error-log-*.txt
 # Credential Files
 .credentialsrc
 .credentials.bat
