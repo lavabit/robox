@@ -75,10 +75,8 @@
       "type": "qemu",
       "name": "generic-debian12-libvirt-m64",
       "vm_name": "generic-debian12-libvirt-m64",
-      "output_directory": "output/generic-debian12-libvirt-m64",
+      "output_directory": "out put/generic-debian12-libvirt-m64",
       "qemu_binary": "qemu-system-mips64el",
-      "machine_type": "malta",
-      "cpu_model": "mips64dspr2",
       "accelerator": "tcg",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
@@ -86,25 +84,57 @@
        
       ],
       "qemuargs": [
-        [
+
+         [
           "-display",
           "gtk"
         ],
         [
+          "-machine",
+          "malta,dump-guest-core=off,usb=on"
+        ], 
+        [
+          "-overcommit",
+          "mem-lock=on"
+        ],
+        [
+          "-device",
+          "virtio-gpu-pci"
+        ],
+        [
           "-boot",
-          "order=cd,strict=off,menu=off"
+          "strict=off,order=cd,menu=off"
         ],
         [
-          "-pflash",
-          "/tmp/OVMF.stateless.fd"
+          "-device",
+          "qemu-xhci"
         ],
         [
-          "-vga",
-          "std"
-
+          "-device",
+          "driver=virtio-keyboard-pci"
+        ],
+        [
+          "-device",
+          "driver=virtio-mouse-pci"
+        ],
+        [
+          "-device",
+          "driver=usb-kbd"
+        ],
+        [
+          "-device",
+          "driver=usb-mouse"
+        ],
+        [
+          "-d",
+          "unimp,guest_errors"
+        ],
+        [
+          "-D",
+          "qemu-error-log-m64.txt"
         ]
+
       ],
-      "efi_boot": false,
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
