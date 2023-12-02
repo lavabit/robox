@@ -828,8 +828,8 @@
     {
       "name": "hardenedbsd-x64",
       "output_directory": "output/hardenedbsd-x64",
-      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer/build-5/disc1.iso",
-      "iso_checksum": "sha256:a107c1a6cdbcecff500f1027db680c9ba1a3b2c7fa9dbbb3e8c30ab8d01d508b",
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer/build-6/disc1.iso",
+      "iso_checksum": "sha256:28e36cea5b55dd3be973496b805981e3f58ec0bf29a677adae9af53222028a30",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -873,8 +873,8 @@
     {
       "name": "hardenedbsd13-x64",
       "output_directory": "output/hardenedbsd13-x64",
-      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/build-25/disc1.iso",
-      "iso_checksum": "sha256:99ced8722732d9f3c51e4f7e200ab018fa080b87eea949b09fea493b4471c37e",
+      "iso_url": "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/build-26/disc1.iso",
+      "iso_checksum": "sha256:f1009fadfb461602ebd5630421b692d972a46db3df62da1682760faa5ae13dd3",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
