@@ -103,6 +103,7 @@ systemctl --quiet list-unit-files apt-news.service &>/dev/null && systemctl --qu
 systemctl --quiet list-unit-files apt-daily.service &>/dev/null && systemctl --quiet is-active apt-daily.service && systemctl stop apt-daily.service
 systemctl --quiet list-unit-files apt-daily-upgrade.service &>/dev/null && systemctl --quiet is-active apt-daily-upgrade.service && systemctl stop apt-daily-upgrade.service
 
+systemctl --quiet list-unit-files snapd.socket &>/dev/null && systemctl --quiet is-active snapd.socket && systemctl stop snapd.socket
 systemctl --quiet list-unit-files snapd.service &>/dev/null && systemctl --quiet is-active snapd.service && systemctl stop snapd.service
 
 systemctl --quiet list-unit-files packagekit.service &>/dev/null && systemctl --quiet is-active packagekit.service && systemctl stop packagekit.service
@@ -125,6 +126,7 @@ systemctl --quiet list-unit-files apt-daily-upgrade.service &>/dev/null && syste
 systemctl --quiet list-unit-files packagekit.service &>/dev/null && systemctl --quiet is-enabled packagekit.service && systemctl disable packagekit.service
 systemctl --quiet list-unit-files packagekit-offline-update.service &>/dev/null && systemctl --quiet is-enabled packagekit-offline-update.service && systemctl mask packagekit-offline-update.service
 
+systemctl --quiet list-unit-files snapd.socket &>/dev/null && systemctl --quiet is-enabled snapd.socket && systemctl disable snapd.socket
 systemctl --quiet list-unit-files snapd.service &>/dev/null && systemctl --quiet is-enabled snapd.service && systemctl mask snapd.service
 
 systemctl --quiet list-unit-files unattended-upgrades.service &>/dev/null && systemctl --quiet is-enabled unattended-upgrades.service && systemctl mask unattended-upgrades.service

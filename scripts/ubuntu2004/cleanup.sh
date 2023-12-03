@@ -40,3 +40,4 @@ systemctl --quiet list-unit-files packagekit.service &>/dev/null && [ "$(systemc
 systemctl --quiet list-unit-files packagekit-offline-update.service &>/dev/null && [ "$(systemctl is-enabled packagekit-offline-update.service)" == "masked" ] && systemctl unmask packagekit-offline-update.service
 
 systemctl --quiet list-unit-files snapd.service &>/dev/null && [ "$(systemctl is-enabled snapd.service)" == "masked" ] && systemctl unmask snapd.service
+systemctl --quiet list-unit-files snapd.socket &>/dev/null && [ "$(systemctl is-enabled snapd.socket)" == "disabled" ] && systemctl enable snapd.socket
