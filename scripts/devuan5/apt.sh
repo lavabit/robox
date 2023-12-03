@@ -35,6 +35,14 @@ error() {
         fi
 }
 
+
+
+
+#### NOTE: the sources.list file is modified by the preseed configuration to
+#### use the archive server once the distro reaches end of life.
+
+
+
 # To allow for automated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
