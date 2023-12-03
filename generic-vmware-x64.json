@@ -6318,7 +6318,7 @@
       "vnc_bind_address": "127.0.0.1",
       "vmx_remove_ethernet_interfaces": true,
       "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/8.9/isos/x86_64/Rocky-8.9-x86_64-boot.iso",
-      "iso_checksum": "sha256:abb93c61033ab480668a635259cd1c692cda18d42f8951fc7922f47aa4ce3db9",
+      "iso_checksum": "sha256:88baefca6f0e78b53613773954e0d7c2d8d28ad863f40623db75c40f505b5105",
       "skip_compaction": false,
       "ssh_username": "root",
       "ssh_password": "vagrant",
