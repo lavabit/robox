@@ -3792,7 +3792,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-2023.12.01-x86_64.iso",
+      "iso_url": "https://mirrors.kernel.org/archlinux/iso/latest/archlinux-2023.12.01-x86_64.iso",
       "iso_checksum": "sha256:50c688670abf27345b3effa03068b0302810f8da0db80d06d11a932c3ef99056",
       "ssh_username": "root",
       "ssh_password": "vagrant",
