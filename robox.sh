@@ -1201,17 +1201,17 @@ function iso() {
     fi
 
     # Find the Gentoo URL.
-    URL="https://mirrors.edge.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | sort -V | uniq | tail -1`
+    URL="https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/"
+    ISO=`${CURL} --fail --silent --location "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching "install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO updates failed.\n\n"; tput sgr0
       return 1
     fi
 
     # Extract the ISO name from the PGP signature file, and print a warning if it doesn't match. 
-    LATEST="$(${CURL} --fail -s ${URL}/latest-install-amd64-minimal.txt | \
-    head -n $(${CURL}  -s ${URL}/latest-install-amd64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1-1}') | \
-    tail -n +$(${CURL}  --fail -s ${URL}/latest-install-amd64-minimal.txt | head -n $(${CURL}  --fail -s ${URL}/latest-install-amd64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1}') | grep -En '^$'| head -1 | awk -F':' '{print $1+1}') | \
+    LATEST="$(${CURL} --fail --silent --location ${URL}/latest-install-amd64-minimal.txt | \
+    head -n $(${CURL} --fail --silent --location ${URL}/latest-install-amd64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1-1}') | \
+    tail -n +$(${CURL} --fail --silent --location ${URL}/latest-install-amd64-minimal.txt | head -n $(${CURL} --fail --silent --location ${URL}/latest-install-amd64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1}') | grep -En '^$'| head -1 | awk -F':' '{print $1+1}') | \
     grep -Ev '^#|^ ' | grep --extended-regexp --only-matching 'install\-amd64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso' | sort -V | uniq | tail -1 )"
 
     if [ "$ISO" != "$LATEST" ]; then
@@ -1253,7 +1253,7 @@ function iso() {
     fi
 
     # Find the Gentoo URL.
-    URL="https://mirrors.edge.kernel.org/gentoo/releases/arm64/autobuilds/current-install-arm64-minimal/"
+    URL="https://mirrors.kernel.org/gentoo/releases/arm64/autobuilds/current-install-arm64-minimal/"
     ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching "install\-arm64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Gentoo ISO update failed.\n\n"; tput sgr0
@@ -1261,9 +1261,9 @@ function iso() {
     fi
 
     # Extract the ISO name from the PGP signature file, and print a warning if it doesn't match. 
-    LATEST="$(${CURL} --fail -s ${URL}/latest-install-arm64-minimal.txt | \
-    head -n $(${CURL}  -s ${URL}/latest-install-arm64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1-1}') | \
-    tail -n +$(${CURL} --fail -s ${URL}/latest-install-arm64-minimal.txt | head -n $(${CURL} --fail -s ${URL}/latest-install-arm64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1}') | grep -En '^$'| head -1 | awk -F':' '{print $1+1}') | \
+    LATEST="$(${CURL} --fail --silent --location ${URL}/latest-install-arm64-minimal.txt | \
+    head -n $(${CURL} --fail --silent --location ${URL}/latest-install-arm64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1-1}') | \
+    tail -n +$(${CURL} --fail --silent --location ${URL}/latest-install-arm64-minimal.txt | head -n $(${CURL} --fail --silent --location ${URL}/latest-install-arm64-minimal.txt | grep '\-----BEGIN PGP SIGNATURE-----' -n | head -1 | awk -F':' '{print $1}') | grep -En '^$'| head -1 | awk -F':' '{print $1+1}') | \
     grep -Ev '^#|^ ' | grep --extended-regexp --only-matching 'install\-arm64\-minimal\-[0-9]{8}T[0-9]{6}Z\.iso' | sort -V | uniq | tail -1 )"
 
     if [ "$ISO" != "$LATEST" ]; then
@@ -1305,8 +1305,8 @@ function iso() {
     fi
 
     # Find the Arch URL.
-    URL="https://mirrors.edge.kernel.org/archlinux/iso/latest/"
-    ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sig|iso\.torrent|iso.sha256" | grep --extended-regexp --only-matching "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | sort -V | uniq | tail -1`
+    URL="https://mirrors.kernel.org/archlinux/iso/latest/"
+    ISO=`${CURL} --fail --silent --location "${URL}" | grep --extended-regexp --invert-match "iso\.sig|iso\.torrent|iso.sha256" | grep --extended-regexp --only-matching "archlinux\-[0-9]{4}\.[0-9]{2}\.[0-9]{2}\-x86\_64\.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
       return 1
@@ -1317,7 +1317,7 @@ function iso() {
 
     # Download the ISO file and calculate the new hash value.
     set -o pipefail
-    SHA=`${CURL} --fail --speed-time 60 --speed-limit 1024 --silent --location "${URL}" | sha256sum | awk -F' ' '{print $1}'`
+    SHA=`${CURL} --fail --silent --location --speed-time 60 --speed-limit 1024 "${URL}" | sha256sum | awk -F' ' '{print $1}'`
     if [ $? != 0 ] || [ "$SHA" == "" ]; then
         tput setaf 1; printf "\nThe Arch ISO update failed.\n\n"; tput sgr0
         return 1

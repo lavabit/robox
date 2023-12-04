@@ -41,6 +41,30 @@ error() {
 #### use the archive server once the distro reaches end of life.
 
 
+cat <<-EOF > /etc/apt/sources.list
+
+deb http://devuan.c3sl.ufpr.br/merged beowulf main
+deb-src http://devuan.c3sl.ufpr.br/merged beowulf main
+
+deb http://devuan.c3sl.ufpr.br/merged beowulf-updates main
+deb-src http://devuan.c3sl.ufpr.br/merged beowulf-updates main
+
+deb http://devuan.c3sl.ufpr.br/merged beowulf-security main
+deb-src http://devuan.c3sl.ufpr.br/merged beowulf-security main
+
+# deb http://devuan.c3sl.ufpr.br/merged beowulf main contrib non-free
+# deb-src http://devuan.c3sl.ufpr.br/merged beowulf main contrib non-free
+
+# deb http://devuan.c3sl.ufpr.br/merged beowulf-updates main contrib non-free
+# deb-src http://devuan.c3sl.ufpr.br/merged beowulf-updates main contrib non-free
+
+# deb http://devuan.c3sl.ufpr.br/merged beowulf-backports main contrib non-free
+# deb-src http://devuan.c3sl.ufpr.br/merged beowulf-backports  main contrib non-free
+
+# deb http://devuan.c3sl.ufpr.br/merged beowulf-security main contrib non-free
+# deb-src http://devuan.c3sl.ufpr.br/merged beowulf-security main contrib non-free
+
+EOF
 
 # To allow for automated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
@@ -69,7 +93,9 @@ retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
 
 # The packages users expect on a sane system.
-retry apt-get --assume-yes install vim mlocate psmisc rsync; error
+retry apt-get --assume-yes install vim mlocate psmisc rsync curl \
+  sudo sed net-tools apt-transport-https sysstat lsb-release mlocate lsof \
+  bash-doc bash-completion manpages tar xz-utils ; error
 
 # Populate the mlocate database during boot.
 printf "@reboot root command bash -c '/etc/cron.daily/mlocate'\n" > /etc/cron.d/mlocate
