@@ -44,26 +44,26 @@ error() {
 
 cat <<-EOF > /etc/apt/sources.list
 
-deb https://devuan.c3sl.ufpr.br/merged daedalus main
-deb-src https://devuan.c3sl.ufpr.br/merged daedalus main
+deb https://pkgmaster.devuan.org/merged daedalus main
+deb-src https://pkgmaster.devuan.org/merged daedalus main
 
-deb https://devuan.c3sl.ufpr.br/merged daedalus-updates main
-deb-src https://devuan.c3sl.ufpr.br/merged daedalus-updates main
+deb https://pkgmaster.devuan.org/merged daedalus-updates main
+deb-src https://pkgmaster.devuan.org/merged daedalus-updates main
 
-deb https://devuan.c3sl.ufpr.br/merged daedalus-security main
-deb-src https://devuan.c3sl.ufpr.br/merged daedalus-security main
+deb https://pkgmaster.devuan.org/merged daedalus-security main
+deb-src https://pkgmaster.devuan.org/merged daedalus-security main
 
-# deb https://devuan.c3sl.ufpr.br/merged daedalus main contrib non-free
-# deb-src https://devuan.c3sl.ufpr.br/merged daedalus main contrib non-free
+# deb https://pkgmaster.devuan.org/merged daedalus main contrib non-free
+# deb-src https://pkgmaster.devuan.org/merged daedalus main contrib non-free
 
-# deb https://devuan.c3sl.ufpr.br/merged daedalus-updates main contrib non-free
-# deb-src https://devuan.c3sl.ufpr.br/merged daedalus-updates main contrib non-free
+# deb https://pkgmaster.devuan.org/merged daedalus-updates main contrib non-free
+# deb-src https://pkgmaster.devuan.org/merged daedalus-updates main contrib non-free
 
-# deb https://devuan.c3sl.ufpr.br/merged daedalus-backports main contrib non-free
-# deb-src https://devuan.c3sl.ufpr.br/merged daedalus-backports  main contrib non-free
+# deb https://pkgmaster.devuan.org/merged daedalus-backports main contrib non-free
+# deb-src https://pkgmaster.devuan.org/merged daedalus-backports  main contrib non-free
 
-# deb https://devuan.c3sl.ufpr.br/merged daedalus-security main contrib non-free
-# deb-src https://devuan.c3sl.ufpr.br/merged daedalus-security main contrib non-free
+# deb https://pkgmaster.devuan.org/merged daedalus-security main contrib non-free
+# deb-src https://pkgmaster.devuan.org/merged daedalus-security main contrib non-free
 
 EOF
 

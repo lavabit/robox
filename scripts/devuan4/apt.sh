@@ -44,26 +44,26 @@ error() {
 
 cat <<-EOF > /etc/apt/sources.list
 
-deb https://devuan.c3sl.ufpr.br/merged chimaera main
-deb-src https://devuan.c3sl.ufpr.br/merged chimaera main
+deb https://pkgmaster.devuan.org/merged chimaera main
+deb-src https://pkgmaster.devuan.org/merged chimaera main
 
-deb https://devuan.c3sl.ufpr.br/merged chimaera-updates main
-deb-src https://devuan.c3sl.ufpr.br/merged chimaera-updates main
+deb https://pkgmaster.devuan.org/merged chimaera-updates main
+deb-src https://pkgmaster.devuan.org/merged chimaera-updates main
 
-deb https://devuan.c3sl.ufpr.br/merged chimaera-security main
-deb-src https://devuan.c3sl.ufpr.br/merged chimaera-security main
+deb https://pkgmaster.devuan.org/merged chimaera-security main
+deb-src https://pkgmaster.devuan.org/merged chimaera-security main
 
-# deb https://devuan.c3sl.ufpr.br/merged chimaera main contrib non-free
-# deb-src https://devuan.c3sl.ufpr.br/merged chimaera main contrib non-free
+# deb https://pkgmaster.devuan.org/merged chimaera main contrib non-free
+# deb-src https://pkgmaster.devuan.org/merged chimaera main contrib non-free
 
-# deb https://devuan.c3sl.ufpr.br/merged chimaera-updates main contrib non-free
-# deb-src https://devuan.c3sl.ufpr.br/merged chimaera-updates main contrib non-free
+# deb https://pkgmaster.devuan.org/merged chimaera-updates main contrib non-free
+# deb-src https://pkgmaster.devuan.org/merged chimaera-updates main contrib non-free
 
-# deb https://devuan.c3sl.ufpr.br/merged chimaera-backports main contrib non-free
-# deb-src https://devuan.c3sl.ufpr.br/merged chimaera-backports  main contrib non-free
+# deb https://pkgmaster.devuan.org/merged chimaera-backports main contrib non-free
+# deb-src https://pkgmaster.devuan.org/merged chimaera-backports  main contrib non-free
 
-# deb https://devuan.c3sl.ufpr.br/merged chimaera-security main contrib non-free
-# deb-src https://devuan.c3sl.ufpr.br/merged chimaera-security main contrib non-free
+# deb https://pkgmaster.devuan.org/merged chimaera-security main contrib non-free
+# deb-src https://pkgmaster.devuan.org/merged chimaera-security main contrib non-free
 
 EOF
 
