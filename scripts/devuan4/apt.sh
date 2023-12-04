@@ -42,11 +42,36 @@ error() {
 
 
 
+cat <<-EOF > /etc/apt/sources.list
+
+deb https://devuan.c3sl.ufpr.br/merged chimaera main
+deb-src https://devuan.c3sl.ufpr.br/merged chimaera main
+
+deb https://devuan.c3sl.ufpr.br/merged chimaera-updates main
+deb-src https://devuan.c3sl.ufpr.br/merged chimaera-updates main
+
+deb https://devuan.c3sl.ufpr.br/merged chimaera-security main
+deb-src https://devuan.c3sl.ufpr.br/merged chimaera-security main
+
+# deb https://devuan.c3sl.ufpr.br/merged chimaera main contrib non-free
+# deb-src https://devuan.c3sl.ufpr.br/merged chimaera main contrib non-free
+
+# deb https://devuan.c3sl.ufpr.br/merged chimaera-updates main contrib non-free
+# deb-src https://devuan.c3sl.ufpr.br/merged chimaera-updates main contrib non-free
+
+# deb https://devuan.c3sl.ufpr.br/merged chimaera-backports main contrib non-free
+# deb-src https://devuan.c3sl.ufpr.br/merged chimaera-backports  main contrib non-free
+
+# deb https://devuan.c3sl.ufpr.br/merged chimaera-security main contrib non-free
+# deb-src https://devuan.c3sl.ufpr.br/merged chimaera-security main contrib non-free
+
+EOF
+
 # To allow for automated installs, we disable interactive configuration steps.
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
-# We handle name server setup later, but for now, we need to ensure valid resolvers are available.
+# We handle name server setup later, but for now, we need to ensure a valid resolver is available.
 printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /etc/resolv.conf
 
 # If the apt configuration directory exists, we add our own config options.
@@ -60,16 +85,15 @@ printf "APT::Acquire::Retries \"0\";\n" >> /etc/apt/apt.conf.d/20retries
 
 fi
 
-# Remove the CDROM as a media source.
-sed -i -e "/cdrom:/d" /etc/apt/sources.list
-
 # Ensure the server includes any necessary updates.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
 
 # The packages users expect on a sane system.
-retry apt-get --assume-yes install vim mlocate psmisc rsync; error
+retry apt-get --assume-yes install vim mlocate psmisc rsync curl \
+  sudo sed net-tools apt-transport-https sysstat lsb-release mlocate lsof \
+  bash-doc bash-completion manpages tar xz-utils ; error
 
 # Populate the mlocate database during boot.
 printf "@reboot root command bash -c '/etc/cron.daily/mlocate'\n" > /etc/cron.d/mlocate
