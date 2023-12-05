@@ -75,25 +75,31 @@ boot
 
 
 
-#### Update the HTTP port to match the Packer webserver then paste into serial0.
+#### Update the HTTP port to match the Packer webserver then use the serial0 console to access the GRUB command line, and paste these snippets.
 
-setparams 'Automated install'
-set background_color=black
-linux /install/vmlinux --- auto=true priority=critical preseed/url=http://192.168.121.1:8662/generic.debian12.vagrant..cfg ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 vga=792
+
+### Debian 12 for ppc64le
+# Note that setting console=tty1 may cause problems... the /dev/hvc0 device points to the virtual serial port.
+# Also note that TERM=dumb might fix the output formatting on the serial console. 
+
+linux /install/vmlinux auto=true priority=high --- preseed/url=http://192.168.124.1:8135/generic.debian12.vagrant.p64.cfg ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 hostname=debian12 domain=localdomain
 initrd /install/initrd.gz
 boot
 
-#### Update the HTTP port to match the Packer webserver then paste into serial0.
+### Alma 9 for ppc64le
+# "ppce500,usb=off,dump-guest-core=off,cap-ccf-assist=false,cap-ibs=broken,cap-sbbc=broken,cap-cfpc=broken,usb=on,nvdimm=on,hmat=on,graphics=on"
+# insmod all_video
 
-setparams 'Install AlmaLinux 9.3'
-linux /ppc/ppc64/vmlinuz inst.stage2=hd:LABEL=AlmaLinux-9-3-ppc64le-dvd ro inst.ks=http://192.168.121.1:8662/generic.alma9.vagrant.p64.ks inst.text net.ifnames=0 biosdevname=0
-initrd /ppc/ppc64/initrd.img 
+linux /ppc/ppc64/vmlinuz inst.stage2=hd:LABEL=AlmaLinux-9-3-ppc64le-dvd ro inst.ks=http://192.168.124.1:8486/generic.alma9.vagrant.p64.ks inst.nompath inst.nodmraid inst.text net.ifnames=0 biosdevname=0 selinux=0 console=hvc0 console=ttyS0 console=tty1
+initrd /ppc/ppc64/initrd.img
 boot
 
 
-    
 
 
+linux /ppc/ppc64/vmlinuz inst.stage2=hd:LABEL=AlmaLinux-9-3-ppc64le-dvd ro inst.ks=http://192.168.124.1:8486/generic.alma9.vagrant.p64.ks inst.text systemd.mask=tmp.mount console=hvc0 console=ttyS0 console=tty1
+initrd /ppc/ppc64/initrd.img
+boot
 
 
 

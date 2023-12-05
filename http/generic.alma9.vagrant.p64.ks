@@ -19,14 +19,11 @@ url --url=https://dfw.mirror.rackspace.com/almalinux/9.3/BaseOS/ppc64le/os/
 
 %addon com_redhat_kdump --disable --reserve-mb=128
 %end
+
 %packages
 @core
 sudo
 authconfig
--fprintd-pam
--intltool
--iwl*-firmware
--microcode_ctl
 %end
 
 %post

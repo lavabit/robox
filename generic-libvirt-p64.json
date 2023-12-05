@@ -113,6 +113,90 @@
     }
   ],
   "builders": [
+     {
+      "type": "qemu",
+      "name": "generic-alma9-libvirt-p65",
+      "vm_name": "generic-alma9-libvirt-p65",
+      "output_directory": "output/generic-alma9-libvirt-p65",
+      "qemu_binary": "qemu-system-ppc64",
+      "boot_wait": "1s",
+      "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1><tab><wait1>",
+        "<tab><wait1><tab><wait1><tab><wait1>c<wait><enter>",
+        "linux /ppc/ppc64/vmlinuz inst.stage2=hd:LABEL=AlmaLinux-9-3-ppc64le-dvd ro inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.p64.ks inst.nompath inst.nodmraid inst.text net.ifnames=0 biosdevname=0 selinux=0 console=hvc0 console=ttyS0 console=tty1<enter><wait10>",
+        "initrd /ppc/ppc64/initrd.img<enter><wait10>",
+        "boot<enter><wait1>"
+      ],
+      "qemuargs": [
+        [
+          "-display",
+          "gtk"
+        ],
+        [
+          "-machine",
+          "pseries,accel=kvm:tcg,usb=on"
+        ],
+        [
+          "-cpu",
+          "power10"
+        ],
+        [
+          "-overcommit",
+          "mem-lock=on"
+        ],
+        [
+          "-boot",
+          "strict=off,order=cd,menu=off"
+        ],
+        [
+          "-device",
+          "driver=usb-kbd"
+        ],
+        [
+          "-device",
+          "driver=usb-mouse"
+        ],
+
+        [
+          "-device",
+          "VGA,acpi-index=1,edid=on,xres=1024,yres=768,vgamem_mb=64,global-vmstate=on,bus=pci.0"
+        ]
+      ],
+      "format": "qcow2",
+      "disk_size": "131072",
+      "disk_discard": "unmap",
+      "disk_detect_zeroes": "unmap",
+      "disk_cache": "unsafe",
+      "disk_image": false,
+      "disk_compression": true,
+      "disk_interface": "virtio",
+      "net_device": "virtio-net",
+      "cpus": 4,
+      "memory": 8192,
+      "http_directory": "http",
+      "headless": true,
+      "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/ppc64le/AlmaLinux-9.3-ppc64le-boot.iso",
+      "iso_checksum": "sha256:ea67c57bff65dda91110611b72339052b4815128e2ba4897c2a784a6794bd985",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_handshake_attempts": 1000,
+      "ssh_timeout": "9800s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
     {
       "type": "qemu",
       "name": "generic-alma9-libvirt-p64",
@@ -142,48 +226,25 @@
           "none"
         ],
         [
-          "-device",
-          "{'driver':'spapr-vscsi','id':'scsi0'}"
-        ],
-        [
-          "-device",
-          "{'driver':'virtio-scsi-pci','id':'scsi1'}"
-        ],
-        [
           "-cpu",
           "power10"
         ],
         [
           "-machine",
-          "pseries,usb=off,dump-guest-core=off,cap-ccf-assist=false,cap-ibs=broken,cap-sbbc=broken,cap-cfpc=broken,usb=on,nvdimm=on,hmat=on,graphics=on"
+          "pseries,usb=on"
+        ],
+
+        [
+          "-overcommit",
+          "mem-lock=on"
         ],
         [
           "-device",
-          "{'driver':'virtio-serial-pci','id':'virtio-serial0','bus':'pci.0'}"
+          "qemu-xhci"
         ],
         [
           "-device",
-          "{'driver':'virtserialport','bus':'virtio-serial0.0','nr':1,'chardev':'charchannel0','id':'channel0','name':'org.qemu.guest_agent.0'}"
-        ],
-        [
-          "-chardev",
-          "socket,id=charmonitor,server=on,wait=off"
-        ],
-        [
-          "-mon",
-          "chardev=charmonitor,id=monitor,mode=control"
-        ],
-        [
-          "-chardev",
-          "pty,id=charserial0"
-        ],
-        [
-          "-device",
-          "{'driver':'spapr-vty','chardev':'charserial0','id':'serial0'}"
-        ],
-        [
-          "-chardev",
-          "socket,id=charchannel0,server=on,wait=off"
+          "{'driver':'usb-kbd','id':'input0'}"
         ],
         [
           "-device",
@@ -202,10 +263,9 @@
       "disk_image": false,
       "disk_compression": true,
       "disk_interface": "virtio",
-      "cdrom_interface": "scsi",
       "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
+      "cpus": 4,
+      "memory": 8192,
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/ppc64le/AlmaLinux-9.3-ppc64le-boot.iso",
