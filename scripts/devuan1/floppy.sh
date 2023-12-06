@@ -1,8 +1,5 @@
 #!/bin/bash -eu
 
-echo after reboot
-date ; uptime ; uname -r
-
 printf 'blacklist floppy\n' > /etc/modprobe.d/floppy.conf
 
 # Then run this instead to rebuild all of the install 

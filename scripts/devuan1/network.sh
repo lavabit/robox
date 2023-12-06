@@ -67,9 +67,6 @@ printf "pre-up sleep 2\n" >> /etc/network/interfaces
 # Ensure a nameserver is being used that won't return an IP for non-existent domain names.
 printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n" > /etc/resolv.conf
 
-echo before reboot
-date ; uptime ; uname -r
-
 # Reboot onto the new kernel (if applicable).
 bash -c 'sleep 10 ; /sbin/reboot' &
 echo "Rebooting..."
