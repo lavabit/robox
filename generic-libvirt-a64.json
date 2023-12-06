@@ -458,7 +458,6 @@
       "vm_name": "generic-gentoo-libvirt-a64",
       "output_directory": "output/generic-gentoo-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "cpu_model": "max",
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -470,29 +469,25 @@
         "bash generic.gentoo.vagrant.sh<enter>"
       ],
       "qemuargs": [
-        [
+           [
           "-display",
           "gtk"
         ],
         [
-          "-device",
-          "ramfb"
-        ],
-        [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
+          "virt,accel=kvm:tcg,gic-version=3,dump-guest-core=off,acpi=on,usb=on,ras=on"
         ],
         [
-          "-object",
-          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+          "-cpu",
+          "max"
         ],
         [
           "-overcommit",
-          "mem-lock=off"
+          "mem-lock=on"
         ],
         [
-          "-accel",
-          "tcg"
+          "-device",
+          "ramfb"
         ],
         [
           "-boot",
@@ -504,7 +499,19 @@
         ],
         [
           "-device",
-          "{'driver':'usb-kbd','id':'input0'}"
+          "driver=virtio-keyboard-pci"
+        ],
+        [
+          "-device",
+          "driver=virtio-mouse-pci"
+        ],
+        [
+          "-device",
+          "driver=usb-kbd"
+        ],
+        [
+          "-device",
+          "driver=usb-mouse"
         ]
       ],
       "efi_boot": true,
@@ -539,7 +546,6 @@
       "vm_name": "generic-openbsd7-libvirt-a64",
       "output_directory": "output/generic-openbsd7-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "cpu_model": "max",
       "boot_wait": "60s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -556,24 +562,20 @@
           "gtk"
         ],
         [
-          "-device",
-          "ramfb"
-        ],
-        [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
+          "virt,accel=kvm:tcg,gic-version=3,dump-guest-core=off,acpi=on,usb=on,ras=on"
         ],
         [
-          "-object",
-          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+          "-cpu",
+          "max"
         ],
         [
           "-overcommit",
-          "mem-lock=off"
+          "mem-lock=on"
         ],
         [
-          "-accel",
-          "tcg"
+          "-device",
+          "ramfb"
         ],
         [
           "-boot",
@@ -585,7 +587,19 @@
         ],
         [
           "-device",
-          "{'driver':'usb-kbd','id':'input0'}"
+          "driver=virtio-keyboard-pci"
+        ],
+        [
+          "-device",
+          "driver=virtio-mouse-pci"
+        ],
+        [
+          "-device",
+          "driver=usb-kbd"
+        ],
+        [
+          "-device",
+          "driver=usb-mouse"
         ]
       ],
       "efi_boot": true,
@@ -905,13 +919,17 @@
       "boot_command": [
         "<tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10>",
         "<tab><wait10><tab><wait10><tab><wait10>c<wait><enter>",
-        "setparams 'Install'<enter><wait>",
+        "insmod all_video<enter><wait5>",
+        "set gfxpayload=kee<enter><wait5>",
+        "insmod gzio<enter><wait5>",
+        "insmod part_gpt<enter><wait5>",
+        "insmod ext2<enter><wait5>",
         "linux /images/pxeboot/vmlinuz ",
         "inst.stage2=hd:LABEL=Fedora-S-dvd-aarch64-39 ro ",
         "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora39.vagrant.a64.ks ",
         "inst.text net.ifnames=0 biosdevname=0 console=ttyAMA0 console=tty1 ",
-        "systemd.mask=systemd-zram-setup@zram0.service <enter><wait10>",
-        "initrd /images/pxeboot/initrd.img<enter><wait10>",
+        "systemd.mask=systemd-zram-setup@zram0.service <enter><wait5>",
+        "initrd /images/pxeboot/initrd.img<enter><wait5>",
         "boot<enter><wait>"
       ],
       "qemuargs": [
@@ -1293,7 +1311,6 @@
       "vm_name": "generic-freebsd14-libvirt-a64",
       "output_directory": "output/generic-freebsd14-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "cpu_model": "max",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1321,24 +1338,20 @@
           "gtk"
         ],
         [
-          "-device",
-          "ramfb"
-        ],
-        [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
+          "virt,accel=kvm:tcg,gic-version=3,dump-guest-core=off,acpi=on,usb=on,ras=on"
         ],
         [
-          "-object",
-          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+          "-cpu",
+          "max"
         ],
         [
           "-overcommit",
-          "mem-lock=off"
+          "mem-lock=on"
         ],
         [
-          "-accel",
-          "tcg"
+          "-device",
+          "ramfb"
         ],
         [
           "-boot",
@@ -1350,7 +1363,19 @@
         ],
         [
           "-device",
-          "{'driver':'usb-kbd','id':'input0'}"
+          "driver=virtio-keyboard-pci"
+        ],
+        [
+          "-device",
+          "driver=virtio-mouse-pci"
+        ],
+        [
+          "-device",
+          "driver=usb-kbd"
+        ],
+        [
+          "-device",
+          "driver=usb-mouse"
         ]
       ],
       "efi_boot": true,
