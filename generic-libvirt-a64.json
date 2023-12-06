@@ -997,13 +997,18 @@
       "boot_command": [
         "<tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10>",
         "<tab><wait10><tab><wait10><tab><wait10>c<wait><enter>",
-        "setparams 'Install'<enter><wait>",
+        "insmod all_video<enter><wait5>",
+        "set gfxpayload=kee<enter><wait5>",
+        "insmod gzio<enter><wait5>",
+        "insmod part_gpt<enter><wait5>",
+        "insmod ext2<enter><wait5>",
+        "search --no-floppy --set=root -l 'Fedora-S-dvd-aarch64-rawh'<enter><wait5>",
         "linux /images/pxeboot/vmlinuz ",
         "inst.stage2=hd:LABEL=Fedora-S-dvd-aarch64-rawh ro ",
         "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rawhide.vagrant.a64.ks ",
         "inst.text net.ifnames=0 biosdevname=0 console=ttyAMA0 console=tty1 ",
-        "systemd.mask=systemd-zram-setup@zram0.service <enter><wait10>",
-        "initrd /images/pxeboot/initrd.img<enter><wait10>",
+        "systemd.mask=systemd-zram-setup@zram0.service <enter><wait5>",
+        "initrd /images/pxeboot/initrd.img<enter><wait5>",
         "boot<enter><wait>"
       ],
       "qemuargs": [
@@ -1193,7 +1198,7 @@
       "vm_name": "generic-alpine318-libvirt-a64",
       "output_directory": "output/generic-alpine318-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "boot_wait": "240s",
+      "boot_wait": "360s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
@@ -1380,7 +1385,7 @@
       "vm_name": "generic-alpine319-libvirt-a64",
       "output_directory": "output/generic-alpine319-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "boot_wait": "240s",
+      "boot_wait": "360s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",

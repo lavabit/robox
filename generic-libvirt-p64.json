@@ -115,9 +115,9 @@
   "builders": [
      {
       "type": "qemu",
-      "name": "generic-alma9-libvirt-p65",
-      "vm_name": "generic-alma9-libvirt-p65",
-      "output_directory": "output/generic-alma9-libvirt-p65",
+      "name": "generic-alma10-libvirt-p64",
+      "vm_name": "generic-alma10-libvirt-p64",
+      "output_directory": "output/generic-alma10-libvirt-p64",
       "qemu_binary": "qemu-system-ppc64",
       "boot_wait": "1s",
       "boot_keygroup_interval": "1s",

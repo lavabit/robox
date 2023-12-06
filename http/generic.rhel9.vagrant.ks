@@ -19,10 +19,6 @@ bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=
 @core
 authconfig
 sudo
--fprintd-pam
--intltool
--iwl*-firmware
--microcode_ctl
 %end
 
 %post
@@ -38,6 +34,7 @@ chmod 0440 /etc/sudoers.d/vagrant
 
 # Duplicate the install media so the DVD can be ejected.
 mount /dev/cdrom /mnt/
+[ ! -d /media/ ] && mkdir /media/
 cp --recursive /mnt/BaseOS/ /media/ && cp --recursive /mnt/AppStream/ /media/
 
 VIRT=`dmesg | grep "Hypervisor detected" | awk -F': ' '{print $2}'`
