@@ -291,10 +291,10 @@ REPOS+=( "https://vault.centos.org/6.10/updates/x86_64/repodata/repomd.xml" )
 REPOS+=( "https://vault.centos.org/6.10/updates/x86_64/repodata/repomd.xml.asc" )
 
 # CentOS 7
-REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/os/x86_64/repodata/repomd.xml" )
-REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/os/x86_64/repodata/repomd.xml.asc" )
-REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/updates/x86_64/repodata/repomd.xml" )
-REPOS+=( "http://mirrors.edge.kernel.org/centos/7.9.2009/updates/x86_64/repodata/repomd.xml.asc" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/7.9.2009/os/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/7.9.2009/os/x86_64/repodata/repomd.xml.asc" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/7.9.2009/updates/x86_64/repodata/repomd.xml" )
+REPOS+=( "https://mirrors.edge.kernel.org/centos/7.9.2009/updates/x86_64/repodata/repomd.xml.asc" )
 
 # CentOS 8
 REPOS+=( "https://vault.centos.org/8.5.2111/BaseOS/x86_64/os/repodata/repomd.xml" )
@@ -602,8 +602,8 @@ FUTURE+=( "https://archive.devuan.org/merged/dists/excalibur-security/main/binar
 FUTURE+=( "https://archive.devuan.org/merged/dists/excalibur-security/main/binary-arm64/Packages.xz" )
 
 # Debian 8
-REPOS+=( "http://archive.debian.org/debian/dists/jessie/Release" )
-REPOS+=( "http://archive.debian.org/debian-security/dists/jessie/updates/Release" )
+REPOS+=( "https://archive.debian.org/debian/dists/jessie/Release" )
+REPOS+=( "https://archive.debian.org/debian-security/dists/jessie/updates/Release" )
 
 # Debian 9
 REPOS+=( "https://archive.debian.org/debian/dists/stretch/Release" )
@@ -967,16 +967,16 @@ RESOURCES+=( "https://files.pythonhosted.org/packages/65/c4/80f97e9c9628f3cac9b9
 RESOURCES+=( "https://files.pythonhosted.org/packages/97/8d/77b8cedcfbf93676148518036c6b1ce7f8e14bf07e95d7fd4ddcb8cc052f/ipaddress-1.0.22.tar.gz" )
 RESOURCES+=( "https://files.pythonhosted.org/packages/bf/3e/31d502c25302814a7c2f1d3959d2a3b3f78e509002ba91aea64993936876/enum34-1.1.6.tar.gz" )
 RESOURCES+=( "https://files.pythonhosted.org/packages/e7/a7/4cd50e57cc6f436f1cc3a7e8fa700ff9b8b4d471620629074913e3735fb2/cffi-1.11.5.tar.gz" )
-RESOURCES+=( "http://archive.debian.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb" )
+RESOURCES+=( "https://archive.debian.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb" )
 RESOURCES+=( "https://mirrors.lavabit.com/freebsd-archive/FreeBSD:11:amd64/latest/All/open-vm-tools-nox11-11.3.0,2.pkg" )
 RESOURCES+=( "https://raw.githubusercontent.com/curl/curl/85f91248cffb22d151d5983c32f0dbf6b1de572a/lib/mk-ca-bundle.pl" )
 RESOURCES+=( "https://sourceware.org/pub/valgrind/valgrind-3.15.0.tar.bz2" )
 RESOURCES+=( "https://storage.googleapis.com/git-repo-downloads/repo" )
 
 # This server doesn't have a properly configured HTTPS certificate, so we use HTTP
-RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb" )
-RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb" )
-RESOURCES+=( "http://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb" )
+RESOURCES+=( "https://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u181-2.6.14-1~deb8u1_amd64.deb" )
+RESOURCES+=( "https://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre_7u181-2.6.14-1~deb8u1_amd64.deb" )
+RESOURCES+=( "https://archive.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jre-headless_7u181-2.6.14-1~deb8u1_amd64.deb" )
 
 # These files are used by the provider install script.
 RESOURCES+=( "https://archive.org/download/vmwaretools10.1.15other6677369.tar/VMware-Tools-10.1.15-other-6677369.tar.gz" )
@@ -1148,7 +1148,7 @@ function iso() {
     fi
 
     # Find the Fedora URL.
-    URL="http://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/"
+    URL="https://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/"
     ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching "Fedora\-Server\-netinst\-x86\_64\-Rawhide\-[0-9]{8}\.n\.[0-9]*.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Fedora Rawhide ISO updates failed.\n\n"; tput sgr0
@@ -1188,7 +1188,7 @@ function iso() {
     fi
 
     # Find the Fedora URL.
-    URL="http://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/"
+    URL="https://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/"
     ISO=`${CURL} --fail --silent "${URL}" | grep --extended-regexp --invert-match "iso\.sha256|iso\.asc" | grep --extended-regexp --only-matching "Fedora\-Server\-netinst\-aarch64\-Rawhide\-[0-9]{8}\.n\.[0-9]*.iso" | sort -V | uniq | tail -1`
     if [ $? != 0 ] || [ "$ISO" == "" ]; then
       tput setaf 1; printf "\nThe Fedora Rawhide ISO updates failed.\n\n"; tput sgr0
@@ -2388,18 +2388,19 @@ function public() {
           [[ "${BOX}" =~ ^fedora-rawhide$ ]] || \
           [[ "${BOX}" =~ ^rhel9$ ]] || \
           [[ "${BOX}" =~ ^ubuntu2204$ ]]; then
-        curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
-        if [ $? != 0 ]; then
-          let MISSING+=1
-          printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/a64\n"; tput sgr0
-        else
-          let FOUND+=1
-          curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
-            if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
-              let UNRELEASED+=1
-              printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/a64\n"; tput sgr0
-            else
-              printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/a64\n"; tput sgr0
+          curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
+         if [ $? != 0 ]; then
+           let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/a64\n"; tput sgr0
+          else
+            let FOUND+=1
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+              if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
+                let UNRELEASED+=1
+                printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/a64\n"; tput sgr0
+              else
+                printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/a64\n"; tput sgr0
+              fi
             fi
           fi
         fi
@@ -2425,6 +2426,7 @@ function public() {
           fi
         fi
       fi
+      
 
       PROVIDER="libvirt" ; ARCH="ppc64le"
       if [[ "${ORGANIZATION}" =~ ^(generic(-p64)?|roboxes(-p64)?)$ ]]; then
@@ -2440,33 +2442,34 @@ function public() {
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/p64\n"; tput sgr0
               else
-                printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/p64\n"; tput sgr0
+                  printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/p64\n"; tput sgr0
               fi
             fi
           fi
         fi
       fi
+      
 
-      # PROVIDER="libvirt" ; ARCH="riscv64"
-      # if [[ "${ORGANIZATION}" =~ ^(generic(-r64)?|roboxes(-r64)?)$ ]]; then
-      #   if [[ "${BOX}" =~ ^debian12$ ]]; then
-      #     curltry ${CURL} --head --fail --silent --location --user-agent"${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
-      #     if [ $? != 0 ]; then
-      #       let MISSING+=1
-      #       printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
-      #     else
-      #       let FOUND+=1
-      #       curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
-      #         if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
-      #           let UNRELEASED+=1
-      #           printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
-      #         else
-      #           printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
-      #         fi
-      #       fi
-      #     fi
-      #   fi
-      # fi
+      PROVIDER="libvirt" ; ARCH="riscv64"
+      if [[ "${ORGANIZATION}" =~ ^(generic(-r64)?|roboxes(-r64)?)$ ]]; then
+        if [[ "${BOX}" =~ ^debian12$ ]]; then
+          curltry ${CURL} --head --fail --silent --location --user-agent"${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
+          if [ $? != 0 ]; then
+            let MISSING+=1
+            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
+          else
+            let FOUND+=1
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+              if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
+                let UNRELEASED+=1
+                printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
+              else
+                printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
+              fi
+            fi
+          fi
+        fi
+      fi
 
       PROVIDER="parallels" ; ARCH="amd64"
       if [[ "${ORGANIZATION}" =~ ^(generic(-x64)?|roboxes(-x64)?)$ ]]; then
@@ -2565,7 +2568,6 @@ function public() {
             fi
           fi
         fi
-
       fi
 
       # Limit requests to ~100 per minute to avoid stalls.
