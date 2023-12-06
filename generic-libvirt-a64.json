@@ -620,7 +620,6 @@
       "vm_name": "generic-ubuntu2204-libvirt-a64",
       "output_directory": "output/generic-ubuntu2204-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "cpu_model": "max",
       "boot_wait": "10s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -638,7 +637,7 @@
         "set gfxpayload=keep<enter><wait10>",
         "linux /casper/vmlinuz autoinstall ",
         "cloud-config-url=\"http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2204.vagrant.cfg\" --- ",
-        "net.ifnames=0 biosdevname=0 console=tty1<enter><wait10>",
+        "net.ifnames=0 biosdevname=0 console=ttyAMA0 console=tty1<enter><wait10>",
         "initrd /casper/initrd<enter><wait10>",
         "boot<enter>"
       ],
@@ -727,9 +726,9 @@
         "<tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10>",
         "<tab><wait10><tab><wait10><tab><wait10>c<wait><enter>",
         "linux /images/pxeboot/vmlinuz ",
-        "inst.stage2=hd:LABEL=AlmaLinux-9-3-aarch64-dvd ",
+        "inst.stage2=hd:LABEL=RHEL-9-3-0-BaseOS-aarch64 ",
         "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks ",
-        "inst.text net.ifnames=0 biosdevname=0 console=tty1<enter><wait10>",
+        "inst.text net.ifnames=0 biosdevname=0 console=ttyAMA0 console=tty1<enter><wait10>",
         "initrd /images/pxeboot/initrd.img<enter><wait10>",
         "boot<enter><wait>"
       ],
@@ -811,7 +810,6 @@
       "vm_name": "generic-alma9-libvirt-a64",
       "output_directory": "output/generic-alma9-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "cpu_model": "max",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -820,7 +818,7 @@
         "linux /images/pxeboot/vmlinuz ",
         "inst.stage2=hd:LABEL=AlmaLinux-9-3-aarch64-dvd ",
         "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.a64.ks ",
-        "inst.text net.ifnames=0 biosdevname=0 console=tty1<enter><wait10>",
+        "inst.text net.ifnames=0 biosdevname=0 console=ttyAMA0 console=tty1<enter><wait10>",
         "initrd /images/pxeboot/initrd.img<enter><wait10>",
         "boot<enter><wait>"
       ],
@@ -902,7 +900,6 @@
       "vm_name": "generic-fedora39-libvirt-a64",
       "output_directory": "output/generic-fedora39-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "cpu_model": "max",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -923,24 +920,20 @@
           "gtk"
         ],
         [
-          "-device",
-          "ramfb"
-        ],
-        [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
+          "virt,accel=kvm:tcg,gic-version=3,dump-guest-core=off,acpi=on,usb=on,ras=on"
         ],
         [
-          "-object",
-          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+          "-cpu",
+          "max"
         ],
         [
           "-overcommit",
-          "mem-lock=off"
+          "mem-lock=on"
         ],
         [
-          "-accel",
-          "tcg"
+          "-device",
+          "ramfb"
         ],
         [
           "-boot",
@@ -952,7 +945,19 @@
         ],
         [
           "-device",
-          "{'driver':'usb-kbd','id':'input0'}"
+          "driver=virtio-keyboard-pci"
+        ],
+        [
+          "-device",
+          "driver=virtio-mouse-pci"
+        ],
+        [
+          "-device",
+          "driver=usb-kbd"
+        ],
+        [
+          "-device",
+          "driver=usb-mouse"
         ]
       ],
       "efi_boot": true,
@@ -987,7 +992,6 @@
       "vm_name": "generic-fedora-rawhide-libvirt-a64",
       "output_directory": "output/generic-fedora-rawhide-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "cpu_model": "max",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1008,24 +1012,20 @@
           "gtk"
         ],
         [
-          "-device",
-          "ramfb"
-        ],
-        [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
+          "virt,accel=kvm:tcg,gic-version=3,dump-guest-core=off,acpi=on,usb=on,ras=on"
         ],
         [
-          "-object",
-          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+          "-cpu",
+          "max"
         ],
         [
           "-overcommit",
-          "mem-lock=off"
+          "mem-lock=on"
         ],
         [
-          "-accel",
-          "tcg"
+          "-device",
+          "ramfb"
         ],
         [
           "-boot",
@@ -1037,7 +1037,19 @@
         ],
         [
           "-device",
-          "{'driver':'usb-kbd','id':'input0'}"
+          "driver=virtio-keyboard-pci"
+        ],
+        [
+          "-device",
+          "driver=virtio-mouse-pci"
+        ],
+        [
+          "-device",
+          "driver=usb-kbd"
+        ],
+        [
+          "-device",
+          "driver=usb-mouse"
         ]
       ],
       "efi_boot": true,
@@ -1181,7 +1193,6 @@
       "vm_name": "generic-alpine318-libvirt-a64",
       "output_directory": "output/generic-alpine318-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "cpu_model": "max",
       "boot_wait": "240s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
@@ -1205,24 +1216,20 @@
           "gtk"
         ],
         [
-          "-device",
-          "ramfb"
-        ],
-        [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
+          "virt,accel=kvm:tcg,gic-version=3,dump-guest-core=off,acpi=on,usb=on,ras=on"
         ],
         [
-          "-object",
-          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+          "-cpu",
+          "max"
         ],
         [
           "-overcommit",
-          "mem-lock=off"
+          "mem-lock=on"
         ],
         [
-          "-accel",
-          "tcg"
+          "-device",
+          "ramfb"
         ],
         [
           "-boot",
@@ -1234,7 +1241,19 @@
         ],
         [
           "-device",
-          "{'driver':'usb-kbd','id':'input0'}"
+          "driver=virtio-keyboard-pci"
+        ],
+        [
+          "-device",
+          "driver=virtio-mouse-pci"
+        ],
+        [
+          "-device",
+          "driver=usb-kbd"
+        ],
+        [
+          "-device",
+          "driver=usb-mouse"
         ]
       ],
       "efi_boot": true,
@@ -1255,7 +1274,7 @@
       "http_directory": "http",
       "headless": true,
       "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.18/releases/aarch64/alpine-virt-3.18.5-aarch64.iso",
-      "iso_checksum": "sha256:ba72f4b3cccf3addf9babc210d44096880b78ecca9e8758fb22ce2a8055d10b6",
+      "iso_checksum": "sha256:d4961d57de82b6cbdc59ccc6d3deeff461297f4edb8e6a6d28c020b4ea986d84",
       "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -1361,8 +1380,7 @@
       "vm_name": "generic-alpine319-libvirt-a64",
       "output_directory": "output/generic-alpine319-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "cpu_model": "max",
-      "boot_wait": "340s",
+      "boot_wait": "240s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "<enter><wait10>",
@@ -1386,24 +1404,20 @@
           "gtk"
         ],
         [
-          "-device",
-          "ramfb"
-        ],
-        [
           "-machine",
-          "virt,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,acpi=on,usb=on"
+          "virt,accel=kvm:tcg,gic-version=3,dump-guest-core=off,acpi=on,usb=on,ras=on"
         ],
         [
-          "-object",
-          "{'qom-type':'memory-backend-ram','id':'mach-virt.ram','size':4294967296}"
+          "-cpu",
+          "max"
         ],
         [
           "-overcommit",
-          "mem-lock=off"
+          "mem-lock=on"
         ],
         [
-          "-accel",
-          "tcg"
+          "-device",
+          "ramfb"
         ],
         [
           "-boot",
@@ -1415,7 +1429,19 @@
         ],
         [
           "-device",
-          "{'driver':'usb-kbd','id':'input0'}"
+          "driver=virtio-keyboard-pci"
+        ],
+        [
+          "-device",
+          "driver=virtio-mouse-pci"
+        ],
+        [
+          "-device",
+          "driver=usb-kbd"
+        ],
+        [
+          "-device",
+          "driver=usb-mouse"
         ]
       ],
       "efi_boot": true,
@@ -1435,7 +1461,7 @@
       "memory": 4096,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.19/releases/aarch64/alpine-virt-3.19.0_rc1-aarch64.iso",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.19/releases/aarch64/alpine-virt-3.19.0_rc3-aarch64.iso",
       "iso_checksum": "sha256:af84ed58b37cafee8837b1ba6cf1217864849ffefa7d3e934b9a514586276fdf",
       "ssh_username": "root",
       "ssh_password": "vagrant",

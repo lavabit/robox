@@ -19,7 +19,7 @@
       "name": "alpine318-a64",
       "output_directory": "output/alpine318-a64",
       "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.18/releases/aarch64/alpine-virt-3.18.5-aarch64.iso",
-      "iso_checksum": "sha256:ba72f4b3cccf3addf9babc210d44096880b78ecca9e8758fb22ce2a8055d10b6",
+      "iso_checksum": "sha256:d4961d57de82b6cbdc59ccc6d3deeff461297f4edb8e6a6d28c020b4ea986d84",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -138,7 +138,7 @@
     {
       "name": "alpine319-a64",
       "output_directory": "output/alpine319-a64",
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.19/releases/aarch64/alpine-virt-3.19.0_rc1-aarch64.iso",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.19/releases/aarch64/alpine-virt-3.19.0_rc3-aarch64.iso",
       "iso_checksum": "sha256:af84ed58b37cafee8837b1ba6cf1217864849ffefa7d3e934b9a514586276fdf",
       "boot_wait": "5s",
       "disk_size": 1,
