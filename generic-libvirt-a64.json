@@ -383,28 +383,6 @@
       ]
     },
     {
-      "scripts": [
-        "scripts/common/motd.sh",
-        "scripts/common/keys.sh",
-        "scripts/common/machine.sh",
-        "scripts/common/leases.sh",
-        "scripts/common/localtime.sh"
-      ],
-      "type": "shell",
-      "timeout": "120m",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true"
-    },
-    {
-      "scripts": [
-        "scripts/common/zerodisk.sh"
-      ],
-      "type": "shell",
-      "timeout": "720m",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true"
-    },
-    {
       "type": "shell",
       "timeout": "120m",
       "scripts": [
@@ -440,6 +418,28 @@
       "only": [
         "generic-alpine319-libvirt-a64"
       ]
+    },
+    {
+      "scripts": [
+        "scripts/common/motd.sh",
+        "scripts/common/keys.sh",
+        "scripts/common/machine.sh",
+        "scripts/common/leases.sh",
+        "scripts/common/localtime.sh"
+      ],
+      "type": "shell",
+      "timeout": "120m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
+    },
+    {
+      "scripts": [
+        "scripts/common/zerodisk.sh"
+      ],
+      "type": "shell",
+      "timeout": "720m",
+      "start_retry_timeout": "15m",
+      "expect_disconnect": "true"
     },
     {
       "scripts": [
@@ -1269,7 +1269,7 @@
       "disk_compression": true,
       "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 8,
+      "cpus": 4,
       "memory": 4096,
       "http_directory": "http",
       "headless": true,
@@ -1457,7 +1457,7 @@
       "disk_compression": true,
       "disk_interface": "virtio",
       "net_device": "virtio-net",
-      "cpus": 8,
+      "cpus": 4,
       "memory": 4096,
       "http_directory": "http",
       "headless": true,
