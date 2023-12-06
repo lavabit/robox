@@ -721,9 +721,18 @@
       "vm_name": "generic-rhel9-libvirt-a64",
       "output_directory": "output/generic-rhel9-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "cpu_model": "max",
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
+      "boot_command": [
+        "<tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10>",
+        "<tab><wait10><tab><wait10><tab><wait10>c<wait><enter>",
+        "linux /images/pxeboot/vmlinuz ",
+        "inst.stage2=hd:LABEL=AlmaLinux-9-3-aarch64-dvd ",
+        "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks ",
+        "inst.text net.ifnames=0 biosdevname=0 console=tty1<enter><wait10>",
+        "initrd /images/pxeboot/initrd.img<enter><wait10>",
+        "boot<enter><wait>"
+      ],
       "boot_command": [
         "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks vga=792 <enter><wait>"
       ],
