@@ -71,6 +71,6 @@ echo before reboot
 date ; uptime ; uname -r
 
 # Reboot onto the new kernel (if applicable).
-( /sbin/shutdown -r +1 ) &
-echo "Rebooting in thirty seconds..."
+bash -c 'sleep 10 ; /sbin/reboot' &
+echo "Rebooting..."
 exit 0

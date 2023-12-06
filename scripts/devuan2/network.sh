@@ -9,12 +9,8 @@ else
   printf "\n127.0.0.1 magma.localdomain\n\n" >> /etc/hosts
 fi
 
-echo before reboot
-date ; uptime ; uname -r
-
-
-# Tne network interface and DHCP client are configured by the installer
+# The network interface and DHCP client are configured by the installer
 # via the preseed config, to avoid IP address changes during a reboot.
 ( /sbin/shutdown -r +1 ) &
-echo "Rebooting in thirty seconds..."
+echo "Rebooting..."
 exit 0
