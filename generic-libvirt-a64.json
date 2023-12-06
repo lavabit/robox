@@ -733,10 +733,6 @@
         "initrd /images/pxeboot/initrd.img<enter><wait10>",
         "boot<enter><wait>"
       ],
-      "boot_command": [
-        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks vga=792 <enter><wait>"
-      ],
-
       "qemuargs": [
         [
           "-display",
