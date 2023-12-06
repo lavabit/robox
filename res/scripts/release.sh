@@ -135,7 +135,7 @@ elif [ "$ARCH" == "p32" ] || [ "$ARCH" == "ppc32" ] || [ "$ARCH" == "power" ] ||
 elif [ "$ARCH" == "r64" ] || [ "$ARCH" == "riscv64" ] || [ "$ARCH" == "riscv64sf" ]; then
   ARCH="riscv64"
 elif [ "$ARCH" == "r32" ] || [ "$ARCH" == "riscv" ] || [ "$ARCH" == "riscv32" ]; then
-  ARCH="riscv32"
+  ARCH="riscv"
 else
   printf "\n${T_YEL}  The architecture is unrecognized. Passing it verbatim to the cloud. [ arch = ${ARCH} ]${T_RESET}\n\n" >&2
 fi
@@ -206,29 +206,64 @@ retry ${CURL} \
 release_box
 
 if [ "$ORG" == "generic" ] && [ "$ARCH" == "amd64" ]; then
-  ORG="generic-x64"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-x64"
   release_box
 elif [ "$ORG" == "generic" ] && [ "$ARCH" == "i386" ]; then
-  ORG="generic-x32"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-x32"
   release_box
 elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm64" ]; then
-  ORG="generic-a64"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-a64"
   release_box
 elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm" ]; then
-  ORG="generic-a32"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-a32"
+  release_box
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "mips64le" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-m64"
+  release_box
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "mips" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-m32"
+  release_box
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "ppc64le" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-p64"
+  release_box
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "ppc" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-p32"
+  release_box
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "riscv64" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-r64"
+  release_box
+elif [ "$ORG" == "generic" ] && [ "$ARCH" == "riscv" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-r32"
   release_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "amd64" ]; then
-  ORG="roboxes-x64"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-x64"
   release_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "i386" ]; then
-  ORG="roboxes-x32"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-x32"
   release_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm64" ]; then
-  ORG="roboxes-a64"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-a64"
   release_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm" ]; then
-  ORG="roboxes-a32"
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-a32"
+  release_box
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "mips64le" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-m64"
+  release_box
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "mips" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-m32"
+  release_box
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "ppc64le" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-p64"
+  release_box
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "ppc" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-p32"
+  release_box
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "riscv64" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-r64"
+  release_box
+elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "riscv" ]; then
+  sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-r32"
   release_box
 fi
-
 

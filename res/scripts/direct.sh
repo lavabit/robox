@@ -459,7 +459,7 @@ elif [ "$ORG" == "generic" ] && [ "$ARCH" == "arm" ]; then
   upload_box
 elif [ "$ORG" == "generic" ] && [ "$ARCH" == "mips64le" ]; then
   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-m64"
-  upload_box[]
+  upload_box
 elif [ "$ORG" == "generic" ] && [ "$ARCH" == "mips" ]; then
   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-m32"
   upload_box
@@ -471,7 +471,7 @@ elif [ "$ORG" == "generic" ] && [ "$ARCH" == "ppc" ]; then
   upload_box
 elif [ "$ORG" == "generic" ] && [ "$ARCH" == "riscv64" ]; then
   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-r64"
-  upload_box[]
+  upload_box
 elif [ "$ORG" == "generic" ] && [ "$ARCH" == "riscv" ]; then
   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-r32"
   upload_box
@@ -489,7 +489,7 @@ elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "arm" ]; then
   upload_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "mips64le" ]; then
   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-m64"
-  upload_box[]
+  upload_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "mips" ]; then
   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-m32"
   upload_box
@@ -501,7 +501,7 @@ elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "ppc" ]; then
   upload_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "riscv64" ]; then
   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-r64"
-  upload_box[]
+  upload_box
 elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "riscv" ]; then
   sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-r32"
   upload_box
@@ -526,7 +526,7 @@ if [ "$PROVIDER" == "libvirt" ]; then
     upload_box
   elif [ "$ORG" == "generic" ] && [ "$ARCH" == "mips64le" ]; then
     sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-m64"
-    upload_box[]
+    upload_box
   elif [ "$ORG" == "generic" ] && [ "$ARCH" == "mips" ]; then
     sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-m32"
     upload_box
@@ -538,7 +538,7 @@ if [ "$PROVIDER" == "libvirt" ]; then
     upload_box
   elif [ "$ORG" == "generic" ] && [ "$ARCH" == "riscv64" ]; then
     sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-r64"
-    upload_box[]
+    upload_box
   elif [ "$ORG" == "generic" ] && [ "$ARCH" == "riscv" ]; then
     sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="generic-r32"
     upload_box
@@ -556,7 +556,7 @@ if [ "$PROVIDER" == "libvirt" ]; then
     upload_box
   elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "mips64le" ]; then
     sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-m64"
-    upload_box[]
+    upload_box
   elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "mips" ]; then
     sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-m32"
     upload_box
@@ -568,7 +568,7 @@ if [ "$PROVIDER" == "libvirt" ]; then
     upload_box
   elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "riscv64" ]; then
     sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-r64"
-    upload_box[]
+    upload_box
   elif [ "$ORG" == "roboxes" ] && [ "$ARCH" == "riscv" ]; then
     sleep 8 ; VAGRANTPATH="vagrantcloud.com" ; ORG="roboxes-r32"
     upload_box
