@@ -1819,7 +1819,6 @@
       "boot_wait": "180s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf<enter><wait>",
         "passwd root<enter><wait><wait><wait>",
         "vagrant<enter><wait>",
         "vagrant<enter><wait>",

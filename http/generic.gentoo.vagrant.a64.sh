@@ -5,27 +5,27 @@
 
 echo 'Partitioning Filesystems to Install Gentoo'
 declare -i current=1
-parted -a opt -s /dev/sda -- "mklabel gpt"
-parted -a opt -s /dev/sda -- "mkpart EFI fat16       $(( current ))  $(( current += 128   ))m"
-parted -a opt -s /dev/sda -- "mkpart BOOT ext4       $(( current ))  $(( current += 512   ))m"
-parted -a opt -s /dev/sda -- "mkpart SWAP linux-swap $(( current ))m $(( current += 4096  ))m"
-parted -a opt -s /dev/sda -- "mkpart ROOT ext4       $(( current ))m -1"
-parted -a opt -s /dev/sda -- "set 1 bios_grub on"
-parted -a opt -s /dev/sda -- "set 2 boot on"
+parted -a opt -s /dev/vda -- "mklabel gpt"
+parted -a opt -s /dev/vda -- "mkpart EFI fat16       $(( current ))  $(( current += 128   ))m"
+parted -a opt -s /dev/vda -- "mkpart BOOT ext4       $(( current ))  $(( current += 512   ))m"
+parted -a opt -s /dev/vda -- "mkpart SWAP linux-swap $(( current ))m $(( current += 4096  ))m"
+parted -a opt -s /dev/vda -- "mkpart ROOT ext4       $(( current ))m -1"
+parted -a opt -s /dev/vda -- "set 1 bios_grub on"
+parted -a opt -s /dev/vda -- "set 2 boot on"
 
 echo 'Formatting Filesystems'
-mkfs.fat -F 32 -n efi-boot /dev/sda1
-mkfs -t ext4 /dev/sda2
-mkfs -t ext4 /dev/sda4
+mkfs.fat -F 32 -n efi-boot /dev/vda1
+mkfs -t ext4 /dev/vda2
+mkfs -t ext4 /dev/vda4
 
 echo 'Mounting Filesystems in /mnt/gentoo'
-mkswap /dev/sda3
-swapon /dev/sda3
-mount /dev/sda4 /mnt/gentoo/
+mkswap /dev/vda3
+swapon /dev/vda3
+mount /dev/vda4 /mnt/gentoo/
 mkdir -p /mnt/gentoo/{boot,var,usr,tmp,home}
-mount /dev/sda2 /mnt/gentoo/boot
+mount /dev/vda2 /mnt/gentoo/boot
 mkdir -p /mnt/gentoo/boot/{grub,efi}
-mount /dev/sda1 /mnt/gentoo/boot/efi
+mount /dev/vda1 /mnt/gentoo/boot/efi
 
 # Import current keys per https://www.gentoo.org/downloads/signatures/
 wget -O - https://qa-reports.gentoo.org/output/service-keys.gpg | gpg --import
@@ -36,14 +36,14 @@ for key in ${expired_keys} ; do gpg --no-greeting --batch --yes --delete-key "${
 
 cd /mnt/gentoo
 
-# Download the current-stage3-amd64-nomultilib and the portage tarballs, unpack them, and then delete the archive files.
+# Download the current-stage3-arm64-openrc and the portage tarballs, unpack them, and then delete the archive files.m
 echo 'Downloading Image Overlay'
 # host="https://gentoo.osuosl.org"
 host="https://mirrors.edge.kernel.org/gentoo"
-tarball=$(wget -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-openrc/ -O - | grep -E -v "tar\.xz\.asc|tar\.xz\.CONTENTS\.gz|tar\.xz\.DIGESTS|tar\.xz\.sha256" | grep -E -o -e "stage3-amd64-nomultilib-openrc-[0-9]{8}T[0-9]{6}Z.tar.xz" | sort -V | uniq | tail -1)
-wget --tries=5 --progress=dot:binary $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-openrc/$tarball || exit 1
-wget --tries=5 -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-openrc/$tarball.asc || exit 1
-wget --tries=5 -q $host/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-openrc/$tarball.DIGESTS || exit 1
+tarball=$(wget -q $host/releases/arm64/autobuilds/current-stage3-arm64-openrc/ -O - | grep -E -v "tar\.xz\.asc|tar\.xz\.CONTENTS\.gz|tar\.xz\.DIGESTS|tar\.xz\.sha256" | grep -E -o -e "stage3-arm64-openrc-[0-9]{8}T[0-9]{6}Z.tar.xz" | sort -V | uniq | tail -1)
+wget --tries=5 --progress=dot:binary $host/releases/arm64/autobuilds/current-stage3-arm64-openrc/$tarball || exit 1
+wget --tries=5 -q $host/releases/arm64/autobuilds/current-stage3-arm64-openrc/$tarball.asc || exit 1
+wget --tries=5 -q $host/releases/arm64/autobuilds/current-stage3-arm64-openrc/$tarball.DIGESTS || exit 1
 
 echo 'Downloading Portage'
 wget --tries=5 --progress=dot:binary $host/snapshots/portage-latest.tar.bz2 || exit 1
@@ -69,7 +69,7 @@ mount --make-rslave /mnt/gentoo/dev
 cp /etc/resolv.conf /mnt/gentoo/etc
 
 # Execute the chroot script.
-chroot /mnt/gentoo /bin/bash < /root/generic.gentoo.vagrant.chroot.sh
+chroot /mnt/gentoo /bin/bash < /root/generic.gentoo.vagrant.chroot.a64.sh
 
 # And then reboot.
 echo "Chroot finished, ready to restart."

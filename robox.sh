@@ -2386,6 +2386,7 @@ function public() {
           [[ "${BOX}" =~ ^debian12$ ]] || \
           [[ "${BOX}" =~ ^fedora39$ ]] || \
           [[ "${BOX}" =~ ^fedora-rawhide$ ]] || \
+          [[ "${BOX}" =~ ^gentoo$ ]] || \
           [[ "${BOX}" =~ ^rhel9$ ]] || \
           [[ "${BOX}" =~ ^ubuntu2204$ ]]; then
           curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
@@ -2406,28 +2407,27 @@ function public() {
         fi
       fi
 
-      PROVIDER="libvirt" ; ARCH="mips64le"
-      if [[ "${ORGANIZATION}" =~ ^(generic(-m64)?|roboxes(-m64)?)$ ]]; then
-        if [[ "${BOX}" =~ ^debian12$ ]]; then
-          curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
-          if [ $? != 0 ]; then
-            let MISSING+=1
-            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/m64\n"; tput sgr0
-          else
-            let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
-              if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
-                let UNRELEASED+=1
-                printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/m64\n"; tput sgr0
-              else
-                printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/m64\n"; tput sgr0
-              fi
-            fi
-          fi
-        fi
-      fi
+      # PROVIDER="libvirt" ; ARCH="mips64le"
+      # if [[ "${ORGANIZATION}" =~ ^(generic(-m64)?|roboxes(-m64)?)$ ]]; then
+      #   if [[ "${BOX}" =~ ^debian12$ ]]; then
+      #     curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
+      #     if [ $? != 0 ]; then
+      #       let MISSING+=1
+      #       printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/m64\n"; tput sgr0
+      #     else
+      #       let FOUND+=1
+      #       curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+      #         if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
+      #           let UNRELEASED+=1
+      #           printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/m64\n"; tput sgr0
+      #         else
+      #           printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/m64\n"; tput sgr0
+      #         fi
+      #       fi
+      #     fi
+      #   fi
+      # fi
       
-
       PROVIDER="libvirt" ; ARCH="ppc64le"
       if [[ "${ORGANIZATION}" =~ ^(generic(-p64)?|roboxes(-p64)?)$ ]]; then
         if [[ "${BOX}" =~ ^debian12$ ]]; then
@@ -2448,28 +2448,27 @@ function public() {
           fi
         fi
       fi
-      
 
-      PROVIDER="libvirt" ; ARCH="riscv64"
-      if [[ "${ORGANIZATION}" =~ ^(generic(-r64)?|roboxes(-r64)?)$ ]]; then
-        if [[ "${BOX}" =~ ^debian12$ ]]; then
-          curltry ${CURL} --head --fail --silent --location --user-agent"${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
-          if [ $? != 0 ]; then
-            let MISSING+=1
-            printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
-          else
-            let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
-              if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
-                let UNRELEASED+=1
-                printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
-              else
-                printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
-              fi
-            fi
-          fi
-        fi
-      fi
+      # PROVIDER="libvirt" ; ARCH="riscv64"
+      # if [[ "${ORGANIZATION}" =~ ^(generic(-r64)?|roboxes(-r64)?)$ ]]; then
+      #   if [[ "${BOX}" =~ ^debian12$ ]]; then
+      #     curltry ${CURL} --head --fail --silent --location --user-agent "${AGENT}" --output /dev/null --write-out "%{http_code}" "https://vagrantcloud.com/${ORGANIZATION}/boxes/${BOX}/versions/${VERSION}/providers/${PROVIDER}/${ARCH}/vagrant.box" | grep --silent "200"
+      #     if [ $? != 0 ]; then
+      #       let MISSING+=1
+      #       printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
+      #     else
+      #       let FOUND+=1
+      #       curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+      #         if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
+      #           let UNRELEASED+=1
+      #           printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
+      #         else
+      #           printf "Box  +  "; tput setaf 2; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
+      #         fi
+      #       fi
+      #     fi
+      #   fi
+      # fi
 
       PROVIDER="parallels" ; ARCH="amd64"
       if [[ "${ORGANIZATION}" =~ ^(generic(-x64)?|roboxes(-x64)?)$ ]]; then

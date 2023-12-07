@@ -1,11 +1,9 @@
 #!/bin/bash -xe
 
-echo 'Syncing the System Clock'
-ntpdate 0.us.pool.ntp.org 1.us.pool.ntp.org 2.us.pool.ntp.org
+# echo 'Syncing the System Clock'
+# ntpdate 0.us.pool.ntp.org 1.us.pool.ntp.org 2.us.pool.ntp.org
 
-echo 'Preparing Filesystem to Install Gentoo'
-
-echo 'Partitioning Filesystems'
+echo 'Partitioning Filesystems to Install Gentoo'
 declare -i current=1
 parted -a opt -s /dev/sda -- "mklabel gpt"
 parted -a opt -s /dev/sda -- "mkpart EFI fat16       $(( current ))  $(( current += 128   ))m"
@@ -72,9 +70,6 @@ cp /etc/resolv.conf /mnt/gentoo/etc
 
 # Execute the chroot script.
 chroot /mnt/gentoo /bin/bash < /root/generic.gentoo.docker.chroot.sh
-
-# If the chroot starts failing, use this command instead to see where it is failing.
-# (chroot /mnt/gentoo /bin/bash -ex < /root/generic.gentoo.docker.chroot.sh) || exit 1
 
 # And then reboot.
 echo "Chroot finished, ready to restart."
