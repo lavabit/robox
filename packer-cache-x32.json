@@ -63,8 +63,8 @@
     {
       "name": "debian12-x32",
       "output_directory": "output/debian12-x32",
-      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/i386/iso-cd/debian-12.2.0-i386-netinst.iso",
-      "iso_checksum": "sha256:16b8b990de9ddea6a4cf1cfc6f6c11436c31d87094db9b662f96cc4d7f3d6a96",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.4.0/i386/iso-cd/debian-12.4.0-i386-netinst.iso",
+      "iso_checksum": "sha256:3b39026f0dc0c1c37e3ebe9373aba1fc0d270a9c189416726d705d7f7b273a7a",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,

@@ -3,8 +3,8 @@
     {
       "name": "debian12-a32",
       "output_directory": "output/debian12-a32",
-      "iso_url": "https://cdimage.debian.org/cdimage/release/12.2.0/armhf/iso-cd/debian-12.2.0-armhf-netinst.iso",
-      "iso_checksum": "sha256:392f6384fdb3db29b728b9c53e2512550af2afbf15e691d79a419eccc0606b9c",
+      "iso_url": "https://cdimage.debian.org/cdimage/release/12.4.0/armhf/iso-cd/debian-12.4.0-armhf-netinst.iso",
+      "iso_checksum": "sha256:f78b2c0a694e6f877af330e0615a76806b1d4feed8afaca42fc56e4140cf0080",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
