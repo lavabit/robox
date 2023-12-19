@@ -45,18 +45,31 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 # EPEL Repo Setup
 retry dnf --quiet --assumeyes --enablerepo=extras-common install epel-release
 
-# sed -i -e "s/^#[ ]\?baseurl/baseurl/g" /etc/yum.repos.d/epel.repo
-# sed -i -e "s/^mirrorlist/#mirrorlist/g" /etc/yum.repos.d/epel.repo
+sed --in-place 's/metalink\=http:/metalink\=https:/g' /etc/yum.repos.d/epel.repo
+sed --in-place 's/\(metalink\=.*\)$/\1\&protocol\=https/g' /etc/yum.repos.d/epel.repo
+
+if [ -f /etc/yum.repos.d/epel-playground.repo ]; then
+  sed --in-place 's/metalink\=http:/metalink\=https:/g' /etc/yum.repos.d/epel-cisco-openh264.repo
+  sed --in-place 's/\(metalink\=.*\)$/\1\&protocol\=https/g' /etc/yum.repos.d/epel-cisco-openh264.repo
+fi
+
+# Disable the testing repo.
+if [ -f /etc/yum.repos.d/epel-testing.repo ]; then
+  sed --in-place 's/metalink\=http:/metalink\=https:/g'  /etc/yum.repos.d/epel-testing.repo
+  sed --in-place 's/\(metalink\=.*\)$/\1\&protocol\=https/g'  /etc/yum.repos.d/epel-testing.repo
+  sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-testing.repo
+  sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-testing.repo
+fi
+
+# Disable the playground repo.
+if [ -f /etc/yum.repos.d/epel-playground.repo ]; then
+  sed --in-place 's/metalink\=http:/metalink\=https:/g'  /etc/yum.repos.d/epel-playground.repo
+  sed --in-place 's/\(metalink\=.*\)$/\1\&protocol\=https/g'  /etc/yum.repos.d/epel-playground.repo
+  sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-playground.repo
+  sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-playground.repo
+fi
 
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9
-
-# Disable the playground/testing repo.
-sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-testing.repo
-sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-testing.repo
-sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-testing-modular.repo
-sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-testing-modular.repo
-sed --in-place "s/^/# /g" /etc/yum.repos.d/epel-playground.repo
-sed --in-place "s/# #/##/g" /etc/yum.repos.d/epel-playground.repo
 
 # Update the base install first.
 retry dnf --assumeyes update

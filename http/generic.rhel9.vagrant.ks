@@ -7,6 +7,7 @@ rootpw --plaintext vagrant
 user --name=vagrant --password=vagrant --plaintext
 
 zerombr
+clearpart --all --initlabel
 autopart --type=lvm --nohome
 
 firewall --enabled --service=ssh
@@ -20,10 +21,10 @@ bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=
 @core
 authconfig
 sudo
---fprintd-pam
---intltool
---iwl*-firmware
---microcode_ctl
+-fprintd-pam
+-intltool
+-iwl*-firmware
+-microcode_ctl
 %end
 
 %post
@@ -61,6 +62,6 @@ cat <<-EOF > /etc/udev/rules.d/60-scheduler.rules
 ACTION=="add|change", KERNEL=="sd[a-z]|sg[a-z]|vd[a-z]|hd[a-z]|xvd[a-z]|dm-*|mmcblk[0-9]*|nvme[0-9]*", ATTR{queue/scheduler}="mq-deadline"
 EOF
 
-umount /mnt/ 
+umount /mnt/
 
 %end

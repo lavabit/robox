@@ -27,8 +27,10 @@ url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_6
 # url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/39/Everything/x86_64/os/
 
 %packages
-net-tools
 @core
+net-tools
+sudo
+authconfig
 -mcelog
 -usbutils
 -microcode_ctl

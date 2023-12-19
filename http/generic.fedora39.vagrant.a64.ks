@@ -6,19 +6,25 @@ timezone US/Pacific
 rootpw --plaintext vagrant
 user --name=vagrant --password=vagrant --plaintext
 
+#zerombr
+#clearpart --all --initlabel
+#part /boot/efi --fstype=efi --size=128 --label=boot_efi
+#part /boot --fstype="xfs" --size=1024 --label=boot
+#part fedora_pv --fstype="lvmpv" --grow --label=fedora_pv
+#volgroup fedora --pesize=4096 fedora_pv
+#logvol swap --fstype="swap" --size=2048 --name=swap --vgname=fedora
+#logvol / --fstype="xfs" --percent=100 --label="root" --name=root --vgname=fedora
+
 zerombr
-clearpart --all
-part /boot/efi --fstype=efi --size=128 --label=boot_efi
-part /boot --fstype="xfs" --size=1024 --label=boot
-part fedora_pv --fstype="lvmpv" --grow --label=fedora_pv
-volgroup fedora --pesize=4096 fedora_pv
-logvol swap --fstype="swap" --size=2048 --name=swap --vgname=fedora
-logvol / --fstype="xfs" --percent=100 --label="root" --name=root --vgname=fedora
+clearpart --all --initlabel
+autopart --type=lvm
+
 
 
 firewall --enabled --service=ssh
-network --activate --device eth0 --bootproto dhcp --noipv6 --hostname=fedora39.localdomain --nameserver=1.1.1.1 --nameserver=4.2.2.1
-bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0"
+network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora39.localdomain
+# network --activate --device eth0 --bootproto dhcp --noipv6 --hostname=fedora39.localdomain --nameserver=1.1.1.1 --nameserver=4.2.2.1
+bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
 
 #### Prod Repo
 url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/aarch64/os/
@@ -33,8 +39,12 @@ net-tools
 sudo
 authconfig
 -mcelog
+-usbutils
 -microcode_ctl
 -smartmontools
+-plymouth
+-plymouth-core-libs
+-plymouth-scripts
 %end
 
 %post

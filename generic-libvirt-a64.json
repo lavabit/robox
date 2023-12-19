@@ -458,7 +458,7 @@
       "vm_name": "generic-gentoo-libvirt-a64",
       "output_directory": "output/generic-gentoo-libvirt-a64",
       "qemu_binary": "qemu-system-aarch64",
-      "boot_wait": "180s",
+      "boot_wait": "3600s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
         "passwd root<enter><wait><wait><wait>",
@@ -916,12 +916,22 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10>",
-        "<tab><wait10><tab><wait10><tab><wait10>c<wait><enter>",
+        "<tab><wait5><tab><wait5>c<wait><enter>",
+        "insmod efi_gop<enter><wait>",
+        "insmod gzio<enter><wait>",
+        "insmod part_gpt<enter><wait>",
+        "insmod ext2<enter><wait>",
+        "insmod xfs<enter><wait>",
+        "insmod fat<enter><wait>",
+        "insmod iso9660<enter><wait>",
+        "insmod lvm<enter><wait>",
+        "insmod net<enter><wait>",
+        "insmod bufio<enter><wait>",
+        "root (cd0,0)<enter><wait>",
         "linux /images/pxeboot/vmlinuz ",
-        "inst.stage2=hd:LABEL=Fedora-S-dvd-aarch64-39 ",
+        "inst.stage2=hd:LABEL=Fedora-S-dvd-aarch64-39 ro ",
         "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora39.vagrant.a64.ks ",
-        "inst.text selinux=0 net.ifnames=0 biosdevname=0 console=ttyAMA0 console=tty1<enter><wait5>",
+        "inst.text inst.selinux=0 net.ifnames=0 biosdevname=0 nomodeset selinux=0 console=ttyAMA0 console=tty1<enter><wait5>",
         "initrd /images/pxeboot/initrd.img<enter><wait5>",
         "boot<enter><wait>"
       ],
@@ -956,25 +966,27 @@
         ],
         [
           "-device",
-          "driver=virtio-keyboard-pci"
-        ],
-        [
-          "-device",
-          "driver=virtio-mouse-pci"
-        ],
-        [
-          "-device",
           "driver=usb-kbd"
         ],
         [
           "-device",
           "driver=usb-mouse"
+        ],
+        [
+          "-d",
+          "unimp,guest_errors"
+        ],
+        [
+          "-D",
+          "qemu-error-log-a64.txt"
         ]
       ],
       "efi_boot": true,
       "efi_drop_efivars": true,
       "efi_firmware_code": "/usr/share/edk2/aarch64/QEMU_EFI-silent-pflash.raw",
       "efi_firmware_vars": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
+      "vtpm": true,
+      "tpm_device_type": "tpm-tis-device",
       "format": "qcow2",
       "disk_size": "131072",
       "disk_discard": "unmap",
@@ -982,8 +994,8 @@
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio",
-      "net_device": "virtio-net",
+      "disk_interface": "virtio-scsi",
+      "net_device": "e1000",
       "cpus": 4,
       "memory": 8192,
       "http_directory": "http",
@@ -1006,12 +1018,12 @@
       "boot_wait": "20s",
       "boot_keygroup_interval": "1s",
       "boot_command": [
-        "<tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10><tab><wait10>",
-        "<tab><wait10><tab><wait10><tab><wait10>c<wait><enter>",
+        "<tab><wait5><tab><wait5>c<wait><enter>",
+        "search --no-floppy --set=root -l 'Fedora-S-dvd-aarch64-rawh'<enter><wait>",
         "linux /images/pxeboot/vmlinuz ",
-        "inst.stage2=hd:LABEL=Fedora-S-dvd-aarch64-rawh ",
+        "inst.stage2=hd:LABEL=Fedora-S-dvd-aarch64-rawh ro ",
         "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rawhide.vagrant.a64.ks ",
-        "inst.text selinux=0 net.ifnames=0 biosdevname=0 console=ttyAMA0 console=tty1<enter><wait5>",
+        "inst.text inst.selinux=0 net.ifnames=0 biosdevname=0 modprobe.blacklist=iscsi modprobe.blacklist=iscsi_ibft <enter><wait5>",
         "initrd /images/pxeboot/initrd.img<enter><wait5>",
         "boot<enter><wait>"
       ],
@@ -1046,14 +1058,6 @@
         ],
         [
           "-device",
-          "driver=virtio-keyboard-pci"
-        ],
-        [
-          "-device",
-          "driver=virtio-mouse-pci"
-        ],
-        [
-          "-device",
           "driver=usb-kbd"
         ],
         [
@@ -1072,8 +1076,8 @@
       "disk_cache": "unsafe",
       "disk_image": false,
       "disk_compression": true,
-      "disk_interface": "virtio",
-      "net_device": "virtio-net",
+      "disk_interface": "virtio-scsi",
+      "net_device": "e1000",
       "cpus": 4,
       "memory": 8192,
       "http_directory": "http",

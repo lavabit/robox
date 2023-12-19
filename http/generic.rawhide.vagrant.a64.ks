@@ -6,14 +6,19 @@ timezone US/Pacific
 rootpw --plaintext vagrant
 user --name=vagrant --password=vagrant --plaintext
 
+#zerombr
+#clearpart --all
+#part /boot/efi --fstype=efi --size=128 --label=boot_efi
+#part /boot --fstype="xfs" --size=1024 --label=boot
+#part fedora_pv --fstype="lvmpv" --grow --label=fedora_pv
+#volgroup fedora --pesize=4096 fedora_pv
+#logvol swap --fstype="swap" --size=2048 --name=swap --vgname=fedora
+#logvol / --fstype="xfs" --percent=100 --label="root" --name=root --vgname=fedora
+
 zerombr
-clearpart --all
-part /boot/efi --fstype=efi --size=128 --label=boot_efi
-part /boot --fstype="xfs" --size=1024 --label=boot
-part fedora_pv --fstype="lvmpv" --grow --label=fedora_pv
-volgroup fedora --pesize=4096 fedora_pv
-logvol swap --fstype="swap" --size=2048 --name=swap --vgname=fedora
-logvol / --fstype="xfs" --percent=100 --label="root" --name=root --vgname=fedora
+clearpart --all --initlabel
+autopart --type=lvm
+
 
 
 firewall --enabled --service=ssh
