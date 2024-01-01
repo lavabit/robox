@@ -37,7 +37,6 @@ url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/aarch
 @core
 net-tools
 sudo
-authconfig
 -mcelog
 -usbutils
 -microcode_ctl

@@ -30,7 +30,6 @@ url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_6
 @core
 net-tools
 sudo
-authconfig
 -mcelog
 -usbutils
 -microcode_ctl
