@@ -717,17 +717,17 @@ REPOS+=( "https://mirrors.lavabit.com/freebsd-archive/FreeBSD:12:amd64/latest/pa
 
 # HardenedBSD 13
 REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:13:amd64/packagesite.txz" )
-REPOS+=( "https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer/index.txt" )
+REPOS+=( "https://mirror.laylo.nl/pub/hardenedbsd/13-stable/amd64/amd64/installer/index.txt" )
 REPOS+=( "https://mirrors.lavabit.com/hardenedbsd/13-stable/amd64/amd64/installer/index.txt" )
 
 # HardenedBSD 14
 REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:14:amd64/packagesite.txz" )
-REPOS+=( "https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer/index.txt" )
+REPOS+=( "https://mirror.laylo.nl/pub/hardenedbsd/14-stable/amd64/amd64/installer/index.txt" )
 REPOS+=( "https://mirrors.lavabit.com/hardenedbsd/14-stable/amd64/amd64/installer/index.txt" )
 
 # HardenedBSD 15
 REPOS+=( "https://pkg.hardenedbsd.org/HardenedBSD/pkg/FreeBSD:15:amd64/packagesite.txz" )
-FUTURE+=( "https://mirror.laylo.io/pub/hardenedbsd/15-stable/amd64/amd64/installer/index.txt" )
+FUTURE+=( "https://mirror.laylo.nl/pub/hardenedbsd/15-stable/amd64/amd64/installer/index.txt" )
 FUTURE+=( "https://mirrors.lavabit.com/hardenedbsd/15-stable/amd64/amd64/installer/index.txt" )
 
 # NetBSD 8.2
@@ -1449,7 +1449,7 @@ function iso() {
     # URL="https://installers.hardenedbsd.org/pub/13-stable/amd64/amd64/installer"
     
     # Alternate server.
-    URL="https://mirror.laylo.io/pub/hardenedbsd/13-stable/amd64/amd64/installer"
+    URL="https://mirror.laylo.nl/pub/hardenedbsd/13-stable/amd64/amd64/installer"
     
     # Old method, where we use sort the directory listing for the latest build.
     # BUILD=`curl --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]*/\"" | grep --extended-regexp --only-matching "[0-9]*" | sort -n -r | uniq | head -1`
@@ -1499,7 +1499,7 @@ function iso() {
     # URL="https://installers.hardenedbsd.org/pub/14-stable/amd64/amd64/installer"
     
     # Alternate server.
-    URL="https://mirror.laylo.io/pub/hardenedbsd/14-stable/amd64/amd64/installer"
+    URL="https://mirror.laylo.nl/pub/hardenedbsd/14-stable/amd64/amd64/installer"
     
     # Old method, where we use sort the directory listing for the latest build.
     # BUILD=`curl --fail --silent "${URL}" | grep --extended-regexp --only-matching "\"build\-[0-9]*/\"" | grep --extended-regexp --only-matching "[0-9]*" | sort -n -r | uniq | head -1`
