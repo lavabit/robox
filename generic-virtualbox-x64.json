@@ -7160,8 +7160,8 @@
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "guest_additions_url": "https://download.virtualbox.org/virtualbox/7.0.12/VBoxGuestAdditions_7.0.12.iso",
-      "guest_additions_sha256": "b37f6aabe5a32e8b96ccca01f37fb49f4fd06674f1b29bc8fe0f423ead37b917",
+      "guest_additions_url": "https://www.virtualbox.org/download/testcase/VBoxGuestAdditions_7.0.13-160845.iso",
+      "guest_additions_sha256": "b59dade04c99ef179fea84179171d62e762538a670b93d402b04897b85d13fbf",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"
