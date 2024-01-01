@@ -1822,8 +1822,8 @@
         "passwd root<enter><wait><wait><wait>",
         "vagrant<enter><wait>",
         "vagrant<enter><wait>",
-        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.gentoo.vagrant{,.chroot}.sh'<enter><wait>",
-        "bash magma.gentoo.vagrant.sh<enter>"
+        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/magma.gentoo.vagrant{,.chroot}.x64.sh'<enter><wait>",
+        "bash magma.gentoo.vagrant.x64.sh<enter>"
       ],
       "disk_size": 131072,
       "disk_type_id": "0",
