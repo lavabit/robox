@@ -2,7 +2,7 @@
 
 echo 'Creating File System Table'
 cat <<-EOF > /etc/fstab
-/dev/vda1       /boot/efi 	vfat	      noauto,noatime 1 2
+/dev/vda1       /boot/EFI 	vfat	      noauto,noatime 1 2
 /dev/vda2       /boot       ext4        defaults   0 0
 /dev/vda3       none        swap        defaults   0 0
 /dev/vda4       /           ext4        defaults   0 0
@@ -12,7 +12,7 @@ EOF
 
 echo 'Creating Portage Makefile'
 cat <<-EOF > /etc/portage/make.conf
-CHOST="arm64-pc-linux-gnu"
+CHOST="aarch64-gentoo-linux-gnu"
 CFLAGS="-mtune=generic -O2 -pipe"
 CXXFLAGS="\${CFLAGS}"
 MAKEOPTS="-j8"
@@ -52,13 +52,13 @@ mkdir -p "/etc/portage/package.mask"
 mkdir -p "/etc/portage/package.unmask"
 
 echo 'Setting Portage Profile'
-eselect profile set default/linux/arm64/17.1/no-multilib
+eselect profile set default/linux/arm64/17.0
 
 echo 'Emerging Dependencies'
 # cd /usr/portage
 # profile="`grep stable profiles/profiles.desc | grep no-multilib | grep arm64 | awk -F' ' '{print \$2}' | grep -E 'no-multilib\$' | head -1`"
 # rm -f /etc/portage/make.profile && ln -s /usr/portage/profiles/$profile /etc/portage/make.profile
-emerge sys-kernel/gentoo-kernel-bin sys-boot/grub app-editors/vim app-admin/sudo sys-apps/netplug sys-apps/dmidecode
+emerge sys-kernel/gentoo-kernel-bin sys-boot/grub sys-boot/efibootmgr app-editors/vim app-admin/sudo sys-apps/netplug sys-apps/dmidecode
 
 # If necessary, include the Hyper-V modules in the initramfs and then load them at boot.
 if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
@@ -70,8 +70,13 @@ fi
 echo 'Configuring Grub'
 DEVID=`blkid -s UUID -o value /dev/vda4`
 printf "\nGRUB_DEVICE_UUID=\"$DEVID\"\n" >> /etc/default/grub
-grub-install --efi-directory=/boot/efi /dev/vda
+grub-install --efi-directory=/boot/EFI /dev/vda
 grub-mkconfig -o /boot/grub/grub.cfg
+
+echo 'Configuring EFI'
+mkdir -p /boot/EFI/gentoo
+cp /boot/vmlinuz-* /boot/EFI/gentoo/bzImage.efi 
+efibootmgr --create --disk /dev/vda --part 1 --label "gentoo" --loader "\EFI\gentoo\bzImage.efi"
 
 echo 'Configuring Network Services'
 emerge sys-apps/ifplugd net-wireless/wireless-tools net-misc/dhcpcd sys-apps/openrc

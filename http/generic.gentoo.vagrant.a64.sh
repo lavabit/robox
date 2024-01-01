@@ -6,15 +6,15 @@
 echo 'Partitioning Filesystems to Install Gentoo'
 declare -i current=1
 parted -a opt -s /dev/vda -- "mklabel gpt"
-parted -a opt -s /dev/vda -- "mkpart EFI fat16       $(( current ))  $(( current += 128   ))m"
+parted -a opt -s /dev/vda -- "mkpart EFI fat32       $(( current ))  $(( current += 128   ))m"
 parted -a opt -s /dev/vda -- "mkpart BOOT ext4       $(( current ))  $(( current += 512   ))m"
 parted -a opt -s /dev/vda -- "mkpart SWAP linux-swap $(( current ))m $(( current += 4096  ))m"
 parted -a opt -s /dev/vda -- "mkpart ROOT ext4       $(( current ))m -1"
-parted -a opt -s /dev/vda -- "set 1 bios_grub on"
-parted -a opt -s /dev/vda -- "set 2 boot on"
+# parted -a opt -s /dev/vda -- "set 1 bios_grub on"
+# parted -a opt -s /dev/vda -- "set 2 boot on"
 
 echo 'Formatting Filesystems'
-mkfs.fat -F 32 -n efi-boot /dev/vda1
+mkfs.fat -F 32 -n EFI /dev/vda1
 mkfs -t ext4 /dev/vda2
 mkfs -t ext4 /dev/vda4
 
@@ -24,8 +24,8 @@ swapon /dev/vda3
 mount /dev/vda4 /mnt/gentoo/
 mkdir -p /mnt/gentoo/{boot,var,usr,tmp,home}
 mount /dev/vda2 /mnt/gentoo/boot
-mkdir -p /mnt/gentoo/boot/{grub,efi}
-mount /dev/vda1 /mnt/gentoo/boot/efi
+mkdir -p /mnt/gentoo/boot/{grub,EFI}
+mount /dev/vda1 /mnt/gentoo/boot/EFI
 
 # Import current keys per https://www.gentoo.org/downloads/signatures/
 wget -O - https://qa-reports.gentoo.org/output/service-keys.gpg | gpg --import
@@ -73,4 +73,4 @@ chroot /mnt/gentoo /bin/bash < /root/generic.gentoo.vagrant.chroot.a64.sh
 
 # And then reboot.
 echo "Chroot finished, ready to restart."
-reboot
+# reboot

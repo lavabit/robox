@@ -93,19 +93,19 @@ fi
 
 # Make sure the recursion level is numeric.
 if [ $# == 2 ] && [ -z "${2##*[!0-9]*}" ]; then
-  printf "\n${T_RED}  Invalid recursion level. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  Invalid recursion level. Exiting.${T_RESET}\n\n"
   exit 1
 fi
 
 # Make sure the file exists.
 if [ ! -f "$1" ]; then
-  printf "\n${T_RED}  The $1 file does not exist. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  The $1 file does not exist. Exiting.${T_RESET}\n\n"
   exit 1
 fi
 
 # If a second variable is provided then check to ensure we haven't hit the recursion limit.
 if [ $# == 2 ] && [ "$2" -gt "10" ]; then
-  printf "\n${T_RED}  The recursion level has been reached. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  The recursion level has been reached. Exiting.${T_RESET}\n\n"
   exit 1
 # Otherwise increment the level.
 elif [ $# == 2 ]; then
@@ -135,7 +135,7 @@ fi
 
 # The jq tool is needed to parse JSON responses.
 if [ ! -f /usr/bin/jq ] && [ ! -f /usr/local/bin/jq ]; then
-  printf "\n${T_RED}  The 'jq' utility is not installed. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  The 'jq' utility is not installed. Exiting.${T_RESET}\n\n"
   exit 1
 fi
 
@@ -143,12 +143,12 @@ fi
 if [ -f "$BASE/../../.credentialsrc" ]; then
   source "$BASE/../../.credentialsrc"
 else
-  printf "\n${T_RED}  The credentials file is missing. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  The credentials file is missing. Exiting.${T_RESET}\n\n"
   exit 2
 fi
 
 if [ -z "${VAGRANT_CLOUD_TOKEN}" ]; then
-  printf "\n${T_RED}  The vagrant cloud token is missing. Add it to the credentials file. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  The vagrant cloud token is missing. Add it to the credentials file. Exiting.${T_RESET}\n\n"
   exit 2
 fi
 
@@ -236,7 +236,7 @@ elif [ "$ARCH" == "r64" ] || [ "$ARCH" == "riscv64" ] || [ "$ARCH" == "riscv64sf
 elif [ "$ARCH" == "r32" ] || [ "$ARCH" == "riscv" ] || [ "$ARCH" == "riscv32" ]; then
   ARCH="riscv"
 else
-  printf "\n${T_YEL}  The architecture is unrecognized. Passing it verbatim to the cloud. [ arch = ${ARCH} ]${T_RESET}\n\n" >&2
+  printf "\n${T_YEL}  The architecture is unrecognized. Passing it verbatim to the cloud. [ arch = ${ARCH} ]${T_RESET}\n\n"
 fi
 
 # Find the box checksum.
@@ -254,27 +254,27 @@ fi
 
 # Verify the values have been parsed properly.
 if [ "$ORG" == "" ]; then
-  printf "\n${T_RED}  The organization couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  The organization couldn't be parsed from the file name. Exiting.${T_RESET}\n\n"
   exit 1
 fi
 
 if [ "$BOX" == "" ]; then
-  printf "\n${T_RED}  The box name couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  The box name couldn't be parsed from the file name. Exiting.${T_RESET}\n\n"
   exit 1
 fi
 
 if [ "$PROVIDER" == "" ]; then
-  printf "\n${T_RED}  The provider couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  The provider couldn't be parsed from the file name. Exiting.${T_RESET}\n\n"
   exit 1
 fi
 
 if [ "$ARCH" == "" ]; then
-  printf "\n${T_RED}  The architecture couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  The architecture couldn't be parsed from the file name. Exiting.${T_RESET}\n\n"
   exit 1
 fi
 
 if [ "$VERSION" == "" ]; then
-  printf "\n${T_RED}  The version couldn't be parsed from the file name. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  The version couldn't be parsed from the file name. Exiting.${T_RESET}\n\n"
   exit 1
 fi
 
@@ -285,7 +285,7 @@ fi
 
 # If the hash is still invalid, then we report an error and exit.
 if [ "$(echo "$HASH" | wc -c)" != 65 ]; then
-  printf "\n${T_RED}  The hash couldn't be calculated properly. Exiting.${T_RESET}\n\n" >&2
+  printf "\n${T_RED}  The hash couldn't be calculated properly. Exiting.${T_RESET}\n\n"
   exit 1
 fi
 
@@ -295,18 +295,21 @@ retry() {
   local RESULT=0
   while [[ "${COUNT}" -le 10 ]]; do
     [[ "${RESULT}" -ne 0 ]] && {
-      printf "  %s ${T_BYEL}failed.${T_RESET}... retrying ${COUNT} of 10.\n" "${*}" >&2
+      # printf "  %s ${T_BYEL}failed.${T_RESET}... retrying ${COUNT} of 10.\n" "${*}"
+      printf "${T_BYEL}  Attempt ${COUNT} of 10 failed.${T_RESET}\n"
     }
     "${@}" && { RESULT=0 && break; } || RESULT="${?}"
     COUNT="$((COUNT + 1))"
 
     # Increase the delay with each iteration.
-    DELAY="$((DELAY + 10))"
+    DELAY="$((DELAY + 4))"
     sleep $DELAY
   done
 
   [[ "${COUNT}" -gt 10 ]] && {
-    printf "${T_RED}  The command failed 10 times. ${T_RESET}\n" >&2
+    printf "${T_BYEL}  The command failed 10 times.${T_RESET} [ $ORG $BOX $PROVIDER $ARCH $VERSION  / RECURSION = $RECURSION ]${T_RESET}\n"
+    sleep 60 ; exec "$0" "$FILEPATH" $RECURSION
+    exit $?
   }
 
   return "${RESULT}"
@@ -355,7 +358,7 @@ function upload_box() {
     --data "{\"version\":{\"version\":\"${VERSION}\",\"description\":\"A build environment for use in cross platform development.\"}}" \
     "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/versions" && sleep 4 || \
     { 
-      printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION  / RECURSION = $RECURSION ]${T_RESET}\n" >&2
+      printf "${T_BYEL}  Version creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION  / RECURSION = $RECURSION ]${T_RESET}\n"
       sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
       exit $?
     } 
@@ -372,7 +375,7 @@ function upload_box() {
   --output /dev/null --header "Authorization: Bearer $VAGRANT_CLOUD_TOKEN" \
   "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/version/$VERSION/provider/${PROVIDER}/${ARCH}" && sleep 4 || \
     { 
-      printf "${T_BYEL}  Provider delete failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n" >&2
+      printf "${T_BYEL}  Provider delete failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n"
       sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
       exit $?
     } 
@@ -385,7 +388,7 @@ function upload_box() {
     --data "{\"provider\":{ \"name\":\"$PROVIDER\",\"checksum\":\"$HASH\",\"architecture\":\"$ARCH\",\"default_architecture\":\"$DEFAULT_ARCH\",\"checksum_type\":\"SHA256\"}}" \
     "https://${VAGRANTPATH}/api/v2/box/$ORG/$BOX/version/$VERSION/providers" && sleep 4 || \
   { 
-    printf "${T_BYEL}  Provider creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n" >&2
+    printf "${T_BYEL}  Provider creation failed. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n"
     sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
     exit $?
   }
@@ -399,7 +402,7 @@ function upload_box() {
   UPLOAD_CALLBACK="$(echo "$UPLOAD_RESPONSE" | jq -r .callback)"
 
   if [ "$UPLOAD_PATH" == "" ] || [ "$UPLOAD_PATH" == "echo" ] || [ "$UPLOAD_CALLBACK" == "" ] || [ "$UPLOAD_CALLBACK" == "echo" ]; then
-    printf "\n${T_BYEL}  The $FILENAME file failed to upload. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2
+    printf "\n${T_BYEL}  The $FILENAME file failed to upload. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n"
     sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
     exit $?
   fi
@@ -414,7 +417,7 @@ function upload_box() {
 
   RESULT=$?
   [ "$RESULT" != "0" ] && { 
-    printf "\n${T_BYEL}  The $FILENAME file failed to upload. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" >&2 
+    printf "\n${T_BYEL}  The $FILENAME file failed to upload. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n\n" 
     sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
     exit $?
   }
@@ -432,7 +435,7 @@ function upload_box() {
     --write-out "$UPLOAD_CALLBACK_WRITEOUT" \
     "$UPLOAD_CALLBACK" ; } || \
   { 
-    printf "${T_BYEL}  Upload failed. The callback returned an error. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n" >&2
+    printf "${T_BYEL}  Upload failed. The callback returned an error. [ $ORG $BOX $PROVIDER $ARCH $VERSION / RECURSION = $RECURSION ]${T_RESET}\n"
     sleep 20 ; exec "$0" "$FILEPATH" $RECURSION
     exit $?
   }
