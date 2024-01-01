@@ -862,8 +862,8 @@
         "passwd root<enter><wait><wait><wait>",
         "locked<enter><wait>",
         "locked<enter><wait>",
-        "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.gentoo.docker{,.chroot}.sh'<enter><wait>",
-        "bash generic.gentoo.docker.sh<enter>"
+        "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.gentoo.docker{,.chroot}.x64.sh'<enter><wait>",
+        "bash generic.gentoo.docker.x64.sh<enter>"
       ],
       "format": "qcow2",
       "disk_size": "32768",

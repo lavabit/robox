@@ -69,7 +69,7 @@ mount --make-rslave /mnt/gentoo/dev
 cp /etc/resolv.conf /mnt/gentoo/etc
 
 # Execute the chroot script.
-chroot /mnt/gentoo /bin/bash < /root/generic.gentoo.vagrant.chroot.sh
+chroot /mnt/gentoo /bin/bash < /root/generic.gentoo.vagrant.chroot.x64.sh
 
 # And then reboot.
 echo "Chroot finished, ready to restart."
