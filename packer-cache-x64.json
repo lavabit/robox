@@ -318,8 +318,8 @@
     {
       "name": "centos8s-x64",
       "output_directory": "output/centos8s-x64",
-      "iso_url": "https://mirror.leaseweb.net/centos/8-stream/isos/x86_64/CentOS-Stream-8-20231218.0-x86_64-boot.iso",
-      "iso_checksum": "sha256:82aa329c8d5af5d5444af3fbe3cd467b3fc15e16316ca6655ff5fa35819db99d",
+      "iso_url": "https://mirror.leaseweb.net/centos/8-stream/isos/x86_64/CentOS-Stream-8-20240101.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:389ddb679e4998bbb3c18efc211b2b5caf37695e709182a60f5b208ee156ed7f",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -333,8 +333,8 @@
     {
       "name": "centos9s-x64",
       "output_directory": "output/centos9s-x64",
-      "iso_url": "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20231218.0-x86_64-boot.iso",
-      "iso_checksum": "sha256:385f3aa6b5d2a9b3f76cbe562d62ed44b20cbaa07307140e165b576a7017a8eb",
+      "iso_url": "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20240101.0-x86_64-boot.iso",
+      "iso_checksum": "sha256:b03f6719069c20b67d599cc05d169147ab599feb916145ddb915f422c24609aa",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -1548,8 +1548,8 @@
     {
       "name": "fedora-rawhide-x64",
       "output_directory": "output/fedora-rawhide-x64",
-      "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/Fedora-Server-netinst-x86_64-Rawhide-20240101.n.0.iso",
-      "iso_checksum": "sha256:30f85a27e2c0a6477058085dc8ad4eaf58a33f8d48e92622a01194d07e23821e",
+      "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/Fedora-Server-netinst-x86_64-Rawhide-20240103.n.0.iso",
+      "iso_checksum": "sha256:3f8f5f5a67a64cc7256db3241ae2b577fc07fa55d1c4e4866a127ddb18acb67e",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,

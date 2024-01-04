@@ -37,7 +37,7 @@ en_US.UTF-8 UTF-8
 EOF
 
 echo 'Rebuilding the System Locales'
-locale-gen -A -j 16
+# locale-gen -A -j 16
 
 echo 'Configuring Timezone'
 ln -snf /usr/share/zoneinfo/US/Pacific /etc/localtime
@@ -54,11 +54,13 @@ mkdir -p "/etc/portage/package.unmask"
 echo 'Setting Portage Profile'
 eselect profile set default/linux/arm64/17.0
 
-echo 'Emerging Dependencies'
+# Dynamically find the current stable profile.
 # cd /usr/portage
-# profile="`grep stable profiles/profiles.desc | grep no-multilib | grep arm64 | awk -F' ' '{print \$2}' | grep -E 'no-multilib\$' | head -1`"
-# rm -f /etc/portage/make.profile && ln -s /usr/portage/profiles/$profile /etc/portage/make.profile
-emerge sys-kernel/gentoo-kernel-bin sys-boot/grub sys-boot/efibootmgr app-editors/vim app-admin/sudo sys-apps/netplug sys-apps/dmidecode
+# profile="`grep stable profiles/profiles.desc | grep -v desktop | grep -v systemd | grep arm64 | awk -F' ' '{print \$2}' | grep -E 'default/linux/arm64/[0-9\.]*\$' | head -1`"
+# eselect profile set $profile
+
+echo 'Emerging Dependencies'
+emerge sys-kernel/gentoo-kernel-bin sys-boot/grub sys-boot/efibootmgr app-editors/vim app-admin/sudo sys-apps/dmidecode
 
 # If necessary, include the Hyper-V modules in the initramfs and then load them at boot.
 if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
@@ -79,7 +81,7 @@ cp /boot/vmlinuz-* /boot/EFI/gentoo/bzImage.efi
 efibootmgr --create --disk /dev/vda --part 1 --label "gentoo" --loader "\EFI\gentoo\bzImage.efi"
 
 echo 'Configuring Network Services'
-emerge sys-apps/ifplugd net-wireless/wireless-tools net-misc/dhcpcd sys-apps/openrc
+emerge net-wireless/wireless-tools net-misc/dhcpcd sys-apps/openrc
 ln -sf /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 ln -sf /dev/null /etc/udev/rules.d/80-net-name-slot.rules
 echo 'config_enp0s3=( "dhcp" )' >> /etc/conf.d/net

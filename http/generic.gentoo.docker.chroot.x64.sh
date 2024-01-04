@@ -54,10 +54,12 @@ mkdir -p "/etc/portage/package.unmask"
 echo 'Setting Portage Profile'
 eselect profile set default/linux/amd64/17.1/no-multilib
 
-echo 'Emerging Dependencies'
+# Dynamically find the current stable profile.
 # cd /usr/portage
 # profile="`grep stable profiles/profiles.desc | grep no-multilib | grep amd64 | awk -F' ' '{print \$2}' | grep -E 'no-multilib\$' | head -1`"
-# rm -f /etc/portage/make.profile && ln -s /usr/portage/profiles/$profile /etc/portage/make.profile
+# eselect profile set $profile
+
+echo 'Emerging Dependencies'
 emerge sys-kernel/gentoo-kernel-bin sys-boot/grub app-editors/vim app-admin/sudo sys-apps/netplug sys-apps/dmidecode
 
 # If necessary, include the Hyper-V modules in the initramfs and then load them at boot.
