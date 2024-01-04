@@ -135,7 +135,7 @@ LINEAGEOS_TAGS=`grep -E '"name":' $ROBOX_FILES | awk -F'"' '{print $4}' | grep "
 MAGMA_TAGS=`echo $MAGMA_SPECIAL_TAGS $MAGMA_TAGS | tr ' ' '\n' | sort -u --field-separator=-`
 TAGS="$GENERIC_TAGS $GENERIC_X32_TAGS $GENERIC_X64_TAGS $GENERIC_A32_TAGS $GENERIC_A64_TAGS $GENERIC_P32_TAGS $GENERIC_P64_TAGS $GENERIC_R32_TAGS $GENERIC_R64_TAGS $GENERIC_M32_TAGS $GENERIC_M64_TAGS $ROBOX_TAGS $ROBOX_X32_TAGS $ROBOX_X64_TAGS $ROBOX_A32_TAGS $ROBOX_A64_TAGS $ROBOX_P32_TAGS $ROBOX_P64_TAGS $ROBOX_R32_TAGS $ROBOX_R64_TAGS $ROBOX_M32_TAGS $ROBOX_M64_TAGS $MAGMA_TAGS $LINEAGE_TAGS $LINEAGEOS_TAGS"
 
-# These boxes aren't publicly available yet, so we filter them out of available test.
+# These boxes aren't publicly available yet, so we filter them out of the available test.
 FILTERED_TAGS="lavabit/magma-alpine lavabit/magma-arch lavabit/magma-freebsd lavabit/magma-gentoo lavabit/magma-openbsd"
 
 # A list of configs to skip during complete build operations.
@@ -1313,8 +1313,8 @@ function iso() {
   elif [ "$1" == "arch" ]; then
 
     # Find the existing Arch URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"arch-x64\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"arch-x64\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"arch-x64\" ) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"arch-x64\" ) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe Arch ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
@@ -1354,8 +1354,8 @@ function iso() {
   elif [ "$1" == "centos8s" ]; then
     
     # Find the existing CentOS 8 stream URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"centos8s-x64\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"centos8s-x64\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"centos8s-x64\" ) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"centos8s-x64\" ) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe CentOS 8 Stream ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -1396,8 +1396,8 @@ function iso() {
   elif [ "$1" == "centos9s" ]; then
 
     # Find the existing CentOS 9 stream URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"centos9s-x64\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"centos9s-x64\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"centos9s-x64\" ) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"centos9s-x64\" ) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe CentOS 9 Stream ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -1437,8 +1437,8 @@ function iso() {
   elif [ "$1" == "hardened13" ] || [ "$1" == "hardenedbsd13" ]; then
 
     # Find the existing HardenedBSD URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd13-x64\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd13-x64\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd13-x64\" ) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd13-x64\" ) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe HardenedBSD 13 ISO URL/HASH parse/lookup failed.\n\n"; tput sgr0
@@ -1487,8 +1487,8 @@ function iso() {
   elif [ "$1" == "hardened14" ] || [ "$1" == "hardenedbsd14" ]; then
 
     # Find the existing HardenedBSD URL and hash values.
-    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd-x64\") | .iso_url" 2>/dev/null`
-    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd-x64\") | .iso_checksum" 2>/dev/null`
+    ISO_URL=`cat "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"hardenedbsd-x64\" ) | .iso_url" 2>/dev/null`
+    ISO_CHECKSUM=`cat "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"hardenedbsd-x64\" ) | .iso_checksum" 2>/dev/null`
 
     if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
       tput setaf 1; printf "\nThe HardenedBSD 14 ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
@@ -1537,10 +1537,10 @@ function iso() {
   elif [ "$1" == "alpine" ]; then
 
     # Build a loop with all of the Alpine ISO names. 
-    cat "$BASE/packer-cache-a64.json" "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name | contains(\"alpine\")) | .name" | grep -v alpine35-hyperv-x64 | while read NAME; do 
+    cat "$BASE/packer-cache-a64.json" "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name | contains(\"alpine\" )) | .name" | grep -v alpine35-hyperv-x64 | while read NAME; do 
       
-      ISO_URL=`cat "$BASE/packer-cache-a64.json" "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"$NAME\") | .iso_url" 2>/dev/null`
-      ISO_CHECKSUM=`cat "$BASE/packer-cache-a64.json" "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"$NAME\") | .iso_checksum" 2>/dev/null`
+      ISO_URL=`cat "$BASE/packer-cache-a64.json" "$BASE/packer-cache-x64.json" | jq -r -c ".builders[] | select( .name == \"$NAME\" ) | .iso_url" 2>/dev/null`
+      ISO_CHECKSUM=`cat "$BASE/packer-cache-a64.json" "$BASE/packer-cache-x64.json" | jq  -r -c ".builders[] | select( .name == \"$NAME\" ) | .iso_checksum" 2>/dev/null`
 
       if [ "${ISO_URL}x" == "x" ] || [ "${ISO_CHECKSUM}x" == "x" ]; then
         tput setaf 1; printf "\nThe Alpine ISO URL/HASH parse/lookups failed.\n\n"; tput sgr0
@@ -2093,6 +2093,9 @@ function available() {
       LIST=(${LIST[@]//${FILTER[$i]}})
     done
 
+    # Remove all of the box names ending in alt
+    LIST=(${LIST[@]/*alt/})
+
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
       BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
@@ -2253,6 +2256,9 @@ function public() {
       LIST=(${LIST[@]//${FILTER[$i]}})
     done
 
+    # Remove all of the box names ending in alt
+    LIST=(${LIST[@]/*alt/})
+    
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
       BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
@@ -2279,7 +2285,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
@@ -2300,7 +2306,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x32\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x32\n"; tput sgr0
@@ -2320,7 +2326,7 @@ function public() {
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
         else
           let FOUND+=1
-          curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+          curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
             if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
               let UNRELEASED+=1
               printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
@@ -2340,7 +2346,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/a32\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/a32\n"; tput sgr0
@@ -2368,7 +2374,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/a64\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select(  .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/a64\n"; tput sgr0
@@ -2389,7 +2395,7 @@ function public() {
       #       printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/m64\n"; tput sgr0
       #     else
       #       let FOUND+=1
-      #       curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+      #       curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
       #         if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
       #           let UNRELEASED+=1
       #           printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/m64\n"; tput sgr0
@@ -2410,7 +2416,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/p64\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/p64\n"; tput sgr0
@@ -2431,7 +2437,7 @@ function public() {
       #       printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
       #     else
       #       let FOUND+=1
-      #       curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+      #       curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
       #         if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
       #           let UNRELEASED+=1
       #           printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
@@ -2453,7 +2459,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
@@ -2473,7 +2479,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x32\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x32\n"; tput sgr0
@@ -2493,7 +2499,7 @@ function public() {
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
         else
           let FOUND+=1
-          curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+          curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
             if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
               let UNRELEASED+=1
               printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
@@ -2513,7 +2519,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/a32\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/a32\n"; tput sgr0
@@ -2541,7 +2547,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/a64\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/a64\n"; tput sgr0
@@ -2562,7 +2568,7 @@ function public() {
       #       printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/m64\n"; tput sgr0
       #     else
       #       let FOUND+=1
-      #       curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+      #       curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
       #         if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
       #           let UNRELEASED+=1
       #           printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/m64\n"; tput sgr0
@@ -2583,7 +2589,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/p64\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/p64\n"; tput sgr0
@@ -2604,7 +2610,7 @@ function public() {
       #       printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
       #     else
       #       let FOUND+=1
-      #       curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+      #       curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
       #         if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
       #           let UNRELEASED+=1
       #           printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/r64\n"; tput sgr0
@@ -2624,7 +2630,7 @@ function public() {
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
         else
           let FOUND+=1
-          curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+          curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
             if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
               let UNRELEASED+=1
               printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
@@ -2644,7 +2650,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x32\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x32\n"; tput sgr0
@@ -2664,7 +2670,7 @@ function public() {
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
         else
           let FOUND+=1
-          curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+          curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
             if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
               let UNRELEASED+=1
               printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
@@ -2684,7 +2690,7 @@ function public() {
             printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x32\n"; tput sgr0
           else
             let FOUND+=1
-            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+            curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
               if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
                 let UNRELEASED+=1
                 printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x32\n"; tput sgr0
@@ -2704,7 +2710,7 @@ function public() {
           printf "Box  -  "; tput setaf 1; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
         else
           let FOUND+=1
-          curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\") | select( .architecture == \"${ARCH}\") | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
+          curltry ${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/${ORGANIZATION}/${BOX}/version/${VERSION}" | jq -r -c  " [ ( .status, ( .providers[] | select( .name == \"${PROVIDER}\" ) | select( .architecture == \"${ARCH}\" ) | .hosted )) ] | @tsv " 2>/dev/null | if read STATUS HOSTED; then
             if [ "$STATUS" != "active" ] || [ "$HOSTED" != "true" ]; then
               let UNRELEASED+=1
               printf "Box  ~  "; tput setaf 3; printf "${LIST[$i]} ${PROVIDER}/x64\n"; tput sgr0
@@ -2746,6 +2752,9 @@ function ppublic() {
     for ((i = 0; i < ${#FILTER[@]}; ++i)); do
       LIST=(${LIST[@]//${FILTER[$i]}})
     done
+
+    # Remove all of the box names ending in alt
+    LIST=(${LIST[@]/*alt/})
 
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
@@ -2816,6 +2825,9 @@ function invalid() {
       LIST=(${LIST[@]//${FILTER[$i]}})
     done
 
+    # Remove all of the box names ending in alt
+    LIST=(${LIST[@]/*alt/})
+    
     for ((i = 0; i < ${#LIST[@]}; ++i)); do
       ORGANIZATION=`echo ${LIST[$i]} | awk -F'/' '{print $1}'`
       BOX=`echo ${LIST[$i]} | awk -F'/' '{print $2}'`
@@ -2956,14 +2968,14 @@ function grab() {
   fi
 
   URL=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/$1/$2" \
-    | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | select( .architecture | contains(\"$ARCH\")) | .download_url ][0]" 2>/dev/null`
+    | jq -r -c "[ .versions[] | .providers[] | select( .name == \"$3\" ) | select( .architecture == \"$ARCH\" ) | .download_url ][0]" 2>/dev/null`
   if [ "$URL" == "" ]; then
     printf "\nA copy of " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " using the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " couldn't be found.\n\n"
     return 0
   fi
 
   CHECKSUM=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/$1/$2" \
-    | jq -r -c "[ .versions[] | .providers[] | select( .name | contains(\"$3\")) | select( .architecture | contains(\"$ARCH\")) | .checksum ][0]" 2>/dev/null`
+    | jq -r -c "[ .versions[] | .providers[] | select( .name == \"$3\" ) | select( .architecture == \"$ARCH\" ) | .checksum ][0]" 2>/dev/null`
 
   if [ ! -d "$BASE/output/" ]; then
     mkdir "$BASE/output/"

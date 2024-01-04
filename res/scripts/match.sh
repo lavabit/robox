@@ -165,7 +165,7 @@ while [[ "${COUNT}" -le 100 ]]; do
   sleep $DELAY
 done
 
-CHECKSUM=`echo $DATA | jq -e -r ".providers[] | select( .name | contains(\"$PROVIDER\")) | select( .architecture | contains(\"$ARCH\")) | .checksum"`
+CHECKSUM=`echo $DATA | jq -e -r ".providers[] | select( .name == \"$PROVIDER\" ) | select( .architecture == \"$ARCH\" ) | .checksum"`
 
 if [ "$CHECKSUM" == "" ]; then
   tput setaf 1; printf "\n\nThe SHA 256 hash couldn't be retrieved from the server.\n\n\n"; tput sgr0
