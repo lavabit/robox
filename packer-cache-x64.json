@@ -813,8 +813,8 @@
     {
       "name": "gentoo-x64",
       "output_directory": "output/gentoo-x64",
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20231231T163203Z.iso",
-      "iso_checksum": "sha256:96fa48efc0ff52a348f6f8deca9a971904939741cc6989276f142f91e5a9aed7",
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20240107T170309Z.iso",
+      "iso_checksum": "sha256:ada26d65337899d0967a9a87ff800170fe33361603d1b390639bf847362e672b",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -1548,8 +1548,8 @@
     {
       "name": "fedora-rawhide-x64",
       "output_directory": "output/fedora-rawhide-x64",
-      "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/Fedora-Server-netinst-x86_64-Rawhide-20240103.n.0.iso",
-      "iso_checksum": "sha256:3f8f5f5a67a64cc7256db3241ae2b577fc07fa55d1c4e4866a127ddb18acb67e",
+      "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/Fedora-Server-netinst-x86_64-Rawhide-20240107.n.0.iso",
+      "iso_checksum": "sha256:1be26924cc0e4df5f099568edd0cb057b869341bc4af6d873835d6119c10b801",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
