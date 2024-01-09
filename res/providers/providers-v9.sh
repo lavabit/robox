@@ -75,11 +75,12 @@ function provide-libvirt() {
   dnf --assumeyes --enablerepo=extras install epel-release
 
   # libvirt Install
-  dnf --assumeyes --enablerepo=epel install \
-    libvirt libvirt-client libvirt-daemon python3-libvirt \
+  dnf --assumeyes --enablerepo=epel --enablerepo=crb install \
+    libvirt libvirt-client libvirt-daemon libvirt-devel python3-libvirt \
     qemu-kvm qemu-img qemu-kvm-tools qemu-kvm-block-curl qemu-kvm-docs \
     guestfs-tools libguestfs libguestfs-inspect-icons \
-    ruby ruby-devel ruby-default-gems rubygems rubygem-rexml rubygem-builder
+    ruby ruby-devel ruby-default-gems rubygems rubygem-rexml rubygem-builder \
+    dtc uboot-tools edk2-arm edk2-ovmf edk2-riscv64 edk2-aarch64
 
   # Setup the libvirt, QEMU and KVM Groups
   usermod -aG kvm root
