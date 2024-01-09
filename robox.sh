@@ -1054,6 +1054,9 @@ function start() {
   # Start the required services.
   # sudo systemctl restart vmtoolsd.service
   if [ -f /usr/lib/systemd/system/vboxdrv.service ]; then sudo systemctl restart vboxdrv.service ; fi
+  if [ -f /usr/lib/systemd/system/vboxballoonctrl-service.service ]; then sudo systemctl restart vboxballoonctrl-service.service ; fi
+  if [ -f /usr/lib/systemd/system/vboxweb-service.service ]; then sudo systemctl restart vboxweb-service.service ; fi
+  if [ -f /usr/lib/systemd/system/vboxautostart-service.service ]; then sudo systemctl restart vboxautostart-service.service ; fi
   if [ -f /usr/lib/systemd/system/libvirtd.service ]; then sudo systemctl restart libvirtd.service ; fi
     
   if [ -f /usr/lib/systemd/system/podman.service ]; then 
@@ -1886,60 +1889,60 @@ function box() {
 
       
       export PACKER_LOG_PATH="$BASE/logs/generic-docker-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker-x64.json; container-registry-logout)
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*docker-x64.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-docker-x64.json; container-registry-logout)
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x64.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x64.json
      export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt-x32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-x32.json
       
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-a64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-a64.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt-a64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-a64.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-a32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-a32.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt-a32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-a32.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-p64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-p64.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt-p64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-p64.json
       export PACKER_LOG_PATH="$BASE/logs/generic-libvirt-m64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-m64.json
+      [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*libvirt-m64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-libvirt-m64.json
 
       export PACKER_LOG_PATH="$BASE/logs/developer-ova-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*ova.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-ova-x64.json
       export PACKER_LOG_PATH="$BASE/logs/developer-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-libvirt-x64.json
+      [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*libvirt-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-libvirt-x64.json
 
       export PACKER_LOG_PATH="$BASE/logs/magma-docker-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
       [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*docker.*$ ]] && (container-registry-login && env DOCKER_CONFIG=$HOME/.docker/ REGISTRY_AUTH_FILE=$HOME/.docker/config.json packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-docker-x64.json; container-registry-logout)
       export PACKER_LOG_PATH="$BASE/logs/magma-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-libvirt-x64.json
+      [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*libvirt-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-libvirt-x64.json
 
       export PACKER_LOG_PATH="$BASE/logs/lineage-libvirt-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-libvirt-x64.json
+      [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*libvirt-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-libvirt-x64.json
 
   fi
 
   export PACKER_LOG_PATH="$BASE/logs/generic-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-vmware-x64.json
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-vmware-x64.json
   export PACKER_LOG_PATH="$BASE/logs/generic-vmware-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
   [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*vmware-x32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-vmware-x32.json
 
   export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox-x64.json
+  [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox-x64.json
   export PACKER_LOG_PATH="$BASE/logs/generic-virtualbox-x32-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
   [[ "$1" =~ ^.*generic.*$ ]] && [[ "$1" =~ ^.*virtualbox-x32.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 generic-virtualbox-x32.json
 
   export PACKER_LOG_PATH="$BASE/logs/developer-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-vmware-x64.json
+  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*vmware-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-vmware-x64.json
   export PACKER_LOG_PATH="$BASE/logs/developer-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-virtualbox-x64.json
+  [[ "$1" =~ ^.*developer.*$ ]] && [[ "$1" =~ ^.*virtualbox-x64$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 developer-virtualbox-x64.json
 
   export PACKER_LOG_PATH="$BASE/logs/magma-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-vmware-x64.json
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-vmware-x64.json
   export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-virtualbox-x64.json
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-virtualbox-x64.jsons
 
   export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-vmware-x64.json
+  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-vmware-x64.json
   export PACKER_LOG_PATH="$BASE/logs/lineage-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-virtualbox-x64.json
+  [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*virtualbox-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-virtualbox-x64.json
 
   return 0
 }
