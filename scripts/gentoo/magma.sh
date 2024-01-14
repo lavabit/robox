@@ -59,12 +59,15 @@ error() {
 if [ -x /usr/bin/id ]; then
   ID=\`/usr/bin/id -u\`
   if [ -n "\$ID" -a "\$ID" -eq 0 ]; then
-    rc-update add mariadb default && rc-service mariadb start
-    rc-update add postfix default && rc-service postfix start
-    rc-update add memcached default && rc-service memcached start
-    # systemctl start mariadb.service
-    # systemctl start postfix.service
-    # systemctl start memcached.service
+    if [ "\$(which rc-update 2>/dev/null)" ]; then
+      rc-update add mariadb default && rc-service mariadb start
+      rc-update add postfix default && rc-service postfix start
+      rc-update add memcached default && rc-service memcached start
+    else
+      systemctl start mariadb.service
+      systemctl start postfix.service
+      systemctl start memcached.service
+    fi
   fi
 fi
 

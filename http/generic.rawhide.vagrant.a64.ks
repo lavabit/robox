@@ -33,7 +33,6 @@ url --url=https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Serv
 @core
 net-tools
 sudo
-authconfig
 -mcelog
 -microcode_ctl
 -smartmontools

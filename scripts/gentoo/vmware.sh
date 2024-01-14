@@ -23,10 +23,13 @@ USE="-X -resolutionkms icu pam ssl fuse vgauth xml-security-c grabbitmqproxy pyt
 # Perform any configuration file updates.
 etc-update --automode -5
 
-rc-update add vmware-tools default
-rc-service vmware-tools start
-# systemctl enable vmtoolsd.service
-# systemctl start vmtoolsd.service
+if [ "$(which rc-update 2>/dev/null)" ]; then
+  rc-update add vmware-tools default
+  rc-service vmware-tools start
+else
+  systemctl enable vmtoolsd.service
+  systemctl start vmtoolsd.service
+fi
 
 rm --force /root/linux.iso
 

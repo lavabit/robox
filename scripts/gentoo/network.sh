@@ -7,7 +7,7 @@ printf "nameserver 4.2.2.1\nnameserver 4.2.2.2\nnameserver 208.67.220.220\n"> /e
 sysctl net.ipv6.conf.all.disable_ipv6=1
 
 # Ensure IPv6 stays disabled.
-printf "\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.d/local.conf
+[ -f /etc/sysctl.d/local.conf ] && printf "\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.d/local.conf
 
 # Set the hostname, and then ensure it will resolve properly.
 if [[ "$PACKER_BUILD_NAME" =~ ^generic-gentoo-(vmware|hyperv|libvirt|parallels|virtualbox)-(x64|x32|a64|a32|p64|p32|m64|m32)$ ]]; then

@@ -14,10 +14,13 @@ USE="-X python_targets_python3_6" emerge --ask=n --autounmask-write=y --autounma
 # Perform any configuration file updates.
 etc-update --automode -5
 
-rc-update add virtualbox-guest-additions default
-rc-service virtualbox-guest-additions start
-# systemctl enable virtualbox-guest-additions.service
-# systemctl start virtualbox-guest-additions.service
+if [ "$(which rc-update 2>/dev/null)" ]; then
+  rc-update add virtualbox-guest-additions default
+  rc-service virtualbox-guest-additions start
+else
+  systemctl enable virtualbox-guest-additions.service
+  systemctl start virtualbox-guest-additions.service
+fi
 
 # Cleanup the guest additions disc.
 rm --force VBoxVersion.txt

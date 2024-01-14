@@ -9,7 +9,7 @@ emerge-webrsync
 emerge --oneshot sys-apps/portage
 
 # Update the system packages.
-emerge --update --deep --newuse --with-bdeps=y @system @world
+emerge --ask=n --autounmask-write=y --autounmask-continue=y --update --deep --newuse --with-bdeps=y @system @world
 
 # Useful tools.
 USE="-X pam_ssh tty-helpers openssl" emerge --ask=n --autounmask-write=y --autounmask-continue=y app-admin/rsyslog app-admin/sudo app-admin/sysstat app-arch/bzip2 app-arch/bzip2 app-arch/gzip app-arch/gzip app-arch/tar app-arch/xz-utils app-editors/vim app-shells/bash dev-libs/lzo net-misc/curl net-misc/iputils net-misc/openssh net-misc/wget sys-apps/baselayout sys-apps/coreutils sys-apps/diffutils sys-apps/file sys-apps/findutils sys-apps/gawk sys-apps/grep sys-apps/kbd sys-apps/less sys-apps/lm-sensors sys-apps/man-pages sys-apps/mlocate sys-apps/net-tools sys-apps/openrc sys-apps/sed sys-apps/util-linux sys-apps/which sys-apps/which sys-auth/pambase sys-auth/pam_ssh sys-libs/glibc sys-libs/pam sys-process/lsof sys-process/procps sys-process/psmisc net-misc/rsync
@@ -37,16 +37,15 @@ printf "alias vi=vim\n" >> /etc/profile.d/vim.sh
 etc-update --automode -5
 
 # Start the syslog service.
-rc-update add rsyslog default && rc-service rsyslog start
-# systemctl enable rsyslog.service && systemctl start rsyslog.service
-
-# Start the services we just added so the system will track its own performance.
-rc-update add sysstat default && rc-service sysstat start
-# systemctl enable sysstat.service && systemctl start sysstat.service
-
-# If the sensors service starts properly, we add it to the default runlevel so it gets initialized during the boot process.
-(rc-service lm_sensors start && rc-update add lm_sensors default) || rc-update delete lm_sensors default
-# (systemctl enable lm_sensors.service && systemctl start lm_sensors.service) || systemctl disable lm_sensors.service
+if [ "$(which rc-update 2>/dev/null)" ]; then
+  rc-update add rsyslog default && rc-service rsyslog start
+  rc-update add sysstat default && rc-service sysstat start
+  (rc-service lm_sensors start && rc-update add lm_sensors default) || rc-update delete lm_sensors default
+else
+  systemctl enable rsyslog.service && systemctl start rsyslog.service
+  systemctl enable sysstat.service && systemctl start sysstat.service
+  (systemctl enable lm_sensors.service && systemctl start lm_sensors.service) || systemctl disable lm_sensors.service
+fi
 
 # Create an initial mlocate database.
 updatedb

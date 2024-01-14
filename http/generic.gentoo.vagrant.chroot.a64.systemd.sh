@@ -18,7 +18,7 @@ CXXFLAGS="\${CFLAGS}"
 MAKEOPTS="-j64"
 EMERGE_DEFAULT_OPTS="-j64 --with-bdeps=y --quiet-build=y --complete-graph"
 FEATURES="\${FEATURES} parallel-fetch"
-USE="nls alsa usb unicode openssl cpudetection"
+USE="nls alsa usb unicode openssl cpudetection systemd"
 GRUB_PLATFORMS="efi-64"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
@@ -54,7 +54,7 @@ mkdir -p "/etc/portage/package.mask"
 mkdir -p "/etc/portage/package.unmask"
 
 echo 'Setting Portage Profile'
-eselect profile set default/linux/arm64/17.0
+eselect profile set default/linux/arm64/17.0/systemd
 
 # Dynamically find the current stable profile.
 # cd /usr/portage
@@ -62,7 +62,7 @@ eselect profile set default/linux/arm64/17.0
 # eselect profile set $profile
 
 echo 'Emerging Dependencies'
-emerge --ask=n --autounmask-write=y --autounmask-continue=y sys-kernel/gentoo-kernel-bin sys-boot/grub:2 sys-boot/efibootmgr app-editors/vim app-admin/sudo sys-apps/dmidecode
+emerge --ask=n --autounmask-write=y --autounmask-continue=y sys-kernel/gentoo-kernel-bin sys-boot/grub:2 sys-boot/efibootmgr app-editors/vim app-admin/sudo sys-apps/dmidecode sys-apps/systemd sys-apps/gentoo-systemd-integration sys-apps/dbus
 
 # If necessary, include the Hyper-V modules in the initramfs and then load them at boot.
 if [ "$(dmidecode -s system-manufacturer)" == "Microsoft Corporation" ]; then
@@ -83,41 +83,41 @@ grub-install --efi-directory=/boot/EFI /dev/vda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 echo 'Configuring Network Services'
-emerge --ask=n --autounmask-write=y --autounmask-continue=y net-wireless/wireless-tools net-misc/dhcpcd sys-apps/openrc
+emerge --ask=n --autounmask-write=y --autounmask-continue=y net-wireless/wireless-tools net-misc/dhcpcd net-misc/networkmanager
 ln -sf /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 ln -sf /dev/null /etc/udev/rules.d/80-net-name-slot.rules
-echo 'config_enp0s3=( "dhcp" )' >> /etc/conf.d/net
-echo 'config_eth0=( "dhcp" )' >> /etc/conf.d/net
-ln -s /etc/init.d/net.lo /etc/init.d/net.eth0
-rc-update add net.eth0 default
-#cat <<-EOF > /etc/NetworkManager/system-connections/eth0.nmconnection
-#[connection]
-#id=eth0
-#uuid=$(uuidgen)
-#type=ethernet
-#autoconnect-priority=-999
-#interface-name=eth0
-#timestamp=$(date +%s)
-#
-#[ethernet]
-#
-#[ipv4]
-#method=auto
-#
-#[ipv6]
-#addr-gen-mode=eui64
-#method=auto
-#
-#[proxy]
-#
-#EOF
-#systemctl enable NetworkManager.service
+#echo 'config_enp0s3=( "dhcp" )' >> /etc/conf.d/net
+#echo 'config_eth0=( "dhcp" )' >> /etc/conf.d/net
+#ln -s /etc/init.d/net.lo /etc/init.d/net.eth0
+#rc-update add net.eth0 default
+cat <<-EOF > /etc/NetworkManager/system-connections/eth0.nmconnection
+[connection]
+id=eth0
+uuid=$(uuidgen)
+type=ethernet
+autoconnect-priority=-999
+interface-name=eth0
+timestamp=$(date +%s)
+
+[ethernet]
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=eui64
+method=auto
+
+[proxy]
+
+EOF
+systemctl enable NetworkManager.service
 
 echo 'Configuration SSH'
 sed -i -e "s/.*PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 sed -i -e "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
-rc-update add sshd default
-#systemctl enable sshd.service
+#rc-update add sshd default
+systemctl enable sshd.service
 
 # Disable the password checks so we can use the default password.
 sed -i 's/min=.*/min=1,1,1,1,1/g' /etc/security/passwdqc.conf
