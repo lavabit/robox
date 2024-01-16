@@ -1937,7 +1937,7 @@ function box() {
   export PACKER_LOG_PATH="$BASE/logs/magma-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
   [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*vmware-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-vmware-x64.json
   export PACKER_LOG_PATH="$BASE/logs/magma-virtualbox-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
-  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-virtualbox-x64.jsons
+  [[ "$1" =~ ^.*magma.*$ ]] && [[ "$1" =~ ^.*virtualbox-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 magma-virtualbox-x64.json
 
   export PACKER_LOG_PATH="$BASE/logs/lineage-vmware-x64-log-`date +'%Y%m%d.%H.%M.%S'`.txt"
   [[ "$1" =~ ^.*lineage.*$ ]] && [[ "$1" =~ ^.*vmware-x64.*$ ]] && packer build -on-error=$PACKER_ON_ERROR -parallel-builds=$PACKER_MAX_PROCS -only=$1 lineage-vmware-x64.json
