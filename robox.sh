@@ -2936,6 +2936,12 @@ function grab() {
     exit 1
   fi
 
+  # Handle the provider mappings.
+  PROVIDER="$3"
+  if [ "$PROVIDER" == "vmware" ]; then
+    PROVIDER="vmware_desktop"
+  fi
+
   ARCH="$4"
   if [ "$ARCH" == "x64" ] || [ "$ARCH" == "x86_64" ] || [ "$ARCH" == "amd64" ]; then
     ARCH="amd64"
@@ -2971,14 +2977,14 @@ function grab() {
   fi
 
   URL=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/$1/$2" \
-    | jq -r -c "[ .versions[] | .providers[] | select( .name == \"$3\" ) | select( .architecture == \"$ARCH\" ) | .download_url ][0]" 2>/dev/null`
+    | jq -r -c "[ .versions[] | .providers[] | select( .name == \"$PROVIDER\" ) | select( .architecture == \"$ARCH\" ) | .download_url ][0]" 2>/dev/null`
   if [ "$URL" == "" ]; then
     printf "\nA copy of " ; tput setaf 1 ; printf "$1/$2" ; tput sgr0 ; printf " using the provider " ; tput setaf 1 ; printf "$3" ; tput sgr0 ; printf " couldn't be found.\n\n"
     return 0
   fi
 
   CHECKSUM=`${CURL} --fail --silent --location --user-agent "${AGENT}" "https://app.vagrantup.com/api/v2/box/$1/$2" \
-    | jq -r -c "[ .versions[] | .providers[] | select( .name == \"$3\" ) | select( .architecture == \"$ARCH\" ) | .checksum ][0]" 2>/dev/null`
+    | jq -r -c "[ .versions[] | .providers[] | select( .name == \"$PROVIDER\" ) | select( .architecture == \"$ARCH\" ) | .checksum ][0]" 2>/dev/null`
 
   if [ ! -d "$BASE/output/" ]; then
     mkdir "$BASE/output/"

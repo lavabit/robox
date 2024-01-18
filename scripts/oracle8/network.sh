@@ -15,6 +15,9 @@ fi
 # Disable IPv6 or dnf will resolve mirror names to IPv6 address and then fail to connect with them.
 sysctl net.ipv6.conf.all.disable_ipv6=1
 
+# Remove cockpit firewall exception.
+firewall-cmd --permanent --zone=public --remove-service=cockpit &>/dev/null || echo >/dev/null
+
 # Disable IPv6 and the iptables module used to firewall IPv6.
 printf "\n\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
 

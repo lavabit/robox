@@ -13,6 +13,9 @@ systemctl disable remote-fs.target
 # Disable kernel dumping.
 systemctl disable kdump.service
 
+# Remove cockpit firewall exception.
+firewall-cmd --permanent --zone=public --remove-service=cockpit &>/dev/null || echo >/dev/null
+
 # Always use vim, even as root.
 printf "alias vi vim\n" > /etc/profile.d/vim.csh
 printf "# For bash/zsh, if no alias is already set.\nalias vi >/dev/null 2>&1 || alias vi=vim\n" > /etc/profile.d/vim.sh
