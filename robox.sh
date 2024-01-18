@@ -936,8 +936,8 @@ REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/next/8/Everything/x86_64/r
 REPOS+=( "https://mirrors.edge.kernel.org/fedora-epel/next/9/Everything/x86_64/repodata/repomd.xml" )
 
 # VirtualBox Tools
-FUTURE+=( "https://download.virtualbox.org/virtualbox/7.0.14/VBoxGuestAdditions_7.0.14.iso" )
-FUTURE+=( "https://download.virtualbox.org/virtualbox/6.1.50/VBoxGuestAdditions_6.1.50.iso" )
+FUTURE+=( "https://download.virtualbox.org/virtualbox/7.0.14/VBoxGuestAdditions_7.0.16.iso" )
+FUTURE+=( "https://download.virtualbox.org/virtualbox/6.1.50/VBoxGuestAdditions_6.1.52.iso" )
 
 # There likely won't be anymore 5.2.x releases, but just in case we check, because if
 # there is a release, it's probably important.
