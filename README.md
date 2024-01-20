@@ -36,7 +36,7 @@ Oct 23rd, 2023 / FreeBSD 14.0
 
 ## Pending tasks
 
-<sup><sub>_We would welcome community help (as a pull request) with any of the following tasks._</sub></sup>
+_We would welcome community help (as a pull request) with any of the following tasks:_
 
 * Generate docker variants for the Ubuntu/Debian/Alpine configurations
 * Incorporate the upload/delete/release scripts into the robox.sh script as functions.
