@@ -38,8 +38,8 @@ Oct 23rd, 2023 / FreeBSD 14.0
 
 _We would welcome community help (as a pull request) with any of the following tasks:_
 
-* Generate docker variants for the Ubuntu/Debian/Alpine configurations
-* Incorporate the upload/delete/release scripts into the robox.sh script as functions.
+* Generate docker variants for the Ubuntu/Debian/Alpine configurations.
+* Incorporate the upload/delete/release scripts into the `robox.sh` script as functions.
 * Add vagrant user password randomization logic to the bundled Vagrantfiles.
 * Improve the unit box validation/check script with SSH command tests/checks.
 * Start building ARM variants for some virtual machines/boxes.
