@@ -74,11 +74,14 @@ The following operating systems are potential candidates. They may be added in t
 * OpenSolaris
 * Slackware
 
+
 * MacOS
 * Darwin
 
+
 * ReactOS
 * Windows
+
 
 * Tails
 * Kali
