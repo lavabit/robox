@@ -108,8 +108,8 @@
     {
       "name": "fedora-rawhide-a64",
       "output_directory": "output/fedora-rawhide-a64",
-      "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/Fedora-Server-netinst-aarch64-Rawhide-20240122.n.0.iso",
-      "iso_checksum": "sha256:a823b61fdf7be5823221e953e7798ff94eac8df99f45d646e6186cef8b154c02",
+      "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/Fedora-Server-netinst-aarch64-Rawhide-20240126.n.1.iso",
+      "iso_checksum": "sha256:30c9d3b5320ed3df9bed1c942508775c43b32cc5e6a8e0071a26abad05e3ace6",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
