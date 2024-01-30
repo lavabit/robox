@@ -123,8 +123,8 @@
     {
       "name": "alpine316-x64",
       "output_directory": "output/alpine316-x64",
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.16/releases/x86_64/alpine-virt-3.16.8-x86_64.iso",
-      "iso_checksum": "sha256:160c76f65ef888cb4cb4758a3b9d81d44f597ce22631aa94ae164c6a529d7b43",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.16/releases/x86_64/alpine-virt-3.16.9-x86_64.iso",
+      "iso_checksum": "sha256:7d6c9e05aac3f0a2933985089ba6d9d8febb9f77240b630ac35c9a53f5fe8caa",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -138,8 +138,8 @@
     {
       "name": "alpine317-x64",
       "output_directory": "output/alpine317-x64",
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.17/releases/x86_64/alpine-virt-3.17.6-x86_64.iso",
-      "iso_checksum": "sha256:c7d38cd63d49efa7fa3ca4899ee52abe8c069b6bac43adf7164404bead1b09d3",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.17/releases/x86_64/alpine-virt-3.17.7-x86_64.iso",
+      "iso_checksum": "sha256:a541ba0e34b249eb4f0c32501ceb990654c63b7436e6922c743d3b3cfd73314a",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -153,8 +153,8 @@
     {
       "name": "alpine318-x64",
       "output_directory": "output/alpine318-x64",
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.18/releases/x86_64/alpine-virt-3.18.5-x86_64.iso",
-      "iso_checksum": "sha256:7b9df963b46872b195daf527085a8fea76c0576d966a71fd18bcd4e1914f0eae",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.18/releases/x86_64/alpine-virt-3.18.6-x86_64.iso",
+      "iso_checksum": "sha256:96003009e4cb13b29f41516f03bfa887849ad647b6df695b4f7412b68b995ccf",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
@@ -1533,8 +1533,8 @@
     {
       "name": "alpine319-x64",
       "output_directory": "output/alpine319-x64",
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.19/releases/x86_64/alpine-virt-3.19.0-x86_64.iso",
-      "iso_checksum": "sha256:95ed37b1e54b04aad1c6ff54a5fd60d904363a2a8810c3e3dfe4c2a29e94056b",
+      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.19/releases/x86_64/alpine-virt-3.19.1-x86_64.iso",
+      "iso_checksum": "sha256:366317d854d77fc5db3b2fd774f5e1e5db0a7ac210614fd39ddb555b09dbb344",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
