@@ -873,8 +873,8 @@
     {
       "name": "hardenedbsd13-x64",
       "output_directory": "output/hardenedbsd13-x64",
-      "iso_url": "https://mirror.laylo.nl/pub/hardenedbsd/13-stable/amd64/amd64/installer/build-30/disc1.iso",
-      "iso_checksum": "sha256:a449b42b793301ad7e79755b932b13a5a7e5f8c08fc15011fff041ed9422a2d9",
+      "iso_url": "https://mirror.laylo.nl/pub/hardenedbsd/13-stable/amd64/amd64/installer/build-31/disc1.iso",
+      "iso_checksum": "sha256:f309129e96cc85ca84cd868789a2ed3213327809446b17e906519eaf3e786b3a",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
