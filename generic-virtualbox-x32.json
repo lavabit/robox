@@ -388,9 +388,7 @@
           "modifyvm",
           "{{.Name}}",
           "--vram",
-          "64",
-          "--ioapic",
-          "on"
+          "64"
         ]
       ],
       "hard_drive_interface": "sata",
@@ -444,9 +442,7 @@
           "modifyvm",
           "{{.Name}}",
           "--vram",
-          "64",
-          "--ioapic",
-          "on"
+          "64"
         ]
       ],
       "hard_drive_interface": "sata",
