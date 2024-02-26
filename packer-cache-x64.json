@@ -813,8 +813,8 @@
     {
       "name": "gentoo-x64",
       "output_directory": "output/gentoo-x64",
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20240218T170410Z.iso",
-      "iso_checksum": "sha256:75d9c2c744b0bfb4c26872a5a676a4045c2fa97a9ee3b228ec604f3c4d79d280",
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20240225T170409Z.iso",
+      "iso_checksum": "sha256:df9717950d4c6e74634eea5861ee7aa52d5f592ae0100c46faab5df9019eddf1",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
