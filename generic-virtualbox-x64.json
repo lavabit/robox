@@ -4670,7 +4670,7 @@
       "vrdp_bind_address": "127.0.0.1",
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
-      "iso_url": "https://download.freebsd.org/ftp/releases/ISO-IMAGES/12.4/FreeBSD-12.4-RELEASE-amd64-disc1.iso",
+      "iso_url": "https://archive.freebsd.org/old-releases/ISO-IMAGES/12.4/FreeBSD-12.4-RELEASE-amd64-disc1.iso",
       "iso_checksum": "sha256:606435637b76991f96df68f561badf03266f3d5452e9f72ed9b130d96b188800",
       "ssh_username": "root",
       "ssh_password": "vagrant",
