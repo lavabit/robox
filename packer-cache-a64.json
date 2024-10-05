@@ -33,8 +33,8 @@
     {
       "name": "gentoo-a64",
       "output_directory": "output/gentoo-a64",
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/arm64/autobuilds/current-install-arm64-minimal/install-arm64-minimal-20240915T202112Z.iso",
-      "iso_checksum": "sha256:00605fb46ce811ce86152c4e24d4c16b1fbc01c007a76655685edb20c8db0ca8",
+      "iso_url": "https://mirrors.kernel.org/gentoo/releases/arm64/autobuilds/current-install-arm64-minimal/install-arm64-minimal-20240930T193645Z.iso",
+      "iso_checksum": "sha256:cd45c7ec4c4893f154d05da4ea99a2caaa2daf8c5e67627d4c4125949ad67b21",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
