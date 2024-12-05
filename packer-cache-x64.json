@@ -828,8 +828,8 @@
     {
       "name": "hardenedbsd-x64",
       "output_directory": "output/hardenedbsd-x64",
-      "iso_url": "https://mirror.laylo.nl/pub/hardenedbsd/14-stable/amd64/amd64/installer/build-24/disc1.iso",
-      "iso_checksum": "sha256:ac602f45fbe8705f46dc93e0169355140e3ebb439e51ad46539f7767adb0d376",
+      "iso_url": "https://mirror.laylo.nl/pub/hardenedbsd/14-stable/amd64/amd64/installer/build-25/disc1.iso",
+      "iso_checksum": "sha256:dc0121f65bf8f778195dfa5b5703b28dcf99a41923752ef836eb3b1bb8cc6465",
       "boot_wait": "5s",
       "disk_size": 1,
       "headless": true,
