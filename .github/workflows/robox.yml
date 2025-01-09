@@ -127,7 +127,7 @@ jobs:
         export PACKER_LOG_PATH=packer-cache-m64.txt ; packer validate packer-cache-m64.json &>> packer-validate.txt && printf "File  + packer-cache-m64.json\n" || { printf "File  - packer-cache-m64.json\n\n\n" ; unset PACKER_LOG ; unset PACKER_LOG_PATH ; packer validate packer-cache-m64.json ; exit 1 ; }
         date +"%nFinished Cache box validation at %r on %x%n"
     - name: Archive Log Files
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: ${{ always() }}
       with:
         name: validate-logs
