@@ -4583,8 +4583,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "vmware-iso",
@@ -4628,8 +4627,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -h -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -h -p now"
     },
     {
       "type": "vmware-iso",
@@ -4685,8 +4683,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "vmware-iso",
@@ -4823,8 +4820,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "vmware-iso",
@@ -4891,8 +4887,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "vmware-iso",
@@ -4976,8 +4971,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "/sbin/poweroff",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "/sbin/poweroff"
     },
     {
       "type": "vmware-iso",
@@ -5031,8 +5025,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "vmware-iso",
@@ -5788,8 +5781,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "/sbin/poweroff",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "/sbin/poweroff"
     },
     {
       "type": "vmware-iso",
@@ -6466,8 +6458,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "vmware-iso",
@@ -6521,8 +6512,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "vmware-iso",
@@ -6589,8 +6579,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "vmware-iso",
@@ -6688,8 +6677,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -h -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -h -p now"
     },
     {
       "type": "vmware-iso",
@@ -7859,8 +7847,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "vmware-iso",
@@ -7927,8 +7914,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "vmware-iso",
@@ -8041,8 +8027,7 @@
       "ssh_port": 22,
       "ssh_handshake_attempts": 1000,
       "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -p now",
-      "tools_upload_flavor": "freebsd"
+      "shutdown_command": "shutdown -p now"
     },
     {
       "type": "vmware-iso",
