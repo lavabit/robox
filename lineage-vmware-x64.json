@@ -99,9 +99,9 @@
       "disk_type_id": "0",
       "cpus": 4,
       "memory": 2048,
-      "version": "12",
+      "version": "13",
       "vmx_data_post": {
-        "virtualHW.version": "12",
+        "virtualHW.version": "13",
         "cleanShutdown": "TRUE",
         "softPowerOff": "FALSE",
         "ethernet0.virtualDev": "e1000",
