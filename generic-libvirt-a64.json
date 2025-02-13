@@ -1107,7 +1107,7 @@
       "memory": 8192,
       "http_directory": "http",
       "headless": true,
-      "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/Fedora-Server-netinst-aarch64-Rawhide-20250211.n.1.iso",
+      "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/Fedora-Server-netinst-aarch64-Rawhide-20250212.n.0.iso",
       "iso_checksum": "sha256:844efd6d82f3d4f7975ead3488ce679ad133dd60ac19ad7305315a132f874995",
       "ssh_username": "root",
       "ssh_password": "vagrant",
